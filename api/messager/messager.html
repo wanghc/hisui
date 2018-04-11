@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<h2>消息框</h2>
+	<h3>说明:</h3>
+	<span>消息框（messager）提供不同样式的消息框，包括警示（alert）、确认（confirm）、提示（prompt）、进展（progress）等等。所有的消息框都是异步的。用户可以在与消息框交互后使用回调函数来完成一些动作。</span>
+	<h3>如：</h3>
+	<div style="width: 666px;height: 31px"></div>
+	<div class="demo-exp-code entry-content">
+		<a class="hisui-linkbutton" iconCls="icon-ok" id="alert1">alert1</a>
+		<a class="hisui-linkbutton" iconCls="icon-remove" id="confirm1">confirm1</a>
+		<a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1">prompt1</a>
+		<a class="hisui-linkbutton" iconCls="icon-edit" id="progress1">progress1</a>
+		<a class="hisui-linkbutton" iconCls="icon-edit" id="show1">show1</a>
+		<script>
+			$(function () {
+				$('#alert1').click(function () {
+					$.messager.alert("简单提示", "删除成功", 'info');
+				})
+				$('#confirm1').click(function () {
+					$.messager.confirm("删除", "确定删除么", function (r) {
+						if (r) {
+							alert("点击了确定");
+						} else {
+							alert("点击了取消");
+						}
+					});
+				})
+				$('#prompt1').click(function () {
+					$.messager.prompt("名字", "请输入名字", function (r) {
+						if (r) {
+							alert("名字是：" + r);
+						} else {
+							alert("点击了取消或输入为空");
+						}
+					});
+				})
+				$('#progress1').click(function () {
+					$.messager.progress({
+						title: "上传",
+						msg: '正在上传',
+						text: '上传中....'
+					});
+					setTimeout('$.messager.progress("close");', 5 * 1000);
+				})
+				$('#show1').click(function () {
+					$.messager.show({
+						title: '标题',
+						msg: '5秒后会自动关闭',
+						timeout: 5000,
+						showType: 'slide'
+					});
+				})
+			})
+		</script>
+
+<pre class="prettyprint lang-html"><code>&lt;a class="hisui-linkbutton" iconCls="icon-ok" id="alert1"&gt;alert1&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-remove" id="confirm1"&gt;confirm1&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1"&gt;prompt1&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="progress1"&gt;progress1&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="show1"&gt;show1&lt;/a&gt;
+&lt;script&gt;
+	$(function () {
+		$('#alert1').click(function () {
+			$.messager.alert("简单提示", "删除成功", 'info');
+		})
+		$('#confirm1').click(function () {
+			$.messager.confirm("删除", "确定删除么", function (r) {
+				if (r) {
+					alert("点击了确定");
+				} else {
+					alert("点击了取消");
+				}
+			});
+		})
+		$('#prompt1').click(function () {
+			$.messager.prompt("名字", "请输入名字", function (r) {
+				if (r) {
+					alert("名字是：" + r);
+				} else {
+					alert("点击了取消或输入为空");
+				}
+			});
+		})
+		$('#progress1').click(function () {
+			$.messager.progress({
+				title: "上传",
+				msg: '正在上传',
+				text: '上传中....'
+			});
+			setTimeout('$.messager.progress("close");', 5 * 1000);
+		})
+		$('#show1').click(function () {
+			$.messager.show({
+				title: '标题',
+				msg: '5秒后会自动关闭',
+				timeout: 5000,
+				showType: 'slide'
+			});
+		})
+	})
+&lt;/script&gt;</code></pre>
+	</div>
+
+	<prettyprint/>
+</body>
+
+</html>

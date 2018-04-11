@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>查询框示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+	<h3>基本文本框</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="hisui-panel" title="注册" style="width:400px;padding:30px 30px">
+			<div style="margin-bottom:20px">
+				<div>邮箱</div>
+				<input class="hisui-textbox" data-options="prompt:'提示',validType:'email'" style="width:300px;height:32px" id="email">
+			</div>
+			<div style="margin-bottom:20px">
+				<div>姓名</div>
+				<input class="hisui-textbox" style="width:300px;height:32px" id="name">
+			</div>
+			<div style="margin-bottom:20px">
+				<div>公司</div>
+				<input class="hisui-textbox" style="width:300px;height:40px" id="company">
+			</div>
+			<div style="margin-bottom:20px">
+				<div>备注</div>
+				<input class="hisui-textbox" style="width:300px;height:100px" data-options="multiline:true" value="张三是个好人，李四是个好人，王二也是一个好人。。。。哈哈哈哈" id="note">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="hisui-textbox" label="label" labelPosition="top" style="width:300px;height:100px" data-options="multiline:true" value="张三是个好人，李四是个好人，王二也是一个好人。。。。哈哈哈哈" id="note">
+			</div>
+		</div>
+		<pre class="prettyprint lang-html"><code></code></pre>
+	</div>
+	<prettyprint/>
+</body>
+
+</html>

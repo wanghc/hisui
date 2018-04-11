@@ -1,0 +1,12 @@
+easyloader.theme = "bootstrap";
+easyloader.locale="zh_CN";
+easyloader.load(['combobox'],function(){
+	$('#cbox').combobox({
+		valueField:'id',
+		textField:'text',
+		data:[{id:'java',text:'java”Ô—‘'},{id:'css',text:'css”Ô—‘'}],
+		onselect:function(rec){
+			alert(1);
+		}
+	});
+});

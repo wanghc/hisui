@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>HIS UI</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../src/lookup.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>放大镜</h2>
+    <h3>说明:</h3>
+    <span>在首次初始化时不初始化列表，且个界面只有一个列表。即只保留当前下拉框列表数据。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+        <input id="arcim" style="width:100px;">
+        </input>
+        <script type='text/javascript'>
+            $(function(){
+                $("#arcim").lookup({
+                    width:150,
+                    lookupPage:"lookup.html",
+                    ClassName:'web.DHCTest',
+                    QueryName:'Find',
+                    columns:[[  
+                        {field:'code',title:'代码',width:100},  
+                        {field:'name',title:'名称',width:100},  
+                        {field:'price',title:'价格',width:100,align:'right'}  
+                    ]],
+                    queryParams:{"code":{id:"arcim"},"desc":"haha"}
+                });
+            });
+        </script>
+    </div>
+	<prettyprint/>
+</body>
+</html>

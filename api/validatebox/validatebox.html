@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>验证框示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+	
+</head>
+<body>
+	<h2>基础验证框</h2>
+	<h3>说明:</h3>
+    <span>基础验证框（validatebox）用来验证表单，在输入框上加入简单的验证 。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+		<div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true">
+		<table cellpadding="5">
+			<tr>
+				<td>HeadButton</td>
+				<td>
+					<a id="btn" href="#" class="hisui-linkbutton head-btn">确认</a>
+				</td>
+			</tr>						
+			<tr>
+				<td>序号</td>
+				<td>
+					<input id="patno" class="textbox">
+				</td>
+			</tr>
+			<tr>
+				<td>患者性名</td>
+				<td>
+					<input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
+				</td>
+			</tr>
+			<tr>
+				<td>邮箱</td>
+				<td>
+					<input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
+				</td>
+			</tr>
+			<tr>
+				<td>URL:</td>
+				<td>
+					<input class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
+				</td>
+			</tr>
+			<tr>
+				<td>数字:</td>
+				<td>
+					<input class="hisui-numberbox">
+				</td>
+			</tr>
+			<tr>
+				<td>生日:</td>
+				<td>
+					<input class="hisui-datebox textbox">
+				</td>
+			</tr>
+			
+		</table>
+    	</div><pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',
+closable:true,collapsible:true,minimizable:true,maximizable:true">
+	&lt;table cellpadding="5">
+		&lt;tr>
+			&lt;td>HeadButton&lt;/td>
+			&lt;td>
+				&lt;a id="btn" href="#" class="hisui-linkbutton head-btn">确认&lt;/a>
+			&lt;/td>
+		&lt;/tr>						
+		&lt;tr>
+			&lt;td>序号&lt;/td>
+			&lt;td>
+				&lt;input id="patno" class="textbox">
+			&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>患者性名&lt;/td>
+			&lt;td>
+				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
+			&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>邮箱&lt;/td>
+			&lt;td>
+				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
+			&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>URL:&lt;/td>
+			&lt;td>
+				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
+			&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>数字:&lt;/td>
+			&lt;td>
+				&lt;input class="hisui-numberbox">
+			&lt;/td>
+		&lt;/tr>
+		&lt;tr>
+			&lt;td>生日:&lt;/td>
+			&lt;td>
+				&lt;input class="hisui-datebox textbox">
+			&lt;/td>
+		&lt;/tr>			
+	&lt;/table&gt;
+&lt;/div&gt;</code></pre><pre class="prettyprint lang-js">
+&lt;script type="text/javascript"&gt;
+var init = function () {
+	var valbox = $HUI.validatebox("#patno", {
+		required: true
+	});
+	$("#btn").click(function () {				
+		valbox.jdata.validating = true;
+		valbox.validate();
+		// 获得验证结果
+		var patnoHasValue = valbox.isValid();
+		if (patnoHasValue) {
+			alert("序号验证通过");
+		} else {
+			alert("序号为空");
+		}
+	});
+}
+$(init);
+&lt;/script&gt;	
+	</pre>
+	</div>
+			
+	<script type="text/javascript">
+		var init = function () {
+			var valbox = $HUI.validatebox("#patno", {
+				required: true
+			});
+
+			$("#btn").click(function () {
+				//$("#patno").data("validatebox").validating=true;
+				//$("#patno").validatebox("validate");
+				// valbox.jdata <=> $("#patno").data("validatebox")
+				//下面二句 可以让tooltip主动显示出来
+				valbox.jdata.validating = true;
+				valbox.validate();
+				// 获得验证结果
+				var patnoHasValue = valbox.isValid();
+				if (patnoHasValue) {
+					alert("序号验证通过");
+				} else {
+					alert("序号为空");
+				}
+			});
+
+		}
+		$(init);
+	</script>
+	<prettyprint/>	
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>导出execl示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+	<h2>Query结果导出Excel</h2>
+	<h3>说明:</h3>
+	<span>通过公共方法调用Query生成Excel</span>
+	<h3>使用:</h3>
+	<div class="demo-exp-code entry-content"> 
+		<h2>websys.Query类中ToExcel类方法</h2>
+		<table class="table">
+			<tr class="protitle">
+				<th>参数</th>
+				<th>类型</th>
+				<th></th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>ExcelName</td>
+				<td>{ String }</td>
+				<td>必填项</td>
+				<td>最终要导出的Excel名称,用不带后缀</td>
+			</tr>
+			<tr>
+				<td>ClassName</td>
+				<td>{ String }</td>
+				<td>必填项</td>
+				<td>后台类名</td>
+			</tr>
+			<tr>
+				<td>QueryName</td>
+				<td>{ String }</td>
+				<td>必填项</td>
+				<td>后台Query名</td>
+			</tr>
+			<tr>
+				<td>p1</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第1个入参</td>
+			</tr>
+			<tr>
+				<td>p2</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第2个入参</td>
+			</tr>
+			<tr>
+				<td>...</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第n个入参</td>
+			</tr>
+			<tr>
+				<td>p16</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第16个入参</td>
+			</tr>
+		</table>
+		<h2>Javascript方法示例：</h2>
+		<pre class="prettyprint lang-js">
+//js文件中代码 ，导出rowid为1的安全组所有菜单
+<code>var rtn = tkMakeServerCall("websys.Query","ToExcel","excelname","web.Util.Menu","SelectGroupMenu",1);
+location.href = rtn;</code></pre>
+<!--异步返回json数据-->
+<pre class="prettyprint lang-js">
+<code>//引用hisui库后,js文件中代码，
+var rtn = $.cm({
+	ResultSetType:"Excel",
+	ExcelName:"excelname", //默认DHCCExcel
+	ClassName:"web.Util.Menu",
+	QueryName:"SelectGroupMenu",
+	GroupId:1
+},true);
+location.href = rtn;</code></pre>
+</div>
+<prettyprint/>
+</body>
+</html>

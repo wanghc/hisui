@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<h2>树</h2>
+	<h3>说明:</h3>
+	<span>树形菜单（Tree）可从标记创建，也可定义在 &lt;ul> 元素中。无序列表的 &lt;ul> 元素提供一个基础的树（Tree）结构。每一个 &lt;li> 元素将产生一个树节点，子 &lt;ul> 元素将产生一个父树节点。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content">
+		<ul class="hisui-tree" data-options="lines:false">
+			<li>
+				<span>Folder</span>
+				<ul>
+					<li>
+						<span>Sub Folder 1</span>
+						<ul>
+							<li>
+								<span>
+									<a href="#">File 11</a>
+								</span>
+							</li>
+							<li>
+								<span>File 12</span>
+							</li>
+							<li>
+								<span>File 13</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>File 2</span>
+					</li>
+					<li>
+						<span>File 3</span>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>Folder</span>
+				<ul>
+					<li>
+						<span>Sub Folder 1</span>
+						<ul>
+							<li>
+								<span>
+									<a href="#">File 11</a>
+								</span>
+							</li>
+							<li>
+								<span>File 12</span>
+							</li>
+							<li>
+								<span>File 13</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>File 2</span>
+					</li>
+					<li>
+						<span>File 3</span>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>Folder</span>
+				<ul>
+					<li>
+						<span>Sub Folder 1</span>
+						<ul>
+							<li>
+								<span>
+									<a href="#">File 11</a>
+								</span>
+							</li>
+							<li>
+								<span>File 12</span>
+							</li>
+							<li>
+								<span>File 13</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>File 2</span>
+					</li>
+					<li>
+						<span>File 3</span>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+		<pre class="prettyprint lang-html"><code>&lt;ul class="hisui-tree" data-options="lines:false">   
+	&lt;li>   
+		&lt;span>Folder&lt;/span>   
+		&lt;ul>   
+			&lt;li>   
+				&lt;span>Sub Folder 1&lt;/span>   
+				&lt;ul>   
+					&lt;li>   
+						&lt;span>&lt;a href="#">File 11&lt;/a>&lt;/span>   
+					&lt;/li>   
+					&lt;li>   
+						&lt;span>File 12&lt;/span>   
+					&lt;/li>   
+					&lt;li>   
+						&lt;span>File 13&lt;/span>   
+					&lt;/li>   
+				&lt;/ul>   
+			&lt;/li>   
+			&lt;li>   
+				&lt;span>File 2&lt;/span>   
+			&lt;/li>   
+			&lt;li>   
+				&lt;span>File 3&lt;/span>   
+			&lt;/li>   
+		&lt;/ul>   
+	&lt;/li>   
+	&lt;li>   
+		&lt;span>File21&lt;/span>   
+	&lt;/li>   
+&lt;/ul&gt;</code></pre>
+	</div>
+	<h3>有线条如：</h3>
+	<div class="demo-exp-code entry-content">
+		<ul class="hisui-tree" data-options="lines:true">
+			<li>
+				<span>Folder</span>
+				<ul>
+					<li>
+						<span>Sub Folder 1</span>
+						<ul>
+							<li>
+								<span>
+									<a href="#">File 11</a>
+								</span>
+							</li>
+							<li>
+								<span>File 12</span>
+							</li>
+							<li>
+								<span>File 13</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>File 2</span>
+					</li>
+					<li>
+						<span>File 3</span>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>Folder</span>
+				<ul>
+					<li>
+						<span>Sub Folder 1</span>
+						<ul>
+							<li>
+								<span>
+									<a href="#">File 11</a>
+								</span>
+							</li>
+							<li>
+								<span>File 12</span>
+							</li>
+							<li>
+								<span>File 13</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>File 2</span>
+					</li>
+					<li>
+						<span>File 3</span>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<span>Folder</span>
+				<ul>
+					<li>
+						<span>Sub Folder 1</span>
+						<ul>
+							<li>
+								<span>
+									<a href="#">File 11</a>
+								</span>
+							</li>
+							<li>
+								<span>File 12</span>
+							</li>
+							<li>
+								<span>File 13</span>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<span>File 2</span>
+					</li>
+					<li>
+						<span>File 3</span>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+		<pre class="prettyprint lang-html"><code>&lt;ul class="hisui-tree" data-options="lines:true">   
+		&lt;li>   
+			&lt;span>Folder&lt;/span>   
+			&lt;ul>   
+				&lt;li>   
+					&lt;span>Sub Folder 1&lt;/span>   
+					&lt;ul>   
+						&lt;li>   
+							&lt;span>&lt;a href="#">File 11&lt;/a>&lt;/span>   
+						&lt;/li>   
+						&lt;li>   
+							&lt;span>File 12&lt;/span>   
+						&lt;/li>   
+						&lt;li>   
+							&lt;span>File 13&lt;/span>   
+						&lt;/li>   
+					&lt;/ul>   
+				&lt;/li>   
+				&lt;li>   
+					&lt;span>File 2&lt;/span>   
+				&lt;/li>   
+				&lt;li>   
+					&lt;span>File 3&lt;/span>   
+				&lt;/li>   
+			&lt;/ul>   
+		&lt;/li>   
+		&lt;li>   
+			&lt;span>File21&lt;/span>   
+		&lt;/li>   
+	&lt;/ul&gt;</code></pre>
+	</div>
+	
+	<div class="demo-exp-code entry-content">
+		<P>为生成树的dom增加类accordiontree 可将树的样式变为下样式</P>
+		<!--tree 高度在外部限定-->
+		<div style="height:500px;width:208px;overflow:auto">
+			<ul id="mytt" style="width:188px;" class="accordiontree" data-options="animate:true"></ul>
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				$('#mytt').tree({
+					data: [{
+						"id": 1,
+						"text": "物资信息",
+						"state": "open",
+						"children": [{
+							"id": 11,
+							"text": "Node 11",
+							"children": [{
+								"id": 111,
+								"text": "Node 111"
+							}, {
+								"id": 112,
+								"text": "Node 112"
+							}]
+						}, {
+							"id": 12,
+							"text": "Node 12"
+						}]
+					}, {
+						"id": 2,
+						"text": "物资信息2",
+						"state": "open",
+						"children": [{
+							"id": 21,
+							"text": "Node 21",
+							"children": [{
+								"id": 211,
+								"text": "Node 211"
+							}, {
+								"id": 212,
+								"text": "Node 212",
+								"children": [{
+									"id": 2121,
+									"text": "Node 2121"
+								}, {
+									"id": 2122,
+									"text": "Node 2122"
+								}]
+							}]
+						}, {
+							"id": 22,
+							"text": "Node 22"
+						}]
+					}, {
+						"id": 3,
+						"text": "物资信息3",
+						"state": "closed",
+						"children": [{
+							"id": 31,
+							"text": "Node 31",
+							"children": [{
+								"id": 311,
+								"text": "Node 311"
+							}, {
+								"id": 312,
+								"text": "Node 312"
+							}]
+						}, {
+							"id": 32,
+							"text": "Node 32"
+						}]
+					}],
+					onClick: function (node) {
+						$('#mytt').tree('toggle', node.target); //简单单吉展开关闭
+						/*  //类手风琴 只开一个根节点操作
+						if($(node.target).parent().parent().hasClass('accordiontree')&&node.state=="closed"){
+							var roots=$('#mytt').tree('getRoots');
+							$.each(roots,function(i,o){
+								$('#mytt').tree('collapse',o.target);
+							})
+						}
+						$('#mytt').tree('toggle',node.target);
+						*/
+					}
+				})
+			})
+		</script>
+		<pre class="prettyprint lang-html"><code>&lt;div style="height:500px;width:208px;overflow:auto"&gt;
+	&lt;div id="mytt" style="width:188px;" class="accordiontree" data-options="animate:true"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+	$(function () {
+		$('#mytt').tree({
+			data: [{
+				"id": 1,
+				"text": "物资信息",
+				"state": "open",
+				"children": [{
+					"id": 11,
+					"text": "Node 11",
+					"children": [{
+						"id": 111,
+						"text": "Node 111"
+					}, {
+						"id": 112,
+						"text": "Node 112"
+					}]
+				}, {
+					"id": 12,
+					"text": "Node 12"
+				}]
+			}, {
+				"id": 2,
+				"text": "物资信息2",
+				"state": "closed",
+				"children": [{
+					"id": 21,
+					"text": "Node 21",
+					"children": [{
+						"id": 211,
+						"text": "Node 211"
+					}, {
+						"id": 212,
+						"text": "Node 212",
+						"children": [{
+							"id": 2121,
+							"text": "Node 2121"
+						}, {
+							"id": 2122,
+							"text": "Node 2122"
+						}]
+					}]
+				}, {
+					"id": 22,
+					"text": "Node 22"
+				}]
+			}, {
+				"id": 3,
+				"text": "物资信息3",
+				"state": "closed",
+				"children": [{
+					"id": 31,
+					"text": "Node 31",
+					"children": [{
+						"id": 311,
+						"text": "Node 311"
+					}, {
+						"id": 312,
+						"text": "Node 312"
+					}]
+				}, {
+					"id": 32,
+					"text": "Node 32"
+				}]
+			}],
+			onClick: function (node) {
+				$('#mytt').tree('toggle', node.target); //简单单吉展开关闭
+				/*  //类手风琴 只开一个根节点操作
+				if($(node.target).parent().parent().hasClass('accordiontree')&amp;&amp;node.state=="closed"){
+					var roots=$('#mytt').tree('getRoots');
+					$.each(roots,function(i,o){
+						$('#mytt').tree('collapse',o.target);
+					})
+				}
+				$('#mytt').tree('toggle',node.target);
+				*/
+			}
+		})
+	})
+&lt;/script&gt;</code></pre>
+	</div>
+
+	<prettyprint/>
+</body>
+
+</html>

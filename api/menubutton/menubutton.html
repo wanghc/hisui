@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>HIS UI</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>菜单按钮</h2>
+    <h3>说明:</h3>
+    <span>菜单按钮（menubutton）是下拉菜单的一部分。它与链接按钮（linkbutton）及菜单（menu）有关。显示链接按钮（linkbutton），隐藏菜单（menu）。当用户点击或移动鼠标到链接按钮（linkbutton）上时，将显示菜单（menu）以允许用户点击菜单。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+
+        <a href="javascript:void(0)" id="menubtn" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单</a>
+        <div id="mm3" style="width:100px;">   
+            <div onclick="console.log('停止');">停止</div>   
+            <div onclick="console.log('作废');">作废</div>     
+            <!-- data-options="iconCls:'icon-cancel'" -->
+        </div>
+        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit</a>
+        <div id="mmedit" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'">Undo</div>
+            <div data-options="iconCls:'icon-redo'">Redo</div>
+            <div class="menu-sep"></div>
+            <div>Cut</div>
+            <div>Copy</div>
+            <div>Paste</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'icon-remove'">Delete</div>
+            <div>Select All</div>
+        </div>
+		<pre class="prettyprint lang-html"><code>&lt;a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱&lt;/a>   
+    &lt;div id="mm2" style="width:100px;">   
+        &lt;div>停止&lt;/div>   
+        &lt;div>作废&lt;/div>   
+    &lt;/div>
+&lt;a href="javascript:void(0)" id="sb" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单&lt;/a>
+    &lt;div id="mm3" style="width:100px;">   
+        &lt;div>停止&lt;/div>   
+        &lt;div>作废&lt;/div>     
+    &lt;/div>
+&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit&lt;/a>
+    &lt;div id="mmedit" style="width:150px;">
+        &lt;div data-options="iconCls:'icon-undo'">Undo&lt;/div>
+        &lt;div data-options="iconCls:'icon-redo'">Redo&lt;/div>
+        &lt;div class="menu-sep">&lt;/div>
+        &lt;div>Cut&lt;/div>
+        &lt;div>Copy&lt;/div>
+        &lt;div>Paste&lt;/div>
+        &lt;div class="menu-sep">&lt;/div>
+        &lt;div data-options="iconCls:'icon-remove'">Delete&lt;/div>
+        &lt;div>Select All&lt;/div>
+    &lt;/div&gt;</code></pre>
+    </div>
+    <h3>蓝色的MenuButton如：</h3>
+    
+	<div class="demo-exp-code entry-content"> 
+
+        <a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'">菜单</a>
+        <div id="mm-blue" style="width:100px;">   
+            <div onclick="console.log('停止');">停止</div>   
+            <div onclick="console.log('作废');">作废</div>     
+            <!-- data-options="iconCls:'icon-cancel'" -->
+        </div>
+
+        <a href="javascript:void(0)" id="mbedit-blue" class="hisui-menubutton" style="width:200px;" data-options="menu:'#mmedit-blue',iconCls:'icon-edit',otherCls:'menubutton-blue'">Edit</a>
+        <div id="mmedit-blue" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'">Undo</div>
+            <div data-options="iconCls:'icon-redo'">Redo</div>
+            <div class="menu-sep"></div>
+            <div>Cut</div>
+            <div>Copy</div>
+            <div>Paste</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'icon-remove'">Delete</div>
+            <div>Select All</div>
+        </div>
+        <p>两种实现方式 &nbsp;&nbsp;&nbsp; a)为HTML元素增加类<code>menubutton-blue</code>  &nbsp;&nbsp;&nbsp; b) data-options增加<code>otherCls:'menubutton-blue'</code></p>
+        <p>此类型不显示任何图标，菜单的宽度和按钮的宽度等同，可通过按钮的style属性控制宽度 </p>
+
+        <pre class="prettyprint lang-html"><code >&lt;a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'"&gt;菜单&lt;/a&gt;
+&lt;div id="mm-blue" style="width:100px;"&gt;   
+    &lt;div onclick="console.log('停止');"&gt;停止&lt;/div&gt;   
+    &lt;div onclick="console.log('作废');"&gt;作废&lt;/div&gt;     
+    &lt;!-- data-options="iconCls:'icon-cancel'" --&gt;
+&lt;/div&gt;
+
+&lt;a href="javascript:void(0)" id="mbedit-blue" class="hisui-menubutton" style="width:200px;" data-options="menu:'#mmedit-blue',iconCls:'icon-edit',otherCls:'menubutton-blue'"&gt;Edit&lt;/a&gt;
+&lt;div id="mmedit-blue" style="width:150px;"&gt;
+    &lt;div data-options="iconCls:'icon-undo'"&gt;Undo&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-redo'"&gt;Redo&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div&gt;Cut&lt;/div&gt;
+    &lt;div&gt;Copy&lt;/div&gt;
+    &lt;div&gt;Paste&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-remove'"&gt;Delete&lt;/div&gt;
+    &lt;div&gt;Select All&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        
+    </div>
+    
+    <h3>toolbar的MenuButton如：</h3>
+    
+	<div class="demo-exp-code entry-content"> 
+
+        <a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-arrow-left-top'">菜单</a>
+        <div id="mm-toolbar" style="width:100px;">   
+            <div onclick="console.log('停止');">停止</div>   
+            <div onclick="console.log('作废');">作废</div>     
+            <!-- data-options="iconCls:'icon-cancel'" -->
+        </div>
+
+        <a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-edit',otherCls:'menubutton-toolbar'">Edit</a>
+        <div id="mmedit-toolbar" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'">Undo</div>
+            <div data-options="iconCls:'icon-redo'">Redo</div>
+            <div class="menu-sep"></div>
+            <div>Cut</div>
+            <div>Copy</div>
+            <div>Paste</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'icon-remove'">Delete</div>
+            <div>Select All</div>
+        </div>
+        <p>两种实现方式 &nbsp;&nbsp;&nbsp; a)为HTML元素增加类<code>menubutton-toolbar</code>  &nbsp;&nbsp;&nbsp; b) data-options增加<code>otherCls:'menubutton-toolbar'</code></p>
+        <p>此类型按钮显示图标，菜单不显示图标，菜单的宽度和按钮的宽度等同，可通过按钮的style属性控制宽度 </p>
+
+        <pre class="prettyprint lang-html"><code >&lt;a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-arrow-left-top'"&gt;菜单&lt;/a&gt;
+&lt;div id="mm-toolbar" style="width:100px;"&gt;   
+    &lt;div onclick="console.log('停止');"&gt;停止&lt;/div&gt;   
+    &lt;div onclick="console.log('作废');"&gt;作废&lt;/div&gt;     
+    &lt;!-- data-options="iconCls:'icon-cancel'" --&gt;
+&lt;/div&gt;
+
+&lt;a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-edit',otherCls:'menubutton-toolbar'"&gt;Edit&lt;/a&gt;
+&lt;div id="mmedit-toolbar" style="width:150px;"&gt;
+    &lt;div data-options="iconCls:'icon-undo'"&gt;Undo&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-redo'"&gt;Redo&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div&gt;Cut&lt;/div&gt;
+    &lt;div&gt;Copy&lt;/div&gt;
+    &lt;div&gt;Paste&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-remove'"&gt;Delete&lt;/div&gt;
+    &lt;div&gt;Select All&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	</div>
+	<prettyprint/>
+</body>
+</html>

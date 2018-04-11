@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>下拉框示例</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>手风琴</h2>
+    <h3>说明:</h3>
+    <span>折叠面板（Accordion）俗称手风琴，其包含一系列的面板（panel）。 所有面板（panel）的头部（header）都是可见的，但是一次仅仅显示一个面板（panel）的 body 内容。 当用户点击面板（panel）的头部（header）时，该面板（panel）的 body 内容将可见，同时其他面板（panel）的 body 内容将隐藏不可见。</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content"> 
+        <div class="hisui-accordion" style="width:200px;height:450px;float:left;"
+            data-options="border:false">   
+            <div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;background-color:#EBEBEB;">   
+                <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
+                <p>Accordion is a part of easyui framework for jQuery.     
+                It lets you define your accordion component on web page more easily.</p>   
+            </div>   
+            <div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;background-color:#EBEBEB;">   
+                content2    
+            </div>   
+            <div title="出院区" style="background-color:#EBEBEB;">   
+                content3    
+            </div>   
+        </div>
+        
+        <div style="height:300px;width:20px;float:left"></div>
+
+        <div id="acc" class="hisui-accordion accordion-green" style="width:200px;height:450px;float:left;"
+            data-options="border:false">   
+            <div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+                <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
+                <p>Accordion is a part of easyui framework for jQuery.     
+                It lets you define your accordion component on web page more easily.</p>   
+            </div>   
+            <div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+                此手风琴可以进行增加和删除操作     
+            </div>   
+            <div title="出院区">   
+                content3    
+            </div>   
+        </div>  
+        <div style="height:300px;width:20px;float:left"></div>
+        <div style="height:300px;width:120px;float:left">
+            <a id="addBtn" href="#" >增加</a>
+        </div>
+        <div style="height:300px;width:120px;float:left">
+            <a id="removeBtn" href="#" class="hisui-linkbutton">删除当前</a>
+        </div>
+        <div style="padding:2px ;clear: left"></div>
+        <pre class="prettyprint lang-html"><code>&lt;div class="hisui-accordion" style="width:200px;height:450px;float:left;" data-options="border:false">  
+    &lt;div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;background-color:#EBEBEB;">   
+        &lt;h3 style="color:#0099FF;">Accordion for jQuery&lt;/h3>   
+        &lt;p>Accordion is a part of easyui framework for jQuery.     
+        It lets you define your accordion component on web page more easily.&lt;/p>   
+    &lt;/div>   
+    &lt;div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;background-color:#EBEBEB;">   
+        content2    
+    &lt;/div>   
+    &lt;div title="出院区" style="background-color:#EBEBEB;">   
+        content3    
+    &lt;/div>   
+&lt;/div>
+&lt;div style="height:300px;width:20px;float:left">&lt;/div>
+&lt;div id="acc" class="hisui-accordion accordion-green" style="width:200px;height:450px;float:left;" data-options="border:false">   
+    &lt;div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+        &lt;h3 style="color:#0099FF;">Accordion for jQuery&lt;/h3>   
+        &lt;p>Accordion is a part of easyui framework for jQuery.     
+        It lets you define your accordion component on web page more easily.&lt;/p>   
+    &lt;/div>   
+    &lt;div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+        此手风琴可以进行增加和删除操作   
+    &lt;/div>   
+    &lt;div title="出院区">   
+        content3    
+    &lt;/div>   
+&lt;/div>  
+&lt;div style="height:300px;width:120px;float:left">
+     &lt;a id="addBtn" href="#" >增加&lt;/a>
+&lt;/div>
+&lt;div style="height:300px;width:120px;float:left">
+     &lt;a id="removeBtn" href="#" class="hisui-linkbutton">删除当前&lt;/a>
+&lt;/div&gt;
+</code></pre>
+        <pre class="prettyprint lang-js">
+&lt;script type="text/javascript">
+    $(function(){
+        var accObj = $HUI.accordion("#acc");
+        $HUI.linkbutton("#addBtn",{
+            onClick:function(){
+                accObj.add({
+                    title:'新标题',
+                    content:'你点击按钮了，我就有了。',
+                    selected:true //,
+                    //style:{backgroundColor:'red',borderWidth:2}
+                });
+            }
+        });
+        $HUI.linkbutton("#removeBtn",{
+            onClick:function(){
+                // 删除当前选中的
+                var p = accObj.getSelected();
+                if (p){
+                    var index = accObj.getPanelIndex(p);
+                    accObj.remove(index);
+                }
+            }
+        })
+    });
+&lt;/script>             
+        </pre>
+    </div>
+    <prettyprint/>
+	<script type="text/javascript">
+    $(function(){
+        var accObj = $HUI.accordion("#acc");
+        $HUI.linkbutton("#addBtn",{
+            onClick:function(){
+                accObj.add({
+                    title:'新标题',
+                    content:'你点击按钮了，我就有了。',
+                    selected:true //,
+                    //style:{backgroundColor:'red',borderWidth:2}
+                });
+            }
+        });
+        $HUI.linkbutton("#removeBtn",{
+            onClick:function(){
+                // 删除当前选中的
+                var p = accObj.getSelected();
+                if (p){
+                    var index = accObj.getPanelIndex(p);
+                    accObj.remove(index);
+                }
+            }
+        })
+    });
+  </script>	
+</body>
+</html>

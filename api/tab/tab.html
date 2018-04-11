@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+	<h2>页签</h2>
+	<h3>说明:</h3>
+    <span>页签（Tabs ）一次仅显示一个面板（panel），每个面板（panel）都有标题、图标和关闭按钮。 当 Tabs 被选中时，将显示对应的面板（panel）的内容。</span>
+	<h3>如：</h3>
+	<!-- default gray-->
+	<div class="demo-exp-code entry-content"> 
+		<div id="tt" class="hisui-tabs" style="width:500px;height:250px;" >   
+			<div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+				tab1    
+			</div>   
+			<div title="诊断录入" data-options="iconCls:'icon-add-diag',closable:true" style="overflow:auto;padding:20px;display:none;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:true" style="padding:20px;display:none;">   
+				tab3    
+			</div> 
+		</div><pre class="prettyprint lang-html"><code>&lt;div id="tt" class="hisui-tabs" style="width:500px;height:250px;">   
+	&lt;div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+		tab1    
+	&lt;/div>   
+	&lt;div title="诊断录入" data-options="iconCls:'icon-edit',closable:true" style="overflow:auto;padding:20px;display:;">   
+		tab2    
+	&lt;/div>   
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>  
+	</div>
+	<!-- gray tabs-->
+	<div style="width:500px;height:20px;"></div>
+	<div class="demo-exp-code entry-content"> 
+		<div id="tt2" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;">   
+			<div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+				此tab的class为"hisui-tabs  tabs-gray"，所以为灰色的。 
+			</div>   
+			<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入" data-options="closable:false" style="padding:20px;display:none;">   
+				tab3    
+			</div>  
+			<div title="检查列表" data-options="closable:false" style="padding:20px;display:none;">   
+				tab3    
+			</div> 
+			<!--
+			<div title="检验列表" data-options="closable:false" style="padding:20px;display:none;">   
+				tab3    
+			</div> 
+			<div title="危急值列表" data-options="closable:false" style="padding:20px;display:none;">   
+				tab3    
+			</div>  
+		-->
+		</div> 
+	<pre class="prettyprint lang-html"><code>&lt;div id="tt2" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;">   
+	&lt;div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+		此tab的class="hisui-tabs  tabs-gray"，所以为灰色的。 如果页签太多则自动隐藏，可滚动显示 
+	&lt;/div>   
+	&lt;div title="诊断录入" data-options="iconCls:'icon-edit',closable:true" style="overflow:auto;padding:20px;display:;">   
+		tab2    
+	&lt;/div>   
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div>  
+	&lt;div title="检查列表" data-options="closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div> 
+	&lt;div title="检验列表" data-options="closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div> 
+	&lt;div title="危急值列表" data-options="closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div> 
+&lt;/div&gt;</code></pre> <pre class="prettyprint lang-js">
+&lt;script type="text/javascript"&gt;
+$(function(){
+	$HUI.tabs("#tt2",{
+		onSelect:function(title){
+			alert('你确定要切换到【'+title+"】");					
+		}
+	});
+});	
+&lt;/script&gt;	
+	</pre>
+	</div>	
+	<script type="text/javascript">
+		$(function(){
+			$HUI.tabs("#tt2",{
+				onSelect:function(title){
+				alert('你确定要切换到【'+title+'】');					
+				}
+			});
+			//$('#tt2').tabs('disableTab', 0); 
+		});
+	</script>
+
+	<div class="demo-exp-code entry-content"> 
+		<div style="margin:20px 0;">
+			<span>tabPosition:</span>
+			<select onchange="$('#tt3').tabs({tabPosition:this.value});$('#tabPosition').text('tabPosition:\''+this.value+'\'');">
+				<option value="top">Top</option>
+				<option value="bottom">Bottom</option>
+				<option value="left" selected>Left</option>
+				<option value="right">Right</option>
+			</select>
+		</div>
+		<div id="tt3" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="tabPosition:'left',">   
+			<div title="电子病历" data-options="" style="padding:20px;">   
+				点击tabPosition选择框,修改此tabs的tabPosition属性值，data-options="<span id="tabPosition"></span>"
+			</div>   
+			<div title="诊断录入" data-options="" style="overflow:auto;padding:20px;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入" data-options="" style="padding:20px;">   
+				tab3    
+			</div>
+		</div> 
+		<pre class="prettyprint lang-html">
+<code>&lt;div style="margin:20px 0;"&gt;
+	&lt;span&gt;tabPosition:&lt;/span&gt;
+	&lt;select onchange="$('#tt3').tabs({tabPosition:this.value});$('#tabPosition').text('tabPosition:\''+this.value+'\'');"&gt;
+		&lt;option value="top"&gt;Top&lt;/option&gt;
+		&lt;option value="bottom"&gt;Bottom&lt;/option&gt;
+		&lt;option value="left" &gt;Left&lt;/option&gt;
+		&lt;option value="right"&gt;Right&lt;/option&gt;
+	&lt;/select&gt;
+&lt;/div&gt;
+&lt;div id="tt3" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options=""&gt;   
+	&lt;div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;"&gt;   
+		点击tabPosition选择框,修改此tabs的tabPosition属性值，data-options="&lt;span id="tabPosition"&gt;&lt;/span&gt;"
+	&lt;/div&gt;   
+	&lt;div title="诊断录入" data-options="iconCls:'icon-add-diag',closable:false" style="overflow:auto;padding:20px;"&gt;   
+		tab2    
+	&lt;/div&gt;   
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;"&gt;   
+		tab3    
+	&lt;/div&gt;  
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;"&gt;   
+		tab4    
+	&lt;/div&gt; 
+&lt;/div&gt; </code></pre>
+	</div>
+	<div class="demo-exp-code entry-content"> 
+		<div id="tt4" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="tabPosition:'left',headerWidth:100">   
+			<div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+				headerWidth，页签的宽度 （仅tabPostion为left或right时，生效）
+			</div>   
+			<div title="诊断录入" data-options="iconCls:'icon-add-diag',closable:false" style="overflow:auto;padding:20px;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;">   
+				tab3    
+			</div>  
+			<div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;">   
+				tab4    
+			</div> 
+		</div> 
+		<pre class="prettyprint lang-html">
+<code>&lt;div id="tt4" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="tabPosition:'left',headerWidth:100"&gt;   
+	&lt;div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;"&gt;   
+		headerWidth，页签的宽度 （仅tabPostion为left或right时，生效）
+	&lt;/div&gt;   
+	&lt;div title="诊断录入" data-options="iconCls:'icon-add-diag',closable:false" style="overflow:auto;padding:20px;"&gt;   
+		tab2    
+	&lt;/div&gt;   
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;"&gt;   
+		tab3    
+	&lt;/div&gt;  
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;"&gt;   
+		tab4    
+	&lt;/div&gt; 
+&lt;/div&gt; </code></pre>
+		
+	</div>
+
+	<!-- tabs mini -->
+	<div class="demo-exp-code entry-content"> 
+		<div class="hisui-tabs  " style="width:500px;height:100px;" tabHeight="26px">   
+			<div title="常用" style="padding:20px">   
+				增加属性tabHeight可以让页签变小 tabHeight="26px"
+			</div>   
+			<div title="编辑" data-options="closable:false" style="overflow:auto;padding:20px;">
+			</div>
+			<div title="功能" data-options="closable:false" style="padding:20px;display:none;">
+			</div>  
+			<div title="收藏" data-options="closable:false" style="padding:20px;display:none;">
+			</div>
+			<div title="表格" data-options="closable:false" style="padding:20px;display:none;">
+			</div>
+		</div>
+	</div>
+	<div style="margin:20px 0;">
+			<span>tabPosition:</span>
+			<select onchange="$('#tt3b').tabs({tabPosition:this.value});$('#tabPosition').text('tabPosition:\''+this.value+'\'');">
+				<option value="top">Top</option>
+				<option value="bottom">Bottom</option>
+				<option value="left" >Left</option>
+				<option value="right">Right</option>
+			</select>
+		</div>
+		<div id="tt3b" class="hisui-tabs " style="width:500px;height:250px;" data-options="headerWidth:100,tabPosition:'bottom',">   
+			<div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+				点击tabPosition选择框,修改此tabs的tabPosition属性值，data-options="<span id="tabPosition"></span>"
+			</div>   
+			<div title="诊断录入" data-options="iconCls:'icon-add-diag',closable:false" style="overflow:auto;padding:20px;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;">   
+				tab3    
+			</div>
+		</div> 
+
+		<h3>页签过多</h3>
+		<div id="mytabs1" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="">   
+				<div title="电子病历" data-options="" style="padding:20px;">   
+				</div>   
+				<div title="诊断录入" data-options="" style="overflow:auto;padding:20px;">   
+					tab2    
+				</div>   
+				<div title="医嘱录入" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入2" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入3" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入4" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入5" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+		</div> 
+		<br>
+		<div id="mytabs2" class="hisui-tabs " style="width:500px;height:250px;" data-options="">   
+				<div title="电子病历" data-options="" style="padding:20px;">   
+				</div>   
+				<div title="诊断录入" data-options="" style="overflow:auto;padding:20px;">   
+					tab2    
+				</div>   
+				<div title="医嘱录入" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入2" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入3" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入4" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+				<div title="医嘱录入5" data-options="" style="padding:20px;">   
+					tab3    
+				</div>
+		</div> 
+	<prettyprint/>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>HIS UI</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+    <h2>链接按钮</h2>
+    <h3>说明:</h3>
+    <span>链接按钮（Link Button）是使用 &lt;a>元素来创建的，所以实际上一个链接按钮（Link Button）就是一个显示为按钮样式的 &lt;a>元素。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+		<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true" disabled>禁用</a>
+        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'" disabled>禁用</a>
+        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'" >查询按钮</a>
+        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'" style="width:200px;">查询按钮</a>
+        <a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'" >清屏哈哈哈 哈哈</a>
+        <a href="#" class="hisui-linkbutton" id="btn1" style="width:200px;" >确定</a>
+        <p>病人信息条处 hover颜色需要深一些 为其增加类 hover-dark</p>
+        <a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-search'">呵呵</a>
+        <a href="#" class="hisui-linkbutton hover-dark" >哈哈</a>
+
+		<pre class="prettyprint lang-html"><code>&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true" disabled>禁用&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'" disabled>禁用&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">查询按钮&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">清屏&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" id="btn1">确定&lt;/a&gt;
+&lt;p&gt;病人信息条处&lt;/p&gt;
+&lt;a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-search'"&gt;呵呵&lt;/a&gt;
+&lt;a href="#" class="hisui-linkbutton hover-dark" &gt;哈哈&lt;/a&gt;</code></pre>
+        <pre class="prettyprint lang-js">&lt;script type="text/javascript"&gt;
+var init = function () {
+        var valbox = $HUI.linkbutton("#btn1");
+        $("#btn1").click(function (argument) {
+           alert("你确定？");
+        });
+ }
+$(init);
+&lt;/script&gt;  
+    </pre>
+	</div>
+    <script type="text/javascript">
+    var init = function () {
+        var valbox = $HUI.linkbutton("#btn1");
+        $("#btn1").click(function (argument) {
+           alert("你确定？");
+        });
+    }
+    $(init);
+    function goIconTab(){
+        parent.addTab("图标(icon)", "icon/icon.html")
+    }
+    </script>   
+    <h3>大图按钮</h3>
+    <h3>说明:</h3>
+    <span>
+        在<code class="atn">class</code>中加入<code class="atv">big</code>，
+        同时<code class="atn">data-options</code>中加入<code class="atv">plain:true</code>可实现大图按钮功能。
+        大图标定义请查看<a class="hisui-link" href="javascript:void(0);" onclick="goIconTab();">图标(icon)</a>界面
+    </span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+        <diV>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-save',plain:true">保存</a>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-print',plain:true">打印</a>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-del',plain:true">删除</a>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true">手工解锁</a>
+        <div class="datagrid-btn-separator big"></div>
+        <a class="hisui-linkbutton big" data-options="iconImg:'unlock.png',plain:true">手工解锁</a>
+    </diV>
+        <pre class="prettyprint lang-html"><code>&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true"&gt;手工解锁&lt;/a&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconImg:'unlock.png',plain:true"&gt;手工解锁&lt;/a&gt;
+...</code></pre>
+    </div>
+	<prettyprint/>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script> 
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+
+</head>
+<body>
+	<h2>模态窗口</h2>
+	<h3>说明:</h3>
+    <span>对话框（Dialog）是一个特殊的窗口（window），可以包含在顶部的工具栏和在底部的按钮。默认情况下，对话框（Dialog）不能改变大小，但是用户可以设置 resizable 属性为 true，使其可以改变大小。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+		<div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;padding:10px;"　
+		data-options="iconCls:'icon-save',resizable:true,modal:true,toolbar:[{
+				text:'编辑',
+				iconCls:'icon-edit',
+				handler:function(){alert('edit')}
+			},{
+				text:'帮助',
+				iconCls:'icon-help',
+				handler:function(){alert('help')}
+			}],buttons:[{
+				text:'保存',
+				handler:function(){}
+			},{
+				text:'关闭',
+				handler:function(){$HUI.dialog('#dd2').close();}
+			}]">   
+			这是一个模态操作框<code>hisui-dialog</code>    
+		</div><pre class="prettyprint lang-html"><code>&lt;div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:250px;left:500px;padding:10px;"　
+data-options="iconCls:'icon-save',resizable:true,modal:true,toolbar:[{
+		text:'编辑',
+		iconCls:'icon-edit',
+		handler:function(){alert('edit')}
+	},{
+		text:'帮助',
+		iconCls:'icon-help',
+		handler:function(){alert('help')}
+	}],buttons:[{
+		text:'保存',
+		handler:function(){}
+	},{
+		text:'关闭',
+		handler:function(){$HUI.dialog('#dd2').close();}
+	}]">   
+	这是一个模态操作框&lt;code>hisui-dialog&lt;/code>
+&lt;/div&gt;</code></pre>
+	</div>
+	<prettyprint/>
+</body>
+</html>

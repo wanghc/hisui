@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>下拉框示例</title>
+	 <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+	<h2>组合框</h2>
+    <h3>说明:</h3>
+    <span>组合框（combobox）显示一个可编辑的文本框和下拉列表，用户可以从下拉列表中选择一个或多个值。用户可以直接输入文本到列表的顶部，或者从列表中选择一个或多个现成的值。</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;">
+			<option value="AK">Alaska</option>
+			<option value="CT">Connecticut</option>
+			<option value="DE">Delaware</option>
+			<option value="LA">Louisiana</option>
+			<option value="MD">Maryland</option>
+			<option value="ND">North Dakota</option>
+			<option value="OH" selected>Ohio</option>
+			<option value="WY">Wyoming</option>
+		</select>
+		<pre class="prettyprint lang-html"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;">
+	&lt;option value="AK">Alaska&lt;/option>
+	&lt;option value="CT">Connecticut&lt;/option>
+	&lt;option value="DE">Delaware&lt;/option>
+	&lt;option value="LA">Louisiana&lt;/option>
+	&lt;option value="MD">Maryland&lt;/option>
+	&lt;option value="ND">North Dakota&lt;/option>
+	&lt;option value="OH" selected>Ohio&lt;/option>
+	&lt;option value="WY">Wyoming&lt;/option>
+&lt;/select>
+默认选择selected为Ohio</code></pre>
+	</div>	
+    <div style="margin:20px 0"></div>
+    还可通过js生成
+    <div class="demo-exp-code entry-content">
+	  	<select id="cbox" style="width:200px;">
+		</select>
+		<pre class="prettyprint lang-html"><code>&lt;select id="cbox" style="width:200px;">&lt;/select></code></pre>
+		</pre><pre class="prettyprint lang-js">
+&lt;script type="text/javascript"&gt;
+$(function(){
+	var cbox = $HUI.combobox("#cbox",{
+		valueField:'id',
+		textField:'text',
+		data:[
+			{id:'css',text:'css语言'}
+			,{id:'html',text:'html语言'}
+			,{id:'c',text:'c语言'}
+			,{id:'c++',text:'c++语言'}	
+		],
+	});
+	return ;
+});	
+&lt;/script&gt;	
+	</pre>
+	</div>
+	<script type="text/javascript">
+  	$(function(){
+	var cbox = $HUI.combobox("#cbox",{
+		valueField:'id',
+		textField:'text',
+		data:[
+			{id:'css',text:'css语言'}
+			,{id:'html',text:'html语言'}
+			,{id:'c',text:'c语言'}
+			,{id:'c++',text:'c++语言'}	
+		],
+	});
+	return ;
+	// easyloader.theme = "bootstrap";
+	// easyloader.locale="zh_CN";
+	// easyloader.load(['combobox'],function(){
+	// 	$('#cbox').combobox({
+	// 		valueField:'id',
+	// 		textField:'text',
+	// 		data:[{id:'java',text:'java语言'},{id:'css',text:'css语言'}],
+	// 		onselect:function(rec){
+	// 			alert(1);
+	// 		}
+	// 	});
+	// });
+  });
+  </script>
+  <prettyprint/>
+</body>
+</html>
