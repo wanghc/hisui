@@ -15,7 +15,7 @@
     <span>组合框（combobox）显示一个可编辑的文本框和下拉列表，用户可以从下拉列表中选择一个或多个值。用户可以直接输入文本到列表的顶部，或者从列表中选择一个或多个现成的值。</span>
     <h3>如：</h3>
     <div class="demo-exp-code entry-content">
-		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;">
+		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="onSelect:selectHandler">
 			<option value="AK">Alaska</option>
 			<option value="CT">Connecticut</option>
 			<option value="DE">Delaware</option>
@@ -62,6 +62,10 @@ $(function(){
 	</pre>
 	</div>
 	<script type="text/javascript">
+	function selectHandler(rec){
+		console.log(rec);
+		alert(rec);
+	}
   	$(function(){
 	var cbox = $HUI.combobox("#cbox",{
 		valueField:'id',

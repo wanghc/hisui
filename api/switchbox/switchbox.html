@@ -21,7 +21,22 @@
 size:'small',animated:true,onSwitchChange:function(event,value){console.log(event);console.log(value);}">
 &lt;/div&gt;</code></pre>
     </div>
-    
+    <div class="demo-exp-code entry-content"> 
+        <h3>用js生成</h3>
+        <div id="switch2" ></div>
+        <script>
+            $(function(){
+                $HUI.switchbox('#switch2',{
+                    onText:'开',
+                    offText:'关',
+                    onSwitchChange:function(e,val){
+                        console.log(e);
+                        console.log(val);
+                    }
+                })
+            })    
+        </script>
+    </div>
     <div>
         <h3>单选组件的相关配置、事件、方法</h3>
         <table class="table">

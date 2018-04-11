@@ -135,7 +135,7 @@
                
     </div>
     <div region="west" border="true" split="true" title="" style="width:200px;padding:0px;">                
-        <div class="hisui-accordion" fit="true" data-options="border:false">
+        <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
             <div title="基础" style="background-color:#F9F9F9;">
                 <ul>
                     <li><a href="javascript:void(0);" src="use/use.html" class="api-navi-tab">起步(use)</a></li>
@@ -163,10 +163,12 @@
                     <li><a href="javascript:void(0);"  src="searchbox/searchbox.html" class="api-navi-tab">查询框(searchbox)</a></li>
                     <li><a href="javascript:void(0);"  src="datebox/datebox.html" class="api-navi-tab">日期框(datebox)</a></li>
                     <li><a href="javascript:void(0);"  src="timespinner/timespinner.html" class="api-navi-tab">时间框(timespinner)</a></li>
+                    <li><a href="javascript:void(0);"  src="combo/combo.html" class="api-navi-tab">组合(combo)</a></li>
                     <li><a href="javascript:void(0);"  src="combobox/combobox.html" class="api-navi-tab">下拉框(combobox)</a></li>
                     <li><a href="javascript:void(0);"  src="switchbox/switchbox.html" class="api-navi-tab">开关(switchbox)</a></li>
                     <li><a href="javascript:void(0);"  src="checkbox/checkbox.html" class="api-navi-tab">复选框(checkbox)</a></li>
                     <li><a href="javascript:void(0);"  src="radio/radio.html" class="api-navi-tab">单选框(radio)</a></li>
+                    <li><a href="javascript:void(0);"  src="filebox/filebox.html" class="api-navi-tab">文件框(filebox)</a></li>
                 </ul>
             </div>
             <div title="表格及树" style="background-color:#F9F9F9;">
@@ -186,7 +188,8 @@
                 </ul>
             </div>
             <div title="测试" style="background-color:#F9F9F9;"> 
-                <ul>       
+                <ul>   
+                    <li><a href="javascript:void(0);"  src="treegrid/treegrid.dnd.html" class="api-navi-tab">拖拽树形表格(treegrid.dnd)</a></li>    
                     <li><a href="javascript:void(0);"  src="test/formtest.html" class="api-navi-tab">表单们(formtest)</a></li>
                     <li><a href="javascript:void(0);"  src="test/textbox.html" class="api-navi-tab">文本框(textbox)</a></li>
                 </ul>
@@ -432,7 +435,9 @@
                 var title = $this.text();
                 addTab(title, href);
             });
-            
+            if(location.href.indexOf("dev=1")==-1){
+                $('#accd').accordion('remove','测试');
+            }
         });	
     </script>
     <div id="mm" class="hisui-menu cs-tab-menu">

@@ -268,6 +268,55 @@ $(function(){
 					tab3    
 				</div>
 		</div> 
+
+		<p>第一个页签作为标题的页签</p>
+
+		<div id="tt-brand-gray" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;" data-options="isBrandTabs:true">   
+			<div title="Brand" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+				
+			</div>   
+			<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入" data-options="closable:false" style="padding:20px;display:none;">   
+				tab3    
+			</div>  
+			<div title="检查列表" data-options="closable:false" style="padding:20px;display:none;">   
+				tab3    
+			</div> 
+		</div> 
+	<pre class="prettyprint lang-html"><code>&lt;div id="tt-brand-gray" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;" data-options="isBrandTabs:true>   
+	&lt;div title="Brand" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+		
+	&lt;/div>   
+	&lt;div title="诊断录入" data-options="iconCls:'icon-edit',closable:true" style="overflow:auto;padding:20px;display:;">   
+		tab2    
+	&lt;/div>   
+	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div>  
+	&lt;div title="检查列表" data-options="closable:true" style="padding:20px;display:none;">   
+		tab3    
+	&lt;/div> 
+&lt;/div&gt;</code></pre>
+
+<div id="tt-brand" class="hisui-tabs " style="width:500px;height:250px;" data-options="isBrandTabs:true">   
+	<div title="标题" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
+		
+	</div>   
+	<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
+		tab2    
+	</div>   
+	<div title="医嘱录入" data-options="closable:false" style="padding:20px;display:none;">   
+		tab3    
+	</div>  
+	<div title="检查列表" data-options="closable:false" style="padding:20px;display:none;">   
+		tab3    
+	</div> 
+</div> 
+
+
+
 	<prettyprint/>
 </body>
 </html>
