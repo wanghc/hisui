@@ -1,0 +1,131 @@
+
+.tree-node{
+  height:28px;
+}
+.tree-title {
+  font-size: 14px;
+  height: 28px;
+  line-height: 28px;
+}
+.tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
+  margin-top:5px;
+}
+/*线条*/
+.tree-lines{
+  .tree-collapsed,.tree-expanded,.tree-indent {
+    margin-top: 0;
+    height: 28px;
+  }
+  .tree-line {
+    background: url(images/tree_lines.png) no-repeat -111px 1px;
+  }
+  .tree-join {
+    background: url(images/tree_lines.png) no-repeat -127px 1px;
+  }
+  .tree-expanded{
+    background: url(images/tree_lines.png) no-repeat -82px 1px;
+  }
+  .tree-collapsed {
+    background: url(images/tree_lines.png) no-repeat -66px 1px;
+  }
+  .tree-root-first{
+    .tree-expanded{
+      background: url(images/tree_lines.png) no-repeat -82px 1px;
+    }
+    .tree-collapsed {
+      background: url(images/tree_lines.png) no-repeat -66px 1px;
+    }
+  }
+  .tree-node-last,.tree-root-one{
+    .tree-expanded{
+      background: url(images/tree_lines.png) no-repeat -18px 1px;
+    }
+    .tree-collapsed {
+      background: url('images/tree_lines.png') no-repeat -2px 1px;
+    }
+  }
+  .tree-joinbottom {
+    background: url(images/tree_lines.png) no-repeat -95px 1px;
+  }
+}
+
+
+/*将树的样式整成手风琴 加个类accordiontree 尝试下*/
+.accordiontree.tree{
+  border: 1px solid #0e8bdd;
+  &>li{
+    &>.tree-node{
+      height: 36px;
+      line-height: 36px;
+      background-color:#0e8bdd;
+      position: relative;
+      .tree-hit{
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        top:50%;
+        margin-top:-7px;
+        right: 10px;
+        &.tree-collapsed{
+          background: url(images/accordion_arrows2.png) -19px center no-repeat;
+        }
+        &.tree-expanded{
+          background: url(images/accordion_arrows2.png) -2px center no-repeat;
+        }
+        &:hover{
+          background-color: rgba(255, 255, 255, 0.3);
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          border-radius: 2px;
+        }
+      }
+      .tree-icon{
+        display: none;
+      }
+      .tree-title{
+        height: 36px;
+        line-height: 36px;
+        color: #fff;
+        padding: 0 34px 0 15px;
+      }
+      &.tree-node-hover{
+        background-color: #3ea2e4;
+      }
+    }
+    &>ul{
+      background-color: #f9f9f9;
+      .tree-node{
+        padding-left: 5px;
+        height: 36px;
+        line-height: 36px;
+        position: relative;
+        &.tree-node-hover{
+          background-color: #e3e3e3;
+        }
+        &.tree-node-selected{
+          background-color: #e3e3e3;
+        }
+        .tree-hit{
+          width: 15px;
+          height: 18px;
+          margin-top: 9px;
+        }
+        .tree-indent{
+          width: 15px;
+        }
+        &>span.tree-indent:first-child{   //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+          width: 0px;
+        }
+        .tree-icon{
+          display: none;
+        }
+        .tree-title{
+          height: 36px;
+          line-height: 36px;
+          color: #000;
+          padding: 0 10px 0 0;
+        }
+      }
+    }
+  }
+}

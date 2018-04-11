@@ -1,0 +1,78 @@
+@import "variables.less";
+
+.datagrid-cell,
+.datagrid-cell-group,
+.datagrid-header-rownumber,
+.datagrid-cell-rownumber {
+  font-size: @datagrid-cell-font-size;
+}
+
+.datagrid-header .datagrid-cell span {
+  font-size: @datagrid-cell-font-size  ;
+}
+
+/*---*/
+.datagrid-header-row, .datagrid-row{
+  height: 35px;
+}
+.datagrid-row{
+  height: 34px;
+}
+.datagrid-header, .datagrid-td-rownumber{
+  background: @datagrid-header-bgcolor;
+}
+.datagrid-header td, .datagrid-body td, .datagrid-footer td{
+  border-color:@datagrid-border-color;
+  border-style: solid;
+}
+.datagrid-row-selected {
+  background: @datagrid-row-select;
+  color: #ffffff;
+}
+.datagrid-row-over, .datagrid-header td.datagrid-header-over {
+  background: @datagrid-row-hover;
+  color: #000000;
+  cursor: default;
+}
+.datagrid-cell, .datagrid-cell-group{
+  padding: 0 8px;
+}
+/*toolbar 一点改动*/
+.datagrid-toolbar {
+  background-color: #ffffff;
+  .l-btn-plain {
+    padding: 0 0 0 ;
+    border: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    .l-btn-icon-left{
+      .l-btn-text{
+        line-height: 22px;
+        padding: 0 10px 0 31px;
+        margin: 0 0 0 ;
+        color: #666666;
+      }
+      
+      .l-btn-empty{
+        margin: 0;width: 22px;padding: 0 5px 0 0;
+      }
+      .l-btn-icon {
+        left:5px;
+        height: 22px;
+        width: 26px;
+      }
+      .l-btn-empty+.l-btn-icon{
+        left: 0;
+      }
+    }
+    &:hover{
+      padding: 0 0 0 ;
+      border: 0;
+      background-color:#dbedf9;
+      .l-btn-text{
+        color: #0379d0;
+      }
+    }
+  }
+
+}
