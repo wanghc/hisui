@@ -1,0 +1,21 @@
+2017-12-21
+  修复了checkbox与radio的getValue方法取值报错的bug。
+2017-12-25
+  hisui-numberbox的高度调整
+  hisui-timespinner样式调整
+2017-12-26
+  hisui-checkbo默认不选中
+2017-12-29
+  hisui-window增加isTopZindex配置项，可以让window在ocx或dll控件之上弹出
+2018-1-8
+  hisui内增加$.hisui.xxx方法
+  hisui-treegrid增加checkbox功能，勾选事件，选中与取消选中方法
+2018-1-10
+  linkbutton---增加img配置项，可直接配置图标 
+2018-1-11
+  修复了hisui-treegrid，仅在js内初始化hisui-treegrid时，点击勾选框报错bug
+2018-1-17
+  修改了hisui-checkbox在大屏下显示不了勾选框问题
+2018-1-30
+  为hisui-datagrid增加showPageList,showRefresh,displayMsg三个属性,控件翻页条显示
+  修复hisui-linkbutton增加width属性后，图标偏移问题
