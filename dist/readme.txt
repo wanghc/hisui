@@ -47,4 +47,5 @@
 2018-3-20
   draggable droppable 组件代码 改为使用1.5的 原1.3.6的,在treegrid使用拖拽单双击很慢
   在用gulp-uglify压缩js时，增加参数 ie8:true  否则ie8下会报错
+20
   
