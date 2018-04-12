@@ -19,3 +19,4 @@
 2018-1-30
   为hisui-datagrid增加showPageList,showRefresh,displayMsg三个属性,控件翻页条显示
   修复hisui-linkbutton增加width属性后，图标偏移问题
+2
