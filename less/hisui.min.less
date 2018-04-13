@@ -5127,6 +5127,13 @@ a.l-btn-link{
     }
   }
 }
+
+
+
+
+.treegrid-tr-tree-div-hidden{
+  display:none;
+}
 @import "variables.less";
 .validatebox-text{
   height:@validatebox-height;
@@ -5624,3 +5631,63 @@ label + .hischeckbox_square-blue {
 .has-switch span.switch-default.active {
   background-color: #e6e6e6;
 }
+
+@import "variables.less";
+
+.filebox {
+  position: relative;
+  border: 1px solid #40a2de;
+  background-color: #fff;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  &.disabled{
+    border-color:@main-disabled-border-color;
+    background-color: @main-disabled-bgcolor;
+    .filebox-text{
+      color: #999;
+    }
+  }
+  .filebox-button{
+    position: absolute;
+    top: -1px;
+    padding: 0;
+    vertical-align: top;
+    border-radius: 0 0 0 0;
+  }
+  .filebox-button-right{
+    right: 0;
+  }
+  .filebox-button-left{
+    left: 0;
+  }
+  .filebox-text{
+    border: 0;
+    margin: 0;
+    padding: 0 0 0 5px;
+    white-space: normal;
+    vertical-align: top;
+    outline-style: none;
+    resize: none;
+  }
+  .filebox-value {
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    left: -5000px;
+  }
+}
+.filebox-label {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+

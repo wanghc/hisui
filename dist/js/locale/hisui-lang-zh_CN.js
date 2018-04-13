@@ -68,3 +68,6 @@ if ($.fn.datetimebox && $.fn.datebox){
 		missingMessage: $.fn.datebox.defaults.missingMessage
 	});
 }
+if ($.fn.filebox){
+	$.fn.filebox.defaults.buttonText = '选择';
+}
