@@ -90,7 +90,7 @@
 	},{
 		iconCls: 'icon-save',
 		text:'保存',
-		handler: function(){alert('保存按钮')}
+		handler: function(){$('#mytb').datagrid('endEdit',0)}
 	},{
 		iconCls: 'icon-remove',
 		text:'删除',
@@ -111,10 +111,10 @@
 		<thead>   
 			<tr>   
 				<th data-options="field:'code'">编码</th>   
-				<th data-options="field:'name'">名称</th>   
+				<th data-options="field:'name',editor:{type:'text'}">名称</th>   
 				<th data-options="field:'price'">价格</th>
 				<th data-options="field:'num'">数量</th>
-				<th data-options="field:'note'">描述</th>
+				<th data-options="field:'note',editor:{type:'validatebox',options:{required:true}}">描述</th>
 				<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
 				<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
 			</tr>   

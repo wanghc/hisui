@@ -49,3 +49,4 @@
   在用gulp-uglify压缩js时，增加参数 ie8:true  否则ie8下会报错
 2018-4-13
   实现filebox组件 依赖linkbutton
+  datagrid 行编辑器editor text和validatebox类型样式调整

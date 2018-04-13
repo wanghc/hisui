@@ -4169,6 +4169,16 @@ a.l-btn-link{
   }
 
 }
+
+.datagrid-body .datagrid-editable .datagrid-editable-input {
+  border: @validatebox-border-width @validatebox-border-type @validatebox-border-color;
+  margin: 0;
+  padding:0 0 0 @validatebox-padding-left;
+  line-height:@validatebox-height;
+  &:active{
+    background-color: #f4faff;
+  }
+}
 .propertygrid .datagrid-view1 .datagrid-body td {
   padding-bottom: 1px;
   border-width: 0 1px 0 0;

@@ -4102,6 +4102,15 @@ a.l-btn-link:hover {
 .datagrid-toolbar .l-btn-plain:hover .l-btn-text {
   color: #0379d0;
 }
+.datagrid-body .datagrid-editable .datagrid-editable-input {
+  border: 1px solid #40a2de;
+  margin: 0;
+  padding: 0 0 0 5px;
+  line-height: 28px;
+}
+.datagrid-body .datagrid-editable .datagrid-editable-input:active {
+  background-color: #f4faff;
+}
 .propertygrid .datagrid-view1 .datagrid-body td {
   padding-bottom: 1px;
   border-width: 0 1px 0 0;

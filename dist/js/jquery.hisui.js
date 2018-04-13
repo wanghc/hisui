@@ -9886,7 +9886,7 @@ if (typeof JSON !== 'object') {
             }, setValue: function (_656, _657) {
                 $(_656).val(_657);
             }, resize: function (_658, _659) {
-                $(_658)._outerWidth(_659)._outerHeight(22);
+                $(_658)._outerWidth(_659)._outerHeight(30);   //cryze 2018-4-13 height 22-30
             }
         }, textarea: {
             init: function (_65a, _65b) {
@@ -9931,7 +9931,7 @@ if (typeof JSON !== 'object') {
             }, setValue: function (_66e, _66f) {
                 $(_66e).numberbox("setValue", _66f);
             }, resize: function (_670, _671) {
-                $(_670)._outerWidth(_671)._outerHeight(22);
+                $(_670)._outerWidth(_671)._outerHeight(30);  //cryze 2018-4-13 height 22-30
             }
         }, validatebox: {
             init: function (_672, _673) {
@@ -9945,7 +9945,7 @@ if (typeof JSON !== 'object') {
             }, setValue: function (_677, _678) {
                 $(_677).val(_678);
             }, resize: function (_679, _67a) {
-                $(_679)._outerWidth(_67a)._outerHeight(22);
+                $(_679)._outerWidth(_67a)._outerHeight(30);   //cryze 2018-4-13 height 22-30
             }
         }, datebox: {
             init: function (_67b, _67c) {
