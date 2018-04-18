@@ -1,5 +1,7 @@
 # hisui
 在EasyUI基础上修改出的前端库
+#git init
+> git init
 # 
 > git remote add origin https://github.com/wanghc/hisui.git
 # 拉取
