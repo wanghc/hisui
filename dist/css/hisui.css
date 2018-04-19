@@ -2721,6 +2721,10 @@ h2 {
 .icon-add {
   background: url('icons/add.png') no-repeat center center;
 }
+/* white icon*/
+.icon-white-plus {
+  background: url('icons/white/plus.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
