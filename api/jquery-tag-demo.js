@@ -37,9 +37,31 @@
 
 $(function(){
     $("pre.prettyprint").addClass("linenums");
+    $("pre.prettyprint").each(function(e){
+        var _desc_ = "-隐藏源代码";
+        var _pp_ = $(this);
+        if (_pp_.hasClass("hide")){
+            _pp_.hide();
+            _desc_ = '+显示源代码';
+        }
+        var width = _pp_.parent().width();
+        var jobj = $("<span class='toggle-prettyprint' style='padding-left:"+(width/2)+"px;width:100px;'>"+_desc_+"</span>").insertBefore($(this));
+        jobj.click(function(){
+            var _t = $(this);
+            if(_t.text()=="+显示源代码"){
+                $(this).find("+pre.prettyprint").show();
+                $(this).text("-隐藏源代码")
+            }else{
+                $(this).find("+pre.prettyprint").hide();
+                $(this).text("+显示源代码")
+            }
+
+        });
+    });
     $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
     <script type="text/javascript" src="../../api/prettify.js"></script>\
     <script type="text/javascript">\
         prettyPrint();\
     </script>');
+
 })
