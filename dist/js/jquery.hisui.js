@@ -13330,14 +13330,18 @@ if (typeof JSON !== 'object') {
 					var rr = [];
 					for (var i = 0; i < rows.length; i++) {
 						var row = rows[i];
-						if (row._parentId == _121) {
+						if (row._parentId == _121 || isEqual(row._parentId,_121)) { //cryze _parentId="" 当做根节点 2018-4-18
 							rr.push(row);
 							rows.splice(i, 1);
 							i--;
 						}
 					}
 					return rr;
-				};
+                };
+                //cryze _parentId="" 当做根节点 2018-4-18
+                function isEqual(a,b){
+                    return (typeof a=="undefined" || a==null || a=="")&&(typeof b=="undefined" || b==null);
+                }
 			}
 		});
 	$.fn.treegrid.defaults = $.extend({}, $.fn.datagrid.defaults, {

@@ -66,3 +66,6 @@
 ##2018-4-13
 1. 实现filebox组件 依赖linkbutton
 1. datagrid 行编辑器editor text和validatebox类型样式调整
+
+##2018-4-18
+1. treegrid  "parentId":""   当做根节点
