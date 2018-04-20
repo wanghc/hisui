@@ -16,14 +16,14 @@
     <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
 	<h3>如：默认表格(hisui-datagrid)</h3>
 	<div class="demo-exp-code entry-content"> 
-		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="autoSizeColumn:true,singleSelect:true,pagination:true">   
+		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fitColumns:true,singleSelect:true,pagination:true">   
 			<thead>   
 				<tr>   
-					<th data-options="field:'code'">编码</th>   
-					<th data-options="field:'name'">姓名</th>   
-					<th data-options="field:'price'">科室</th>
-					<th data-options="field:'num'">诊断</th>
-					<th data-options="field:'note'">代码</th>
+					<th data-options="field:'code',width:20">编码</th>   
+					<th data-options="field:'name',width:20">姓名</th>   
+					<th data-options="field:'price',width:20">科室</th>
+					<th data-options="field:'num',width:20">诊断</th>
+					<th data-options="field:'note',width:20">代码</th>
 					<th data-options="field:'re'">原因</th>   
 				</tr>   
 			</thead>   
@@ -49,7 +49,7 @@
 	<h3>编辑灰色表格(<code>headerCls:'panel-header-gray'</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<table id='mytb' class="hisui-datagrid" title="病人列表" style="width:600px;height:300px" 
-		data-options="headerCls:'panel-header-gray',
+		data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',
 		singleSelect:true,
 		pagination:true,toolbar: [{
 			iconCls: 'icon-edit',
@@ -78,13 +78,13 @@
 		">   
 			<thead>   
 				<tr>   
-					<th data-options="field:'code'">编码</th>   
-					<th data-options="field:'name',editor:{type:'text'}">姓名</th>   
-					<th data-options="field:'price'">就诊科室</th>
-					<th data-options="field:'num'">诊断</th>
-					<th data-options="field:'note',editor:{type:'validatebox',options:{required:true}}">名称</th>
-					<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
-					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
+					<th data-options="field:'code',width:40">编码</th>   
+					<th data-options="field:'name',width:40,editor:{type:'text'}">姓名</th>   
+					<th data-options="field:'price',width:50">就诊科室</th>
+					<th data-options="field:'num',width:40">诊断</th>
+					<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称</th>
+					<th data-options="field:'re',width:70,editor:{type:'datebox'}">日期</th>   
+					<th data-options="field:'datetime',width:100,editor:{type:'datetimebox'}">日期与时间</th>   
 				</tr>   
 			</thead>   
 			<tbody>   
@@ -106,7 +106,8 @@
 			</tbody>   
 		</table> 
 
-		<pre class="prettyprint hide lang-html"><code>&lt;table class="hisui-datagrid" title="病人列表" style="width:600px;height:400px" data-options="headerCls:'panel-header-gray',<br/>pagination:true,toolbar: [{
+		<pre class="prettyprint hide lang-html"><code>&lt;table class="hisui-datagrid" title="病人列表" style="width:600px;height:400px" 
+			data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',pagination:true,toolbar: [{
 			iconCls: 'icon-edit',
 			text:'编辑',
 			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
@@ -129,13 +130,14 @@
 		}]
 	">   
 		&lt;thead>   
-			&lt;tr>   
-				&lt;th data-options="field:'code'">编码&lt;/th>   
-				&lt;th data-options="field:'name'">名称&lt;/th>   
-				&lt;th data-options="field:'price'">价格&lt;/th>
-				&lt;th data-options="field:'num'">数量&lt;/th>
-				&lt;th data-options="field:'note'">描述&lt;/th>
-				&lt;th data-options="field:'re'">原因&lt;/th>   
+			&lt;tr>
+				&lt;th data-options="field:'code',width:40">编码&lt;/th>   
+				&lt;th data-options="field:'name',width:40,editor:{type:'text'}">姓名&lt;/th>   
+				&lt;th data-options="field:'price',width:50">就诊科室&lt;/th>
+				&lt;th data-options="field:'num',width:40">诊断&lt;/th>
+				&lt;th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称&lt;/th>
+				&lt;th data-options="field:'re',width:70,editor:{type:'datebox'}">日期&lt;/th>   
+				&lt;th data-options="field:'datetime',width:100,editor:{type:'datetimebox'}">日期与时间&lt;/th>   
 			&lt;/tr>   
 		&lt;/thead>   
 		&lt;tbody>   
@@ -146,7 +148,6 @@
 		&lt;/tbody>   
 	&lt;/table&gt;</code></pre>
 	</div>
-
 	<!--<div class="demo-exp-code entry-content"> 
 		<table title="菜单管理" class="hisui-datagrid" id="treegrid2" style="width:680px;height:400px"
 			data-options="rownumbers:true,autoSizeColumn:false">
@@ -208,10 +209,7 @@
 					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
 				</tr>   
 			</thead>   
-			<tbody>   
-				<tr>   
-					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:08:50</td>   
-				</tr>  
+			<tbody>    
 			</tbody>   
 		</table> 
 	
@@ -237,10 +235,12 @@
 		<script type="text/javascript">
 			$(function(){
 				$HUI.datagrid('#mytable3',{
+					autoSizeColumn:false,
+					fitColumns:true,
 					columns:[[
-						{field:'code',title:'代码'},
-						{field:'name',title:'描述'},
-						{field:'price',title:'价格'}
+						{field:'code',title:'代码',width:100},
+						{field:'name',title:'描述',width:100},
+						{field:'price',title:'价格',width:100}
 					]],
 					data:[
 						{id:'1','code':'XJ',name:'香蕉',price:'2.50'},
@@ -267,10 +267,12 @@
 &lt;script type="text/javascript"&gt;
 	$(function(){
 		$HUI.datagrid('#mytable3',{
+			autoSizeColumn:false,
+			fitColumns:true,
 			columns:[[
-				{field:'code',title:'代码'},
-				{field:'name',title:'描述'},
-				{field:'price',title:'价格'}
+				{field:'code',title:'代码',width:100},
+				{field:'name',title:'描述',width:100},
+				{field:'price',title:'价格',width:100}
 			]],
 			data:[
 				{id:'1','code':'banana',name:'香蕉',price:'2.50'},
