@@ -15,13 +15,13 @@
     <span>分割按钮（Split Button）包含一个链接按钮（Link Button）和一个菜单（Menu）。当用户点击或者鼠标悬停在向下箭头区域，将会显示一个对应的菜单。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
-    <div style="width: 533px;border: 1px solid blue;padding: 1px">
-		<a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱</a>   
+    <div style="width: 533px;border: 1px solid transparent;padding: 1px">
+		<a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱</a>   
         <div id="mm2" style="width:100px;">   
             <div>停止</div>   
             <div>作废</div>   
         </div>
-        <a href="javascript:void(0)" id="sb" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单</a>
+        <a href="javascript:void(0)" id="sb2" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单</a>
         <div id="mm3" style="width:100px;">   
             <div>停止</div>   
             <div>作废</div>     
@@ -40,28 +40,28 @@
             <div>Select All</div>
         </div>
     </div>
-		<pre class="prettyprint lang-html"><code>&lt;a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱&lt;/a>   
-    &lt;div id="mm2" style="width:100px;">   
-        &lt;div>停止&lt;/div>   
-        &lt;div>作废&lt;/div>   
-    &lt;/div>
+		<pre class="prettyprint hide lang-html"><code>&lt;a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱&lt;/a>   
+&lt;div id="mm2" style="width:100px;">   
+    &lt;div>停止&lt;/div>   
+    &lt;div>作废&lt;/div>   
+&lt;/div>
 &lt;a href="javascript:void(0)" id="sb" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单&lt;/a>
-    &lt;div id="mm3" style="width:100px;">   
-        &lt;div>停止&lt;/div>   
-        &lt;div>作废&lt;/div>     
-    &lt;/div>
+&lt;div id="mm3" style="width:100px;">   
+    &lt;div>停止&lt;/div>   
+    &lt;div>作废&lt;/div>     
+&lt;/div>
 &lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit&lt;/a>
-    &lt;div id="mmedit" style="width:150px;">
-        &lt;div data-options="iconCls:'icon-undo'">Undo&lt;/div>
-        &lt;div data-options="iconCls:'icon-redo'">Redo&lt;/div>
-        &lt;div class="menu-sep">&lt;/div>
-        &lt;div>Cut&lt;/div>
-        &lt;div>Copy&lt;/div>
-        &lt;div>Paste&lt;/div>
-        &lt;div class="menu-sep">&lt;/div>
-        &lt;div data-options="iconCls:'icon-remove'">Delete&lt;/div>
-        &lt;div>Select All&lt;/div>
-    &lt;/div&gt;</code></pre>
+&lt;div id="mmedit" style="width:150px;">
+    &lt;div data-options="iconCls:'icon-undo'">Undo&lt;/div>
+    &lt;div data-options="iconCls:'icon-redo'">Redo&lt;/div>
+    &lt;div class="menu-sep">&lt;/div>
+    &lt;div>Cut&lt;/div>
+    &lt;div>Copy&lt;/div>
+    &lt;div>Paste&lt;/div>
+    &lt;div class="menu-sep">&lt;/div>
+    &lt;div data-options="iconCls:'icon-remove'">Delete&lt;/div>
+    &lt;div>Select All&lt;/div>
+&lt;/div&gt;</code></pre>
 	</div>
 	<prettyprint/>
 </body>
