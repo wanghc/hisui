@@ -17,7 +17,7 @@
 	<h3>如：</h3>
 	<!-- default gray-->
 	<div class="demo-exp-code entry-content"> 
-		<div id="tt" class="hisui-tabs" style="width:500px;height:250px;" >
+		<div id="tt" class="hisui-tabs" style="width:500px;height:100px;" >
 			<!--wanghc 2018-04-11 tab页签上不要增加小图标 data-options="iconCls:'icon-add-note'"-->   
 			<div title="电子病历" style="padding:20px;">   
 				tab1    
@@ -28,7 +28,7 @@
 			<div title="医嘱录入" data-options="closable:true" style="padding:20px;display:none;">   
 				tab3    
 			</div> 
-		</div><pre class="prettyprint lang-html"><code>&lt;div id="tt" class="hisui-tabs" style="width:500px;height:250px;">   
+		</div><pre class="prettyprint hide lang-html"><code>&lt;div id="tt" class="hisui-tabs" style="width:500px;height:250px;">   
 	&lt;div title="电子病历" style="padding:20px;">   
 		tab1    
 	&lt;/div>   
@@ -41,9 +41,9 @@
 &lt;/div&gt;</code></pre>  
 	</div>
 	<!-- gray tabs-->
-	<div style="width:500px;height:20px;"></div>
+	<h3>灰色页签(<code>tabs-gray</code>)及点击监听</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div id="tt2" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;">   
+		<div id="tt2" class="hisui-tabs  tabs-gray" style="width:500px;height:150px;">   
 			<div title="电子病历" style="padding:20px;">   
 				此tab的class为"hisui-tabs  tabs-gray"，所以为灰色的。如果页签太多则自动隐藏，可滚动显示 
 			</div>   
@@ -57,7 +57,7 @@
 				tab3    
 			</div>
 		</div> 
-	<pre class="prettyprint lang-html"><code>&lt;div id="tt2" class="hisui-tabs tabs-gray" style="width:500px;height:250px;">   
+	<pre class="prettyprint hide lang-html"><code>&lt;div id="tt2" class="hisui-tabs tabs-gray" style="width:500px;height:250px;">   
 	&lt;div title="电子病历" style="padding:20px;">   
 		此tab的class="hisui-tabs  tabs-gray"，所以为灰色的。 如果页签太多则自动隐藏，可滚动显示 
 	&lt;/div>   
@@ -76,7 +76,8 @@
 	&lt;div title="危急值列表" data-options="closable:true" style="padding:20px;display:none;">   
 		tab3    
 	&lt;/div> 
-&lt;/div&gt;</code></pre> <pre class="prettyprint lang-js">
+&lt;/div&gt;</code></pre>
+<pre class="prettyprint hide lang-js">
 &lt;script type="text/javascript"&gt;
 $(function(){
 	$HUI.tabs("#tt2",{
@@ -98,7 +99,7 @@ $(function(){
 			//$('#tt2').tabs('disableTab', 0); 
 		});
 	</script>
-
+	<h3>页签位置定义(<code>data-options="tabPosition:'left'"</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div style="margin:20px 0;">
 			<span>tabPosition:</span>
@@ -120,7 +121,7 @@ $(function(){
 				tab3    
 			</div>
 		</div> 
-		<pre class="prettyprint lang-html">
+		<pre class="prettyprint hide lang-html">
 <code>&lt;div style="margin:20px 0;"&gt;
 	&lt;span&gt;tabPosition:&lt;/span&gt;
 	&lt;select onchange="$('#tt3').tabs({tabPosition:this.value});$('#tabPosition').text('tabPosition:\''+this.value+'\'');"&gt;
@@ -142,6 +143,7 @@ $(function(){
 	&lt;/div&gt;  
 &lt;/div&gt; </code></pre>
 	</div>
+	<h3>左右位置页签可定义宽度(<code>headerWidth</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="tt4" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="tabPosition:'left',headerWidth:100">   
 			<div title="电子病历" style="padding:20px;">   
@@ -157,7 +159,7 @@ $(function(){
 				tab4    
 			</div> 
 		</div> 
-		<pre class="prettyprint lang-html">
+		<pre class="prettyprint hide lang-html">
 <code>&lt;div id="tt4" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="tabPosition:'left',headerWidth:100"&gt;   
 	&lt;div title="电子病历" style="padding:20px;"&gt;   
 		headerWidth，页签的宽度 （仅tabPostion为left或right时，生效）
@@ -171,142 +173,84 @@ $(function(){
 	&lt;div title="医嘱录入" data-options="closable:false" style="padding:20px;"&gt;   
 		tab4    
 	&lt;/div&gt; 
-&lt;/div&gt; </code></pre>
-		
+&lt;/div&gt; </code></pre>	
 	</div>
-
 	<!-- tabs mini -->
+	<h3>上下页签可定义高度(<code>tabHeight</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div class="hisui-tabs  " style="width:500px;height:100px;" tabHeight="26px">   
+		<div class="hisui-tabs  " style="width:500px;height:120px;" tabHeight="26px">   
 			<div title="常用" style="padding:20px">   
 				增加属性tabHeight可以让页签变小 tabHeight="26px"
 			</div>   
 			<div title="编辑" data-options="closable:false" style="overflow:auto;padding:20px;">
+					<div>人人尽说江南好，游人只合江南老。春水碧于天，画船听雨眠。</div>
+					<div>垆边人似月，皓腕凝霜雪。未老莫还乡，还乡须断肠。</div>
+					<div>如今却忆江南乐，当时年少春衫薄。骑马倚斜桥，满楼红袖招。</div>
 			</div>
 			<div title="功能" data-options="closable:false" style="padding:20px;display:none;">
 			</div>  
 			<div title="收藏" data-options="closable:false" style="padding:20px;display:none;">
 			</div>
 			<div title="表格" data-options="closable:false" style="padding:20px;display:none;">
-			</div>
+			我是否被隐藏了？</div>
 		</div>
+		<pre class="prettyprint hide lang-html"><code>&lt;div class="hisui-tabs" style="width:500px;height:120px" tabHeight="26px">
+	&lt;div title="常用" style="padding:20px">增加属性tabHeight可以让页签变小 tabHeight="26px"&lt;/div>
+	&lt;div title="编辑" data-options="closable:false" style="padding:20px;overflow:auto;">
+		&lt;div>人人尽说江南好，游人只合江南老。春水碧于天，画船听雨眠。&lt;/div>
+		&lt;div>垆边人似月，皓腕凝霜雪。未老莫还乡，还乡须断肠。&lt;/div>
+		&lt;div>如今却忆江南乐，当时年少春衫薄。骑马倚斜桥，满楼红袖招。&lt;/div>
+	&lt;/div>
+	&lt;div title="功能" data-options="closable:false" style="padding:20px;display:none;">&lt;/div>
+	&lt;div title="收藏" data-options="closable:false" style="padding:20px;display:none;">&lt;/div>
+	&lt;div title="表格" data-options="closable:false" style="padding:20px;display:none;">我是否被隐藏了？&lt;/div>
+&lt;div></code></pre>
 	</div>
-	<div style="margin:20px 0;">
-			<span>tabPosition:</span>
-			<select onchange="$('#tt3b').tabs({tabPosition:this.value});$('#tabPosition').text('tabPosition:\''+this.value+'\'');">
-				<option value="top">Top</option>
-				<option value="bottom">Bottom</option>
-				<option value="left" >Left</option>
-				<option value="right">Right</option>
-			</select>
+	<h3>页签过多滚动效果</h3>
+	<div class="demo-exp-code entry-content">
+		<div id="mytabs1" class="hisui-tabs tabs-gray" style="width:500px;height:100px;" data-options="">   
+			<div title="电子病历" data-options="" style="padding:20px;"></div>   
+			<div title="诊断录入" data-options="" style="padding:20px;"></div>   
+			<div title="医嘱录入" data-options="" style="padding:20px;"></div>
+			<div title="检查列表" data-options="" style="padding:20px;"></div>
+			<div title="检验列表" data-options="" style="padding:20px;"></div>
+			<div title="过敏记录" data-options="" style="padding:20px;"></div>
+			<div title="生命体征" data-options="" style="padding:20px;"></div>
+			<div title="就诊列表" data-options="" style="padding:20px;"></div>
 		</div>
-		<div id="tt3b" class="hisui-tabs " style="width:500px;height:250px;" data-options="headerWidth:100,tabPosition:'bottom',">   
-			<div title="电子病历" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
-				点击tabPosition选择框,修改此tabs的tabPosition属性值，data-options="<span id="tabPosition"></span>"
-			</div>   
-			<div title="诊断录入" data-options="iconCls:'icon-add-diag',closable:false" style="overflow:auto;padding:20px;">   
-				tab2    
-			</div>   
-			<div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:false" style="padding:20px;">   
-				tab3    
-			</div>
-		</div> 
-
-		<h3>页签过多</h3>
-		<div id="mytabs1" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="">   
-				<div title="电子病历" data-options="" style="padding:20px;">   
-				</div>   
-				<div title="诊断录入" data-options="" style="overflow:auto;padding:20px;">   
-					tab2    
-				</div>   
-				<div title="医嘱录入" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入2" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入3" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入4" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入5" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-		</div> 
-		<br>
-		<div id="mytabs2" class="hisui-tabs " style="width:500px;height:250px;" data-options="">   
-				<div title="电子病历" data-options="" style="padding:20px;">   
-				</div>   
-				<div title="诊断录入" data-options="" style="overflow:auto;padding:20px;">   
-					tab2    
-				</div>   
-				<div title="医嘱录入" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入2" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入3" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入4" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="医嘱录入5" data-options="" style="padding:20px;">   
-					tab3    
-				</div>
-		</div> 
-
-		<p>第一个页签作为标题的页签</p>
-
-		<div id="tt-brand-gray" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;" data-options="isBrandTabs:true">   
-			<div title="Brand" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
-				
-			</div>   
-			<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
-				tab2    
-			</div>   
-			<div title="医嘱录入" data-options="closable:false" style="padding:20px;display:none;">   
-				tab3    
-			</div>  
-			<div title="检查列表" data-options="closable:false" style="padding:20px;display:none;">   
-				tab3    
-			</div> 
-		</div> 
-	<pre class="prettyprint lang-html"><code>&lt;div id="tt-brand-gray" class="hisui-tabs  tabs-gray" style="width:500px;height:250px;" data-options="isBrandTabs:true>   
-	&lt;div title="Brand" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
-		
-	&lt;/div>   
-	&lt;div title="诊断录入" data-options="iconCls:'icon-edit',closable:true" style="overflow:auto;padding:20px;display:;">   
-		tab2    
-	&lt;/div>   
-	&lt;div title="医嘱录入" data-options="iconCls:'icon-write-order',closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div>  
-	&lt;div title="检查列表" data-options="closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div> 
+		<div id="mytabs2" class="hisui-tabs" style="width:500px;height:100px;margin-top: 10px" data-options="">   
+			<div title="电子病历" data-options="" style="padding:20px;"></div>   
+			<div title="诊断录入" data-options="" style="padding:20px;"></div>   
+			<div title="医嘱录入" data-options="" style="padding:20px;"></div>
+			<div title="检查列表" data-options="" style="padding:20px;"></div>
+			<div title="检验列表" data-options="" style="padding:20px;"></div>
+			<div title="过敏记录" data-options="" style="padding:20px;"></div>
+			<div title="生命体征" data-options="" style="padding:20px;"></div>
+			<div title="就诊列表" data-options="" style="padding:20px;"></div>
+		</div>
+	</div>	
+	<h3>第一个页签作为标题的图表组(<code>isBrandTabs:true</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<div id="tt-brand-gray" class="hisui-tabs tabs-gray" style="width:500px;height:150px;" data-options="isBrandTabs:true">   
+			<div title="医嘱浏览" data-options="iconCls:'icon-add-note'" style="padding:20px;"></div>   
+			<div title="全部" data-options="closable:false" style="padding:20px;"></div>
+			<div title="药品" data-options="closable:false" style="padding:20px;display:none;"></div>  
+			<div title="检查" data-options="closable:false" style="padding:20px;display:none;"></div>
+			<div title="检验" data-options="closable:false" style="padding:20px;display:none;"></div>  
+		</div>
+		<pre class="prettyprint hide lang-html"><code>&lt;div id="tt-brand-gray" class="hisui-tabs tabs-gray" style="width:500px;height:150px;" data-options="isBrandTabs:true>
+	&lt;div title="医嘱浏览" data-options="iconCls:'icon-add-note'" style="padding:20px;">&lt;/div>   
+	&lt;div title="全部" data-options="closable:true" style="padding:20px;">&lt;/div>   
+	&lt;div title="药品" data-options="closable:true" style="padding:20px;">&lt;/div>  
+	&lt;div title="检查" data-options="closable:true" style="padding:20px;">&lt;/div>
+	&lt;div title="检查" data-options="closable:true" style="padding:20px;">&lt;/div>
 &lt;/div&gt;</code></pre>
-
-<div id="tt-brand" class="hisui-tabs " style="width:500px;height:250px;" data-options="isBrandTabs:true">   
-	<div title="标题" data-options="iconCls:'icon-add-note'" style="padding:20px;">   
-		
-	</div>   
-	<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
-		tab2    
-	</div>   
-	<div title="医嘱录入" data-options="closable:false" style="padding:20px;display:none;">   
-		tab3    
-	</div>  
-	<div title="检查列表" data-options="closable:false" style="padding:20px;display:none;">   
-		tab3    
-	</div> 
-</div> 
-
-
-
+		<div id="tt-brand" class="hisui-tabs " style="width:500px;height:150px;" data-options="isBrandTabs:true">   
+			<div title="病历质控" data-options="iconCls:'icon-emr-cri'" style="padding:20px;"></div>   
+			<div title="环节质控缺陷" data-options="closable:false" style="padding:20px;"></div>   
+			<div title="时效性缺陷" data-options="closable:false" style="padding:20px;"></div>
+		</div> 
+	</div>
 	<prettyprint/>
 </body>
 </html>
