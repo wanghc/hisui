@@ -19,96 +19,96 @@
 		<div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true">
 		<table cellpadding="5">
 			<tr>
-				<td>HeadButton</td>
+				<td></td>
 				<td>
-					<a id="btn" href="#" class="hisui-linkbutton head-btn">确认</a>
+					<a id="btn" href="#" class="hisui-linkbutton">验证序号</a>
 				</td>
 			</tr>						
 			<tr>
-				<td>序号</td>
+				<td class="r-label">序号</td>
 				<td>
 					<input id="patno" class="textbox">
 				</td>
 			</tr>
 			<tr>
-				<td>患者性名</td>
+				<td class="r-label">患者性名</td>
 				<td>
 					<input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
 				</td>
 			</tr>
 			<tr>
-				<td>邮箱</td>
+				<td class="r-label">邮箱</td>
 				<td>
 					<input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
 				</td>
 			</tr>
 			<tr>
-				<td>URL:</td>
+				<td class="r-label">URL</td>
 				<td>
 					<input class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 				</td>
 			</tr>
 			<tr>
-				<td>数字:</td>
+				<td class="r-label">数字</td>
 				<td>
-					<input class="hisui-numberbox">
+					<input class="hisui-numberbox textbox">
 				</td>
 			</tr>
 			<tr>
-				<td>生日:</td>
+				<td class="r-label">生日</td>
 				<td>
 					<input class="hisui-datebox textbox">
 				</td>
 			</tr>
 			
 		</table>
-    	</div><pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',
+    	</div><pre class="prettyprint hide lang-html"><code>&lt;div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',
 closable:true,collapsible:true,minimizable:true,maximizable:true">
 	&lt;table cellpadding="5">
 		&lt;tr>
-			&lt;td>HeadButton&lt;/td>
+			&lt;td>&lt;/td>
 			&lt;td>
-				&lt;a id="btn" href="#" class="hisui-linkbutton head-btn">确认&lt;/a>
+				&lt;a id="btn" href="#" class="hisui-linkbutton">验证序号&lt;/a>
 			&lt;/td>
 		&lt;/tr>						
 		&lt;tr>
-			&lt;td>序号&lt;/td>
+			&lt;td class="r-label">序号&lt;/td>
 			&lt;td>
 				&lt;input id="patno" class="textbox">
 			&lt;/td>
 		&lt;/tr>
 		&lt;tr>
-			&lt;td>患者性名&lt;/td>
+			&lt;td class="r-label">患者性名&lt;/td>
 			&lt;td>
 				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
 			&lt;/td>
 		&lt;/tr>
 		&lt;tr>
-			&lt;td>邮箱&lt;/td>
+			&lt;td class="r-label">邮箱&lt;/td>
 			&lt;td>
 				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
 			&lt;/td>
 		&lt;/tr>
 		&lt;tr>
-			&lt;td>URL:&lt;/td>
+			&lt;td class="r-label">URL&lt;/td>
 			&lt;td>
 				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 			&lt;/td>
 		&lt;/tr>
 		&lt;tr>
-			&lt;td>数字:&lt;/td>
+			&lt;td class="r-label">数字&lt;/td>
 			&lt;td>
 				&lt;input class="hisui-numberbox">
 			&lt;/td>
 		&lt;/tr>
 		&lt;tr>
-			&lt;td>生日:&lt;/td>
+			&lt;td class="r-label">生日&lt;/td>
 			&lt;td>
 				&lt;input class="hisui-datebox textbox">
 			&lt;/td>
 		&lt;/tr>			
 	&lt;/table&gt;
-&lt;/div&gt;</code></pre><pre class="prettyprint lang-js">
+&lt;/div&gt;</code></pre><pre class="prettyprint hide lang-js">
 &lt;script type="text/javascript"&gt;
 var init = function () {
 	var valbox = $HUI.validatebox("#patno", {
