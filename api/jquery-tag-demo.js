@@ -38,24 +38,31 @@
 $(function(){
     $("pre.prettyprint").addClass("linenums");
     $("pre.prettyprint").each(function(e){
-        var _desc_ = "-隐藏源代码";
+        var _desc_ = "-隐藏";
         var _pp_ = $(this);
         if (_pp_.hasClass("hide")){
             _pp_.hide();
-            _desc_ = '+显示源代码';
+            _desc_ = '+显示';
         }
+        if (_pp_.hasClass("lang-js")){
+            _desc_+="JS"
+        }
+        if (_pp_.hasClass("lang-html")){
+            _desc_+="HTML"
+        }
+        _desc_+="代码"
+        
         var width = _pp_.parent().width();
-        var jobj = $("<span class='toggle-prettyprint' style='padding-left:"+(width/2)+"px;width:100px;'>"+_desc_+"</span>").insertBefore($(this));
+        var jobj = $("<div class='toggle-prettyprint' style='padding-left:"+(width/2)+"px;width:120px;'>"+_desc_+"</div>").insertBefore($(this));
         jobj.click(function(){
             var _t = $(this);
-            if(_t.text()=="+显示源代码"){
-                $(this).find("+pre.prettyprint").show();
-                $(this).text("-隐藏源代码")
+            if(_t.text().indexOf("+显示")>-1){
+                _t.find("+pre.prettyprint").show();
+                _t.text("-隐藏"+_t.text().slice(3));
             }else{
-                $(this).find("+pre.prettyprint").hide();
-                $(this).text("+显示源代码")
+                _t.find("+pre.prettyprint").hide();
+                _t.text("+显示"+_t.text().slice(3))
             }
-
         });
     });
     $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
