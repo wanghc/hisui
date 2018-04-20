@@ -2427,6 +2427,10 @@ h2 {
 .demo-tip {
   display: none;
 }
+.r-label {
+  text-align: right;
+  padding-right: 10px;
+}
 .icon-blank {
   background: url('icons/blank.gif') no-repeat center center;
 }
@@ -3141,6 +3145,12 @@ h2 {
 .textbox:active {
   background-color: #f4faff;
 }
+.textbox:hover {
+  background-color: #f4faff;
+}
+.textbox:focus {
+  background-color: #f4faff;
+}
 .textareabox-text {
   margin: 0;
   padding: 0 0 0 5px;
@@ -3291,6 +3301,7 @@ input[type="text"]:disabled {
   height: 36px;
   padding-left: 0px;
   border-width: 0 0 0px 0;
+  overflow: hidden;
   /*tabs-brand no hover no pointer  cryze 2018-3-15*/
 }
 .tabs li {
@@ -5041,6 +5052,12 @@ a.l-btn-link:hover {
   font-size: 14px;
 }
 .validatebox-text:active {
+  background-color: #f4faff;
+}
+.validatebox-text:focus {
+  background-color: #f4faff;
+}
+.validatebox-text:hover {
   background-color: #f4faff;
 }
 .validatebox-invalid {

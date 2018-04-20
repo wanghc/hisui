@@ -3135,6 +3135,12 @@
   &:active{
     background-color: #f4faff;
   }
+  &:hover{
+    background-color: #f4faff;
+  }
+  &:focus{
+    background-color: #f4faff;
+  }
 }
 
 .textareabox-text {
@@ -3312,6 +3318,7 @@ textarea:disabled, input:not([type]):disabled, input[type="text"]:disabled {
   height: @tabs-header-height;  
   padding-left: 0px;
   border-width: 0 0 0px 0;
+  overflow: hidden;
   li {
     height: 35px; /*wanghc 2018-3-19  win7-ie11*/
     margin: 0px;
@@ -5158,7 +5165,13 @@ a.l-btn-link{
   color:@validatebox-font-color;
   font-size:@validatebox-font-size;
   &:active{
-    background-color: #f4faff;
+    background-color: @validatebox-focus-bgcolor;
+  }
+  &:focus{
+    background-color: @validatebox-focus-bgcolor;
+  }
+  &:hover{
+    background-color: @validatebox-focus-bgcolor;
   }
 }
 .validatebox-invalid {
