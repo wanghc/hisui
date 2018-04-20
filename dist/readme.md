@@ -69,3 +69,6 @@
 
 ##2018-4-18
 1. treegrid  "parentId":""   当做根节点
+##2018-4-19
+1. 之前，为实现filebox组件，放开了linkbuttton的事件阻止，导致原本用href="#" 的会有跳转行为  改为判断是否是filebox的button 是则不阻止，否则阻止
+  

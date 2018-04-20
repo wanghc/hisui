@@ -1,54 +1,58 @@
 2017-12-21
-  ĞŞ¸´ÁËcheckboxÓëradioµÄgetValue·½·¨È¡Öµ±¨´íµÄbug¡£
+  ä¿®å¤äº†checkboxä¸radioçš„getValueæ–¹æ³•å–å€¼æŠ¥é”™çš„bugã€‚
 2017-12-25
-  hisui-numberboxµÄ¸ß¶Èµ÷Õû
-  hisui-timespinnerÑùÊ½µ÷Õû
+  hisui-numberboxçš„é«˜åº¦è°ƒæ•´
+  hisui-timespinneræ ·å¼è°ƒæ•´
 2017-12-26
-  hisui-checkboÄ¬ÈÏ²»Ñ¡ÖĞ
+  hisui-checkboé»˜è®¤ä¸é€‰ä¸­
 2017-12-29
-  hisui-windowÔö¼ÓisTopZindexÅäÖÃÏî£¬¿ÉÒÔÈÃwindowÔÚocx»òdll¿Ø¼şÖ®ÉÏµ¯³ö
+  hisui-windowå¢åŠ isTopZindexé…ç½®é¡¹ï¼Œå¯ä»¥è®©windowåœ¨ocxæˆ–dllæ§ä»¶ä¹‹ä¸Šå¼¹å‡º
 2018-1-8
-  hisuiÄÚÔö¼Ó$.hisui.xxx·½·¨
-  hisui-treegridÔö¼Ócheckbox¹¦ÄÜ£¬¹´Ñ¡ÊÂ¼ş£¬Ñ¡ÖĞÓëÈ¡ÏûÑ¡ÖĞ·½·¨
+  hisuiå†…å¢åŠ $.hisui.xxxæ–¹æ³•
+  hisui-treegridå¢åŠ checkboxåŠŸèƒ½ï¼Œå‹¾é€‰äº‹ä»¶ï¼Œé€‰ä¸­ä¸å–æ¶ˆé€‰ä¸­æ–¹æ³•
 2018-1-10
-  linkbutton---Ôö¼ÓimgÅäÖÃÏî£¬¿ÉÖ±½ÓÅäÖÃÍ¼±ê 
+  linkbutton---å¢åŠ imgé…ç½®é¡¹ï¼Œå¯ç›´æ¥é…ç½®å›¾æ ‡ 
 2018-1-11
-  ĞŞ¸´ÁËhisui-treegrid£¬½öÔÚjsÄÚ³õÊ¼»¯hisui-treegridÊ±£¬µã»÷¹´Ñ¡¿ò±¨´íbug
+  ä¿®å¤äº†hisui-treegridï¼Œä»…åœ¨jså†…åˆå§‹åŒ–hisui-treegridæ—¶ï¼Œç‚¹å‡»å‹¾é€‰æ¡†æŠ¥é”™bug
 2018-1-17
-  ĞŞ¸ÄÁËhisui-checkboxÔÚ´óÆÁÏÂÏÔÊ¾²»ÁË¹´Ñ¡¿òÎÊÌâ
+  ä¿®æ”¹äº†hisui-checkboxåœ¨å¤§å±ä¸‹æ˜¾ç¤ºä¸äº†å‹¾é€‰æ¡†é—®é¢˜
 2018-1-30
-  Îªhisui-datagridÔö¼ÓshowPageList,showRefresh,displayMsgÈı¸öÊôĞÔ,¿Ø¼ş·­Ò³ÌõÏÔÊ¾
-  ĞŞ¸´hisui-linkbuttonÔö¼ÓwidthÊôĞÔºó£¬Í¼±êÆ«ÒÆÎÊÌâ
+  ä¸ºhisui-datagridå¢åŠ showPageList,showRefresh,displayMsgä¸‰ä¸ªå±æ€§,æ§ä»¶ç¿»é¡µæ¡æ˜¾ç¤º
+  ä¿®å¤hisui-linkbuttonå¢åŠ widthå±æ€§åï¼Œå›¾æ ‡åç§»é—®é¢˜
 2018-3-1
-  linkbutton  hoverÑÕÉ«µ÷Õû Ôö¼Óhover-dark ¿í¶Èµ÷Õû30px+ÎÄ×Ö+ÎÄ×Ö×óÓÒpadding£º15px   ´óÍ¼Í¼±êÑùÊ½
-  searchbox  °´Å¥ÑùÊ½
-  spinner  °´Å¥ÑùÊ½
-  datebox datetimebox °´Å¥ÑùÊ½
-  combo ÏÂÀ­°´Å¥ÑùÊ½
-  datetimeboxÖĞtimespinner  ¿í¸ß
-  panelÑùÊ½µ÷Õû Ô²½Ç ¹Ø±Õ°´Å¥ 
-  tabs À¶É«»ÒÉ« Ò»ÏµÁĞÑùÊ½µ÷ÕûĞŞ¸´  ±ß¿ò hoverÑùÊ½ ¹Ø±Õ°´Å¥ÄØ
-  accordion ÑùÊ½µÄµ÷Õû Õ¹¿ª¹Ø±Õ°´Å¥ÑùÊ½
-  combo linkbutton searchbox µÈ µÄ½ûÓÃÑùÊ½µ÷Õû 
-  datagrid toolbarÖĞ°´Å¥ÏÔÊ¾ÑùÊ½  ĞĞ±à¼­Æ÷Ö§³Ödatetimebox
-  menubutton Ôö¼Ómenubutton-blue  menubutton-toolbar
-  tree ĞĞ¸ß  Ôö¼ÓaccordiontreeÑùÊ½
+  linkbutton  hoveré¢œè‰²è°ƒæ•´ å¢åŠ hover-dark å®½åº¦è°ƒæ•´30px+æ–‡å­—+æ–‡å­—å·¦å³paddingï¼š15px   å¤§å›¾å›¾æ ‡æ ·å¼
+  searchbox  æŒ‰é’®æ ·å¼
+  spinner  æŒ‰é’®æ ·å¼
+  datebox datetimebox æŒ‰é’®æ ·å¼
+  combo ä¸‹æ‹‰æŒ‰é’®æ ·å¼
+  datetimeboxä¸­timespinner  å®½é«˜
+  panelæ ·å¼è°ƒæ•´ åœ†è§’ å…³é—­æŒ‰é’® 
+  tabs è“è‰²ç°è‰² ä¸€ç³»åˆ—æ ·å¼è°ƒæ•´ä¿®å¤  è¾¹æ¡† hoveræ ·å¼ å…³é—­æŒ‰é’®å‘¢
+  accordion æ ·å¼çš„è°ƒæ•´ å±•å¼€å…³é—­æŒ‰é’®æ ·å¼
+  combo linkbutton searchbox ç­‰ çš„ç¦ç”¨æ ·å¼è°ƒæ•´ 
+  datagrid toolbarä¸­æŒ‰é’®æ˜¾ç¤ºæ ·å¼  è¡Œç¼–è¾‘å™¨æ”¯æŒdatetimebox
+  menubutton å¢åŠ menubutton-blue  menubutton-toolbar
+  tree è¡Œé«˜  å¢åŠ accordiontreeæ ·å¼
 2018-3-8
-  ĞŞ¸´switchboxµÄ isActive getValue ·½·¨
+  ä¿®å¤switchboxçš„ isActive getValue æ–¹æ³•
 2018-3-15
-  Ôö¼Ó$HUI.combo
-  tabs µ±isBrandTabsÎªtrueÊ±,Êó±ê·Åµ½µÚÒ»Ò³Ç©Ê±²»¸Ä±äÑùÊ½£¬Ä¬ÈÏÑ¡ÖĞµÚ¶ş¸öÒ³Ç©
+  å¢åŠ $HUI.combo
+  tabs å½“isBrandTabsä¸ºtrueæ—¶,é¼ æ ‡æ”¾åˆ°ç¬¬ä¸€é¡µç­¾æ—¶ä¸æ”¹å˜æ ·å¼ï¼Œé»˜è®¤é€‰ä¸­ç¬¬äºŒä¸ªé¡µç­¾
 2018-3-19
-  Ôö¼Ótabs liµÄheight¶¨Òå£¬ÔÚwin10ÏµÍ³ÖĞIE11ÏÂ·ÃÎÊtabsµÄ¿í¶È±ä¸ß
+  å¢åŠ tabs liçš„heightå®šä¹‰ï¼Œåœ¨win10ç³»ç»Ÿä¸­IE11ä¸‹è®¿é—®tabsçš„å®½åº¦å˜é«˜
 2018-3-26
-  combogrid Ôö¼ÓlazyÊôĞÔ£¬µ±lazyÎªtrue£¬ÇÒÖµÎª¿ÕÊ± ²»È¥ÇëÇóÊı¾İ£¬µ±µÚÒ»´Îµã»÷ÏÂÀ­°´Å¥Ê±µ÷ÓÃkeyHandler.query
+  combogrid å¢åŠ lazyå±æ€§ï¼Œå½“lazyä¸ºtrueï¼Œä¸”å€¼ä¸ºç©ºæ—¶ ä¸å»è¯·æ±‚æ•°æ®ï¼Œå½“ç¬¬ä¸€æ¬¡ç‚¹å‡»ä¸‹æ‹‰æŒ‰é’®æ—¶è°ƒç”¨keyHandler.query
 2018-3-26
-  ĞŞ¸´£ºtreegrid ÔÚ½áºÏtreegrid-dnd.js ÍÏ×§»á±¨´í   1.3.6»¹Ã»ÓĞsetEmptyMsg 
+  ä¿®å¤ï¼štreegrid åœ¨ç»“åˆtreegrid-dnd.js æ‹–æ‹½ä¼šæŠ¥é”™   1.3.6è¿˜æ²¡æœ‰setEmptyMsg 
 2018-3-20
-  draggable droppable ×é¼ş´úÂë ¸ÄÎªÊ¹ÓÃ1.5µÄ Ô­1.3.6µÄ,ÔÚtreegridÊ¹ÓÃÍÏ×§µ¥Ë«»÷ºÜÂı
-  ÔÚÓÃgulp-uglifyÑ¹ËõjsÊ±£¬Ôö¼Ó²ÎÊı ie8:true  ·ñÔòie8ÏÂ»á±¨´í
+  draggable droppable ç»„ä»¶ä»£ç  æ”¹ä¸ºä½¿ç”¨1.5çš„ åŸ1.3.6çš„,åœ¨treegridä½¿ç”¨æ‹–æ‹½å•åŒå‡»å¾ˆæ…¢
+  åœ¨ç”¨gulp-uglifyå‹ç¼©jsæ—¶ï¼Œå¢åŠ å‚æ•° ie8:true  å¦åˆ™ie8ä¸‹ä¼šæŠ¥é”™
 2018-4-13
-  ÊµÏÖfilebox×é¼ş ÒÀÀµlinkbutton
-  datagrid ĞĞ±à¼­Æ÷editor textºÍvalidateboxÀàĞÍÑùÊ½µ÷Õû
+  å®ç°fileboxç»„ä»¶ ä¾èµ–linkbutton
+  datagrid è¡Œç¼–è¾‘å™¨editor textå’Œvalidateboxç±»å‹æ ·å¼è°ƒæ•´
 2018-4-18
-  treegrid  "parentId":""   µ±×ö¸ù½Úµã
+  treegrid  "parentId":""   å½“åšæ ¹èŠ‚ç‚¹
+2018-4-19
+  ä¹‹å‰ï¼Œä¸ºå®ç°fileboxç»„ä»¶ï¼Œæ”¾å¼€äº†linkbutttonçš„äº‹ä»¶é˜»æ­¢ï¼Œå¯¼è‡´åŸæœ¬ç”¨href="#" çš„ä¼šæœ‰è·³è½¬è¡Œä¸º  æ”¹ä¸ºåˆ¤æ–­æ˜¯å¦æ˜¯fileboxçš„button æ˜¯åˆ™ä¸é˜»æ­¢ï¼Œå¦åˆ™é˜»æ­¢
+  
+  
