@@ -9,7 +9,13 @@
   color:@validatebox-font-color;
   font-size:@validatebox-font-size;
   &:active{
-    background-color: #f4faff;
+    background-color: @validatebox-focus-bgcolor;
+  }
+  &:focus{
+    background-color: @validatebox-focus-bgcolor;
+  }
+  &:hover{
+    background-color: @validatebox-focus-bgcolor;
   }
 }
 .validatebox-invalid {
