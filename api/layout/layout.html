@@ -18,17 +18,28 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="cc" class="hisui-layout" style="width:600px;height:400px;">   
-			<div data-options="region:'north',title:'North Title',headerCls:'panel-header'" style="height:100px;"></div>   
-			<div data-options="region:'south',title:'South Title',split:true,headerCls:'panel-header-gray',collapsed:true" style="height:100px;"></div>   
-			<div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true,headerCls:'panel-header-gray',collapsed:true" style="width:100px;"></div>   
+			<div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray'" style="height:100px;"></div>  
+			<div data-options="region:'south',title:'',split:true,headerCls:'panel-header-gray'" style="height:100px;border-color:#cccccc;">
+				主动定义边框色><code>style="border-color:#cccccc;"</code>
+			</div>
+			<div data-options="region:'east',title:'East',split:true,split:true,headerCls:'panel-header-gray',collapsed:true" 
+				style="width:200px;">
+					自动收起><code>data-options="collapsed:true"</code>
+			</div>   
 			<div data-options="region:'west',title:'West',split:true,headerCls:'panel-header-gray'" style="width:100px;">导航菜单</div>   
-			<div data-options="region:'center',title:'main title',headerCls:'panel-header-gray'" style="padding:5px;background:#eee;">主要的内容</div>   
-		</div>  <pre class="prettyprint lang-html"><code>&lt;div id="cc" class="hisui-layout" style="width:600px;height:400px;">   
-	&lt;div data-options="region:'north',title:'North Title',headerCls:'panel-header'" style="height:100px;">&lt;/div>   
-	&lt;div data-options="region:'south',title:'South Title',split:true,headerCls:'panel-header-gray',collapsed:true" style="height:100px;">&lt;/div>   
-	&lt;div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true,headerCls:'panel-header-gray',collapsed:true" style="width:100px;">&lt;/div>   
+			<div data-options="region:'center',title:'',split:true,headerCls:'panel-header-gray'" 
+				style="padding:10px;border-color:#cccccc">
+				主要的内容
+			</div>   
+		</div>  
+	<pre class="prettyprint hide lang-html"><code>&lt;div id="cc" class="hisui-layout" style="width:600px;height:400px;">   
+	&lt;div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray'" style="height:100px;">&lt;/div>   
+	&lt;div data-options="region:'south',title:'',split:true,headerCls:'panel-header-gray'" style="height:100px;border-color:#cccccc;">&lt;/div>   
+	&lt;div data-options="region:'east',title:'East',split:true,split:true,headerCls:'panel-header-gray',collapsed:true" style="width:200px;">&lt;/div>   
 	&lt;div data-options="region:'west',title:'West',split:true,headerCls:'panel-header-gray'" style="width:100px;">导航菜单&lt;/div>   
-	&lt;div data-options="region:'center',title:'main title',headerCls:'panel-header-gray'" style="padding:5px;background:#eee;">主要的内容&lt;/div&gt;
+	&lt;div data-options="region:'center',title:'',split:true,headerCls:'panel-header-gray'" style="padding:10px;border-color:#cccccc">
+	主要的内容
+	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
 	<prettyprint/>
