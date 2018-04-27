@@ -1,3 +1,5 @@
+## 2018-4-25
+1. treegrid 在load或reload时清掉（移除的被选中元素）在checkedRows中的记录   
 ## 2018-4-20
 1. 增加r-label实施label右对齐且padding-right:10px
 1. textbox与vaildatebox及子组件获得焦点时，增加背景效果    
