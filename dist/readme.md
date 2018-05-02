@@ -60,7 +60,7 @@
 1. 为hisui-datagrid增加showPageList,showRefresh,displayMsg三个属性,控件翻页条显示
 1. 修复hisui-linkbutton增加width属性后，图标偏移问题
 
-##2018-1-17
+## 2018-1-17
 1. 修改了hisui-checkbox在大屏下显示不了勾选框问题
 
 ## 2018-1-11
@@ -83,5 +83,5 @@
 1. hisui-numberbox的高度调整
 1. hisui-timespinner样式调整
 
-##2017-12-21
+## 2017-12-21
 1. 修复了checkbox与radio的getValue方法取值报错的bug。
