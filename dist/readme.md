@@ -1,5 +1,9 @@
 [hisui]: https://wanghc.github.io/hisui/hisui-0.1.0.rar "下载最新的HISUI库"
 点击[hisui]下载最新的HISUI库
+
+## 2018-4-28 ##
+1. 灰色页签选中页签边框问题 tabs类 overflow: visible;
+
 ## 2018-4-25 ##
 1. treegrid 在load或reload时清掉（移除的被选中元素）在checkedRows中的记录   
 

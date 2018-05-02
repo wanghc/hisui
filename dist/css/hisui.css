@@ -3626,6 +3626,7 @@ input[type="text"]:disabled {
   border-bottom: 1px solid #CCC;
 }
 .tabs-container.tabs-gray .tabs {
+  overflow: visible;
   /*tabs-brand no hover no pointer  cryze 2018-3-15*/
 }
 .tabs-container.tabs-gray .tabs li {
