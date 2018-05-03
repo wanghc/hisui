@@ -20,7 +20,7 @@
 &lt;script src="../scripts/websys.jquery.js" type="text/javascript"&gt;&lt;/script&gt;</code></pre>
 	
 	<div class="demo-exp-code entry-content"> 
-		<h2>$.cm(data[,success][,error])调用后台方法 </h2>
+		<h2>$cm(data[,success][,error])调用后台方法 </h2>
 		<table class="table">
 			<tr class="protitle">
 				<th>参数</th>
@@ -118,7 +118,7 @@
 <!--异步返回json数据-->
 <pre class="prettyprint lang-js">
 <code>//异步调用类方法，推荐
-$.cm({
+$cm({
 	ClassName:"dhc.Test",
 	MethodName:"getPatInfo",
 	UserName:"张三"
@@ -127,8 +127,8 @@ $.cm({
 });</code></pre>
 <!--返回非json数据-->
 <pre class="prettyprint lang-js">
-<code>//异步调用类方法,且返回值非json数据时请用 $.m(data[,success][,error]);
-$.m({
+<code>//异步调用类方法,且返回值非json数据时请用 $m(data[,success][,error]);
+$m({
 	ClassName:"dhc.Test",
 	MethodName:"getPatInfo",
 	UserName:"张三"
@@ -138,7 +138,7 @@ $.m({
 <!--同步例子-->
 <pre class="prettyprint lang-js">
 <code>//同步调用类方法 ,不建议使用
-var jsonData = $.cm({
+var jsonData = $cm({
 	ClassName:"dhc.Test",
 	MethodName:"getPatInfo",
 	UserName:"张三"
@@ -155,7 +155,7 @@ console.dir(jsonData);  //{"name":"张三"}</code></pre>
 	ORDER	BY SSUSR_Name
 }</code></pre>
 <pre class="prettyprint lang-js">
-<code >$.cm({
+<code >$cm({
 	ClassName:"web.SSUser",
 	QueryName:"LookUpActive",
 	//增加配置项 ResultSetType："array" //则rs为[{"Description":"王二","HIDDEN":"1","Code":"001"},{"Description":"张三","HIDDEN":"2","Code":"002"},...]
