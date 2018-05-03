@@ -1,5 +1,8 @@
 [hisui]: https://wanghc.github.io/hisui/hisui-0.1.0.rar "下载最新的HISUI库"
 点击[hisui]下载最新的HISUI库
+## 2018-5-3 ##
+1. 修改DataGrid关于autoSizeColumn属性处理问题，隐藏列不再重计算列宽,提升速度。
+
 ## 2018-4-25 ##
 1. treegrid 在load或reload时清掉（移除的被选中元素）在checkedRows中的记录   
 

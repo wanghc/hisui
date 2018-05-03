@@ -9015,7 +9015,7 @@ if (typeof JSON !== 'object') {
                 for (var i = 0; i < _58b.length; i++) {
                     var _588 = _58b[i];
                     var col = _558(_587, _588);
-                    if (col.auto) {
+                    if (!col.hidden && col.auto) {  //wanghc 增加col.hidden判断,隐藏列不用计算
                         _515(_588);
                         _58a = true;
                     }
