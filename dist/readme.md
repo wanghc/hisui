@@ -1,5 +1,8 @@
 [hisui]: https://wanghc.github.io/hisui/hisui-0.1.0.rar "下载最新的HISUI库"
 点击[hisui]下载最新的HISUI库
+## 2018-5-4 ##
+1. 增加popover组件功能
+
 ## 2018-5-3 ##
 1. 修改DataGrid关于autoSizeColumn属性处理问题，隐藏列不再重计算列宽,提升速度。
 
