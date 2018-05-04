@@ -9015,7 +9015,7 @@ if (typeof JSON !== 'object') {
                 for (var i = 0; i < _58b.length; i++) {
                     var _588 = _58b[i];
                     var col = _558(_587, _588);
-                    if (!col.hidden && col.auto) {  //wanghc 增加col.hidden判断,隐藏列不用计算
+                    if (!col.hidden && col.auto) {  //by wanghc 增加col.hidden判断,隐藏列不用计算 2018-5-3
                         _515(_588);
                         _58a = true;
                     }
@@ -16363,6 +16363,734 @@ if (typeof JSON !== 'object') {
   }
 })(window.jQuery || window.Zepto);
 
+/*
+ *  webui popover plugin  - v1.2.17
+ *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
+ *  https://github.com/sandywalker/webui-popover
+ *
+ *  Made by Sandy Duan
+ *  Under MIT License
+ */
+!
+function(a, b, c) {
+    "use strict"; !
+    function(b) {
+        "function" == typeof define && define.amd ? define(["jquery"], b) : "object" == typeof exports ? module.exports = b(require("jquery")) : b(a.jQuery)
+    } (function(d) {
+        function e(a, b) {
+            return this.$element = d(a),
+            b && ("string" === d.type(b.delay) || "number" === d.type(b.delay)) && (b.delay = {
+                show: b.delay,
+                hide: b.delay
+            }),
+            this.options = d.extend({},
+            i, b),
+            this._defaults = i,
+            this._name = f,
+            this._targetclick = !1,
+            this.init(),
+            k.push(this.$element),
+            this
+        }
+        var f = "webuiPopover",
+        g = "webui-popover",
+        h = "webui.popover",
+        i = {
+            placement: "auto",
+            container: null,
+            width: "auto",
+            height: "auto",
+            trigger: "click",
+            style: "",
+            selector: !1,
+            delay: {
+                show: null,
+                hide: 300
+            },
+            async: {
+                type: "GET",
+                before: null,
+                success: null,
+                error: null
+            },
+            cache: !0,
+            multi: !1,
+            arrow: !0,
+            title: "",
+            content: "",
+            closeable: !1,
+            padding: !0,
+            url: "",
+            type: "html",
+            direction: "",
+            animation: null,
+            template: '<div class="webui-popover"><div class="webui-arrow"></div><div class="webui-popover-inner"><a href="#" class="close"></a><h3 class="webui-popover-title"></h3><div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div></div></div>',
+            backdrop: !1,
+            dismissible: !0,
+            onShow: null,
+            onHide: null,
+            abortXHR: !0,
+            autoHide: !1,
+            offsetTop: 0,
+            offsetLeft: 0,
+            iframeOptions: {
+                frameborder: "0",
+                allowtransparency: "true",
+                id: "",
+                name: "",
+                scrolling: "",
+                onload: "",
+                height: "",
+                width: ""
+            },
+            hideEmpty: !1
+        },
+        j = g + "-rtl",
+        k = [],
+        l = d('<div class="webui-popover-backdrop"></div>'),
+        m = 0,
+        n = !1,
+        o = -2e3,
+        p = d(b),
+        q = function(a, b) {
+            return isNaN(a) ? b || 0 : Number(a)
+        },
+        r = function(a) {
+            return a.data("plugin_" + f)
+        },
+        s = function() {
+            for (var a = null,
+            b = 0; b < k.length; b++) a = r(k[b]),
+            a && a.hide(!0);
+            p.trigger("hiddenAll." + h)
+        },
+        t = function(a) {
+            for (var b = null,
+            c = 0; c < k.length; c++) b = r(k[c]),
+            b && b.id !== a.id && b.hide(!0);
+            p.trigger("hiddenAll." + h)
+        },
+        u = "ontouchstart" in b.documentElement && /Mobi/.test(navigator.userAgent),
+        v = function(a) {
+            var b = {
+                x: 0,
+                y: 0
+            };
+            if ("touchstart" === a.type || "touchmove" === a.type || "touchend" === a.type || "touchcancel" === a.type) {
+                var c = a.originalEvent.touches[0] || a.originalEvent.changedTouches[0];
+                b.x = c.pageX,
+                b.y = c.pageY
+            } else("mousedown" === a.type || "mouseup" === a.type || "click" === a.type) && (b.x = a.pageX, b.y = a.pageY);
+            return b
+        };
+        e.prototype = {
+            init: function() {
+                if (this.$element[0] instanceof b.constructor && !this.options.selector) throw new Error("`selector` option must be specified when initializing " + this.type + " on the window.document object!");
+                "manual" !== this.getTrigger() && (u ? this.$element.off("touchend", this.options.selector).on("touchend", this.options.selector, d.proxy(this.toggle, this)) : "click" === this.getTrigger() ? this.$element.off("click", this.options.selector).on("click", this.options.selector, d.proxy(this.toggle, this)) : "hover" === this.getTrigger() && this.$element.off("mouseenter mouseleave click", this.options.selector).on("mouseenter", this.options.selector, d.proxy(this.mouseenterHandler, this)).on("mouseleave", this.options.selector, d.proxy(this.mouseleaveHandler, this))),
+                this._poped = !1,
+                this._inited = !0,
+                this._opened = !1,
+                this._idSeed = m,
+                this.id = f + this._idSeed,
+                this.options.container = d(this.options.container || b.body).first(),
+                this.options.backdrop && l.appendTo(this.options.container).hide(),
+                m++,
+                "sticky" === this.getTrigger() && this.show(),
+                this.options.selector && (this._options = d.extend({},
+                this.options, {
+                    selector: ""
+                }))
+            },
+            destroy: function() {
+                for (var a = -1,
+                b = 0; b < k.length; b++) if (k[b] === this.$element) {
+                    a = b;
+                    break
+                }
+                k.splice(a, 1),
+                this.hide(),
+                this.$element.data("plugin_" + f, null),
+                "click" === this.getTrigger() ? this.$element.off("click") : "hover" === this.getTrigger() && this.$element.off("mouseenter mouseleave"),
+                this.$target && this.$target.remove()
+            },
+            getDelegateOptions: function() {
+                var a = {};
+                return this._options && d.each(this._options,
+                function(b, c) {
+                    i[b] !== c && (a[b] = c)
+                }),
+                a
+            },
+            hide: function(a, b) {
+                if ((a || "sticky" !== this.getTrigger()) && this._opened) {
+                    b && (b.preventDefault(), b.stopPropagation()),
+                    this.xhr && this.options.abortXHR === !0 && (this.xhr.abort(), this.xhr = null);
+                    var c = d.Event("hide." + h);
+                    if (this.$element.trigger(c, [this.$target]), this.$target) {
+                        this.$target.removeClass("in").addClass(this.getHideAnimation());
+                        var e = this;
+                        setTimeout(function() {
+                            e.$target.hide(),
+                            e.getCache() || e.$target.remove()
+                        },
+                        e.getHideDelay())
+                    }
+                    this.options.backdrop && l.hide(),
+                    this._opened = !1,
+                    this.$element.trigger("hidden." + h, [this.$target]),
+                    this.options.onHide && this.options.onHide(this.$target)
+                }
+            },
+            resetAutoHide: function() {
+                var a = this,
+                b = a.getAutoHide();
+                b && (a.autoHideHandler && clearTimeout(a.autoHideHandler), a.autoHideHandler = setTimeout(function() {
+                    a.hide()
+                },
+                b))
+            },
+            delegate: function(a) {
+                var b = d(a).data("plugin_" + f);
+                return b || (b = new e(a, this.getDelegateOptions()), d(a).data("plugin_" + f, b)),
+                b
+            },
+            toggle: function(a) {
+                var b = this;
+                a && (a.preventDefault(), a.stopPropagation(), this.options.selector && (b = this.delegate(a.currentTarget))),
+                b[b.getTarget().hasClass("in") ? "hide": "show"]()
+            },
+            hideAll: function() {
+                s()
+            },
+            hideOthers: function() {
+                t(this)
+            },
+            show: function() {
+                if (!this._opened) {
+                    var a = this.getTarget().removeClass().addClass(g).addClass(this._customTargetClass);
+                    if (this.options.multi || this.hideOthers(), !this.getCache() || !this._poped || "" === this.content) {
+                        if (this.content = "", this.setTitle(this.getTitle()), this.options.closeable || a.find(".close").off("click").remove(), this.isAsync() ? this.setContentASync(this.options.content) : this.setContent(this.getContent()), this.canEmptyHide() && "" === this.content) return;
+                        a.show()
+                    }
+                    this.displayContent(),
+                    this.options.onShow && this.options.onShow(a),
+                    this.bindBodyEvents(),
+                    this.options.backdrop && l.show(),
+                    this._opened = !0,
+                    this.resetAutoHide()
+                }
+            },
+            displayContent: function() {
+                var a = this.getElementPosition(),
+                b = this.getTarget().removeClass().addClass(g).addClass(this._customTargetClass),
+                c = this.getContentElement(),
+                e = b[0].offsetWidth,
+                f = b[0].offsetHeight,
+                i = "bottom",
+                k = d.Event("show." + h);
+                if (this.canEmptyHide()) {
+                    var l = c.children().html();
+                    if (null !== l && 0 === l.trim().length) return
+                }
+                this.$element.trigger(k, [b]);
+                var m = this.$element.data("width") || this.options.width;
+                "" === m && (m = this._defaults.width),
+                "auto" !== m && b.width(m);
+                var n = this.$element.data("height") || this.options.height;
+                "" === n && (n = this._defaults.height),
+                "auto" !== n && c.height(n),
+                this.options.style && this.$target.addClass(g + "-" + this.options.style),
+                "rtl" !== this.options.direction || c.hasClass(j) || c.addClass(j),
+                this.options.arrow || b.find(".webui-arrow").remove(),
+                b.detach().css({
+                    top: o,
+                    left: o,
+                    display: "block"
+                }),
+                this.getAnimation() && b.addClass(this.getAnimation()),
+                b.appendTo(this.options.container),
+                i = this.getPlacement(a),
+                this.$element.trigger("added." + h),
+                this.initTargetEvents(),
+                this.options.padding || ("auto" !== this.options.height && c.css("height", c.outerHeight()), this.$target.addClass("webui-no-padding")),
+                this.options.maxHeight && c.css("maxHeight", this.options.maxHeight),
+                this.options.maxWidth && c.css("maxWidth", this.options.maxWidth),
+                e = b[0].offsetWidth,
+                f = b[0].offsetHeight;
+                var p = this.getTargetPositin(a, i, e, f);
+                if (this.$target.css(p.position).addClass(i).addClass("in"), "iframe" === this.options.type) {
+                    var q = b.find("iframe"),
+                    r = b.width(),
+                    s = q.parent().height();
+                    "" !== this.options.iframeOptions.width && "auto" !== this.options.iframeOptions.width && (r = this.options.iframeOptions.width),
+                    "" !== this.options.iframeOptions.height && "auto" !== this.options.iframeOptions.height && (s = this.options.iframeOptions.height),
+                    q.width(r).height(s)
+                }
+                if (this.options.arrow || this.$target.css({
+                    margin: 0
+                }), this.options.arrow) {
+                    var t = this.$target.find(".webui-arrow");
+                    t.removeAttr("style"),
+                    "left" === i || "right" === i ? t.css({
+                        top: this.$target.height() / 2
+                    }) : ("top" === i || "bottom" === i) && t.css({
+                        left: this.$target.width() / 2
+                    }),
+                    p.arrowOffset && ( - 1 === p.arrowOffset.left || -1 === p.arrowOffset.top ? t.hide() : t.css(p.arrowOffset))
+                }
+                this._poped = !0,
+                this.$element.trigger("shown." + h, [this.$target])
+            },
+            isTargetLoaded: function() {
+                return 0 === this.getTarget().find("i.glyphicon-refresh").length
+            },
+            getTriggerElement: function() {
+                return this.$element
+            },
+            getTarget: function() {
+                if (!this.$target) {
+                    var a = f + this._idSeed;
+                    this.$target = d(this.options.template).attr("id", a),
+                    this._customTargetClass = this.$target.attr("class") !== g ? this.$target.attr("class") : null,
+                    this.getTriggerElement().attr("data-target", a)
+                }
+                return this.$target.data("trigger-element") || this.$target.data("trigger-element", this.getTriggerElement()),
+                this.$target
+            },
+            removeTarget: function() {
+                this.$target.remove(),
+                this.$target = null,
+                this.$contentElement = null
+            },
+            getTitleElement: function() {
+                return this.getTarget().find("." + g + "-title")
+            },
+            getContentElement: function() {
+                return this.$contentElement || (this.$contentElement = this.getTarget().find("." + g + "-content")),
+                this.$contentElement
+            },
+            getTitle: function() {
+                return this.$element.attr("data-title") || this.options.title || this.$element.attr("title")
+            },
+            getUrl: function() {
+                return this.$element.attr("data-url") || this.options.url
+            },
+            getAutoHide: function() {
+                return this.$element.attr("data-auto-hide") || this.options.autoHide
+            },
+            getOffsetTop: function() {
+                return q(this.$element.attr("data-offset-top")) || this.options.offsetTop
+            },
+            getOffsetLeft: function() {
+                return q(this.$element.attr("data-offset-left")) || this.options.offsetLeft
+            },
+            getCache: function() {
+                var a = this.$element.attr("data-cache");
+                if ("undefined" != typeof a) switch (a.toLowerCase()) {
+                case "true":
+                case "yes":
+                case "1":
+                    return ! 0;
+                case "false":
+                case "no":
+                case "0":
+                    return ! 1
+                }
+                return this.options.cache
+            },
+            getTrigger: function() {
+                return this.$element.attr("data-trigger") || this.options.trigger
+            },
+            getDelayShow: function() {
+                var a = this.$element.attr("data-delay-show");
+                return "undefined" != typeof a ? a: 0 === this.options.delay.show ? 0 : this.options.delay.show || 100
+            },
+            getHideDelay: function() {
+                var a = this.$element.attr("data-delay-hide");
+                return "undefined" != typeof a ? a: 0 === this.options.delay.hide ? 0 : this.options.delay.hide || 100
+            },
+            getAnimation: function() {
+                var a = this.$element.attr("data-animation");
+                return a || this.options.animation
+            },
+            getHideAnimation: function() {
+                var a = this.getAnimation();
+                return a ? a + "-out": "out"
+            },
+            setTitle: function(a) {
+                var b = this.getTitleElement();
+                a ? ("rtl" !== this.options.direction || b.hasClass(j) || b.addClass(j), b.html(a)) : b.remove()
+            },
+            hasContent: function() {
+                return this.getContent()
+            },
+            canEmptyHide: function() {
+                return this.options.hideEmpty && "html" === this.options.type
+            },
+            getIframe: function() {
+                var a = d("<iframe></iframe>").attr("src", this.getUrl()),
+                b = this;
+                return d.each(this._defaults.iframeOptions,
+                function(c) {
+                    "undefined" != typeof b.options.iframeOptions[c] && a.attr(c, b.options.iframeOptions[c])
+                }),
+                a
+            },
+            getContent: function() {
+                if (this.getUrl()) switch (this.options.type) {
+                case "iframe":
+                    this.content = this.getIframe();
+                    break;
+                case "html":
+                    try {
+                        this.content = d(this.getUrl()),
+                        this.content.is(":visible") || this.content.show()
+                    } catch(a) {
+                        throw new Error("Unable to get popover content. Invalid selector specified.")
+                    }
+                } else if (!this.content) {
+                    var b = "";
+                    if (b = d.isFunction(this.options.content) ? this.options.content.apply(this.$element[0], [this]) : this.options.content, this.content = this.$element.attr("data-content") || b, !this.content) {
+                        var c = this.$element.next();
+                        c && c.hasClass(g + "-content") && (this.content = c)
+                    }
+                }
+                return this.content
+            },
+            setContent: function(a) {
+                var b = this.getTarget(),
+                c = this.getContentElement();
+                "string" == typeof a ? c.html(a) : a instanceof d && (c.html(""), this.options.cache ? a.removeClass(g + "-content").appendTo(c) : a.clone(!0, !0).removeClass(g + "-content").appendTo(c)),
+                this.$target = b
+            },
+            isAsync: function() {
+                return "async" === this.options.type
+            },
+            setContentASync: function(a) {
+                var b = this;
+                this.xhr || (this.xhr = d.ajax({
+                    url: this.getUrl(),
+                    type: this.options.async.type,
+                    cache: this.getCache(),
+                    beforeSend: function(a, c) {
+                        b.options.async.before && b.options.async.before(b, a, c)
+                    },
+                    success: function(c) {
+                        b.bindBodyEvents(),
+                        a && d.isFunction(a) ? b.content = a.apply(b.$element[0], [c]) : b.content = c,
+                        b.setContent(b.content);
+                        var e = b.getContentElement();
+                        e.removeAttr("style"),
+                        b.displayContent(),
+                        b.options.async.success && b.options.async.success(b, c)
+                    },
+                    complete: function() {
+                        b.xhr = null
+                    },
+                    error: function(a, c) {
+                        b.options.async.error && b.options.async.error(b, a, c)
+                    }
+                }))
+            },
+            bindBodyEvents: function() {
+                n || (this.options.dismissible && "click" === this.getTrigger() ? u ? p.off("touchstart.webui-popover").on("touchstart.webui-popover", d.proxy(this.bodyTouchStartHandler, this)) : (p.off("keyup.webui-popover").on("keyup.webui-popover", d.proxy(this.escapeHandler, this)), p.off("click.webui-popover").on("click.webui-popover", d.proxy(this.bodyClickHandler, this))) : "hover" === this.getTrigger() && p.off("touchend.webui-popover").on("touchend.webui-popover", d.proxy(this.bodyClickHandler, this)))
+            },
+            mouseenterHandler: function(a) {
+                var b = this;
+                a && this.options.selector && (b = this.delegate(a.currentTarget)),
+                b._timeout && clearTimeout(b._timeout),
+                b._enterTimeout = setTimeout(function() {
+                    b.getTarget().is(":visible") || b.show()
+                },
+                this.getDelayShow())
+            },
+            mouseleaveHandler: function() {
+                var a = this;
+                clearTimeout(a._enterTimeout),
+                a._timeout = setTimeout(function() {
+                    a.hide()
+                },
+                this.getHideDelay())
+            },
+            escapeHandler: function(a) {
+                27 === a.keyCode && this.hideAll()
+            },
+            bodyTouchStartHandler: function(a) {
+                var b = this,
+                c = d(a.currentTarget);
+                c.on("touchend",
+                function(a) {
+                    b.bodyClickHandler(a),
+                    c.off("touchend")
+                }),
+                c.on("touchmove",
+                function() {
+                    c.off("touchend")
+                })
+            },
+            bodyClickHandler: function(a) {
+                n = !0;
+                for (var b = !0,
+                c = 0; c < k.length; c++) {
+                    var d = r(k[c]);
+                    if (d && d._opened) {
+                        var e = d.getTarget().offset(),
+                        f = e.left,
+                        g = e.top,
+                        h = e.left + d.getTarget().width(),
+                        i = e.top + d.getTarget().height(),
+                        j = v(a),
+                        l = j.x >= f && j.x <= h && j.y >= g && j.y <= i;
+                        if (l) {
+                            b = !1;
+                            break
+                        }
+                    }
+                }
+                b && s()
+            },
+            initTargetEvents: function() {
+                "hover" === this.getTrigger() && this.$target.off("mouseenter mouseleave").on("mouseenter", d.proxy(this.mouseenterHandler, this)).on("mouseleave", d.proxy(this.mouseleaveHandler, this)),
+                this.$target.find(".close").off("click").on("click", d.proxy(this.hide, this, !0))
+            },
+            getPlacement: function(a) {
+                var b, c = this.options.container,
+                d = c.innerWidth(),
+                e = c.innerHeight(),
+                f = c.scrollTop(),
+                g = c.scrollLeft(),
+                h = Math.max(0, a.left - g),
+                i = Math.max(0, a.top - f);
+                b = "function" == typeof this.options.placement ? this.options.placement.call(this, this.getTarget()[0], this.$element[0]) : this.$element.data("placement") || this.options.placement;
+                var j = "horizontal" === b,
+                k = "vertical" === b,
+                l = "auto" === b || j || k;
+                return l ? b = d / 3 > h ? e / 3 > i ? j ? "right-bottom": "bottom-right": 2 * e / 3 > i ? k ? e / 2 >= i ? "bottom-right": "top-right": "right": j ? "right-top": "top-right": 2 * d / 3 > h ? e / 3 > i ? j ? d / 2 >= h ? "right-bottom": "left-bottom": "bottom": 2 * e / 3 > i ? j ? d / 2 >= h ? "right": "left": e / 2 >= i ? "bottom": "top": j ? d / 2 >= h ? "right-top": "left-top": "top": e / 3 > i ? j ? "left-bottom": "bottom-left": 2 * e / 3 > i ? k ? e / 2 >= i ? "bottom-left": "top-left": "left": j ? "left-top": "top-left": "auto-top" === b ? b = d / 3 > h ? "top-right": 2 * d / 3 > h ? "top": "top-left": "auto-bottom" === b ? b = d / 3 > h ? "bottom-right": 2 * d / 3 > h ? "bottom": "bottom-left": "auto-left" === b ? b = e / 3 > i ? "left-top": 2 * e / 3 > i ? "left": "left-bottom": "auto-right" === b && (b = e / 3 > i ? "right-bottom": 2 * e / 3 > i ? "right": "right-top"),
+                b
+            },
+            getElementPosition: function() {
+                var a = this.$element[0].getBoundingClientRect(),
+                c = this.options.container,
+                e = c.css("position");
+                if (c.is(b.body) || "static" === e) return d.extend({},
+                this.$element.offset(), {
+                    width: this.$element[0].offsetWidth || a.width,
+                    height: this.$element[0].offsetHeight || a.height
+                });
+                if ("fixed" === e) {
+                    var f = c[0].getBoundingClientRect();
+                    return {
+                        top: a.top - f.top + c.scrollTop(),
+                        left: a.left - f.left + c.scrollLeft(),
+                        width: a.width,
+                        height: a.height
+                    }
+                }
+                return "relative" === e ? {
+                    top: this.$element.offset().top - c.offset().top,
+                    left: this.$element.offset().left - c.offset().left,
+                    width: this.$element[0].offsetWidth || a.width,
+                    height: this.$element[0].offsetHeight || a.height
+                }: void 0
+            },
+            getTargetPositin: function(a, c, d, e) {
+                var f = a,
+                g = this.options.container,
+                h = this.$element.outerWidth(),
+                i = this.$element.outerHeight(),
+                j = b.documentElement.scrollTop + g.scrollTop(),
+                k = b.documentElement.scrollLeft + g.scrollLeft(),
+                l = {},
+                m = null,
+                n = this.options.arrow ? 20 : 0,
+                p = 10,
+                q = n + p > h ? n: 0,
+                r = n + p > i ? n: 0,
+                s = 0,
+                t = b.documentElement.clientHeight + j,
+                u = b.documentElement.clientWidth + k,
+                v = f.left + f.width / 2 - q > 0,
+                w = f.left + f.width / 2 + q < u,
+                x = f.top + f.height / 2 - r > 0,
+                y = f.top + f.height / 2 + r < t;
+                switch (c) {
+                case "bottom":
+                    l = {
+                        top: f.top + f.height,
+                        left: f.left + f.width / 2 - d / 2
+                    };
+                    break;
+                case "top":
+                    l = {
+                        top: f.top - e,
+                        left: f.left + f.width / 2 - d / 2
+                    };
+                    break;
+                case "left":
+                    l = {
+                        top: f.top + f.height / 2 - e / 2,
+                        left: f.left - d
+                    };
+                    break;
+                case "right":
+                    l = {
+                        top: f.top + f.height / 2 - e / 2,
+                        left: f.left + f.width
+                    };
+                    break;
+                case "top-right":
+                    l = {
+                        top: f.top - e,
+                        left: v ? f.left - q: p
+                    },
+                    m = {
+                        left: v ? Math.min(h, d) / 2 + q: o
+                    };
+                    break;
+                case "top-left":
+                    s = w ? q: -p,
+                    l = {
+                        top: f.top - e,
+                        left: f.left - d + f.width + s
+                    },
+                    m = {
+                        left: w ? d - Math.min(h, d) / 2 - q: o
+                    };
+                    break;
+                case "bottom-right":
+                    l = {
+                        top: f.top + f.height,
+                        left: v ? f.left - q: p
+                    },
+                    m = {
+                        left: v ? Math.min(h, d) / 2 + q: o
+                    };
+                    break;
+                case "bottom-left":
+                    s = w ? q: -p,
+                    l = {
+                        top: f.top + f.height,
+                        left: f.left - d + f.width + s
+                    },
+                    m = {
+                        left: w ? d - Math.min(h, d) / 2 - q: o
+                    };
+                    break;
+                case "right-top":
+                    s = y ? r: -p,
+                    l = {
+                        top: f.top - e + f.height + s,
+                        left: f.left + f.width
+                    },
+                    m = {
+                        top: y ? e - Math.min(i, e) / 2 - r: o
+                    };
+                    break;
+                case "right-bottom":
+                    l = {
+                        top: x ? f.top - r: p,
+                        left: f.left + f.width
+                    },
+                    m = {
+                        top: x ? Math.min(i, e) / 2 + r: o
+                    };
+                    break;
+                case "left-top":
+                    s = y ? r: -p,
+                    l = {
+                        top: f.top - e + f.height + s,
+                        left: f.left - d
+                    },
+                    m = {
+                        top: y ? e - Math.min(i, e) / 2 - r: o
+                    };
+                    break;
+                case "left-bottom":
+                    l = {
+                        top: x ? f.top - r: p,
+                        left: f.left - d
+                    },
+                    m = {
+                        top: x ? Math.min(i, e) / 2 + r: o
+                    }
+                }
+                return l.top += this.getOffsetTop(),
+                l.left += this.getOffsetLeft(),
+                {
+                    position: l,
+                    arrowOffset: m
+                }
+            }
+        },
+        d.fn[f] = function(a, b) {
+            var c = [],
+            g = this.each(function() {
+                var g = d.data(this, "plugin_" + f);
+                g ? "destroy" === a ? g.destroy() : "string" == typeof a && c.push(g[a]()) : (a ? "string" == typeof a ? "destroy" !== a && (b || (g = new e(this, null), c.push(g[a]()))) : "object" == typeof a && (g = new e(this, a)) : g = new e(this, null), d.data(this, "plugin_" + f, g))
+            });
+            return c.length ? c: g
+        };
+        var w = function() {
+            var a = function() {
+                s()
+            },
+            b = function(a, b) {
+                b = b || {},
+                d(a).webuiPopover(b)
+            },
+            e = function(a) {
+                var b = !0;
+                return d(a).each(function(a, e) {
+                    b = b && d(e).data("plugin_" + f) !== c
+                }),
+                b
+            },
+            g = function(a, b) {
+                b ? d(a).webuiPopover(b).webuiPopover("show") : d(a).webuiPopover("show")
+            },
+            h = function(a) {
+                d(a).webuiPopover("hide")
+            },
+            j = function(a) {
+                i = d.extend({},
+                i, a)
+            },
+            k = function(a, b) {
+                var c = d(a).data("plugin_" + f);
+                if (c) {
+                    var e = c.getCache();
+                    c.options.cache = !1,
+                    c.options.content = b,
+                    c._opened ? (c._opened = !1, c.show()) : c.isAsync() ? c.setContentASync(b) : c.setContent(b),
+                    c.options.cache = e
+                }
+            },
+            l = function(a, b) {
+                var c = d(a).data("plugin_" + f);
+                if (c) {
+                    var e = c.getCache(),
+                    g = c.options.type;
+                    c.options.cache = !1,
+                    c.options.url = b,
+                    c._opened ? (c._opened = !1, c.show()) : (c.options.type = "async", c.setContentASync(c.content)),
+                    c.options.cache = e,
+                    c.options.type = g
+                }
+            };
+            return {
+                show: g,
+                hide: h,
+                create: b,
+                isCreated: e,
+                hideAll: a,
+                updateContent: k,
+                updateContentAsync: l,
+                setDefaultOptions: j
+            }
+        } ();
+        a.WebuiPopovers = w
+    })
+} (window, document);
 /**
  * switchbox  在switch插件基础上编写, 写成easyui类接口 
  */
@@ -17092,6 +17820,119 @@ if (typeof JSON !== 'object') {
         onChange:function(){}
     });
 })(jQuery);
+/**
+ * popover  在web-popover插件基础上编写, 写成hisui类接口 
+ */
+(function($){
+	function createPopover(target){
+        var t = $(target);
+        var opts = $.data(target, 'popover').options;
+        if (!opts.id){
+            opts.id=opts.label;
+            t.attr("id",opts.id);
+        }
+        t.prop("disabled",opts.disabled);
+        console.log(opts);
+        t.webuiPopover(opts);
+        /*t.bind('ifChecked',function(e,value){
+            if (!opts.disabled){
+                if (opts.onChecked) opts.onChecked.call(this,e,value);
+			}
+			return false;
+        }).bind('ifUnchecked',function(e,value){
+            if (!opts.disabled){
+                if (opts.onUnchecked) opts.onUnchecked.call(this,e,value);
+			}
+			return false;
+        })*/
+    }
+	$.fn.popover = function(options, param){
+		if (typeof options == 'string'){
+			return $.fn.popover.methods[options](this, param);
+		}
+		options = options || {};
+		return this.each(function(){
+			var state = $.data(this, 'popover');
+			if (state){
+				$.extend(state.options, options);
+			} else {
+				$.data(this, 'popover', {
+					options: $.extend({}, $.fn.popover.defaults, $.fn.popover.parseOptions(this), options)
+				});
+			}
+			createPopover(this);
+		});
+	};
+	
+	$.fn.popover.methods = {
+		options: function(jq){
+			return $.data(jq[0], 'popover').options;
+        },
+        show:function(jq){
+            return jq.each(function(){
+                var _t = $(this);
+                _t.webuiPopover('show');
+            });
+        },
+        hide:function(jq){
+            return jq.each(function(){
+                var _t = $(this);
+                _t.webuiPopover('hide');
+            });
+        },
+        destroy:function(jq){
+            return jq.each(function(){
+                $(this).webuiPopover('destroy');
+            });
+        }
+    };
+	$.fn.popover.parseOptions = function(target){
+		var t = $(target);
+		return $.extend({}, $.parser.parseOptions(target,["id"]), {
+			disabled: (t.attr('disabled') ? true : undefined)
+		});
+	};
+    $.fn.popover.defaults = {
+        id:null,
+        disabled:false,
+        placement:'auto',//values: auto,top,right,bottom,left,top-right,top-left,bottom-right,bottom-left,auto-top,auto-right,auto-bottom,auto-left,horizontal,vertical
+        container: document.body,// The container in which the popover will be added (i.e. The parent scrolling area). May be a jquery object, a selector string or a HTML element. See https://jsfiddle.net/1x21rj9e/1/
+        width:'auto',//can be set with  number
+        height:'auto',//can be set with  number
+        trigger:'click',//values:  click,hover,manual(handle events by your self),sticky(always show after popover is created);
+        selector:false,// jQuery selector, if a selector is provided, popover objects will be delegated to the specified. 
+        style:'',//values:'',inverse
+        animation:null, //pop with animation,values: pop,fade (only take effect in the browser which support css3 transition)
+        delay: {//show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
+            show: null,
+            hide: 300
+        },
+        async: {
+            type:'GET', // ajax request method type, default is GET
+            before: function(that, xhr) {},//executed before ajax request
+            success: function(that, data) {},//executed after successful ajax request
+            error: function(that, xhr, data) {} //executed after error ajax request
+        },
+        cache:true,//if cache is set to false,popover will destroy and recreate
+        multi:false,//allow other popovers in page at same time
+        arrow:true,//show arrow or not
+        title:'',//the popover title, if title is set to empty string,title bar will auto hide
+        content:'',//content of the popover,content can be function
+        closeable:false,//display close button or not
+        direction:'', // direction of the popover content default is ltr ,values:'rtl';
+        padding:true,//content padding
+        type:'html',//content type, values:'html','iframe','async'
+        url:'',//if type equals 'html', value should be jQuery selecor.  if type equels 'async' the plugin will load content by url.
+        backdrop:false,//if backdrop is set to true, popover will use backdrop on open
+        dismissible:true, // if popover can be dismissed by  outside click or escape key
+        autoHide:false, // automatic hide the popover by a specified timeout, the value must be false,or a number(1000 = 1s).
+        offsetTop:0,  // offset the top of the popover
+        offsetLeft:0,  // offset the left of the popover
+        onShow: function($element) {}, // callback after show
+        onHide: function($element) {} // callback after hide
+	};
+})(jQuery);
+
 
 /**
 *IE8--- console=undefined 
@@ -17253,7 +18094,7 @@ var Level = {
 		//}
 	}
 	//cryze 在combobox前增加combo
-    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox'];
+    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover'];
 	$.each(comps, function (index, comp) {
         //index comp ---let
         HUIObject[comp] = function (selector, options) {
