@@ -1,16 +1,16 @@
 [HISUI]: https://wanghc.github.io/hisui/hisui-0.1.0.rar "下载最新的HISUI库"
 # 介绍
 `HISUI`是一款前端组件类库。
-提供`linkbutton`,`linkmenu`,`combo`,`datagrid`,`treegrid`,`popover`,`window`,`lookup`,`layou`,`tab`等组件功能。
-点击[HISUI]下载最新的HISUI库
+提供`linkbutton`,`linkmenu`,`combo`,`datagrid`,`treegrid`,`popover`,`window`,`lookup`,`panel`,`layout`,`accordion`,`tab`等组件功能。
+##### 点击[HISUI]下载最新的HISUI库
 # 使用
-### 在HTML界面引用HISUI
+### 在`HTML`界面引用`HISUI`
 ```html
 <link rel="stylesheet" type="text/css" href="hisui/dist/css/hisui.css">
 <script type="text/javascript" src="hisui/dist/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="hisui/dist/js/jquery.hisui.js"></script>
 ```
-### 在CSP界面中引用HISUI
+### 在`CSP`界面中引用`HISUI`
 ```html
 <HISUI/>
 ```
@@ -21,7 +21,7 @@
 或已有html代码`<a id="btn">查询</a>`,可在js代码中写入
 ```javascript
 var sbtn = $HUI.linkbutton("#btn",{iconCls:'icon-search'});
-sbtn.disable();
+sbtn.disable(); //禁用查询按钮
 /*或 
 $("#btn").linkbutton({iconCls:'icon-search'});
 $("#btn").linkbutton("disable");
