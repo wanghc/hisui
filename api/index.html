@@ -107,11 +107,9 @@
             right: 0;
             width: 18px;
             height:18px;
-           
             text-align: center;
             line-height: 18px;
         }
-        
     </style>
 </head>
 <body class="hisui-layout">
@@ -137,7 +135,7 @@
         <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
             <div title="基础" style="background-color:#F9F9F9;">
                 <ul>
-                    <li><a href="javascript:void(0);" src="use/use.html" class="api-navi-tab">起步(use)</a></li>
+                    <!--<li><a href="javascript:void(0);" src="use/use.html" class="api-navi-tab">起步(use)</a></li>-->
                     <li><a href="javascript:void(0);"  src="ajax/ajax.html" class="api-navi-tab">数据访问（ajax）</a></li>
                     <li><a href="javascript:void(0);"  src="excel/excel.html" class="api-navi-tab">导出Excel（excel）</a></li>
                     <li><a href="javascript:void(0);"  src="json/json.html" class="api-navi-tab">JSON(json)</a></li>
@@ -451,5 +449,19 @@
         <div id="mm-tabcloseleft" onclick="tabCloseEven.tabcloseleft();">关闭左侧</div>
         <div id="mm-tabcloseright" onclick="tabCloseEven.tabcloseright();">关闭右侧</div>
     </div>    
+    <script type="text/javascript" src="newtip.js"></script>
+    <style>.x-newtip{font-size: 10px;position:  absolute;color:red;z-index:1000;}</style>
+    <script type="text/javascript">
+        $.parser.onComplete = function(context){
+            // 第一次context为undefined,不为空跳出.
+            if (!!context) return ;
+            //已读过的最高api版本
+            // 当前界面只有一处【新】，则newType可定义为readApiVersion
+            // 当前界面有多处【新】，则要定义不同newType
+            $('.api-navi-tab[src="popover/popover.html"]').newtip({
+                newVersion:8,newType:"readApiVersion",expires:3600
+            });
+        }
+    </script>
 </body>
 </html>

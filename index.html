@@ -6,10 +6,10 @@
 	<link rel="bookmark" href="../favicon.ico"/>
 	<title>HIS UI</title>
 	<link rel="stylesheet" type="text/css" href="dist/css/hisui.css">
-	<link rel="stylesheet" type="text/css" href="http://www.jq22.com/demo/customer/demo_files/jquery.mCustomScrollbar.css">
+	<!--<link rel="stylesheet" type="text/css" href="http://www.jq22.com/demo/customer/demo_files/jquery.mCustomScrollbar.css">//-->
 	<script type="text/javascript" src="dist/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="dist/js/jquery.hisui.js"></script>
-	<script type="text/javascript" src="http://www.jq22.com/demo/customer/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!--<script type="text/javascript" src="http://www.jq22.com/demo/customer/jquery.mCustomScrollbar.concat.min.js"></script>//-->
 	
 	<style>
 		/*body{
@@ -110,6 +110,7 @@
 		.downloadbtn{
 			display:block;width:150px;position: absolute;right: 10px;color:#fff;
 		}
+		.x-newtip{font-size: 10px;position:  absolute;color:red;z-index:1000;}
 	</style>
 </head>
 <body>
@@ -179,12 +180,13 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="api/newtip.js"></script>
 	<script type="text/javascript">
 	$(function(){
 		$(".viewbtn").click(function(){
-			window.open('http://hisui.cn/api','_blank');
+			window.open('api/index.html','_blank');
 			return false;
-		});
+		})
 		$(".downloadbtn").click(function(){
 			window.open("https://wanghc.github.io/hisui/hisui-0.1.0.rar");return false;
 		});
@@ -193,7 +195,15 @@
 		});
 		//$(".all").height($(window).height());
 		//$(".all").mCustomScrollbar({theme:'dark',autoHideScrollbar: true});
+		
 	});
+	$.parser.onComplete = function(context){
+		// 第一次context为undefined,不为空跳出.
+		if (!!context) return ;
+		$(".viewbtn").newtip({
+            newVersion:8,newType:"readApiVersion",expires:3600
+        });
+	}
 	</script>
 </body>
 </html>
