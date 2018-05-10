@@ -33,7 +33,7 @@
     }
 
     window.changeTheme=changeTheme;
-})()
+})();
 
 $(function(){
     $("pre.prettyprint").addClass("linenums");
@@ -70,5 +70,4 @@ $(function(){
     <script type="text/javascript">\
         prettyPrint();\
     </script>');
-
 })
