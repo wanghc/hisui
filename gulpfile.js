@@ -8,8 +8,8 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     notify=require('gulp-notify');   //提示
     //foal = require('gulp-foal');    //传参
-var jsArr = ['lib/json2.js','src/jquery.hisui.min.js','lib/bootstrap-switch-1.8.0/static/js/bootstrap-switch.js','lib/icheck-1.x/icheck.js','lib/popover1.2.17/jquery.webui-popover.min.js','src/switchbox.js','src/checkbox.js','src/radio.js','src/filebox.js','src/popover.js','src/hisui.js'];
-var lessArr = ["easyui","icon","panel","accordion","window","dialog","textbox","lookup","combo","combobox","layout","tabs","linkbutton","datagrid","propertygrid","pagination","calendar","datebox","combogrid","numberbox","spinner","progressbar","searchbox","numberspinner","timespinner","calendar","datebox","numberbox","spinner","progressbar","searchbox","slider","menu","menubutton","splitbutton","messager","tree","validatebox","tooltip","checkbox","switchbox","filebox","popover"];
+var jsArr = ['lib/json2.js','src/jquery.hisui.min.js','lib/bootstrap-switch-1.8.0/static/js/bootstrap-switch.js','lib/icheck-1.x/icheck.js','lib/popover1.2.17/jquery.webui-popover.min.js','src/switchbox.js','src/checkbox.js','src/radio.js','src/filebox.js','src/popover.js','src/lookup.js','src/hisui.js'];
+var lessArr = ["easyui","icon","panel","accordion","window","dialog","textbox","combo","combobox","layout","tabs","linkbutton","datagrid","propertygrid","pagination","calendar","datebox","combogrid","numberbox","spinner","progressbar","searchbox","numberspinner","timespinner","calendar","datebox","numberbox","spinner","progressbar","searchbox","slider","menu","menubutton","splitbutton","messager","tree","validatebox","tooltip","checkbox","switchbox","filebox","popover","lookup"];
 //var ;
 gulp.task('js-min',function(){
     var arr = jsArr;

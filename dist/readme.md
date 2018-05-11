@@ -29,6 +29,10 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志
+
+## 2018-5-10 ##
+* 增加`lookup`组件功能
+
 ## 2018-5-4 ##
 * 增加`popover`组件功能
 
