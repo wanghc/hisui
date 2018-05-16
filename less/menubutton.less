@@ -27,123 +27,119 @@
   -webkit-border-radius: 0;
   border-radius: 0;
 }
+/*ie11加了兼容模式后,
+  内核成ie7
+  .menubutton-blue.l-btn.l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+  会选中 .l-btn-plain .l-btn-left .l-btn-icon{display:none;}
 
-
+*/
+.l-btn.l-btn-plain.menubutton-blue{
+  border: 0;
+  padding: 0;
+  background-color: #40a2de;
+  &:hover{
+    background-color: #378ec4;
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      color: #fff;
+      margin-left: 0;
+      padding-left:15px;
+    }
+    .l-btn-icon{
+      display: none;
+    }
+    .m-btn-downarrow{
+      background: url(images/combo_arrow.png) center 8px no-repeat;
+    }
+  }
+}
 ///不改原本之前的了 设计图上的蓝色的 在顶层有类 menubutton-blue
-.menubutton-blue{
-  //按钮
-  &.l-btn.l-btn-plain{
-    border: 0;
-    padding: 0;
-    background-color: #40a2de;
+  //菜单
+.menu.menubutton-blue{
+  .menu-item{
+    background-color: #6fc2f4;
+    height: 30px;
+    border-bottom: 1px solid #40a2de;
     &:hover{
       background-color: #378ec4;
     }
-    .l-btn-left{
-      width: 100%;
-      text-align: left;
-      .l-btn-text{
-        color: #fff;
-        margin-left: 0;
-        padding-left:15px;
-      }
-      .l-btn-icon{
-        display: none;
-      }
-      .m-btn-downarrow{
-        background: url(images/combo_arrow.png) center 8px no-repeat;
-      }
+    .menu-text{
+      color: #fff;
+      padding-left: 15px;
+      line-height: 30px;
     }
-  }
-  //菜单
-  &.menu{
-    .menu-item{
-      background-color: #6fc2f4;
-      height: 30px;
-      border-bottom: 1px solid #40a2de;
-      &:hover{
-        background-color: #378ec4;
-      }
-      .menu-text{
-        color: #fff;
-        padding-left: 15px;
-        line-height: 30px;
-      }
-      .menu-icon{
-        display: none;
-      }
-    }
-    .menu-item:last-child{
-      border-bottom:0px;
-    }
-    .menu-sep{
+    .menu-icon{
       display: none;
     }
   }
-
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    display: none;
+  }
 }
-
+//按钮
+.l-btn.l-btn-plain.menubutton-toolbar{
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  &:hover{
+    background-color: #dbedf9;
+  }
+  &.m-btn-plain-active{
+    background-color: #dbedf9;
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      line-height: 22px;
+      padding: 0 36px 0 31px;
+      margin: 0 0 0 ;
+      color: #666666;
+    }
+    .l-btn-icon{
+      left:10px;
+      height: 22px;
+      width: 16px;
+    }
+    .m-btn-downarrow{
+      height: 16px;
+      width:  16px;
+      background: url(images/panel_tools_1.png) -32px -16px no-repeat;
+      top:3px;
+      right: 10px;
+    }
+  }
+}
 //toolbar 
-.menubutton-toolbar{
-  //按钮
-  &.l-btn.l-btn-plain{
-    border: 0;
-    padding: 0;
-    background-color: transparent;
+  //菜单
+.menu.menubutton-toolbar{
+  .menu-item{
+    background-color: #fff;
+    height: 26px;
+    border: 0px;
     &:hover{
       background-color: #dbedf9;
     }
-    &.m-btn-plain-active{
-      background-color: #dbedf9;
+    .menu-text{
+      color: #000;
+      padding-left: 10px;
+      line-height: 26px;
     }
-    .l-btn-left{
-      width: 100%;
-      text-align: left;
-      .l-btn-text{
-        line-height: 22px;
-        padding: 0 36px 0 31px;
-        margin: 0 0 0 ;
-        color: #666666;
-      }
-      .l-btn-icon{
-        left:10px;
-        height: 22px;
-        width: 16px;
-      }
-      .m-btn-downarrow{
-        height: 16px;
-        width:  16px;
-        background: url(images/panel_tools_1.png) -32px -16px no-repeat;
-        top:3px;
-        right: 10px;
-      }
+    .menu-icon{
+      display: none;
     }
   }
-  //菜单
-  &.menu{
-    .menu-item{
-      background-color: #fff;
-      height: 26px;
-      border: 0px;
-      &:hover{
-        background-color: #dbedf9;
-      }
-      .menu-text{
-        color: #000;
-        padding-left: 10px;
-        line-height: 26px;
-      }
-      .menu-icon{
-        display: none;
-      }
-    }
-    .menu-item:last-child{
-      border-bottom:0px;
-    }
-    .menu-sep{
-      margin-left: 10px;
-    }
+  .menu-item:last-child{
+    border-bottom:0px;
   }
-
+  .menu-sep{
+    margin-left: 10px;
+  }
 }
 
