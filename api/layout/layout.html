@@ -17,7 +17,7 @@ north 区域可以用来显示网站的标语，south 区域可以用来显示�
 east 区域可以用来显示一些推广的项目，center 区域可以用来显示主要的内容。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div id="cc" class="hisui-layout" style="width:600px;height:400px;">   
+		<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
 			<div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray'" style="height:100px;"></div>  
 			<div data-options="region:'south',title:'',split:true,headerCls:'panel-header-gray'" style="height:100px;border-color:#cccccc;">
 				主动定义边框色><code>style="border-color:#cccccc;"</code>
@@ -41,7 +41,21 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 	主要的内容
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-
+	<h3>布局组件的相关配置</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>clickExpand</td>
+			<td>点击展开与否。为true时，展开区域不再悬浮</td>
+			<td>false</td>
+			<td></td>
+		</tr>
+	</table>
 	<prettyprint/>
 </body>
 </html>

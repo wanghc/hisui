@@ -5576,10 +5576,14 @@ if (typeof JSON !== 'object') {
         }
     };
     function _383(_384, _385, _386) {
+        
         if (_386 == undefined) {
             _386 = "normal";
         }
-        var _387 = $.data(_384, "layout").panels;
+        //add by wanghc 增加点击侧边收起块，展开侧边 2018-05-17
+        var layoutObj = $.data(_384,"layout");
+        var _387 = layoutObj.panels;
+        var opt = layoutObj.options;
         var p = _387[_385];
         var _388 = p.panel("options");
         if (_388.onBeforeCollapse.call(p) == false) {
@@ -5589,17 +5593,22 @@ if (typeof JSON !== 'object') {
         if (!_387[_389]) {
             _387[_389] = _38a(_385);
             _387[_389].panel("panel").bind("click", function () {
-                var _38b = _38c();
-                p.panel("expand", false).panel("open").panel("resize", _38b.collapse);
-                p.panel("panel").animate(_38b.expand, function () {
-                    $(this).unbind(".layout").bind("mouseleave.layout", { region: _385 }, function (e) {
-                        if (_362 == true) {
-                            return;
-                        }
-                        _383(_384, e.data.region);
+                if (opt.clickExpand){
+                    _390(_384, _385);
+                    return false;
+                }else{ 
+                    var _38b = _38c();
+                    p.panel("expand", false).panel("open").panel("resize", _38b.collapse);
+                    p.panel("panel").animate(_38b.expand, function () {
+                        $(this).unbind(".layout").bind("mouseleave.layout", { region: _385 }, function (e) {
+                            if (_362 == true) {
+                                return;
+                            }
+                            _383(_384, e.data.region);
+                        });
                     });
-                });
-                return false;
+                    return false;
+                }
             });
         }
         var _38d = _38c();
@@ -5796,7 +5805,8 @@ if (typeof JSON !== 'object') {
     $.fn.layout.parseOptions = function (_3a4) {
         return $.extend({}, $.parser.parseOptions(_3a4, [{ fit: "boolean" }]));
     };
-    $.fn.layout.defaults = { fit: false };
+    //add by wanghc 增加点击侧边收起块，展开侧边 2018-05-17
+    $.fn.layout.defaults = { fit: false,clickExpand:false };
     $.fn.layout.parsePanelOptions = function (_3a5) {
         var t = $(_3a5);
         return $.extend({}, $.fn.panel.parseOptions(_3a5), $.parser.parseOptions(_3a5, ["region", { split: "boolean", collpasedSize: "number", minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number" }]));

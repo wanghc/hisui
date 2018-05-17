@@ -3965,6 +3965,10 @@ a.l-btn-link:hover {
     }
   }
 }*/
+/*
+wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选择
+.l-btn.l-btn-plain.big <==> .big
+*/
 .l-btn.l-btn-plain.big {
   padding: 0;
   border: 0;
