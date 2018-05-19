@@ -29,8 +29,12 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志
+## 2018-05-19 ##
+* 增加数据列表滚动插件`datagrid-scrollview.js`例子编写
+
 ## 2018-05-17 ##
 * `layout`布局组件增加点击展开配置项`clickExpand:true`
+
 ## 2018-05-16 ##
 * 修改数据列表的翻页条及按钮在IE11兼容模式下显示问题
 
