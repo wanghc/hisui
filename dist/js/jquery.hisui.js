@@ -13954,8 +13954,10 @@ if (typeof JSON !== 'object') {
         var t = $(_898);
         return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
     };
+    
     $.fn.combo.defaults = $.extend({}, $.fn.validatebox.defaults, {
-        width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19, keyHandler: {
+        /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
+        enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19, keyHandler: {
             up: function (e) {
             }, down: function (e) {
             }, left: function (e) {
@@ -14199,7 +14201,11 @@ if (typeof JSON !== 'object') {
                 vv.push(v);
             }
         });
-        t.combobox("setValues", vv);
+        /*当配匹值为空且enterNullValueClear为flase时不清空输入框。add wanghc 2018-5-22*/
+        if(vv.length==0 && !opts.enterNullValueClear){
+        }else{
+            t.combobox("setValues", vv);
+        }
         if (!opts.multiple) {
             t.combobox("hidePanel");
         }
@@ -14763,7 +14769,11 @@ if (typeof JSON !== 'object') {
         $.map(grid.datagrid("getSelections"), function (row) {
             vv.push(row[opts.idField]);
         });
-        $(_91e).combogrid("setValues", vv);
+        /*当配匹值为空且enterNullValueClear为flase时不清空输入框。add wanghc 2018-5-22*/
+        if(vv.length==0 && !opts.enterNullValueClear){
+        }else{
+            $(_91e).combogrid("setValues", vv);
+        }
         if (!opts.multiple) {
             $(_91e).combogrid("hidePanel");
         }
