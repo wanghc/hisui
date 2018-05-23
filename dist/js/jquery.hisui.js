@@ -9358,6 +9358,11 @@ if (typeof JSON !== 'object') {
         var dc = _5cf.dc;
         var opts = _5cf.options;
         var _5d0 = _5cf.selectedRows;
+        /*add onBeforeSelect event by wanghc 2018-05-23*/
+        var row = opts.finder.getRow(_5cc, _5cd); //提前
+        if (false === opts.onBeforeSelect.call(_5cc, _5cd,row)){
+            return ;
+        }
         if (opts.singleSelect) {
             _5d1(_5cc);
             _5d0.splice(0, _5d0.length);
@@ -9365,7 +9370,7 @@ if (typeof JSON !== 'object') {
         if (!_5ce && opts.checkOnSelect) {
             _5d2(_5cc, _5cd, true);
         }
-        var row = opts.finder.getRow(_5cc, _5cd);
+        
         if (opts.idField) {
             _505(_5d0, opts.idField, row);
         }
@@ -9377,12 +9382,16 @@ if (typeof JSON !== 'object') {
         var _5d7 = $.data(_5d4, "datagrid");
         var dc = _5d7.dc;
         var opts = _5d7.options;
+        /*add onBeforeUnselect event by wanghc 2018-05-23*/
+        var row = opts.finder.getRow(_5d4, _5d5); //提前
+        if (false === opts.onBeforeUnselect.call(_5d4, _5d5, row)){
+            return ;
+        }
         var _5d8 = $.data(_5d4, "datagrid").selectedRows;
         if (!_5d6 && opts.checkOnSelect) {
             _5d9(_5d4, _5d5, true);
         }
-        opts.finder.getTr(_5d4, _5d5).removeClass("datagrid-row-selected");
-        var row = opts.finder.getRow(_5d4, _5d5);
+        opts.finder.getTr(_5d4, _5d5).removeClass("datagrid-row-selected");  
         if (opts.idField) {
             _503(_5d8, opts.idField, row[opts.idField]);
         }
@@ -9423,6 +9432,11 @@ if (typeof JSON !== 'object') {
     function _5d2(_5e7, _5e8, _5e9) {
         var _5ea = $.data(_5e7, "datagrid");
         var opts = _5ea.options;
+        /*add onBeforeCheck event by wanghc 2018-05-23*/
+        var row = opts.finder.getRow(_5e7, _5e8);
+        if (false === opts.onBeforeCheck.call(_5e7, _5e8, row)){
+            return ;
+        }
         if (!_5e9 && opts.selectOnCheck) {
             _5cb(_5e7, _5e8, true);
         }
@@ -9435,7 +9449,7 @@ if (typeof JSON !== 'object') {
             var _5eb = dc.header1.add(dc.header2);
             _5eb.find("input[type=checkbox]")._propAttr("checked", true);
         }
-        var row = opts.finder.getRow(_5e7, _5e8);
+        
         if (opts.idField) {
             _505(_5ea.checkedRows, opts.idField, row);
         }
@@ -9444,6 +9458,11 @@ if (typeof JSON !== 'object') {
     function _5d9(_5ec, _5ed, _5ee) {
         var _5ef = $.data(_5ec, "datagrid");
         var opts = _5ef.options;
+        /*add onBeforeUncheck event by wanghc 2018-05-23 */
+        var row = opts.finder.getRow(_5ec, _5ed);
+        if(false===opts.onBeforeUncheck.call(_5ec, _5ed, row)){
+            return ;
+        }
         if (!_5ee && opts.selectOnCheck) {
             _5d3(_5ec, _5ed, true);
         }
@@ -9453,7 +9472,6 @@ if (typeof JSON !== 'object') {
         var dc = _5ef.dc;
         var _5f0 = dc.header1.add(dc.header2);
         _5f0.find("input[type=checkbox]")._propAttr("checked", false);
-        var row = opts.finder.getRow(_5ec, _5ed);
         if (opts.idField) {
             _503(_5ef.checkedRows, opts.idField, row[opts.idField]);
         }
@@ -10662,11 +10680,15 @@ if (typeof JSON !== 'object') {
         }, onBeforeSortColumn: function (sort, _721) {
         }, onSortColumn: function (sort, _722) {
         }, onResizeColumn: function (_723, _724) {
+        }, onBeforeSelect: function (_725, _726) {
         }, onSelect: function (_725, _726) {
+        }, onBeforeUnselect:function(_727, _728){
         }, onUnselect: function (_727, _728) {
         }, onSelectAll: function (rows) {
         }, onUnselectAll: function (rows) {
+        }, onBeforeCheck:function (_729, _72a){
         }, onCheck: function (_729, _72a) {
+        }, onBeforeUncheck:function (_72b, _72c){
         }, onUncheck: function (_72b, _72c) {
         }, onCheckAll: function (rows) {
         }, onUncheckAll: function (rows) {
@@ -17218,7 +17240,7 @@ function(a, b, c) {
                 $(this).bootstrapSwitch('toggleState');
             });
         },
-        setValue:function(jq,value,skipOnChange){
+        setValue:function(jq,value,skipOnChange){ /*增加是否触发事件入参skipOnChange*/
             return jq.each(function(){
                 $(this).bootstrapSwitch('setState',value,skipOnChange||true);
             });

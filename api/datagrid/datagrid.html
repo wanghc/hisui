@@ -236,6 +236,16 @@
 		<script type="text/javascript">
 			$(function(){
 				$HUI.datagrid('#mytable3',{
+					onBeforeUnselect:function(rowIndex,rowData){
+						console.log("onBeforeUnselect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+					},
+					onBeforeSelect:function(rowIndex,rowData){
+						console.log("onBeforeSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+						//return false; //返回false则结束选中动作
+					},
+					onSelect:function(rowIndex,rowData){
+						console.log("onSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+					},
 					autoSizeColumn:false,
 					fitColumns:true,
 					columns:[[
@@ -257,17 +267,27 @@
 					],
 					idField:'id',
 					rownumbers:true,
-					singleSelect:true,
+					singleSelect:false,
 					width:600,
 					height:200,
 					title:'水果单价表'
 				})
 			})		
 		</script>
-	<pre class="prettyprint hide lang-html"><code>&lt;table id="mytable3"&gt;&lt;/table&gt;
+	<pre class="prettyprint hide lang-js"><code>&lt;table id="mytable3"&gt;&lt;/table&gt;
 &lt;script type="text/javascript"&gt;
 	$(function(){
 		$HUI.datagrid('#mytable3',{
+			onBeforeUnselect:function(rowIndex,rowData){
+				console.log("onBeforeUnselect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+			},
+			onBeforeSelect:function(rowIndex,rowData){
+				console.log("onBeforeSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+				//return false; //返回false则结束选中动作
+			},
+			onSelect:function(rowIndex,rowData){
+				console.log("onSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+			},
 			autoSizeColumn:false,
 			fitColumns:true,
 			columns:[[
@@ -360,6 +380,30 @@
 			<td>双击列头事件</td>
 			<td>e,field</td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>onBeforeSelect</td>
+			<td>选中行之前触发，返回false时，取消动作。</td>
+			<td>rowIndex,rowData</td>
+			<td>rowIndex为行索引，从0开始</td>
+		</tr>
+		<tr>
+			<td>onBeforeUnselect</td>
+			<td>取消选中行之前触发，返回false时，取消动作。</td>
+			<td>rowIndex,rowData</td>
+			<td>rowIndex为行索引，从0开始</td>
+		</tr>
+		<tr>
+			<td>onBeforeCheck</td>
+			<td>用户勾选一行之前触发，返回false时，取消动作。</td>
+			<td>rowIndex,rowData</td>
+			<td>rowIndex为行索引，从0开始</td>
+		</tr>
+		<tr>
+			<td>onBeforeUncheck</td>
+			<td>当用户取消勾选一行之前触发，返回false时，取消动作。</td>
+			<td>rowIndex,rowData</td>
+			<td>rowIndex为行索引，从0开始</td>
 		</tr>
 	</table>
 	<prettyprint />	

@@ -32,6 +32,7 @@ $("#btn").linkbutton("disable");
 
 ## 2018-05-23 ##
 * `switchbox`组件的setValue方法增加入参`skipOnChange`
+* `datagrid`组件增加`onBeforeSelect`,`onBeforeUnselect`,`onBeforeCheck`,`onBeforeUncheck`事件
 
 ## 2018-05-22 ##
 * `combo`,`combobox`,`combogrid`增加`enterNullValueClear`配置项
