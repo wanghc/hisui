@@ -103,9 +103,9 @@
                 $(this).bootstrapSwitch('toggleState');
             });
         },
-        setValue:function(jq,value){
+        setValue:function(jq,value,skipOnChange){ /*增加是否触发事件入参skipOnChange*/
             return jq.each(function(){
-                $(this).bootstrapSwitch('setState',value);
+                $(this).bootstrapSwitch('setState',value,skipOnChange||true);
             });
         },
         getValue:function(jq){

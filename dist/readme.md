@@ -28,9 +28,14 @@ $("#btn").linkbutton("disable");
 */
 ```
 点击[hisui]下载最新的HISUI库
-# 更新日志
+# 更新日志 #
+
+## 2018-05-23 ##
+* `switchbox`组件的setValue方法增加入参`skipOnChange`
+
 ## 2018-05-22 ##
-* combo,combobox,combogrid增加enterNullValueClear配置项，
+* `combo`,`combobox`,`combogrid`增加`enterNullValueClear`配置项
+
 ## 2018-05-19 ##
 * 增加数据列表滚动插件`datagrid-scrollview.js`例子编写
 

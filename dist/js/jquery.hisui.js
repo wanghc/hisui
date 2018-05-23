@@ -15637,7 +15637,7 @@ if (typeof JSON !== 'object') {
               $element.parent().trigger('switch-change', { 'el': $this, 'value': thisState })
             }
           });
-
+          
           $element.find('label').on('mousedown touchstart', function (e) {
             var $this = $(this);
             moving = false;
@@ -15652,9 +15652,11 @@ if (typeof JSON !== 'object') {
             } else if ($this.closest('.switch-on').parent().is('.radio-no-uncheck')) {
               $this.unbind('click');
             } else {
+              
               $this.on('mousemove touchmove', function (e) {
                 var $element = $(this).closest('.make-switch')
-                  , relativeX = (e.pageX || e.originalEvent.targetTouches[0].pageX) - $element.offset().left
+                if ($element.length==0) return ; /*增加判断 add by wanghc 2018-05-23,点击会报错 */
+                var relativeX = (e.pageX || e.originalEvent.targetTouches[0].pageX) - $element.offset().left
                   , percent = (relativeX / $element.width()) * 100
                   , left = 25
                   , right = 75;
@@ -15709,7 +15711,7 @@ if (typeof JSON !== 'object') {
               });
             }
           });
-
+          
           if ($form.data('bootstrapSwitch') !== 'injected') {
             $form.bind('reset', function () {
               setTimeout(function () {
@@ -17216,9 +17218,9 @@ function(a, b, c) {
                 $(this).bootstrapSwitch('toggleState');
             });
         },
-        setValue:function(jq,value){
+        setValue:function(jq,value,skipOnChange){
             return jq.each(function(){
-                $(this).bootstrapSwitch('setState',value);
+                $(this).bootstrapSwitch('setState',value,skipOnChange||true);
             });
         },
         getValue:function(jq){
