@@ -33,6 +33,7 @@ $("#btn").linkbutton("disable");
 ## 2018-05-31 ##
 * `datagrid`支持`icheckbox`,`switchbox`,`linkbutton`类编辑
 * `popover`的标题背景色修改成`f0f0f0`
+* `icon`中增加新的白色图标,蓝色按钮中使用白色图标以达到更佳效果
 
 ## 2018-05-25 ##
 * `linkbutton`组件 增加属性`stopAllEventOnDisabled` 解决按钮禁用后，还是会触发jQuery绑定的点击事件问题
