@@ -22,11 +22,17 @@
             padding: 0 5px 0 15px;
             float: left;
         }
+        ul.whitelist>li{
+            padding-top:5px;
+        }
+        ul.whitelist>li .l-btn-text{
+            font-size: 12px;
+        }
         ul>li>a {
             text-decoration: none;
             color:#000000;
         }
-        ul>li:hover {
+        ul.iconlist>li:hover,ul.fontlist>li:hover,ul.arrowlist>li:hover,ul.bigiconlist>li:hover {
             background-color: #E3E3E3;
         }
         .icon{
@@ -70,6 +76,9 @@
 <body>
     <h2>图标列表</h2>
     <h3>所有图标：</h3>
+    <div class="hisui-panel" title="白色(16*16)" data-options="headerCls:'panel-header-card',titleWidth:80" style="padding:10px;margin-bottom:10px;">    
+        <ul class="whitelist"></ul>
+    </div>    
     <div class="hisui-panel" title="图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:80" style="padding:10px;margin-bottom:10px;">    
         <ul class="iconlist"></ul>
     </div>
@@ -89,9 +98,9 @@
     <h3>说明:</h3>
     <span>各种小图标，可用到按钮(linkbutton),菜单(menu),工具栏(toolbar)</span>
     <h3>如：</h3>
-    <div class="demo-exp-code entry-content"> 
-        <a href="#" class="hisui-linkbutton" iconCls="icon-clear-screen">清屏</a>
-        <pre class="prettyprint lang-html"><code>&lt;a href="#" class="hisui-linkbutton" iconCls="icon-clear-screen"&gt;清屏&lt;/a&gt;</code></pre>
+    <div class="demo-exp-code entry-content">
+        <a href="#" class="hisui-linkbutton" iconCls="icon-w-clean">清屏</a>
+        <pre class="prettyprint lang-html"><code>&lt;a href="#" class="hisui-linkbutton" iconCls="icon-w-clear"&gt;清屏&lt;/a&gt;</code></pre>
     </div>
     <div class="demo-exp-code entry-content"> 
         <a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note">操作</a>
@@ -107,6 +116,37 @@
 &lt;/div&gt;
 </pre>
     </div>
+    <div class="demo-exp-code entry-content"> 
+            <table class="hisui-datagrid" title="医嘱列表" style="width:400px;height:150px" 
+            data-options="rownumbers:true,singleSelect:true,pagination:false,toolbar:[{
+                    iconCls: 'icon-stop-order',
+                    text:'停止医嘱',
+                    handler: function(){alert('停止医嘱')}
+                },{
+                    iconCls: 'icon-cancel-order',
+                    text:'撤销医嘱'
+                },{
+                    iconCls: 'icon-abort-order',
+                    text:'作废医嘱'
+                },'-',{
+                    iconCls: 'icon-tip'
+                }]"> 
+            </table>
+            <pre class="prettyprint lang-js">
+        toolbar: [{
+            iconCls: 'icon-edit',
+            text:'停止医嘱',
+            handler: function(){alert('停止医嘱')}
+        },{
+            iconCls: 'icon-save',
+            text:'撤销医嘱'
+        },{
+            iconCls: 'icon-remove',
+            text:'作废医嘱'
+        },'-',{
+            iconCls: 'icon-tip'
+        }]</pre>
+    </div>
     <div>
         <h3>常用图标说明</h3>
         <table class="table" id="iconnotelist">
@@ -117,41 +157,20 @@
                 <th></th>
             </tr>
         </table>
-
     </div>
-    <div class="demo-exp-code entry-content"> 
-		<table class="hisui-datagrid" title="医嘱列表" style="width:400px;height:150px" 
-		data-options="rownumbers:true,singleSelect:true,pagination:false,toolbar:[{
-                iconCls: 'icon-stop-order',
-                text:'停止医嘱',
-                handler: function(){alert('停止医嘱')}
-			},{
-				iconCls: 'icon-cancel-order',
-				text:'撤销医嘱'
-			},{
-				iconCls: 'icon-abort-order',
-				text:'作废医嘱'
-			},'-',{
-				iconCls: 'icon-tip'
-			}]"> 
-        </table>
-        <pre class="prettyprint lang-js">
-toolbar: [{
-    iconCls: 'icon-edit',
-    text:'停止医嘱',
-    handler: function(){alert('停止医嘱')}
-},{
-    iconCls: 'icon-save',
-    text:'撤销医嘱'
-},{
-    iconCls: 'icon-remove',
-    text:'作废医嘱'
-},'-',{
-    iconCls: 'icon-tip'
-}]</pre>
-    </div>
+    
     <script type="text/javascript">
         $(function(){
+            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','back','cal','cancel','card','clean','config','epr','file','file-open','home','list','new','other','paper','plus','print','switch'];
+            for(var i=0;i<wicons.length;i++){
+                //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
+                $(
+                    '<li>\
+                    <a href="#" iconCls="icon-w-'+wicons[i]+'" style="width:180px;text-align:left;font-size:10px">icon-w-'+wicons[i]+'</a>\
+                    </li>'
+                ).appendTo(".whitelist").find("a").linkbutton();
+            }
+            /*--------------------------------*/
             var icons = ['add','edit','remove','save','cut','ok','no','cancel','reload','search','print','help','sum','tip','filter'
             ,'mini-add','mini-edit','mini-refresh'
             //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'
@@ -161,7 +180,6 @@ toolbar: [{
             ,'patient-info','apply-adm','apply-opr','apply-check'
             ,'del-diag','add-diag','save-tmpl','check-reg','exe-order','emr-cri'
             ,'copy-drug','copy-prn','copy-sos','funnel-eye','funnel-half','funnel-empty'
-            
             ];
             icons.sort();
             for(var i=0;i<icons.length;i++){
@@ -203,6 +221,7 @@ toolbar: [{
                     </li>'
                 ).appendTo(".bigiconlist");
             }
+            /*-------------------------------------------------*/
             var allicondesclist={};
             var alliconlist=[].concat(icons,fonticons,arrowicons);
             for(var i=0;i<alliconlist.length;i++){
