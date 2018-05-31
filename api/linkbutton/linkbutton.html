@@ -42,6 +42,46 @@
         <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-search'">时间线查看&lt;/a>
 &lt;a href="#" class="hisui-linkbutton hover-dark">确诊&lt;/a></code></pre>
     </div>
+
+    <h3>禁用 事件处理</h3>
+    <span>原来按钮禁用后，通过jq绑定的事件，还是会被触发，现增加一属性<code>stopAllEventOnDisabled</code>,当为true时，阻止事件</span>
+    <br><span>通过监听生成的子元素span的点击事件，当stopAllEventOnDisabled为true，且按钮被禁用时，阻止事件冒泡</span>
+    <div class="demo-exp-code entry-content">
+        <a href="#" id="event1" class="hisui-linkbutton " >上一步</a>  原本的事件会触发
+        <br><br>
+        <a href="#" id="event2" class="hisui-linkbutton " data-options="stopAllEventOnDisabled:true">下一步</a>  属性<code>stopAllEventOnDisabled</code>为true时，事件不会触发
+        <script type="text/javascript"> 
+            $(function () {
+                $("#event1").click(function () {
+                   alert("jquery为按钮【上一步】点击事件");
+                });
+                $("#event2").click(function () {
+                   alert("jquery为按钮【下一步】点击事件");
+                });
+                $("#event1").linkbutton('disable');
+                $("#event2").linkbutton('disable');
+
+            });
+        </script> 
+        <pre class="prettyprint hide lang-html"><code></code>&lt;a href="#" id="event1" class="hisui-linkbutton " &gt;上一步&lt;/a&gt;  原本的事件会触发
+&lt;br&gt;&lt;br&gt;
+&lt;a href="#" id="event2" class="hisui-linkbutton " data-options="stopAllEventOnDisabled:true"&gt;下一步&lt;/a&gt;  属性&lt;code&gt;stopAllEventOnDisabled&lt;/code&gt;为true时，事件不会触发
+&lt;script type="text/javascript"&gt; 
+    $(function () {
+        $("#event1").click(function () {
+            alert("jquery为按钮【上一步】点击事件");
+        });
+        $("#event2").click(function () {
+            alert("jquery为按钮【下一步】点击事件");
+        });
+        $("#event1").linkbutton('disable');
+        $("#event2").linkbutton('disable');
+
+    });
+&lt;/script&gt;     </code></pre>
+    </div>
+
+
     <script type="text/javascript"> 
     $(function () {
         $("#btn1").click(function (argument) {
