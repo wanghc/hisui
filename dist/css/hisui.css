@@ -2854,6 +2854,12 @@ h2 {
 .icon-w-update {
   background: url('icons/white/update.png') no-repeat center center;
 }
+.icon-w-import {
+  background: url('icons/white/import.png') no-repeat center center;
+}
+.icon-w-export {
+  background: url('icons/white/export.png') no-repeat center center;
+}
 .panel-header {
   padding: 3px 5px;
   -moz-border-radius: 4px 4px 0 0;
