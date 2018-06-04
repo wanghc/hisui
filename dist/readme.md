@@ -29,7 +29,8 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
-
+## 2018-06-04 ##
+* 增加`icon-w-import`与`icon-w-export`小图标
 ## 2018-05-31 ##
 * `datagrid`支持`icheckbox`,`switchbox`,`linkbutton`类编辑
 * `popover`的标题背景色修改成`f0f0f0`
