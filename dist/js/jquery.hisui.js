@@ -18272,6 +18272,7 @@ function(a, b, c) {
                                         var q = _85b.val();
                                         if (_858.previousValue != q) {
                                             _858.previousValue = q;
+                                            if (opts.onBeforeShowPanel.call(target)===false) return;  //cryze 2018-6-14
                                             $(target).lookup("showPanel");
                                             opts.keyHandler.query.call(target, _85b.val(), e);
                                             $(target).lookup("validate");
@@ -18295,8 +18296,9 @@ function(a, b, c) {
                 hidePanel(target);
             } else {
                 var p = $(this).closest("div.lookup-panel");
-				$("div.lookup-panel:visible").not(_859).not(p).panel("close");
-
+                $("div.lookup-panel:visible").not(_859).not(p).panel("close");
+                
+                if (opts.onBeforeShowPanel.call(target)===false) return;  //cryze 2018-6-14
 				$(target).lookup("showPanel");
 				//下拉走查询
 				var q = _85b.val();
@@ -18313,10 +18315,11 @@ function(a, b, c) {
 	 * 下拉面板显示
 	 */
     function showPanel(_860) {
-		GLOBAL_LOOKUP_LAST_TARGET=GLOBAL_LOOKUP_CURRENT_TARGET;
-		GLOBAL_LOOKUP_CURRENT_TARGET=_860;
         var _861 = $.data(_860, "lookup");
         var opts = _861.options;
+        //if(opts.onBeforeShowPanel.call(_860)===false) return; // 不能单纯地在这儿阻止,有些是和showPanel完全在一起的动作，不打开panel,那些动作也不要
+		GLOBAL_LOOKUP_LAST_TARGET=GLOBAL_LOOKUP_CURRENT_TARGET;
+		GLOBAL_LOOKUP_CURRENT_TARGET=_860;
         var _862 = _861.lookup;
 		var _863 = _861.panel;
 		var panelOpts=_863.panel('options');
@@ -18519,7 +18522,8 @@ function(a, b, c) {
 			if (panel.is(':visible')) {
 				$(target).lookup("hidePanel");
 				
-			}
+            }
+            if (opts.onBeforeShowPanel.call(target)===false) return;  //cryze 2018-6-14
 			$(target).lookup("showPanel");
             var q = $(target).val();
 			if (opts.queryOnSameQueryString ||state.previousValue != q) {
@@ -18651,6 +18655,8 @@ function(a, b, c) {
             });
         }, showPanel: function (jq) {
             return jq.each(function () {
+                var opts=$.data(this,"lookup").options;
+                if (opts.onBeforeShowPanel.call(this)===false) return;  //cryze 2018-6-14
                 showPanel(this);
             });
         }, hidePanel: function (jq) {
@@ -18714,6 +18720,9 @@ function(a, b, c) {
         isCombo:false,
         minQueryLen:0,
         queryOnSameQueryString: false //当查询条件相同时，在回车和点击按钮是否查询
+        ,onBeforeShowPanel:function(){
+
+        }
     });
 })(jQuery);
 

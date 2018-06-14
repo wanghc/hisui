@@ -182,6 +182,56 @@
         })
     });
 &lt;/script&gt;</code></pre>
+
+<p>onBeforeShowPanel事件</p>
+安全组 &nbsp;&nbsp;&nbsp;<input id="group2" class="textbox" /> 当输入值为ad时，不能展开下拉面板
+<script type='text/javascript'>
+    $(function(){
+        $("#group2").lookup({
+            width:200,panelWidth:500,
+            url:'getGroup',
+            mode:'remote',
+            idField:'HIDDEN',
+            textField:'Description',
+            columns:[[  
+                {field:'Description',title:'安全组名称',width:200},  
+                {field:'HIDDEN',title:'安全组ID',width:50}  
+            ]],
+            pagination:true,
+            onSelect:function(index,rowData){
+                console.log("index="+index+",rowData=",rowData);
+            },
+            onBeforeShowPanel:function(){
+                if ($(this).val()=="ad") return false;
+            }
+        });
+    })
+</script>
+<pre class="prettyprint lang-html"><code>安全组 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="group" class="textbox" /&gt;
+&lt;script type='text/javascript'&gt;
+$(function(){
+$("#group").lookup({
+    width:200,panelWidth:500,
+    url:'getGroup',
+    mode:'remote',
+    idField:'HIDDEN',
+    textField:'Description',
+    columns:[[  
+        {field:'Description',title:'安全组名称',width:200},  
+        {field:'HIDDEN',title:'安全组ID',width:50}  
+    ]],
+    pagination:true,
+    onSelect:function(index,rowData){
+        console.log("index="+index+",rowData=",rowData);
+    },
+    onBeforeShowPanel:function(){
+        if ($(this).val()=="ad") return false;
+    }
+});
+})
+&lt;/script&gt;</code></pre>
+
+
     </div>
     <div class="demo-exp-code entry-content">
         <h3>放大镜(lookup)组件，属性、事件、方法 </h3>
@@ -302,6 +352,12 @@
                 <th>入参</th>
                 <th></th>
             </tr>
+            <tr>
+                <td>onBeforeShowPanel</td>
+                <td>下拉面板展开前触发，若返回值是false,则阻止展开</td>
+                <td>null</td>
+                <td></td>
+			</tr>
             <tr>
                 <td>onShowPanel</td>
                 <td>当下拉面板显示的时候触发.</td>
