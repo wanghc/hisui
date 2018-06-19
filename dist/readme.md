@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-06-19 ##
+* `dialog`组件增加`isTopZindex`属性，解决控件盖住窗口问题
+
 ## 2018-06-14 ##
 * `lookup`组件，增加`onBeforeShowPanel`事件，`return fasle;`可阻止下拉面板展开
 
