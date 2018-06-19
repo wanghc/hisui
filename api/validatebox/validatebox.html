@@ -19,7 +19,7 @@
 		<div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true">
 		<table cellpadding="5">
 			<tr>
-				<td></td>
+				<td><a id="btn1" href="#" class="hisui-linkbutton">赋值</a></td>
 				<td>
 					<a id="btn" href="#" class="hisui-linkbutton">验证序号</a>
 				</td>
@@ -66,7 +66,7 @@
 closable:true,collapsible:true,minimizable:true,maximizable:true">
 	&lt;table cellpadding="5">
 		&lt;tr>
-			&lt;td>&lt;/td>
+			&lt;td>&lt;a id="btn1" href="#" class="hisui-linkbutton">赋值&lt;/a>&lt;/td>
 			&lt;td>
 				&lt;a id="btn" href="#" class="hisui-linkbutton">验证序号&lt;/a>
 			&lt;/td>
@@ -114,6 +114,9 @@ var init = function () {
 	var valbox = $HUI.validatebox("#patno", {
 		required: true
 	});
+	$("#btn1").click(function(){
+		$("#patno").val("12345678").validatebox("validate");
+	});
 	$("#btn").click(function () {				
 		valbox.jdata.validating = true;
 		valbox.validate();
@@ -136,7 +139,9 @@ $(init);
 			var valbox = $HUI.validatebox("#patno", {
 				required: true
 			});
-
+			$("#btn1").click(function(){
+				$("#patno").val("12345678").validatebox("validate");
+			});
 			$("#btn").click(function () {
 				//$("#patno").data("validatebox").validating=true;
 				//$("#patno").validatebox("validate");
