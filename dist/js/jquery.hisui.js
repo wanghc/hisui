@@ -18719,7 +18719,7 @@ function(a, b, c) {
         },
         isCombo:false,
         minQueryLen:0,
-        queryOnSameQueryString: true //当查询条件相同时，在回车和点击按钮是否查询
+        queryOnSameQueryString: false //当查询条件相同时，在回车和点击按钮是否查询
         ,onBeforeShowPanel:function(){
 
         }
