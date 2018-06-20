@@ -24,6 +24,7 @@
 		<a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1">prompt1</a>
 		<a class="hisui-linkbutton" iconCls="icon-edit" id="progress1">progress1</a>
 		<a class="hisui-linkbutton" iconCls="icon-edit" id="show1">show1</a>
+		<a href="#" class="hisui-linkbutton" id='popover1'>popover</a>
 		<script>
 			$(function () {
 				$('#alert1').click(function () {
@@ -59,10 +60,33 @@
 					$.messager.show({
 						title: '标题',
 						msg: '5秒后会自动关闭',
-						timeout: 5000,
-						showType: 'slide'
+						timeout: 50000,
+						showType: 'slide',
+						style:{
+							right:'',
+							top:document.body.scrollTop+document.documentElement.scrollTop,
+							bottom:''
+						}
 					});
-				})
+				});
+				$('#popover1').click(function(){
+					$.messager.popover({
+						msg: '保存失败',
+						type:'success',
+						//type:'info',
+						//type:'alert',
+						//type:'error',
+						timeout: 0, 		//0不自动关闭。3000s
+						//showSpeed:'slow', //fast,slow,normal,1500
+						showType: 'slide',  //show,fade,slide
+						/*style:{
+							//right:10,
+							//top:document.body.scrollTop+document.documentElement.scrollTop, //顶上
+							//bottom: -document.body.scrollTop - document.documentElement.scrollTop+10,
+							//left:(document.body.scrollLeft + document.documentElement.scrollLeft)
+						}*/
+					});
+				});
 			})
 		</script>
 
@@ -113,7 +137,20 @@
 	})
 &lt;/script&gt;</code></pre>
 	</div>
-
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isTopZindex</td>
+			<td>是否要覆盖处控件界面</td>
+			<td>false</td>
+			<td>true时则可弹出最上层</td>
+		</tr>
+	</table>
 	<prettyprint/>
 </body>
 

@@ -29,6 +29,10 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-06-20 ##
+* 增加`$.messager.popover`功能
+* 增加小图标
+
 ## 2018-06-19 ##
 * `dialog`组件增加`isTopZindex`属性，解决控件盖住窗口问题
 
