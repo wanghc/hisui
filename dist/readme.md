@@ -29,6 +29,10 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-06-21 ##
+* 修改`$.messager.popover`样式
+* 当前界面有CS版控件时,弹出hisui组件被遮盖问题--修改`panel`、`window`、`messager`的alert,confirm,prompt方法
+
 ## 2018-06-20 ##
 * 增加`$.messager.popover`功能
 * 增加小图标

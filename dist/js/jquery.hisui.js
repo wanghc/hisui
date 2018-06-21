@@ -3406,6 +3406,11 @@ if (typeof JSON !== 'object') {
         } else {
             _1f2.children("div.panel-body").addClass("panel-body-noheader");
         }
+        var ocxFrame="";
+        if (opts.isTopZindex){ //modify panel 使window,dialog,alert,confirm,prompt,progress都支持isTopZindex属性 by wanghc 2018-6-21 
+            ocxFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
+            _1f2.prepend(ocxFrame);
+        }
     };
     function _1f5(_1f6, _1f7) {
         var _1f8 = $.data(_1f6, "panel");
@@ -3768,6 +3773,7 @@ if (typeof JSON !== 'object') {
         return $.extend({}, $.parser.parseOptions(_231, ["id", "width", "height", "left", "top", "title","titleWidth", "iconCls", "cls", "headerCls", "bodyCls", "tools", "href", "method", { cache: "boolean", fit: "boolean", border: "boolean", noheader: "boolean" }, { collapsible: "boolean", minimizable: "boolean", maximizable: "boolean" }, { closable: "boolean", collapsed: "boolean", minimized: "boolean", maximized: "boolean", closed: "boolean" }]), { loadingMessage: (t.attr("loadingMessage") != undefined ? t.attr("loadingMessage") : undefined) });
     };
     $.fn.panel.defaults = {
+        isTopZindex:false, //by wanghc 2018-6-21
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
             var opts = $(this).panel("options");
             if (!opts.href) {
@@ -3931,11 +3937,10 @@ if (typeof JSON !== 'object') {
             _24f.mask.remove();
         }
         if (_24f.options.modal == true) {
-
             //wanghc 2017-12-14 ---ocx dll
-            var maskFrame = "";
+            var maskFrame = ""; //修改window,使window,dialog,alert,confirm,prompt,progress的mask支持ocx
             if (_24f.options.isTopZindex){
-                 maskFrame = "<iframe style=\"position: absolute; z-index: -1; width: 100%; height: 100%; top: 0;left:0;scrolling:no;\" frameborder=\"0\"></iframe>";
+                maskFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
             }
             _24f.mask = $("<div class=\"window-mask\">"+maskFrame+"</div>").insertAfter(_24f.window);
             _24f.mask.css({ width: (_24f.options.inline ? _24f.mask.parent().width() : _253().width), height: (_24f.options.inline ? _24f.mask.parent().height() : _253().height), display: "none" });
@@ -4087,7 +4092,7 @@ if (typeof JSON !== 'object') {
     $.fn.window.parseOptions = function (_25f) {
         return $.extend({}, $.fn.panel.parseOptions(_25f), $.parser.parseOptions(_25f, [{ draggable: "boolean", resizable: "boolean", shadow: "boolean", modal: "boolean", inline: "boolean" }]));
     };
-    $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {isTopZindex:false,  zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false });
+    $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false });
 })(jQuery);
 (function ($) {
     function _260(_261) {
@@ -4316,6 +4321,7 @@ if (typeof JSON !== 'object') {
             }
         }
         win.window({
+            isTopZindex:true, //wanghc
             title: _280, noheader: (_280 ? false : true), width: 300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");
@@ -4438,11 +4444,11 @@ if (typeof JSON !== 'object') {
         },popover: function(opt){
             //default top center;
             var defopt = {style:{top:document.body.scrollTop+document.documentElement.scrollTop+10,left:''},
-                timeout:3000,showSpeed:'fast',showType:'slide'};
+               msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
-            var html = '<div class="messager-popover '+opt.type+'" style="display:none;">\
-            <span class="messager-popover-icon '+opt.type+'"/>'+opt.msg+'\
-            <span class="close">X</span>\
+            var html = '<div class="messager-popover '+o.type+'" style="display:none;">\
+            <span class="messager-popover-icon '+o.type+'"/><span class="content">'+o.msg+'</span>\
+            <span class="close"></span>\
             </div>';
             var t = $(html).appendTo("body");
             if (o.style.left==''){
