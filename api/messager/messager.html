@@ -17,138 +17,225 @@
 	<h3>说明:</h3>
 	<span>消息框（messager）提供不同样式的消息框，包括警示（alert）、确认（confirm）、提示（prompt）、进展（progress）等等。所有的消息框都是异步的。用户可以在与消息框交互后使用回调函数来完成一些动作。</span>
 	<h3>如：</h3>
-	<div style="width: 666px;height: 31px"></div>
 	<div class="demo-exp-code entry-content">
-		<a class="hisui-linkbutton" iconCls="icon-ok" id="alert1">alert1</a>
-		<a class="hisui-linkbutton" iconCls="icon-remove" id="confirm1">confirm1</a>
-		<a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1">prompt1</a>
-		<a class="hisui-linkbutton" iconCls="icon-edit" id="progress1">progress1</a>
-		<a class="hisui-linkbutton" iconCls="icon-edit" id="show1">show1</a>
-		<a href="#" class="hisui-linkbutton" id='popover1'>popover</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1">alert</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a>
 		<script>
 			$(function () {
 				$('#alert1').click(function () {
-					$.messager.alert("简单提示", "删除成功", 'info');
+					$.messager.alert("简单提示", "保存失败", 'info');
 				})
 				$('#confirm1').click(function () {
-					$.messager.confirm("删除", "确定删除么", function (r) {
+					$.messager.confirm("删除", "确定提交并保存?", function (r) {
 						if (r) {
-							alert("点击了确定");
+							$.messager.popover({msg:"点击了确定",type:'info'});
 						} else {
-							alert("点击了取消");
+							$.messager.popover({msg:"点击了取消"});
 						}
 					});
 				})
 				$('#prompt1').click(function () {
-					$.messager.prompt("名字", "请输入名字", function (r) {
+					$.messager.prompt("提示", "修改前请签名：", function (r) {
 						if (r) {
-							alert("名字是：" + r);
+							$.messager.popover({msg:"你的签名是：" + r,type:'info'});
 						} else {
-							alert("点击了取消或输入为空");
+							$.messager.popover({msg:"点击了【取消】或输入为空"});
 						}
 					});
 				})
 				$('#progress1').click(function () {
 					$.messager.progress({
-						title: "上传",
-						msg: '正在上传',
-						text: '上传中....'
+						title: "提示",
+						msg: '正在导入数据',
+						text: '导入中....'
 					});
-					setTimeout('$.messager.progress("close");', 5 * 1000);
+					setTimeout('$.messager.progress("close");', 4 * 1000);
 				})
 				$('#show1').click(function () {
 					$.messager.show({
 						title: '标题',
-						msg: '5秒后会自动关闭',
-						timeout: 50000,
-						showType: 'slide',
+						msg: '3秒后会自动关闭',
+						timeout: 3000,
+						showType: 'slide'/*,
 						style:{
 							right:'',
 							top:document.body.scrollTop+document.documentElement.scrollTop,
 							bottom:''
-						}
-					});
-				});
-				$('#popover1').click(function(){
-					$.messager.popover({
-						msg: '保存失败',
-						type:'success',
-						//type:'info',
-						//type:'alert',
-						//type:'error',
-						timeout: 0, 		//0不自动关闭。3000s
-						//showSpeed:'slow', //fast,slow,normal,1500
-						showType: 'slide',  //show,fade,slide
-						/*style:{
-							//right:10,
-							//top:document.body.scrollTop+document.documentElement.scrollTop, //顶上
-							//bottom: -document.body.scrollTop - document.documentElement.scrollTop+10,
-							//left:(document.body.scrollLeft + document.documentElement.scrollLeft)
 						}*/
 					});
 				});
 			})
 		</script>
 
-<pre class="prettyprint lang-html"><code>&lt;a class="hisui-linkbutton" iconCls="icon-ok" id="alert1"&gt;alert1&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-remove" id="confirm1"&gt;confirm1&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1"&gt;prompt1&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="progress1"&gt;progress1&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="show1"&gt;show1&lt;/a&gt;
+<pre class="prettyprint lang-html hide"><code>&lt;a class="hisui-linkbutton" iconCls="icon-save" id="alert1"&gt;alert&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-save" id="confirm1"&gt;confirm&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1"&gt;prompt&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-import" id="progress1"&gt;progress&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1"&gt;show&lt;/a&gt;
 &lt;script&gt;
 	$(function () {
 		$('#alert1').click(function () {
-			$.messager.alert("简单提示", "删除成功", 'info');
+			$.messager.alert("简单提示", "保存失败", 'info');
 		})
 		$('#confirm1').click(function () {
-			$.messager.confirm("删除", "确定删除么", function (r) {
+			$.messager.confirm("删除", "确定提交并保存?", function (r) {
 				if (r) {
-					alert("点击了确定");
+					$.messager.popover({msg:"点击了确定",type:'info'});
 				} else {
-					alert("点击了取消");
+					$.messager.popover({msg:"点击了取消"});
 				}
 			});
 		})
 		$('#prompt1').click(function () {
-			$.messager.prompt("名字", "请输入名字", function (r) {
+			$.messager.prompt("提示", "修改前请签名：", function (r) {
 				if (r) {
-					alert("名字是：" + r);
+					$.messager.popover({msg:"你的签名是：" + r,type:'info'});
 				} else {
-					alert("点击了取消或输入为空");
+					$.messager.popover({msg:"点击了【取消】或输入为空"});
 				}
 			});
 		})
 		$('#progress1').click(function () {
 			$.messager.progress({
-				title: "上传",
-				msg: '正在上传',
-				text: '上传中....'
+				title: "提示",
+				msg: '正在导入数据',
+				text: '导入中....'
 			});
-			setTimeout('$.messager.progress("close");', 5 * 1000);
+			setTimeout('$.messager.progress("close");', 4 * 1000);
 		})
 		$('#show1').click(function () {
 			$.messager.show({
 				title: '标题',
-				msg: '5秒后会自动关闭',
-				timeout: 5000,
-				showType: 'slide'
+				msg: '3秒后会自动关闭',
+				timeout: 3000,
+				showType: 'slide'/*,
+				style:{
+					right:'',
+					top:document.body.scrollTop+document.documentElement.scrollTop, //顶端中间显示
+					bottom:''
+				}*/
 			});
-		})
+		});
 	})
+&lt;/script&gt;</code></pre>
+	</div>
+	<h3>基于messager的简单提示方法(<code>$.messager.popover</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<a href="#" class="hisui-linkbutton" id='succ'>success</a>
+		<a href="#" class="hisui-linkbutton" id='info'>info</a>
+		<a href="#" class="hisui-linkbutton" id='alert'>alert</a>
+		<a href="#" class="hisui-linkbutton" id='error'>error</a>
+		<script>
+			$(function () {
+				$('#succ').click(function(){
+					$.messager.popover({
+						msg: '保存成功！',
+						type:'success',
+						timeout: 1000, 		//0不自动关闭。3000s
+						showType: 'slide'  //show,fade,slide
+					});
+				});
+				$('#info').click(function(){
+					$.messager.popover({
+						msg: '简单提示！',
+						type:'info',
+						timeout: 2000, 		//0不自动关闭。3000s
+						showSpeed:'slow', //fast,slow,normal,1500
+						showType: 'fade'  //show,fade,slide
+					});
+				});
+				$('#alert').click(function(){
+					$.messager.popover({
+						msg: '简单警示！',
+						type:'alert'
+					});
+				});
+				$('#error').click(function(){
+					$.messager.popover({
+						msg: '保存失败！',
+						type:'error',
+						style:{
+							bottom:-document.body.scrollTop - document.documentElement.scrollTop+10,
+							right:10
+						}
+					});
+				});
+			})
+		</script>
+
+<pre class="prettyprint lang-html hide"><code>&lt;a href="#" class="hisui-linkbutton" id='succ'>success&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" id='info'>info&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" id='alert'>alert&lt;/a>
+&lt;a href="#" class="hisui-linkbutton" id='error'>error&lt;/a>
+&lt;script>
+	$(function () {
+		$('#succ').click(function(){
+			$.messager.popover({msg: '保存成功！',type:'success',timeout: 1000});
+		});
+		$('#info').click(function(){
+			$.messager.popover({msg: '简单提示！',type:'info',timeout: 2000,showType: 'show'});
+		});
+		$('#alert').click(function(){
+			$.messager.popover({msg: '简单警示！',type:'alert'});
+		});
+		$('#error').click(function(){
+			$.messager.popover({
+				msg: '保存失败！',
+				type:'error',
+				style:{
+					bottom:-document.body.scrollTop - document.documentElement.scrollTop+10, //显示到右下角
+					right:10
+				}
+			});
+		});
+	});
 &lt;/script&gt;</code></pre>
 	</div>
 	<table class="table">
 		<tr class="protitle">
-			<th>属性</th>
+			<th>$.messager.popover属性</th>
 			<th>说明</th>
 			<th>默认值</th>
 			<th></th>
 		</tr>
 		<tr>
-			<td>isTopZindex</td>
-			<td>是否要覆盖处控件界面</td>
-			<td>false</td>
-			<td>true时则可弹出最上层</td>
+			<td>msg</td>
+			<td>提示内容</td>
+			<td>''</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>提示类型</td>
+			<td>'error'</td>
+			<td>决定显示的提示样式，可选属性,'success','info','alert','error'</td>
+		</tr>
+		<tr>
+			<td>timeout</td>
+			<td>显示时间长度(毫秒)/td>
+			<td>3000</td>
+			<td>0表示一直显示不消失。</td>
+		</tr>
+		<tr>
+			<td>showSpeed</td>
+			<td>显示速度</td>
+			<td>'fast'</td>
+			<td>可选属性,'fast','slow','normal',数字(毫秒数)</td>
+		</tr>
+		<tr>
+			<td>showType</td>
+			<td>显示方式</td>
+			<td>'slide'</td>
+			<td>可选属性,'slide','fade','show'</td>
+		</tr>
+		<tr>
+			<td>style</td>
+			<td>显示位置</td>
+			<td>顶部中间位置</td>
+			<td>right,top,left,bottom</td>
 		</tr>
 	</table>
 	<prettyprint/>
