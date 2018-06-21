@@ -9635,6 +9635,10 @@ if (typeof JSON !== 'object') {
         _607(_5fe, _5ff);
         $(_5fe).datagrid("refreshRow", _5ff);
         if (!_600) {
+            // datagrid by wanghc 2018-6-21
+            for(var i in _604){
+                tr.children('td[field="'+i+'"]').addClass('datagrid-value-changed');
+            }
             opts.onAfterEdit.call(_5fe, _5ff, row, _604);
         } else {
             opts.onCancelEdit.call(_5fe, _5ff, row);
@@ -10623,7 +10627,19 @@ if (typeof JSON !== 'object') {
                 var _6f2 = $(_6ec).datagrid("getColumnFields", _6f1);
                 var tr = opts.finder.getTr(_6ec, _6ed, "body", (_6f1 ? 1 : 2));
                 var _6f3 = tr.find("div.datagrid-cell-check input[type=checkbox]").is(":checked");
+                //wanghc 以前有修改datagrid-value-changed样式的,还得加上
+                //---start
+                var changedFields=[];
+                tr.children(".datagrid-value-changed").each(function(){
+                    changedFields.push($(this).attr("field"));
+                });
+                //---end
                 tr.html(this.renderRow.call(this, _6ec, _6f2, _6f1, _6ed, rows[_6ed]));
+                //---start
+                for (var i=0;i<changedFields.length;i++){
+                    tr.children('td[field="'+changedFields[i]+'"]').addClass("datagrid-value-changed");
+                }
+                //---end
                 tr.attr("style", _6ef).attr("class", tr.hasClass("datagrid-row-selected") ? _6ee + " datagrid-row-selected" : _6ee);
                 if (_6f3) {
                     tr.find("div.datagrid-cell-check input[type=checkbox]")._propAttr("checked", true);

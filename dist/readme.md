@@ -32,6 +32,8 @@ $("#btn").linkbutton("disable");
 ## 2018-06-21 ##
 * 修改`$.messager.popover`样式
 * 当前界面有CS版控件时,弹出hisui组件被遮盖问题--修改`panel`、`window`、`messager`的alert,confirm,prompt方法
+## 2018-06-20 ##
+* 可编辑`datagrid`,当数据被修改后,单元格增加红色三角标志
 
 ## 2018-06-20 ##
 * 增加`$.messager.popover`功能
