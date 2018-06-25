@@ -75,12 +75,13 @@ location.href = rtn;</code></pre>
 <pre class="prettyprint lang-js">
 <code>//引用hisui库后,js文件中代码，
 var rtn = $cm({
+	dataType:'text',
 	ResultSetType:"Excel",
 	ExcelName:"excelname", //默认DHCCExcel
 	ClassName:"web.Util.Menu",
 	QueryName:"SelectGroupMenu",
 	GroupId:1
-},true);
+},false);
 location.href = rtn;</code></pre>
 </div>
 <prettyprint/>
