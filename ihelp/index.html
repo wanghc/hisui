@@ -7,6 +7,8 @@
 	<title>iMedical Help</title>
 	<style>
 		body{
+			padding: 10px;
+    		margin: 0px;
 			background-color: rgb(64, 64, 64);
     		background-image: url(https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/117.jpg?2);
 		}
@@ -33,9 +35,22 @@
 			width: 80px;
 			height: 42px;;
 		}
+		.navbar{
+			float:right;
+		}
+		.navbar li{
+			height: 25px;
+			list-style: none;
+			margin: 0px 15px;
+			display: inline-block
+		}
+		.navbar li a{color: white;font-size: 12px;}
 	</style>
 </head>
 <body>
+	<lu class="navbar">
+		<li><a href='api.html' target="_blank">查看API</a></li>
+	</lu>
 	<div class="con">
 		<div class="log">iMedical帮助</div>
 		<input name="ihelpsearch" class="search-input"/>
