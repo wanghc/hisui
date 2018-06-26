@@ -174,18 +174,28 @@
             var icons = ['add','edit','remove','save','cut','ok','no','cancel','reload','search','print','help','sum','tip','filter'
             ,'mini-add','mini-edit','mini-refresh'
             //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'
-            ,'bed','house','person','add-note','patient','outhosp-patient','stethoscope','write-order','replace-order','stop-order','cancel-order','abort-order'
-            ,'uncheckin','end-adm','change-loc','resort','doctor','clear-screen','clear','read-card','update','upload-cloud','unload-cloud','reset'
-            ,'close','save','other'
-            ,'patient-info','apply-adm','apply-opr','apply-check'
-            ,'del-diag','add-diag','save-tmpl','check-reg','exe-order','emr-cri'
-            ,'copy-drug','copy-prn','copy-sos','funnel-eye','funnel-half','funnel-empty','eye','export','omega','paper-cfg'
+            ,'bed','house','person','patient','outhosp-patient','stethoscope'
+            ,'uncheckin','checkin','end-adm','change-loc','doctor','clear-screen','read-card','update','upload-cloud','unload-cloud','reset'
+            ,'other','patient-info','del-diag','add-diag','emr-cri'
+            ,'funnel-eye','funnel-half','funnel-empty','eye','export','omega'
+            ,'fee-arrow','fee'
             ];
-            icons.sort();
+            //icons.sort();
             for(var i=0;i<icons.length;i++){
                 $(
                     '<li>\
                     <span class="icon icon-'+icons[i]+'">icon-'+icons[i]+'</span>\
+                    </li>'
+                ).appendTo(".iconlist");
+            }
+            var papericons = [
+                'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
+                ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'];
+            //icons.sort();
+            for(var i=0;i<papericons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+papericons[i]+'">icon-'+papericons[i]+'</span>\
                     </li>'
                 ).appendTo(".iconlist");
             }
@@ -212,7 +222,8 @@
             //----
             var bigicons = ['book-arrow','book-eye','book-ref','book-arrow-rt','book-to-book','del'
             ,'doctor-green','favorite','favorite-add','img','omega','position','print','refresh','save','unlock'
-            ,'lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19'
+            ,'lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19','ring-blue','ring','skip-no','paper-search'
+            ,'paper-pen','paper-arrow','fee-arrow','card-reader','clear','doctor-adm'
             ]
             bigicons.sort();
             for(var j=0;j<bigicons.length;j++){

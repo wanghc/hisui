@@ -10627,7 +10627,7 @@ if (typeof JSON !== 'object') {
                 var _6f2 = $(_6ec).datagrid("getColumnFields", _6f1);
                 var tr = opts.finder.getTr(_6ec, _6ed, "body", (_6f1 ? 1 : 2));
                 var _6f3 = tr.find("div.datagrid-cell-check input[type=checkbox]").is(":checked");
-                //wanghc 以前有修改datagrid-value-changed样式的,还得加上
+                //wanghc 以前td有datagrid-value-changed样式的,还得加上
                 //---start
                 var changedFields=[];
                 tr.children(".datagrid-value-changed").each(function(){
@@ -10635,7 +10635,7 @@ if (typeof JSON !== 'object') {
                 });
                 //---end
                 tr.html(this.renderRow.call(this, _6ec, _6f2, _6f1, _6ed, rows[_6ed]));
-                //---start
+                //---start 加上样式
                 for (var i=0;i<changedFields.length;i++){
                     tr.children('td[field="'+changedFields[i]+'"]').addClass("datagrid-value-changed");
                 }
