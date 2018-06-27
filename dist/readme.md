@@ -29,6 +29,10 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+
+## 2018-06-27 ##
+* `$.messager.popover`隐藏后自动销毁
+
 ## 2018-06-21 ##
 * 可编辑`datagrid`,当数据被修改后,单元格增加红色三角标志
 

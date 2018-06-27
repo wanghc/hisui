@@ -4488,6 +4488,7 @@ if (typeof JSON !== 'object') {
                             t.hide(o.showSpeed);
                             break;
                     }
+                    setTimeout(function(){t.remove()},o.timeout);
                 },o.timeout);
             }
         }
