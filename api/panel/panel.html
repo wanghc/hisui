@@ -20,7 +20,8 @@
 		<div class="hisui-panel" title="登记" style="height:150px;width:400px;padding:10px 30px 20px 30px" 
 		data-options="headerCls:'panel-header-card'">卡片类型面板
 		</div>
-		<pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="登记" style="height:150px;width:400px;padding:10px 30px 20px 30px" data-options="headerCls:'panel-header-card'"
+		<pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="登记" style="height:150px;width:400px;padding:10px 30px 20px 30px" 
+			data-options="headerCls:'panel-header-card'"
 &gt;卡片类型面板&lt;/div&gt;</code></pre>
 	</div>
 	<div class="demo-exp-code entry-content">
@@ -28,29 +29,33 @@
 		data-options="headerCls:'panel-header-card-gray'">灰色卡片面板只需修改<code>"headerCls:'panel-header-card-gray'"</code>
 		</div>
 	</div>
-	<div class="demo-exp-code entry-content">
+	<!--<div class="demo-exp-code entry-content">
 		<div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px" 
 		data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true">
 		</div><pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',<br/>closable:true,collapsible:true,minimizable:true,maximizable:true"&gt;&lt;/div&gt;</code></pre>
-	</div>
+	</div>-->
 	<div class="demo-exp-code entry-content">
 		<div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px;" 
-		data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-gray'">灰色面板只需修改<code>headerCls:'panel-header-gray'</code>
+		data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-gray'">
+		灰色面板只需修改<code>headerCls:'panel-header-gray'</code>
+		</div>
+		<pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px" 
+data-options="headerCls:'panel-header-card-gray',iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true"&gt;&lt;/div&gt;</code></pre>
+	</div>
+	<div class="demo-exp-code entry-content">
+		<div class="hisui-panel" title="白色" style="width:400px;padding:10px 30px 20px 30px;" 
+		data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-white'">
+		白色面板只需修改<code>headerCls:'panel-header-white'</code>
 		</div>
 	</div>
 	<div class="demo-exp-code entry-content">
 		<div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px;" 
-		data-options="closable:true,collapsible:true,minimizable:true,maximizable:true">没有图标怎么样？<code>headerCls:'panel-header-gray'</code>
+		data-options="headerCls:'panel-header-gray',closable:true,collapsible:true,minimizable:true,maximizable:true">没有图标的面板</code>
 		</div>
 	</div>
 	<div class="demo-exp-code entry-content">
 		<div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px;" 
 		data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-blue'">蓝色面板只需修改<code>headerCls:'panel-header-blue'</code>
-		</div>
-	</div>
-	<div class="demo-exp-code entry-content">
-		<div class="hisui-panel" title="大一点" style="width:400px;padding:10px 30px 20px 30px;" 
-		data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-big'">大一点面板<code>headerCls:'panel-header-big'</code>
 		</div>
 	</div>
 	<div class="demo-exp-code entry-content">
@@ -82,7 +87,7 @@ var init = function () {
 		onMinimize:function(){alert("你点击了最小化!");return false},
 		maximizable:true,
 		onMaximize:function(){alert("你点击了最大化!");return false},
-		headerCls:'panel-header-acc'
+		headerCls:'panel-header-gray'
 	});
 }
 $(init);
@@ -114,12 +119,26 @@ $(init);
 					alert("你点击了最大化!");
 					return false
 				},
-				headerCls: 'panel-header-acc'
+				headerCls: 'panel-header-gray'
 			});
 		}
 		$(init);
 	</script>
+	
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>headerCls</td>
+			<td>面板头样式类</td>
+			<td>null</td>
+			<td>可选值：<code>'panel-header-gray'</code>,<code>'panel-header-blue'</code>, <code>'panel-header-acc'</code>, <code>'panel-header-white'</code>,<code>'panel-header-card'</code>,<code>'panel-header-card-gray'</code>,<code>'panel-header-big'</code></td>
+		</tr>
+	</table>
 	<prettyprint/>
 </body>
-
 </html>

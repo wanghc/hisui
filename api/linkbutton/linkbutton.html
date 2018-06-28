@@ -14,15 +14,14 @@
     <span>链接按钮（Link Button）是使用 &lt;a>元素来创建的，所以实际上一个链接按钮（Link Button）就是一个显示为按钮样式的 &lt;a>元素。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
-        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true">查询</a>
+        <!--<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true">查询</a>
         <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true" disabled>禁用</a>
+        -->
         <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
         <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
         <a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
         <a href="#" class="hisui-linkbutton" id="btn1">点我提示</a>
-        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true">查询&lt;/a>
-&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true" disabled>禁用&lt;/a>
-&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用&lt;/a>            
+        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用&lt;/a>            
 &lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px">自定义宽度按钮&lt;/a>
 &lt;a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮&lt;/a>
 &lt;a href="#" class="hisui-linkbutton" id="btn1">点我提示&lt;/a&gt;
@@ -103,13 +102,43 @@
         <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-save',plain:true">保存</a>
         <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-print',plain:true">打印</a>
         <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-del',plain:true">删除</a>
-        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true">手工解锁</a>
         <div class="datagrid-btn-separator big"></div>
-        <a class="hisui-linkbutton big" data-options="iconImg:'unlock.png',plain:true">手工解锁</a>
-        <pre class="prettyprint hide lang-html"><code>&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true"&gt;手工解锁&lt;/a&gt;
-&lt;a class="hisui-linkbutton big" data-options="iconImg:'unlock.png',plain:true"&gt;手工解锁&lt;/a&gt;
-...</code></pre>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true">手工解锁</a>
+        <!--<a class="hisui-linkbutton big" data-options="iconImg:'unlock.png',plain:true">手工解锁</a>-->
+        <pre class="prettyprint hide lang-html"><code>
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-save',plain:true"&gt;保存&lt;/a&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-print',plain:true"&gt;打印&lt;/a&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-del',plain:true"&gt;删除&lt;/a&gt;
+&lt;div class="datagrid-btn-separator big"&gt;&lt;/div&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true"&gt;手工解锁&lt;/a&gt;</code></pre>
     </div>
+    
+    <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>plain</td>
+			<td>是否素色</td>
+			<td>false</td>
+			<td>为true时,按钮素色</td>
+        </tr>
+        <tr>
+            <td>iconImg</td>
+            <td>图片地址</td>
+            <td>null</td>
+            <td>'unlock.png'</td>
+        </tr>
+        <tr>
+            <td>stopAllEventOnDisabled</td>
+            <td>在disabled时是否阻止按钮事件</td>
+            <td>false</td>
+            <td>通过监听生成的子元素span的点击事件，当stopAllEventOnDisabled为true，且按钮被禁用时，阻止事件冒泡。</td>
+        </tr>
+	</table>
 	<prettyprint/>
 </body>
 </html>

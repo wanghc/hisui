@@ -18,44 +18,48 @@
     <span>当用户点击或者鼠标悬停在此区域，将会显示提示。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
-		<a id="tt1" href="#" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">
-			鼠标移动到这(点击试试)
-		</a>
-
-	    <div style="margin:20px 0"></div>
-	  	<a id="tt" href="javascript:void(0)">
+		<a id="tt1" href="javascript:void(0);" onclick="javascript:void(0);" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">
 			鼠标移动到这
 		</a>
-		<pre class="prettyprint lang-html"><code>&lt;a id="tt1" href="#" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">鼠标移动到这(点击试试)&lt;/a>
-&lt;div style="margin:20px 0">&lt;/div>
-&lt;a id="tt" href="javascript:void(0)">鼠标移动到这&lt;/a&gt;</code></pre>
+	  	<a id="btn" class='hisui-linkbutton' href="javascript:void(0)" style='margin-left: 200px'>点我提示</a>
+		<pre class="prettyprint lang-html"><code>&lt;a id="tt1" href="#" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">鼠标移动到这(点击试试)&lt;/a></code></pre>
 		<pre class="prettyprint lang-js">
-&lt;script type="text/javascript"&gt;
 $(function(){
-	var tt = $HUI.tooltip('#tt',{
-		content:'&lt;span style="color:green">这是通过js提示的&lt;/span>',
-		position: 'bottom' //top , right, bottom, left
+	$("#btn").click(function(){
+		$HUI.tooltip("#tt1",{position:'bottom'}).show();
+		//等价 
+		//$("#tt1").tooltip({position:'bottom'}).tooltip('show');
 	});
-	$("#tt1").click(function(){
-		tt.show();  //显示下面的提示
-	});
-});
-$(init);
-&lt;/script&gt;	
-	</pre>
+});</pre>
 	</div>
 	<script type="text/javascript">
-$(function(){
-	var tt = $HUI.tooltip('#tt',{
-		content:'<span style="color:green">这是通过js提示的</span>',
-		position: 'bottom' 						//top , right, bottom, left
-		,deltaX:50
-	});
-	$("#tt1").click(function(){
-		tt.show();  //显示下面的提示
-	});
-});
+		$(function(){
+			/*var tt = $HUI.tooltip('#tt',{
+				content:'<span style="color:#fff;">这是通过js提示的</span>',
+				position: 'bottom'
+				,deltaX:50
+			});*/
+			$("#btn").click(function(){
+				$HUI.tooltip("#tt1",{position:'bottom'}).show();
+				//$("#tt1").tooltip({position:'bottom'}).tooltip('show');
+
+			});
+		});
   </script>	
+  <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>position</td>
+			<td>提示层的位置</td>
+			<td>bottom</td>
+			<td>可选值：'top' , 'right', 'bottom', 'left'</td>
+		</tr>
+	</table>
   <prettyprint/>
 </body>
 </html>

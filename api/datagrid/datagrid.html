@@ -17,7 +17,7 @@
     <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
 	<h3>如：默认表格(hisui-datagrid)</h3>
 	<div class="demo-exp-code entry-content"> 
-		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fitColumns:true,singleSelect:true,pagination:true">   
+		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="headerCls:'panel-header-gray',toolbar: [],fitColumns:true,singleSelect:true,pagination:true">
 			<thead>   
 				<tr>   
 					<th data-options="field:'code',width:20">编码</th>   
@@ -46,6 +46,8 @@
 				</tr>   
 			</tbody>   
 		</table>
+		<pre class="prettyprint lang-js"><code>headerCls:'panel-header-gray' //配置项使表格变成灰色
+toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code></pre>
 	</div>
 	<h3>编辑灰色表格(<code>headerCls:'panel-header-gray'</code>)</h3>
 	<div class="demo-exp-code entry-content">
@@ -69,13 +71,13 @@
 			iconCls: 'icon-help',
 			text:'帮助',
 			handler: function(){alert('你点击了帮助按钮')}
-		},'-',{
+		}/*,'-',{
 			iconCls: 'icon-ok',
 			handler: function(){alert('你点击了ok图标')}
 		},{
 			iconCls: 'icon-search',
 			handler: function(){alert('你点击了查询图标')}
-		}],onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},onDblClickRow:function(){console.log(arguments)},
+		}*/],onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},onDblClickRow:function(){console.log(arguments)},
 		">   
 			<thead>   
 				<tr>   

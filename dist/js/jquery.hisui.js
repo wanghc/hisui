@@ -17681,7 +17681,7 @@ function(a, b, c) {
 			} else {
 				$.data(this, 'radio', {
 					options: $.extend({}, $.fn.radio.defaults, $.fn.radio.parseOptions(this), options)
-				});
+                });
 			}
 			createRadio(this);
 		});

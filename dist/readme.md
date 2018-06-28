@@ -29,6 +29,14 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-06-28 ##
+* 替换若干小图片
+* `popover`组件样式修改
+* `tabs`左右滚动箭头样式等修改
+* `panel`增加`panel-header-white`样式,修改标题样式
+* `switchbox`增加`gray`样式
+* `treegrid`的勾选框样式修改
+* `dialog`的`buttons`对应的样式与按钮位置修改
 
 ## 2018-06-27 ##
 * `$.messager.popover`隐藏后自动销毁

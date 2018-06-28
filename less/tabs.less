@@ -1,10 +1,18 @@
 @import "variables.less";
-
+.tabs-scroller-left, .tabs-scroller-right {
+  position: absolute;
+  top: auto;
+  bottom: 0px;
+  width: 19px; /*2018-6-28 加宽*/
+  font-size: 1px;
+  display: none;
+  cursor: pointer;
+  border:none; /*去边框---下面定义*/
+}
 .tabs-header {
   padding-top: 0px;
   border-top-width: 0;
 }
-
 .tabs {
   height: @tabs-header-height;  
   padding-left: 0px;
@@ -13,7 +21,7 @@
   li {
     height: 35px; /*wanghc 2018-3-19  win7-ie11*/
     margin: 0px;
-    &::after{
+    &:not(:last-child)::after{
       content:'';
       display: inline-block;
       height:20px;
@@ -117,10 +125,10 @@
   border-radius: 0;
 }
 .tabs-scroller-left {
-  background: @tabs-header-bgcolor url('images/tabs_icons.png') no-repeat 1px center;
+  background: @tabs-header-bgcolor url('images/tabs_icons.png') no-repeat 4px center; /*2018-6-27 UI建议修改 1px->4px*/
 }
 .tabs-scroller-right {
-  background: @tabs-header-bgcolor url('images/tabs_icons.png') no-repeat -15px center;
+  background: @tabs-header-bgcolor url('images/tabs_icons.png') no-repeat -12px center; /*2018-6-27 UI建议修改 -15px->-12px*/
 }
 
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
@@ -326,13 +334,13 @@
 .tabs-container.tabs-gray {
   .tabs-scroller-left {
     border-color:@tabs-header-gray-bgcolor;
-    background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat 1px center;
+    background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat 4px center; /*2018-6-27 UI建议修改 1px->4px*/
     border-bottom:1px solid #cccccc;
     border-right:1px solid #cccccc;
   }
   .tabs-scroller-right {
     border-color:@tabs-header-gray-bgcolor;
-    background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat -15px center;
+    background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat -12px center; /*2018-6-27 UI建议修改 -15px->-12px*/
     border-bottom:1px solid #cccccc;
     border-left:1px solid #cccccc;
   }
@@ -427,13 +435,13 @@
   .tabs-header-bottom{   //灰色 底部
     .tabs-scroller-left {
       border-color:@tabs-header-gray-bgcolor;
-      background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat 1px center;
+      background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat 4px center; /*2018-6-27 UI建议修改 1px->4px*/
       border-top:1px solid #cccccc;
       border-right:1px solid #cccccc;
     }
     .tabs-scroller-right {
       border-color:@tabs-header-gray-bgcolor;
-      background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat -15px center;
+      background: @tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat -12px center; /*2018-6-27 UI建议修改 -15px->-12px*/
       border-top:1px solid #cccccc;
       border-left:1px solid #cccccc;
     }

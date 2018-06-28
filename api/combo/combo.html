@@ -5,7 +5,7 @@
 	<title>下拉框示例</title>
 	 <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
@@ -22,40 +22,46 @@
 		<pre class="prettyprint lang-js"><code>$(function(){
 	var ccObj=$HUI.combo('#cc',{});
 });</code></pre>
-
-
+		<style>
+			#sp input{
+				margin: 5px 10px;
+			}
+		</style>
 		<select id="cc2" style="width:150px"></select>
 		<div id="sp">
-			<div style="color:#99BBE8;background:#fafafa;padding:5px;">Select a language</div>
+			<div style="color:#000000;background:#fafafa;padding:5px;">Select a language</div>
 			<div style="padding:10px">
-				<input type="radio" name="lang" value="01"><span>Java</span><br/>
-				<input type="radio" name="lang" value="02"><span>C#</span><br/>
-				<input type="radio" name="lang" value="03"><span>Ruby</span><br/>
-				<input type="radio" name="lang" value="04"><span>Basic</span><br/>
-				<input type="radio" name="lang" value="05"><span>Fortran</span>
+				<input class='hisui-radio' type="radio" name="lang" value="01" label='Java'><br/>
+				<input class='hisui-radio' type="radio" name="lang" value="02" label='Ruby'><br/>
+				<input class='hisui-radio' type="radio" name="lang" value="03" label='Basic'><br/>
+				<input class='hisui-radio' type="radio" name="lang" value="04" label='Cache'><br/>
+				<input class='hisui-radio' type="radio" name="lang" value="05" label='HTML'><br/>
+				<input class='hisui-radio' type="radio" name="lang" value="06" label='CSS'>
 			</div>
 		</div>
 		<pre class="prettyprint lang-html"><code>&lt;select id="cc2" style="width:150px"&gt;&lt;/select&gt;
 &lt;div id="sp"&gt;
 	&lt;div style="color:#99BBE8;background:#fafafa;padding:5px;"&gt;Select a language&lt;/div&gt;
 	&lt;div style="padding:10px"&gt;
-		&lt;input type="radio" name="lang" value="01"&gt;&lt;span&gt;Java&lt;/span&gt;&lt;br/&gt;
-		&lt;input type="radio" name="lang" value="02"&gt;&lt;span&gt;C#&lt;/span&gt;&lt;br/&gt;
-		&lt;input type="radio" name="lang" value="03"&gt;&lt;span&gt;Ruby&lt;/span&gt;&lt;br/&gt;
-		&lt;input type="radio" name="lang" value="04"&gt;&lt;span&gt;Basic&lt;/span&gt;&lt;br/&gt;
-		&lt;input type="radio" name="lang" value="05"&gt;&lt;span&gt;Fortran&lt;/span&gt;
+		&lt;input class='hisui-radio' type="radio" name="lang" value="01" label='Java'&gt;&lt;br/&gt;
+		&lt;input class='hisui-radio' type="radio" name="lang" value="02" label='Ruby'&gt;&lt;br/&gt;
+		&lt;input class='hisui-radio' type="radio" name="lang" value="03" label='Basic'&gt;&lt;br/&gt;
+		&lt;input class='hisui-radio' type="radio" name="lang" value="04" label='Cache'&gt;&lt;br/&gt;
+		&lt;input class='hisui-radio' type="radio" name="lang" value="05" label='HTML'&gt;&lt;br/&gt;
+		&lt;input class='hisui-radio' type="radio" name="lang" value="06" label='CSS'&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 		<pre class="prettyprint lang-js"><code>$(function(){
 	var cc2Obj=$HUI.combo('#cc2',{editable:false});
+	var cc2Obj=$HUI.combo('#cc2',{editable:false});
 	$('#sp').appendTo(cc2Obj.panel());
-	$('#sp input').click(function(){
+	$('#sp input').radio({onCheckChange:function(e,v){
 		var v = $(this).val();
-		var s = $(this).next('span').text();
+		var l = $(this).attr('label');
 		cc2Obj.setValue(v);
-		cc2Obj.setText(s);
+		cc2Obj.setText(l);
 		cc2Obj.hidePanel();
-	});
+	}});
 });</code></pre>
 
 		
@@ -78,13 +84,13 @@
 			*/
 			var cc2Obj=$HUI.combo('#cc2',{editable:false});
 			$('#sp').appendTo(cc2Obj.panel());
-			$('#sp input').click(function(){
+			$('#sp input').radio({onCheckChange:function(e,v){
 				var v = $(this).val();
-				var s = $(this).next('span').text();
+				var l = $(this).attr('label');
 				cc2Obj.setValue(v);
-				cc2Obj.setText(s);
+				cc2Obj.setText(l);
 				cc2Obj.hidePanel();
-			});
+			}});
 		});
   </script>
     <table class="table">

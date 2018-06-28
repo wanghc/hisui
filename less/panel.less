@@ -1,4 +1,9 @@
 @import "variables.less";
+/*2018-6-28 增大图标与左边间距*/
+.panel-icon {
+  left: 10px;
+  width: 16px;
+}
 .panel-header {
   padding: @panel-header-padding;
   -moz-border-radius: 4px 4px 0 0;
@@ -38,7 +43,7 @@
   padding-left: 5px;
 }
 .panel-title.panel-with-icon {
-  padding-left: 21px;
+  padding-left: 26px;
 }
 .panel-header.panel-header-big{
   padding: 8px 5px 8px 10px;
@@ -60,8 +65,17 @@
 .panel-header-gray+.panel-body{
   border-color:#cccccc; 
 }
-
 .panel-header-gray .panel-title{
+  color: #000000;
+}
+.panel-header-white{
+  background:#ffffff;
+  border-color: #cccccc;
+}
+.panel-header-white+.panel-body{
+  border-color:#cccccc; 
+}
+.panel-header-white .panel-title{
   color: #000000;
 }
 .panel-header-blue{

@@ -24,7 +24,7 @@
             text-decoration: none;
             color:#000000;
         }
-        .hisui-accordion ul>li:hover {
+        .hisui-accordion ul>li:hover ,.hisui-accordion ul>li.active{
             background-color: #E3E3E3;
         }
         #tabs .panel .panel-body{
@@ -224,7 +224,7 @@
                         }
                     })
                 }
-            } else {
+            }else{
                 var content = createFrame(url);
                 $('#tabs').tabs('add',{
                     style:{overflow:'hidden'},
@@ -442,6 +442,14 @@
             });
             if(location.href.indexOf("dev=1")==-1){
                 $('#accd').accordion('remove','测试');
+            }
+            $('#tabs').tabs("options").onSelect=function(title,index){
+                $(".api-navi-tab").each(function(){
+                    $(this).closest("li").removeClass('active');
+                    if ($(this).text()==title){
+                        $(this).closest("li").addClass('active');
+                    }
+                });
             }
         });	
     </script>

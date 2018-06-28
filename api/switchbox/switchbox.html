@@ -16,9 +16,9 @@
     <h3>如：</h3>
     <div class="demo-exp-code entry-content"> 
         <div id="switch1" class="hisui-switchbox" style="margin-left:5px" data-options="onText:'启用',offText:'禁用',
-        size:'small',animated:true,onSwitchChange:function(event,value){console.log(event);console.log(value);}">
+        size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:function(event,value){console.log(event);console.log(value);}">
         </div><pre class="prettyprint lang-html"><code>&lt;div id="switch1" class="hisui-switchbox" style="margin-left:5px" data-options="onText:'启用',offText:'禁用',
-size:'small',animated:true,onSwitchChange:function(event,value){console.log(event);console.log(value);}">
+size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:function(event,value){console.log(event);console.log(value);}">
 &lt;/div&gt;</code></pre>
     </div>
     <div class="demo-exp-code entry-content"> 
@@ -29,6 +29,8 @@ size:'small',animated:true,onSwitchChange:function(event,value){console.log(even
                 $HUI.switchbox('#switch2',{
                     onText:'开',
                     offText:'关',
+                    onClass:'primary',
+                    offClass:'gray',
                     onSwitchChange:function(e,val){
                         console.log(e);
                         console.log(val);
@@ -91,13 +93,13 @@ size:'small',animated:true,onSwitchChange:function(event,value){console.log(even
             </tr>
             <tr>
                 <td>onClass</td>
-                <td>开状态时类样式，可选范围 'primary' | 'info' | 'success' | 'warning' | 'danger'。默认'success'</td>
+                <td>开状态时类样式，可选范围 'primary' | 'info' | 'success' | 'warning' | 'danger'|'gray'。默认'success'</td>
                 <td>'success'</td>
                 <td></td>
             </tr>
             <tr>
                 <td>offClass</td>
-                <td>开状态时类样式，可选范围 'primary' | 'info' | 'success' | 'warning' | 'danger'。默认'warning'</td>
+                <td>开状态时类样式，可选范围 'primary' | 'info' | 'success' | 'warning' | 'danger'|'gray'。默认'warning'</td>
                 <td>'warning'</td>
                 <td></td>
             </tr>

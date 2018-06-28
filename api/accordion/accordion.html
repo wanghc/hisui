@@ -17,15 +17,15 @@
     <div class="demo-exp-code entry-content"> 
         <div class="hisui-accordion" style="width:200px;height:450px;float:left;"
             data-options="border:false">   
-            <div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;background-color:#EBEBEB;">   
+            <div title="等待区" data-options="iconCls:'icon-w-update'" style="overflow:auto;padding:10px;background-color:#EBEBEB;">   
                 <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
                 <p>Accordion is a part of easyui framework for jQuery.     
                 It lets you define your accordion component on web page more easily.</p>   
             </div>   
-            <div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;background-color:#EBEBEB;">   
+            <div title="住院区" data-options="iconCls:'icon-w-import',selected:true" style="padding:10px;background-color:#EBEBEB;">   
                 content2    
             </div>   
-            <div title="出院区" style="background-color:#EBEBEB;">   
+            <div title="出院区" data-options="iconCls:'icon-w-export'" style="background-color:#EBEBEB;">   
                 content3    
             </div>   
         </div>
@@ -34,15 +34,15 @@
 
         <div id="acc" class="hisui-accordion accordion-green" style="width:200px;height:450px;float:left;"
             data-options="border:false">   
-            <div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+            <div title="等待区" data-options="iconCls:'icon-w-update'" style="overflow:auto;padding:10px;">   
                 <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
                 <p>Accordion is a part of easyui framework for jQuery.     
                 It lets you define your accordion component on web page more easily.</p>   
             </div>   
-            <div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+            <div title="住院区" data-options="iconCls:'icon-w-import',selected:true" style="padding:10px;">   
                 此手风琴可以进行增加和删除操作     
             </div>   
-            <div title="出院区">   
+            <div title="出院区" data-options="iconCls:'icon-w-export'">   
                 content3    
             </div>   
         </div>  
@@ -55,29 +55,29 @@
         </div>
         <div style="padding:2px ;clear: left"></div>
         <pre class="prettyprint lang-html"><code>&lt;div class="hisui-accordion" style="width:200px;height:450px;float:left;" data-options="border:false">  
-    &lt;div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;background-color:#EBEBEB;">   
+    &lt;div title="等待区" data-options="iconCls:'icon-w-update'" style="overflow:auto;padding:10px;background-color:#EBEBEB;">   
         &lt;h3 style="color:#0099FF;">Accordion for jQuery&lt;/h3>   
         &lt;p>Accordion is a part of easyui framework for jQuery.     
         It lets you define your accordion component on web page more easily.&lt;/p>   
     &lt;/div>   
-    &lt;div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;background-color:#EBEBEB;">   
+    &lt;div title="住院区" data-options="iconCls:'icon-w-import',selected:true" style="padding:10px;background-color:#EBEBEB;">   
         content2    
     &lt;/div>   
-    &lt;div title="出院区" style="background-color:#EBEBEB;">   
+    &lt;div title="出院区" data-options="iconCls:'icon-w-export" style="background-color:#EBEBEB;">   
         content3    
     &lt;/div>   
 &lt;/div>
-&lt;div style="height:300px;width:20px;float:left">&lt;/div>
+
 &lt;div id="acc" class="hisui-accordion accordion-green" style="width:200px;height:450px;float:left;" data-options="border:false">   
-    &lt;div title="等待区" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+    &lt;div title="等待区" data-options="iconCls:'icon-w-update'" style="overflow:auto;padding:10px;">   
         &lt;h3 style="color:#0099FF;">Accordion for jQuery&lt;/h3>   
         &lt;p>Accordion is a part of easyui framework for jQuery.     
         It lets you define your accordion component on web page more easily.&lt;/p>   
     &lt;/div>   
-    &lt;div title="住院区" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+    &lt;div title="住院区" data-options="iconCls:'icon-w-import',selected:true" style="padding:10px;">   
         此手风琴可以进行增加和删除操作   
     &lt;/div>   
-    &lt;div title="出院区">   
+    &lt;div title="出院区" data-options="iconCls:'icon-w-export">   
         content3    
     &lt;/div>   
 &lt;/div>  
@@ -96,6 +96,7 @@
             onClick:function(){
                 accObj.add({
                     title:'新标题',
+                    iconCls:'icon-w-add',
                     content:'你点击按钮了，我就有了。',
                     selected:true //,
                     //style:{backgroundColor:'red',borderWidth:2}
@@ -124,6 +125,7 @@
             onClick:function(){
                 accObj.add({
                     title:'新标题',
+                    iconCls:'icon-w-add',
                     content:'你点击按钮了，我就有了。',
                     selected:true //,
                     //style:{backgroundColor:'red',borderWidth:2}
