@@ -5,7 +5,7 @@
 	<title>下拉框示例</title>
 	 <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
@@ -17,11 +17,13 @@
 	<p>组合（combo）可以使用 javascript 从 &lt;select&gt; 或 &lt;input&gt; 元素进行创建。请注意，<span style="color:red;">从标记创建组合（combo）是无效的</span>。</p>
     <h3>如：</h3>
     <div class="demo-exp-code entry-content">
-		<input id="cc" value="001">
-		<pre class="prettyprint lang-html"><code>&lt;input id="cc" value="001"&gt;</code></pre>
-		<pre class="prettyprint lang-js"><code>$(function(){
+		<input id="cc" placeholder="空面板">
+		<pre class="prettyprint lang-html"><code>&lt;input id="cc" placeholder="空面板"&gt;
+&lt;script type="text/javascript"&gt;
+$(function(){
 	var ccObj=$HUI.combo('#cc',{});
-});</code></pre>
+});
+&lt;/script&gt;</code></pre>
 		<style>
 			#sp input{
 				margin: 5px 10px;
@@ -52,8 +54,7 @@
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 		<pre class="prettyprint lang-js"><code>$(function(){
-	var cc2Obj=$HUI.combo('#cc2',{editable:false});
-	var cc2Obj=$HUI.combo('#cc2',{editable:false});
+	var cc2Obj=$HUI.combo('#cc2',{editable:false,placeholder:'输入查询条件'});
 	$('#sp').appendTo(cc2Obj.panel());
 	$('#sp input').radio({onCheckChange:function(e,v){
 		var v = $(this).val();
@@ -82,7 +83,7 @@
 				$('#cc2').combo('setValue', v).combo('setText', s).combo('hidePanel');
 			});
 			*/
-			var cc2Obj=$HUI.combo('#cc2',{editable:false});
+			var cc2Obj=$HUI.combo('#cc2',{editable:false,placeholder:'输入查询条件'});
 			$('#sp').appendTo(cc2Obj.panel());
 			$('#sp input').radio({onCheckChange:function(e,v){
 				var v = $(this).val();
@@ -104,6 +105,12 @@
 			<td>enterNullValueClear</td>
 			<td>默认值true。当为false时，在输入框内回车，没有匹配值不清空输入框。</td>
 			<td>true</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>placeholder</td>
+			<td>默认值""</td>
+			<td>当不为空时，在输入框显示placeholder,<code>IE9+</code>,<code>chrome</code>支持。</td>
 			<td></td>
 		</tr>
 	</table>

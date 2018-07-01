@@ -10628,7 +10628,7 @@ if (typeof JSON !== 'object') {
                 var _6f2 = $(_6ec).datagrid("getColumnFields", _6f1);
                 var tr = opts.finder.getTr(_6ec, _6ed, "body", (_6f1 ? 1 : 2));
                 var _6f3 = tr.find("div.datagrid-cell-check input[type=checkbox]").is(":checked");
-                //wanghc 以前td有datagrid-value-changed样式的,还得加上
+                //wanghc 以前td有datagrid-value-changed样式的,还得加上 实现修改后小红三角
                 //---start
                 var changedFields=[];
                 tr.children(".datagrid-value-changed").each(function(){
@@ -13686,6 +13686,10 @@ if (typeof JSON !== 'object') {
         _842._outerWidth(opts.width)._outerHeight(opts.height);
         _844._outerWidth(_842.width() - _846);
         _844.css({ height: _842.height() + "px", lineHeight: _842.height() + "px" });
+        /*输入框支持placeholder属性 wanghc 2018-6-30*/
+        if (opts.placeholder!=""){
+            _844.attr("placeholder",opts.placeholder);
+        }
         _845._outerHeight(_842.height());
         _843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
         _842.insertAfter(_83f);
@@ -14116,10 +14120,11 @@ if (typeof JSON !== 'object') {
     };
     $.fn.combo.parseOptions = function (_898) {
         var t = $(_898);
-        return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
+        return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["placeholder","width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
     };
     
     $.fn.combo.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        placeholder:"",/*输入框支持placeholder属性 wanghc 2018-6-30*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
         enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19, keyHandler: {
             up: function (e) {
