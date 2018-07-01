@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-6-30 ##
+* 输入框类组件增加placeholder属性，`combo`,`combobox`,`datebox`等
+
 ## 2018-06-28 ##
 * 替换若干小图片
 * `popover`组件样式修改
