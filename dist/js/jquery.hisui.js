@@ -18221,7 +18221,8 @@ function(a, b, c) {
 		
         function _908(_90c, row) {
             state.remainText = false;
-            _90a();
+            //触发顺序 点击行 选中行 触发grid的onSelect 设置text 调用lookup配置项onSelect 触发grid onClickRow走到这儿 设置text 触发lookup的onClickRow
+            //_90a();  //cryze 2018-7-3 用户自己写的处理放在了onSelect 所以在这儿不再调用_90a设置值
             if (!opts.multiple) {
                 $(target).lookup("hidePanel");
             }
