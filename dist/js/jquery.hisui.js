@@ -18201,8 +18201,12 @@ function(a, b, c) {
                 opts.onSelect = _907; */
                 opts.onLoadSuccess.apply(target, arguments);
             }, onClickRow: _908, onSelect: function (_909, row) {
-                _90a();
-                opts.onSelect.call(this, _909, row);
+                var t=this;
+                setTimeout(function(){
+                    _90a();  //直接调用 _90a 内部getSelections实际还无法获取到
+                    opts.onSelect.call(t, _909, row);
+                },0)
+
             }, onUnselect: function (_90b, row) {
                 _90a();
                 opts.onUnselect.call(this, _90b, row);
