@@ -34,6 +34,7 @@
                     pagination:true,
                     onSelect:function(index,rowData){
                         console.log("index="+index+",rowData=",rowData);
+                        //$('#group').lookup('setText',rowData.HIDDEN+"-"+rowData.Description);  //textField虽是Description，在onSelect这可以自己改显示的值 但此种操作需要自己处理好查询条件间的关系
                     }
                 });
             })
@@ -54,6 +55,7 @@
             pagination:true,
             onSelect:function(index,rowData){
                 console.log("index="+index+",rowData=",rowData);
+                //$('#group').lookup('setText',rowData.HIDDEN+"-"+rowData.Description);  //textField虽是Description，在onSelect这可以自己改显示的值 但此种操作需要自己处理好查询条件间的关系
             }
         });
     })
@@ -210,7 +212,7 @@
 <pre class="prettyprint lang-html"><code>安全组 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="group" class="textbox" /&gt;
 &lt;script type='text/javascript'&gt;
 $(function(){
-$("#group").lookup({
+$("#group2").lookup({
     width:200,panelWidth:500,
     url:'getGroup',
     mode:'remote',

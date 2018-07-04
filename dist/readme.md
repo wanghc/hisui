@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 * 公共`ajax`方法支持后台返回值为对象，至前台则转成JSON
 * 公共`ajax`方法支持`js`中数组传入
 
+## 2018-07-03 ##
+* 修复 `lookup` 组件在 `onSelect` 设置组件显示值 会被textField指定的冲掉的问题
+
 ## 2018-6-30 ##
 * 输入框类组件增加placeholder属性，`combo`,`combobox`,`datebox`等
 
