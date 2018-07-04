@@ -29,11 +29,12 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+
 ## 2018-07-04 ##
 * 公共`ajax`方法支持后台返回值为对象，至前台则转成JSON
 * 公共`ajax`方法支持`js`中数组传入
 
-## 2018-06-30 ##
+## 2018-6-30 ##
 * 输入框类组件增加placeholder属性，`combo`,`combobox`,`datebox`等
 
 ## 2018-06-28 ##
