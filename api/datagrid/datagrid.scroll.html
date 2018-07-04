@@ -22,7 +22,7 @@
 	<h3>本地数据。一次加载所有数据，拉动时渲染要显示的行数据</h3>
 	<div class="demo-exp-code entry-content"> 
 		<table id="dg" class="hisui-datagrid" title="病人列表" style="width:800px;height:300px" 
-		data-options="url:null,fitColumns:true,view:scrollview,rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:false">   
+		data-options="url:null,fitColumns:true,view:scrollview,rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:true">   
 			<thead>   
 				<tr>   
 					<th data-options="field:'no',width:20">编码</th>   
@@ -37,7 +37,7 @@
 		<pre class="prettyprint lang-html hide"><code>
 &lt;table id="dg" class="hisui-datagrid" title="病人列表" style="width:800px;height:300px" &gt;
 	&lt;!--url:null表示本地数据,view:scrollview表示使用滚动加载插件--&gt;
-	data-options="url:null,view:scrollview,fitColumns:true,rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:false">   
+	data-options="url:null,view:scrollview,fitColumns:true,rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:true">   
 	&lt;thead&gt;   
 		&lt;tr&gt; 
 			&lt;th data-options="field:'no',width:20">编码&lt;/th&gt;   
