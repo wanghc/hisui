@@ -2404,6 +2404,7 @@
 /*tabs-gray*/
 /*#E7E7E7;*/
 /*#d2eafe;*/
+/*#509de1;*/
 /*variables-end*/
 body {
   font-family: "Microsoft Yahei", verdana, helvetica, arial, sans-serif;
@@ -2755,9 +2756,14 @@ h2 {
 .icon-paper-tri {
   background: url('icons/paper_tri.png') no-repeat center center;
 }
-/* white icon*/
-.icon-white-plus {
-  background: url('icons/white/plus.png') no-repeat center center;
+.icon-outpatient {
+  background: url('icons/outpatient.png') no-repeat center center;
+}
+.icon-inpatient {
+  background: url('icons/inpatient.png') no-repeat center center;
+}
+.icon-emergency {
+  background: url('icons/emergency.png') no-repeat center center;
 }
 /*hisui-linkbutton big*/
 .icon-big-save {
@@ -2850,7 +2856,10 @@ h2 {
 .icon-big-skip-no {
   background: url('icons/big/skip_no.png') no-repeat top center;
 }
-/*icon-white*/
+/* white icon*/
+.icon-white-plus {
+  background: url('icons/white/plus.png') no-repeat center center;
+}
 .icon-w-add {
   background: url('icons/white/add.png') no-repeat center center;
 }
@@ -4226,8 +4235,8 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   border-style: solid;
 }
 .datagrid-row-selected {
-  background: #509de1;
-  color: #ffffff;
+  background: #d9e7f1;
+  /*color: @datagrid-row-select-color;*/
 }
 .datagrid-row-over,
 .datagrid-header td.datagrid-header-over {
