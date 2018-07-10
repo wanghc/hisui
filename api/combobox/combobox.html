@@ -13,7 +13,8 @@
 	<h2>组合框</h2>
     <h3>说明:</h3>
     <span>组合框（combobox）显示一个可编辑的文本框和下拉列表，用户可以从下拉列表中选择一个或多个值。用户可以直接输入文本到列表的顶部，或者从列表中选择一个或多个现成的值。</span>
-    <h3>如：</h3>
+	<h3>如：</h3>
+	<h3>html生成的单选下拉框</h3>
     <div class="demo-exp-code entry-content">
 		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler">
 			<option value="AK">Alaska</option>
@@ -25,7 +26,7 @@
 			<option value="OH" selected>Ohio</option>
 			<option value="WY">Wyoming</option>
 		</select>
-		<pre class="prettyprint lang-html"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler">
+		<pre class="prettyprint lang-html hide"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler">
 	&lt;option value="AK">Alaska&lt;/option>
 	&lt;option value="CT">Connecticut&lt;/option>
 	&lt;option value="DE">Delaware&lt;/option>
@@ -37,29 +38,40 @@
 &lt;/select>
 默认选择selected为Ohio</code></pre>
 	</div>	
+
     <div style="margin:20px 0"></div>
-    还可通过js生成
+    <h3>JS生成带勾选框的多选下拉框（checkbox）</h3>
     <div class="demo-exp-code entry-content">
 	  	<select id="cbox" style="width:200px;">
 		</select>
-		<pre class="prettyprint lang-html"><code>&lt;select id="cbox" style="width:200px;">&lt;/select></code></pre>
-		</pre><pre class="prettyprint lang-js">
-&lt;script type="text/javascript"&gt;
+		<pre class="prettyprint lang-html hide"><code><style></style>&lt;select id="cbox" style="width:200px;">&lt;/select></code></pre>
+		<pre class="prettyprint lang-js hide">
 $(function(){
 	var cbox = $HUI.combobox("#cbox",{
-		valueField:'id',
-		textField:'text',
+		valueField:'id',textField:'text',multiple:true,selectOnNavigation:false,panelHeight:"auto",editable:false,
 		data:[
-			{id:'css',text:'css语言'}
-			,{id:'html',text:'html语言'}
-			,{id:'c',text:'c语言'}
-			,{id:'c++',text:'c++语言'}	
+			{id:'css',text:'CSS语言'},{id:'html',text:'HTML语言'},{id:'c',text:'C语言'}
+			,{id:'c++',text:'C++语言'},{id:'java',text:'JAVA语言'},{id:'cache',text:'M语言'},{id:'sql',text:'结构化查询语言'}
 		],
+		formatter:function(row){  
+			var opts;
+			if(row.selected==true){
+				opts = "&lt;input type='checkbox' checked='checked' id='r"+row.id+"' value='"+row.id+"'&gt;"+row.text;
+			}else{
+				opts = "&lt;input type='checkbox' id='r"+row.id+"' value='"+row.id+"'&gt;"+row.text;
+			}
+			return opts;
+		},
+		onSelect:function(rec) {
+			var objr =  document.getElementById("r"+rec.id);
+			$(objr).prop('checked',true);
+		},onUnselect:function(rec){
+			var objr =  document.getElementById("r"+rec.id);
+			$(objr).prop('checked',false);
+		}
 	});
 	return ;
-});	
-&lt;/script&gt;	
-	</pre>
+});</pre>
 	</div>
 	<script type="text/javascript">
 	function selectHandler(rec){
@@ -70,12 +82,34 @@ $(function(){
 	var cbox = $HUI.combobox("#cbox",{
 		valueField:'id',
 		textField:'text',
+		multiple:true,selectOnNavigation:false,
 		data:[
-			{id:'css',text:'css语言'}
-			,{id:'html',text:'html语言'}
-			,{id:'c',text:'c语言'}
-			,{id:'c++',text:'c++语言'}	
+			{id:'css',text:'CSS语言'}
+			,{id:'html',text:'HTML语言'}
+			,{id:'c',text:'C语言'}
+			,{id:'c++',text:'C++语言'}
+			,{id:'java',text:'JAVA语言'}
+			,{id:'cache',text:'M语言'}
+			,{id:'sql',text:'结构化查询语言'}
 		],
+		editable:false,
+		formatter:function(row){  
+			var opts;
+			if(row.selected==true){
+				opts = "<input type='checkbox' checked='checked' id='r"+row.id+"' value='"+row.id+"'>"+row.text;
+			}else{
+				opts = "<input type='checkbox' id='r"+row.id+"' value='"+row.id+"'>"+row.text;
+			}
+			return opts;
+		},
+		panelHeight:"auto",
+		onSelect:function(rec) {
+			var objr =  document.getElementById("r"+rec.id);
+			$(objr).prop('checked',true);
+		},onUnselect:function(rec){
+			var objr =  document.getElementById("r"+rec.id);
+			$(objr).prop('checked',false);
+		}
 	});
 	return ;
 	// easyloader.theme = "bootstrap";
@@ -92,6 +126,90 @@ $(function(){
 	// });
   });
   </script>
+  <!--icon-ok 效果 -->
+  <h3>JS生成带勾选状态的多选下拉框（icon-ok）</h3>
+  <div class="demo-exp-code entry-content">
+	<select id="iconokBox" style="width:200px;"></select>
+	<style>
+		.icon{
+			width: 20px;
+			height: 20px;
+			margin-right: 10px;
+			float: right;
+		}
+	</style>
+	<pre class="prettyprint lang-html hide"><code>&lt;style>.icon{width: 20px;height: 20px;margin-right: 10px;float: right;}&lt;/style>
+&lt;select id="iconokBox" style="width:200px;">&lt;/select></code></pre>
+	<pre class="prettyprint lang-js hide"><code>$(function(){
+	var cbox = $HUI.combobox("#iconokBox",{
+		valueField:'id', textField:'text', multiple:true, selectOnNavigation:false,panelHeight:"auto",
+		data:[
+			{id:'css',text:'CSS语言'}
+			,{id:'html',text:'HTML语言'}
+			,{id:'c',text:'C语言'}
+			,{id:'c++',text:'C++语言'}
+			,{id:'java',text:'JAVA语言'}
+			,{id:'cache',text:'M语言'}
+			,{id:'sql',text:'结构化查询语言'}
+		],
+		editable:false,
+		formatter:function(row){  
+			var opts;
+			if(row.selected==true){
+				opts = row.text+"&lt;span id='i"+row.id+"' class='icon icon-ok'&gt;&lt;/span&gt;";
+			}else{
+				opts = row.text+"&lt;span id='i"+row.id+"' class='icon'&gt;&lt;/span&gt;";
+			}
+			return opts;
+		},
+		onSelect:function(rec) {
+			var obji =  document.getElementById("i"+rec.id);
+			$(obji).addClass('icon-ok');
+		},
+		onUnselect:function(rec){
+			var obji =  document.getElementById("i"+rec.id);
+			$(obji).removeClass('icon-ok');
+		}
+	});
+	return ;
+  });
+	</code></pre>
+  </div>
+  <script type="text/javascript">
+$(function(){
+  var cbox = $HUI.combobox("#iconokBox",{
+	  valueField:'id', textField:'text', multiple:true, selectOnNavigation:false,panelHeight:"auto",
+	  data:[
+		  {id:'css',text:'CSS语言'}
+		  ,{id:'html',text:'HTML语言'}
+		  ,{id:'c',text:'C语言'}
+		  ,{id:'c++',text:'C++语言'}
+		  ,{id:'java',text:'JAVA语言'}
+		  ,{id:'cache',text:'M语言'}
+		  ,{id:'sql',text:'结构化查询语言'}
+	  ],
+	  editable:false,
+	  formatter:function(row){  
+		  var opts;
+		  if(row.selected==true){
+			  opts = row.text+"<span id='i"+row.id+"' class='icon icon-ok'></span>";
+		  }else{
+			  opts = row.text+"<span id='i"+row.id+"' class='icon'></span>";
+		  }
+		  return opts;
+	  },
+	  onSelect:function(rec) {
+		  var obji =  document.getElementById("i"+rec.id);
+		  $(obji).addClass('icon-ok');
+	  },
+	  onUnselect:function(rec){
+		  var obji =  document.getElementById("i"+rec.id);
+		  $(obji).removeClass('icon-ok');
+	  }
+  });
+  return ;
+});
+</script>
   <table class="table">
 		<tr class="protitle">
 			<th>属性</th>
@@ -101,7 +219,13 @@ $(function(){
 		</tr>
 		<tr>
 			<td>enterNullValueClear</td>
-			<td>默认值true。当为false时，在输入框内回车，没有匹配值不清空输入框。</td>
+			<td>默认值<code>true</code>。当为<code>false</code>时，在输入框内回车，没有匹配值不清空输入框。</td>
+			<td>true</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>selectOnNavigation</td>
+			<td>默认值<code>true</code>。当为<code>false</code>时，DOWN键不选中行记录</td>
 			<td>true</td>
 			<td></td>
 		</tr>
