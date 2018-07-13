@@ -1,223 +1,18 @@
 @import "variables.less";
+/*create icon*/
+.c-icon(@name,@img){
+	.icon-@{name}{background:url('icons/@{img}.png') no-repeat center center;}
+}
+/*create white icon*/
+.c-w-icon(@name,@img){
+	.icon-w-@{name}{background:url('icons/white/@{img}.png') no-repeat center center;}
+}
+/*create big icon*/
+.c-b-icon(@name,@img){
+	.icon-big-@{name}{background:url('icons/big/@{img}.png') no-repeat top center;}
+}
 .icon-blank{
 	background:url('icons/blank.gif') no-repeat center center;
-}
-.icon-add{
-	background:url('icons/edit_add.png') no-repeat center center;
-}
-.icon-edit{
-	background:url('icons/pencil.png') no-repeat center center;
-}
-.icon-remove{
-	background:url('icons/edit_remove.png') no-repeat center center;
-}
-.icon-save{
-	background:url('icons/filesave.png') no-repeat center center;
-}
-.icon-cut{
-	background:url('icons/cut.png') no-repeat center center;
-}
-.icon-ok{
-	background:url('icons/ok.png') no-repeat center center;
-}
-.icon-no{
-	background:url('icons/no.png') no-repeat center center;
-}
-.icon-cancel{
-	background:url('icons/cancel.png') no-repeat center center;
-}
-.icon-reload{
-	background:url('icons/reload.png') no-repeat center center;
-}
-.icon-search{
-	background:url('icons/search.png') no-repeat center center;
-}
-.icon-print{
-	background:url('icons/print.png') no-repeat center center;
-}
-.icon-help{
-	background:url('icons/help.png') no-repeat center center;
-}
-.icon-undo{
-	background:url('icons/undo.png') no-repeat center center;
-}
-.icon-redo{
-	background:url('icons/redo.png') no-repeat center center;
-}
-.icon-back{
-	background:url('icons/back.png') no-repeat center center;
-}
-.icon-sum{
-	background:url('icons/sum.png') no-repeat center center;
-}
-.icon-tip{
-	background:url('icons/tip.png') no-repeat center center;
-}
-.icon-filter{
-	background:url('icons/filter.png') no-repeat center center;
-}
-.icon-mini-add{
-	background:url('icons/mini_add.png') no-repeat center center;
-}
-.icon-mini-edit{
-	background:url('icons/mini_edit.png') no-repeat center center;
-}
-.icon-mini-refresh{
-	background:url('icons/mini_refresh.png') no-repeat center center;
-}
-
-.icon-large-picture{
-	background:url('icons/large_picture.png') no-repeat center center;
-}
-.icon-large-clipart{
-	background:url('icons/large_clipart.png') no-repeat center center;
-}
-.icon-large-shapes{
-	background:url('icons/large_shapes.png') no-repeat center center;
-}
-.icon-large-smartart{
-	background:url('icons/large_smartart.png') no-repeat center center;
-}
-.icon-large-chart{
-	background:url('icons/large_chart.png') no-repeat center center;
-}
-.icon-noread-report{
-	background:url('icons/noread_report.png') no-repeat center center;
-}
-.icon-bed{
-	background:url('icons/bed.png') no-repeat center center;
-}
-.icon-house{
-	background:url('icons/house.png') no-repeat center center;
-}
-.icon-person{
-	background:url('icons/person.png') no-repeat center center;
-}
-.icon-add-note{
-	background:url('icons/add_note.png') no-repeat center center;
-}
-.icon-patient{
-	background:url('icons/outhosp_patient.png') no-repeat center center;
-}
-.icon-outhosp-patient{
-	background:url('icons/outhosp_patient.png') no-repeat center center;
-}
-.icon-stethoscope{
-	background:url('icons/stethoscope.png') no-repeat center center;
-}
-.icon-write-order{
-	background:url('icons/write_order.png') no-repeat center center;
-}
-.icon-replace-order{
-	background:url('icons/replace_order.png') no-repeat center center;
-}
-.icon-stop-order{
-	background:url('icons/stop_order.png') no-repeat center center;
-}
-.icon-cancel-order{
-	background:url('icons/cancel_order.png') no-repeat center center;
-}
-.icon-abort-order{
-	background:url('icons/abort_order.png') no-repeat center center;
-}
-.icon-uncheckin{
-	background:url('icons/uncheckin.png') no-repeat center center;
-}
-.icon-end-adm{
-	background:url('icons/end_adm.png') no-repeat center center;
-}
-.icon-change-loc{
-	background:url('icons/change_loc.png') no-repeat center center;	
-}
-.icon-resort{
-	background:url('icons/resort.png') no-repeat center center;	
-}
-.icon-doctor{
-	background:url('icons/doctor.png') no-repeat center center;	
-}
-.icon-clear-screen{
-	background:url('icons/clear_screen.png') no-repeat center center;
-}
-.icon-clear{
-	background:url('icons/clear_screen.png') no-repeat center center;
-}
-.icon-read-card{
-	background:url('icons/read_card.png') no-repeat center center;
-}
-.icon-update{
-	background:url('icons/update.png') no-repeat center center;
-}
-.icon-upload-cloud{
-	background:url('icons/upload_cloud.png') no-repeat center center;
-}
-.icon-unload-cloud{
-	background:url('icons/unload_cloud.png') no-repeat center center;
-}
-.icon-reset{
-	background:url('icons/reset.png') no-repeat center center;
-}
-.icon-arrow-top{
-	background:url('icons/arrow_top.png') no-repeat center center;
-}
-.icon-arrow-bottom{
-	background:url('icons/arrow_bottom.png') no-repeat center center;
-}
-.icon-arrow-right{
-	background:url('icons/arrow_right.png') no-repeat center center;
-}
-.icon-arrow-left{
-	background:url('icons/arrow_left.png') no-repeat center center;
-}
-.icon-close{
-	background:url('icons/close.png') no-repeat center center;
-}
-.icon-save{
-	background:url('icons/save.png') no-repeat center center;
-}
-.icon-other{
-	background:url('icons/other.png') no-repeat center center;
-}
-.icon-patient-info{
-	background:url('icons/patient_info.png') no-repeat center center;
-}
-.icon-apply-adm{
-	background:url('icons/apply_adm.png') no-repeat center center;
-}
-.icon-del-diag{
-	background:url('icons/del_diag.png') no-repeat center center;
-}
-.icon-apply-opr{
-	background:url('icons/apply_opr.png') no-repeat center center;
-}
-.icon-add-diag{
-	background:url('icons/add_diag.png') no-repeat center center;
-}
-.icon-save-tmpl{
-	background:url('icons/save_tmpl.png') no-repeat center center;
-}
-.icon-apply-check{
-	background:url('icons/apply_check.png') no-repeat center center;
-}
-.icon-check-reg{
-	background:url('icons/check_reg.png') no-repeat center center;
-}
-.icon-exe-order{
-	background:url('icons/exe_order.png') no-repeat center center;
-}
-.icon-emr-cri{
-	background:url('icons/emr_cri.png') no-repeat center center;
-}
-.icon-copy-drug{
-	background:url('icons/copy_drug.png') no-repeat center center;
-}
-.icon-copy-sos{
-	background:url('icons/copy_sos.png') no-repeat center center;
-}
-.icon-copy-prn{
-	background:url('icons/copy_prn.png') no-repeat center center;
-}
-.icon-copy-prn{
-	background:url('icons/copy_prn.png') no-repeat center center;
 }
 .icon-funnel-eye{
 	background:url('@{icon-path}/funnel_eye.png') no-repeat center center;
@@ -228,284 +23,186 @@
 .icon-funnel-empty{
 	background:url('@{icon-path}/funnel_empty.png') no-repeat center center;
 }
-.icon-lt-rt-37{
-	background:url('icons/lt_rt_37.png') no-repeat center center;
-}
-.icon-lt-rt-55{
-	background:url('icons/lt_rt_55.png') no-repeat center center;
-}
-.icon-lt-rt-73{
-	background:url('icons/lt_rt_73.png') no-repeat center center;
-}
-.icon-lt-rt-19{
-	background:url('icons/lt_rt_19.png') no-repeat center center;
-}
-.icon-arrow-left-top{
-	background:url('icons/arrow_left_top.png') no-repeat center center;
-}
-.icon-arrow-right-top{
-	background:url('icons/arrow_right_top.png') no-repeat center center;
-}
-.icon-bold{
-	background:url('icons/bold.png') no-repeat center center;
-}
-.icon-font{
-	background:url('icons/font.png') no-repeat center center;
-}
-.icon-strikethrough{
-	background:url('icons/strikethrough.png') no-repeat center center;
-}
-.icon-underline{
-	background:url('icons/underline.png') no-repeat center center;
-}
-.icon-incline{
-	background:url('icons/incline.png') no-repeat center center;
-}
-.icon-subscript{
-	background:url('icons/subscript.png') no-repeat center center;
-}
-.icon-superscript{
-	background:url('icons/superscript.png') no-repeat center center;
-}
-.icon-indentation{
-	background:url('icons/indentation.png') no-repeat center center;
-}
-.icon-align-left{
-	background:url('icons/align_left.png') no-repeat center center;
-}
-.icon-align-center{
-	background:url('icons/align_center.png') no-repeat center center;
-}
-.icon-align-right{
-	background:url('icons/align_right.png') no-repeat center center;
-}
-.icon-cut-blue{
-	background:url('icons/cut_blue.png') no-repeat center center;
-}
-.icon-paste{
-	background:url('icons/paste.png') no-repeat center center;
-}
-.icon-paste-board{
-	background:url('icons/paste_board.png') no-repeat center center;
-}
-.icon-copy{
-	background:url('icons/copy.png') no-repeat center center;
-}
-.icon-add{
-	background:url('icons/add.png') no-repeat center center;
-}
-.icon-paper-cfg{
-	background:url('icons/paper_cfg.png') no-repeat center center;
-}
-.icon-export{
-	background:url('icons/export.png') no-repeat center center;
-}
-.icon-omega{
-	background:url('icons/omega.png') no-repeat center center;
-}
-.icon-eye{
-	background:url('icons/eye.png') no-repeat center center;
-}
-.icon-fee-arrow{
-	background:url('icons/fee_arrow.png') no-repeat center center;
-}
-.icon-paper-arrow{
-	background:url('icons/paper_arrow.png') no-repeat center center;
-}
-.icon-checkin{
-	background:url('icons/checkin.png') no-repeat center center;
-}
-.icon-paper{
-	background:url('icons/paper.png') no-repeat center center;
-}
-.icon-fee{
-	background:url('icons/fee.png') no-repeat center center;
-}
-.icon-paper-tri{
-	background:url('icons/paper_tri.png') no-repeat center center;
-}
-.icon-outpatient{
-	background:url('icons/outpatient.png') no-repeat center center;
-}
-.icon-inpatient{
-	background:url('icons/inpatient.png') no-repeat center center;
-}
-.icon-emergency{
-	background:url('icons/emergency.png') no-repeat center center;
-}
+.c-icon(add,edit_add);
+.c-icon(edit,pencil);
+.c-icon(remove,edit_remove);
+.c-icon(save,filesave);
+.c-icon(cut,cut);
+.c-icon(ok,ok);
+.c-icon(no,no);
+.c-icon(cancel,cancel);
+.c-icon(reload,reload);
+.c-icon(search,search);
+.c-icon(print,print);
+.c-icon(help,help);
+.c-icon(undo,undo);
+.c-icon(redo,redo);
+.c-icon(back,back);
+.c-icon(sum,sum);
+.c-icon(tip,tip);
+.c-icon(filter,filter);
+.c-icon(mini-add,mini_add);
+.c-icon(mini-edit,mini_edit);
+.c-icon(mini-refresh,mini_refresh);
+.c-icon(large-picture,large_picture);
+.c-icon(large-clipart,large_clipart);
+.c-icon(large-shapes,large_shapes);
+.c-icon(large-smartart,large_smartart);
+.c-icon(large-chart,large_chart);
+.c-icon(noread-report,noread_report);
+.c-icon(bed,bed);
+.c-icon(house,house);
+.c-icon(person,person);
+.c-icon(add-note,add_note);
+.c-icon(patient,outhosp_patient);
+.c-icon(outhosp-patient,outhosp_patient);
+.c-icon(stethoscope,stethoscope);
+.c-icon(write-order,write_order);
+.c-icon(replace-order,replace_order);
+.c-icon(stop-order,stop_order);
+.c-icon(cancel-order,cancel_order);
+.c-icon(abort-order,abort_order);
+.c-icon(uncheckin,uncheckin);
+.c-icon(end-adm,end_adm);
+.c-icon(change-loc,change_loc);
+.c-icon(resort,resort);
+.c-icon(doctor,doctor);
+.c-icon(clear-screen,clear_screen);
+.c-icon(clear,clear_screen);
+.c-icon(read-card,read_card);
+.c-icon(update,update);
+.c-icon(upload-cloud,upload_cloud);
+.c-icon(unload-cloud,unload_cloud);
+.c-icon(reset,reset);
+.c-icon(arrow-top,arrow_top);
+.c-icon(arrow-bottom,arrow_bottom);
+.c-icon(arrow-right,arrow_right);
+.c-icon(arrow-left,arrow_left);
+.c-icon(close,close);
+.c-icon(save,save);
+.c-icon(other,other);
+.c-icon(patient-info,patient_info);
+.c-icon(apply-adm,apply_adm);
+.c-icon(del-diag,del_diag);
+.c-icon(apply-opr,apply_opr);
+.c-icon(add-diag,add_diag);
+.c-icon(save-tmpl,save_tmpl);
+.c-icon(apply-check,apply_check);
+.c-icon(check-reg,check_reg);
+.c-icon(exe-order,exe_order);
+.c-icon(emr-cri,emr_cri);
+.c-icon(copy-drug,copy_drug);
+.c-icon(copy-sos,copy_sos);
+.c-icon(copy-prn,copy_prn);
+.c-icon(copy-prn,copy_prn);
+.c-icon(lt-rt-37,lt_rt_37);
+.c-icon(lt-rt-55,lt_rt_55);
+.c-icon(lt-rt-73,lt_rt_73);
+.c-icon(lt-rt-19,lt_rt_19);
+.c-icon(arrow-left-top,arrow_left_top);
+.c-icon(arrow-right-top,arrow_right_top);
+.c-icon(bold,bold);
+.c-icon(font,font);
+.c-icon(strikethrough,strikethrough);
+.c-icon(underline,underline);
+.c-icon(incline,incline);
+.c-icon(subscript,subscript);
+.c-icon(superscript,superscript);
+.c-icon(indentation,indentation);
+.c-icon(align-left,align_left);
+.c-icon(align-center,align_center);
+.c-icon(align-right,align_right);
+.c-icon(cut-blue,cut_blue);
+.c-icon(paste,paste);
+.c-icon(paste-board,paste_board);
+.c-icon(copy,copy);
+.c-icon(add,add);
+.c-icon(paper-cfg,paper_cfg);
+.c-icon(export,export);
+.c-icon(omega,omega);
+.c-icon(eye,eye);
+.c-icon(fee-arrow,fee_arrow);
+.c-icon(paper-arrow,paper_arrow);
+.c-icon(checkin,checkin);
+.c-icon(paper,paper);
+.c-icon(fee,fee);
+.c-icon(paper-tri,paper_tri);
+.c-icon(outpatient,outpatient);
+.c-icon(inpatient,inpatient);
+.c-icon(emergency,emergency);
+.c-icon(star-light-yellow,star_light_yellow);
+.c-icon(star-yellow,star_yellow);
+.c-icon(book,book);
+.c-icon(all-select,all_select);
+.c-icon(cancel-select-grant,cancel_select_grant);
+.c-icon(select-grant,select_grant);
+.c-icon(refuse-select-grant,refuse_select_grant);
+.c-icon(double-quotes,double_quotes);
+.c-icon(transfer,transfer);
+
 /*hisui-linkbutton big*/
-.icon-big-save{
-	background:url('icons/big/save.png') no-repeat top center;
-}
-.icon-big-print{
-	background:url('icons/big/print.png') no-repeat top center;
-}
-.icon-big-del{
-	background:url('icons/big/del.png') no-repeat top center;
-}
-.icon-big-favorite{
-	background:url('icons/big/favorite.png') no-repeat top center;
-}
-.icon-big-favorite-add{
-	background:url('icons/big/favorite_add.png') no-repeat top center;
-}
-.icon-big-img{
-	background:url('icons/big/img.png') no-repeat top center;
-}
-.icon-big-omega{
-	background:url('icons/big/omega.png') no-repeat top center;
-}
-.icon-big-position{
-	background:url('icons/big/position.png') no-repeat top center;
-}
-.icon-big-refresh{
-	background:url('icons/big/refresh.png') no-repeat top center;
-}
-.icon-big-unlock{
-	background:url('icons/big/unlock.png') no-repeat top center;
-}
-.icon-big-book-arrow{
-	background:url('icons/big/book_arrow.png') no-repeat top center;
-}
-.icon-big-book-eye{
-	background:url('icons/big/book_eye.png') no-repeat top center;
-}
-.icon-big-book-ref{
-	background:url('icons/big/book_ref.png') no-repeat top center;
-}
-.icon-big-book-arrow-rt{
-	background:url('icons/big/book_arrow_rt.png') no-repeat top center;
-}
-.icon-big-book-to-book{
-	background:url('icons/big/book_to_book.png') no-repeat top center;
-}
-.icon-big-doctor-green{
-	background:url('icons/big/doctor_green.png') no-repeat top center;
-}
-.icon-big-lt-rt-37{
-	background:url('icons/big/lt_rt_37.png') no-repeat top center;
-}
-.icon-big-lt-rt-55{
-	background:url('icons/big/lt_rt_55.png') no-repeat top center;
-}
-.icon-big-lt-rt-73{
-	background:url('icons/big/lt_rt_73.png') no-repeat top center;
-}
-.icon-big-lt-rt-19{
-	background:url('icons/big/lt_rt_19.png') no-repeat top center;
-}
-.icon-big-card-reader{
-	background:url('icons/big/card_reader.png') no-repeat top center;
-}
-.icon-big-clear{
-	background:url('icons/big/clear.png') no-repeat top center;
-}
-.icon-big-doctor-adm{
-	background:url('icons/big/doctor_adm.png') no-repeat top center;
-}
-.icon-big-fee-arrow{
-	background:url('icons/big/fee_arrow.png') no-repeat top center;
-}
-.icon-big-paper-arrow{
-	background:url('icons/big/paper_arrow.png') no-repeat top center;
-}
-.icon-big-paper-pen{
-	background:url('icons/big/paper_pen.png') no-repeat top center;
-}
-.icon-big-paper-search{
-	background:url('icons/big/paper_search.png') no-repeat top center;
-}
-.icon-big-ring{
-	background:url('icons/big/ring.png') no-repeat top center;
-}
-.icon-big-ring-blue{
-	background:url('icons/big/ring_blue.png') no-repeat top center;
-}
-.icon-big-skip-no{
-	background:url('icons/big/skip_no.png') no-repeat top center;
-}
+.c-b-icon(save,save);
+.c-b-icon(print,print);
+.c-b-icon(del,del);
+.c-b-icon(favorite,favorite);
+.c-b-icon(favorite-add,favorite_add);
+.c-b-icon(img,img);
+.c-b-icon(omega,omega);
+.c-b-icon(position,position);
+.c-b-icon(refresh,refresh);
+.c-b-icon(unlock,unlock);
+.c-b-icon(book-arrow,book_arrow);
+.c-b-icon(book-eye,book_eye);
+.c-b-icon(book-ref,book_ref);
+.c-b-icon(book-arrow-rt,book_arrow_rt);
+.c-b-icon(book-to-book,book_to_book);
+.c-b-icon(doctor-green,doctor_green);
+.c-b-icon(lt-rt-37,lt_rt_37);
+.c-b-icon(lt-rt-55,lt_rt_55);
+.c-b-icon(lt-rt-73,lt_rt_73);
+.c-b-icon(lt-rt-19,lt_rt_19);
+.c-b-icon(card-reader,card_reader);
+.c-b-icon(clear,clear);
+.c-b-icon(doctor-adm,doctor_adm);
+.c-b-icon(fee-arrow,fee_arrow);
+.c-b-icon(paper-arrow,paper_arrow);
+.c-b-icon(paper-pen,paper_pen);
+.c-b-icon(paper-search,paper_search);
+.c-b-icon(ring,ring);
+.c-b-icon(ring-blue,ring_blue);
+.c-b-icon(skip-no,skip_no);
+.c-b-icon(home,home);
+.c-b-icon(stamp,stamp);
+.c-b-icon(tooth,tooth);
+.c-b-icon(close-eye,close_eye);
+.c-b-icon(open-eye,open_eye);
 /* white icon*/
-.icon-white-plus{
-	background:url('icons/white/plus.png') no-repeat center center;
-}
-.icon-w-add{
-	background:url('icons/white/add.png') no-repeat center center;
-}
-.icon-w-arrow-down{
-	background:url('icons/white/arrow_down.png') no-repeat center center;
-}
-.icon-w-arrow-up{
-	background:url('icons/white/arrow_up.png') no-repeat center center;
-}
-.icon-w-back{
-	background:url('icons/white/back.png') no-repeat center center;
-}
-.icon-w-cal{
-	background:url('icons/white/cal.png') no-repeat center center;
-}
-.icon-w-cancel{
-	background:url('icons/white/cancel.png') no-repeat center center;
-}
-.icon-w-card{
-	background:url('icons/white/card.png') no-repeat center center;
-}
-.icon-w-clean{
-	background:url('icons/white/clean.png') no-repeat center center;
-}
-.icon-w-close{
-	background:url('icons/white/close.png') no-repeat center center;
-}
-.icon-w-config{
-	background:url('icons/white/config.png') no-repeat center center;
-}
-.icon-w-edit{
-	background:url('icons/white/edit.png') no-repeat center center;
-}
-.icon-w-epr{
-	background:url('icons/white/epr.png') no-repeat center center;
-}
-.icon-w-file{
-	background:url('icons/white/file.png') no-repeat center center;
-}
-.icon-w-file-open{
-	background:url('icons/white/file_open.png') no-repeat center center;
-}
-.icon-w-find{
-	background:url('icons/white/find.png') no-repeat center center;
-}
-.icon-w-home{
-	background:url('icons/white/home.png') no-repeat center center;
-}
-.icon-w-list{
-	background:url('icons/white/list.png') no-repeat center center;
-}
-.icon-w-new{
-	background:url('icons/white/new.png') no-repeat center center;
-}
-.icon-w-other{
-	background:url('icons/white/other.png') no-repeat center center;
-}
-.icon-w-paper{
-	background:url('icons/white/paper.png') no-repeat center center;
-}
-.icon-w-plus{
-	background:url('icons/white/plus.png') no-repeat center center;
-}
-.icon-w-print{
-	background:url('icons/white/print.png') no-repeat center center;
-}
-.icon-w-save{
-	background:url('icons/white/save.png') no-repeat center center;
-}
-.icon-w-switch{
-	background:url('icons/white/switch.png') no-repeat center center;
-}
-.icon-w-update{
-	background:url('icons/white/update.png') no-repeat center center;
-}
-.icon-w-import{
-	background:url('icons/white/import.png') no-repeat center center;
-}
-.icon-w-export{
-	background:url('icons/white/export.png') no-repeat center center;
-}
+.c-w-icon(plus,plus);
+.c-w-icon(add,add);
+.c-w-icon(arrow-down,arrow_down);
+.c-w-icon(arrow-up,arrow_up);
+.c-w-icon(back,back);
+.c-w-icon(cal,cal);
+.c-w-icon(cancel,cancel);
+.c-w-icon(card,card);
+.c-w-icon(clean,clean);
+.c-w-icon(close,close);
+.c-w-icon(config,config);
+.c-w-icon(edit,edit);
+.c-w-icon(epr,epr);
+.c-w-icon(file,file);
+.c-w-icon(file-open,file_open);
+.c-w-icon(find,find);
+.c-w-icon(home,home);
+.c-w-icon(list,list);
+.c-w-icon(new,new);
+.c-w-icon(other,other);
+.c-w-icon(paper,paper);
+.c-w-icon(plus,plus);
+.c-w-icon(print,print);
+.c-w-icon(save,save);
+.c-w-icon(switch,switch);
+.c-w-icon(update,update);
+.c-w-icon(import,import);
+.c-w-icon(export,export);
+.c-w-icon(star,star);

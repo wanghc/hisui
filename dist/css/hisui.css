@@ -2432,8 +2432,20 @@ h2 {
   text-align: right;
   padding-right: 10px;
 }
+/*create icon*/
+/*create white icon*/
+/*create big icon*/
 .icon-blank {
   background: url('icons/blank.gif') no-repeat center center;
+}
+.icon-funnel-eye {
+  background: url('icons/default/funnel_eye.png') no-repeat center center;
+}
+.icon-funnel-half {
+  background: url('icons/default/funnel_half.png') no-repeat center center;
+}
+.icon-funnel-empty {
+  background: url('icons/default/funnel_empty.png') no-repeat center center;
 }
 .icon-add {
   background: url('icons/edit_add.png') no-repeat center center;
@@ -2651,15 +2663,6 @@ h2 {
 .icon-copy-prn {
   background: url('icons/copy_prn.png') no-repeat center center;
 }
-.icon-funnel-eye {
-  background: url('icons/default/funnel_eye.png') no-repeat center center;
-}
-.icon-funnel-half {
-  background: url('icons/default/funnel_half.png') no-repeat center center;
-}
-.icon-funnel-empty {
-  background: url('icons/default/funnel_empty.png') no-repeat center center;
-}
 .icon-lt-rt-37 {
   background: url('icons/lt_rt_37.png') no-repeat center center;
 }
@@ -2765,6 +2768,33 @@ h2 {
 .icon-emergency {
   background: url('icons/emergency.png') no-repeat center center;
 }
+.icon-star-light-yellow {
+  background: url('icons/star_light_yellow.png') no-repeat center center;
+}
+.icon-star-yellow {
+  background: url('icons/star_yellow.png') no-repeat center center;
+}
+.icon-book {
+  background: url('icons/book.png') no-repeat center center;
+}
+.icon-all-select {
+  background: url('icons/all_select.png') no-repeat center center;
+}
+.icon-cancel-select-grant {
+  background: url('icons/cancel_select_grant.png') no-repeat center center;
+}
+.icon-select-grant {
+  background: url('icons/select_grant.png') no-repeat center center;
+}
+.icon-refuse-select-grant {
+  background: url('icons/refuse_select_grant.png') no-repeat center center;
+}
+.icon-double-quotes {
+  background: url('icons/double_quotes.png') no-repeat center center;
+}
+.icon-transfer {
+  background: url('icons/transfer.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -2856,8 +2886,23 @@ h2 {
 .icon-big-skip-no {
   background: url('icons/big/skip_no.png') no-repeat top center;
 }
+.icon-big-home {
+  background: url('icons/big/home.png') no-repeat top center;
+}
+.icon-big-stamp {
+  background: url('icons/big/stamp.png') no-repeat top center;
+}
+.icon-big-tooth {
+  background: url('icons/big/tooth.png') no-repeat top center;
+}
+.icon-big-close-eye {
+  background: url('icons/big/close_eye.png') no-repeat top center;
+}
+.icon-big-open-eye {
+  background: url('icons/big/open_eye.png') no-repeat top center;
+}
 /* white icon*/
-.icon-white-plus {
+.icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
 }
 .icon-w-add {
@@ -2940,6 +2985,9 @@ h2 {
 }
 .icon-w-export {
   background: url('icons/white/export.png') no-repeat center center;
+}
+.icon-w-star {
+  background: url('icons/white/star.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
