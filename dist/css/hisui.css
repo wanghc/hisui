@@ -2989,6 +2989,9 @@ h2 {
 .icon-w-star {
   background: url('icons/white/star.png') no-repeat center center;
 }
+.icon-w-msg {
+  background: url('icons/white/msg.png') no-repeat center center;
+}
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;
