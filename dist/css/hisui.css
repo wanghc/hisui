@@ -2795,6 +2795,12 @@ h2 {
 .icon-transfer {
   background: url('icons/transfer.png') no-repeat center center;
 }
+.icon-align-justify {
+  background: url('icons/align_justify.png') no-repeat center center;
+}
+.icon-unindent {
+  background: url('icons/unindent.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -2900,6 +2906,27 @@ h2 {
 }
 .icon-big-open-eye {
   background: url('icons/big/open_eye.png') no-repeat top center;
+}
+.icon-big-delete-col {
+  background: url('icons/big/delete_col.png') no-repeat top center;
+}
+.icon-big-delete-row {
+  background: url('icons/big/delete_row.png') no-repeat top center;
+}
+.icon-big-delete-table {
+  background: url('icons/big/delete_table.png') no-repeat top center;
+}
+.icon-big-insert-col {
+  background: url('icons/big/insert_col.png') no-repeat top center;
+}
+.icon-big-insert-row {
+  background: url('icons/big/insert_row.png') no-repeat top center;
+}
+.icon-big-insert-table {
+  background: url('icons/big/insert_table.png') no-repeat top center;
+}
+.icon-big-split-cells {
+  background: url('icons/big/split_cells.png') no-repeat top center;
 }
 /* white icon*/
 .icon-w-plus {
@@ -6280,4 +6307,73 @@ label + .hischeckbox_square-blue {
 }
 .lookup.disabled .lookup-arrow {
   background-color: #bbbbbb;
+}
+.kw-chapter {
+  clear: both;
+  font-size: 18px;
+  color: #017bce;
+  margin: 10px 0;
+}
+.kw-chapter a {
+  border-right: 5px #017bce solid;
+  width: 0px;
+  height: 30px;
+  padding: 0px;
+  margin-right: 5px;
+}
+.kw-line {
+  border-bottom: 1px #eeeeee solid;
+}
+.kw-section {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  clear: both;
+}
+.kw-section-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.keywords li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul.kw-section-list {
+  padding: 0px;
+  margin: 0px;
+}
+.kw-section-list > li {
+  float: left;
+  margin: 5px;
+}
+.kw-section-list > li a {
+  border-radius: 4px;
+  display: block;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  background: #efefef;
+  color: #666666;
+  text-decoration: none;
+  padding: 0 10px;
+}
+.kw-section-list > li a:hover {
+  cursor: pointer;
+  background: #d8efff;
+  color: #017bce;
+}
+.kw-section-list > li.selected a {
+  background: #40a2de;
+  color: #feffff;
+}
+.keywords-labelred .kw-section-list > li a {
+  background: transparent;
+  color: #ff4401;
+}
+.keywords-labelred .kw-section-list > li a:hover {
+  cursor: pointer;
+  background: #ffe9db;
+}
+.keywords-labelred .kw-section-list > li.selected a {
+  background: #ffe9db;
 }

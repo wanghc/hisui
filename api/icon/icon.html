@@ -14,6 +14,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            clear: both;
         }
         ul>li {
             line-height: 30px;
@@ -32,7 +33,7 @@
             text-decoration: none;
             color:#000000;
         }
-        ul.iconlist>li:hover,ul.fontlist>li:hover,ul.arrowlist>li:hover,ul.bigiconlist>li:hover {
+        ul.iconlist>li:hover,ul.fontlist>li:hover,ul.arrowlist>li:hover,.bigiconlist li:hover {
             background-color: #E3E3E3;
         }
         .icon{
@@ -92,7 +93,7 @@
     </div>
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
-        <ul class="bigiconlist"></ul>
+        <div class="bigiconlist"></div>
     </div>
     
     <h3>说明:</h3>
@@ -161,7 +162,7 @@
     
     <script type="text/javascript">
         $(function(){
-            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','back','cal','cancel','card','clean','config','epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star'];
+            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','back','cal','cancel','card','clean','config','epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg'];
             for(var i=0;i<wicons.length;i++){
                 //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
                 $(
@@ -203,7 +204,7 @@
             }
             //-----
             var fonticons=['lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19'
-            ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation'
+            ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation','unindent','align-justify'
             ,'align-left','align-center','align-right','cut-blue','paste','paste-board','copy'];
             for(var i=0;i<fonticons.length;i++){
                 $(
@@ -222,18 +223,23 @@
                 ).appendTo(".arrowlist");
             }
             //----
-            var bigicons = ['book-arrow','book-eye','book-ref','book-arrow-rt','book-to-book','del'
-            ,'doctor-green','favorite','favorite-add','img','omega','position','print','refresh','save','unlock'
-            ,'lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19','ring-blue','ring','skip-no','paper-search'
-            ,'paper-pen','paper-arrow','fee-arrow','card-reader','clear','doctor-adm','home','stamp','tooth','open-eye','close-eye'
-            ]
-            bigicons.sort();
+            var bigicons = [
+            ['doctor-green','doctor-adm','favorite','favorite-add','img','omega','position','print','refresh','unlock'
+            ,'book-arrow','book-eye','book-ref','book-arrow-rt','book-to-book','del','save','clear',
+            'ring-blue','ring','skip-no','paper-search','paper-pen','paper-arrow','fee-arrow','card-reader','home','stamp','tooth','open-eye','close-eye'
+            ],
+            ['lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19'],
+            ['delete-col','delete-row','delete-table','insert-col','insert-row','insert-table','split-cells']];
+            //bigicons.sort();
             for(var j=0;j<bigicons.length;j++){
-                $(
+                var ulObj = $("<ul></ul>").appendTo(".bigiconlist");
+                for(var i=0;i<bigicons[j].length;i++){
+                    $(
                     '<li class="bigicon">\
-                    <span class="icon icon-big-'+bigicons[j]+'">icon-big-'+bigicons[j]+'</span>\
+                    <span class="icon icon-big-'+bigicons[j][i]+'">icon-big-'+bigicons[j][i]+'</span>\
                     </li>'
-                ).appendTo(".bigiconlist");
+                    ).appendTo(ulObj);
+                }
             }
             /*-------------------------------------------------*/
             var allicondesclist={};
@@ -245,10 +251,12 @@
                     .appendTo('#iconnotelist');
             }
             for(var i=0;i<bigicons.length;i++){
-                $('<tr class="bigicon-tr"><td><span class="icon icon-big-'+bigicons[i]+'">&nbsp</span></td><td>icon-big-'+
-                    bigicons[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-big-'+bigicons[i]]||"")
+                for(var j=0;j<bigicons[i].length;j++){
+                $('<tr class="bigicon-tr"><td><span class="icon icon-big-'+bigicons[i][j]+'">&nbsp</span></td><td>icon-big-'+
+                    bigicons[i][j]+'</td><td contenteditable="true">'+(iconDictionary['icon-big-'+bigicons[i][j]]||"")
                         +'</td><td></td></tr>')
                     .appendTo('#iconnotelist');
+                }
             }
 
         });

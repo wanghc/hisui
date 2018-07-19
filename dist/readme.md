@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-07-19 ##
+* 增加列表操作图标`icon`
+* 增加关键字列表`keywords`
 
 ## 2018-07-13 ##
 * 增加部分`icon`
