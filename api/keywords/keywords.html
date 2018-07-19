@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>关键字集组件(<code>keywords</code>)</h2>
+<h3>说明：</h3>
+<span>可以用于关键字多选，或切换关键字功能。</span>
+
+<!-- <a href="#" onclick="javascript:void(0);" id="btn" class="hisui-linkbutton">获得选中元素</a> -->
+<h3>一.多选关键字</h3>
+<div class="demo-exp-code entry-content">
+    <div id="kw"></div>
+    <pre class="prettyprint lang-html hide"><code>&lt;div id="kw">&lt;/div></code></pre>
+    <pre class="prettyprint lang-js hide"><code>$(function(){
+    $("#kw").keywords({
+        items:[
+            {
+                text:"诊断",
+                type:"chapter", //章
+                items:[
+                    {
+                        text:'西医诊断',
+                        type:"section", //节
+                        items:[
+                            {text:'上呼吸道感染',id:"x1"},{text:'接触性皮炎',id:"x2"},{text:'过敏性皮炎',id:'x3'},{text:'神经性皮炎',id:'x4'},{text:'腰间盘突出',id:'x5'},
+                            {text:'腰肌老损',id:'x6'},{text:'急性病毒性肝炎',id:'x7'},{text:'中风后遗症',id:'x8'},{text:'高血压脑病',id:'x9'},{text:'过敏性休克',id:'x10'},
+                            {text:'急性酒精中毒',id:'x11',selected:true},{text:'神经性脑鸣',id:'x12'},{text:'偏头痛',id:'x13'},{text:'血管性神经头痛',id:'x14'},{text:'面神经麻痹',id:'x15'}
+                        ]
+                    },
+                    {
+                        text:"中医诊断",
+                        type:'section', //节
+                        items:[
+                            {text:'肝热病',id:"z1"},{text:'白喉',id:"z2"},{text:'麻疹',id:'z3'},{text:'中恶',id:'z4'},{text:'百日咳',id:'z5'},{text:'吸虫病',id:'z6'}
+                        ]
+                    }
+                ]
+            },{
+                text:"病历",
+                type:"chapter",
+                items:[{text:"住院病历"},{text:"门诊病历"}]
+            }
+        ],
+        onClick:function(v){console.log("你点击->");console.dir(v);},
+        onUnselect:function(v){console.log("你选择->");console.dir(v);},
+        onSelect:function(v){console.log("你取消选择->");console.dir(v);}
+    });
+})</code></pre>
+</div>
+<h3 style="clear: both;">二.红色的标签页(<code>labelCls:'red'</code>)</h3>
+<div class="demo-exp-code entry-content">
+    <div id="redkw"></div>
+    <pre class="prettyprint lang-html hide"><code>&lt;div id="redkw">&lt;/div></code></pre>
+    <pre class="prettyprint lang-js hide"><code>$("#redkw").keywords({
+    singleSelect:true,
+    labelCls:'red',
+    items:[
+        {text:'知识库',id:'red1'},
+        {text:'医嘱',id:'red2'},
+        {text:'中草药',id:'red3'},
+        {text:'检查',id:'red4',selected:true},
+        {text:'检验',id:'red5'},
+        {text:'生命体征',id:'red6'},
+        {text:'诊断',id:'red7'},
+        {text:'病理',id:'red8'}
+    ],
+    onClick:function(v){console.log("你点击->");console.dir(v);},
+    onUnselect:function(v){console.log("你选择->");console.dir(v);},
+    onSelect:function(v){console.log("你取消选择->");console.dir(v);}
+});</code></pre>
+</div>
+<script type="text/javascript">
+$(function(){
+    $("#kw").keywords({
+        onClick:function(v){console.log("你点击->");console.dir(v)},
+        onUnselect:function(v){console.log("你选择->");console.dir(v);},
+        onSelect:function(v){console.log("你取消选择->");console.dir(v);},
+        items:[{
+                text:"诊断",
+                type:"chapter",
+                items:[
+                    {
+                        text:'西医诊断',type:"section",items:[
+                            {text:'上呼吸道感染',id:"x1"},{text:'接触性皮炎',id:"x2"},{text:'过敏性皮炎',id:'x3'},{text:'神经性皮炎',id:'x4'},
+                            {text:'腰间盘突出',id:'x5'},{text:'腰肌老损',id:'x6'},{text:'急性病毒性肝炎',id:'x7'},{text:'中风后遗症',id:'x8'},{text:'高血压脑病',id:'x9'},{text:'过敏性休克',id:'x10'},
+                            {text:'急性酒精中毒',id:'x11',selected:true},{text:'神经性脑鸣',id:'x12'},{text:'偏头痛',id:'x13'},{text:'血管性神经头痛',id:'x14'},{text:'面神经麻痹',id:'x15'}
+                        ]
+                    },
+                    {
+                        text:"中医诊断",type:'section',items:[
+                            {text:'肝热病',id:"z1"},{text:'白喉',id:"z2"},{text:'麻疹',id:'z3'},{text:'中恶',id:'z4'},
+                            {text:'百日咳',id:'z5'},{text:'吸虫病',id:'z6'}
+                        ]
+                    }
+                ]
+            },{
+                text:"病历",
+                type:"chapter",
+                items:[
+                    {text:"住院病历"},
+                    {text:"门诊病历"}
+                ]
+        }]
+    });
+    $("#redkw").keywords({
+        singleSelect:true,
+        onClick:function(v){console.log("你点击->");console.dir(v)},
+        onUnselect:function(v){console.log("你选择->");console.dir(v);},
+        onSelect:function(v){console.log("你取消选择->");console.dir(v);},
+        labelCls:'red',
+        items:[
+            {text:'知识库',id:'red1'},
+            {text:'医嘱',id:'red2'},
+            {text:'中草药',id:'red3'},
+            {text:'检查',id:'red4',selected:true},
+            {text:'检验',id:'red5'},
+            {text:'生命体征',id:'red6'},
+            {text:'诊断',id:'red7'},
+            {text:'病理',id:'red8'}
+        ]
+    });
+    function btnHandler(){
+        var rs = $("#kw").keywords("getSelected");
+        console.log(rs);
+    }
+    //$("#btn").click(btnHandler);
+})
+</script>
+    <table class="table">
+		<tr class="protitle">
+			<th>配置项</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th>其它</th>
+        </tr>
+        <tr>
+            <td>items</td>
+            <td>具体元素值</td>
+            <td></td>
+            <td></td>
+        </tr>
+		<tr>
+			<td>singleSelect</td>
+			<td>当前是否为单选模式</td>
+			<td>false</td>
+			<td>true时为单选</td>
+		</tr>
+		<tr>
+			<td>labelCls</td>
+			<td>选择块样式名</td>
+			<td>'blue'</td>
+			<td>可选项<code>'red'</code>,<code>'blue'</code></td>
+        </tr>
+        <tr class="mthtitle">
+            <th>方法名</th>
+            <th>说明</th>
+            <th>入参</th>
+            <th>返回值</th>
+        </tr>
+        <tr>
+            <td>select</td>
+            <td>选中对象，入参为元素的id</td>
+            <td>id</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>getSelected</td>
+            <td>获得所有已选对象</td>
+            <td>无</td>
+            <td>Array</td>
+        </tr>
+        <tr class="evttitle">
+            <th>事件名</th>
+            <th>说明</th>
+            <th>入参</th>
+            <th>类型</th>
+        </tr>
+        <tr>
+            <td>onClick</td>
+            <td>当前点击对象</td>
+            <td>item</td>
+            <td>Object</td>
+        </tr>
+        <tr>
+            <td>onUnselect</td>
+            <td>当前取消选中对象</td>
+            <td>item</td>
+            <td>Object</td>
+        </tr>
+        <tr>
+            <td>onSelect</td>
+            <td>当前选中对象</td>
+            <td>item</td>
+            <td>Object</td>
+        </tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>
