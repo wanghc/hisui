@@ -85,6 +85,7 @@ table {
 .toggle-prettyprint{
     cursor: pointer;
     color: #d3dce6;
+    clear: both;
 }
 .toggle-prettyprint:hover{
     color: #409eff;
