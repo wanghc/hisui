@@ -41,7 +41,7 @@
 &lt;/div&gt;</code></pre>  
 	</div>
 	<!-- gray tabs-->
-	<h3>灰色页签(<code>tabs-gray</code>)及点击监听</h3>
+	<h3>一.灰色页签(<code>tabs-gray</code>)及点击监听</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="tt2" class="hisui-tabs  tabs-gray" style="width:500px;height:150px;">   
 			<div title="电子病历" style="padding:20px;">   
@@ -82,7 +82,7 @@
 $(function(){
 	$HUI.tabs("#tt2",{
 		onSelect:function(title){
-			alert('你确定要切换到【'+title+"】");					
+			$.messager.popover({type:'info',msg:'切换到【'+title+'】'}); 					
 		}
 	});
 });	
@@ -93,13 +93,13 @@ $(function(){
 		$(function(){
 			$HUI.tabs("#tt2",{
 				onSelect:function(title){
-				alert('你确定要切换到【'+title+'】');					
+					$.messager.popover({type:'info',msg:'切换到【'+title+'】'}); //alert('你确定要切换到【'+title+'】');					
 				}
 			});
 			//$('#tt2').tabs('disableTab', 0); 
 		});
 	</script>
-	<h3>页签位置定义(<code>data-options="tabPosition:'left'"</code>)</h3>
+	<h3>二.页签位置定义(<code>data-options="tabPosition:'left'"</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div style="margin:20px 0;">
 			<span>tabPosition:</span>
@@ -143,7 +143,7 @@ $(function(){
 	&lt;/div&gt;  
 &lt;/div&gt; </code></pre>
 	</div>
-	<h3>左右位置页签可定义宽度(<code>headerWidth</code>)</h3>
+	<h3>三.左右位置页签可定义宽度(<code>headerWidth</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="tt4" class="hisui-tabs tabs-gray" style="width:500px;height:250px;" data-options="tabPosition:'left',headerWidth:100">   
 			<div title="电子病历" style="padding:20px;">   
@@ -176,7 +176,7 @@ $(function(){
 &lt;/div&gt; </code></pre>	
 	</div>
 	<!-- tabs mini -->
-	<h3>上下页签可定义高度(<code>tabHeight</code>)</h3>
+	<h3>四.上下页签可定义高度(<code>tabHeight</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div class="hisui-tabs  " style="width:500px;height:120px;" tabHeight="26px">   
 			<div title="常用" style="padding:20px">   
@@ -206,7 +206,7 @@ $(function(){
 	&lt;div title="表格" data-options="closable:false" style="padding:20px;display:none;">我是否被隐藏了？&lt;/div>
 &lt;div></code></pre>
 	</div>
-	<h3>页签过多滚动效果</h3>
+	<h3>五.页签过多滚动效果</h3>
 	<div class="demo-exp-code entry-content">
 		<div id="mytabs1" class="hisui-tabs tabs-gray" style="width:500px;height:100px;" data-options="">   
 			<div title="电子病历" data-options="" style="padding:20px;"></div>   
@@ -229,7 +229,7 @@ $(function(){
 			<div title="就诊列表" data-options="" style="padding:20px;"></div>
 		</div>
 	</div>	
-	<h3>第一个页签作为标题的图表组(<code>isBrandTabs:true</code>)</h3>
+	<h3>六.第一个页签作为标题的图表组(<code>isBrandTabs:true</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<div id="tt-brand-gray" class="hisui-tabs tabs-gray" style="width:500px;height:150px;" data-options="isBrandTabs:true">   
 			<div title="医嘱浏览" data-options="iconCls:'icon-add-note'" style="padding:20px;"></div>   
@@ -249,7 +249,15 @@ $(function(){
 			<div title="病历质控" data-options="iconCls:'icon-emr-cri'" style="padding:20px;"></div>   
 			<div title="环节质控缺陷" data-options="closable:false" style="padding:20px;"></div>   
 			<div title="时效性缺陷" data-options="closable:false" style="padding:20px;"></div>
-		</div> 
+		</div>
+	</div>
+	<h3>七.关键字Tabs(class='hisui-tabs <code>tabs-keywords</code>')</h3>
+	<div class="demo-exp-code entry-content">
+		<div id="tt-brand" class="hisui-tabs tabs-keywords" style="width:500px;height:150px;">   
+			<div title="病历质控" data-options="" style="padding:20px;">我是 '病历质控' ,去看看类似组件<a class="plain-anchor" data-url="keywords/keywords.html">keywords</a>的功能。</div>
+			<div title="环节质控缺陷" data-options="closable:false" style="padding:20px;">我是 '环节质控' ,去看看类似组件<a class="plain-anchor" data-url="keywords/keywords.html">keywords</a>的功能。</div>
+			<div title="时效性缺陷" data-options="closable:false" style="padding:20px;">我是 '时效性缺陷' ,去看看类似组件<a class="plain-anchor" data-url="keywords/keywords.html">keywords</a>的功能。</div>
+		</div>
 	</div>
 	<prettyprint/>
 </body>

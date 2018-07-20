@@ -70,4 +70,27 @@ $(function(){
     <script type="text/javascript">\
         prettyPrint();\
     </script>');
+    $(".plain-anchor").linkbutton({
+        plain:true
+    }).click(function(){
+        var url = $(this).data("url");
+        var text = '';
+        if(url){
+            if(parent.addTab){
+                parent.$(".api-navi-tab").each(function(){
+                    if(url==$(this).attr("src")){
+                        text = $(this).text();
+                        return false;
+                    }
+                });
+                if(text){
+                    parent.addTab(text,url);
+                }else{
+                    window.open("../"+url);
+                }
+            }else{
+                window.open("../"+url);
+            }
+        }
+    });
 })

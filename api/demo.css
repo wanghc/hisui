@@ -90,3 +90,6 @@ table {
 .toggle-prettyprint:hover{
     color: #409eff;
 }
+.plain-anchor.l-btn-plain{
+    color:#409eff;
+}

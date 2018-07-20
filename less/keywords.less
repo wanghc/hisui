@@ -1,3 +1,4 @@
+@import "variables.less";
 .kw-chapter{
     clear: both;
     font-size: 18px;
@@ -59,13 +60,13 @@ ul.kw-section-list{
 .keywords-labelred .kw-section-list>li{
     & a{
         background: transparent;
-        color: #ff4401;
+        color: @keywords-fontcolor;
         &:hover{
             cursor: pointer;
-            background: #ffe9db;
+            background: @keywords-bgcolor;
         }
     }
     &.selected a{
-        background: #ffe9db;
+        background: @keywords-bgcolor;
     }
 }

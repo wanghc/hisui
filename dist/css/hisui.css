@@ -4074,6 +4074,28 @@ input[type="text"]:disabled {
   -webkit-border-radius: 4px 0 0 4px ;
   border-radius: 4px 0 0 4px ;
 }
+.tabs-keywords .tabs-header {
+  background-color: transparent;
+  border: 0px;
+}
+.tabs-keywords .tabs-panels {
+  border: 0px;
+}
+.tabs-keywords .tabs li::after {
+  content: none;
+}
+.tabs-keywords .tabs li a.tabs-inner {
+  border-radius: 4px;
+  border: 0px;
+  background-color: transparent;
+  color: #ff4401;
+}
+.tabs-keywords .tabs li a.tabs-inner:hover {
+  background: #ffe9db;
+}
+.tabs-keywords .tabs li.tabs-selected a.tabs-inner {
+  background: #ffe9db;
+}
 .l-btn-text {
   min-width: 0;
   /*@linkbutton-text-width;*/
