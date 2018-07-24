@@ -146,9 +146,9 @@ var jsonData = $cm({
 },false);
 console.dir(jsonData);  //{"name":"张三"}</code></pre>
 
-<h2>2.调用后台Query示例：</h2>
+<h2>2.调用后台Query示例支持<code>%String,%Integer,%Float,%Boolean</code>：</h2>
 <pre class="prettyprint lang-bash">
-<code >Query LookUpActive(desc As %String) As %Library.SQLQuery(CONTAINID = 2, ROWSPEC = "Description:%String,HIDDEN:%String,Code:%String")
+<code >Query LookUpActive(desc As %String) As %Library.SQLQuery(CONTAINID = 2, ROWSPEC = "Description:%String,HIDDEN:%Integer,Code:%String")
 {
 	SELECT SSUSR_Name, SSUSR_RowID, SSUSR_Initials
 	FROM	SQLUser.SS_User
@@ -159,11 +159,11 @@ console.dir(jsonData);  //{"name":"张三"}</code></pre>
 <code >$cm({
 	ClassName:"web.SSUser",
 	QueryName:"LookUpActive",
-	//增加配置项 ResultSetType："array" //则rs为[{"Description":"王二","HIDDEN":"1","Code":"001"},{"Description":"张三","HIDDEN":"2","Code":"002"},...]
+	//增加配置项 ResultSetType："array" //则rs为[{"Description":"王二","HIDDEN":1,"Code":"001"},{"Description":"张三","HIDDEN":2,"Code":"002"},...]
 	page:1,    //可选项，页码，默认1
 	rows:20    //可选项，获取多少条数据，默认50
 },function(rs){
-	console.dir(rs);    //{"rows":[{"Description":"王二","HIDDEN":"1","Code":"001"},{"Description":"张三","HIDDEN":"2","Code":"002"},...],"total":110}
+	console.dir(rs);    //{"rows":[{"Description":"王二","HIDDEN":1,"Code":"001"},{"Description":"张三","HIDDEN":2,"Code":"002"},...],"total":110}
 	
 });
 </code></pre>
