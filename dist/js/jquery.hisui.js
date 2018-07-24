@@ -14860,13 +14860,23 @@ if (typeof JSON !== 'object') {
         var _918 = _917.onChange;
         _917.onChange = function () {
         };
+
+        var vv = $.map(_913, function (_b62) {  //cryze 2018-7-24
+            return String(_b62);
+        });
+        var _b64 = $.grep(grid.datagrid("getSelections"), function (row, _b65) {  //cryze 2018-7-24  先选中，然后翻页，显示成输入框显示成value的问题
+            return $.inArray(String(row[opts.idField]), vv) >= 0;
+        });
         grid.datagrid("clearSelections");
+        grid.data("datagrid").selectedRows = _b64;  //cryze 2018-7-24
         for (var i = 0; i < _913.length; i++) {
             var _919 = grid.datagrid("getRowIndex", _913[i]);
             if (_919 >= 0) {
                 grid.datagrid("selectRow", _919);
                 ss.push(rows[_919][opts.textField]);
-            } else {
+            } else if(_b67(_913[i], _b64)){   //cryze 2018-7-24 
+                ss.push(_b67(_913[i], _b64));
+            }else {
                 ss.push(_913[i]);
             }
         }
@@ -14879,6 +14889,10 @@ if (typeof JSON !== 'object') {
                 $(_912).combo("setText", s);
             }
         }
+        function _b67(_b68, a) {  //cryze 2018-7-24
+            var item = $.hisui.getArrayItem(a, opts.idField, _b68);
+            return item ? item[opts.textField] : undefined;
+        };
     };
     function _91a(_91b, q) {
         var _91c = $.data(_91b, "combogrid");
