@@ -1,6 +1,6 @@
 {
-  "name":"gulphisui",
-  "version":"1.0.0",
+  "name": "gulphisui",
+  "version": "1.0.0",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
