@@ -11,17 +11,17 @@ cache:
 
 # S: Build Lifecycle
 install:
-  - npm install
+  #- npm install
 
 before_script:
 
 # 无其他依赖项所以执行npm run build 构建就行了
 script:
-  - npm run build
+  #- npm run build
 
 after_script:
-  - #cd ./dist
-  - #git init
+  #- #cd ./dist
+  #- #git init
   - git config user.name "${U_NAME}"
   - git config user.email "${U_EMAIL}"
   - git add .
