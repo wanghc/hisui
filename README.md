@@ -1,4 +1,4 @@
-# hisui
+# hisui [![Build Status](https://travis-ci.org/wanghc/hisui.svg?branch=master)](https://travis-ci.org/wanghc/hisui)
 在EasyUI基础上修改出的前端库
 初始化git库
 > git init
