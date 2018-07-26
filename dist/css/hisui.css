@@ -2801,6 +2801,9 @@ h2 {
 .icon-unindent {
   background: url('icons/unindent.png') no-repeat center center;
 }
+.icon-stamp {
+  background: url('icons/stamp.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
