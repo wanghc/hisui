@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-07-27 ##
+* 修复scrollview插件勾选行Bug
+
 ## 2018-07-24 ##
 * 修复`combogrid` 在已经选择数据后，翻页，输入框变成原来的value值，而不是text值
 
