@@ -9325,11 +9325,31 @@ if (typeof JSON !== 'object') {
             var rows = opts.finder.getRows(_5b0);
             for (var i = 0; i < rows.length; i++) {
                 var row = rows[i];
-                var _5b5 = _5b2 ? row[opts.idField] : i;
+                var _5b5 = _5b2 ? row[opts.idField] : i;   
                 if (_5b6(_5b1.selectedRows, row)) {
+                    if (opts.view.type == 'scrollview'){
+                        // index为datagrid的rows的index.即为当前页数据源对应的数组,不能只从firstRows中取
+                        //_5b5为当前数据的index，当为scrollview插件时，rows为所有数据8000
+                        //通过id列查询一次
+                        for(var w=0; w<_5b1.data.firstRows.length; w++){
+                            if (_5b1.data.firstRows[w][opts.idField] == row[opts.idField]) {
+                                _5b5 = w ;
+                            }
+                        }
+                    }
                     _5cb(_5b0, _5b5, true);
                 }
                 if (_5b6(_5b1.checkedRows, row)) {
+                    if (opts.view.type == 'scrollview'){
+                        //_5b5为当前数据的index，当为scrollview插件时，rows为所有数据8000
+                        // index为datagrid的rows的index.即为当前页数据源对应的数组,不能只从firstRows中取
+                        //通过id列查询一次
+                        for(var w=0; w<_5b1.data.firstRows.length; w++){
+                            if (_5b1.data.firstRows[w][opts.idField] == row[opts.idField]) {
+                                _5b5 = w ;
+                            }
+                        }
+                    }
                     _5d2(_5b0, _5b5, true);
                 }
             }
@@ -9493,6 +9513,7 @@ if (typeof JSON !== 'object') {
         }
         opts.onUnselectAll.call(_5e1, rows);
     };
+    // checked row(target,index,true|false)
     function _5d2(_5e7, _5e8, _5e9) {
         var _5ea = $.data(_5e7, "datagrid");
         var opts = _5ea.options;
