@@ -3291,6 +3291,13 @@ h2 {
 .accordion.accordion-noborder .panel:first-child .accordion-header {
   border-top-width: 0px;
 }
+.accordion-gray.accordion .accordion-header {
+  background: #cccccc;
+  filter: none;
+}
+.accordion-gray.accordion .accordion-header .panel-title {
+  color: #000000;
+}
 .window,
 .window-shadow {
   -moz-border-radius: 4px;
