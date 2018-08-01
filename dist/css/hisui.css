@@ -3022,6 +3022,9 @@ h2 {
 .icon-w-msg {
   background: url('icons/white/msg.png') no-repeat center center;
 }
+.icon-w-copy {
+  background: url('icons/white/copy.png') no-repeat center center;
+}
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;
