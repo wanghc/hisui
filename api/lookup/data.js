@@ -18,6 +18,7 @@ function parseQueryString(str){
     o.rows=o.rows>0?parseInt(o.rows):9999;
     
     o.q=o.q||"";  //空格会转成+号
+    o.q=decodeURI(o.q);
     return o;
 }
 function getData(options,data){

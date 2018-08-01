@@ -18227,13 +18227,10 @@ function(a, b, c) {
         }
 		grid.datagrid($.extend({}, opts, {
             border: false, fit: true, singleSelect: (!opts.multiple), onLoadSuccess: function (data) {
-				/*
-                var _906 = $(target).lookup("getValues");
-                var _907 = opts.onSelect;
-                opts.onSelect = function () {
-                };
-                _911(target, _906, state.remainText);
-                opts.onSelect = _907; */
+                if (state.panel.is(':visible')){
+                    $(target).focus();
+                    grid.datagrid("highlightRow", 0);
+                }
                 opts.onLoadSuccess.apply(target, arguments);
             }, onClickRow: _908, onSelect: function (_909, row) {
                 var t=this;
@@ -18530,7 +18527,7 @@ function(a, b, c) {
         var btn=grid.datagrid('getPager').find('.l-btn-icon.pagination-'+dir)
         if (btn.parents('.l-btn-disabled').length==0){
             btn.click();
-            grid.datagrid("highlightRow", 0);
+            //grid.datagrid("highlightRow", 0);   //cryze  加上样式应在loadSuccess
         }
     }
     function _911(_912, _913, _914) {
@@ -18572,6 +18569,7 @@ function(a, b, c) {
         var _91c = $.data(_91b, "lookup");
         var opts = _91c.options;
         var grid = _91c.grid;
+        
         _91c.remainText = true;
         if (opts.multiple && !q) {
             _911(_91b, [], true);
@@ -18579,6 +18577,7 @@ function(a, b, c) {
             _911(_91b, [q], true);
         }
         if (opts.mode == "remote") {
+            grid.datagrid('loadData',{rows:[],total:0});  //重新从后台查数据前，清空数据
             grid.datagrid("clearSelections");
             grid.datagrid("load", $.extend({}, opts.queryParams, { q: q }));
         } else {
@@ -18728,6 +18727,8 @@ function(a, b, c) {
             if (_924) {
                 $.extend(_924.options, _921);
                 initLookupPanel();
+                GLOBAL_LOOKUP_CURRENT_TARGET=null;  //cryze 2018-07-31
+                GLOBAL_LOOKUP_LAST_TARGET=this;
             } else {
                 _924 = $.data(this, "lookup", { options: $.extend({}, $.fn.lookup.defaults, $.fn.lookup.parseOptions(this), _921) });
                 initLookupPanel();
