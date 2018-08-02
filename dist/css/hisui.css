@@ -3756,7 +3756,6 @@ input[type="text"]:disabled {
   border-top: 1px solid #509DE1;
 }
 .tabs-header-left .tabs {
-  height: 36px;
   padding: 0px;
   border-width: 0 0 0px 0;
 }
