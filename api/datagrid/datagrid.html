@@ -198,7 +198,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 				<div onclick="console.log('其他');">其他</div>   
 			</div>
 		</div>
-		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:250px" data-options="headerCls:'panel-header-gray',pagination:true,
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="headerCls:'panel-header-gray',pagination:true,
 			toolbar:'#custtb',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
 			onDblClickRow:function(){console.log(arguments)},">   
 			<thead>   
@@ -253,7 +253,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 					columns:[[
 						{field:'code',title:'代码',width:100},
 						{field:'name',title:'描述',width:100},
-						{field:'price',title:'价格',width:100}
+						{field:'price',title:'价格',width:100,align:'right'}
 					]],
 					data:[
 						{id:'1','code':'XJ',name:'香蕉',price:'2.50'},
