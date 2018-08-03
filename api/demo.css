@@ -24,7 +24,7 @@ h2 {
     position: relative;
 }
 .prettyprint code{
-    background-color: none;
+    background: none;
 }
 code{
     padding: 2px 4px;
