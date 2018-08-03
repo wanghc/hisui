@@ -162,7 +162,9 @@
     
     <script type="text/javascript">
         $(function(){
-            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','back','cal','cancel','card','clean','config','epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy'];
+            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','back','cal','cancel','card','clean','config',
+            'epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy',
+            'stamp','batch-cfg','inv','batch-add','eye'];
             for(var i=0;i<wicons.length;i++){
                 //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
                 $(
@@ -181,7 +183,10 @@
             ,'funnel-eye','funnel-half','funnel-empty','eye','export','omega'
             ,'fee-arrow','fee','inpatient','outpatient','emergency'
             ,'star-light-yellow','star-yellow','book','all-select'
-            ,'select-grant','cancel-select-grant','refuse-select-grant','double-quotes','transfer','stamp'
+            ,'select-grant','cancel-select-grant','refuse-select-grant','double-quotes','transfer'
+            ,'batch-cfg','batch-add','import-xls','init','inv-search','submit','chart-sum','chart-year'
+            ,'attachment','import-reset','mnypaper-cfg','mnypaper-run','mnypaper-ok','mnypaper-no','mnypaper-down','mnypaper-down2'
+            ,'stamp','stamp-cancel','stamp-pass','line-paid','split'
             ];
             //icons.sort();
             for(var i=0;i<icons.length;i++){
@@ -193,7 +198,8 @@
             }
             var papericons = [
                 'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
-                ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'];
+                ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'
+                ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up'];
             //icons.sort();
             for(var i=0;i<papericons.length;i++){
                 $(
@@ -229,7 +235,8 @@
             'ring-blue','ring','skip-no','paper-search','paper-pen','paper-arrow','fee-arrow','card-reader','home','stamp','tooth','open-eye','close-eye'
             ],
             ['lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19'],
-            ['delete-col','delete-row','delete-table','insert-col','insert-row','insert-table','split-cells']];
+            ['delete-col','delete-row','delete-table','insert-col','insert-row','insert-table','split-cells'],
+            ['help','paper','question']];
             //bigicons.sort();
             for(var j=0;j<bigicons.length;j++){
                 var ulObj = $("<ul></ul>").appendTo(".bigiconlist");

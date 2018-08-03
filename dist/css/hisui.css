@@ -2804,6 +2804,78 @@ h2 {
 .icon-stamp {
   background: url('icons/stamp.png') no-repeat center center;
 }
+.icon-paper-stamp {
+  background: url('icons/paper_stamp.png') no-repeat center center;
+}
+.icon-batch-cfg {
+  background: url('icons/batch_cfg.png') no-repeat center center;
+}
+.icon-batch-add {
+  background: url('icons/batch_add.png') no-repeat center center;
+}
+.icon-import-xls {
+  background: url('icons/import_xls.png') no-repeat center center;
+}
+.icon-init {
+  background: url('icons/init.png') no-repeat center center;
+}
+.icon-inv-search {
+  background: url('icons/inv_search.png') no-repeat center center;
+}
+.icon-submit {
+  background: url('icons/submit.png') no-repeat center center;
+}
+.icon-chart-year {
+  background: url('icons/chart_year.png') no-repeat center center;
+}
+.icon-chart-sum {
+  background: url('icons/chart_sum.png') no-repeat center center;
+}
+.icon-attachment {
+  background: url('icons/attachment.png') no-repeat center center;
+}
+.icon-import-reset {
+  background: url('icons/import_reset.png') no-repeat center center;
+}
+.icon-stamp-cancel {
+  background: url('icons/stamp_cancel.png') no-repeat center center;
+}
+.icon-stamp-pass {
+  background: url('icons/stamp_pass.png') no-repeat center center;
+}
+.icon-mnypaper-cfg {
+  background: url('icons/mnypaper_cfg.png') no-repeat center center;
+}
+.icon-mnypaper-run {
+  background: url('icons/mnypaper_run.png') no-repeat center center;
+}
+.icon-mnypaper-ok {
+  background: url('icons/mnypaper_ok.png') no-repeat center center;
+}
+.icon-mnypaper-no {
+  background: url('icons/mnypaper_no.png') no-repeat center center;
+}
+.icon-mnypaper-down {
+  background: url('icons/mnypaper_down.png') no-repeat center center;
+}
+.icon-mnypaper-down2 {
+  background: url('icons/mnypaper_down2.png') no-repeat center center;
+}
+.icon-paper-money {
+  background: url('icons/paper_money.png') no-repeat center center;
+}
+.icon-line-paid {
+  background: url('icons/line-paid.png') no-repeat center center;
+}
+.icon-paper-arrow-down {
+  background: url('icons/paper_arrow_down.png') no-repeat center center;
+}
+.icon-paper-arrow-up {
+  background: url('icons/paper_arrow_up.png') no-repeat center center;
+}
+.icon-split {
+  background: url('icons/split.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -2931,6 +3003,15 @@ h2 {
 .icon-big-split-cells {
   background: url('icons/big/split_cells.png') no-repeat top center;
 }
+.icon-big-help {
+  background: url('icons/big/help.png') no-repeat top center;
+}
+.icon-big-paper {
+  background: url('icons/big/paper.png') no-repeat top center;
+}
+.icon-big-question {
+  background: url('icons/big/question.png') no-repeat top center;
+}
 /* white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
@@ -3024,6 +3105,21 @@ h2 {
 }
 .icon-w-copy {
   background: url('icons/white/copy.png') no-repeat center center;
+}
+.icon-w-stamp {
+  background: url('icons/white/stamp.png') no-repeat center center;
+}
+.icon-w-batch-cfg {
+  background: url('icons/white/batch_cfg.png') no-repeat center center;
+}
+.icon-w-inv {
+  background: url('icons/white/inv.png') no-repeat center center;
+}
+.icon-w-batch-add {
+  background: url('icons/white/batch_add.png') no-repeat center center;
+}
+.icon-w-eye {
+  background: url('icons/white/eye.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
