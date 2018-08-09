@@ -2876,6 +2876,18 @@ h2 {
 .icon-split {
   background: url('icons/split.png') no-repeat center center;
 }
+.icon-alert {
+  background: url('icons/alert.png') no-repeat center center;
+}
+.icon-star {
+  background: url('icons/star.png') no-repeat center center;
+}
+.icon-star-half {
+  background: url('icons/star_half.png') no-repeat center center;
+}
+.icon-user {
+  background: url('icons/user.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3012,6 +3024,36 @@ h2 {
 .icon-big-question {
   background: url('icons/big/question.png') no-repeat top center;
 }
+.icon-big-bar {
+  background: url('icons/big/bar.png') no-repeat top center;
+}
+.icon-big-card {
+  background: url('icons/big/card.png') no-repeat top center;
+}
+.icon-big-change-account {
+  background: url('icons/big/change_account.png') no-repeat top center;
+}
+.icon-big-disuse {
+  background: url('icons/big/disuse.png') no-repeat top center;
+}
+.icon-big-inspect {
+  background: url('icons/big/inspect.png') no-repeat top center;
+}
+.icon-big-maint {
+  background: url('icons/big/maint.png') no-repeat top center;
+}
+.icon-big-meterage {
+  background: url('icons/big/meterage.png') no-repeat top center;
+}
+.icon-big-return {
+  background: url('icons/big/return.png') no-repeat top center;
+}
+.icon-big-start {
+  background: url('icons/big/start.png') no-repeat top center;
+}
+.icon-big-stop {
+  background: url('icons/big/stop.png') no-repeat top center;
+}
 /* white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
@@ -3120,6 +3162,15 @@ h2 {
 }
 .icon-w-eye {
   background: url('icons/white/eye.png') no-repeat center center;
+}
+.icon-w-arrow-left {
+  background: url('icons/white/arrow_left.png') no-repeat center center;
+}
+.icon-w-arrow-right {
+  background: url('icons/white/arrow_right.png') no-repeat center center;
+}
+.icon-w-calc {
+  background: url('icons/white/calc.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
