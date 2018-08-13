@@ -17550,7 +17550,8 @@ function(a, b, c) {
             });
         },
         getValue:function(jq){
-            return jq.eq(0).parent().hasClass("checked")?true:false; 
+            return jq.eq(0).is(':checked');  //checkbox 是先改变checkBox的状态，触发事件，改变样式 ,原本getValue取是否有样式类,在onChecked事件获取会获取到未选中  所以getValue改为取checked的状态
+            //return jq.eq(0).parent().hasClass("checked")?true:false; 
         },
         setDisable:function(jq,value){
             return jq.each(function(){
@@ -17742,7 +17743,8 @@ function(a, b, c) {
             });
         },
         getValue:function(jq){
-            return jq.eq(0).parent().hasClass("checked")?true:false; 
+            return jq.eq(0).is(':checked');  //radio 是先改变radio的状态，触发事件，改变样式  所以getValue取checked状态
+            //return jq.eq(0).parent().hasClass("checked")?true:false; 
         },
         setDisable:function(jq,value){
             return jq.each(function(){
