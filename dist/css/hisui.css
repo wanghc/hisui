@@ -2404,7 +2404,7 @@
 /*tabs-gray*/
 /*#E7E7E7;*/
 /*#d2eafe;*/
-/*#509de1;*/
+/*#d9e7f1;#509de1;*/
 /*variables-end*/
 body {
   font-family: "Microsoft Yahei", verdana, helvetica, arial, sans-serif;
@@ -4497,12 +4497,12 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   border-style: solid;
 }
 .datagrid-row-selected {
-  background: #d9e7f1;
+  background: #ffe48d;
   /*color: @datagrid-row-select-color;*/
 }
 .datagrid-row-over,
 .datagrid-header td.datagrid-header-over {
-  background: #d9e7f1;
+  background: #dcf0ff;
   color: #000000;
   cursor: default;
 }

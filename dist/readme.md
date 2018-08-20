@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-08-20 ##
+* `datagrid`的悬浮样式与选中样式修改
+
 ## 2018-08-09 ##
 * 修复`checkbox`和`radio` 组件在`onChecked`、`onUnchecked`和`onCheckChange` 调用`getValue`方法是改变状态前的值
 
