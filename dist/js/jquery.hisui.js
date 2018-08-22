@@ -8414,6 +8414,8 @@ if (typeof JSON !== 'object') {
         var _522 = _520.find("table");
         view.width(_51b);
         var _523 = _51f.children("div.datagrid-header-inner").show();
+        //console.log("rownumber-数字列的宽");
+        //console.log(_523.find("table").width());
         _51d.width(_523.find("table").width());
         if (!opts.showHeader) {
             _523.hide();
@@ -9296,6 +9298,9 @@ if (typeof JSON !== 'object') {
             opts.view.onAfterRender.call(opts.view, _5a8);
         }
         _5a9.ss.clean();
+        if (opts.rownumbers && opts.fixRowNumber){
+            $(_5a8).datagrid("fixRowNumber");
+        }
         opts.onLoadSuccess.call(_5a8, data);
         var _5ad = $(_5a8).datagrid("getPager");
         if (_5ad.length) {
@@ -10328,7 +10333,32 @@ if (typeof JSON !== 'object') {
             return jq.each(function () {
                 _526(this, _6ab);
             });
-        }, freezeRow: function (jq, _6ac) {
+        },fixRowNumber : function (jq) {
+                return jq.each(function () {
+                    var panel = $(this).datagrid("getPanel");
+                    //获取最后一行的number容器,并拷贝一份
+                    var clone = $(".datagrid-cell-rownumber", panel).last().clone();
+                    //由于在某些浏览器里面,是不支持获取隐藏元素的宽度,所以取巧一下
+                    clone.css({
+                        "position" : "absolute",
+                        left : -1000
+                    }).appendTo("body");
+                    var width = clone.width("auto").width();
+                    //默认宽度是25,所以只有大于25的时候才进行fix
+                    if (width > 25) {
+                        //多加5个像素,保持一点边距
+                        $(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).width(width + 5);
+                        //修改了宽度之后,需要对容器进行重新计算,所以调用resize
+                        $(this).datagrid("resize");
+                        //一些清理工作
+                        clone.remove();
+                        clone = null;
+                    } else {
+                        //还原成默认状态
+                        $(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).removeAttr("style");
+                    }
+                });
+            },freezeRow: function (jq, _6ac) {
             return jq.each(function () {
                 _533(this, _6ac);
             });
@@ -10759,6 +10789,7 @@ if (typeof JSON !== 'object') {
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        fixRowNumber:false, /*wanghc 行号列是否自动适应 */
         autoSizeColumn:true, /*wanghc 速度更新配置成false*/
         sharedStyleSheet: false, frozenColumns: undefined, columns: undefined, fitColumns: false, resizeHandle: "right", autoRowHeight: true, toolbar: null, striped: false, method: "post", nowrap: true, idField: null, url: null, data: null, loadMsg: "Processing, please wait ...", rownumbers: false, singleSelect: false, ctrlSelect: false, selectOnCheck: true, checkOnSelect: true, pagination: false, pagePosition: "bottom", pageNumber: 1, pageSize: 10, pageList: [10, 20, 30, 40, 50], queryParams: {}, sortName: null, sortOrder: "asc", multiSort: false, remoteSort: true, showHeader: true, showFooter: false, scrollbarSize: 18, rowStyler: function (_70a, _70b) {
         }, loader: function (_70c, _70d, _70e) {
