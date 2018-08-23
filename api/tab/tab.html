@@ -17,7 +17,8 @@
 	<h3>如：</h3>
 	<!-- default gray-->
 	<div class="demo-exp-code entry-content"> 
-		<div id="tt" class="hisui-tabs" style="width:500px;height:100px;" >
+		
+		<div id="tt" class="hisui-tabs"  style="width:500px;height:100px;" >
 			<!--wanghc 2018-04-11 tab页签上不要增加小图标 data-options="iconCls:'icon-add-note'"-->   
 			<div title="电子病历" style="padding:20px;">   
 				tab1    
@@ -42,8 +43,11 @@
 	</div>
 	<!-- gray tabs-->
 	<h3>一.灰色页签(<code>tabs-gray</code>)及点击监听</h3>
+	<div id="tab-tools">
+		<a id="btQuotation" title="引用" href="#" class="hisui-linkbutton">引用</a>
+	</div>
 	<div class="demo-exp-code entry-content"> 
-		<div id="tt2" class="hisui-tabs  tabs-gray" style="width:500px;height:150px;">   
+		<div id="tt2" class="hisui-tabs  tabs-gray" data-options="tools:'#tab-tools'" style="width:500px;height:150px;">   
 			<div title="电子病历" style="padding:20px;">   
 				此tab的class为"hisui-tabs  tabs-gray"，所以为灰色的。如果页签太多则自动隐藏，可滚动显示 
 			</div>   
@@ -57,7 +61,10 @@
 				tab3    
 			</div>
 		</div> 
-	<pre class="prettyprint hide lang-html"><code>&lt;div id="tt2" class="hisui-tabs tabs-gray" style="width:500px;height:250px;">   
+	<pre class="prettyprint hide lang-html"><code>&lt;div id="tab-tools">
+	&lt;a id="btQuotation" title="引用" href="#" class="hisui-linkbutton">引用&lt;/a>
+&lt;/div>
+&lt;div id="tt2" class="hisui-tabs tabs-gray" data-options="tools:'#tab-tools'" style="width:500px;height:250px;">   
 	&lt;div title="电子病历" style="padding:20px;">   
 		此tab的class="hisui-tabs  tabs-gray"，所以为灰色的。 如果页签太多则自动隐藏，可滚动显示 
 	&lt;/div>   

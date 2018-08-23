@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-08-23 ##
+* `tabs`上增加按钮,`keywords`增加`clearAllSelected`方法
+
 ## 2018-08-22 ##
 * 为`datagrid`的列号宽度是否自适应增加配置
 

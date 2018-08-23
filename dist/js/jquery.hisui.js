@@ -18878,6 +18878,11 @@ function(a, b, c) {
 })(jQuery);
 
 (function($){
+	/**
+	 * @param {Document} target
+	 * @param {String} labedid id1-id2-id3
+	 * @returns 返回id对应的json
+	*/
 	function getLabelItem(target, labelid){
 		var opts = $.data(target, 'keywords').options;
 		var items = opts.items;
@@ -18971,6 +18976,10 @@ function(a, b, c) {
 			}
 		}
 	}
+	function clearSelected(target){
+		console.log(target);
+		$(target).find('li.selected').removeClass('selected');
+	}
 	function getAllSelected(target){
 		var rs=[];
 		$(target).find('li.selected').each(function(){
@@ -18987,6 +18996,14 @@ function(a, b, c) {
 		},
 		select:function(jq,id){
 			return selectById(jq[0],id);
+		},
+		switchById:function(jq,id){
+			return selectById(jq[0],id);
+		},
+		clearAllSelected:function(jq,id){
+			jq.each(function(ind,item){
+				clearSelected(item);
+			});
 		}
     };
     

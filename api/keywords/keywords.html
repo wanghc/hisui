@@ -13,10 +13,9 @@
 <h2>关键字集组件(<code>keywords</code>)</h2>
 <h3>说明：</h3>
 <span>可以用于关键字多选，或切换关键字功能。</span>
-
-<!-- <a href="#" onclick="javascript:void(0);" id="btn" class="hisui-linkbutton">获得选中元素</a> -->
 <h3>一.多选关键字</h3>
 <div class="demo-exp-code entry-content">
+    <a href="#" onclick="javascript:void(0);" id="btn" class="hisui-linkbutton">获得选中元素-再清除所有选中</a>
     <div id="kw"></div>
     <pre class="prettyprint lang-html hide"><code>&lt;div id="kw">&lt;/div></code></pre>
     <pre class="prettyprint lang-js hide"><code>$(function(){
@@ -130,8 +129,9 @@ $(function(){
     function btnHandler(){
         var rs = $("#kw").keywords("getSelected");
         console.log(rs);
+        $("#kw").keywords("clearAllSelected");
     }
-    //$("#btn").click(btnHandler);
+    $("#btn").click(btnHandler);
 })
 </script>
     <table class="table">
@@ -167,7 +167,7 @@ $(function(){
         </tr>
         <tr>
             <td>select</td>
-            <td>选中对象，入参为元素的id</td>
+            <td>选中对象,入参为元素的id</td>
             <td>id</td>
             <td>无</td>
         </tr>
@@ -176,6 +176,18 @@ $(function(){
             <td>获得所有已选对象</td>
             <td>无</td>
             <td>Array</td>
+        </tr>
+        <tr>
+            <td>switchById</td>
+            <td>切换元素的选中状态,入参为元素的id</td>
+            <td>id</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>clearAllSelected</td>
+            <td>清除所有选中</td>
+            <td>无</td>
+            <td>无返回值.不触发事件.<code>20180822</code></td>
         </tr>
         <tr class="evttitle">
             <th>事件名</th>
