@@ -2891,6 +2891,24 @@ h2 {
 .icon-money-down {
   background: url('icons/money_down.png') no-repeat center center;
 }
+.icon-max-no {
+  background: url('icons/max_no.png') no-repeat center center;
+}
+.icon-paper-link {
+  background: url('icons/paper_link.png') no-repeat center center;
+}
+.icon-excel {
+  background: url('icons/excel.png') no-repeat center center;
+}
+.icon-img {
+  background: url('icons/img.png') no-repeat center center;
+}
+.icon-save-to {
+  background: url('icons/save_to.png') no-repeat center center;
+}
+.icon-save-sure {
+  background: url('icons/save_sure.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
