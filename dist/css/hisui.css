@@ -2909,6 +2909,9 @@ h2 {
 .icon-save-sure {
   background: url('icons/save_sure.png') no-repeat center center;
 }
+.icon-star-empty {
+  background: url('icons/star_empty.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
