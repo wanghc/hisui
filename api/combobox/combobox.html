@@ -5,7 +5,7 @@
 	<title>下拉框示例</title>
 	 <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
@@ -210,6 +210,44 @@ $(function(){
   return ;
 });
 </script>
+
+<h3>增加defaultFilter,配置默认filter的规则</h3>
+<div class="demo-exp-code entry-content">
+  <select id="dfCB" style="width:200px;"></select>
+  <pre class="prettyprint lang-js hide"><code>$(function(){
+	var cbox = $HUI.combobox("#dfCB",{
+		valueField:'id', textField:'text',panelHeight:"auto",
+		data:[
+			{id:'1',text:'高血压病'}
+			,{id:'2',text:'伤寒性肝炎'}
+			,{id:'3',text:'猪霍乱沙门菌败血症'}
+			,{id:'4',text:'细菌性食物中毒'}
+			,{id:'5',text:'骨髓增生异常综合征'}
+			,{id:'6',text:'难治性贫血'}
+			,{id:'7',text:'难治性贫血,单系病态造血'}
+		],
+		defaultFilter:4
+	});
+});
+  </code></pre>
+</div>
+<script type="text/javascript">
+$(function(){
+	var cbox = $HUI.combobox("#dfCB",{
+		valueField:'id', textField:'text',panelHeight:"auto",
+		data:[
+			{id:'1',text:'高血压病'}
+			,{id:'2',text:'伤寒性肝炎'}
+			,{id:'3',text:'猪霍乱沙门菌败血症'}
+			,{id:'4',text:'细菌性食物中毒'}
+			,{id:'5',text:'骨髓增生异常综合征'}
+			,{id:'6',text:'难治性贫血'}
+			,{id:'7',text:'难治性贫血,单系病态造血'}
+		],
+		defaultFilter:4
+	});
+});
+</script>
   <table class="table">
 		<tr class="protitle">
 			<th>属性</th>
@@ -227,6 +265,18 @@ $(function(){
 			<td>selectOnNavigation</td>
 			<td>默认值<code>true</code>。当为<code>false</code>时，DOWN键不选中行记录</td>
 			<td>true</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>defaultFilter</td>
+			<td>
+				默认的filter过滤规则<br>
+				<code>1</code>：text字段左匹配 不区分大小写<br>
+				<code>2</code>：text字段包含匹配 不区分大小写<br>
+				<code>3</code>：text字段左匹配或拼音首字母左匹配 不区分大小写<br>
+				<code>4</code>：text字段包含匹配或拼音首字母包含匹配  不区分大小写<br>
+			</td>
+			<td>1</td>
 			<td></td>
 		</tr>
 	</table>
