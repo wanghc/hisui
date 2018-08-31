@@ -4322,6 +4322,7 @@ if (typeof JSON !== 'object') {
         }
         win.window({
             isTopZindex:true, //wanghc
+            closable:false, //neer
             title: _280, noheader: (_280 ? false : true), width: 300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");

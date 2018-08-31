@@ -29,6 +29,8 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-08-31##
+* 去除`alert`,`confirm`,`prompt`的红叉按钮
 ## 2018-08-27 ##
 * `combobox`增加配置项defaultFilter,配置默认的filter的过滤规则
 
