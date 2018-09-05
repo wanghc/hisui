@@ -2897,13 +2897,24 @@ if (typeof JSON !== 'object') {
     var _19c = {
         render: function (_19d, ul, data) {
             var opts = $.data(_19d, "tree").options;
+            var virtualNode=$("<div id=\"virtual-node\" class=\"tree-node\" style=\"position:absolute;top:-1000px\">").appendTo('body');
             var _19e = $(ul).prev("div.tree-node").find("span.tree-indent, span.tree-hit").length;
             var cc = _19f(_19e, data);
             $(ul).append(cc.join(""));
+            virtualNode.remove();
             function _19f(_1a0, _1a1) {
                 var cc = [];
                 for (var i = 0; i < _1a1.length; i++) {
                     var item = _1a1[i];
+                    
+                    if (opts.lines && opts.autoNodeHeight){
+                        //获取高度
+                        virtualNode.empty();
+                        var nodeHeight=$("<span class=\"tree-title\">" + opts.formatter.call(_19d, item) + "</span>").appendTo(virtualNode).height();
+                    }else{
+                        var nodeHeight=0;
+                    }
+
                     if (item.state != "open" && item.state != "closed") {
                         item.state = "open";
                     }
@@ -2911,19 +2922,34 @@ if (typeof JSON !== 'object') {
                     cc.push("<li>");
                     cc.push("<div id=\"" + item.domId + "\" class=\"tree-node\">");
                     for (var j = 0; j < _1a0; j++) {
-                        cc.push("<span class=\"tree-indent\"></span>");
+                        cc.push("<span class=\"tree-indent\" "+(nodeHeight>0?('style="height:'+nodeHeight+'px"'):'')+"></span>");
                     }
                     var _1a2 = false;
                     if (item.state == "closed") {
-                        cc.push("<span class=\"tree-hit tree-collapsed\"></span>");
-                        cc.push("<span class=\"tree-icon tree-folder " + (item.iconCls ? item.iconCls : "") + "\"></span>");
+                        cc.push("<span class=\"tree-hit tree-collapsed\" "+(nodeHeight>0?('style="height:'+nodeHeight+'px"'):'')+"></span>");
+                        if (nodeHeight>0){  //
+                            cc.push("<span class=\"tree-icon tree-folder tree-icon-lines\" style=\"height:"+nodeHeight+"px\"></span>");                    
+                        }else{
+                            cc.push("<span class=\"tree-icon tree-folder " + (item.iconCls ? item.iconCls : "") + "\"></span>");
+                        }
+                        
                     } else {
                         if (item.children && item.children.length) {
-                            cc.push("<span class=\"tree-hit tree-expanded\"></span>");
-                            cc.push("<span class=\"tree-icon tree-folder tree-folder-open " + (item.iconCls ? item.iconCls : "") + "\"></span>");
+                            cc.push("<span class=\"tree-hit tree-expanded\" "+(nodeHeight>0?('style="height:'+nodeHeight+'px"'):'')+"></span>");
+                            if(nodeHeight>0){
+                                cc.push("<span class=\"tree-icon tree-folder tree-folder-open tree-icon-lines\" style=\"height:"+nodeHeight+"px\"></span>");
+                            }else{
+                                cc.push("<span class=\"tree-icon tree-folder tree-folder-open " + (item.iconCls ? item.iconCls : "") + "\"></span>");
+                            }
+                            
                         } else {
-                            cc.push("<span class=\"tree-indent\"></span>");
-                            cc.push("<span class=\"tree-icon tree-file " + (item.iconCls ? item.iconCls : "") + "\"></span>");
+                            cc.push("<span class=\"tree-indent\" "+(nodeHeight>0?('style="height:'+nodeHeight+'px"'):'')+"></span>");
+                            if(nodeHeight>0){
+                                cc.push("<span class=\"tree-icon tree-file tree-icon-lines\" style=\"height:"+nodeHeight+"px\"></span>");
+                            }else{
+                                cc.push("<span class=\"tree-icon tree-file " + (item.iconCls ? item.iconCls : "") + "\"></span>");
+                            }
+                            
                             _1a2 = true;
                         }
                     }
@@ -2988,7 +3014,7 @@ if (typeof JSON !== 'object') {
         }, onBeforeEdit: function (node) {
         }, onAfterEdit: function (node) {
         }, onCancelEdit: function (node) {
-        }
+        }, autoNodeHeight:false
     };
 })(jQuery);
 (function ($) {
@@ -4322,7 +4348,7 @@ if (typeof JSON !== 'object') {
         }
         win.window({
             isTopZindex:true, //wanghc
-            closable:false, //neer
+            closable:false, //neer---不显示关闭按钮--事件监听问题
             title: _280, noheader: (_280 ? false : true), width: 300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");
