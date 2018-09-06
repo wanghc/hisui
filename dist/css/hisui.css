@@ -5453,11 +5453,11 @@ td.datagrid-value-changed {
   cursor: pointer;
 }
 .tree-node {
-  height: 28px;
+  height: auto;
 }
 .tree-title {
   font-size: 14px;
-  height: 28px;
+  height: auto;
   line-height: 28px;
 }
 .tree-checkbox,
@@ -5469,40 +5469,53 @@ td.datagrid-value-changed {
   margin-top: 5px;
 }
 /*线条*/
+.tree-lines {
+  /*高度不固定时  tree-folder tree-file tree-folder-open   都加了一个类 tree-icon-lines*/
+}
 .tree-lines .tree-collapsed,
 .tree-lines .tree-expanded,
 .tree-lines .tree-indent {
   margin-top: 0;
+  height: auto;
   height: 28px;
 }
 .tree-lines .tree-line {
-  background: url(images/tree_lines.png) no-repeat -111px 1px;
+  background: url(images/tree_lines.png) no-repeat -110px center;
 }
 .tree-lines .tree-join {
-  background: url(images/tree_lines.png) no-repeat -127px 1px;
+  background: url(images/tree_lines.png) no-repeat -126px center;
 }
 .tree-lines .tree-expanded {
-  background: url(images/tree_lines.png) no-repeat -82px 1px;
+  background: url(images/tree_lines.png) no-repeat -81px center;
 }
 .tree-lines .tree-collapsed {
-  background: url(images/tree_lines.png) no-repeat -66px 1px;
+  background: url(images/tree_lines.png) no-repeat -65px center;
 }
 .tree-lines .tree-root-first .tree-expanded {
-  background: url(images/tree_lines.png) no-repeat -82px 1px;
+  background: url(images/tree_lines.png) no-repeat -81px center;
 }
 .tree-lines .tree-root-first .tree-collapsed {
-  background: url(images/tree_lines.png) no-repeat -66px 1px;
+  background: url(images/tree_lines.png) no-repeat -65px center;
 }
 .tree-lines .tree-node-last .tree-expanded,
 .tree-lines .tree-root-one .tree-expanded {
-  background: url(images/tree_lines.png) no-repeat -18px 1px;
+  background: url(images/tree_lines.png) no-repeat -17px center;
 }
 .tree-lines .tree-node-last .tree-collapsed,
 .tree-lines .tree-root-one .tree-collapsed {
-  background: url('images/tree_lines.png') no-repeat -2px 1px;
+  background: url('images/tree_lines.png') no-repeat -1px center;
 }
 .tree-lines .tree-joinbottom {
-  background: url(images/tree_lines.png) no-repeat -95px 1px;
+  background: url(images/tree_lines.png) no-repeat -94px center;
+}
+.tree-lines .tree-folder.tree-folder-open.tree-icon-lines {
+  margin: 0;
+  background: url(images/tree_lines.png) no-repeat -148px center;
+}
+.tree-lines .tree-folder.tree-icon-lines,
+.tree-lines .tree-file.tree-icon-lines {
+  margin: 0;
+  background: url(images/tree_lines.png) no-repeat -164px center;
 }
 /*将树的样式整成手风琴 加个类accordiontree 尝试下*/
 .accordiontree.tree {
