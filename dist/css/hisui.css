@@ -2912,6 +2912,42 @@ h2 {
 .icon-star-empty {
   background: url('icons/star_empty.png') no-repeat center center;
 }
+.icon-paper-info {
+  background: url('icons/paper_info.png') no-repeat center center;
+}
+.icon-export-data {
+  background: url('icons/export_data.png') no-repeat center center;
+}
+.icon-export-all {
+  background: url('icons/export_all.png') no-repeat center center;
+}
+.icon-set-col {
+  background: url('icons/set_col.png') no-repeat center center;
+}
+.icon-template {
+  background: url('icons/template.png') no-repeat center center;
+}
+.icon-adjust-inventory {
+  background: url('icons/adjust_inventory.png') no-repeat center center;
+}
+.icon-cancel-money {
+  background: url('icons/cancel_money.png') no-repeat center center;
+}
+.icon-set-zero {
+  background: url('icons/set_zero.png') no-repeat center center;
+}
+.icon-set-paper {
+  background: url('icons/set_paper.png') no-repeat center center;
+}
+.icon-accept-money {
+  background: url('icons/accept_money.png') no-repeat center center;
+}
+.icon-accept {
+  background: url('icons/accept.png') no-repeat center center;
+}
+.icon-show-set {
+  background: url('icons/show_set.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3195,6 +3231,9 @@ h2 {
 }
 .icon-w-calc {
   background: url('icons/white/calc.png') no-repeat center center;
+}
+.icon-w-submit {
+  background: url('icons/white/submit.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {

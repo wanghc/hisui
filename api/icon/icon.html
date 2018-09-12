@@ -164,7 +164,7 @@
         $(function(){
             var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','arrow-left','arrow-right','back','cal','cancel','card','clean','config',
             'epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy',
-            'stamp','batch-cfg','inv','batch-add','eye','calc'];
+            'stamp','batch-cfg','inv','batch-add','eye','calc','submit'];
             for(var i=0;i<wicons.length;i++){
                 //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
                 $(
@@ -187,7 +187,8 @@
             ,'batch-cfg','batch-add','import-xls','init','inv-search','submit','chart-sum','chart-year'
             ,'attachment','import-reset','mnypaper-cfg','mnypaper-run','mnypaper-ok','mnypaper-no','mnypaper-down','mnypaper-down2'
             ,'stamp','stamp-cancel','stamp-pass','line-paid','split','alert','user','money-down'
-            ,'max-no','excel','img','save-to','save-sure'
+            ,'max-no','excel','img','save-to','save-sure','export-data','export-all','set-col','template','adjust-inventory','cancel-money'
+            ,'set-zero','accept-money','accept','show-set'
             ];
             //icons.sort();
             for(var i=0;i<icons.length;i++){
@@ -200,7 +201,7 @@
             var papericons = [
                 'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
                 ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'
-                ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up','paper-link'];
+                ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up','paper-link','paper-info','set-paper'];
             //icons.sort();
             for(var i=0;i<papericons.length;i++){
                 $(
@@ -252,7 +253,7 @@
             }
             /*-------------------------------------------------*/
             var allicondesclist={};
-            var alliconlist=[].concat(icons,fonticons,arrowicons);
+            var alliconlist=[].concat(icons,papericons,fonticons,arrowicons);
             for(var i=0;i<alliconlist.length;i++){
                 $('<tr><td><span class="icon icon-'+alliconlist[i]+'">&nbsp</span></td><td>icon-'+
                     alliconlist[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-'+alliconlist[i]]||"")
