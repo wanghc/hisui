@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-09-13##
+* `datagrid`配置项`url`未配置时,一定不去远程加载数据。
+
 ## 2018-09-05##
 * `tree`增加配置项`autoNodeHeight`,以实现formatter返回的html高度不定时，线条能正确显示
 
