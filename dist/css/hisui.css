@@ -3235,6 +3235,9 @@ h2 {
 .icon-w-submit {
   background: url('icons/white/submit.png') no-repeat center center;
 }
+.icon-w-clock {
+  background: url('icons/white/clock.png') no-repeat center center;
+}
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;
