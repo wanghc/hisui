@@ -3235,6 +3235,18 @@ h2 {
 .icon-w-submit {
   background: url('icons/white/submit.png') no-repeat center center;
 }
+.icon-w-run {
+  background: url('icons/white/run.png') no-repeat center center;
+}
+.icon-w-rent {
+  background: url('icons/white/rent.png') no-repeat center center;
+}
+.icon-w-takes {
+  background: url('icons/white/takes.png') no-repeat center center;
+}
+.icon-w-line-key {
+  background: url('icons/white/line_key.png') no-repeat center center;
+}
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;

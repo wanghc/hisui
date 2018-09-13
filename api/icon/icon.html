@@ -72,6 +72,10 @@
         .bigicon-tr .icon{
             padding-left:30px;
         }
+        .wicon-tr .icon{
+            background-color: #378ec4;
+            background-position: left 3px center;
+        }
     </style>
 </head>
 <body>
@@ -164,7 +168,7 @@
         $(function(){
             var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','arrow-left','arrow-right','back','cal','cancel','card','clean','config',
             'epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy',
-            'stamp','batch-cfg','inv','batch-add','eye','calc','submit'];
+            'stamp','batch-cfg','inv','batch-add','eye','calc','submit','rent','run','line-key','takes'];
             for(var i=0;i<wicons.length;i++){
                 //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
                 $(
@@ -254,6 +258,14 @@
             /*-------------------------------------------------*/
             var allicondesclist={};
             var alliconlist=[].concat(icons,papericons,fonticons,arrowicons);
+            
+            for(var i=0;i<wicons.length;i++){
+                $('<tr class="wicon-tr"><td><span class="icon icon-w-'+wicons[i]+'">&nbsp</span></td><td>icon-w-'+
+                    wicons[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-w-'+wicons[i]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+                
+            }
             for(var i=0;i<alliconlist.length;i++){
                 $('<tr><td><span class="icon icon-'+alliconlist[i]+'">&nbsp</span></td><td>icon-'+
                     alliconlist[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-'+alliconlist[i]]||"")
