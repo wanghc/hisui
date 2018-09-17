@@ -3451,6 +3451,10 @@ h2 {
   -webkit-border-radius: 0;
   border-radius: 0;
 }
+.panel-header-gray.panel-body.panel-body-noheader {
+  background: #ffffff;
+  border-color: #cccccc;
+}
 .accordion .accordion-body {
   /*border-width: 0 0 1px;*/
   /*wanghc*/
@@ -3518,6 +3522,11 @@ h2 {
 }
 .accordion.accordion-noborder .panel:first-child .accordion-header {
   border-top-width: 0px;
+}
+.accordion-gray.accordion .accordion-body {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #cccccc;
 }
 .accordion-gray.accordion .accordion-header {
   background: #f9f9fa;
@@ -3758,6 +3767,18 @@ input[type="text"]:disabled {
 }
 .layout-expand .panel-header {
   border-color: #cccccc;
+}
+.panel-header.panel-header-gray .layout-button-up {
+  background: url(images/layout_arrows_black.png) -16px -16px no-repeat;
+}
+.panel-header.panel-header-gray .layout-button-left {
+  background: url(images/layout_arrows_black.png) no-repeat;
+}
+.panel-header.panel-header-gray .layout-button-right {
+  background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
+}
+.panel-header.panel-header-gray .layout-button-down {
+  background: url(images/layout_arrows_black.png) -16px 0px no-repeat;
 }
 .tabs-scroller-left,
 .tabs-scroller-right {

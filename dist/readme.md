@@ -31,6 +31,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2018-09-17##
 * `menu`样式修改,`padding`与`height`修改,`menu-no-icon`提供.
+* `panel`样式对没有header的gray样式支持,bodyCls:'panel-header-gray'
+
 ## 2018-09-13##
 * `datagrid`配置项`url`未配置时,一定不去远程加载数据。
 
