@@ -3520,11 +3520,17 @@ h2 {
   border-top-width: 0px;
 }
 .accordion-gray.accordion .accordion-header {
-  background: #cccccc;
+  background: #f9f9fa;
   filter: none;
 }
 .accordion-gray.accordion .accordion-header .panel-title {
   color: #000000;
+}
+.accordion-gray.accordion .accordion-header .panel-tool .accordion-collapse {
+  background: url(images/accordion_arrows-black.png) no-repeat -22px 0;
+}
+.accordion-gray.accordion .accordion-header .panel-tool .accordion-expand {
+  background: url(images/accordion_arrows-black.png) no-repeat 0 0;
 }
 .window,
 .window-shadow {
@@ -5214,13 +5220,23 @@ td.datagrid-value-changed {
   color: #000;
 }
 .menu-item {
+  height: 36px;
   border: none;
 }
 .menu-text {
-  height: 26px;
-  line-height: 26px;
+  height: 35px;
+  line-height: 35px;
   float: left;
-  padding-left: 28px;
+  padding-left: 41px ;
+  /*28px;*/
+}
+.menu-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 15px;
+  top: 50%;
+  margin-top: -8px;
 }
 .menu-line {
   display: none;
@@ -5247,6 +5263,15 @@ td.datagrid-value-changed {
   border-color: #dbecf8;
   color: #000000;
   background: #dbecf8;
+}
+.menu-rightarrow {
+  background: url(images/calendar_arrows.png) no-repeat -32px center;
+}
+.menu-rightarrow {
+  right: 15px;
+}
+.menu-no-icon .menu-text {
+  padding-left: 15px;
 }
 .m-btn .l-btn-text {
   color: #000000;
@@ -5358,7 +5383,8 @@ td.datagrid-value-changed {
 }
 .menu.menubutton-toolbar .menu-item {
   background-color: #fff;
-  height: 26px;
+  height: 35px;
+  /*26px*/
   border: 0px;
 }
 .menu.menubutton-toolbar .menu-item:hover {
@@ -5366,8 +5392,10 @@ td.datagrid-value-changed {
 }
 .menu.menubutton-toolbar .menu-item .menu-text {
   color: #000;
-  padding-left: 10px;
-  line-height: 26px;
+  padding-left: 15px;
+  /*10px*/
+  line-height: 35px;
+  /*26px*/
 }
 .menu.menubutton-toolbar .menu-item .menu-icon {
   display: none;

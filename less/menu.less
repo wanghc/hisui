@@ -5,13 +5,22 @@
   color: #000;
 }
 .menu-item {
+  height: 36px;
   border:none;
 }
 .menu-text {
-  height: 26px;
-  line-height: 26px;
+  height: 35px;
+  line-height: 35px;
   float: left;
-  padding-left: 28px;
+  padding-left: 41px ; /*28px;*/
+}
+.menu-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 15px;
+  top: 50%;
+  margin-top: -8px;
 }
 .menu-line {
   display: none;
@@ -38,4 +47,15 @@
   border-color: #dbecf8;
   color: #000000;
   background: #dbecf8; 
+}
+.menu-rightarrow {
+  background: url(images/calendar_arrows.png) no-repeat -32px center;
+}
+.menu-rightarrow {
+  right: 15px;
+}
+.menu-no-icon{
+  .menu-text {
+    padding-left: 15px;
+  }
 }
