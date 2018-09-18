@@ -5728,9 +5728,19 @@ if (typeof JSON !== 'object') {
                     }
                 }
             }
+            var p_title="&nbsp;",p_content="";
+            if (_388.title!="" && _388.showCollapsedTitle){
+                if(dir == "east" || dir == "west"){
+                    p_content=_388.title.split("").join('</div><div>');
+                    p_content='<div class="layout-expand-body-title"><div>'+p_content+'</div></div>';
+                }else{
+                    p_title=_388.title;
+                }
+            }
+
             var p = $("<div></div>").appendTo(_384);
             p.panel($.extend({}, $.fn.layout.paneldefaults, {
-                cls: ("layout-expand layout-expand-" + dir), title: "&nbsp;", closed: true, minWidth: 0, minHeight: 0, doSize: false, tools: [{
+                cls: ("layout-expand layout-expand-" + dir), title: p_title,content:p_content,headerCls:_388.headerCls,bodyCls:_388.bodyCls, closed: true, minWidth: 0, minHeight: 0, doSize: false, tools: [{
                     iconCls: icon, handler: function () {
                         _390(_384, _385);
                         return false;
@@ -5763,6 +5773,7 @@ if (typeof JSON !== 'object') {
                     return { resizeC: { width: ww, left: _38f - 1 }, expand: { left: 0 }, expandP: { left: 0, top: _38e.top, width: _38f, height: _38e.height }, collapse: { left: -_388.width, top: _38e.top, height: _38e.height } };
                 } else {
                     if (_385 == "north") {
+                        _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
                         var hh = _38e.height;
                         if (!_368(_387.expandNorth)) {
                             hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
@@ -5771,6 +5782,7 @@ if (typeof JSON !== 'object') {
                         return { resizeC: { top: _38f - 1, height: hh }, expand: { top: 0 }, expandP: { top: 0, left: 0, width: cc.width(), height: _38f }, collapse: { top: -_388.height, width: cc.width() } };
                     } else {
                         if (_385 == "south") {
+                            _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
                             var hh = _38e.height;
                             if (!_368(_387.expandSouth)) {
                                 hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
@@ -5900,9 +5912,11 @@ if (typeof JSON !== 'object') {
     $.fn.layout.defaults = { fit: false,clickExpand:false };
     $.fn.layout.parsePanelOptions = function (_3a5) {
         var t = $(_3a5);
-        return $.extend({}, $.fn.panel.parseOptions(_3a5), $.parser.parseOptions(_3a5, ["region", { split: "boolean", collpasedSize: "number", minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number" }]));
+        return $.extend({}, $.fn.panel.parseOptions(_3a5), $.parser.parseOptions(_3a5, ["region", { split: "boolean",showCollapsedTitle:'boolean', collpasedSize: "number",collapsedHeight:'number', minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number" }]));
     };
-    $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null, split: false, collapsedSize: 28, minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000 });
+    // cryze 2018-9-18 原collapsedSize并不适用于 noth south的折叠高度   ，故新增collapsedHeight表示noth south的折叠高度
+    // cryze 2018-9-18 增加 showCollapsedTitle ，控制是否在折叠的时候显示标题
+    $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null,showCollapsedTitle:false, split: false, collapsedSize: 28,collapsedHeight: 38, minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000 });
 })(jQuery);
 (function ($) {
     function init(_3a6) {

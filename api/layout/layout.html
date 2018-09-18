@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>面板示例</title>
-	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
@@ -18,29 +18,42 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
+			<div data-options="region:'north',title:'North',split:true,showCollapsedTitle:true" style="height:100px;">
+				折叠状态显示标题><code>data-options="showCollapsedTitle:true"</code>
+			</div>  
+			<div data-options="region:'south',title:'',split:true" style="height:100px;">
+				底部
+			</div>
+			<div data-options="region:'east',title:'East',split:true,split:true,collapsed:true" 
+				style="width:200px;">
+					自动收起><code>data-options="collapsed:true"</code>
+			</div>   
+			<div data-options="region:'west',title:'导航菜单',split:true,showCollapsedTitle:true" style="width:100px;">导航菜单</div>   
+			<div data-options="region:'center',title:'',split:true" 
+				style="padding:10px;">
+				主要的内容
+			</div>   
+		</div>  
+		<pre class="prettyprint hide lang-html"><code></code></pre>
+	</div>
+
+	<div class="demo-exp-code entry-content"> 
+		<div id="cc2" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
 			<div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray'" style="height:100px;"></div>  
-			<div data-options="region:'south',title:'',split:true,headerCls:'panel-header-gray'" style="height:100px;border-color:#cccccc;">
-				主动定义边框色><code>style="border-color:#cccccc;"</code>
+			<div data-options="region:'south',title:'',split:true,bodyCls:'panel-header-gray'" style="height:100px;">
+				
 			</div>
 			<div data-options="region:'east',title:'East',split:true,split:true,headerCls:'panel-header-gray',collapsed:true" 
 				style="width:200px;">
 					自动收起><code>data-options="collapsed:true"</code>
 			</div>   
-			<div data-options="region:'west',title:'West',split:true,headerCls:'panel-header-gray'" style="width:100px;">导航菜单</div>   
-			<div data-options="region:'center',title:'',split:true,headerCls:'panel-header-gray'" 
-				style="padding:10px;border-color:#cccccc">
+			<div data-options="region:'west',title:'导航菜单',split:true,headerCls:'panel-header-gray'" style="width:100px;">导航菜单</div>   
+			<div data-options="region:'center',title:'',split:true,bodyCls:'panel-header-gray'" 
+				style="padding:10px;">
 				主要的内容
 			</div>   
 		</div>  
-	<pre class="prettyprint hide lang-html"><code>&lt;div id="cc" class="hisui-layout" style="width:600px;height:400px;">   
-	&lt;div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray'" style="height:100px;">&lt;/div>   
-	&lt;div data-options="region:'south',title:'',split:true,headerCls:'panel-header-gray'" style="height:100px;border-color:#cccccc;">&lt;/div>   
-	&lt;div data-options="region:'east',title:'East',split:true,split:true,headerCls:'panel-header-gray',collapsed:true" style="width:200px;">&lt;/div>   
-	&lt;div data-options="region:'west',title:'West',split:true,headerCls:'panel-header-gray'" style="width:100px;">导航菜单&lt;/div>   
-	&lt;div data-options="region:'center',title:'',split:true,headerCls:'panel-header-gray'" style="padding:10px;border-color:#cccccc">
-	主要的内容
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+	</div>
 	<h3>布局组件的相关配置</h3>
 	<table class="table">
 		<tr class="protitle">
@@ -52,6 +65,21 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 		<tr>
 			<td>clickExpand</td>
 			<td>点击展开与否。为true时，展开区域不再悬浮</td>
+			<td>false</td>
+			<td></td>
+		</tr>
+	</table>
+	<h3>区域面板配置</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>showCollapsedTitle</td>
+			<td>在区域面板处于折叠状态的时候是否显示title</td>
 			<td>false</td>
 			<td></td>
 		</tr>
