@@ -14959,7 +14959,7 @@ if (typeof JSON !== 'object') {
         var _918 = _917.onChange;
         _917.onChange = function () {
         };
-
+        if (_913=="") _913=[]; // wanghc setValues("")---error
         var vv = $.map(_913, function (_b62) {  //cryze 2018-7-24
             return String(_b62);
         });

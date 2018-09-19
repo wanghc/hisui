@@ -2948,6 +2948,9 @@ h2 {
 .icon-show-set {
   background: url('icons/show_set.png') no-repeat center center;
 }
+.icon-camera {
+  background: url('icons/camera.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;

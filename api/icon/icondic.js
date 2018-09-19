@@ -128,6 +128,7 @@ var iconDictionary={
     "icon-accept": "通过（接受）",
     "icon-show-set": "显示设置",
     "icon-abort-order": "",
+    "icon-camera":"拍照,照相机",
     "icon-cancel-order": "",
     "icon-copy-drug": "",
     "icon-copy-prn": "",
