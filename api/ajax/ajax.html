@@ -69,10 +69,23 @@
 							<td>{ String }</td>
 							<td>可选</td>
 							<td>
-								配置QueryName后，运行Query返回的数据格式
+								配置ResultSetType后，运行Query返回的数据格式
 								<br/>
 								值为<code>array</code>时返回值格式为:<code>[{},{},{}]</code>
-								不配置时返回格式为:<code>{"rows":[{},{},{}],"total":3}</code>
+								<br/>不配置时返回格式为:<code>{"rows":[{},{},{}],"total":3}</code>
+								
+							</td>
+						</tr>
+						<tr>
+							<td><code>totalFields</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>
+								配置totalFields后，会对totalFields中的列进入数值合计
+								<br/>
+								如：totalFields:<code>'amt,cost'</code>,返回格式为:
+								<br/>
+								<code>{"rows":[...],"footer":[{"amt":110,"cost":120}],"total":3}</code>
 								
 							</td>
 						</tr>
@@ -148,9 +161,9 @@ console.dir(jsonData);  //{"name":"张三"}</code></pre>
 
 <h2>2.调用后台Query示例支持<code>%String,%Integer,%Float,%Boolean</code>：</h2>
 <pre class="prettyprint lang-bash">
-<code >Query LookUpActive(desc As %String) As %Library.SQLQuery(CONTAINID = 2, ROWSPEC = "Description:%String,HIDDEN:%Integer,Code:%String")
+<code >Query LookUpActive(desc As %String) As %Library.SQLQuery(CONTAINID = 2, ROWSPEC = "Description:%String,HIDDEN:%Integer,Active:%Boolean")
 {
-	SELECT SSUSR_Name, SSUSR_RowID, SSUSR_Initials
+	SELECT SSUSR_Name, SSUSR_RowID, SSUSR_Active
 	FROM	SQLUser.SS_User
 	WHERE	((%ALPHAUP SSUSR_Name [ %ALPHAUP :desc) OR (:desc IS NULL)) AND (SSUSR_Active = 'Y')
 	ORDER	BY SSUSR_Name
@@ -159,11 +172,11 @@ console.dir(jsonData);  //{"name":"张三"}</code></pre>
 <code >$cm({
 	ClassName:"web.SSUser",
 	QueryName:"LookUpActive",
-	//增加配置项 ResultSetType："array" //则rs为[{"Description":"王二","HIDDEN":1,"Code":"001"},{"Description":"张三","HIDDEN":2,"Code":"002"},...]
+	//增加配置项 ResultSetType："array" //则rs为[{"Description":"王二","HIDDEN":"1","Active":true},,...]
 	page:1,    //可选项，页码，默认1
 	rows:20    //可选项，获取多少条数据，默认50
 },function(rs){
-	console.dir(rs);    //{"rows":[{"Description":"王二","HIDDEN":1,"Code":"001"},{"Description":"张三","HIDDEN":2,"Code":"002"},...],"total":110}
+	console.dir(rs);    //{"rows":[{"Description":"王二","HIDDEN":"1","Active":true},...],"total":110}
 	
 });
 </code></pre>
