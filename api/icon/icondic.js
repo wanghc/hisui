@@ -42,6 +42,7 @@ var iconDictionary={
     "icon-w-run": "执行计划",
     "icon-w-line-key": "论证",
     "icon-w-takes": "接送单",
+    "icon-w-key":'授权,钥匙',
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
