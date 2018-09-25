@@ -43,6 +43,8 @@ var iconDictionary={
     "icon-w-line-key": "论证",
     "icon-w-takes": "接送单",
     "icon-w-key":'授权,钥匙',
+    "icon-w-img":'图片信息',
+    "icon-w-setting":"附属设备,设备,设置",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
@@ -234,5 +236,6 @@ var iconDictionary={
     "icon-big-split-cells": "",
     "icon-big-help": "",
     "icon-big-paper": "",
-    "icon-big-question": ""
+    "icon-big-question": "",
+    "icon-big-tip":"暂无回复,提示"
 };

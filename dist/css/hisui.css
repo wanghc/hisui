@@ -3117,6 +3117,9 @@ h2 {
 .icon-big-stop {
   background: url('icons/big/stop.png') no-repeat top center;
 }
+.icon-big-tip {
+  background: url('icons/big/tip.png') no-repeat top center;
+}
 /* white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
@@ -3255,6 +3258,12 @@ h2 {
 }
 .icon-w-key {
   background: url('icons/white/key.png') no-repeat center center;
+}
+.icon-w-setting {
+  background: url('icons/white/setting.png') no-repeat center center;
+}
+.icon-w-img {
+  background: url('icons/white/img.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {

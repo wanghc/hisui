@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-09-25 ##
+* `datebox`支持t表示今天的快捷输入
+
 ## 2018-09-19 ##
 * `combox`的setValues('')兼容
 
