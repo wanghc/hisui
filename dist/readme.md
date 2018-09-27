@@ -31,7 +31,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2018-09-27 ##
-* 为textarea增加.textbox样式类,保证默认宽度
+* 为`textarea`增加`.textbox`样式类,保证默认宽度
+* 为`accordion`增加`.accordion-gray`样式类
 
 ## 2018-09-25 ##
 * `datebox`支持t表示今天的快捷输入

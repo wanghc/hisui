@@ -74,15 +74,21 @@
 .accordion.accordion-noborder .panel:first-child .accordion-header{
   border-top-width:0px;
 }
-
 .accordion-gray.accordion {
+  &.accordion-noborder .panel:first-child .accordion-header{
+    border-top-width:1px;
+    margin-top: 0px;
+  }
   .accordion-body {
     background-color: #ffffff;
     color: #000000;
     border: 1px solid @accordion-body-border;
+    border-top: 0px;
   }
   .accordion-header{
-    background: #f9f9fa;
+    margin-top: 4px;
+    border: 1px #cccccc solid;
+    background: #f7f7f7;
     filter: none;
     .panel-title{
       color: #000000;
