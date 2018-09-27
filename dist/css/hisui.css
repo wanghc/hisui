@@ -3662,7 +3662,7 @@ h2 {
   border: none;
   background: #FFFFFF;
 }
-.textbox {
+input.textbox {
   line-height: 28px;
   height: 28px;
   margin: 0;
@@ -3672,14 +3672,24 @@ h2 {
   color: #000000;
   font-size: 14px;
 }
-.textbox:active {
+input.textbox:active {
   background-color: #f4faff;
 }
-.textbox:hover {
+input.textbox:hover {
   background-color: #f4faff;
 }
-.textbox:focus {
+input.textbox:focus {
   background-color: #f4faff;
+}
+textarea.textbox {
+  width: inherit;
+  /*websys.css---textarea{width:130px}*/
+  margin: 0;
+  padding: 0 0 0 5px;
+  box-sizing: content-box;
+  border: 1px solid #40a2de;
+  color: #000000;
+  font-size: 14px;
 }
 .textareabox-text {
   margin: 0;

@@ -29,6 +29,10 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+
+## 2018-09-27 ##
+* 为textarea增加.textbox样式类,保证默认宽度
+
 ## 2018-09-25 ##
 * `datebox`支持t表示今天的快捷输入
 
