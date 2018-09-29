@@ -28,6 +28,8 @@ var iconDictionary={
     "icon-switch": "",
     "icon-import": "",
     "icon-export": "导出",
+    "icon-import":"导入",
+    "icon-download":"下载",
     "icon-star": "",
     "icon-msg": "",
     "icon-copy": "复制",
@@ -237,5 +239,7 @@ var iconDictionary={
     "icon-big-help": "",
     "icon-big-paper": "",
     "icon-big-question": "",
-    "icon-big-tip":"暂无回复,提示"
+    "icon-big-tip":"暂无回复,提示",
+    "icon-big-rad":"放射",
+    "icon-big-balance":"天平,称重"
 };

@@ -2951,6 +2951,12 @@ h2 {
 .icon-camera {
   background: url('icons/camera.png') no-repeat center center;
 }
+.icon-download {
+  background: url('icons/download.png') no-repeat center center;
+}
+.icon-import {
+  background: url('icons/import.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3119,6 +3125,12 @@ h2 {
 }
 .icon-big-tip {
   background: url('icons/big/tip.png') no-repeat top center;
+}
+.icon-big-rad {
+  background: url('icons/big/rad.png') no-repeat top center;
+}
+.icon-big-balance {
+  background: url('icons/big/balance.png') no-repeat top center;
 }
 /* white icon*/
 .icon-w-plus {
