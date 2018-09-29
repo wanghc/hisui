@@ -18990,7 +18990,9 @@ function(a, b, c) {
 		var html = '';
 		$.each(opts.items,function(indc,chp){
 			if(chp.type=="chapter"){
-				html +='<div class="kw-chapter"><a></a>'+chp.text+'</div><div class="kw-line"></div>';
+				html +='<div class="kw-chapter">';
+				if(chp.text!="") html += '<a></a>'+chp.text; //章节为空时,不显示前台蓝条
+				html +='</div><div class="kw-line"></div>';
 				$.each(chp.items,function(inds,sec){
 					if(sec.type=='section'){
 						html +='<div class="kw-section"><div class="kw-section-header">'+sec.text+'</div>';
@@ -19012,6 +19014,19 @@ function(a, b, c) {
 						if (inds==(chp.items.length-1)) html +='</ul>';
 					}
 				});
+			}else if(chp.type=="section"){
+				html +='<div class="kw-section"><div class="kw-section-header">'+chp.text+'</div>';
+				if (chp.items){
+					html += '<ul class="kw-section-list keywords">';
+				}
+				$.each(chp.items, function(indl,lbl){
+					var s = lbl.selected?'class="selected"':'';
+					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+lbl.text+'</a></li>'
+				});
+				if (chp.items){
+					html +='</ul>'
+				}
+				html += '</div>' //kw-section end
 			}else{
 				if (indc==0) {html += '<ul class="kw-section-list keywords">';}
 				var s = chp.selected?'class="selected"':'';
