@@ -32,6 +32,7 @@ $("#btn").linkbutton("disable");
 ## 2018-09-29 ##
 * `keywords`组件中`chapter`的`text`为''时显示问题
 * `keywords`只用`section`显示
+* `big`类型的`linkbutton`高度修改, `a`默认颜色修改
 
 ## 2018-09-27 ##
 * 为`textarea`增加`.textbox`样式类,保证默认宽度
