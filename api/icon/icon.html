@@ -76,6 +76,10 @@
             background-color: #378ec4;
             background-position: left 3px center;
         }
+        span.iconpopover {
+            display: block;
+            padding-left: 10px;
+        }
     </style>
 </head>
 <body>
@@ -163,7 +167,7 @@
             </tr>
         </table>
     </div>
-    
+    <div class="mytooltip"></div>
     <script type="text/javascript">
         $(function(){
             var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','arrow-left','arrow-right','back','cal','cancel','card','clean','config',
@@ -178,7 +182,7 @@
                 ).appendTo(".whitelist").find("a").linkbutton();
             }
             /*--------------------------------*/
-            var icons = ['add','edit','remove','save','cut','ok','no','cancel','reload','search','print','help','sum','tip','filter'
+            var icons = ['add','write-order','cancel','edit','remove','save','cut','ok','no','reload','search','print','help','sum','tip','filter'
             //,'mini-add','mini-edit','mini-refresh' /*2018-06-28 去除mini图标*/
             //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'
             ,'bed','house','person','patient','outhosp-patient','stethoscope'
@@ -281,6 +285,27 @@
                 }
             }
 
+        });
+        $("body").on('mouseenter','ul li',function(){
+            var _t =$(this);
+            var cls = _t.text().trim();
+            var txt = '无';
+            $.each(iconDictionary,function(k){
+                if(cls==k) txt = iconDictionary[cls];
+                if (txt!='无') {
+                    txt = txt.split('，').join('</span><span class="iconpopover">');
+                    txt = '<span class="iconpopover">'+txt+'</span>';
+                    return false;
+                }
+            })
+            _t.popover({
+                style:'inverse',
+                trigger:'hover',
+                placement:'bottom',
+                title:'该图标一般用途',
+                content:txt,
+                cache:false
+            }).popover('show');
         });
         function genallicondesclist(){
                 var myallicondesclist={};
