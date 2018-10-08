@@ -13885,7 +13885,7 @@ if (typeof JSON !== 'object') {
                     var p = $(this).closest("div.combo-panel");
                     $("div.combo-panel:visible").not(_859).not(p).panel("close");
                 }
-            }).bind("keydown.combo paste.combo drop.combo", function (e) {
+            }).bind("keydown.combo paste.combo drop.combo input.combo", function (e) { //wanghc 2018-10-08 add bind("input.combo")--firefox
                 switch (e.keyCode) {
                     case 38:
                         opts.keyHandler.up.call(_857, e);
