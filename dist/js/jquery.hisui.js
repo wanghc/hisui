@@ -4345,6 +4345,20 @@ if (typeof JSON !== 'object') {
             for (var _283 in _282) {
                 $("<a></a>").attr("href", "javascript:void(0)").text(_283).css("margin-left", 10).bind("click", eval(_282[_283])).appendTo(tb).linkbutton();
             }
+            win.on('keydown',function(e){
+                if(e.which==32 || e.which==13){
+                    e.stopPropagation();
+                    _282[$.messager.defaults.ok]();
+                    return false;
+                }
+                if(_282[$.messager.defaults.cancel]){ 
+                    if(e.which==27){ //Esc
+                        e.stopPropagation();
+                        _282[$.messager.defaults.cancel]();
+                        return false;
+                    }
+                }
+            });
         }
         win.window({
             isTopZindex:true, //wanghc

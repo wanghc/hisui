@@ -31,6 +31,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2018-10-09 ##
 * `datagrid`组件增加`setColumnTitle`方法
+* `alert`、`confirm`、`prompt`的【确实】按钮支持空格键,【取消】按钮支持Esc键
 
 ## 2018-10-08 ##
 * `combo`及子组件在firebox下中文即时查询bug修复
