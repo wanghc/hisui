@@ -13,7 +13,7 @@
     <h2>单选框，源自于Bootstrap的iCheck插件</h2>
     <h3>说明:</h3>
     <span>用于多选一的业务场情。</span>
-    <h3>如：</h3>
+    <h3>一、单选框示例</h3>
    <div class="demo-exp-code entry-content"> 
         <table cellpadding="5">
             <tr>
@@ -72,8 +72,22 @@
         })
     });
 &lt;/script&gt;</code></pre></div>
-
+    <h3>二、样式为复选框的单选框</h3>
+    <div class="demo-exp-code entry-content"> 
+        <table cellpadding="5">
+            <tr>
+                <td>
+                    <input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue'">
+                    <input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue'">
+                    <input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue'">
+                </td>
+            </tr>
+        </table>
+        <pre class="prettyprint lang-html"><code>&lt;input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue'"&gt;
+&lt;input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue'"&gt;
+&lt;input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue'"&gt;</code></pre>
     </div>
+
     <div>
         <h3>单选组件的相关配置、事件、方法</h3>
         <table class="table">
