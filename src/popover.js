@@ -10,7 +10,6 @@
             t.attr("id",opts.id);
         }
         t.prop("disabled",opts.disabled);
-        console.log(opts);
         t.webuiPopover(opts);
         /*t.bind('ifChecked',function(e,value){
             if (!opts.disabled){

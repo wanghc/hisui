@@ -10586,6 +10586,14 @@ if (typeof JSON !== 'object') {
             return jq.each(function () {
                 _56c(this, _6cb);
             });
+        },setColumnTitle:function(jq,colOpt){
+            return jq.each(function(){
+                var _69f = $.data($(this)[0], "datagrid").dc.header2;
+                //var _6ca = $(this).datagrid("getPanel");
+                for(var f in colOpt){
+                    _69f.find('.datagrid-header-row td[field="'+f+'"] .datagrid-cell span').first().html(colOpt[f]);
+                }
+            });
         }
     };
     $.fn.datagrid.parseOptions = function (_6cc) {
@@ -18177,7 +18185,6 @@ function(a, b, c) {
             t.attr("id",opts.id);
         }
         t.prop("disabled",opts.disabled);
-        console.log(opts);
         t.webuiPopover(opts);
         /*t.bind('ifChecked',function(e,value){
             if (!opts.disabled){

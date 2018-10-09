@@ -14,6 +14,7 @@ var iconDictionary={
     "icon-back": "回退",
     "icon-blue-edit":"蓝色编辑(可用状态)",
     "icon-gray-edit":"灰色编辑(禁用状态)",
+    "icon-pat-write":'群伤患者录入',
     "icon-cal": "",
     "icon-card": "",
     "icon-clean": "",

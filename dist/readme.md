@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-10-09 ##
+* `datagrid`组件增加`setColumnTitle`方法
+
 ## 2018-10-08 ##
 * `combo`及子组件在firebox下中文即时查询bug修复
 

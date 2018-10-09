@@ -2969,6 +2969,9 @@ a {
 .icon-gray-edit {
   background: url('icons/gray_edit.png') no-repeat center center;
 }
+.icon-pat-write {
+  background: url('icons/pat_write.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;

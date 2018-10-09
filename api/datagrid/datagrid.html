@@ -74,6 +74,10 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 			disabled:false,
 			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('deleteRow',curInd)}
 		},{
+			iconCls:'icon-set-col',
+			text:'修改列标题',
+			handler:function(){var jqobj = $('#mytb');jqobj.datagrid('setColumnTitle',{'datetime':'时间(新)','code':'代码(新)'})}
+		},{
 			iconCls: 'icon-help',
 			text:'帮助',
 			handler: function(){alert('你点击了帮助按钮')}
@@ -132,6 +136,10 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 			disabled:true,
 			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
 				$('#mytb').datagrid('deleteRow',curInd)}
+		},{
+			iconCls:'icon-set-col',
+			text:'修改列标题',
+			handler:function(){var jqobj = $('#mytb');jqobj.datagrid('setColumnTitle',{'datetime':'时间(新)','code':'代码(新)'})}
 		},{
 			iconCls: 'icon-help',
 			text:'帮助',
@@ -429,6 +437,18 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 			<td>false</td>
 			<td>值为true时,行号列自适应宽度.<code>(20180822)</code></td>
 		</tr>
+		<tr class="mthtitle">
+			<th>方法名</th>
+			<th>说明</th>
+			<th>入参</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>setColumnTitle</td>
+			<td>重设置列头标题</td>
+			<td>colOpt</td>
+			<td>如:{'datatime':'时间列标题','code':'代码列标题'}<code>(20181009)</code></td>
+		</tr>
 		<tr class="evttitle">
 			<th>事件名</th>
 			<th>说明</th>
@@ -465,6 +485,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 			<td>rowIndex,rowData</td>
 			<td>rowIndex为行索引，从0开始</td>
 		</tr>
+
 	</table>
 	<prettyprint />	
 </body>
