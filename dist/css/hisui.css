@@ -2963,6 +2963,12 @@ a {
 .icon-all-unselect {
   background: url('icons/all_unselect.png') no-repeat center center;
 }
+.icon-blue-edit {
+  background: url('icons/blue_edit.png') no-repeat center center;
+}
+.icon-gray-edit {
+  background: url('icons/gray_edit.png') no-repeat center center;
+}
 /*hisui-linkbutton big*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;

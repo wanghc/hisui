@@ -12,6 +12,8 @@ var iconDictionary={
     "icon-arrow-left": "左移（位置移动）",
     "icon-arrow-right": "右移（位置移动）",
     "icon-back": "回退",
+    "icon-blue-edit":"蓝色编辑(可用状态)",
+    "icon-gray-edit":"灰色编辑(禁用状态)",
     "icon-cal": "",
     "icon-card": "",
     "icon-clean": "",
