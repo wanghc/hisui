@@ -4345,6 +4345,7 @@ if (typeof JSON !== 'object') {
             for (var _283 in _282) {
                 $("<a></a>").attr("href", "javascript:void(0)").text(_283).css("margin-left", 10).bind("click", eval(_282[_283])).appendTo(tb).linkbutton();
             }
+            //add space and esc key event handler add by wanghc  2018-10-09
             win.on('keydown',function(e){
                 if(e.which==32 || e.which==13){
                     e.stopPropagation();
@@ -4359,6 +4360,7 @@ if (typeof JSON !== 'object') {
                     }
                 }
             });
+            //end 2018-10-09
         }
         win.window({
             isTopZindex:true, //wanghc

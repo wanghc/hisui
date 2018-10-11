@@ -29,6 +29,9 @@ $("#btn").linkbutton("disable");
 ```
 点击[hisui]下载最新的HISUI库
 # 更新日志 #
+## 2018-10-11 ##
+* 去掉 `tree`组件第一个根节点线条向上的虚线
+
 ## 2018-10-09 ##
 * `datagrid`组件增加`setColumnTitle`方法
 * `alert`、`confirm`、`prompt`的【确实】按钮支持空格键,【取消】按钮支持Esc键
