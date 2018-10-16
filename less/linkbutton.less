@@ -58,6 +58,15 @@
   border: 0px solid @linkbutton-bgcolor;  //不应有border 有的话32了
   border-radius: 0;
   // transition:all ease 0.3s;
+  &.active{
+    background: @linkbutton-hover-bgcolor;
+    color:@linkbutton-font-color;
+    border: 0px solid @linkbutton-hover-bgcolor;
+    filter: none;
+    .l-btn-icon{
+      background-color: @linkbutton-hover-bgcolor;
+    }
+  }
   &:hover{
     background: @linkbutton-hover-bgcolor;
     color:@linkbutton-font-color;
