@@ -1930,7 +1930,7 @@ if (typeof JSON !== 'object') {
                 _c8.onStartDrag.call(_c6, _c0(_c6, this));
                 var _cc = _c0(_c6, this);
                 if (_cc.id == undefined) {
-                    _cc.id = "easyui_tree_node_id_temp";
+                    _cc.id = "hisui_tree_node_id_temp";
                     _108(_c6, _cc);
                 }
                 _c7.draggingNodeId = _cc.id;
@@ -1948,7 +1948,7 @@ if (typeof JSON !== 'object') {
                 }
                 _c7.disabledNodes = [];
                 var _cd = _162(_c6, _c7.draggingNodeId);
-                if (_cd && _cd.id == "easyui_tree_node_id_temp") {
+                if (_cd && _cd.id == "hisui_tree_node_id_temp") {
                     _cd.id = "";
                     _108(_c6, _cd);
                 }
@@ -2918,7 +2918,7 @@ if (typeof JSON !== 'object') {
                     if (item.state != "open" && item.state != "closed") {
                         item.state = "open";
                     }
-                    item.domId = "_easyui_tree_" + _19b++;
+                    item.domId = "_hisui_tree_" + _19b++;
                     cc.push("<li>");
                     cc.push("<div id=\"" + item.domId + "\" class=\"tree-node\">");
                     for (var j = 0; j < _1a0; j++) {
@@ -4347,9 +4347,22 @@ if (typeof JSON !== 'object') {
             }
             //add space and esc key event handler add by wanghc  2018-10-09
             win.on('keydown',function(e){
+                if (tb.children().length>1){ //多个按钮可用 <- 与 -> 左右按钮切换
+                    if (e.which==37){ //left
+                        e.stopPropagation();
+                        tb.children().removeClass('active').eq(0).addClass('active');
+                    }
+                    if (e.which==39){ //right
+                        tb.children().removeClass('active').eq(1).addClass('active');
+                    }
+                }
                 if(e.which==32 || e.which==13){
                     e.stopPropagation();
-                    _282[$.messager.defaults.ok]();
+                    if (tb.children(".active").length>0){
+                        tb.children(".active").trigger('click');
+                    }else{
+                        _282[$.messager.defaults.ok]();
+                    }
                     return false;
                 }
                 if(_282[$.messager.defaults.cancel]){ 
@@ -7039,7 +7052,7 @@ if (typeof JSON !== 'object') {
         if (_44b.url) {
             form.attr("action", _44b.url);
         }
-        var _44d = "easyui_frame_" + (new Date().getTime());
+        var _44d = "hisui_frame_" + (new Date().getTime());
         var _44e = $("<iframe id=" + _44d + " name=" + _44d + "></iframe>").attr("src", window.ActiveXObject ? "javascript:false" : "about:blank").css({ position: "absolute", top: -1000, left: -1000 });
         var t = form.attr("target"), a = form.attr("action");
         form.attr("target", _44d);
@@ -13909,7 +13922,10 @@ if (typeof JSON !== 'object') {
                     var p = $(this).closest("div.combo-panel");
                     $("div.combo-panel:visible").not(_859).not(p).panel("close");
                 }
-            }).bind("keydown.combo paste.combo drop.combo input.combo", function (e) { //wanghc 2018-10-08 add bind("input.combo")--firefox
+            }).bind("keydown.combo paste.combo drop.combo input.combo", function (e) {
+                // input.combo在IE下,设置值时触发,造成进入有下拉框界面就弹出下拉panel,2018-10-17 增加return
+                if ("undefined" ==typeof e.keyCode){return ;}
+                //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
                 switch (e.keyCode) {
                     case 38:
                         opts.keyHandler.up.call(_857, e);
@@ -14379,6 +14395,15 @@ if (typeof JSON !== 'object') {
         if (!_8b4) {
             $(_8b2).combo("setText", ss.join(opts.separator));
         }
+        if(opts.rowStyle && opts.rowStyle=='checkbox'){ 
+            //wanghc 2018-10-17 rowStyle=checkbox 选中数据行时,判断是不是应该选中全选勾
+            var tmpLen = $.data(_8b2, "combobox").data.length;
+            if (vv.length==tmpLen){
+                _8b5.children("._hisui_combobox-selectall").addClass("checked");
+            }else{
+                _8b5.children("._hisui_combobox-selectall").removeClass("checked");
+            }
+        }
     };
     function _8b6(_8b7, data, _8b8) {
         var _8b9 = $.data(_8b7, "combobox");
@@ -14416,6 +14441,23 @@ if (typeof JSON !== 'object') {
         $(_8b7).combo("panel").html(dd.join(""));
         if (opts.multiple) {
             _8ac(_8b7, _8ba, _8b8);
+            // wanghc 2018-10-17 checkbox all select
+            if (opts.rowStyle && opts.rowStyle=='checkbox'){
+                $('<div id="combobox_allsel" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>全选/取消全选</div>').bind('click',function(e){
+                    var _t = $(this);
+                    if (_t.hasClass('checked')){
+                        _t.removeClass('checked');
+                        $(_8b7).combobox("setValues",[]);
+                    }else{
+                        var tmpArr = [];
+                        _t.addClass('checked');
+                        $.map(data,function(v){
+                            tmpArr.push(v[opts.valueField]);
+                        });
+                        $(_8b7).combobox("setValues",tmpArr);
+                    }
+                }).appendTo($(_8b7).combo("panel"));
+            }
         } else {
             _8ac(_8b7, _8ba.length ? [_8ba[_8ba.length - 1]] : [], _8b8);
         }
@@ -14514,8 +14556,8 @@ if (typeof JSON !== 'object') {
         var _8cb = $.data(_8ca, "combobox");
         var opts = _8cb.options;
         _89b++;
-        _8cb.itemIdPrefix = "_easyui_combobox_i" + _89b;
-        _8cb.groupIdPrefix = "_easyui_combobox_g" + _89b;
+        _8cb.itemIdPrefix = "_hisui_combobox_i" + _89b;
+        _8cb.groupIdPrefix = "_hisui_combobox_g" + _89b;
         $(_8ca).addClass("combobox-f");
         $(_8ca).combo($.extend({}, opts, {
             onShowPanel: function () {
@@ -14666,7 +14708,7 @@ if (typeof JSON !== 'object') {
         };
     };
     $.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
-        valueField: "value", textField: "text", groupField: null, groupFormatter: function (_8dc) {
+        rowStyle:'',valueField: "value", textField: "text", groupField: null, groupFormatter: function (_8dc) {
             return _8dc;
         }, mode: "local", method: "post", url: null, data: null, keyHandler: {
             up: function (e) {
@@ -14687,7 +14729,11 @@ if (typeof JSON !== 'object') {
             return row[opts.textField].toLowerCase().indexOf(q.toLowerCase()) == 0;
         }, formatter: function (row) {
             var opts = $(this).combobox("options");
-            return row[opts.textField];
+            if (opts.rowStyle && opts.rowStyle=='checkbox'){
+                return "<span class='combobox-checkbox'></span>"+row[opts.textField];
+            }else{
+                return row[opts.textField];
+            }
         }, loader: function (_8dd, _8de, _8df) {
             var opts = $(this).combobox("options");
             if (!opts.url) {
@@ -15547,6 +15593,7 @@ if (typeof JSON !== 'object') {
             var _96c = parseInt(tt[1], 10) || 0;
             var _96d = parseInt(tt[2], 10) || 0;
             return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, _96c, _96d);
+        }, onHidePanel:function(){ //因为修改t快捷键,datebox中增加了这个方法,datetimebox中不用
         }
     });
 })(jQuery);

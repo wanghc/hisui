@@ -3785,12 +3785,17 @@ input[type="text"]:disabled {
   background-color: #bbbbbb;
 }
 .combobox-item,
-.combobox-group {
+.combobox-group,
+._hisui_combobox-selectall {
   font-size: 14px;
   padding: 3px;
   padding-right: 0px;
   padding-left: 5px;
   line-height: 24px;
+}
+._hisui_combobox-selectall {
+  background: #f6f6f6;
+  cursor: hand;
 }
 .combobox-gitem {
   padding-left: 10px;
@@ -3802,6 +3807,38 @@ input[type="text"]:disabled {
 .combobox-item-selected {
   background-color: #dbecf8;
   color: #000000;
+}
+.combobox-item .combobox-checkbox,
+._hisui_combobox-selectall .combobox-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  background: url("../../dist/css/images/checkbox.png") no-repeat;
+  background-position: 0 0;
+  width: 24px;
+  height: 24px;
+}
+.combobox-item-selected.combobox-item .combobox-checkbox,
+._hisui_combobox-selectall.checked .combobox-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  background: url("../../dist/css/images/checkbox.png") no-repeat;
+  background-position: -48px 0;
+  width: 24px;
+  height: 24px;
+}
+.combobox-item-disabled.combobox-item .combobox-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  background: url("../../dist/css/images/checkbox.png") no-repeat;
+  background-position: -72px 0;
+  width: 24px;
+  height: 24px;
 }
 .layout-expand-body-title > div {
   text-align: center;
@@ -4532,6 +4569,15 @@ input[type="text"]:disabled {
   filter: none;
   border: 0px solid #40A2DE;
   border-radius: 0;
+}
+.l-btn.active {
+  background: #378ec4;
+  color: #ffffff;
+  border: 0px solid #378ec4;
+  filter: none;
+}
+.l-btn.active .l-btn-icon {
+  background-color: #378ec4;
 }
 .l-btn:hover {
   background: #378ec4;

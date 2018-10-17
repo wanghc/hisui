@@ -28,7 +28,14 @@ $("#btn").linkbutton("disable");
 */
 ```
 点击[hisui]下载最新的HISUI库
+
 # 更新日志 #
+## 2018-10-17 ##
+* `combobox`组件增加`rowStyle`配置项,可配置成`checkbox`
+* `alert`、`confirm`、`prompt`左右键切换选中按钮
+* `datetimebox`显示值时不显示时间bug修改
+* IE下`combo`自动弹出bug修改
+
 ## 2018-10-11 ##
 * 去掉 `tree`组件第一个根节点线条向上的虚线
 
