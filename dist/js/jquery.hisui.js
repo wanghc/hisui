@@ -4499,7 +4499,8 @@ if (typeof JSON !== 'object') {
             return win;
         },popover: function(opt){
             //default top center;
-            var defopt = {style:{top:document.body.scrollTop+document.documentElement.scrollTop+10,left:''},
+            // top:document.body.scrollTop+document.documentElement.scrollTop+10  modify by wanghc on 2018-10-18
+            var defopt = {style:{top:'',left:''},
                msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
             var html = '<div class="messager-popover '+o.type+'" style="display:none;">\
@@ -4509,6 +4510,9 @@ if (typeof JSON !== 'object') {
             var t = $(html).appendTo("body");
             if (o.style.left==''){
                 o.style.left = document.body.clientWidth/2-(t.width()/2)
+            }
+            if (o.style.top==''){
+                o.style.top = document.body.clientHeight/2-(t.height()/2)
             }
             t.css(o.style);
             switch (o.showType) {
@@ -6888,6 +6892,7 @@ if (typeof JSON !== 'object') {
         var opts = _430.options;
         var box = $(_42f);
         var _431 = box.val();
+
         function _432(msg) {
             _430.message = msg;
         };
@@ -6961,6 +6966,10 @@ if (typeof JSON !== 'object') {
             $(_43c).removeClass("validatebox-invalid");
             _425(_43c);
         }
+        /*输入框支持placeholder属性 wanghc 2018-6-30*/
+        if (opts.placeholder!=""){
+            $(_43c).attr("placeholder",opts.placeholder);
+        }
         _422(_43c);
     };
     $.fn.validatebox = function (_43e, _43f) {
@@ -7005,9 +7014,10 @@ if (typeof JSON !== 'object') {
     };
     $.fn.validatebox.parseOptions = function (_441) {
         var t = $(_441);
-        return $.extend({}, $.parser.parseOptions(_441, ["validType", "missingMessage", "invalidMessage", "tipPosition", { delay: "number", deltaX: "number" }]), { required: (t.attr("required") ? true : undefined), novalidate: (t.attr("novalidate") != undefined ? true : undefined) });
+        return $.extend({}, $.parser.parseOptions(_441, ["placeholder","validType", "missingMessage", "invalidMessage", "tipPosition", { delay: "number", deltaX: "number" }]), { required: (t.attr("required") ? true : undefined), novalidate: (t.attr("novalidate") != undefined ? true : undefined) });
     };
     $.fn.validatebox.defaults = {
+        placeholder:"",/*输入框支持placeholder属性 wanghc 2018-10-18*/
         required: false, validType: null, validParams: null, delay: 200, missingMessage: "This field is required.", invalidMessage: null, tipPosition: "right", deltaX: 0, novalidate: false, tipOptions: {
             showEvent: "none", hideEvent: "none", showDelay: 0, hideDelay: 0, zIndex: "", onShow: function () {
                 $(this).tooltip("tip").css({ color: "#000", borderColor: "#CC9933", backgroundColor: "#FFFFCC" });
@@ -13830,10 +13840,7 @@ if (typeof JSON !== 'object') {
         _842._outerWidth(opts.width)._outerHeight(opts.height);
         _844._outerWidth(_842.width() - _846);
         _844.css({ height: _842.height() + "px", lineHeight: _842.height() + "px" });
-        /*输入框支持placeholder属性 wanghc 2018-6-30*/
-        if (opts.placeholder!=""){
-            _844.attr("placeholder",opts.placeholder);
-        }
+        
         _845._outerHeight(_842.height());
         _843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
         _842.insertAfter(_83f);
@@ -14267,11 +14274,10 @@ if (typeof JSON !== 'object') {
     };
     $.fn.combo.parseOptions = function (_898) {
         var t = $(_898);
-        return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["placeholder","width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
+        return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
     };
     
     $.fn.combo.defaults = $.extend({}, $.fn.validatebox.defaults, {
-        placeholder:"",/*输入框支持placeholder属性 wanghc 2018-6-30*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
         enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19, keyHandler: {
             up: function (e) {
