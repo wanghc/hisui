@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-10-18 ##
+* IE下输入框中placeholder显示样式修改
+* `validatebox`,`combo`及子组件支持`placeholder`属性
 ## 2018-10-17 ##
 * `combobox`组件增加`rowStyle`配置项,可配置成`checkbox`
 * `alert`、`confirm`、`prompt`左右键切换选中按钮

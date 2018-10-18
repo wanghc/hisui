@@ -122,7 +122,8 @@ closable:true,collapsible:true,minimizable:true,maximizable:true">
 &lt;script type="text/javascript"&gt;
 var init = function () {
 	var valbox = $HUI.validatebox("#patno", {
-		required: true
+		required: true,
+		placeholder:"序号必填"
 	});
 	$("#btn1").click(function(){
 		$("#patno").val("12345678").validatebox("validate");
@@ -147,7 +148,8 @@ $(init);
 	<script type="text/javascript">
 		var init = function () {
 			var valbox = $HUI.validatebox("#patno", {
-				required: true
+				required: true,
+				placeholder:"序号必填"
 			});
 			$("#btn1").click(function(){
 				$("#patno").val("12345678").validatebox("validate");
@@ -171,6 +173,20 @@ $(init);
 		}
 		$(init);
 	</script>
+	    <table class="table">
+			<tr class="protitle">
+				<th>属性</th>
+				<th>说明</th>
+				<th>默认值</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>placeholder</td>
+				<td>默认值""</td>
+				<td>当不为空时，在输入框显示placeholder,<code>IE9+</code>,<code>chrome</code>支持<code>。2018-10-18</code></td>
+				<td></td>
+			</tr>
+		</table>
 	<prettyprint/>	
 </body>
 </html>
