@@ -4392,7 +4392,8 @@ if (typeof JSON !== 'object') {
         show: function (_284) {
             return _27d(_284);
         }, alert: function (_285, msg, icon, fn) {
-            var _286 = "<div>" + msg + "</div>";
+            /* 对象文字 add margin-left:42px;*/
+            var _286 = "<div style=\"margin-left:42px;\">" + msg + "</div>";
             switch (icon) {
                 case "error":
                     _286 = "<div class=\"messager-icon messager-error\"></div>" + _286;
@@ -4419,7 +4420,7 @@ if (typeof JSON !== 'object') {
             var win = _27f(_285, _286, _287);
             return win;
         }, confirm: function (_288, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div>" + msg + "</div>" + "<div style=\"clear:both;\"/>";
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>";
             var _28a = {};
             _28a[$.messager.defaults.ok] = function () {
                 win.window("close");
@@ -4438,7 +4439,7 @@ if (typeof JSON !== 'object') {
             var win = _27f(_288, _289, _28a);
             return win;
         }, prompt: function (_28b, msg, fn) {
-            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div>" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>";
+            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>";
             var _28d = {};
             _28d[$.messager.defaults.ok] = function () {
                 win.window("close");

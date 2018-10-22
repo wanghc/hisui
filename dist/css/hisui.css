@@ -2450,6 +2450,7 @@ a {
 .icon-funnel-empty {
   background: url('icons/default/funnel_empty.png') no-repeat center center;
 }
+/*default icon*/
 .icon-add {
   background: url('icons/edit_add.png') no-repeat center center;
 }
@@ -2972,7 +2973,25 @@ a {
 .icon-pat-write {
   background: url('icons/pat_write.png') no-repeat center center;
 }
-/*hisui-linkbutton big*/
+.icon-run {
+  background: url('icons/run.png') no-repeat center center;
+}
+.icon-key {
+  background: url('icons/key.png') no-repeat center center;
+}
+.icon-down {
+  background: url('icons/down.png') no-repeat center center;
+}
+.icon-up {
+  background: url('icons/up.png') no-repeat center center;
+}
+.icon-fx {
+  background: url('icons/fx.png') no-repeat center center;
+}
+.icon-muti-key {
+  background: url('icons/muti_key.png') no-repeat center center;
+}
+/*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
 }
@@ -3147,7 +3166,7 @@ a {
 .icon-big-balance {
   background: url('icons/big/balance.png') no-repeat top center;
 }
-/* white icon*/
+/*white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
 }
@@ -5639,6 +5658,7 @@ td.datagrid-value-changed {
   padding: 9px 15px;
   font-weight: bold;
   font-size: 14px;
+  z-index: 10000;
 }
 .messager-popover.success {
   color: #3c763d;
