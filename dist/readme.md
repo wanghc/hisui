@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-10-24 ##
+* `panel`的头样式修改
+
 ## 2018-10-22 ##
 * `alert`,`confirm`,`prompt`弹出提示多行显示对齐
 * `messager.popover`显示被mark覆盖问题
