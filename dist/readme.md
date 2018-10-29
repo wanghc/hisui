@@ -33,6 +33,7 @@ $("#btn").linkbutton("disable");
 ## 2018-10-24 ##
 * `panel`的头样式修改
 * `dialog`的按钮间隔修改
+* 在body中使用`layout`时,padding显示问题
 
 ## 2018-10-22 ##
 * `alert`,`confirm`,`prompt`弹出提示多行显示对齐
