@@ -3865,8 +3865,9 @@ input[type="text"]:disabled {
   font-weight: bold;
   color: #fff;
 }
-.layout-panel .panel-tool a:hover,
-.layout-expand .panel-tool a:hover {
+/*改为只控制其子级panel-header 的panel-tool  不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel > .panel-header .panel-tool a:hover,
+.layout-expand > .panel-header .panel-tool a:hover {
   background-color: rgba(255, 255, 255, 0.3);
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -3890,24 +3891,25 @@ input[type="text"]:disabled {
 .layout-expand-over {
   background-color: #008ff0;
 }
-.layout-panel .panel-header.panel-header-gray .layout-button-up,
-.layout-expand .panel-header.panel-header-gray .layout-button-up {
+/*改为只控制其子级panel-header 的panel-tool 不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel > .panel-header.panel-header-gray .layout-button-up,
+.layout-expand > .panel-header.panel-header-gray .layout-button-up {
   background: url(images/layout_arrows_black.png) -16px -16px no-repeat;
 }
-.layout-panel .panel-header.panel-header-gray .layout-button-left,
-.layout-expand .panel-header.panel-header-gray .layout-button-left {
+.layout-panel > .panel-header.panel-header-gray .layout-button-left,
+.layout-expand > .panel-header.panel-header-gray .layout-button-left {
   background: url(images/layout_arrows_black.png) no-repeat;
 }
-.layout-panel .panel-header.panel-header-gray .layout-button-right,
-.layout-expand .panel-header.panel-header-gray .layout-button-right {
+.layout-panel > .panel-header.panel-header-gray .layout-button-right,
+.layout-expand > .panel-header.panel-header-gray .layout-button-right {
   background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
 }
-.layout-panel .panel-header.panel-header-gray .layout-button-down,
-.layout-expand .panel-header.panel-header-gray .layout-button-down {
+.layout-panel > .panel-header.panel-header-gray .layout-button-down,
+.layout-expand > .panel-header.panel-header-gray .layout-button-down {
   background: url(images/layout_arrows_black.png) -16px 0px no-repeat;
 }
-.layout-panel .panel-header.panel-header-gray .panel-tool a:hover,
-.layout-expand .panel-header.panel-header-gray .panel-tool a:hover {
+.layout-panel > .panel-header.panel-header-gray .panel-tool a:hover,
+.layout-expand > .panel-header.panel-header-gray .panel-tool a:hover {
   background-color: #e5e5e5;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;

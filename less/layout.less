@@ -4,7 +4,8 @@
   font-weight: bold;
   color:#fff;
 }
-.layout-panel,.layout-expand{
+/*改为只控制其子级panel-header 的panel-tool  不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel>.panel-header,.layout-expand>.panel-header{ 
   .panel-tool a:hover{
     background-color: rgba(255, 255, 255, 0.3);
     -moz-border-radius: 2px;
@@ -34,9 +35,9 @@
 .layout-expand-over {
   background-color: @panel-header-bgcolor;
 }
-
-.layout-panel .panel-header.panel-header-gray,
-.layout-expand .panel-header.panel-header-gray{
+/*改为只控制其子级panel-header 的panel-tool 不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel>.panel-header.panel-header-gray,
+.layout-expand>.panel-header.panel-header-gray{  
   .layout-button-up {
     background: url(images/layout_arrows_black.png) -16px -16px no-repeat;
   }

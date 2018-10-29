@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-10-29 ##
+* `panel`如果放在layout中，关闭按钮的hover样式不是红色，修正为红色
+
 ## 2018-10-24 ##
 * `panel`的头样式修改
 * `dialog`的按钮间隔修改
