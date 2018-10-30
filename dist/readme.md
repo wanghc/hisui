@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-10-29 ##
+* `layout`的fit属性,对于父是body的margin:10px的特殊处理。
+
 ## 2018-10-24 ##
 * `panel`的头样式修改
 * `dialog`的按钮间隔修改

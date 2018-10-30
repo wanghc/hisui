@@ -2991,6 +2991,24 @@ a {
 .icon-muti-key {
   background: url('icons/muti_key.png') no-repeat center center;
 }
+.icon-pause {
+  background: url('icons/pause.png') no-repeat center center;
+}
+.icon-forbid {
+  background: url('icons/forbid.png') no-repeat center center;
+}
+.icon-make-oppointment {
+  background: url('icons/make_oppointment.png') no-repeat center center;
+}
+.icon-unuse {
+  background: url('icons/unuse.png') no-repeat center center;
+}
+.icon-ignore {
+  background: url('icons/ignore.png') no-repeat center center;
+}
+.icon-re-ignore {
+  background: url('icons/re_ignore.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
