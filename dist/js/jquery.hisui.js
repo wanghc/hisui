@@ -14523,6 +14523,8 @@ if (typeof JSON !== 'object') {
                         if (s.toLowerCase() == q.toLowerCase()) {
                             vv.push(v);
                             item.addClass("combobox-item-selected");
+                            // wanghc 2018-11-7 输入骨科不能进入onSelect事件，输入骨后选骨科可以进入onSelect问题
+                            opts.onSelect.call(_8c1, opts.finder.getRow(_8c1, v));
                         }
                         if (opts.groupField && _8c4 != g) {
                             $("#" + _8c2.groupIdPrefix + "_" + $.inArray(g, _8c2.groups)).show();

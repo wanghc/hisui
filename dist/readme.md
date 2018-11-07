@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-11-07 ##
+* 下拉框当输入骨科时不触发onSelect事件,输入骨后再选择骨科会触发onSelect事件问题
+
 
 ## 2018-10-29 ##
 * `layout`的fit属性,对于父是body的margin:10px的特殊处理。

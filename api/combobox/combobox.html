@@ -67,8 +67,8 @@ $(function(){
 	</div>
 	<script type="text/javascript">
 	function selectHandler(rec){
-		console.log(rec);
-		//alert(rec);
+		console.log({onSelect:rec});
+		//$.messager.popover({msg: rec.text,type:'info',timeout: 2000,showType: 'show'});
 	}
 $(function(){
 	var cbox = $HUI.combobox("#cbox",{
