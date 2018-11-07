@@ -3009,6 +3009,9 @@ a {
 .icon-re-ignore {
   background: url('icons/re_ignore.png') no-repeat center center;
 }
+.icon-arrow-up {
+  background: url('icons/arrow_up.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3328,6 +3331,9 @@ a {
 }
 .icon-w-img {
   background: url('icons/white/img.png') no-repeat center center;
+}
+.icon-w-ok {
+  background: url('icons/white/ok.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
