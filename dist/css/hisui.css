@@ -4571,10 +4571,14 @@ input[type="text"]:disabled {
   background-color: #378ec4;
   top: 0px;
   margin-top: 0;
+  top: -4px \9;
 }
 .l-btn-left.l-btn-icon-left {
   /*在style加width时，图标偏移*/
   width: 100%;
+  width: auto\9;
+  /*IE6,7,8*/
+  /*2018-11-14*/
 }
 .l-btn-icon-left .l-btn-text {
   margin: 0 0 0 30px;
@@ -4904,6 +4908,7 @@ td.datagrid-value-changed {
   width: 16px;
   height: 16px;
   top: 50%;
+  top: 8px\9;
   margin-top: -8px;
   left: 4px;
 }
