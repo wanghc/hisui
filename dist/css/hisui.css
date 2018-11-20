@@ -3760,8 +3760,9 @@ input.textbox:focus {
   background-color: #f4faff;
 }
 textarea.textbox {
-  width: inherit;
+  /*width: inherit;*/
   /*websys.css---textarea{width:130px}*/
+  width: 153px;
   margin: 0;
   padding: 0 0 0 5px;
   box-sizing: content-box;

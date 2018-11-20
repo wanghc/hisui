@@ -30,6 +30,12 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-11-20 ##
+* textarea.textbox的width固定153px,对齐input
+
+## 2018-11-18 ##
+* `datagrid`是否显示数据修改后左上角红色三角型(`showChangedStyle`)
+
 ## 2018-11-14 ##
 * 解决IE8下工具栏按钮宽度显示成整行问题
 
