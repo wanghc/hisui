@@ -3746,6 +3746,8 @@ a {
   background: #FFFFFF;
 }
 input.textbox {
+  width: 148px;
+  /*--2018-11-22*/
   line-height: 28px;
   height: 28px;
   margin: 0;
@@ -3767,7 +3769,7 @@ input.textbox:focus {
 textarea.textbox {
   /*width: inherit;*/
   /*websys.css---textarea{width:130px}*/
-  width: 153px;
+  width: 148px;
   margin: 0;
   padding: 0 0 0 5px;
   box-sizing: content-box;

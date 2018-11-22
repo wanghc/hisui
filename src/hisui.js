@@ -87,6 +87,7 @@ var Level = {
     $.fn.combo.defaults.height = 30;
 	$.fn.combobox.defaults.height = 30;
 	$.fn.combotree.defaults.height = 30;
+	$.fn.combogrid.defaults.height = 30;
 	$.fn.datebox.defaults.height = 30;
 	$.fn.datetimebox.defaults.height = 30;
 	$.fn.tabs.defaults.tabHeight=36;
