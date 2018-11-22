@@ -7,7 +7,8 @@
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
-    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+	<style>td{padding:5px 0;}</style>
 </head>
 <body>
 	<h2>日期框</h2>
@@ -15,13 +16,15 @@
     <span>日期框（datebox）把可编辑的文本框和下拉日历面板结合起来，用户可以从下拉日历面板中选择日期，在文本框中输入的字符串可转换为有效日期。支持快捷t方式输入,t+2表示二天后,t-2表示二天前的日期。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
-		<table cellpadding="5"> 
+		<table> 
 				<tr>
 					<td class='r-label'>生日</td>
 					<td>
 						<input id="db" class="hisui-datebox textbox" data-options="onSelect:onSelect"/>
 						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
 					</td>
+				</tr>
+				<tr>
 					<td class='r-label'>结算时间</td>
 					<td>
 						<input class="hisui-datetimebox textbox" data-options="onSelect:onSelect"/>
@@ -33,7 +36,9 @@
 			<span>Selected Date: </span>
 			<span id="result"></span>
 		</div>
-		<pre class="prettyprint lang-html"><code>&lt;table cellpadding="5"> 
+		<pre class="prettyprint lang-html"><code>
+&lt;style>td{padding:5px 0;}&lt;/style>
+&lt;table> 
 	&lt;tr>
 		&lt;td class='r-label'>生日:&lt;/td>
 		&lt;td>
