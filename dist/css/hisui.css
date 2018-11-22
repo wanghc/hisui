@@ -3541,6 +3541,11 @@ a {
   background: #ffffff;
   border-color: #cccccc;
 }
+/*bodyCls:'panel-body-gray'*/
+.panel-body-gray {
+  background: #ffffff;
+  border-color: #cccccc;
+}
 .accordion .accordion-body {
   /*border-width: 0 0 1px;*/
   /*wanghc*/
