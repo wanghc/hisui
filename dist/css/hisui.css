@@ -3012,6 +3012,30 @@ a {
 .icon-arrow-up {
   background: url('icons/arrow_up.png') no-repeat center center;
 }
+.icon-scanning {
+  background: url('icons/scanning.png') no-repeat center center;
+}
+.icon-return {
+  background: url('icons/return.png') no-repeat center center;
+}
+.icon-doc-caseload {
+  background: url('icons/doc_caseload.png') no-repeat center center;
+}
+.icon-snowflake-blue {
+  background: url('icons/snowflake_blue.png') no-repeat center center;
+}
+.icon-print-box {
+  background: url('icons/print_box.png') no-repeat center center;
+}
+.icon-tube-add {
+  background: url('icons/tube_add.png') no-repeat center center;
+}
+.icon-tube-del {
+  background: url('icons/tube_del.png') no-repeat center center;
+}
+.icon-wrench-blue {
+  background: url('icons/wrench_blue.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3186,6 +3210,57 @@ a {
 }
 .icon-big-balance {
   background: url('icons/big/balance.png') no-repeat top center;
+}
+.icon-big-open-file {
+  background: url('icons/big/open_file.png') no-repeat top center;
+}
+.icon-big-waxblock-return {
+  background: url('icons/big/waxblock_return.png') no-repeat top center;
+}
+.icon-big-cells-smear {
+  background: url('icons/big/cells_smear.png') no-repeat top center;
+}
+.icon-big-slide-filed {
+  background: url('icons/big/slide_filed.png') no-repeat top center;
+}
+.icon-big-slide-send {
+  background: url('icons/big/slide_send.png') no-repeat top center;
+}
+.icon-big-dyeing {
+  background: url('icons/big/dyeing.png') no-repeat top center;
+}
+.icon-big-slide-add {
+  background: url('icons/big/slide_add.png') no-repeat top center;
+}
+.icon-big-embed {
+  background: url('icons/big/embed.png') no-repeat top center;
+}
+.icon-big-slide-made {
+  background: url('icons/big/slide_made.png') no-repeat top center;
+}
+.icon-big-slide-return {
+  background: url('icons/big/slide_return.png') no-repeat top center;
+}
+.icon-big-book-yellow {
+  background: url('icons/big/book_yellow.png') no-repeat top center;
+}
+.icon-big-med-bag {
+  background: url('icons/big/med_bag.png') no-repeat top center;
+}
+.icon-big-next {
+  background: url('icons/big/next.png') no-repeat top center;
+}
+.icon-big-pre {
+  background: url('icons/big/pre.png') no-repeat top center;
+}
+.icon-big-print-box {
+  background: url('icons/big/print_box.png') no-repeat top center;
+}
+.icon-big-save-add {
+  background: url('icons/big/save_add.png') no-repeat top center;
+}
+.icon-big-save-next {
+  background: url('icons/big/save_next.png') no-repeat top center;
 }
 /*white icon*/
 .icon-w-plus {
