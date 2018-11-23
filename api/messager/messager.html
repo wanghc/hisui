@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="UTF-8">
 	<title>面板示例</title>
@@ -11,7 +10,6 @@
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
-
 <body>
 	<h2>消息框</h2>
 	<h3>说明:</h3>
@@ -22,7 +20,7 @@
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
-		<a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a>
+		<!--<a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a>-->
 		<script>
 			$(function () {
 				$('#alert1').click(function () {
@@ -54,6 +52,7 @@
 					});
 					setTimeout('$.messager.progress("close");', 4 * 1000);
 				})
+				
 				$('#show1').click(function () {
 					$.messager.show({
 						title: '标题',
@@ -74,12 +73,11 @@
 &lt;a class="hisui-linkbutton" iconCls="icon-save" id="confirm1"&gt;confirm&lt;/a&gt;
 &lt;a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1"&gt;prompt&lt;/a&gt;
 &lt;a class="hisui-linkbutton" iconCls="icon-import" id="progress1"&gt;progress&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1"&gt;show&lt;/a&gt;
 &lt;script&gt;
 	$(function () {
 		$('#alert1').click(function () {
 			$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", "error"); //info,question,warning,error
-		})
+		});
 		$('#confirm1').click(function () {
 			$.messager.confirm("删除", "确定提交并保存?", function (r) {
 				if (r) {
@@ -88,7 +86,7 @@
 					$.messager.popover({msg:"点击了取消"});
 				}
 			});
-		})
+		});
 		$('#prompt1').click(function () {
 			$.messager.prompt("提示", "修改前请签名：", function (r) {
 				if (r) {
@@ -97,7 +95,7 @@
 					$.messager.popover({msg:"点击了【取消】或输入为空"});
 				}
 			});
-		})
+		});
 		$('#progress1').click(function () {
 			$.messager.progress({
 				title: "提示",
@@ -105,19 +103,6 @@
 				text: '导入中....'
 			});
 			setTimeout('$.messager.progress("close");', 4 * 1000);
-		})
-		$('#show1').click(function () {
-			$.messager.show({
-				title: '标题',
-				msg: '3秒后会自动关闭',
-				timeout: 3000,
-				showType: 'slide'/*,
-				style:{
-					right:'',
-					top:document.body.scrollTop+document.documentElement.scrollTop, //顶端中间显示
-					bottom:''
-				}*/
-			});
 		});
 	})
 &lt;/script&gt;</code></pre>
