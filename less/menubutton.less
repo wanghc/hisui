@@ -36,9 +36,9 @@
 .l-btn.l-btn-plain.menubutton-blue{
   border: 0;
   padding: 0;
-  background-color: #40a2de;
+  background-color:@menubutton-blue-bgcolor;
   &:hover{
-    background-color: #378ec4;
+    background-color:@menubutton-blue-bgcolor-hover;
   }
   .l-btn-left{
     width: 100%;
@@ -60,11 +60,11 @@
   //菜单
 .menu.menubutton-blue{
   .menu-item{
-    background-color: #6fc2f4;
+    background-color:@menubutton-blue-menu-item-bgcolor;
     height: 30px;
-    border-bottom: 1px solid #40a2de;
+    border-bottom: 1px solid @menubutton-blue-border-bottom-color;
     &:hover{
-      background-color: #378ec4;
+      background-color:@menubutton-blue-menu-item-hover;
     }
     .menu-text{
       color: #fff;
@@ -88,10 +88,10 @@
   padding: 0;
   background-color: transparent;
   &:hover{
-    background-color: #dbedf9;
+    background-color:@menubutton-btn-hover-bgcolor;
   }
   &.m-btn-plain-active{
-    background-color: #dbedf9;
+    background-color:@menubutton-btn-plain-active-bgcolor;
   }
   .l-btn-left{
     width: 100%;
@@ -110,7 +110,7 @@
     .m-btn-downarrow{
       height: 16px;
       width:  16px;
-      background: url(images/panel_tools_1.png) -32px -16px no-repeat;
+      background: url('@{images-path}/panel_tools_1.png') -32px -16px no-repeat;
       top:3px;
       right: 10px;
     }
@@ -124,7 +124,7 @@
     height: 35px; /*26px*/
     border: 0px; 
     &:hover{
-      background-color: #dbedf9;
+      background-color:@menubutton-menu-item-bgcolor;
     }
     .menu-text{
       color: #000;

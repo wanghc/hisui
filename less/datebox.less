@@ -1,13 +1,8 @@
 @import "variables.less";
-
 /*日历最下面的today close*/
-
 .datebox-button a {
   font-size: @datebox-button-font-size;
- 
 }
-
-
 .datebox-button {
   background-color:@datebox-button-bgcolor;
 }
@@ -15,12 +10,15 @@
   color:@datebox-button-font-color;
 }
 .datebox .combo-arrow {
-  background: @date-img;
+  //background: @date-img;
+  background:url('@{images-path}/datebox_arrow_40a2de.png') no-repeat center center;
 }
 .datebox .combo-arrow-hover {
-  background: @date-hover-img;
+  /*background: @date-hover-img;*/
+  background: url('@{images-path}/datebox_arrow_378ec4.png') no-repeat center center;
 }
 .combo.disabled.datebox .combo-arrow {
-  background: @date-disabled-img;
+  /*background: @date-disabled-img;*/
+  background: url('@{images-path}/datebox_arrow_bbbbbb.png') no-repeat center center;
   background-color: @main-disabled-bgcolor;
 }

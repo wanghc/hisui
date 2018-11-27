@@ -264,13 +264,13 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 					},
 					onLoadSuccess:function(data){
 						//$(this).datagrid('columnMoving');
-						$('.mytooltip').tooltip({
+						/*$('.mytooltip').tooltip({
 							trackMouse:true,
 							onShow:function(e){
 								$(this).tooltip('tip').css({
 									width:250 ,top:e.pageY+20,left:e.pageX-(250/2)
 								});
-						}});
+						}});*/
 					},
 					autoSizeColumn:false,
 					fitColumns:true,
@@ -285,9 +285,9 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 						{field:'code',title:'代码',width:100},
 						{field:'name',title:'描述',width:100},
 						{field:'price',title:'价格',width:100,align:'right'},
-						{field:'desc',title:'说明',width:200,formatter:function(value,row,index){
+						{field:'desc',title:'说明',width:200,showTip:true} /*,formatter:function(value,row,index){
 							if (value) return '<span class="mytooltip" title="'+value+'">'+value+'</span>'
-						}}
+						}*/
 					]],
 					data:{
 						rows:[

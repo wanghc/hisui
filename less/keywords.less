@@ -2,10 +2,10 @@
 .kw-chapter{
     clear: both;
     font-size: 18px;
-    color:#017bce;
+    color: @keywords-chapter-color;
     margin:10px 0;
     & a{
-        border-right: 5px #017bce solid;
+        border-right: 5px @keywords-chapter-color solid;
         width: 0px;
         height: 30px;
         padding: 0px;
@@ -49,11 +49,11 @@ ul.kw-section-list{
         &:hover{
             cursor: pointer;
             background: #d8efff;
-            color:#017bce;
+            color: @keywords-section-hover-color;
         }
     }
     &.selected a{
-        background: #40a2de;
+        background: @keywords-section-bgcolor;
         color:#feffff;
     }
 }

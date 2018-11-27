@@ -95,7 +95,8 @@ table {
     clear: both;
 }
 .toggle-prettyprint:hover{
-    color: #409eff;
+    /*color: #409eff;*/
+    color: #999999;
 }
 .plain-anchor.l-btn-plain{
     color:#409eff;
