@@ -54,6 +54,7 @@ var iconDictionary={
     "icon-re-ignore":"撤销忽略",
     "icon-unuse":"停用",
     "icon-arrow-up":"全部折叠",
+    "icon-gen":"生成",
     "icon-w-rent": "租用单",
     "icon-w-run": "执行计划",
     "icon-w-line-key": "论证",
