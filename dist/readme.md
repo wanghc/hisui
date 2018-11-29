@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-11-29 ##
+* `datagrid`的columns中field增加showTip与tipWidth属性
+
 ## 2018-11-22 ##
 * .textbox的宽度设计成148px
 * combogrid的高度设置为30px,解决combogird与combobox的高度不一致问题 

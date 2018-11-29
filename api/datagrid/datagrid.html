@@ -9,7 +9,13 @@
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
 	 <link rel="stylesheet" type="text/css" href="../demo.css">
-    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+	<style>
+		/*某列自适应高度*/
+		/*td[field="desc"] div.datagrid-cell {
+			white-space: normal;
+		}*/
+	</style>
 </head>
 <body>
 	<h2>数据网格</h2>
@@ -284,8 +290,8 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 					columns:[[
 						{field:'code',title:'代码',width:100},
 						{field:'name',title:'描述',width:100},
-						{field:'price',title:'价格',width:100,align:'right'},
-						{field:'desc',title:'说明',width:200,showTip:true} /*,formatter:function(value,row,index){
+						{field:'price',title:'价格',width:100,showTip:true},
+						{field:'desc',title:'说明',width:200,showTip:true,tipWidth:450} /*,formatter:function(value,row,index){
 							if (value) return '<span class="mytooltip" title="'+value+'">'+value+'</span>'
 						}*/
 					]],
@@ -328,15 +334,6 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 			onSelect:function(rowIndex,rowData){
 				console.log("onSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
 			},
-			onLoadSuccess:function(data){
-				$('.mytooltip').tooltip({
-					trackMouse:true,
-					onShow:function(e){
-						$(this).tooltip('tip').css({
-							width:250 ,top:e.pageY+20,left:e.pageX-(250/2)
-						});
-				}});
-			},
 			autoSizeColumn:false,
 			fitColumns:true,
 			showFooter:true,
@@ -350,9 +347,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 				{field:'code',title:'代码',width:100},
 				{field:'name',title:'描述',width:100},
 				{field:'price',title:'价格',width:100,align:'right'},
-				{field:'desc',title:'说明',width:200,formatter:function(value,row,index){
-					return '&lt;span class="mytooltip" title="'+value+'">'+value+'&lt;/span>'
-				}}
+				{field:'desc',title:'说明',width:200,showTip:true,tipWidth:450}
 			]],
 			data:{
 				rows:[
@@ -436,6 +431,18 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 			<td>让行号列自适应宽度.<code>rownumbers</code>为<code>true</code>时有效.</td>
 			<td>false</td>
 			<td>值为true时,行号列自适应宽度.<code>(20180822)</code></td>
+		</tr>
+		<tr>
+			<td>showTip</td>
+			<td>为cm中某列属性,当为true时,鼠标移入时弹出提示层,见例3</td>
+			<td>false</td>
+			<td>默认为false</td>
+		</tr>
+		<tr>
+			<td>tipWidth</td>
+			<td>为cm中某列属性,定义鼠标移入时弹出提示层的宽度,见例3</td>
+			<td>300</td>
+			<td>默认为300px</td>
 		</tr>
 		<tr class="mthtitle">
 			<th>方法名</th>

@@ -8933,11 +8933,10 @@ if (typeof JSON !== 'object') {
            /* 2018-11-23 start -- showTip*/
            var td = $(e.target);
            var colname = undefined;
-           if (td.attr('field')){
-               colname = td.attr('field');
-           }else{
-               colname = td.closest('td').attr('field');
+           if (undefined = typeof td.attr('field')){
+                td = td.closest('td');
            }
+           colname = td.attr('field');
            if (colname){
                var tmpdg = $.data(_55a, "datagrid");
                var cm = tmpdg.options.columns;
@@ -8945,8 +8944,15 @@ if (typeof JSON !== 'object') {
                    for(var j=0;j<cm[i].length;j++){
                         if (cm[i][j].field==colname){
                             if (cm[i][j].showTip){
-                                console.log({tip:'tip'});
-                                
+                                var tipWidth = cm[i][j].tipWidth||350;
+                                td.tooltip({
+                                    content:td.text(),
+                                    onShow:function(e){
+                                        $(this).tooltip("tip").css({
+                                            width:tipWidth,top:e.pageY+20,left:e.pageX-(250/2)
+                                        });
+                                    }
+                                });
                             }
                         }
                    }
