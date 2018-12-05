@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-12-05 ##
+* `message.popover`定义style:{width:500}后,关闭按钮显示问题
+
 ## 2018-11-29 ##
 * `datagrid`的columns中field增加showTip与tipWidth属性
 

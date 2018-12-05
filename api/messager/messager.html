@@ -17,6 +17,7 @@
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1">alert</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert2">alert2</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
@@ -25,6 +26,9 @@
 			$(function () {
 				$('#alert1').click(function () {
 					$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", 'error');
+				})
+				$('#alert2').click(function () {
+					$.messager.alert("简单提示", "<p>数据请求失败，请根据以下提示来完成该操作。</p><p>检查网线是否与电脑正常连接</p><p>请进入网络和Internet界面检查电脑IP地址与网关是否设置正确</p><p>不解决联系管理员</p>", 'error');
 				})
 				$('#confirm1').click(function () {
 					$.messager.confirm("删除", "确定提交并保存?", function (r) {
@@ -69,14 +73,21 @@
 			})
 		</script>
 
-<pre class="prettyprint lang-html hide"><code>&lt;a class="hisui-linkbutton" iconCls="icon-save" id="alert1"&gt;alert&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-save" id="confirm1"&gt;confirm&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-edit" id="prompt1"&gt;prompt&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-import" id="progress1"&gt;progress&lt;/a&gt;
+<pre class="prettyprint lang-html hide"><code>&lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1"&gt;alert&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="alert2"&gt;alert2&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1"&gt;confirm&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1"&gt;prompt&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1"&gt;progress&lt;/a&gt;
 &lt;script&gt;
 	$(function () {
 		$('#alert1').click(function () {
 			$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", "error"); //info,question,warning,error
+		});
+		$('#alert2').click(function () {
+			$.messager.alert("简单提示", "&lt;p&gt;数据请求失败，请根据以下提示来完成该操作。&lt;/p&gt;
+			&lt;p&gt;检查网线是否与电脑正常连接&lt;/p&gt;
+			&lt;p&gt;请进入网络和Internet界面检查电脑IP地址与网关是否设置正确&lt;/p&gt;
+			&lt;p&gt;不解决联系管理员&lt;/p&gt;", "error");	
 		});
 		$('#confirm1').click(function () {
 			$.messager.confirm("删除", "确定提交并保存?", function (r) {
@@ -119,9 +130,9 @@
 					$.messager.popover({
 						msg: '保存成功！',
 						type:'success',
-						timeout: 1000, 		//0不自动关闭。3000s
+						timeout: 2000, 		//0不自动关闭。3000s
 						showType: 'slide'  //show,fade,slide
-					});
+	                });
 				});
 				$('#info').click(function(){
 					$.messager.popover({
