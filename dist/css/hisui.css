@@ -6003,6 +6003,7 @@ td.datagrid-value-changed {
   border: 1px solid #40a2de;
   color: #000000;
   font-size: 14px;
+  vertical-align: middle;
 }
 .validatebox-text:active {
   background-color: #f4faff;

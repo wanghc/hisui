@@ -30,6 +30,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-12-06 ##
+* `validatebox`增加v-align:middle与`linkbutton`与`lookup`横向对齐 
+
 ## 2018-12-05 ##
 * `message.popover`定义style:{width:500}后,关闭按钮显示问题
 
