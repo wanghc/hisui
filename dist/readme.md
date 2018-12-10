@@ -30,6 +30,10 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2018-12-10 #3
+* `combobox`定义成`rowStyle`:`'checkbox'`时样式问题
+
 ## 2018-12-06 ##
 * `validatebox`增加v-align:middle与`linkbutton`与`lookup`横向对齐 
 

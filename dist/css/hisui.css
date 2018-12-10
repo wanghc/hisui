@@ -3944,7 +3944,7 @@ input[type="text"]:disabled {
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  background: url("../../dist/css/images/checkbox.png") no-repeat;
+  background: url("images/blue/checkbox.png") no-repeat;
   background-position: 0 0;
   width: 24px;
   height: 24px;
@@ -3955,7 +3955,7 @@ input[type="text"]:disabled {
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  background: url("../../dist/css/images/checkbox.png") no-repeat;
+  background: url("images/blue/checkbox.png") no-repeat;
   background-position: -48px 0;
   width: 24px;
   height: 24px;
@@ -3965,7 +3965,7 @@ input[type="text"]:disabled {
   vertical-align: middle;
   margin: 0;
   padding: 0;
-  background: url("../../dist/css/images/checkbox.png") no-repeat;
+  background: url("images/blue/checkbox.png") no-repeat;
   background-position: -72px 0;
   width: 24px;
   height: 24px;
