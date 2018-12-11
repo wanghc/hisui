@@ -104,6 +104,7 @@ var iconDictionary={
     "icon-w-clock":"时钟",
     "icon-w-rent":"租金",
     "icon-w-ok":"完成",
+    "icon-w-filter":"过滤",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
@@ -327,5 +328,6 @@ var iconDictionary={
     "icon-big-question": "问题提问",
     "icon-big-tip":"暂无回复,提示",
     "icon-big-rad":"放射",
-    "icon-big-balance":"天平,称重"
+    "icon-big-balance":"天平,称重",
+    "icon-big-print-run":"自动续打，打印，连续打印"
 };

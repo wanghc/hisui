@@ -3265,6 +3265,9 @@ a {
 .icon-big-save-next {
   background: url('icons/big/save_next.png') no-repeat top center;
 }
+.icon-big-print-run {
+  background: url('icons/big/print_run.png') no-repeat top center;
+}
 /*white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
@@ -3412,6 +3415,9 @@ a {
 }
 .icon-w-ok {
   background: url('icons/white/ok.png') no-repeat center center;
+}
+.icon-w-filter {
+  background: url('icons/white/filter.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
