@@ -15,6 +15,10 @@
 		/*td[field="desc"] div.datagrid-cell {
 			white-space: normal;
 		}*/
+		td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
+			text-overflow: ellipsis; /*2018-12-4 showTip*/
+			padding: 0 8px;
+		}
 	</style>
 </head>
 <body>
@@ -320,7 +324,13 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距"</code
 				})
 			})		
 		</script>
-	<pre class="prettyprint hide lang-js"><code>&lt;table id="mytable3"&gt;&lt;/table&gt;
+	<pre class="prettyprint hide lang-html"><code>&lt;style&gt;
+td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
+	text-overflow: ellipsis; /*2018-12-4 showTip 列数据太多显示...*/
+	padding: 0 8px;
+}
+&lt;/style&gt;
+&lt;table id="mytable3"&gt;&lt;/table&gt;
 &lt;script type="text/javascript"&gt;
 	$(function(){
 		$HUI.datagrid('#mytable3',{

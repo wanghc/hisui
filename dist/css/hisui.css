@@ -4906,7 +4906,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
 }
 .datagrid-cell,
 .datagrid-cell-group {
-  text-overflow: ellipsis;
+  /*text-overflow: ellipsis;*/
   /*2018-12-4 showTip*/
   padding: 0 8px;
 }

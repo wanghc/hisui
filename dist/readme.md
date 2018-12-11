@@ -14,7 +14,11 @@
 ```html
 <HISUI/>
 ```
-### 代码
+或
+```html
+<HISUI debugger=1/>
+```
+### 按钮对应代码
 ```html
 <a class="hisui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
 ```
