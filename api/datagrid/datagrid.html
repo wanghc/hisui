@@ -26,6 +26,40 @@
 	<h3>说明:</h3>
     <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
 	<h3>如：默认表格(hisui-datagrid)</h3>
+	<!--<table id="dg11" class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" 
+	data-options="rownumbers:true,headerCls:'panel-header-gray',pagination:true">
+		<thead>   
+			<tr>   
+				<th data-options="field:'code',width:20">编码</th>   
+				<th data-options="field:'name',width:20">姓名</th>   
+				<th data-options="field:'price',width:20">科室</th>
+				<th data-options="field:'num',width:20">诊断</th>
+				<th data-options="field:'note',width:20">代码</th>
+				<th data-options="field:'re'">原因</th>   
+				<th data-options="field:'code1',width:20">编码</th>   
+				<th data-options="field:'name1',width:20">姓名</th>   
+				<th data-options="field:'price1',width:20">科室</th>
+				<th data-options="field:'num1',width:20">诊断</th>
+				<th data-options="field:'note1',width:20">代码</th>
+				<th data-options="field:'re1'">原因</th> 
+				<th data-options="field:'code2',width:20">编码</th>   
+				<th data-options="field:'name2',width:20">姓名</th>   
+				<th data-options="field:'price2',width:20">科室</th>
+				<th data-options="field:'num2',width:20">诊断</th>
+				<th data-options="field:'note2',width:20">代码</th>
+				<th data-options="field:'re2'">原因</th> 
+				<th data-options="field:'code3',width:20">编码</th>   
+				<th data-options="field:'name3',width:20">姓名</th>   
+				<th data-options="field:'price3',width:20">科室</th>
+				<th data-options="field:'num3',width:20">诊断</th>
+				<th data-options="field:'note3',width:20">代码</th>
+				<th data-options="field:'re3'">原因</th> 
+			</tr>   
+		</thead>
+	</table>
+	<a class="hisui-linkbutton" href="#" onclick="loadData();">load</a>
+	<a class="hisui-linkbutton" href="#" onclick="clearData();">clear</a>
+	-->
 	<div class="demo-exp-code entry-content"> 
 		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fixRowNumber:true,rownumbers:true,headerCls:'panel-header-gray',toolbar: [],fitColumns:true,singleSelect:true,pagination:true">
 			<thead>   
@@ -393,6 +427,23 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			pagination:true"&gt; &lt;/table&gt;
 		</code></pre>
 	</div>
+
+	<script type="text/javascript">
+	function loadData(){
+		var rows = [];
+			for(var i=1; i<=2; i++){
+				var amount = Math.floor(Math.random()*1000);
+				var price = Math.floor(Math.random()*1000);
+				rows.push({
+					code: 'NO '+i
+				});
+			}
+			$("#dg11").datagrid('loadData', rows);
+	}
+	function clearData(){
+		$("#dg11").datagrid('loadData',[]);
+	}
+	</script>
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>
