@@ -8763,8 +8763,8 @@ if (typeof JSON !== 'object') {
                 _553 = opts.sortName.split(",");
                 _554 = opts.sortOrder.split(",");
             }
-            var tmpclone = $(_550).clone()[0];  //add by lan---2018-12-19 先clone一个节点,生成grid,生成完后再置回
-            var t = $("<table class=\"datagrid-htable\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"><tbody></tbody></table>").appendTo(tmpclone); //(_550);
+            //var tmpclone = $(_550).clone()[0];  //add by lan---2018-12-19 先clone一个节点,生成grid,生成完后再置回
+            var t = $("<table class=\"datagrid-htable\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"><tbody></tbody></table>").appendTo(_550);
             for (var i = 0; i < _551.length; i++) {
                 var tr = $("<tr class=\"datagrid-header-row\"></tr>").appendTo($("tbody", t));
                 var cols = _551[i];
@@ -8821,7 +8821,7 @@ if (typeof JSON !== 'object') {
                     td.prependTo($("tr:first", t));
                 }
             }
-            $(_550).replaceWith(tmpclone);  //add lan 2018-12-19
+            //$(_550).replaceWith(tmpclone);  //add lan 2018-12-19
         };
         function _54c() {
             var _555 = [];
