@@ -3039,6 +3039,21 @@ a {
 .icon-gen {
   background: url('icons/gen.png') no-repeat center center;
 }
+.icon-paper-submit {
+  background: url('icons/paper_submit.png') no-repeat center center;
+}
+.icon-open-book {
+  background: url('icons/open_book.png') no-repeat center center;
+}
+.icon-export-paper {
+  background: url('icons/export_paper.png') no-repeat center center;
+}
+.icon-track {
+  background: url('icons/track.png') no-repeat center center;
+}
+.icon-paper-eye {
+  background: url('icons/paper_eye.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3267,6 +3282,21 @@ a {
 }
 .icon-big-print-run {
   background: url('icons/big/print_run.png') no-repeat top center;
+}
+.icon-big-paper-time {
+  background: url('icons/big/paper_time.png') no-repeat top center;
+}
+.icon-big-alert-yellow {
+  background: url('icons/big/alert_yellow.png') no-repeat top center;
+}
+.icon-big-pre-audit {
+  background: url('icons/big/pre_audit.png') no-repeat top center;
+}
+.icon-big-paper-gray {
+  background: url('icons/big/paper_gray.png') no-repeat top center;
+}
+.icon-big-msg {
+  background: url('icons/big/msg.png') no-repeat top center;
 }
 /*white icon*/
 .icon-w-plus {
@@ -3862,6 +3892,7 @@ textarea.textbox {
   font-size: 14px;
 }
 .textareabox-text {
+  width: 148px;
   margin: 0;
   padding: 0 0 0 5px;
   box-sizing: content-box;

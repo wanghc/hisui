@@ -1,5 +1,5 @@
 var iconDictionary={
-    "icon-add": "新增(推荐图标)，添加，添加排班",
+    "icon-add": "新增(推荐图标)，添加，添加排班，添加专家",
     "icon-write-order": "修改(推荐图标)，录入医嘱",
     "icon-cancel": "删除(推荐图标)",
     "icon-close": "关闭",
@@ -31,7 +31,7 @@ var iconDictionary={
     "icon-print": "打印(打印汇总单、标签打印)",
     "icon-switch": "交换",
     "icon-import": "导入",
-    "icon-export": "导出",
+    "icon-export": "导出，，导出待评审",
     "icon-import":"导入",
     "icon-download":"下载",
     "icon-star": "红星",
@@ -55,6 +55,11 @@ var iconDictionary={
     "icon-unuse":"停用",
     "icon-arrow-up":"全部折叠",
     "icon-gen":"生成",
+    "icon-paper-submit":"生成评审报告",
+    "icon-open-book":"批量提交审批",
+    "icon-export-paper":"导出已评审",
+    "icon-track":"追踪",
+    "icon-paper-eye":"传阅",
     "icon-w-rent": "租用单",
     "icon-w-run": "执行计划",
     "icon-w-line-key": "论证",
@@ -329,5 +334,10 @@ var iconDictionary={
     "icon-big-tip":"暂无回复,提示",
     "icon-big-rad":"放射",
     "icon-big-balance":"天平,称重",
-    "icon-big-print-run":"自动续打，打印，连续打印"
+    "icon-big-print-run":"自动续打，打印，连续打印",
+    "icon-big-paper-time":"报表展示",
+    "icon-big-alert-yellow":"指标预警",
+    "icon-big-pre-audit":"专家审标",
+    "icon-big-paper-gray":"未达标指标",
+    "icon-big-msg":"报告提醒"
 };
