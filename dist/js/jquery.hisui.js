@@ -8938,7 +8938,7 @@ if (typeof JSON !== 'object') {
            /* 2018-11-23 start -- showTip*/
            var td = $(e.target);
            var colname = undefined;
-           if (undefined = typeof td.attr('field')){
+           if ("undefined" == typeof td.attr('field')){
                 td = td.closest('td');
            }
            colname = td.attr('field');

@@ -4694,7 +4694,8 @@ input[type="text"]:disabled {
   background-color: #378ec4;
   top: 0px;
   margin-top: 0;
-  top: -4px \9;
+  /*top: @top-4IE8@x9;*/
+  /*实测ie8不需要*/
 }
 .l-btn-left.l-btn-icon-left {
   /*在style加width时，图标偏移*/
