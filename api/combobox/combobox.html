@@ -18,7 +18,7 @@
 	<h3>如：</h3>
 	<h3>一、html生成的单选下拉框</h3>
     <div class="demo-exp-code entry-content">
-		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler">
+		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler,blurValidValue:true">
 			<option value="AK">Alaska</option>
 			<option value="CT">Connecticut</option>
 			<option value="DE">Delaware</option>
@@ -28,7 +28,8 @@
 			<option value="OH" selected>Ohio</option>
 			<option value="WY">Wyoming</option>
 		</select>
-		<pre class="prettyprint lang-html hide"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler">
+		<a href='#' id="cboxbtn1" class="hisui-linkbutton">获取选择的值(getValues)</a>
+		<pre class="prettyprint lang-html hide"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler,blurValidValue:true">
 	&lt;option value="AK">Alaska&lt;/option>
 	&lt;option value="CT">Connecticut&lt;/option>
 	&lt;option value="DE">Delaware&lt;/option>
@@ -98,6 +99,10 @@ $(function(){
 	$("#cboxbtn").click(function(){
 		console.log(cbox.getValues());
 	});
+	$("#cboxbtn1").click(function(){
+		console.log($("#stateBox").combobox("getValue"));
+	});
+	
 	return ;
 	// easyloader.theme = "bootstrap";
 	// easyloader.locale="zh_CN";
@@ -260,6 +265,12 @@ $(function(){
 			<td>rowStyle</td>
 			<td>行显示样式。可选值'checkbox',显示成可勾选行<code>2018-10-17</code></td>
 			<td>''</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>blurValidValue</td>
+			<td>为true时，光标离开时，检查是否选中值,没选中则置空输入框的值。<code>2018-12-26</code></td>
+			<td>false</td>
 			<td></td>
 		</tr>
 	</table>

@@ -5,7 +5,7 @@
     <title>HIS UI</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>   
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>   
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
@@ -17,6 +17,7 @@
     <div class="demo-exp-code entry-content"> 
         <select class="hisui-combogrid" id="combogrid" style="width:250px" data-options="
             panelWidth: 500,
+            blurValidValue:true,
             idField: 'itemid',
             textField: 'productname',
             columns: [[
@@ -46,6 +47,7 @@
   
    <pre class="prettyprint lang-html"><code>&lt;select class="hisui-combogrid" id="combogrid" style="width:250px" data-options="
             panelWidth: 500,
+            blurValidValue:true,
             idField: 'itemid',
             textField: 'productname',
             method: 'get',
@@ -84,6 +86,12 @@
 			<td>enterNullValueClear</td>
 			<td>默认值true。当为false时，在输入框内回车，没有匹配值不清空输入框。</td>
 			<td>true</td>
+			<td></td>
+        </tr>
+        <tr>
+			<td>blurValidValue</td>
+			<td>为true时，光标离开时，检查是否选中值,没选中则置空输入框的值。<code>2018-12-26</code></td>
+			<td>false</td>
 			<td></td>
 		</tr>
     </table>

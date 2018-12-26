@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2018-12-26 ##
+* `combobox`与`combogird`增加`blurValidValue`配置项
+
 ## 2018-12-20 ##
 * 处理`datagrid`列较多且数据为空时,不显示滚动条问题
 
