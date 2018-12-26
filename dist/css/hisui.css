@@ -3054,6 +3054,9 @@ a {
 .icon-paper-eye {
   background: url('icons/paper_eye.png') no-repeat center center;
 }
+.icon-run-red {
+  background: url('icons/run_red.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3448,6 +3451,9 @@ a {
 }
 .icon-w-filter {
   background: url('icons/white/filter.png') no-repeat center center;
+}
+.icon-w-predrug {
+  background: url('icons/white/predrug.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {

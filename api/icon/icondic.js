@@ -110,6 +110,7 @@ var iconDictionary={
     "icon-w-rent":"租金",
     "icon-w-ok":"完成",
     "icon-w-filter":"过滤",
+    "icon-w-predrug":"备药",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
