@@ -3301,6 +3301,12 @@ a {
 .icon-big-msg {
   background: url('icons/big/msg.png') no-repeat top center;
 }
+.icon-big-equi-cfg {
+  background: url('icons/big/equi_cfg.png') no-repeat top center;
+}
+.icon-big-med-equi {
+  background: url('icons/big/med_equi.png') no-repeat top center;
+}
 /*white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;

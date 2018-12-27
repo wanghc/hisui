@@ -340,5 +340,7 @@ var iconDictionary={
     "icon-big-alert-yellow":"指标预警",
     "icon-big-pre-audit":"专家审标",
     "icon-big-paper-gray":"未达标指标",
-    "icon-big-msg":"报告提醒"
+    "icon-big-msg":"报告提醒",
+    "icon-big-equi-cfg":"设备属性维护，设备维护",
+    "icon-big-med-equi":"医疗设备特殊设备，医疗设备"
 };
