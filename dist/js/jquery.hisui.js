@@ -4407,6 +4407,9 @@ if (typeof JSON !== 'object') {
                 case "warning":
                     _286 = "<div class=\"messager-icon messager-warning\"></div>" + _286;
                     break;
+                case "success":
+                    _286 = "<div class=\"messager-icon messager-success\"></div>" + _286;
+                    break;
             }
             _286 += "<div style=\"clear:both;\"/>";
             var _287 = {};

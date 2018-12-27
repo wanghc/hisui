@@ -16,8 +16,9 @@
 	<span>消息框（messager）提供不同样式的消息框，包括警示（alert）、确认（confirm）、提示（prompt）、进展（progress）等等。所有的消息框都是异步的。用户可以在与消息框交互后使用回调函数来完成一些动作。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
-		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1">alert</a>
-		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert2">alert2</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1">提示info</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-cancel" id="alert2">失败error</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-ok" id="alert3">成功success</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
@@ -25,11 +26,14 @@
 		<script>
 			$(function () {
 				$('#alert1').click(function () {
-					$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", 'error');
-				})
+					$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", 'info');
+				});
 				$('#alert2').click(function () {
-					$.messager.alert("简单提示", "<p>数据请求失败，请根据以下提示来完成该操作。</p><p>检查网线是否与电脑正常连接</p><p>请进入网络和Internet界面检查电脑IP地址与网关是否设置正确</p><p>不解决联系管理员</p>", 'error');
-				})
+					$.messager.alert("简单提示", "数据请求失败，请根据以下提示来完成该操作。<p>检查网线是否与电脑正常连接</p><p>请进入网络和Internet界面检查电脑IP地址与网关是否设置正确</p><p>不解决联系管理员</p>", 'error');
+				});
+				$('#alert3').click(function () {
+					$.messager.alert("简单提示", "支付成功", 'success');
+				});
 				$('#confirm1').click(function () {
 					$.messager.confirm("删除", "确定提交并保存?", function (r) {
 						if (r) {
@@ -73,21 +77,26 @@
 			})
 		</script>
 
-<pre class="prettyprint lang-html hide"><code>&lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1"&gt;alert&lt;/a&gt;
-&lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="alert2"&gt;alert2&lt;/a&gt;
+<pre class="prettyprint lang-html hide"><code>&lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1"&gt;提示info&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-cancel" id="alert2"&gt;失败error&lt;/a&gt;
+&lt;a class="hisui-linkbutton" iconCls="icon-w-ok" id="alert3"&gt;成功success&lt;/a&gt;
 &lt;a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1"&gt;confirm&lt;/a&gt;
 &lt;a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1"&gt;prompt&lt;/a&gt;
 &lt;a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1"&gt;progress&lt;/a&gt;
 &lt;script&gt;
 	$(function () {
+		//alert第三入参info,question,warning,error,success
 		$('#alert1').click(function () {
-			$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", "error"); //info,question,warning,error
+			$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", "info");
 		});
 		$('#alert2').click(function () {
-			$.messager.alert("简单提示", "&lt;p&gt;数据请求失败，请根据以下提示来完成该操作。&lt;/p&gt;
+			$.messager.alert("简单提示", "数据请求失败，请根据以下提示来完成该操作。
 			&lt;p&gt;检查网线是否与电脑正常连接&lt;/p&gt;
 			&lt;p&gt;请进入网络和Internet界面检查电脑IP地址与网关是否设置正确&lt;/p&gt;
 			&lt;p&gt;不解决联系管理员&lt;/p&gt;", "error");	
+		});
+		$('#alert3').click(function () {
+			$.messager.alert("简单提示", "支付成功", 'success');
 		});
 		$('#confirm1').click(function () {
 			$.messager.confirm("删除", "确定提交并保存?", function (r) {

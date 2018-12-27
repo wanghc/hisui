@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2016-12-27 ##
+* `$.messager.alert`增加success支持
+* `combo`定制图标
+
 ## 2018-12-26 ##
 * `combobox`与`combogird`增加`blurValidValue`配置项
 
