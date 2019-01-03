@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>自定义触发框示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+	<h2>事件触发框</h2>
+	<h3>说明:</h3>
+    <span>触发框（triggerbox）用于自定义功能，图标可以自定义。<code>2019-01-03</code></span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+		<div class="hisui-panel" title="触发框示例" style="width:400px;padding:10px 30px 20px 30px" data-options="headerCls:'panel-header-gray',iconCls:'icon-paper-info'">
+			<table cellpadding="5">
+				<!--<tr>
+					<td class='r-label'>自定义触发框</td>
+					<td>
+						<input class="textbox" />
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>自定义触发框</td>
+					<td>
+						<input class="hisui-numberspinner textbox "/>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>自定义触发框</td>
+					<td>
+						<input class="hisui-datebox textbox" />
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>自定义触发框</td>
+					<td>
+						<input class="hisui-lookup textbox" />
+					</td>
+				</tr>-->
+				<tr>
+					<td class='r-label'>默认触发框</td>
+					<td>
+						<input name="default" class="hisui-triggerbox textbox" data-options="handler:msg"/>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>图片触发框</td>
+					<td>
+						<input name="img" class="hisui-triggerbox textbox" data-options="icon:'icon-w-img',handler:msg"/>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>卡触发框</td>
+					<td>
+						<input id="card" name="card" class="hisui-triggerbox textbox" data-options="icon:'icon-w-card',handler:msg"/>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>复制触发框</td>
+					<td>
+						<input id="copy" name="copy" class="hisui-triggerbox textbox" data-options="icon:'icon-w-copy',handler:msg"/>
+					</td>
+				</tr>	
+			</table>
+		</div>
+<script type="text/javascript">
+	function msg(value,name){
+		var title = "点击了name="+name+"触发组件的按钮,value="+value;
+		$.messager.popover({type:"info",msg:title});
+		if(name=="copy"){
+			var v = $("#card").triggerbox('getValue');
+			$("#copy").triggerbox('setValue',v);
+		}
+	}
+</script>
+<pre class="prettyprint lang-html hide"><code>&lt;script type="text/javascript"&gt;
+	function msg(value,name){
+		var title = "点击了name="+name+"触发组件的按钮,value="+value;
+		$.messager.popover({type:"info",msg:title});
+		if(name=="copy"){
+			var v = $("#card").triggerbox('getValue');
+			$("#copy").triggerbox('setValue',v);
+		}
+	}
+&lt;/script&gt;
+&lt;table cellpadding="5"&gt;
+	&lt;tr&gt;
+		&lt;td class='r-label'&gt;默认触发框&lt;/td&gt;
+		&lt;td&gt;
+			&lt;input name="default" class="hisui-triggerbox textbox" data-options="handler:msg"/&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td class='r-label'&gt;图片触发框&lt;/td&gt;
+		&lt;td&gt;
+			&lt;input name="img" class="hisui-triggerbox textbox" data-options="icon:'icon-w-img',handler:msg"/&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td class='r-label'>卡触发框&lt;/td&gt;
+		&lt;td&gt;
+			&lt;input name="card" class="hisui-triggerbox textbox" data-options="icon:'icon-w-card',handler:msg"/&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td class='r-label'&gt;复制触发框&lt;/td&gt;
+		&lt;td&gt;
+			&lt;input name="copy" class="hisui-triggerbox textbox" data-options="icon:'icon-w-copy',handler:msg"/&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>icon</td>
+			<td>可配置按钮显示的图标</td>
+			<td>'icon-w-trigger-box'</td>
+			<td>见【基础】-【图标(icon)】界面</td>
+		</tr>
+		
+		<tr class="mtdtitle">
+			<th>方法</th>
+			<th>说明</th>
+			<th>入参</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>getValue</td>
+			<td>获得组件的值</td>
+			<td>无</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>setValue</td>
+			<td>给组件赋值</td>
+			<td>val</td>
+			<td></td>
+		</tr>
+		<tr class="evttitle">
+			<th>事件</th>
+			<th>说明</th>
+			<th>入参</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>handler</td>
+			<td>点击按钮时触发事件</td>
+			<td>value,name</td>
+			<td></td>
+		</tr>
+	</table>
+	<prettyprint/>	
+</body>
+</html>

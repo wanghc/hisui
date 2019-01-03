@@ -20,6 +20,12 @@ if ($.fn.validatebox){
 	$.fn.validatebox.defaults.rules.length.message = '输入内容长度必须介于{0}和{1}之间';
 	$.fn.validatebox.defaults.rules.remote.message = '请修正该字段';
 }
+if ($.fn.spinner){
+	$.fn.spinner.defaults.missingMessage = '该输入项为必输项';
+}
+if ($.fn.timespinner){
+	$.fn.timespinner.defaults.missingMessage = '该输入项为必输项';
+}
 if ($.fn.numberbox){
 	$.fn.numberbox.defaults.missingMessage = '该输入项为必输项';
 }

@@ -3057,6 +3057,15 @@ a {
 .icon-run-red {
   background: url('icons/run_red.png') no-repeat center center;
 }
+.icon-compare-no {
+  background: url('icons/compare_no.png') no-repeat center center;
+}
+.icon-compare-yes {
+  background: url('icons/compare_yes.png') no-repeat center center;
+}
+.icon-compare {
+  background: url('icons/compare.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3307,6 +3316,9 @@ a {
 .icon-big-med-equi {
   background: url('icons/big/med_equi.png') no-repeat top center;
 }
+.icon-big-alert {
+  background: url('icons/big/alert.png') no-repeat top center;
+}
 /*white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
@@ -3460,6 +3472,9 @@ a {
 }
 .icon-w-predrug {
   background: url('icons/white/predrug.png') no-repeat center center;
+}
+.icon-w-trigger-box {
+  background: url('icons/white/trigger_box.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
@@ -3922,6 +3937,12 @@ input[type="text"]:disabled {
   background-color: #f7f7f7;
   border-color: #bbbbbb;
   color: #999;
+}
+.spinner .textbox {
+  width: 151px;
+}
+.triggerbox .textbox {
+  width: 151px;
 }
 .combo .combo-text {
   font-size: 14px;
@@ -7065,4 +7086,90 @@ ul.kw-section-list {
 }
 .keywords-labelred .kw-section-list > li.selected a {
   background: #ffe9db;
+}
+.triggerbox {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.triggerbox.disabled {
+  border-color: #bbbbbb;
+}
+.triggerbox.disabled .triggerbox-button {
+  background-color: #bbbbbb;
+}
+.triggerbox .triggerbox-text {
+  font-size: 14px;
+  border: 0;
+  margin: 0;
+  padding: 0 2px;
+  *margin-top: -1px;
+  vertical-align: top;
+}
+.triggerbox .triggerbox-text:active {
+  background-color: #f4faff;
+}
+.triggerbox .triggerbox-text:disabled {
+  background-color: #f7f7f7;
+}
+.triggerbox .triggerbox-prompt {
+  font-size: 14px;
+  color: #ccc;
+}
+.triggerbox-button {
+  width: 30px;
+  height: 28px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}
+.triggerbox-button-hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  background-color: #378ec4;
+}
+.triggerbox .l-btn-plain {
+  border: 0;
+  padding: 0;
+  vertical-align: top;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -moz-border-radius: 0 0 0 0;
+  -webkit-border-radius: 0 0 0 0;
+  border-radius: 0 0 0 0;
+}
+.triggerbox .l-btn-plain:hover {
+  border: 0;
+  padding: 0;
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  -moz-border-radius: 0 0 0 0;
+  -webkit-border-radius: 0 0 0 0;
+  border-radius: 0 0 0 0;
+}
+.triggerbox a.m-btn-plain-active {
+  -moz-border-radius: 0 0 0 0;
+  -webkit-border-radius: 0 0 0 0;
+  border-radius: 0 0 0 0;
+}
+.triggerbox {
+  border-color: #40a2de;
+  /*#95B8E7;*/
+  background-color: #40a2de;
+}
+.triggerbox .l-btn-plain {
+  background: #E0ECFF;
+}
+.triggerbox .l-btn-plain-disabled,
+.triggerbox .l-btn-plain-disabled:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }

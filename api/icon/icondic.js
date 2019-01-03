@@ -60,6 +60,9 @@ var iconDictionary={
     "icon-export-paper":"导出已评审",
     "icon-track":"追踪",
     "icon-paper-eye":"传阅",
+    "icon-compare-no":"未对照",
+    "icon-compare-yes":"已对照",
+    "icon-compare":"对照",
     "icon-w-rent": "租用单",
     "icon-w-run": "执行计划",
     "icon-w-line-key": "论证",
@@ -111,6 +114,7 @@ var iconDictionary={
     "icon-w-ok":"完成",
     "icon-w-filter":"过滤",
     "icon-w-predrug":"备药",
+    "icon-w-trigger-box":"触发",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
@@ -342,5 +346,6 @@ var iconDictionary={
     "icon-big-paper-gray":"未达标指标",
     "icon-big-msg":"报告提醒",
     "icon-big-equi-cfg":"设备属性维护，设备维护",
-    "icon-big-med-equi":"医疗设备特殊设备，医疗设备"
+    "icon-big-med-equi":"医疗设备特殊设备，医疗设备",
+    "icon-big-alert":"特殊设备，警告"
 };
