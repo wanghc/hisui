@@ -64,7 +64,12 @@
             grid.datagrid('clearSelections').datagrid('highlightRow',0);
         }catch (e){
         }
-		grid.datagrid($.extend({}, opts, {
+        /** title是input的提示,不是grid的title*/ 
+        var gridTitle = "";
+        if (opts.gridTitle){
+            gridTitle = opts.gridTitle;
+        }
+		grid.datagrid($.extend({}, opts, {title:gridTitle,
             border: false, fit: true, singleSelect: (!opts.multiple), onLoadSuccess: function (data) {
                 if (state.panel.is(':visible')){
                     $(target).focus();
@@ -641,7 +646,7 @@
     };
     $.fn.lookup.parseOptions = function (_928) {
 		var t = $(_928);
-        var temp= $.extend({}, $.fn.validatebox.parseOptions(_928), $.parser.parseOptions(_928, ["width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
+        var temp= $.extend({}, $.fn.validatebox.parseOptions(_928), $.parser.parseOptions(_928, ["title","width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
         temp.originalValue=temp.value;
         return $.extend({}, temp, $.fn.datagrid.parseOptions(_928), $.parser.parseOptions(_928, ["idField", "textField", "mode",{isCombo:"boolean",minQueryLen:'number'}]));
     };

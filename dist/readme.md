@@ -34,7 +34,10 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
-## 2019-01-03
+## 2019-01-04 ##
+* `lookup`组件的title属性不再显示到Grid的标题
+
+## 2019-01-03 ##
 * 增加`triggerbox`用于定义按钮图标的触发组件
 * 增加`timespinner`必填提示为英文问题
 * 固定`spinner`与`triggerbox`组件的宽度
