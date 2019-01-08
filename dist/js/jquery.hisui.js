@@ -13463,14 +13463,6 @@ if (typeof JSON !== 'object') {
         }, function () {
             opts.onLoadError.apply(this, arguments);
         });
-        if (opts.blurValidValue){
-            $(_8bd).combo('textbox').bind("blur.combo-text", function (e) {
-                var val = $(_8bd).combobox("getValue");
-                if (val==undefined || val=="" || val==null){
-                    $(e.target).val("");
-                }
-            });
-        }
     };
     function _8c0(_8c1, q) {
         var _8c2 = $.data(_8c1, "combobox");
@@ -13622,6 +13614,17 @@ if (typeof JSON !== 'object') {
                 _8b6(this, _8d0.options.data);
             }
             _8bc(this);
+            if (_8d0.options.blurValidValue){
+                console.log("blur valid value--");
+                var _t = this;
+                $(_t).combo('textbox').bind("blur.combo-text", function (e) {
+                    var val = $(_t).combobox("getValue");
+                    if (val==undefined || val=="" || val==null){
+                        $(e.target).val("");
+                        _8c0(_t, "");
+                    }
+                });
+            }
         });
     };
     $.fn.combobox.methods = {
@@ -13966,14 +13969,6 @@ if (typeof JSON !== 'object') {
                 opts.onUnselectAll.call(this, rows);
             },lazy:(opts.lazy && $(_903).combo("getValue")=="")   //cryze 要让datagrid不要load数据  初始化时没load数据，那么第一次点击下拉按钮 应该load数据 事件绑定应该是在combo上的
         }));
-        if (opts.blurValidValue){
-            $(_903).combo('textbox').bind("blur.combo-text", function (e) {
-                var val = $(_903).combogrid("grid").datagrid("getSelected");
-                if (val==undefined || val=="" || val==null){
-                    $(e.target).val("");
-                }
-            });
-        }
         function _908(_90c, row) {
             _904.remainText = false;
             _90a();
@@ -14160,6 +14155,16 @@ if (typeof JSON !== 'object') {
                 _924 = $.data(this, "combogrid", { options: $.extend({}, $.fn.combogrid.defaults, $.fn.combogrid.parseOptions(this), _921) });
             }
             _902(this);
+            if (_924.options.blurValidValue){
+                var _t = this;
+                $(_t).combo('textbox').bind("blur.combo-text", function (e) {
+                    var val = $(_t).combogrid("grid").datagrid("getSelected");
+                    if (val==undefined || val=="" || val==null){
+                        $(e.target).val("");
+                        _91a(_t, "");
+                    }
+                });
+            }
         });
     };
     $.fn.combogrid.methods = {
