@@ -1,0 +1,87 @@
+/// D:\workspace_iis\hisui-0.1.0\dist\css
+/// W ##class(web.Test).CompareImg("D:\workspace_iis\hisui-0.1.0\dist\css")
+ClassMethod CompareImg(path1,path2){
+	Set base2 = ##class(ext.util.String).Img2Base64(path_"\icon2\Ïòºó³·»Ø.png").Read()
+	Set base  = ##class(ext.util.String).Img2Base64(path_"\icon2\arrow_right_top.png").Read()
+	if base2=base Quit 1
+	Quit 0
+}
+/// D:\workspace_iis\hisui-0.1.0\dist\css
+/// W ##class(web.Test).CompareDir("D:\workspace_iis\hisui-0.1.0\dist\css\","icons\","icons2\")
+ClassMethod CompareDir(basedir,dir1,dir2){
+	Set PLIST=""
+	Set f = $zsearch(basedir_dir1_"*")
+	While(f'=""){
+		Set fname = $p(f,basedir_dir1,2) 
+		if (fname["png"){
+			Set PLIST(fname) = ##Class(web.Util.Encryption).MD5HexStr(##class(ext.util.String).Img2Base64(f).Read())
+		}
+		Set f = $zsearch("") 
+	}
+	
+	Set f1 = $zsearch(basedir_dir2_"*")
+	While(f1'=""){
+		Set fname1 = $p(f1,basedir_dir2,2) 
+		if (fname1["png"){
+			Set base64 = ##Class(web.Util.Encryption).MD5HexStr(##class(ext.util.String).Img2Base64(f1).Read())
+			Set i="" for  Set i=$O(PLIST(i)) Quit:i=""  d
+			.if base64=PLIST(i) w !,fname1,"==>",i
+		}
+		Set f1 = $zsearch("") 
+	}
+	q ""
+}
+/// W ##class(web.Test).genLess("D:\workspace_iis\hisui-0.1.0\dist\css\icons3\")
+ClassMethod genLess(path){
+	Set count=0
+	Set f = $zsearch(path_"*")
+	While(f'=""){
+		Set fname = $p(f,path,2) 
+		if (fname["png"){
+			Set count=count+1
+			w $p($tr(fname,"_","-"),".") ,",",$p(fname,"."),","
+		}
+		Set f = $zsearch("") 
+	}
+	q ""
+}
+/// d ##class(web.Test).genJs("D:\workspace_iis\hisui-0.1.0\dist\css\icons3\")
+ClassMethod genJs(path){
+	Set count=0
+	Set f = $zsearch(path_"*")
+	While(f'=""){
+		Set fname = $p(f,path,2) 
+		if (fname["png"){
+			Set count=count+1
+			w "'",$p($tr(fname,"_","-"),".") ,"',"
+		}
+		Set f = $zsearch("") 
+	}
+	q ""
+}
+/// d ##class(web.Test).ModifyReturnDict("D:\workspace_iis\hisui-0.1.0\dist\css\icons2\")
+ClassMethod ModifyReturnDict(path){
+	N (path)
+	Set count=0
+	Set f = $zsearch(path_"*")
+	While(f'=""){
+		
+		Set fname = $p(f,path,2) 
+		if (fname["png"){
+			Set count=count+1
+			Set imgname = $p(fname,"-",2)
+			Set desc = $p(fname,"-")
+			d ##class(%File).Rename(f,path_imgname)
+			Set clsname = $p($tr(imgname,"_","-"),".png") 
+			if $d(PLIST(clsname))=0{
+				Set PLIST(clsname)=desc
+				w """icon-"_clsname_""":"""_desc_""",",!
+			}else{
+				w !,"re"
+			}
+			
+		}
+		Set f = $zsearch("") 
+	}
+	q ""
+}

@@ -3066,6 +3066,318 @@ a {
 .icon-compare {
   background: url('icons/compare.png') no-repeat center center;
 }
+.icon-adm-add {
+  background: url('icons/adm_add.png') no-repeat center center;
+}
+.icon-adm-same {
+  background: url('icons/adm_same.png') no-repeat center center;
+}
+.icon-alert-red {
+  background: url('icons/alert_red.png') no-repeat center center;
+}
+.icon-allergy-word {
+  background: url('icons/allergy_word.png') no-repeat center center;
+}
+.icon-all-screen {
+  background: url('icons/all_screen.png') no-repeat center center;
+}
+.icon-analysis {
+  background: url('icons/analysis.png') no-repeat center center;
+}
+.icon-arrow-blue {
+  background: url('icons/arrow_blue.png') no-repeat center center;
+}
+.icon-arrow-zoom {
+  background: url('icons/arrow_zoom.png') no-repeat center center;
+}
+.icon-audit-x {
+  background: url('icons/audit_x.png') no-repeat center center;
+}
+.icon-base-info {
+  background: url('icons/base_info.png') no-repeat center center;
+}
+.icon-base-word {
+  background: url('icons/base_word.png') no-repeat center center;
+}
+.icon-blue-drug-ok {
+  background: url('icons/blue_drug_ok.png') no-repeat center center;
+}
+.icon-blue-move {
+  background: url('icons/blue_move.png') no-repeat center center;
+}
+.icon-book-green {
+  background: url('icons/book_green.png') no-repeat center center;
+}
+.icon-bottle-drug {
+  background: url('icons/bottle_drug.png') no-repeat center center;
+}
+.icon-cal-pen {
+  background: url('icons/cal_pen.png') no-repeat center center;
+}
+.icon-cancel-ref {
+  background: url('icons/cancel_ref.png') no-repeat center center;
+}
+.icon-cancel-top {
+  background: url('icons/cancel_top.png') no-repeat center center;
+}
+.icon-check {
+  background: url('icons/check.png') no-repeat center center;
+}
+.icon-checkbox {
+  background: url('icons/checkbox.png') no-repeat center center;
+}
+.icon-chg-doctor-grant {
+  background: url('icons/chg_doctor_grant.png') no-repeat center center;
+}
+.icon-clock {
+  background: url('icons/clock.png') no-repeat center center;
+}
+.icon-clock-blod {
+  background: url('icons/clock_blod.png') no-repeat center center;
+}
+.icon-clock-record {
+  background: url('icons/clock_record.png') no-repeat center center;
+}
+.icon-close-word {
+  background: url('icons/close_word.png') no-repeat center center;
+}
+.icon-complex-word {
+  background: url('icons/complex_word.png') no-repeat center center;
+}
+.icon-contain {
+  background: url('icons/contain.png') no-repeat center center;
+}
+.icon-doctor-green-no {
+  background: url('icons/doctor_green_no.png') no-repeat center center;
+}
+.icon-down-arrow-box {
+  background: url('icons/down_arrow_box.png') no-repeat center center;
+}
+.icon-drug {
+  background: url('icons/drug.png') no-repeat center center;
+}
+.icon-drug-arrow-red {
+  background: url('icons/drug_arrow_red.png') no-repeat center center;
+}
+.icon-drug-audit {
+  background: url('icons/drug_audit.png') no-repeat center center;
+}
+.icon-drug-clock {
+  background: url('icons/drug_clock.png') no-repeat center center;
+}
+.icon-drug-link {
+  background: url('icons/drug_link.png') no-repeat center center;
+}
+.icon-dsh-water {
+  background: url('icons/dsh_water.png') no-repeat center center;
+}
+.icon-durg-freq {
+  background: url('icons/durg_freq.png') no-repeat center center;
+}
+.icon-durg-ref {
+  background: url('icons/durg_ref.png') no-repeat center center;
+}
+.icon-face-red {
+  background: url('icons/face_red.png') no-repeat center center;
+}
+.icon-find-adm {
+  background: url('icons/find_adm.png') no-repeat center center;
+}
+.icon-fire {
+  background: url('icons/fire.png') no-repeat center center;
+}
+.icon-format-line {
+  background: url('icons/format_line.png') no-repeat center center;
+}
+.icon-format-line-dott {
+  background: url('icons/format_line_dott.png') no-repeat center center;
+}
+.icon-format-line-num {
+  background: url('icons/format_line_num.png') no-repeat center center;
+}
+.icon-gen-barcode {
+  background: url('icons/gen_barcode.png') no-repeat center center;
+}
+.icon-green-chart {
+  background: url('icons/green_chart.png') no-repeat center center;
+}
+.icon-home-black {
+  background: url('icons/home_black.png') no-repeat center center;
+}
+.icon-home-gray {
+  background: url('icons/home_gray.png') no-repeat center center;
+}
+.icon-icd {
+  background: url('icons/icd.png') no-repeat center center;
+}
+.icon-injector {
+  background: url('icons/injector.png') no-repeat center center;
+}
+.icon-knw-submit {
+  background: url('icons/knw_submit.png') no-repeat center center;
+}
+.icon-list-word {
+  background: url('icons/list_word.png') no-repeat center center;
+}
+.icon-location {
+  background: url('icons/location.png') no-repeat center center;
+}
+.icon-lock {
+  background: url('icons/lock.png') no-repeat center center;
+}
+.icon-move-left-most {
+  background: url('icons/move_left_most.png') no-repeat center center;
+}
+.icon-move-up-most {
+  background: url('icons/move_up_most.png') no-repeat center center;
+}
+.icon-mtpaper-add {
+  background: url('icons/mtpaper_add.png') no-repeat center center;
+}
+.icon-mtpaper-arrw-lftp {
+  background: url('icons/mtpaper_arrw_lftp.png') no-repeat center center;
+}
+.icon-mtpaper-redo {
+  background: url('icons/mtpaper_redo.png') no-repeat center center;
+}
+.icon-mtpaper-undo {
+  background: url('icons/mtpaper_undo.png') no-repeat center center;
+}
+.icon-mttext {
+  background: url('icons/mttext.png') no-repeat center center;
+}
+.icon-mutpaper-tri {
+  background: url('icons/mutpaper_tri.png') no-repeat center center;
+}
+.icon-mutpaper-x {
+  background: url('icons/mutpaper_x.png') no-repeat center center;
+}
+.icon-nail {
+  background: url('icons/nail.png') no-repeat center center;
+}
+.icon-no-conatin {
+  background: url('icons/no_conatin.png') no-repeat center center;
+}
+.icon-other-yellow {
+  background: url('icons/other_yellow.png') no-repeat center center;
+}
+.icon-paper-bed {
+  background: url('icons/paper_bed.png') no-repeat center center;
+}
+.icon-paper-blue-line {
+  background: url('icons/paper_blue_line.png') no-repeat center center;
+}
+.icon-paper-chart {
+  background: url('icons/paper_chart.png') no-repeat center center;
+}
+.icon-paper-drug {
+  background: url('icons/paper_drug.png') no-repeat center center;
+}
+.icon-paper-link-pen {
+  background: url('icons/paper_link_pen.png') no-repeat center center;
+}
+.icon-paper-new {
+  background: url('icons/paper_new.png') no-repeat center center;
+}
+.icon-paper-no {
+  background: url('icons/paper_no.png') no-repeat center center;
+}
+.icon-paper-ok {
+  background: url('icons/paper_ok.png') no-repeat center center;
+}
+.icon-paper-opr-record {
+  background: url('icons/paper_opr_record.png') no-repeat center center;
+}
+.icon-paper-save {
+  background: url('icons/paper_save.png') no-repeat center center;
+}
+.icon-paper-table {
+  background: url('icons/paper_table.png') no-repeat center center;
+}
+.icon-paper-upgrade {
+  background: url('icons/paper_upgrade.png') no-repeat center center;
+}
+.icon-paper-upgrade-add {
+  background: url('icons/paper_upgrade_add.png') no-repeat center center;
+}
+.icon-paper-x {
+  background: url('icons/paper_x.png') no-repeat center center;
+}
+.icon-pat-add-red {
+  background: url('icons/pat_add_red.png') no-repeat center center;
+}
+.icon-pat-alert-red {
+  background: url('icons/pat_alert_red.png') no-repeat center center;
+}
+.icon-pat-house {
+  background: url('icons/pat_house.png') no-repeat center center;
+}
+.icon-pat-opr {
+  background: url('icons/pat_opr.png') no-repeat center center;
+}
+.icon-private-word {
+  background: url('icons/private_word.png') no-repeat center center;
+}
+.icon-public-word {
+  background: url('icons/public_word.png') no-repeat center center;
+}
+.icon-radio {
+  background: url('icons/radio.png') no-repeat center center;
+}
+.icon-ref {
+  background: url('icons/ref.png') no-repeat center center;
+}
+.icon-repeat-drug {
+  background: url('icons/repeat_drug.png') no-repeat center center;
+}
+.icon-right-arrow {
+  background: url('icons/right_arrow.png') no-repeat center center;
+}
+.icon-switch {
+  background: url('icons/switch.png') no-repeat center center;
+}
+.icon-tel {
+  background: url('icons/tel.png') no-repeat center center;
+}
+.icon-text {
+  background: url('icons/text.png') no-repeat center center;
+}
+.icon-text-word {
+  background: url('icons/text_word.png') no-repeat center center;
+}
+.icon-tip-blue {
+  background: url('icons/tip_blue.png') no-repeat center center;
+}
+.icon-top-green {
+  background: url('icons/top_green.png') no-repeat center center;
+}
+.icon-translate-word {
+  background: url('icons/translate_word.png') no-repeat center center;
+}
+.icon-trans-pat {
+  background: url('icons/trans_pat.png') no-repeat center center;
+}
+.icon-tube {
+  background: url('icons/tube.png') no-repeat center center;
+}
+.icon-unlock {
+  background: url('icons/unlock.png') no-repeat center center;
+}
+.icon-upload {
+  background: url('icons/upload.png') no-repeat center center;
+}
+.icon-virus {
+  background: url('icons/virus.png') no-repeat center center;
+}
+.icon-virus-drug {
+  background: url('icons/virus_drug.png') no-repeat center center;
+}
+.icon-water-drop {
+  background: url('icons/water_drop.png') no-repeat center center;
+}
+.icon-yellow-qa {
+  background: url('icons/yellow_qa.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
