@@ -3378,6 +3378,15 @@ a {
 .icon-yellow-qa {
   background: url('icons/yellow_qa.png') no-repeat center center;
 }
+.icon-down-blue {
+  background: url('icons/down_blue.png') no-repeat center center;
+}
+.icon-export-report {
+  background: url('icons/export_report.png') no-repeat center center;
+}
+.icon-add-report {
+  background: url('icons/add_report.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;

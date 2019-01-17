@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-01-17 ##
+* 修复`combobox`配置`blurValidValue`属性后,查询再选不中行问题
+
 ## 2019-01-08 ##
 * `combobox`,`combogrid`的`blurValidValue`配置项启作用后,空字符作条件查询一次
 

@@ -13615,13 +13615,14 @@ if (typeof JSON !== 'object') {
             }
             _8bc(this);
             if (_8d0.options.blurValidValue){
-                console.log("blur valid value--");
                 var _t = this;
                 $(_t).combo('textbox').bind("blur.combo-text", function (e) {
-                    var val = $(_t).combobox("getValue");
-                    if (val==undefined || val=="" || val==null){
-                        $(e.target).val("");
-                        _8c0(_t, "");
+                    if ($(_t).combo('panel').find(".combobox-item-hover").length==0){ //click---combo-p
+                        var val = $(_t).combobox("getValue");
+                        if (val==undefined || val=="" || val==null){
+                            $(e.target).val("");
+                            _8c0(_t, "");
+                        }
                     }
                 });
             }
