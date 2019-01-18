@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-01-18 ##
+* 修复cm定义showTip配置项后,第一次鼠标划过时不显示提示问题
+
 ## 2019-01-17 ##
 * 修复`combobox`配置`blurValidValue`属性后,查询再选不中行问题
 

@@ -8955,12 +8955,12 @@ if (typeof JSON !== 'object') {
                                 var tipWidth = cm[i][j].tipWidth||350;
                                 td.tooltip({
                                     content:td.text(),
-                                    onShow:function(e){
+                                    onShow:function(e1){
                                         $(this).tooltip("tip").css({
-                                            width:tipWidth,top:e.pageY+20,left:e.pageX-(250/2)
+                                            width:tipWidth,top:e1.pageY+20,left:e1.pageX-(250/2)
                                         });
                                     }
-                                });
+                                }).tooltip("show",e);
                             }
                         }
                    }
