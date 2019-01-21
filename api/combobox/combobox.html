@@ -78,6 +78,7 @@ $(function(){
 		multiple:true,
 		rowStyle:'checkbox',
 		selectOnNavigation:false,
+		allSelectButtonPosition:'top',
 		data:[
 			{id:'css',text:'CSS语言'}
 			,{id:'html',text:'HTML语言'}
@@ -88,7 +89,7 @@ $(function(){
 			,{id:'sql',text:'结构化查询语言'}
 		],
 		editable:false,
-		panelHeight:"auto"
+		panelHeight:"200", //"auto"
 		//onChange:function(newval,oldval){
 			/*$(this).combobox("panel").find('input').prop('checked',false);
 			for (var i=0;i<newval.length;i++){
@@ -272,6 +273,12 @@ $(function(){
 			<td>为true时，光标离开时，检查是否选中值,没选中则置空输入框的值。<code>2018-12-26</code></td>
 			<td>false</td>
 			<td></td>
+		</tr>
+		<tr>
+			<td>allSelectButtonPosition</td>
+			<td>全选按钮位置。<code>multiple:true,rowStyle:'checkbox'</code>时此配置项有效。<code>2019-01-21</code></td>
+			<td>'top'</td>
+			<td>默认为'top',可配置为'bottom'</td>
 		</tr>
 	</table>
   <prettyprint/>

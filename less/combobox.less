@@ -10,12 +10,24 @@
 }
 ._hisui_combobox-selectall{
   background: #f6f6f6;
-  cursor:hand;
+  cursor: pointer;
+  border-left:1px @panel-border-color solid;
+  border-right: 1px @panel-border-color solid;
+  height: 26px; 
+}
+
+.btop>.combo-panel{
+  border-top-width: 0;
+}
+.bbtm>.combo-panel{
+  border-bottom-width: 0;
+}
+.bbtm>._hisui_combobox-selectall{
+  border-bottom: 1px @panel-border-color solid;
 }
 .combobox-gitem {
   padding-left:@combobox-gitem-left-padding;
 }
-
 .combobox-item-hover {
   background-color:@combobox-item-hover-bgcolor;
   color:@combobox-item-hover-font-color;

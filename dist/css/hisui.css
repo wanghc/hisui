@@ -4316,7 +4316,19 @@ input[type="text"]:disabled {
 }
 ._hisui_combobox-selectall {
   background: #f6f6f6;
-  cursor: hand;
+  cursor: pointer;
+  border-left: 1px #509de1 solid;
+  border-right: 1px #509de1 solid;
+  height: 26px;
+}
+.btop > .combo-panel {
+  border-top-width: 0;
+}
+.bbtm > .combo-panel {
+  border-bottom-width: 0;
+}
+.bbtm > ._hisui_combobox-selectall {
+  border-bottom: 1px #509de1 solid;
 }
 .combobox-gitem {
   padding-left: 10px;

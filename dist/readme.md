@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[hisui]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-01-21 ##
+* 为`combobox`增加`allSelectButtonPosition`配置项 
+
 ## 2019-01-18 ##
 * 修复cm定义showTip配置项后,第一次鼠标划过时不显示提示问题
 
