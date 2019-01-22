@@ -79,6 +79,10 @@ $(function(){
 		rowStyle:'checkbox',
 		selectOnNavigation:false,
 		allSelectButtonPosition:'top',
+		onAllSelectClick:function(e){
+			var arr = $(this).combobox("getValues");
+			console.log(arr);
+		},
 		data:[
 			{id:'css',text:'CSS语言'}
 			,{id:'html',text:'HTML语言'}
@@ -279,6 +283,18 @@ $(function(){
 			<td>全选按钮位置。<code>multiple:true,rowStyle:'checkbox'</code>时此配置项有效。<code>2019-01-21</code></td>
 			<td>'top'</td>
 			<td>默认为'top',可配置为'bottom'</td>
+		</tr>
+		<tr class="evttitle">
+			<td>事件</td>
+			<td>描述</td>
+			<td>入参</td>
+			<td>说明</td>
+		</tr>
+		<tr>
+			<td>onAllSelectClick</td>
+			<td>点击【全选/取消全选】按钮时触发<code>2019-01-22</code></td>
+			<td>e</td>
+			<td>只有按钮显示时才有效。<code>onAllSelectClick:function(e){var arr = $(this).combobox("getValues");}</code></td>
 		</tr>
 	</table>
   <prettyprint/>

@@ -13431,7 +13431,7 @@ if (typeof JSON !== 'object') {
             if (opts.rowStyle && opts.rowStyle=='checkbox'){
                 var myPanelJObj = $(_8b7).combo("panel");
                 var myPanelWidth = myPanelJObj.width() - 5; //5是padding-left
-                var myallselJObj = $('<div id="combobox_allsel" style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>全选/取消全选</div>')
+                var myallselJObj = $('<div style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>全选/取消全选</div>')
                 .bind('click',function(e){
                     var _t = $(this);
                     if (_t.hasClass('checked')){
@@ -13445,6 +13445,9 @@ if (typeof JSON !== 'object') {
                         });
                         $(_8b7).combobox("setValues",tmpArr);
                     }
+                    if (opts.onAllSelectClick){
+                        opts.onAllSelectClick.call(_8b7,e);
+                    } 
                 });
                 if (opts.allSelectButtonPosition=='bottom'){
                     //myallselJObj.appendTo($(_8b7).combo("panel"));
