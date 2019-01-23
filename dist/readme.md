@@ -35,6 +35,8 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2019-01-21 ##
+* 修复`combobox`调用loadData后会出现多个全选按钮bug
+## 2019-01-21 ##
 * 为`combobox`增加`allSelectButtonPosition`配置项 
 * 为`combobox`增加`onAllSelectClick`事件
 ## 2019-01-18 ##
