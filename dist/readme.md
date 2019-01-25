@@ -1,4 +1,4 @@
-[HISUI]: https://wanghc.github.io/hisui/hisui-0.1.0.rar "下载最新的HISUI库"
+[HISUI]: http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download "下载最新的HISUI库"
 # 介绍
 `HISUI`是一款前端组件类库。
 提供`linkbutton`,`linkmenu`,`combo`,`datagrid`,`treegrid`,`popover`,`window`,`lookup`,`panel`,`layout`,`accordion`,`tab`等组件功能。
@@ -31,7 +31,7 @@ $("#btn").linkbutton({iconCls:'icon-search'});
 $("#btn").linkbutton("disable");
 */
 ```
-点击[hisui]下载最新的HISUI库
+点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
 ## 2019-01-21 ##
