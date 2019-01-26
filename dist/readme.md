@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-01-26 ##
+* `combobox`增加`forceValidValue`配置项
+
 ## 2019-01-21 ##
 * 修复`combobox`调用loadData后会出现多个全选按钮bug
 ## 2019-01-21 ##
