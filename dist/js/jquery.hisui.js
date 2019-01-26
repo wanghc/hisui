@@ -13371,8 +13371,12 @@ if (typeof JSON !== 'object') {
             var s = v;
             opts.finder.getEl(_8b2, v).addClass("combobox-item-selected");
             var row = opts.finder.getRow(_8b2, v);
-            if (row) {
+            if (row) { 
                 s = row[opts.textField];
+            }else{
+                //2019-1-26.neer 测试发现 remote时,输入查询条件查询不出结果时,getValue()返回的是查询条件即为getText()的值
+                // row为undefined时,清空值
+                if (opts.forceValidValue) {v = "";}
             }
             vv.push(v);
             ss.push(s);
@@ -13632,6 +13636,7 @@ if (typeof JSON !== 'object') {
             }
             _8bc(this);
             if (_8d0.options.blurValidValue){
+                _8d0.options.forceValidValue = true; //这时强制设置值检查
                 var _t = this;
                 $(_t).combo('textbox').bind("blur.combo-text", function (e) {
                     if ($(_t).combo('panel').find(".combobox-item-hover").length==0){ //click---combo-p
@@ -13725,6 +13730,7 @@ if (typeof JSON !== 'object') {
         };
     };
     $.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
+        forceValidValue:false,
         allSelectButtonPosition:'top',rowStyle:'',valueField: "value", textField: "text", groupField: null, groupFormatter: function (_8dc) {
             return _8dc;
         }, mode: "local", method: "post", url: null, data: null, keyHandler: {
