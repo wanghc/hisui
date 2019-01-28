@@ -33,7 +33,8 @@
 						textField:'feetypename',
 						method:'get',
 						url:'feetype.csp',
-						required:true
+						required:true,
+						blurValidValue:true
 					}
 				}">费用类型combobox</th>
 		<th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)</th>
@@ -53,6 +54,7 @@
 	function endEditing(){
 			if (editIndex == undefined){return true}
 			if ($('#dg').datagrid('validateRow', editIndex)){
+				debugger
 				//列表中下拉框实现，修改后把回写feetypename，因为formatter显示的是feetypename字段
 				var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'feetypeid'});
 				var feetypename = $(ed.target).combobox('getText');

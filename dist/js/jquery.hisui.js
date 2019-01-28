@@ -13376,7 +13376,7 @@ if (typeof JSON !== 'object') {
             }else{
                 //2019-1-26.neer 测试发现 remote时,输入查询条件查询不出结果时,getValue()返回的是查询条件即为getText()的值
                 // row为undefined时,清空值
-                if (opts.forceValidValue) {v = "";}
+                //if (opts.forceValidValue) {v = "";}
             }
             vv.push(v);
             ss.push(s);
@@ -13642,6 +13642,18 @@ if (typeof JSON !== 'object') {
                     if ($(_t).combo('panel').find(".combobox-item-hover").length==0){ //click---combo-p
                         var val = $(_t).combobox("getValue");
                         if (val==undefined || val=="" || val==null){
+                            $(e.target).val("");
+                            _8c0(_t, "");
+                        }
+                        var isContain = 0;
+                        var _d = $(_t).combobox('getData');
+                        var opts = $(_t).combobox('options');
+                        for (var i=0;i<_d.length;i++){
+                            if (_d[i][opts.valueField]==val){
+                                isContain = 1;
+                            }
+                        }
+                        if (0==isContain){
                             $(e.target).val("");
                             _8c0(_t, "");
                         }
