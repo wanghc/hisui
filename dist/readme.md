@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-02-01 ##
+* `accordion`为gray样式时最后一个面板显示差一个px问题
 ## 2019-01-26 ##
 * `combobox`增加`forceValidValue`配置项
 

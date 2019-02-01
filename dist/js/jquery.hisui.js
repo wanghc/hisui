@@ -4589,7 +4589,7 @@ if (typeof JSON !== 'object') {
             accordion-gray ==> margin-top:4px;
         */
         if (cc.hasClass('accordion-gray')){
-            _297 -= 4 * (_298.length-1);  // totalHeight - margin-top * (accordionCount-1)
+            _297 -= 4 * (_298.length-1)+1;  // totalHeight - margin-top * (accordionCount-1)
         }
         _299(true, _297 - _299(false) + 1);
         function _299(_29a, _29b) {
