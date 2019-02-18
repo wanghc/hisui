@@ -3387,6 +3387,21 @@ a {
 .icon-add-report {
   background: url('icons/add_report.png') no-repeat center center;
 }
+.icon-paper-plane {
+  background: url('icons/paper_plane.png') no-repeat center center;
+}
+.icon-undo-paper-plane {
+  background: url('icons/undo_paper_plane.png') no-repeat center center;
+}
+.icon-h24-stat {
+  background: url('icons/h24_stat.png') no-repeat center center;
+}
+.icon-stat {
+  background: url('icons/stat.png') no-repeat center center;
+}
+.icon-paper-pen {
+  background: url('icons/paper_pen.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
