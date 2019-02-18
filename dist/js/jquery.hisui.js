@@ -13349,6 +13349,8 @@ if (typeof JSON !== 'object') {
             }
             _8ac(_8a9, _8ab);
             opts.onSelect.call(_8a9, opts.finder.getRow(_8a9, _8aa));
+        }else{
+
         }
     };
     function _8ad(_8ae, _8af) {
@@ -13602,8 +13604,13 @@ if (typeof JSON !== 'object') {
                     _8a8(_8ca, _8cc);
                 }
             } else {
-                _8a8(_8ca, _8cc);
-                $(_8ca).combo("hidePanel");
+                // 增加allowNull配置,if是增加的 20190218-neer 
+                if (opts.allowNull && item.hasClass("combobox-item-selected")){
+                    _8ad(_8ca, _8cc);
+                }else{
+                    _8a8(_8ca, _8cc);
+                    $(_8ca).combo("hidePanel");
+                }
             }
             e.stopPropagation();
         });
@@ -13742,7 +13749,7 @@ if (typeof JSON !== 'object') {
         };
     };
     $.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
-        forceValidValue:false,
+        forceValidValue:false,allowNull:false,
         allSelectButtonPosition:'top',rowStyle:'',valueField: "value", textField: "text", groupField: null, groupFormatter: function (_8dc) {
             return _8dc;
         }, mode: "local", method: "post", url: null, data: null, keyHandler: {

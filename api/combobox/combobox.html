@@ -251,21 +251,38 @@ $(function(){
 			if (b=="q=w"){
 				return [{id:"w1",text:"wang1"},{id:"w2",text:"wang2"}];
 			}
-			if (b=="q=h"){
+			else if (b=="q=h"){
 				return [{id:"h1",text:"hang1"},{id:"h2",text:"hang2"}];
 			}
-			if (b=="q=z"){
+			else if (b=="q=z"){
 				return [{id:"1",text:"z1"},{id:"2",text:"z2"}];
 			}
+			return [{id:1,text:"hang1"},{id:2,text:"hang2"},{id:"w1",text:"wang1"},{id:"w2",text:"wang2"},{id:"1",text:"z1"},{id:"2",text:"z2"}];
 		}
 		return [];
-	})
+	});
 	var cbox = $HUI.combobox("#rtCB",{
 		valueField:'id', textField:'text',panelHeight:"auto",
-		mode:'remote',url:'rtcb',blurValidValue:true
+		mode:'remote',url:'rtcb'
 	});
 });
 </script>
+<h3>六、单选且不可编辑</h3>
+<div class="demo-exp-code entry-content">
+	<select id="editCB" style="width:200px;"></select>
+	<pre class="prettyprint lang-js hide"><code>$(function(){
+	$("#editCB").combobox({editable:false,allowNull:true,...});
+});	</code></pre>
+  </div>
+  <script type="text/javascript">
+	$(function(){
+		var cbox = $HUI.combobox("#editCB",{
+			valueField:'id', textField:'text',panelHeight:"auto",editable:false,allowNull:true,
+			mode:'local',data:[{id:1,text:'张三'},{id:2,text:'李四'},{id:3,text:'王二'},{id:4,text:'麻子'}]
+		});
+	});
+  </script>
+
   <table class="table">
 		<tr class="protitle">
 			<th>属性</th>
@@ -314,6 +331,12 @@ $(function(){
 			<td>全选按钮位置。<code>multiple:true,rowStyle:'checkbox'</code>时此配置项有效。<code>2019-01-21</code></td>
 			<td>'top'</td>
 			<td>默认为'top',可配置为'bottom'</td>
+		</tr>
+		<tr>
+			<td>allowNull</td>
+			<td>单选时选中记录后不能取消选择时，可以配置此项为true<code>2019-02-18</code></td>
+			<td>false</td>
+			<td>默认为false,用于单选且不可编辑时</td>
 		</tr>
 		<tr class="evttitle">
 			<td>事件</td>
