@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2019-03-13 ##
+* `datagrid-scrollview`修复远程数据时选中一行，滚动后选中行错乱问题
+
 ## 2019-02-18 ##
 * `combobox`增加allowNull配置
 
@@ -45,9 +49,11 @@ $("#btn").linkbutton("disable");
 
 ## 2019-01-21 ##
 * 修复`combobox`调用loadData后会出现多个全选按钮bug
+
 ## 2019-01-21 ##
 * 为`combobox`增加`allSelectButtonPosition`配置项 
 * 为`combobox`增加`onAllSelectClick`事件
+
 ## 2019-01-18 ##
 * 修复cm定义showTip配置项后,第一次鼠标划过时不显示提示问题
 
@@ -121,6 +127,7 @@ $("#btn").linkbutton("disable");
 ## 2018-10-18 ##
 * IE下输入框中placeholder显示样式修改
 * `validatebox`,`combo`及子组件支持`placeholder`属性
+
 ## 2018-10-17 ##
 * `combobox`组件增加`rowStyle`配置项,可配置成`checkbox`
 * `alert`、`confirm`、`prompt`左右键切换选中按钮
