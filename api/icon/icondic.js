@@ -375,6 +375,8 @@ var iconDictionary={
     "icon-tube-del":"删除标本",
     "icon-tube-add":"添加标本",
     "icon-wrench-blue":"处理措施",
+    "icon-wating":"未检列队，等待中，排队中",
+    "icon-done":"已检列队，曾做过",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",

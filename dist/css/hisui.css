@@ -3402,6 +3402,12 @@ a {
 .icon-paper-pen {
   background: url('icons/paper_pen.png') no-repeat center center;
 }
+.icon-wating {
+  background: url('icons/wating.png') no-repeat center center;
+}
+.icon-done {
+  background: url('icons/done.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
