@@ -3818,6 +3818,12 @@ a {
 .icon-w-trigger-box {
   background: url('icons/white/trigger_box.png') no-repeat center center;
 }
+.icon-w-paid {
+  background: url('icons/white/paid.png') no-repeat center center;
+}
+.icon-w-zoom {
+  background: url('icons/white/zoom.png') no-repeat center center;
+}
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;

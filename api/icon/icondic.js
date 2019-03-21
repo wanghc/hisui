@@ -227,6 +227,8 @@ var iconDictionary={
     "icon-w-filter":"过滤",
     "icon-w-predrug":"备药",
     "icon-w-trigger-box":"触发",
+    "icon-w-paid":"支付，出院结算",
+    "icon-w-zoom":"放大，扩展",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
