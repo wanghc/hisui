@@ -3408,6 +3408,12 @@ a {
 .icon-done {
   background: url('icons/done.png') no-repeat center center;
 }
+.icon-up-gray {
+  background: url('icons/up_gray.png') no-repeat center center;
+}
+.icon-down-gray {
+  background: url('icons/down_gray.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
