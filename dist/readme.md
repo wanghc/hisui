@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-03-22 ##
+* 修复`combobox`中输入qd后,鼠标选择查询出的第一个Qd行,仍显示为qd
 
 ## 2019-03-13 ##
 * `datagrid-scrollview`修复远程数据时选中一行，滚动后选中行错乱问题

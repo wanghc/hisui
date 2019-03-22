@@ -13340,6 +13340,12 @@ if (typeof JSON !== 'object') {
             }
         }
     };
+    /**
+     *
+     *select-row
+     * @param {HTMLDocument} _8a9
+     * @param {String} _8aa 希望选中的值
+     */
     function _8a8(_8a9, _8aa) {
         var opts = $.data(_8a9, "combobox").options;
         var _8ab = $(_8a9).combo("getValues");
@@ -13352,7 +13358,19 @@ if (typeof JSON !== 'object') {
             _8ac(_8a9, _8ab);
             opts.onSelect.call(_8a9, opts.finder.getRow(_8a9, _8aa));
         }else{
-
+            // else内全是新加 neer 20190322
+            // 输入ohio,但列表中只有Ohio时,此时value有值,但显示为小写ohio了
+            // 当前点击的行值===当前combobox的值,但text不对
+            if (opts.multiple){
+            }else{
+                if (_8aa){
+                    var row = opts.finder.getRow(_8a9, _8aa);
+                    if (row) { 
+                        var s = row[opts.textField];
+                        $(_8a9).combo("setText",s);
+                    }
+                }
+            }
         }
     };
     function _8ad(_8ae, _8af) {
@@ -13365,6 +13383,14 @@ if (typeof JSON !== 'object') {
             opts.onUnselect.call(_8ae, opts.finder.getRow(_8ae, _8af));
         }
     };
+    /** 
+     * neer
+     * 20190322
+     * setValue方法
+     * arg1
+     * arg2 选中值
+     * arg3 表示是否重置text(显示内容)
+    */
     function _8ac(_8b2, _8b3, _8b4) {
         var opts = $.data(_8b2, "combobox").options;
         var _8b5 = $(_8b2).combo("panel");
@@ -18505,20 +18531,21 @@ function(a, b, c) {
     $.extend($.fn.combobox.defaults, {
         defaultFilter:1,
         filter:function(q,row){
+            var qlower = q.toLowerCase();
             var opts = $(this).combobox("options");
             var text=row[opts.textField];
             var defaultFilter=opts.defaultFilter||1;
 
             if (defaultFilter==2){ // 包含 不区分大小写
-                return text.toLowerCase().indexOf(q.toLowerCase()) >- 1;
+                return text.toLowerCase().indexOf(qlower) >- 1;
             }else if (defaultFilter==3){   // 左匹配 或拼音首字母左匹配 
-                return text.toLowerCase().indexOf(q.toLowerCase()) ==0 || 
-                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(q.toLowerCase()) ==0;
+                return text.toLowerCase().indexOf(qlower) ==0 || 
+                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(qlower) ==0;
             }else if (defaultFilter==4){  // 包含  或拼音首字母包含   不区分大小写
-                return text.toLowerCase().indexOf(q.toLowerCase()) >-1 || 
-                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(q.toLowerCase()) >-1;
+                return text.toLowerCase().indexOf(qlower) >-1 || 
+                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(qlower) >-1;
             }else{  //默认的  左匹配 不区分大小写
-                return text.toLowerCase().indexOf(q.toLowerCase()) == 0;
+                return text.toLowerCase().indexOf(qlower) == 0;
             }
             
         }
