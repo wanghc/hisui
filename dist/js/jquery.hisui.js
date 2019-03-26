@@ -8061,9 +8061,10 @@ if (typeof JSON !== 'object') {
             $(this).val(_4d5.options.value);
             _4cb(this, _4d5.options.disabled);
             _4ce(this, _4d5.options.readonly);
-            _4c2(this);
+            if (true !== $(this).data("rendered")) _4c2(this);
             $(this).validatebox(_4d5.options);
             _4c8(this);
+            $(this).data("rendered", true);
         });
     };
     $.fn.spinner.methods = {
@@ -8125,6 +8126,7 @@ if (typeof JSON !== 'object') {
         return $.extend({}, $.fn.validatebox.parseOptions(_4da), $.parser.parseOptions(_4da, ["width", "height", "min", "max", { increment: "number", editable: "boolean" }]), { value: (t.val() || undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined) });
     };
     $.fn.spinner.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        rendered:false,
         /** wanghc height 22--->30*/
         width: "auto", height: 30, deltaX: 19, value: "", min: null, max: null, increment: 1, editable: true, disabled: false, readonly: false, spin: function (down) {
         }, onSpinUp: function () {
@@ -13362,6 +13364,7 @@ if (typeof JSON !== 'object') {
             // 输入ohio,但列表中只有Ohio时,此时value有值,但显示为小写ohio了
             // 当前点击的行值===当前combobox的值,但text不对
             if (opts.multiple){
+                
             }else{
                 if (_8aa){
                     var row = opts.finder.getRow(_8a9, _8aa);
@@ -18531,21 +18534,20 @@ function(a, b, c) {
     $.extend($.fn.combobox.defaults, {
         defaultFilter:1,
         filter:function(q,row){
-            var qlower = q.toLowerCase();
             var opts = $(this).combobox("options");
             var text=row[opts.textField];
             var defaultFilter=opts.defaultFilter||1;
 
             if (defaultFilter==2){ // 包含 不区分大小写
-                return text.toLowerCase().indexOf(qlower) >- 1;
+                return text.toLowerCase().indexOf(q.toLowerCase()) >- 1;
             }else if (defaultFilter==3){   // 左匹配 或拼音首字母左匹配 
-                return text.toLowerCase().indexOf(qlower) ==0 || 
-                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(qlower) ==0;
+                return text.toLowerCase().indexOf(q.toLowerCase()) ==0 || 
+                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(q.toLowerCase()) ==0;
             }else if (defaultFilter==4){  // 包含  或拼音首字母包含   不区分大小写
-                return text.toLowerCase().indexOf(qlower) >-1 || 
-                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(qlower) >-1;
+                return text.toLowerCase().indexOf(q.toLowerCase()) >-1 || 
+                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(q.toLowerCase()) >-1;
             }else{  //默认的  左匹配 不区分大小写
-                return text.toLowerCase().indexOf(qlower) == 0;
+                return text.toLowerCase().indexOf(q.toLowerCase()) == 0;
             }
             
         }
