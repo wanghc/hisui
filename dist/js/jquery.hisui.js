@@ -8061,10 +8061,11 @@ if (typeof JSON !== 'object') {
             $(this).val(_4d5.options.value);
             _4cb(this, _4d5.options.disabled);
             _4ce(this, _4d5.options.readonly);
+            // _4c2为resize方法,render后不用再resize //neer 2019-03-26 增加if判断
             if (true !== $(this).data("rendered")) _4c2(this);
             $(this).validatebox(_4d5.options);
             _4c8(this);
-            $(this).data("rendered", true);
+            $(this).data("rendered", true); //neer 2019-03-26
         });
     };
     $.fn.spinner.methods = {
@@ -8126,7 +8127,6 @@ if (typeof JSON !== 'object') {
         return $.extend({}, $.fn.validatebox.parseOptions(_4da), $.parser.parseOptions(_4da, ["width", "height", "min", "max", { increment: "number", editable: "boolean" }]), { value: (t.val() || undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined) });
     };
     $.fn.spinner.defaults = $.extend({}, $.fn.validatebox.defaults, {
-        rendered:false,
         /** wanghc height 22--->30*/
         width: "auto", height: 30, deltaX: 19, value: "", min: null, max: null, increment: 1, editable: true, disabled: false, readonly: false, spin: function (down) {
         }, onSpinUp: function () {
@@ -8791,7 +8791,7 @@ if (typeof JSON !== 'object') {
                             td.attr("field", col.field);
                             td.append("<div class=\"datagrid-cell\"><span></span><span class=\"datagrid-sort-icon\"></span></div>");
                             $("span", td).html(col.title);
-                            $("span.datagrid-sort-icon", td).html("&nbsp;");
+                            $("span.datagrid-sort-icon", td).html(""); //html("&nbsp;");-html(""); neer 2019-4-4 当align:'right'时列头与内容没对齐
                             var cell = td.find("div.datagrid-cell");
                             var pos = _502(_553, col.field);
                             if (pos >= 0) {

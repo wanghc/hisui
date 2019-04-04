@@ -1202,20 +1202,20 @@
 }
 .datagrid-sort-desc .datagrid-sort-icon {
   padding: 0 13px 0 0;
-  background: url('images/datagrid_icons.png') no-repeat -16px center;
+  background: url('images/blue/datagrid_icons.png') no-repeat -16px center;
 }
 .datagrid-sort-asc .datagrid-sort-icon {
   padding: 0 13px 0 0;
-  background: url('images/datagrid_icons.png') no-repeat 0px center;
+  background: url('images/blue/datagrid_icons.png') no-repeat 0px center;
 }
 .datagrid-row-collapse {
-  background: url('images/datagrid_icons.png') no-repeat -48px center;
+  background: url('images/blue/datagrid_icons.png') no-repeat -48px center;
 }
 .datagrid-row-expand {
   background: url('images/blue/datagrid_icons.png') no-repeat -32px center;
 }
 .datagrid-mask-msg {
-  background: #ffffff url('images/loading.gif') no-repeat scroll 5px center;
+  background: #ffffff url('images/blue/loading.gif') no-repeat scroll 5px center;
 }
 .datagrid-header,
 .datagrid-td-rownumber {
@@ -3413,6 +3413,9 @@ a {
 }
 .icon-down-gray {
   background: url('icons/down_gray.png') no-repeat center center;
+}
+.icon-pat-info {
+  background: url('icons/pat_info.png') no-repeat center center;
 }
 /*big icon*/
 .icon-big-save {

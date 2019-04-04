@@ -381,6 +381,7 @@ var iconDictionary={
     "icon-done":"已检列队，曾做过",
     "icon-up-gray":"向上收起",
     "icon-down-gray":"向下展开",
+    "icon-pat-info":"病人信息，患者信息",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",

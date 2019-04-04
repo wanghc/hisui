@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-04-04
+* 修复`datagrid`列设置为`align:'right'`时列头与内容不对齐问题
+* 增加`icon-pat-info`小图标
+
 ## 2019-03-26
 * 修复多次调用`spinner`初始化方法会导致元素不断变短问题
 
