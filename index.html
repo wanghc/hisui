@@ -191,7 +191,9 @@
 			return false;
 		})
 		$(".downloadbtn").click(function(){
-			location.href="http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download";
+			window.open('http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download', '_blank');
+			//Resource interpreted as Document but transferred with MIME type application/octet-stream: "http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download".
+			//location.href="http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download";
 			return false;
 			//window.open("https://wanghc.github.io/hisui/hisui-0.1.0.rar");return false;
 		});
