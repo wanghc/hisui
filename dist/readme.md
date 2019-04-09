@@ -40,6 +40,9 @@ $("#btn").linkbutton("disable");
 ## 2019-04-04
 * 修复`datagrid`列设置为`align:'right'`时列头与内容不对齐问题
 * 增加`icon-pat-info`小图标
+* 修复`checkbox`和`radio` 当实际值和样式不一致时 调用check,uncheck,toggle,setValue没效果的问题
+* `checkbox`和`radio` 增加clear和reset方法
+* `form`的clear与reset方法 支持对`checkbox`和`radio`操作了
 
 ## 2019-03-26
 * 修复多次调用`spinner`初始化方法会导致元素不断变短问题

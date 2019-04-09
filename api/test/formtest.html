@@ -276,6 +276,60 @@
 	&lt;/table&gt;
 &lt;/div&gt;</code></pre>
 	</div>
+
+	<div class="demo-exp-code entry-content">
+		<form id="form">
+			<table style="border:1px solid #bbb">
+				<tr>
+					<td class="r-label">名字</td>
+					<td class=""><input name="name" id="name" type="text" class="textbox" value="lisi"/></td>
+				</tr>
+				<tr>
+					<td class="r-label">性别</td>
+					<td class="">
+						<select name="gender" id="gender" class="textbox hisui-combobox" style="width: 150px;"/>
+							<option value="male" selected="selected">男</option>
+							<option value="female">女</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">爱好</td>
+					<td class="">
+						<input name="hobby" id="hb-basketball" type="checkbox" checked="checked" class="hisui-checkbox" label="篮球"/>
+						<input name="hobby" id="hb-running" type="checkbox" class="hisui-checkbox" label="跑步"/>
+						<input name="hobby" id="hb-shopping" type="checkbox" class="hisui-checkbox" label="购物"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">职业</td>
+					<td class="">
+							<input name="occupation" id="occ-dev" type="radio" class="hisui-radio" label="软件开发"/>
+							<input name="occupation" id="occ-test" type="radio" class="hisui-radio" checked="checked" label="软件测试"/>
+							<input name="occupation" id="occ-other" type="radio" class="hisui-radio" label="其它"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<a class="hisui-linkbutton" id="form_reset">form('reset')</a>
+		<a class="hisui-linkbutton" id="form_clear">form('clear')</a>
+		<script>
+			$(function(){
+				$('#form_clear').click(function(){
+					$('#form').form('clear');
+					$.messager.popover({msg:'reset',type:'clear'})
+				})
+				$('#form_reset').click(function(){
+					
+					$('#form').form('reset');
+					$.messager.popover({msg:'reset',type:'info'})
+				})
+			})
+		</script>
+	</div>
+
+
+
 	<prettyprint/>
 </body>
 

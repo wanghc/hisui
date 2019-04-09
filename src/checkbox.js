@@ -11,6 +11,10 @@
         }
         t.prop("disabled",opts.disabled);
         t.prop("checked",opts.checked);
+        
+        opts.originalValue=t.prop("checked"); //将初始状态值记录下来 cryze 2019-04-04
+        t.addClass('checkbox-f')  //在原dom增加类checkbox-f
+
         t.after('<label for="'+opts.id+'">'+opts.label+'</label>');
         t.iCheck(opts);
         t.bind('ifChecked',function(e,value){
@@ -29,6 +33,19 @@
 			}
 			return false;            
         });
+    }
+    /*通过直接改变checkbox的值，或者用form.reset()  会出现样式和选中状态不一致的现象  
+    *如checkbox未选中 样式选中  这时想调用取消选中方法发现无效果 
+    *在 check uncheck setValue toggle 后调用 fixCls 同步样式
+    *add cryze 2019-04-04
+    */
+    function fixCls(t){
+        var checkedClass=$(t).checkbox('options').checkedClass||'checked'
+        if ( $(t).prop('checked') ){ //checkbox是选中的  样式处于未选中  添加选中样式
+            if (!$(t).parent().hasClass(checkedClass)) $(t).parent().addClass(checkedClass);  //
+        }else{   //checkbox未选中的     样式是选中的  移除选中样式
+            if ($(t).parent().hasClass(checkedClass)) $(t).parent().removeClass(checkedClass);  
+        }
     }
 	$.fn.checkbox = function(options, param){
 		if (typeof options == 'string'){
@@ -56,10 +73,11 @@
             return jq.each(function(){
                 var _t = $(this);
                 if (value === true) {
-					_t.iCheck('check');
+                    _t.iCheck('check');
 				} else {
-					_t.iCheck('uncheck');
-				}
+                    _t.iCheck('uncheck');
+                }
+                fixCls(this);
             });
         },
         getValue:function(jq){
@@ -79,16 +97,19 @@
         check:function(jq){
             return jq.each(function(){
                 $(this).iCheck('check');
+                fixCls(this);
             });
         },
         uncheck:function(jq){
             return jq.each(function(){
                 $(this).iCheck('uncheck');
+                fixCls(this);
             });
         },
         toggle:function(jq){
             return jq.each(function(){
                 $(this).iCheck('toggle');
+                fixCls(this);
             });
         },
         disable:function(jq){
@@ -119,6 +140,15 @@
         destroy:function(jq){
             return jq.each(function(){
                 $(this).iCheck('destroy');
+            });
+        },clear:function(jq){ //cryze 2019-04-04 add clear 
+            return jq.each(function(){
+                $(this).checkbox('setValue',false);
+            });
+        },reset:function(jq){  //cryze 2019-04-04 add reset 
+            return jq.each(function(){
+                var originalValue=$(this).checkbox('options').originalValue||false;
+                $(this).checkbox('setValue',originalValue);
             });
         }
     };
