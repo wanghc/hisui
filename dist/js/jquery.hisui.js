@@ -16774,7 +16774,12 @@ function(a, b, c) {
         t.addClass('checkbox-f')  //在原dom增加类checkbox-f
 
         t.after('<label for="'+opts.id+'">'+opts.label+'</label>');
+
+        var lastState=$.data(target, 'checkbox'); //cryze 2019-4-15
         t.iCheck(opts);
+        // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
+        $.data(target, 'checkbox',lastState);  
+
         t.bind('ifChecked',function(e,value){
             if (!opts.disabled){
                 if (opts.onChecked) opts.onChecked.call(this,e,value);
@@ -16996,8 +17001,12 @@ function(a, b, c) {
         t.addClass('radio-f'); //在原dom增加类 radio-f
 
         t.after('<label for="'+opts.id+'">'+opts.label+'</label>');
-        t.attr("name",opts.name);
+        t.attr("name",opts.name); 
+        var lastState=$.data(target, 'radio'); //cryze 2019-4-15
         t.iCheck(opts);
+        // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
+        $.data(target, 'radio',lastState);  
+
         t.bind('ifChecked',function(e,value){
             if (!opts.disabled){
                 if (opts.onChecked) opts.onChecked.call(this,e,value);

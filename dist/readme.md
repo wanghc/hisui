@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2019-04-15
+* 修复`checkbox`和`radio`多次调用初始化方法时，通过$.data(ele,name,data)缓存的数据丢失，进而依赖此数据的方法会报错如`options`方法
+
 ## 2019-04-09
 * `spinner`类组件左边距调整
 
