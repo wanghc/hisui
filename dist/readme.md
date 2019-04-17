@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2019-04-17
+* 修复`checkbox`通过$(selector).radio('setValue',true)设置值会报错问题(不推荐此种错误用法，2019-04-04更新导致)
+
 ## 2019-04-15
 * 修复`checkbox`和`radio`多次调用初始化方法时，通过$.data(ele,name,data)缓存的数据丢失，进而依赖此数据的方法会报错如`options`方法
 

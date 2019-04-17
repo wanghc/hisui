@@ -16803,7 +16803,9 @@ function(a, b, c) {
     *add cryze 2019-04-04
     */
     function fixCls(t){
-        var checkedClass=$(t).checkbox('options').checkedClass||'checked'
+        //var checkedClass=$(t).checkbox('options').checkedClass||'checked';
+        //cryze 2019-04-17 是radio 但是却当checkbox调用  之前没加fixCls是可以正常用的 兼容下错误用法 
+        var checkedClass=(($.data(t,'checkbox')||$.data(t,'radio')||{})['options']||{})['checkedClass']||'checked';
         if ( $(t).prop('checked') ){ //checkbox是选中的  样式处于未选中  添加选中样式
             if (!$(t).parent().hasClass(checkedClass)) $(t).parent().addClass(checkedClass);  //
         }else{   //checkbox未选中的     样式是选中的  移除选中样式
@@ -17030,7 +17032,9 @@ function(a, b, c) {
     *add cryze 2019-04-04
     */
     function fixCls(t){
-        var checkedClass=$(t).radio('options').checkedClass||'checked'
+        //var checkedClass=$(t).radio('options').checkedClass||'checked'
+        //cryze 2019-04-17 是checkbox 但是却当radio  之前没加fixCls是可以正常用的 兼容下错误用法 
+        var checkedClass=(($.data(t,'radio')||$.data(t,'checkbox')||{})['options']||{})['checkedClass']||'checked';  
         if ( $(t).prop('checked') ){ //checkbox是选中的  样式处于未选中  添加选中样式
             if (!$(t).parent().hasClass(checkedClass)) $(t).parent().addClass(checkedClass);  //
         }else{   //checkbox未选中的     样式是选中的  移除选中样式
