@@ -19,26 +19,73 @@
 		<div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true">
 		<table cellpadding="5">
 			<tr>
-				<td>数量:</td>
+				<td class="r-label">数量</td>
 				<td>
-					<input class="hisui-numberbox">
+					<input class="hisui-numberbox textbox">
 				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="r-label">数字</td>
+				<td>
+					<input class="hisui-numberbox textbox" data-options="isKeyupChange:true" id="nb">
+				</td>
+				<td>值即时变化</td>
 			</tr>
 		</table>
-    	</div><pre class="prettyprint lang-html"><code>&lt;div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',
+    	</div><pre class="prettyprint lang-html hide"><code>&lt;div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',
 closable:true,collapsible:true,minimizable:true,maximizable:true">
 	&lt;table cellpadding="5">
 		&lt;/tr&gt;
-			&lt;td>电话:&lt;/td>
+			&lt;td>数量&lt;/td>
 			&lt;td>
-				&lt;input class="hisui-validatebox">
+				&lt;input class="hisui-numberbox textbox">
 			&lt;/td>
-		&lt;/tr&gt;		
+		&lt;/tr&gt;
+		&lt;tr>
+			&lt;td class="r-label">数字</td>
+			&lt;td>
+				&lt;input class="hisui-numberbox textbox" data-options="isKeyupChange:true" id="nb">
+			&lt;/td>
+		&lt;/tr>		
 	&lt;/table&gt;
 &lt;/div&gt;</code></pre>
-<pre class="prettyprint lang-js">
-	</pre>
-	</div>
+<pre class="prettyprint lang-js hide">&lt;script type="text/javascript"&gt;
+	$(function(){
+		$("#nb").on('keyup',function(e){
+			console.log("numberbox value = "+$(this).numberbox('getValue'));
+			if (e.keyCode==13){
+				console.log("numberbox value enterkey ="+$(this).numberbox('getValue'));
+			}
+		});
+	})
+&lt;/script>
+</pre>
+</div>
+	<script type="text/javascript">
+		$(function(){
+			$("#nb").on('keyup',function(e){
+				console.log("numberbox value = "+$(this).numberbox('getValue'));
+				if (e.keyCode==13){
+					console.log("numberbox value enterkey ="+$(this).numberbox('getValue'));
+				}
+			});
+		})
+	</script>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isKeyupChange</td>
+			<td>默认值false</td>
+			<td>值为false时blur时改变组件的值。为true时则keyup时改变组件的值<code>2019-4-18</code></td>
+			<td></td>
+		</tr>
+	</table>
 	<prettyprint/>	
 </body>
 </html>

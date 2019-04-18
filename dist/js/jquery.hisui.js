@@ -7417,7 +7417,18 @@ if (typeof JSON !== 'object') {
             if (vv != opts.parser.call(_481, $(this).val())) {
                 $(this).val(opts.formatter.call(_481, vv));
             }
-        });
+        })
+        if (opts.isKeyupChange){
+            $(_481).bind("keyup.numberbox",function(e){ 
+                // neer 2019-04-18 add keydown.numberbox事件 
+                // $(dom).on("keydown",function(){
+                //   $(this).numberbox("getValue");  //拿到的是上一次的值
+                // })
+                //console.log("src="+$(this).val());
+                _475(_481, $(this).val());
+                $(this).val(opts.formatter.call(_481, _476(_481)));
+            });
+        }
     };
     function _482(_483) {
         if ($.fn.validatebox) {
@@ -7510,6 +7521,7 @@ if (typeof JSON !== 'object') {
         return $.extend({}, $.fn.validatebox.parseOptions(_48e), $.parser.parseOptions(_48e, ["width", "height", "decimalSeparator", "groupSeparator", "suffix", { min: "number", max: "number", precision: "number" }]), { prefix: (t.attr("prefix") ? t.attr("prefix") : undefined), disabled: (t.attr("disabled") ? true : undefined), value: (t.val() || undefined) });
     };
     $.fn.numberbox.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        isKeyupChange:false, /*是否在按键时就同步组件的值。默认是blur时同步值 */
         /**wanghc height:22修改成30*/
         width: "auto", height: 30, disabled: false, value: "", min: null, max: null, precision: 0, decimalSeparator: ".", groupSeparator: "", prefix: "", suffix: "", filter: function (e) {
             var opts = $(this).numberbox("options");

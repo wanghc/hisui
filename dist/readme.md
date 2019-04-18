@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2019-04-18 
+* `numberbox`在监听keyup事件内取值时，拿到的是上一次输入框的值
+
 ## 2019-04-17
 * 修复`checkbox`通过$(selector).radio('setValue',true)设置值会报错问题(不推荐此种错误用法，2019-04-04更新导致)
 
