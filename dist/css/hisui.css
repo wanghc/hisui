@@ -3417,6 +3417,9 @@ a {
 .icon-pat-info {
   background: url('icons/pat_info.png') no-repeat center center;
 }
+.icon-tooth {
+  background: url('icons/tooth.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
