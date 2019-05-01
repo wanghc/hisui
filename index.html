@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta http-equiv="refresh" content="0;url=https://hisui.cn/">  
 	<meta charset="UTF-8">
 	<meta name="author" content="wanghc">
 	<meta name="keywords" content="HISUI,EasyUI,datagrid,popover,switchbox,icon">
@@ -111,7 +112,16 @@
 			display:block;width:160px;margin:10px auto;
 		}
 		.downloadbtn{
-			display:block;width:150px;position: absolute;right: 10px;color:#fff;
+			display:block;width:150px;position: absolute;right:10px;color:#fff;
+		}
+		.downloadNum{
+			display:none;right: 50px; position: absolute;font-size:12px;color:red;
+		}
+		.l-btn-plain.hover {
+			background: #eaf2ff;
+			color: #000000;
+			border: 0px solid #b7d2ff;
+			padding: 0px;
 		}
 		.x-newtip{font-size: 10px;position:  absolute;color:red;z-index:1000;}
 	</style>
@@ -130,6 +140,7 @@
 			</div>
 			<a href="javascript:void(0);" class="hisui-linkbutton viewbtn" data-options="iconCls:'icon-arrow-right'">查看HISUI文档</a>
 			<a href="javascript:void(0);" class="hisui-linkbutton downloadbtn" data-options="iconCls:'icon-arrow-bottom',plain:true">下载HISUI文件</a>
+			<span class="downloadNum"></span>
 			
 		</div>
 
@@ -191,7 +202,17 @@
 			return false;
 		})
 		$(".downloadbtn").click(function(){
-			window.open('http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download', '_blank');
+			
+			//$(this).addClass('hover').animate({right:25},'slow',function(){
+				//$(this).removeClass('hover');
+				$('.downloadNum').show().text('第2000次下载').animate({top:"-=100",opacity:0.05},3000,function(){
+					$(this).css({top:"+=100",opacity:1,display:'none'});
+					/*$(this).animate({top:"+=100",opacity:0},function(){
+						$(this).css({opacity:1,display:'none'});
+					});*/
+				});
+			//});
+			//window.open('http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download', '_blank');
 			//Resource interpreted as Document but transferred with MIME type application/octet-stream: "http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download".
 			//location.href="http://hisui.cn:8080/RuoYi-3.1.0/tool/gen/hisui/download";
 			return false;
