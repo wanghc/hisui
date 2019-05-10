@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-05-10 ##
+* `datagrid`增加btoolbar配置
 
 ## 2019-04-18 
 * `numberbox`在监听keyup事件内取值时，拿到的是上一次输入框的值

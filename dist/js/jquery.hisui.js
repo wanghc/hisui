@@ -8547,7 +8547,7 @@ if (typeof JSON !== 'object') {
         _522.height(hh);
         _51f.add(_520)._outerHeight(hh);
         if (opts.height != "auto") {
-            var _524 = _51c - _51e.children("div.datagrid-header")._outerHeight() - _51e.children("div.datagrid-footer")._outerHeight() - wrap.children("div.datagrid-toolbar")._outerHeight();
+            var _524 = _51c - _51e.children("div.datagrid-header")._outerHeight() - _51e.children("div.datagrid-footer")._outerHeight() - wrap.children("div.datagrid-toolbar")._outerHeight()- wrap.children("div.datagrid-btoolbar")._outerHeight();
             wrap.children("div.datagrid-pager").each(function () {
                 _524 -= $(this)._outerHeight();
             });
@@ -8853,6 +8853,31 @@ if (typeof JSON !== 'object') {
             _547.ss.dirty(_547.cellSelectorPrefix);
             _547.cellSelectorPrefix = "." + _547.cellClassPrefix;
         };
+
+        if (opts.btoolbar) {
+            if ($.isArray(opts.btoolbar)) {
+                $("div.datagrid-btoolbar", _548).remove();
+                var tb = $("<div class=\"datagrid-btoolbar\"><table cellspacing=\"0\" cellpadding=\"0\"><tr></tr></table></div>").appendTo(_548);
+                var tr = tb.find("tr");
+                for (var i = 0; i < opts.btoolbar.length; i++) {
+                    var btn = opts.btoolbar[i];
+                    if (btn == "-") {
+                        $("<td><div class=\"datagrid-btn-separator\"></div></td>").appendTo(tr);
+                    } else {
+                        var td = $("<td></td>").appendTo(tr);
+                        var tool = $("<a href=\"javascript:void(0)\"></a>").appendTo(td);
+                        tool[0].onclick = eval(btn.handler || function () {
+                        });
+                        tool.linkbutton($.extend({}, btn, { plain: true }));
+                    }
+                }
+            } else {
+                $(opts.btoolbar).addClass("datagrid-btoolbar").appendTo(_548);
+                $(opts.btoolbar).show();
+            }
+        } else {
+            $("div.datagrid-btoolbar", _548).remove();
+        }
     };
     function _559(_55a) {
         var _55b = $.data(_55a, "datagrid");
@@ -10702,7 +10727,7 @@ if (typeof JSON !== 'object') {
     };
     $.fn.datagrid.parseOptions = function (_6cc) {
         var t = $(_6cc);
-        return $.extend({}, $.fn.panel.parseOptions(_6cc), $.parser.parseOptions(_6cc, ["url", "toolbar", "idField", "sortName", "sortOrder", "pagePosition", "resizeHandle", { sharedStyleSheet: "boolean", fitColumns: "boolean", autoRowHeight: "boolean", striped: "boolean", nowrap: "boolean" }, { rownumbers: "boolean", singleSelect: "boolean", ctrlSelect: "boolean", checkOnSelect: "boolean", selectOnCheck: "boolean" }, { pagination: "boolean", pageSize: "number", pageNumber: "number" }, { multiSort: "boolean", remoteSort: "boolean", showHeader: "boolean", showFooter: "boolean" }, { scrollbarSize: "number" }]), { pageList: (t.attr("pageList") ? eval(t.attr("pageList")) : undefined), loadMsg: (t.attr("loadMsg") != undefined ? t.attr("loadMsg") : undefined), rowStyler: (t.attr("rowStyler") ? eval(t.attr("rowStyler")) : undefined) });
+        return $.extend({}, $.fn.panel.parseOptions(_6cc), $.parser.parseOptions(_6cc, ["url", "toolbar","btoolbar", "idField", "sortName", "sortOrder", "pagePosition", "resizeHandle", { sharedStyleSheet: "boolean", fitColumns: "boolean", autoRowHeight: "boolean", striped: "boolean", nowrap: "boolean" }, { rownumbers: "boolean", singleSelect: "boolean", ctrlSelect: "boolean", checkOnSelect: "boolean", selectOnCheck: "boolean" }, { pagination: "boolean", pageSize: "number", pageNumber: "number" }, { multiSort: "boolean", remoteSort: "boolean", showHeader: "boolean", showFooter: "boolean" }, { scrollbarSize: "number" }]), { pageList: (t.attr("pageList") ? eval(t.attr("pageList")) : undefined), loadMsg: (t.attr("loadMsg") != undefined ? t.attr("loadMsg") : undefined), rowStyler: (t.attr("rowStyler") ? eval(t.attr("rowStyler")) : undefined) });
     };
     $.fn.datagrid.parseData = function (_6cd) {
         var t = $(_6cd);
@@ -10968,7 +10993,9 @@ if (typeof JSON !== 'object') {
         showChangedStyle:true, /*wanghc editor状态下,是否显示修改后的左上小红三角 */
         fixRowNumber:false, /*wanghc 行号列是否自动适应 */
         autoSizeColumn:true, /*wanghc 速度更新配置成false*/
-        sharedStyleSheet: false, frozenColumns: undefined, columns: undefined, fitColumns: false, resizeHandle: "right", autoRowHeight: true, toolbar: null, striped: false, method: "post", nowrap: true, idField: null, url: null, data: null, loadMsg: "Processing, please wait ...", rownumbers: false, singleSelect: false, ctrlSelect: false, selectOnCheck: true, checkOnSelect: true, pagination: false, pagePosition: "bottom", pageNumber: 1, pageSize: 10, pageList: [10, 20, 30, 40, 50], queryParams: {}, sortName: null, sortOrder: "asc", multiSort: false, remoteSort: true, showHeader: true, showFooter: false, scrollbarSize: 18, rowStyler: function (_70a, _70b) {
+        sharedStyleSheet: false, frozenColumns: undefined, columns: undefined, fitColumns: false, resizeHandle: "right", autoRowHeight: true, 
+        btoolbar:null, /* bottom tool bar*/
+        toolbar: null, striped: false, method: "post", nowrap: true, idField: null, url: null, data: null, loadMsg: "Processing, please wait ...", rownumbers: false, singleSelect: false, ctrlSelect: false, selectOnCheck: true, checkOnSelect: true, pagination: false, pagePosition: "bottom", pageNumber: 1, pageSize: 10, pageList: [10, 20, 30, 40, 50], queryParams: {}, sortName: null, sortOrder: "asc", multiSort: false, remoteSort: true, showHeader: true, showFooter: false, scrollbarSize: 18, rowStyler: function (_70a, _70b) {
         }, loader: function (_70c, _70d, _70e) {
             var opts = $(this).datagrid("options");
             if (!opts.url) {

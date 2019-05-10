@@ -78,6 +78,52 @@
 
 }
 
+/*toolbar 一点改动*/
+.datagrid-btoolbar {
+  height: auto;
+  padding:1px 2px;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  background: #F4F4F4;
+  border-color:#dddddd;
+  background-color: #ffffff;
+  .l-btn-plain {
+    padding: 0 0 0 ;
+    border: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    .l-btn-icon-left{
+      .l-btn-text{
+        line-height: 22px;
+        padding: 0 10px 0 31px;
+        margin: 0 0 0 ;
+        color: #666666;
+      }
+      
+      .l-btn-empty{
+        margin: 0;width: 22px;padding: 0 5px 0 0;
+      }
+      .l-btn-icon {
+        left:5px;
+        height: 22px;
+        width: 26px;
+      }
+      .l-btn-empty+.l-btn-icon{
+        left: 0;
+      }
+    }
+    &:hover{
+      padding: 0 0 0 ;
+      border: 0;
+      background-color:@datagrid-toolbar-hover;
+      .l-btn-text{
+        color: @datagrid-toolbar-text-color;
+      }
+    }
+  }
+
+}
+
 .datagrid-body .datagrid-editable .datagrid-editable-input {
   border: @validatebox-border-width @validatebox-border-type @validatebox-border-color;
   margin: 0;
