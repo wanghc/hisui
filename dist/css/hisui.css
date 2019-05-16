@@ -3420,6 +3420,42 @@ a {
 .icon-tooth {
   background: url('icons/tooth.png') no-repeat center center;
 }
+.icon-paid {
+  background: url('icons/paid.png') no-repeat center center;
+}
+.icon-return-paid {
+  background: url('icons/return_paid.png') no-repeat center center;
+}
+.icon-int-bill {
+  background: url('icons/int_bill.png') no-repeat center center;
+}
+.icon-cancel-int-bill {
+  background: url('icons/cancel_int_bill.png') no-repeat center center;
+}
+.icon-reprint-inv {
+  background: url('icons/reprint_inv.png') no-repeat center center;
+}
+.icon-print-inv {
+  background: url('icons/print_inv.png') no-repeat center center;
+}
+.icon-rebill {
+  background: url('icons/rebill.png') no-repeat center center;
+}
+.icon-pat-fee-det {
+  background: url('icons/pat_fee_det.png') no-repeat center center;
+}
+.icon-find-paid-det {
+  background: url('icons/find_paid_det.png') no-repeat center center;
+}
+.icon-find-ord-det {
+  background: url('icons/find_ord_det.png') no-repeat center center;
+}
+.icon-find-fee-itm {
+  background: url('icons/find_fee_itm.png') no-repeat center center;
+}
+.icon-red-cancel-paper {
+  background: url('icons/red_cancel_paper.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -3672,6 +3708,21 @@ a {
 }
 .icon-big-alert {
   background: url('icons/big/alert.png') no-repeat top center;
+}
+.icon-big-idcard {
+  background: url('icons/big/idcard.png') no-repeat top center;
+}
+.icon-big-paid {
+  background: url('icons/big/paid.png') no-repeat top center;
+}
+.icon-big-pat-list {
+  background: url('icons/big/pat_list.png') no-repeat top center;
+}
+.icon-big-read-card {
+  background: url('icons/big/read_card.png') no-repeat top center;
+}
+.icon-big-search-pat {
+  background: url('icons/big/search_pat.png') no-repeat top center;
 }
 /*white icon*/
 .icon-w-plus {
