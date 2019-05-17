@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-05-16 ##
+* 重复加载js后,`keywords`组件点击事件重复绑定
+* `keywords`的事件onSelect,onUnselect问题
+* `keywords`点击第一层元素时,拿到的id不正确
+
 ## 2019-05-10 ##
 * `datagrid`增加btoolbar配置
 

@@ -18244,7 +18244,7 @@ function(a, b, c) {
 		var items = opts.items;
 		var labelidArr = labelid.split("-");
 		if (labelidArr.length==1){
-			return items[labelid[0]];
+			return items[labelidArr[0]];
 		}
 		if(labelidArr.length==2){
 			return items[labelidArr[0]].items[labelidArr[1]];
@@ -18305,7 +18305,7 @@ function(a, b, c) {
 			}
 		});
 		t.append(html);
-        t.on('click','ul.kw-section-list>li',function(e,value){
+        t.off('click').on('click','ul.kw-section-list>li',function(e,value){
 			var id = $(this).attr('id');
 			selectById(target,id);
 			return false;
@@ -18341,9 +18341,9 @@ function(a, b, c) {
 		opts.onClick.call(this, item);
 		if (!opts.singleSelect){ //单选不进入select与unselect事件
 			if(_t.hasClass('selected')){
-				opts.onUnselect.call(this,item);
-			}else{
 				opts.onSelect.call(this,item);
+			}else{
+				opts.onUnselect.call(this,item);
 			}
 		}
 	}
