@@ -1415,7 +1415,6 @@
         if (!tr.hasClass("datagrid-row-editing")) {
             return;
         }
-        debugger
         if (!_600) {
             if (!_5fc(_5fe, _5ff)) {
                 return;
