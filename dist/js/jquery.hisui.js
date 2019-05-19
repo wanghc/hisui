@@ -9576,8 +9576,7 @@ if (typeof JSON !== 'object') {
             return rows;
         }
     };
-    function _5bd(_5be) {
-        debugger;
+    function _5bd(_5be) { //getChecked
         var _5bf = $.data(_5be, "datagrid");
         var opts = _5bf.options;
         if (opts.idField) {
@@ -9811,7 +9810,6 @@ if (typeof JSON !== 'object') {
         if (!tr.hasClass("datagrid-row-editing")) {
             return;
         }
-        debugger
         if (!_600) {
             if (!_5fc(_5fe, _5ff)) {
                 return;
