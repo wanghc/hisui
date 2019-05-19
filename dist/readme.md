@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-05-19 ##
+* 修改`window`与`dialog`的标题边框色
+* 拆分js文件,修改功能更方便
+* 修改`datagrid`在编辑结束后getChecked方法获取值不正确的问题
+
 ## 2019-05-16 ##
 * 重复加载js后,`keywords`组件点击事件重复绑定
 * `keywords`的事件onSelect,onUnselect问题

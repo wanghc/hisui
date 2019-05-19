@@ -4203,6 +4203,7 @@ a {
   background-color: #ffffff;
 }
 .window .window-header {
+  border-color: #556983;
   background: #556983;
   /*transparent;*/
   padding: 6px 1px 6px 1px;

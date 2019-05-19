@@ -9577,6 +9577,7 @@ if (typeof JSON !== 'object') {
         }
     };
     function _5bd(_5be) {
+        debugger;
         var _5bf = $.data(_5be, "datagrid");
         var opts = _5bf.options;
         if (opts.idField) {
@@ -9800,6 +9801,7 @@ if (typeof JSON !== 'object') {
         _5fc(_5f8, _5f9);
         opts.onBeginEdit.call(_5f8, _5f9, row);
     };
+    /// endEdit(t,rowIndex=0,flag)
     function _5fd(_5fe, _5ff, _600) {
         var opts = $.data(_5fe, "datagrid").options;
         var _601 = $.data(_5fe, "datagrid").updatedRows;
@@ -9809,6 +9811,7 @@ if (typeof JSON !== 'object') {
         if (!tr.hasClass("datagrid-row-editing")) {
             return;
         }
+        debugger
         if (!_600) {
             if (!_5fc(_5fe, _5ff)) {
                 return;
@@ -10795,6 +10798,7 @@ if (typeof JSON !== 'object') {
             _6de.push("</tbody></table>");
             $(_6db).html(_6de.join(""));
         }, renderRow: function (_6df, _6e0, _6e1, _6e2, _6e3) {
+            /** 生成tr内的html: <td>...</td> */
             var opts = $.data(_6df, "datagrid").options;
             var cc = [];
             if (_6e1 && opts.rownumbers) {
@@ -10871,7 +10875,7 @@ if (typeof JSON !== 'object') {
                     _6ef = css["style"] || "";
                 }
             }
-            var _6ee = "datagrid-row " + (_6ed % 2 && opts.striped ? "datagrid-row-alt " : " ") + _6ee;
+            var _6ee = "datagrid-row " + (_6ed % 2 && opts.striped ? "datagrid-row-alt " : " ") + _6ee  ;
             function _6f0(_6f1) {
                 var _6f2 = $(_6ec).datagrid("getColumnFields", _6f1);
                 var tr = opts.finder.getTr(_6ec, _6ed, "body", (_6f1 ? 1 : 2));
@@ -10893,13 +10897,16 @@ if (typeof JSON !== 'object') {
                     }
                 }
                 //---end
-                tr.attr("style", _6ef).attr("class", tr.hasClass("datagrid-row-selected") ? _6ee + " datagrid-row-selected" : _6ee);
+                // neer 2019-05-19 如果datagrid的配置项checkbox:true时且为可编辑表格时，endEdit调用时不能清空datagrid-row-checked状态d
+                var isRowChecked = tr.hasClass('datagrid-row-checked');
+                tr.attr("style", _6ef).attr("class", tr.hasClass("datagrid-row-selected") ? _6ee + " datagrid-row-selected" : _6ee)
+                if (isRowChecked){ tr.addClass('datagrid-row-checked');}
                 if (_6f3) {
                     tr.find("div.datagrid-cell-check input[type=checkbox]")._propAttr("checked", true);
                 }
             };
-            _6f0.call(this, true);
-            _6f0.call(this, false);
+            _6f0.call(this, true); /** true表示number列 */
+            _6f0.call(this, false); /**false表示内容列 */
             $(_6ec).datagrid("fixRowHeight", _6ed);
         }, insertRow: function (_6f4, _6f5, row) {
             var _6f6 = $.data(_6f4, "datagrid");
@@ -14995,8 +15002,6 @@ if (typeof JSON !== 'object') {
         }
     };
 })(jQuery);
-
-
 /*! ============================================================
  * bootstrapSwitch v1.8 by Larentis Mattia @SpiritualGuru
  * http://www.larentis.eu/
