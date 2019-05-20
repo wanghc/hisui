@@ -187,6 +187,7 @@ var iconDictionary={
     'icon-reprint-inv':'原号补打发票，重打发票',
     'icon-rebill':'重新生成账单',
     'icon-red-cancel-paper':'作废收据',
+    'icon-skip-no':'跳号，过号，跨页，跳页',
     "icon-w-rent": "租用单",
     "icon-w-run": "执行计划",
     "icon-w-line-key": "论证",

@@ -3456,6 +3456,9 @@ a {
 .icon-red-cancel-paper {
   background: url('icons/red_cancel_paper.png') no-repeat center center;
 }
+.icon-skip-no {
+  background: url('icons/skip_no.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
