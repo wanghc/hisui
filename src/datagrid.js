@@ -616,7 +616,7 @@
                 return;
             }
             var _564 = _565(tr);
-            _5c7(_55a, _564);
+            _5c7(_55a, _564,true);  //高亮显示 增加isMouse 2019-5-24
 
             e.stopPropagation();
         }).bind("mouseout", function (e) {
@@ -1216,12 +1216,26 @@
             }
         }
     };
-    function _5c7(_5c8, _5c9) {
+
+    /**
+     * 
+     * @param {*} _5c8 target
+     * @param {*} _5c9 index
+     * @param {*} isMouse 是否是鼠标悬浮高亮 add 2019-5-24
+     */
+    function _5c7(_5c8, _5c9,isMouse) {
         var _5ca = $.data(_5c8, "datagrid");
         var opts = _5ca.options;
         opts.finder.getTr(_5c8, _5ca.highlightIndex).removeClass("datagrid-row-over");
         opts.finder.getTr(_5c8, _5c9).addClass("datagrid-row-over");
+        var previoushighlightIndex=_5ca.highlightIndex;
         _5ca.highlightIndex = _5c9;
+        if (isMouse===true && previoushighlightIndex==_5c9 ) {  //鼠标悬浮触发频率很高 是鼠标悬浮且index没改变 不触发onHighlightRow
+            
+        }else{
+            opts.onHighlightRow.call(_5c8,_5c9,_5ca.data.rows[_5c9]); //cryze 2019-5-23 hightlightRow事件
+        }
+        
     };
     function _5cb(_5cc, _5cd, _5ce) {
         var _5cf = $.data(_5cc, "datagrid");
@@ -2709,5 +2723,7 @@
         }, onRowContextMenu: function (e, _73a, _73b) {
         },onDblClickHeader:function(e,_739){    //cryze 双击表格头事件，默认
         },lazy:false    //cryze 2018-3-22 为true初始化不加载列表数据
+        ,onHighlightRow:function(index,row){ //cryze datagrid 高亮行(鼠标悬浮和combogrid上下选时)触发事件
+        }
     });
 })(jQuery);

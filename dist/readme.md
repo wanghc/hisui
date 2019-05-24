@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-05-24 ##
+* `loopup`增加`selectRowRender`支持
+* `datagrid`增加`onHighlightRow`事件
+
 ## 2019-05-20 ##
 * 增加小图标样式`icon-skip-no` 
 

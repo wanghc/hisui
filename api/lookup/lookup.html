@@ -234,6 +234,66 @@ $("#group2").lookup({
 &lt;/script&gt;</code></pre>
 
 
+        <p>selectRowRender</p>
+        安全组 &nbsp;&nbsp;&nbsp;<input id="group3" class="textbox" />  <span style="padding-left:20px">安全组名字长度大于10 提示出来</span>
+        <script type='text/javascript'>
+            $(function(){
+                $("#group3").lookup({
+                    width:200,panelWidth:500,
+                    url:'getGroup',
+                    mode:'remote',
+                    idField:'HIDDEN',
+                    textField:'Description',
+                    columns:[[  
+                        {field:'Description',title:'安全组名称',width:200},  
+                        {field:'HIDDEN',title:'安全组ID',width:50}  
+                    ]],
+                    pagination:true,
+                    onSelect:function(index,rowData){
+                        console.log("index="+index+",rowData=",rowData);
+                    },selectRowRender:function(row){
+                        console.log('selectRowRender',row);
+                        if (!row) return;
+                        if (row.Description.length>10){ //安全组名字长于10 显示提示信息
+                            return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+'</span>';
+                        }
+                        
+                    }
+                });
+            })
+        </script>
+<pre class="prettyprint lang-html"><code>&lt;p&gt;selectRowRender&lt;/p&gt;
+安全组 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="group3" class="textbox" /&gt;  &lt;span style="padding-left:20px"&gt;安全组名字长度大于10 提示出来&lt;/span&gt;
+&lt;script type='text/javascript'&gt;
+    $(function(){
+        $("#group3").lookup({
+            width:200,panelWidth:500,
+            url:'getGroup',
+            mode:'remote',
+            idField:'HIDDEN',
+            textField:'Description',
+            columns:[[  
+                {field:'Description',title:'安全组名称',width:200},  
+                {field:'HIDDEN',title:'安全组ID',width:50}  
+            ]],
+            pagination:true,
+            onSelect:function(index,rowData){
+                console.log("index="+index+",rowData=",rowData);
+            },selectRowRender:function(row){
+                console.log('selectRowRender',row);
+                if (!row) return;
+                if (row.Description.length&gt;10){ //安全组名字长于10 显示提示信息
+                    return '&lt;p style="margin:0;padding:10px;"&gt;&lt;span style="font-weight:bold;"&gt;&lt;/sapn&gt;安全组&lt;span style="color:red;"&gt;'+row.Description+'&lt;/span&gt;';
+                }
+                
+            }
+        });
+    })
+&lt;/script&gt;</code></pre>
+    
+
+
+
     </div>
     <div class="demo-exp-code entry-content">
         <h3>放大镜(lookup)组件，属性、事件、方法 </h3>
@@ -346,7 +406,7 @@ $("#group2").lookup({
 				<td>在查询条件和上一次一致时，回车或点击下拉按钮是否重新搜索</td>
 				<td>true</td>
 				<td></td>
-			</tr>
+            </tr>
             <!--   ***************分割线  事件******************************************************                  -->
             <tr class="evttitle">
                 <th>事件名</th>
@@ -372,6 +432,12 @@ $("#group2").lookup({
 				<td>null</td>
 				<td></td>
             </tr>
+            <tr>
+				<td>selectRowRender</td>
+				<td>当高亮一行时调用此function，入参为当前行数据row,返回提示内容的html<br>复现原extjs的lookup</td>
+				<td>row</td>
+				<td></td>
+			</tr>
              <!--   ***************分割线  方法******************************************************                  -->
             <tr class="mthtitle">
                 <th>方法名</th>

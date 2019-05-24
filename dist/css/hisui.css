@@ -7476,6 +7476,13 @@ label + .hischeckbox_square-blue {
 .lookup-panel {
   background-color: #ffffff;
 }
+.lookup-rowtip {
+  position: absolute;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #509de1 #509de1 #509de1 #509de1;
+  background-color: #fff;
+}
 .lookup-arrow {
   background-color: #40a2de;
 }

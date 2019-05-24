@@ -9,7 +9,8 @@
     $.parser.plugins.push('lookup');
 
 	var GLOBAL_LOOKUP_GRID_ID="hisui_lookup_grid";
-	var GLOBAL_LOOKUP_PANEL_ID="hisui_lookup_panel";
+    var GLOBAL_LOOKUP_PANEL_ID="hisui_lookup_panel";
+    var GLOBAL_LOOKUP_ROWTIP_ID="hisui_lookup_rowtip";
 	var GLOBAL_LOOKUP_LAST_TARGET;
 	var GLOBAL_LOOKUP_CURRENT_TARGET;
     function create(target) {
@@ -44,10 +45,12 @@
                 if (GLOBAL_LOOKUP_CURRENT_TARGET) {
                     _849.options.onHidePanel.call(GLOBAL_LOOKUP_CURRENT_TARGET);
                 }
+                $('#'+GLOBAL_LOOKUP_ROWTIP_ID).hide(); //panel关掉时 隐藏提示div
             }
 		});
 		if ($('#'+GLOBAL_LOOKUP_GRID_ID).length>0) return;
-		var grid = $("<table id='"+GLOBAL_LOOKUP_GRID_ID+"'></table>").appendTo(_848);
+        var grid = $("<table id='"+GLOBAL_LOOKUP_GRID_ID+"'></table>").appendTo(_848);
+        $("<div id='"+GLOBAL_LOOKUP_ROWTIP_ID+"' class=\"lookup-rowtip\" style='top:-100px;'></div>").appendTo("body");
 	}
 	function lookupPanelOnOpen(){
 		var lastTarget=GLOBAL_LOOKUP_LAST_TARGET;
@@ -61,7 +64,7 @@
         try {
             grid.datagrid('options').onLoadSuccess=function(){};
             grid.datagrid('loadData',{total:0,rows:[]});
-            grid.datagrid('clearSelections').datagrid('highlightRow',0);
+            grid.datagrid('clearSelections').datagrid('highlightRow',-1);
         }catch (e){
         }
         /** title是input的提示,不是grid的title*/ 
@@ -95,10 +98,20 @@
                 }
                 opts.onUnselectAll.call(this, rows);
             },lazy:true
+            ,onHighlightRow:function(index,row){
+                var html=opts.selectRowRender.call(this,row);
+                if (typeof html!='string') html='';
+                if (html==''){
+                    $('#'+GLOBAL_LOOKUP_ROWTIP_ID).empty().css({'top':'-100px'});
+                }else{
+                    $('#'+GLOBAL_LOOKUP_ROWTIP_ID).html(html);
+                    fixRowtipStyle();
+                }
+            }
         }));
         state.previousValue=undefined;
 		
-		
+
         function _908(_90c, row) {
             state.remainText = false;
             //触发顺序 点击行 选中行 触发grid的onSelect 设置text 调用lookup配置项onSelect 触发grid onClickRow走到这儿 设置text 触发lookup的onClickRow
@@ -125,7 +138,26 @@
                 $(target).lookup("setText", ss.join(opts.separator));
             }
         };
-	}
+    }
+    function fixRowtipStyle(){
+        var panel=$('#'+GLOBAL_LOOKUP_PANEL_ID);
+        var tip=$('#'+GLOBAL_LOOKUP_ROWTIP_ID);
+        if (panel.is(':visible')){
+            if (tip.html()=="") {
+                tip.css({top:-100});
+                return
+            }
+            tip.show();
+            var panelP=panel.parent();
+            var left=parseFloat(panelP.css('left')),
+                top=parseFloat(panelP.css('top'))+panelP._outerHeight()-1,
+                zIndex=panelP.css('z-index'),
+                outerWidth=panelP._outerWidth();
+                tip.show().css({top:top+'px',left:left+'px','z-index':zIndex})._outerWidth(outerWidth);
+        }else{
+            tip.hide();
+        }
+    }
 	function doResize(target, t_width) {
         var state = $.data(target, "lookup");
         var opts = state.options;
@@ -287,9 +319,11 @@
             _863.panel("open");
             opts.onShowPanel.call(_860);
         }
+        fixRowtipStyle();
         (function () {
             if (panelOpts.lookupTarget == _860 && _863.is(":visible")) {
                 _863.panel("move", { left: _864(), top: _865() });
+                fixRowtipStyle();
                 setTimeout(arguments.callee, 200);
             }
         })();
@@ -323,6 +357,7 @@
     function hidePanel(_866) {
         var _867 = $.data(_866, "lookup").panel;
         _867.panel("close");
+        
 	};
 	/**
 	 * 上下移动选择
@@ -683,7 +718,7 @@
         minQueryLen:0,
         queryOnSameQueryString: true //当查询条件相同时，在回车和点击按钮是否查询
         ,onBeforeShowPanel:function(){
-
+        },selectRowRender:function(row){ //高亮一行数据时 显示提示内容html
         }
     });
 })(jQuery);
