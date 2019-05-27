@@ -51,6 +51,22 @@
             $(_4c9).bind("change.spinner", function () {
                 $(this).spinner("setValue", $(this).val());
             });
+            _4ca.find('.spinner-text').unbind("keydown.spinner").bind("keydown.spinner", function (e) {
+                if ("undefined" ==typeof e.keyCode){return ;}
+                switch (e.keyCode) {
+                    case 38:
+                        opts.keyHandler.up.call(_4c9, e);
+                        break;
+                    case 40:
+                        opts.keyHandler.down.call(_4c9, e);
+                        break;
+                    case 13:
+                        e.preventDefault();
+                        opts.keyHandler.enter.call(_4c9, e);
+                        return false;
+                    default:;
+                }
+            });
         }
     };
     function _4cb(_4cc, _4cd) {
@@ -165,6 +181,11 @@
         }, onSpinUp: function () {
         }, onSpinDown: function () {
         }, onChange: function (_4db, _4dc) {
+        },keyHandler: {
+            up: function (e) {
+            }, down: function (e) {
+            }, enter: function (e) {
+            }
         }
     });
 })(jQuery);

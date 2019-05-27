@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-05-27 ##
+* `timespinner`数字转换时间算法修改
+* `spinner`开放keyHandler-up,down,enter事件实现
+* `timespinner`的up,down,enter按键的实现
+
 ## 2019-05-24 ##
 * `loopup`增加`selectRowRender`支持
 * `datagrid`增加`onHighlightRow`事件

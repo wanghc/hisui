@@ -16,25 +16,35 @@
                     _4e9 = s.text.length;
                 }
             }
-            if (_4e9 >= 0 && _4e9 <= 2) {
-                opts.highlight = 0;
-            } else {
-                if (_4e9 >= 3 && _4e9 <= 5) {
-                    opts.highlight = 1;
-                } else {
-                    if (_4e9 >= 6 && _4e9 <= 8) {
-                        opts.highlight = 2;
-                    }
-                }
-            }
+            opts.highlight = calHighlightTypeByPosi(_4e9);
             _4ec(_4e8);
         }).bind("blur.timespinner", function () {
             _4eb(_4e8);
         });
     };
+    /** 通过光标位置计算出,应该高亮的类型0,1,2*/
+    function calHighlightTypeByPosi(posi){
+        if (posi >= 0 && posi <= 2) {
+            return 0;
+        } else {
+            if (posi >= 3 && posi <= 5) {
+                return 1;
+            } else {
+                if (posi >= 6 && posi <= 8) {
+                    return 2;
+                }
+            }
+        }
+        return 0;
+    }
+    //highlight光标所在区
     function _4ec(_4ed) {
         var opts = $.data(_4ed, "timespinner").options;
         var _4ee = 0, end = 0;
+        if (_4ed.selectionStart!=null){
+            // 光标在哪,哪就高亮
+            opts.highlight = calHighlightTypeByPosi(_4ed.selectionStart);
+        }
         if (opts.highlight == 0) {
             _4ee = 0;
             end = 2;
@@ -62,17 +72,40 @@
         }
         $(_4ed).focus();
     };
+    function getHMSArr(tm) {
+        var arr = [];
+        if (tm){
+            tm = tm.replace(/\s/g,"");
+            var reg = /^([0-2][0-9])([0-6][0-9])([0-9]*)$/;
+            var reg1 = /^([3-9])([0-6][0-9])([0-6]*)$/;
+            if(reg.test(tm)){
+                arr = tm.match(reg);
+                arr.splice(0,1);
+            }
+            if(reg1.test(tm)){
+                arr = tm.match(reg1);
+                arr.splice(0,1);
+            }
+        }
+        return arr;
+    }
     function _4f0(_4f1, _4f2) {
         var opts = $.data(_4f1, "timespinner").options;
         if (!_4f2) {
             return null;
         }
-        var vv = _4f2.split(opts.separator);
-        for (var i = 0; i < vv.length; i++) {
-            if (isNaN(vv[i])) {
-                return null;
+        var vv = [];
+        if (_4f2.indexOf(opts.separator)>-1){
+            vv = _4f2.split(opts.separator);
+            for (var i = 0; i < vv.length; i++) {
+                if (isNaN(vv[i])) {
+                    return null;
+                }
             }
+        }else{
+            vv = getHMSArr(_4f2);
         }
+        
         while (vv.length < 3) {
             vv.push(0);
         }
@@ -121,8 +154,13 @@
         } else {
             vv[opts.highlight] += opts.increment;
         }
+        //赋值前记录光标位置
+        var orgStart = _4fa.selectionStart;
+        //val方法赋值会修改selectionStart为最右边
         $(_4fa).val(vv.join(opts.separator));
         _4eb(_4fa);
+        // 赋值结束后,重置光标位置
+        _4fa.selectionStart = orgStart;
         _4ec(_4fa);
     };
     $.fn.timespinner = function (_4fb, _4fc) {
@@ -174,6 +212,20 @@
     $.fn.timespinner.defaults = $.extend({}, $.fn.spinner.defaults, {
         separator: ":", showSeconds: false, highlight: 0, spin: function (down) {
             _4f9(this, down);
+        },keyHandler: {
+            up: function (e) {
+                e.preventDefault();
+                _4ec(this);  //highlight光标所在区
+                _4f9(this, false);
+                return false;
+            }, down: function (e) {
+                e.preventDefault();
+                _4ec(this); //highlight光标所在区
+                _4f9(this, true);
+                return false;
+            }, enter: function (e) {
+                _4eb(this);
+            }
         }
     });
 })(jQuery);
