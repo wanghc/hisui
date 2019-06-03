@@ -13,6 +13,14 @@
 			padding: 5px 0;
 		}
 	</style>
+	<script type="text/javascript">
+		$.fn.datebox.defaults.formatter = function(date){
+			var y = date.getFullYear();
+			var m = date.getMonth()+1;
+			var d = date.getDate();
+			return y+"-"+m+'-'+d;
+		}
+	</script>
 </head>
 <body>
 	<h2>基础验证框</h2>

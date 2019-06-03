@@ -15,6 +15,14 @@
 	<h3>说明:</h3>
     <span>日期框（datebox）把可编辑的文本框和下拉日历面板结合起来，用户可以从下拉日历面板中选择日期，在文本框中输入的字符串可转换为有效日期。支持快捷t方式输入,t+2表示二天后,t-2表示二天前的日期。</span>
 	<h3>如：</h3>
+	<script type="text/javascript">
+	$.fn.datebox.defaults.formatter = function(date){
+		var y = date.getFullYear();
+		var m = date.getMonth()+1;
+		var d = date.getDate();
+		return y+"-"+m+'-'+d;
+	}
+	</script>
 	<div class="demo-exp-code entry-content">
 		<table> 
 				<tr>
