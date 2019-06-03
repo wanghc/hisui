@@ -403,6 +403,8 @@ var iconDictionary={
     "icon-paper_key":"点评权限维护",
     "icon-doctor_green_pen":"点评药师维护",
     "icon-paper_group":"点评管制分类维护",
+    "icon-minus":"持平，减号",
+    "icon-alarm":"指标预警，警报",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",

@@ -3480,6 +3480,12 @@ a {
 .icon-paper-group {
   background: url('icons/paper_group.png') no-repeat center center;
 }
+.icon-minus {
+  background: url('icons/minus.png') no-repeat center center;
+}
+.icon-alarm {
+  background: url('icons/alarm.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;

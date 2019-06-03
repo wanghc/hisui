@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-06-03 ##
+* 增加小图标`icon-paper_ques`,`icon-injector_water`,`icon-alert_pen`,`icon-board_alert`,`icon-paper_key`,`icon-doctor_green_pen`,`icon-paper_group`
+* 增加小图标`icon-minus`,`icon-alarm`
+
 ## 2019-05-27 ##
 * `timespinner`数字转换时间算法修改
 * `spinner`开放keyHandler-up,down,enter事件实现
