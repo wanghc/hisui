@@ -3459,6 +3459,27 @@ a {
 .icon-skip-no {
   background: url('icons/skip_no.png') no-repeat center center;
 }
+.icon-paper-ques {
+  background: url('icons/paper_ques.png') no-repeat center center;
+}
+.icon-injector-water {
+  background: url('icons/injector_water.png') no-repeat center center;
+}
+.icon-alert-pen {
+  background: url('icons/alert_pen.png') no-repeat center center;
+}
+.icon-board-alert {
+  background: url('icons/board_alert.png') no-repeat center center;
+}
+.icon-paper-key {
+  background: url('icons/paper_key.png') no-repeat center center;
+}
+.icon-doctor-green-pen {
+  background: url('icons/doctor_green_pen.png') no-repeat center center;
+}
+.icon-paper-group {
+  background: url('icons/paper_group.png') no-repeat center center;
+}
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
