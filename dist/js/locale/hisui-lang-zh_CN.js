@@ -47,6 +47,7 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.closeText = '关闭';
 	$.fn.datebox.defaults.okText = '确定';
 	$.fn.datebox.defaults.missingMessage = '该输入项为必输项';
+	$.fn.datebox.defaults.rules.datebox.message = '非法日期,正确格式:2019-01-06';
 	$.fn.datebox.defaults.formatter = function(date){
 		var y = date.getFullYear();
 		var m = date.getMonth()+1;
@@ -54,14 +55,56 @@ if ($.fn.datebox){
 		return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
 	};
 	$.fn.datebox.defaults.parser = function(s){
+		/*t-n , t+n*/
 		if (!s) return new Date();
-		var ss = s.split('-');
-		var y = parseInt(ss[0],10);
-		var m = parseInt(ss[1],10);
-		var d = parseInt(ss[2],10);
-		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
-			return new Date(y,m-1,d);
-		} else {
+		function ConvertTDate(dt) {
+			var xdays = 0;
+			var today=new Date();
+			var re = /(\s)+/g ;
+			dt=dt.replace(re,'');
+			if (dt.charAt(0).toUpperCase()=='T') {
+				xdays = dt.slice(2);
+				if (xdays=='') xdays=0;
+				if (isNaN(xdays)) xdays=0;
+				xdays_ms = xdays * 24 * 60 * 60 * 1000;
+				if (dt.charAt(1) == '+') today.setTime(today.getTime() + xdays_ms);
+				else if (dt.charAt(1) == '-') today.setTime(today.getTime() - xdays_ms);
+				else if (dt.length>1) return today;
+				return today;
+			}
+			return today;
+		}
+		if(s.indexOf('t')==0){
+			return ConvertTDate(s);
+		}
+		if (s.length>4){
+			if (s.indexOf('-')==-1){
+				var reg = /^([0-9]{4})([0-1][0-9])([0-3]?[0-9])*$/;
+				var reg1 = /^([0-9]{4})([1-9])([0-3]?[0-9])*$/;
+				if (reg.test(s)){
+					var ss = reg.exec(s);
+					return new Date(ss[1],ss[2]-1,ss[3]||1);
+				}else if(reg1.test(s)){
+					var ss = reg1.exec(s);
+					return new Date(ss[1],ss[2]-1,ss[3]||1);
+				}else{
+					return new Date();
+				}
+			}
+		}
+		var ss =  s.split('-');
+		var ss1 = parseInt(ss[0],10);
+		var ss2 = parseInt(ss[1],10);
+		var ss3 = parseInt(ss[2],10);
+		if (ss.length==1 && !isNaN(ss1)){
+			return new Date(ss1,0,1);
+		}
+		if (ss.length==2 && !isNaN(ss1) && !isNaN(ss2) ){
+			return new Date(ss1,ss2-1,1);
+		}
+		if (ss.length==3 && !isNaN(ss1) && !isNaN(ss2) && !isNaN(ss3)){
+			return new Date(ss1,ss2-1,ss3);
+		}else{
 			return new Date();
 		}
 	};

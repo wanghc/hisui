@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-06-05 ##
+* `datebox`转成可见源代码
+* `datebox`回车与焦点离开时,检查日期格式有效格式为:20190101,2019-01-01,2019-1-1
+* `datebox`对t-n与t+n算法重实现
+
 ## 2019-06-03 ##
 * 增加小图标`icon-paper_ques`,`icon-injector_water`,`icon-alert_pen`,`icon-board_alert`,`icon-paper_key`,`icon-doctor_green_pen`,`icon-paper_group`
 * 增加小图标`icon-minus`,`icon-alarm`
