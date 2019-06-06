@@ -24,7 +24,29 @@
 		}
 		setValue(target, opts.value);
 		$(target).combo('textbox').unbind('.datebox').bind("blur.datebox",function(e){
-			doBlur(target);
+			//calendar-nav-hover
+			/*var rt = $(e.relatedTarget) ;
+			if (rt.length>0){
+				if (rt.closest('.datebox-button').length==0 && rt.closest('.datebox-calendar-inner').length==0){
+					doBlur(target);
+				}
+			}else{
+				var cl = $.data(target,'datebox').calendar.closest('.panel-body');
+				if (cl.find('.calendar-hover').length==0 && cl.find('.calendar-nav-hover').length==0){
+					doBlur(target);
+				}
+			}*/	
+			/** 点击 calendar时不触发doBlur, 点击今天没办法判断(转成setTimeout判断) */
+			if ($(target).combo('textbox').parent().find('.combo-arrow-hover').length>0){return ;}
+			var cl = $.data(target,'datebox').calendar.closest('.panel-body');
+			if (cl.find('.calendar-hover').length>0){return ;}
+			if (cl.find('.calendar-nav-hover').length>0){return ;}
+			var curVal = $(target).combo('getText'); 
+			setTimeout(function(){
+				if (curVal == $(target).combo('getText')){ //没有点击今天,或日历中其它日期
+					doBlur(target);
+				}
+			},200);
 		})
 		function createCalendar(){
 			var panel = $(target).combo('panel').css('overflow','hidden');
@@ -103,8 +125,9 @@
 	function validDate(s){
         /*t-n , t+n*/
 		if (!s) return false;
-		if(s.indexOf('t')==0){return true;}
-		if (s.indexOf('-')>-1){
+		if (s.charAt(0).toUpperCase()=='T'){return true;}
+		if ("undefined"!=typeof dtformat &&  dtformat == 'DMY'){return true;}
+		if (s.charAt(0).toUpperCase()=='T'){
 			/*2019-6-6 => 2019-06-06 */
 			var ss =  s.split('-');
 			var ss1 = parseInt(ss[0],10);
@@ -144,12 +167,13 @@
 		var current = state.calendar.calendar('options').current;
 		if (current){
 			setValue(target, opts.formatter.call(target, current));
+			console.log('hidePanel');
 			$(target).combo('hidePanel');
 		}
 	}
 	function doBlur(target){
+		console.log('do blur');
 		$(target).combo('textbox').validatebox('enableValidation');
-		var v = $(target).combo('getText');
 		if ($(target).combo('textbox').validatebox("isValid")) {
 			doEnter(target);
 		}

@@ -74,11 +74,12 @@ if ($.fn.datebox){
 			}
 			return today;
 		}
-		if(s.indexOf('t')==0){
+		if(s.charAt(0).toUpperCase()=='T'){
 			return ConvertTDate(s);
 		}
 		if (s.length>4){
-			if (s.indexOf('-')==-1){
+			if (s.indexOf('-')==-1 && s.indexOf('/')==-1){ 
+				//纯数字只考虑YYYYMMDD YYYYMMD
 				var reg = /^([0-9]{4})([0-1][0-9])([0-3]?[0-9])*$/;
 				var reg1 = /^([0-9]{4})([1-9])([0-3]?[0-9])*$/;
 				if (reg.test(s)){
@@ -92,18 +93,27 @@ if ($.fn.datebox){
 				}
 			}
 		}
-		var ss =  s.split('-');
-		var ss1 = parseInt(ss[0],10);
-		var ss2 = parseInt(ss[1],10);
-		var ss3 = parseInt(ss[2],10);
-		if (ss.length==1 && !isNaN(ss1)){
-			return new Date(ss1,0,1);
+		if (s.indexOf('/')>-1){ //DMY
+			var ss =  s.split('/');
+			var d = parseInt(ss[0],10);
+			var m = parseInt(ss[1],10);
+			var y = parseInt(ss[2],10);
+			
 		}
-		if (ss.length==2 && !isNaN(ss1) && !isNaN(ss2) ){
-			return new Date(ss1,ss2-1,1);
+		if (s.indexOf('-')>-1){
+			var ss =  s.split('-');
+			var y = parseInt(ss[0],10);
+			var m = parseInt(ss[1],10);
+			var d = parseInt(ss[2],10);
+			if (ss.length==1 && !isNaN(y)){
+				return new Date(y,0,1);
+			}
+			if (ss.length==2 && !isNaN(y) && !isNaN(m) ){
+				return new Date(y,m-1,1);
+			}
 		}
-		if (ss.length==3 && !isNaN(ss1) && !isNaN(ss2) && !isNaN(ss3)){
-			return new Date(ss1,ss2-1,ss3);
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+			return new Date(y,m-1,d);
 		}else{
 			return new Date();
 		}
