@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2019-06-06 ##
+* 修复`combogrid` $(selector).combogrid('setValue','').combogrid('getValue')得到的是undefined而不是空字符串
+
+## 2019-06-06 ##
 * `datebox`的doBlur算法修改
 
 ## 2019-06-05 ##
