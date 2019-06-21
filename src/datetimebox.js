@@ -167,6 +167,8 @@
             var _96d = parseInt(tt[2], 10) || 0;
             return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, _96c, _96d);
         }, onHidePanel:function(){ //因为修改t快捷键,datebox中增加了这个方法,datetimebox中不用
-        }
+        },rules: { //重写datebox方法
+        },onBlur:function(target){ //重写datebox方法
+		},
     });
 })(jQuery);

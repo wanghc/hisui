@@ -14474,8 +14474,9 @@ if (typeof JSON !== 'object') {
 			if (cl.find('.calendar-nav-hover').length>0){return ;}
 			var curVal = $(target).combo('getText'); 
 			setTimeout(function(){
-				if (curVal == $(target).combo('getText')){ //没有点击今天,或日历中其它日期
-					doBlur(target);
+				// curVal不为空才去校验日期格式, 为空时调用doEnter会默认上当天日期
+				if (curVal!="" && curVal == $(target).combo('getText')){ //没有点击今天,或日历中其它日期
+					opts.onBlur(target);
 				}
 			},200);
 		})
@@ -14598,12 +14599,10 @@ if (typeof JSON !== 'object') {
 		var current = state.calendar.calendar('options').current;
 		if (current){
 			setValue(target, opts.formatter.call(target, current));
-			console.log('hidePanel');
 			$(target).combo('hidePanel');
 		}
 	}
 	function doBlur(target){
-		console.log('do blur');
 		$(target).combo('textbox').validatebox('enableValidation');
 		if ($(target).combo('textbox').validatebox("isValid")) {
 			doEnter(target);
@@ -14728,6 +14727,9 @@ if (typeof JSON !== 'object') {
 			} else {
 				return new Date();
 			}
+		},
+		onBlur:function(target){
+			doBlur(target);
 		},
         onSelect:function(date){},
         validType:'datebox',
@@ -14910,7 +14912,9 @@ if (typeof JSON !== 'object') {
             var _96d = parseInt(tt[2], 10) || 0;
             return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, _96c, _96d);
         }, onHidePanel:function(){ //因为修改t快捷键,datebox中增加了这个方法,datetimebox中不用
-        }
+        },rules: { //重写datebox方法
+        },onBlur:function(target){ //重写datebox方法
+		},
     });
 })(jQuery);
 (function ($) {
