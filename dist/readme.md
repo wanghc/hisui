@@ -38,6 +38,9 @@ $("#btn").linkbutton("disable");
 * `datebox`与`datetimebox`bug修改,光标离开输入框时默认上了日期问题,`datetimebox`不能修改time问题
 
 ## 2019-06-06 ##
+* 修复`combogrid` $(selector).combogrid('setValue','').combogrid('getValue')得到的是undefined而不是空字符串
+
+## 2019-06-06 ##
 * `datebox`的doBlur算法修改
 
 ## 2019-06-05 ##

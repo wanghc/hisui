@@ -14243,7 +14243,8 @@ if (typeof JSON !== 'object') {
         var _918 = _917.onChange;
         _917.onChange = function () {
         };
-        if (_913=="") _913=[]; // wanghc setValues("")---error
+        //if (_913=="") _913=[]; // wanghc setValues("")---error
+        if (_913==="") _913=[]; // cryze [""]=="" 返回值是true 2019-06-13
         var vv = $.map(_913, function (_b62) {  //cryze 2018-7-24
             return String(_b62);
         });

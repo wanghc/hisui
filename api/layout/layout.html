@@ -34,7 +34,23 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 				主要的内容
 			</div>   
 		</div>  
-		<pre class="prettyprint hide lang-html"><code></code></pre>
+		<pre class="prettyprint hide lang-html"><code>&lt;div id=&quot;cc&quot; class=&quot;hisui-layout&quot; style=&quot;width:600px;height:400px;&quot; data-options=&quot;clickExpand:true&quot;&gt;  
+	&lt;div data-options=&quot;region:&#39;north&#39;,title:&#39;North&#39;,split:true,showCollapsedTitle:true&quot; style=&quot;height:100px;&quot;&gt;
+		折叠状态显示标题&gt;&lt;code&gt;data-options=&quot;showCollapsedTitle:true&quot;&lt;/code&gt;
+	&lt;/div&gt;  
+	&lt;div data-options=&quot;region:&#39;south&#39;,title:&#39;&#39;,split:true&quot; style=&quot;height:100px;&quot;&gt;
+		底部
+	&lt;/div&gt;
+	&lt;div data-options=&quot;region:&#39;east&#39;,title:&#39;East&#39;,split:true,split:true,collapsed:true&quot; 
+		style=&quot;width:200px;&quot;&gt;
+			自动收起&gt;&lt;code&gt;data-options=&quot;collapsed:true&quot;&lt;/code&gt;
+	&lt;/div&gt;  
+	&lt;div data-options=&quot;region:&#39;west&#39;,title:&#39;导航菜单&#39;,split:true,showCollapsedTitle:true&quot; style=&quot;width:100px;&quot;&gt;导航菜单&lt;/div&gt;  
+	&lt;div data-options=&quot;region:&#39;center&#39;,title:&#39;&#39;,split:true&quot; 
+		style=&quot;padding:10px;&quot;&gt;
+		主要的内容
+	&lt;/div&gt;  
+&lt;/div&gt;</code></pre>
 	</div>
 
 	<div class="demo-exp-code entry-content"> 
@@ -53,6 +69,21 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 				主要的内容
 			</div>   
 		</div>  
+		<pre class="prettyprint hide lang-html"><code>&lt;div id=&quot;cc2&quot; class=&quot;hisui-layout&quot; style=&quot;width:600px;height:400px;&quot; data-options=&quot;clickExpand:true&quot;&gt;  
+	&lt;div data-options=&quot;region:&#39;north&#39;,title:&#39;North&#39;,split:true,headerCls:&#39;panel-header-gray&#39;&quot; style=&quot;height:100px;&quot;&gt;&lt;/div&gt;  
+	&lt;div data-options=&quot;region:&#39;south&#39;,title:&#39;&#39;,split:true,bodyCls:&#39;panel-header-gray&#39;&quot; style=&quot;height:100px;&quot;&gt;
+		
+	&lt;/div&gt;
+	&lt;div data-options=&quot;region:&#39;east&#39;,title:&#39;East&#39;,split:true,split:true,headerCls:&#39;panel-header-gray&#39;,collapsed:true&quot; 
+		style=&quot;width:200px;&quot;&gt;
+			自动收起&gt;&lt;code&gt;data-options=&quot;collapsed:true&quot;&lt;/code&gt;
+	&lt;/div&gt;  
+	&lt;div data-options=&quot;region:&#39;west&#39;,title:&#39;导航菜单&#39;,split:true,headerCls:&#39;panel-header-gray&#39;&quot; style=&quot;width:100px;&quot;&gt;导航菜单&lt;/div&gt;  
+	&lt;div data-options=&quot;region:&#39;center&#39;,title:&#39;&#39;,split:true,bodyCls:&#39;panel-header-gray&#39;&quot; 
+		style=&quot;padding:10px;&quot;&gt;
+		主要的内容
+	&lt;/div&gt;  
+&lt;/div&gt;</code></pre>
 	</div>
 	<h3>布局组件的相关配置</h3>
 	<table class="table">
