@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-07-05 ##
 * `datebox`增加validParams属性
+* `timebox`增加对时间识别,如15回车转成15:00
 
 ## 2019-06-21 ##
 * `datebox`与`datetimebox`bug修改,光标离开输入框时默认上了日期问题,`datetimebox`不能修改time问题
