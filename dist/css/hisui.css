@@ -2419,6 +2419,16 @@ h2 {
 .demo-tip {
   display: none;
 }
+.demo-tip {
+  display: none;
+}
+.r-label {
+  text-align: right;
+  padding-right: 10px;
+}
+a {
+  color: #029c87;
+}
 /*create icon*/
 /*create white icon*/
 /*create big icon*/
@@ -5764,11 +5774,11 @@ td.datagrid-value-changed {
   color: #444;
 }
 .datebox .combo-arrow {
-  background: url('images/green/datebox_arrow_40a2de.png') no-repeat center center;
+  background: url('images/green/datebox_arrow_default.png') no-repeat center center;
 }
 .datebox .combo-arrow-hover {
   /*background: @date-hover-img;*/
-  background: url('images/green/datebox_arrow_378ec4.png') no-repeat center center;
+  background: url('images/green/datebox_arrow_hover.png') no-repeat center center;
 }
 .combo.disabled.datebox .combo-arrow {
   /*background: @date-disabled-img;*/
