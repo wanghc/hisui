@@ -14682,7 +14682,6 @@ if (typeof JSON !== 'object') {
 		panelWidth:180,
 		panelHeight:'auto',
 		sharedCalendar:null,
-		
 		keyHandler: {
 			up:function(e){},
 			down:function(e){},
@@ -14733,11 +14732,15 @@ if (typeof JSON !== 'object') {
 			doBlur(target);
 		},
         onSelect:function(date){},
-        validType:'datebox',
+		validType:'datebox',
+		validParams:"YMD",
         rules: {
             datebox: {
-                validator: function (_442) {
-                    return validDate(_442);
+                validator: function (_442,params) {
+					if (params=="YMD"){
+						return validDate(_442);
+					}
+					return true;
                 }, message:"Please enter a valid date."
             }
         }

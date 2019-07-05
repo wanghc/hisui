@@ -20,11 +20,24 @@
 	<div class="demo-exp-code entry-content">
 		<table> 
 				<tr>
-					<td class='r-label'>生日</td>
-					<td>
-						<input id="db" class="hisui-datebox textbox" data-options="onSelect:onSelect"/>
+					<td class='r-label'>统计月份</td>
+					<td class='r-label'>
+						<input id="samth" class="hisui-datebox textbox" data-options='onSelect:onSelect,formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
 						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
 					</td>
+					<td class='r-label'>
+						<a class="hisui-linkbutton" id="samthBtn">获取值</a>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>生日</td>
+					<td>
+						<input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
+						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
+					</td>
+					<td class='r-label'>
+							<a class="hisui-linkbutton" id="dbBtn">获取值</a>
+						</td>
 				</tr>
 				<tr>
 					<td class='r-label'>结算时间</td>
@@ -38,13 +51,31 @@
 			<span>Selected Date: </span>
 			<span id="result"></span>
 		</div>
-		<pre class="prettyprint lang-html"><code>
-&lt;style>td{padding:5px 0;}&lt;/style>
+		<pre class="prettyprint lang-html"><code>&lt;style>td{padding:5px 0;}&lt;/style>
 &lt;table> 
 	&lt;tr>
-		&lt;td class='r-label'>生日:&lt;/td>
+		&lt;td class='r-label'>统计月份&lt;/td>
+		&lt;td class='r-label'>
+			&lt;input id="samth" class="hisui-datebox textbox" 
+			data-options='onSelect:onSelect,formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
+		&lt;/td>
+		&lt;td class='r-label'>
+			&lt;a class="hisui-linkbutton" id="samthBtn">获取值&lt;/a>
+		&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+		&lt;td class='r-label'>生日&lt;/td>
 		&lt;td>
-			&lt;input id="db" class="hisui-datebox textbox" data-options="onSelect:onSelect">&lt;/input>
+			&lt;input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
+		&lt;/td>
+		&lt;td class='r-label'>
+			&lt;a class="hisui-linkbutton" id="dbBtn">获取值&lt;/a>
+		&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+		&lt;td class='r-label'>结算时间&lt;/td>
+		&lt;td>
+			&lt;input class="hisui-datetimebox textbox" data-options="onSelect:onSelect"/>
 		&lt;/td>
 	&lt;/tr>
 &lt;/table&gt;
@@ -64,6 +95,16 @@ function onSelect(date){
 		function onSelect(date){
 			$('#result').text(date)
 		}
+		$(function(){
+			$("#samthBtn").click(function(){
+				var val = $("#samth").datebox('getValue');
+				$.messager.alert( "提示",val);
+			});
+			$("#dbBtn").click(function(){
+				var val = $("#db").datebox('getValue');
+				$.messager.alert( "提示",val);
+			});
+		})
 	</script>
  <script type="text/javascript">
 // 	var init = function () {
@@ -75,7 +116,22 @@ function onSelect(date){
 
 // 	}	
 //  	$(init);
-</script>	
+</script>
+
+<table class="table">
+	<tr class="protitle">
+		<th>属性</th>
+		<th>说明</th>
+		<th>默认值</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td>validParams</td>
+		<td>默认值为YMD.表示日期显示成YYYY-MM-DD</td>
+		<td>YMD</td>
+		<td>如果是其它格式则不强制检查. 如配置成YM再实现formatter可实现例1效果<code>2019-07-05</code></td>
+	</tr>
+</table>
 <prettyprint/>
 </body>
 </html>
