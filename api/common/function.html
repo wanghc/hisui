@@ -263,7 +263,7 @@ console.log($.hisui.getArrayItem(arr,'id',3)); </code></pre>
     <!--******************************************华丽的分割线******************************************************-->
 
 
-    <h3>$.hisui.getChineseSpellArray 汉字转拼音</h3>
+    <h3>$.hisui.getChineseSpellArray 汉字转拼音 (<code class="param">2018-08-27</code>)</h3>
     <div class="demo-exp-code entry-content">
         <h3><code class="fun">$.hisui.getChineseSpellArray</code>(<code class="param">str</code>)</h3>
         获取字符串拼音首字母，返回简拼数组
@@ -276,11 +276,11 @@ console.log($.hisui.getArrayItem(arr,'id',3)); </code></pre>
 <pre class="prettyprint lang-js"><code>console.log('test $.hisui.getChineseSpellArray');
 console.log($.hisui.getChineseSpellArray('你好')) 
 console.log($.hisui.getChineseSpellArray('你好,hello')) //英文字符不处理
-console.log($.hisui.getChineseSpellArray('吾乃常山赵子龙')) //多音字  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
+console.log($.hisui.getChineseSpellArray('俱往矣数风流人物还看今朝朝')) //多音字  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
     </div>
     <!--******************************************华丽的分割线******************************************************-->
 
-    <h3>$.hisui.toChineseSpell 汉字转拼音</h3>
+    <h3>$.hisui.toChineseSpell 汉字转拼音(<code class="param">2018-08-27</code>)</h3>
     <div class="demo-exp-code entry-content">
         <h3><code class="fun">$.hisui.toChineseSpell</code>(<code class="param">str</code>)</h3>
         获取字符串拼音首字母，返回简拼，多音字只返回一个
@@ -293,7 +293,7 @@ console.log($.hisui.getChineseSpellArray('吾乃常山赵子龙')) //多音字  
 <pre class="prettyprint lang-js"><code>console.log('test $.hisui.toChineseSpell');
 console.log($.hisui.toChineseSpell('你好')) 
 console.log($.hisui.toChineseSpell('你好,hello')) //英文字符不处理
-console.log($.hisui.toChineseSpell('吾乃常山赵子龙')) //多音字只取第一个结果  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
+console.log($.hisui.toChineseSpell('俱往矣数风流人物还看今朝朝')) //多音字只取第一个结果  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
     </div>
     <!--******************************************华丽的分割线******************************************************--> 
 
