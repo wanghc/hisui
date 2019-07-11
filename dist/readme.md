@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-07-11 ##
+* `combo`,`combobox`,`datebox`,`spinner`,`lookup`,`searchbox`等输入框样式轻淡化
+
 ## 2019-07-05 ##
 * `datebox`增加validParams属性
 * `timebox`增加对时间识别,如15回车转成15:00
