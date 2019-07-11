@@ -49,6 +49,7 @@
 	  	<select id="cbox" style="width:200px;">
 		</select>
 		<a href='#' id="cboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
+		<a href='#' id="cboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a>
 		<pre class="prettyprint lang-html hide"><code><style></style>&lt;select id="cbox" style="width:200px;">&lt;/select></code></pre>
 		<pre class="prettyprint lang-js hide">
 $(function(){
@@ -64,6 +65,15 @@ $(function(){
 			{id:'css',text:'CSS语言'},{id:'html',text:'HTML语言'},{id:'c',text:'C语言'}
 			,{id:'cplus',text:'C++语言'},{id:'java',text:'JAVA语言'},{id:'cache',text:'M语言'},{id:'sql',text:'结构化查询语言'}
 		]
+	});
+	$("#cboxbtn").click(function(){
+		console.log(cbox.getValues());
+		//cbox.setValues([]);
+		//cbox.loadData([{id:'m',text:'m语言'}]);
+	});
+	$("#cboxselbtn").click(function(){
+		cbox.setValues(["css","html","c","cplus","java","cache","sql"]);
+		//$("#cbox").combobox('panel').parent().find('._hisui_combobox-selectall').trigger('click');
 	});
 });</pre>
 	</div>
@@ -110,7 +120,10 @@ $(function(){
 	$("#cboxbtn1").click(function(){
 		console.log($("#stateBox").combobox("getValue"));
 	});
-	
+	$("#cboxselbtn").click(function(){
+		cbox.setValues(["css","html","c","cplus","java","cache","sql"])
+		//$("#cbox").combobox('panel').parent().find('._hisui_combobox-selectall').trigger('click');
+	});
 	return ;
 	// easyloader.theme = "bootstrap";
 	// easyloader.locale="zh_CN";

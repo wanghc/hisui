@@ -14,13 +14,27 @@
   }
   &:focus{
     background-color: @validatebox-focus-bgcolor;
+    &+span>span,&+input+span>span{ /*20190710 numberspinner--input+input+span*/
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      background-color: @input-focus-bgcolor;
+    }
   }
   &:hover{
     background-color: @validatebox-focus-bgcolor;
   }
 }
-.validatebox-invalid {
+/*2019-07-10 span:hover---输入框与arrow都变色*/
+.searchbox:hover,.lookup:hover,.combo:hover,.spinner:hover{
+  input,span>span{
+    opacity: @input-arrow-hover-opacity;
+    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    background-color: @input-hover-bgcolor;
+  }
+}
+.validatebox-text.validatebox-invalid {
   background-position: right 8px center;
+  border-color:red;
 }
 input[type=text]::-ms-clear{
   display:none;

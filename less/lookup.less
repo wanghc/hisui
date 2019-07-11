@@ -29,22 +29,18 @@
 .lookup-arrow {
   width: @combo-arrow-width;
   height: @combo-arrow-height;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
   overflow: hidden;
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
-  
-}
-.lookup-arrow {
-  background:  url('@{images-path}/lookup_arrow.png') no-repeat center center;
+  background:  url('images/lookup_arrow.png') no-repeat center center;
 }
 .lookup,
 .lookup-panel {
   background-color: @combo-bgcolor;
 }
-
 .lookup-rowtip{
   position: absolute;
   border-width: 1px;
@@ -52,17 +48,16 @@
   border-color: @panel-border-color @panel-border-color @panel-border-color @panel-border-color;
   background-color: #fff;
 }
-
-.lookup-arrow {
-  background-color: @combo-arrow-bgcolor;
-}
-.lookup-arrow-hover {
-  background-color: @combo-arrow-hover-color;
+.lookup-arrow.lookup-arrow-hover {
+  opacity: @input-arrow-hover-opacity;
+  filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+  background-color: @input-arrow-hover-bgcolor;
 }
 
 .lookup.disabled{
   border-color: @main-disabled-border-color;
   .lookup-arrow{
-    background-color: @main-disabled-border-color;
+    background-color: @main-disabled-bgcolor;
+    background-image:url(images/lookup_arrow_disable.png);
   }
 }

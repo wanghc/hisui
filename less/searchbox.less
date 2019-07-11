@@ -11,7 +11,8 @@
   &.disabled{
     border-color: @main-disabled-border-color;
     .searchbox-button{
-      background-color: @main-disabled-border-color;
+      background-color: @main-disabled-bgcolor;
+      background-image: url('images/searchbox_button_disable.png');
     }
   }
 }
@@ -23,10 +24,18 @@
   *margin-top: -1px;
   vertical-align: top;
   &:active{
-    background-color: #f4faff;
+    background-color: @input-hover-bgcolor;
   }
   &:disabled{
     background-color: @main-disabled-bgcolor;
+  }
+  &:focus{
+    background-color: @input-focus-bgcolor;
+    &+span>span{ /*20190710*/
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      background-color: @input-focus-bgcolor;
+    }
   }
 }
 .searchbox .searchbox-prompt {
@@ -40,15 +49,13 @@
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
 }
-.searchbox-button-hover {
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  //background-color: #378ec4!important;
-  //background-color: #029c87!important;
-    background-color:@searchbox-button-hover-bgcolor;
+.searchbox-button.searchbox-button-hover {
+  opacity: @input-arrow-hover-opacity;
+  filter: alpha(opacity=@input-arrow-hover-opacity);
+  background-color:@input-arrow-hover-bgcolor;
 }
 .searchbox .l-btn-plain {
   border: 0;
@@ -79,13 +86,14 @@
 }
 .searchbox {
   border-color: @searchbox-bgcolor;/*#95B8E7;*/
-  background-color: @searchbox-bgcolor;
+  background-color:@searchbox-arrow-bgcolor;
 }
 .searchbox .l-btn-plain {
   background: #E0ECFF;
 }
 .searchbox .l-btn-plain-disabled,
 .searchbox .l-btn-plain-disabled:hover {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
+
 }

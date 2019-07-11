@@ -11,7 +11,13 @@
   &.disabled{
     border-color: @main-disabled-border-color;
     .spinner-arrow {
-      background-color: @main-disabled-border-color;
+      background-color: @main-disabled-bgcolor;
+      .spinner-arrow-up {
+        background-image: url(images/spinner_arrows_disable.png);
+      }
+      .spinner-arrow-down {
+        background-image: url(images/spinner_arrows_disable.png);
+      }
     }
   }
 }
@@ -35,40 +41,28 @@
   vertical-align: top;
   margin: 0;
   padding: 0;
+  background-color:#ffffff;
+  .spinner-arrow-hover {
+    opacity: @input-arrow-hover-opacity;
+    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    background-color:@input-arrow-hover-bgcolor;
+  }
 }
 .spinner-arrow-up,
 .spinner-arrow-down {
-  opacity: 1;
-  filter: alpha(opacity=100);
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
   display: block;
   font-size: 1px;
   width: 22px;
   height: 14px;
 }
-.spinner-arrow-hover {
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-}
 .spinner-arrow-up {
-  background: url(images/accordion_arrows.png) -21px center no-repeat;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  /*background: url(images/spinner_arrows.png) center 2px no-repeat;*/
-  /*background: url('images/spinner_arrows.png') no-repeat 1px center;*/
+  background: url(images/spinner_arrows.png) -21px center no-repeat;
 }
 .spinner-arrow-down {
-  background: url(images/accordion_arrows.png) 0px center no-repeat;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  /*background: url(images/spinner_arrows.png) center -10px  no-repeat;*/
-  /*url('images/spinner_arrows.png') no-repeat -15px center;*/
+  background: url(images/spinner_arrows.png) 0px center no-repeat;
 }
 .spinner {
   border-color: @main-color;/*#95B8E7;*/
-}
-.spinner-arrow {
-  background-color: @main-color;/*#E0ECFF;*/
-}
-.spinner-arrow-hover {
-  background-color:@main-hover-color;/*#eaf2ff;*/
 }

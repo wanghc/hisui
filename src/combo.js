@@ -209,12 +209,12 @@
             return left;
         };
         function _865() {
-            var top = _862.offset().top + _862._outerHeight();
+            var top = _862.offset().top + _862._outerHeight() - 1; //默认向下显示 20190711-1减少1px接逢线
             if (top + _863._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
-                top = _862.offset().top - _863._outerHeight();
+                top = _862.offset().top - _863._outerHeight() + 1 ; //在上面显示 20190711+1减少1px接逢线
             }
             if (top < $(document).scrollTop()) {
-                top = _862.offset().top + _862._outerHeight();
+                top = _862.offset().top + _862._outerHeight() - 1; //向下显示 20190711-1减少1px接逢线
             }
             return top;
         };

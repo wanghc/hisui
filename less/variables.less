@@ -12,6 +12,28 @@
 //== icon
 @icon-path:"icons/default";
 
+@input-border-color:#9ed2f2;
+@input-bgcolor:#ffffff;
+@input-arrow-opacity:0.7;
+@input-arrow-opacity-ie:100*@input-arrow-opacity;
+
+
+//---------arrow-------//
+@input-arrow-hover-bgcolor:@input-hover-bgcolor;
+@input-arrow-hover-opacity:1;
+@input-arrow-hover-opacity-ie:100*@input-arrow-hover-opacity;
+@input-border-hover-color:#9ed2f2;
+@input-hover-bgcolor:#f4faff;
+//----------focus---------//
+@input-focus-bgcolor:@input-hover-bgcolor;
+@input-border-focus-color:#3495d8;
+
+//-------------disabled----------//
+@main-disabled-bgcolor:#f7f7f7;
+@main-disabled-border-color:#bbbbbb;
+@linkbutton-disabled-bgcolor:#bbbbbb;
+@linkbutton-disabled-icon-bgcolor:#999999;
+
 //== tooltip
 @tooltipFontColor:#ffffff;
 @tooltipArrowColor:#ffffff;
@@ -44,6 +66,7 @@
 @searchbox-font-color:#000000;
 @searchbox-font-size:@main-font-size;
 @searchbox-bgcolor:@main-color;
+@searchbox-arrow-bgcolor:none;
 @searchbox-hover-bgcolor:#40a2dd;
 @searchbox-button-hover-bgcolor: #378ec4;
 
@@ -68,9 +91,9 @@
 //== combo
 @combo-arrow-width:30px;
 @combo-arrow-height:30px;
-@combo-arrow-bgcolor:@main-color;
+@combo-arrow-bgcolor:none; /*main-color*/;
 @combo-arrow-color:#ffffff;
-@combo-arrow-hover-color:@main-hover-color;
+@combo-arrow-hover-color:none; /*main-hover-color*/;
 @combo-border-color:@main-color;
 @combo-select-row-bgcolor:#dbecf8;
 @combo-font-size:@main-font-size;
@@ -174,19 +197,13 @@
 @spinner-line-height:28px;
 @spinner-line-height-min:26px;
 @spinner-font-size:14px;
-
+@spinner-arrow-bgcolor:none; /*main-hover-color*/;
 //== keywords 
 @keywords-bgcolor: #ffe9db;
 @keywords-fontcolor:#ff4401;
 @keywords-chapter-color:#017bce;
 @keywords-section-hover-color:#017bce;
 @keywords-section-bgcolor:#40a2de;
-
-//disabled
-@main-disabled-bgcolor:#f7f7f7;
-@main-disabled-border-color:#bbbbbb;
-@linkbutton-disabled-bgcolor:#bbbbbb;
-@linkbutton-disabled-icon-bgcolor:#999999;
 
 //==menubutton
 @menubutton-blue-bgcolor:#40a2de;   
@@ -243,4 +260,8 @@ h2 {
 }
 a{
     color:@keywords-chapter-color;
+}
+/*chrome默认了outline*/
+input,textarea {
+    outline-width: 0;
 }

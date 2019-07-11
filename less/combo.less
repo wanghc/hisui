@@ -1,13 +1,10 @@
 @import "variables.less";
-
 .combo .combo-text {
   font-size: @combo-font-size;
   border:0; //px solid transparent;
   line-height: @combo-input-line-height;
   height: @combo-input-line-height;
- 
   padding: 0px 0px 0px @combo-padding-left;
- 
   *height:  @combo-input-line-height-ie8;
   *line-height:  @combo-input-line-height-ie8;
   _height: @combo-input-line-height-ie8;
@@ -17,31 +14,34 @@
 .combo-arrow {
   width: @combo-arrow-width;
   height: @combo-arrow-height;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
 }
 .combo-arrow {
     background: url(images/combo_arrow.png) no-repeat center center;
 }
 .combo,
 .combo-panel {
-  background-color: @combo-bgcolor;
+  background-color: @input-bgcolor;
 }
 .combo {
-  border-color: @combo-border-color;
-  background-color: @combo-bgcolor;
+  border-color: @input-border-color;
+  background-color: @input-bgcolor;
 }
-.combo-arrow {
-  background-color: @combo-arrow-bgcolor;
-}
-.combo-arrow-hover {
-  background-color: @combo-arrow-hover-color;
+/* focus-widthin--ie11也没支持，chrome可以
+.combo:focus-within{
+  border-color: @input-border-focus-color;
+}*/
+.combo-arrow.combo-arrow-hover {
+  opacity: @input-arrow-hover-opacity;
+  filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+  background-color: @input-arrow-hover-bgcolor;
 }
 
 .combo.disabled{
   border-color: @main-disabled-border-color;
   .combo-arrow{
-    background-color: @main-disabled-border-color;
+    background-color: @main-disabled-bgcolor;
+    background-image: url(images/combo_arrow_disable.png);
   }
 }
-
