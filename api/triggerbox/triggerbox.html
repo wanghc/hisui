@@ -15,54 +15,37 @@
     <span>触发框（triggerbox）用于自定义功能，图标可以自定义。<code>2019-01-03</code></span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div class="hisui-panel" title="触发框示例" style="width:400px;padding:10px 30px 20px 30px" data-options="headerCls:'panel-header-gray',iconCls:'icon-paper-info'">
+		<div class="hisui-panel" title="触发框示例" style="width:500px;padding:10px 30px 20px 30px" data-options="headerCls:'panel-header-gray',iconCls:'icon-paper-info'">
 			<table cellpadding="5">
-				<!--<tr>
-					<td class='r-label'>自定义触发框</td>
-					<td>
-						<input class="textbox" />
-					</td>
-				</tr>
-				<tr>
-					<td class='r-label'>自定义触发框</td>
-					<td>
-						<input class="hisui-numberspinner textbox "/>
-					</td>
-				</tr>
-				<tr>
-					<td class='r-label'>自定义触发框</td>
-					<td>
-						<input class="hisui-datebox textbox" />
-					</td>
-				</tr>
-				<tr>
-					<td class='r-label'>自定义触发框</td>
-					<td>
-						<input class="hisui-lookup textbox" />
-					</td>
-				</tr>-->
 				<tr>
 					<td class='r-label'>默认触发框</td>
 					<td>
 						<input name="default" class="hisui-triggerbox textbox" data-options="handler:msg"/>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td class='r-label'>图片触发框</td>
 					<td>
-						<input name="img" class="hisui-triggerbox textbox" data-options="icon:'icon-w-img',handler:msg"/>
+						<input id="img" name="img" class="hisui-triggerbox textbox" data-options="icon:'icon-w-img',handler:msg"/>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td class='r-label'>卡触发框</td>
 					<td>
 						<input id="card" name="card" class="hisui-triggerbox textbox" data-options="icon:'icon-w-card',handler:msg"/>
 					</td>
+					<td></td>
 				</tr>
 				<tr>
 					<td class='r-label'>复制触发框</td>
 					<td>
 						<input id="copy" name="copy" class="hisui-triggerbox textbox" data-options="icon:'icon-w-copy',handler:msg"/>
+					</td>
+					<td>
+						<a class="hisui-linkbutton" id="btn-disable">禁用</a>
+						<a class="hisui-linkbutton" id="btn-enable">启用</a>
 					</td>
 				</tr>	
 			</table>
@@ -76,6 +59,14 @@
 			$("#copy").triggerbox('setValue',v);
 		}
 	}
+	$(function(){
+		$('#btn-disable').click(function(){
+			$('#copy').triggerbox('disable')
+		})
+		$('#btn-enable').click(function(){
+			$('#copy').triggerbox('enable')
+		})
+	})
 </script>
 <pre class="prettyprint lang-html hide"><code>&lt;script type="text/javascript"&gt;
 	function msg(value,name){
@@ -86,32 +77,47 @@
 			$("#copy").triggerbox('setValue',v);
 		}
 	}
+	$(function(){
+		$('#btn-disable').click(function(){
+			$('#copy').triggerbox('disable')
+		})
+		$('#btn-enable').click(function(){
+			$('#copy').triggerbox('enable')
+		})
+	})
 &lt;/script&gt;
 &lt;table cellpadding="5"&gt;
-	&lt;tr&gt;
-		&lt;td class='r-label'&gt;默认触发框&lt;/td&gt;
-		&lt;td&gt;
-			&lt;input name="default" class="hisui-triggerbox textbox" data-options="handler:msg"/&gt;
-		&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td class='r-label'&gt;图片触发框&lt;/td&gt;
-		&lt;td&gt;
-			&lt;input name="img" class="hisui-triggerbox textbox" data-options="icon:'icon-w-img',handler:msg"/&gt;
-		&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td class='r-label'>卡触发框&lt;/td&gt;
-		&lt;td&gt;
-			&lt;input name="card" class="hisui-triggerbox textbox" data-options="icon:'icon-w-card',handler:msg"/&gt;
-		&lt;/td&gt;
-	&lt;/tr&gt;
-	&lt;tr&gt;
-		&lt;td class='r-label'&gt;复制触发框&lt;/td&gt;
-		&lt;td&gt;
-			&lt;input name="copy" class="hisui-triggerbox textbox" data-options="icon:'icon-w-copy',handler:msg"/&gt;
-		&lt;/td&gt;
-	&lt;/tr&gt;
+&lt;tr&gt;
+	&lt;td class='r-label'&gt;默认触发框&lt;/td&gt;
+	&lt;td&gt;
+		&lt;input name="default" class="hisui-triggerbox textbox" data-options="handler:msg"/&gt;
+	&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+	&lt;td class='r-label'&gt;图片触发框&lt;/td&gt;
+	&lt;td&gt;
+		&lt;input id="img" name="img" class="hisui-triggerbox textbox" data-options="icon:'icon-w-img',handler:msg"/&gt;
+	&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+	&lt;td class='r-label'&gt;卡触发框&lt;/td&gt;
+	&lt;td&gt;
+		&lt;input id="card" name="card" class="hisui-triggerbox textbox" data-options="icon:'icon-w-card',handler:msg"/&gt;
+	&lt;/td&gt;
+	&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+	&lt;td class='r-label'&gt;复制触发框&lt;/td&gt;
+	&lt;td&gt;
+		&lt;input id="copy" name="copy" class="hisui-triggerbox textbox" data-options="icon:'icon-w-copy',handler:msg"/&gt;
+	&lt;/td&gt;
+	&lt;td&gt;
+		&lt;a class="hisui-linkbutton" id="btn-disable"&gt;禁用&lt;/a&gt;
+		&lt;a class="hisui-linkbutton" id="btn-enable"&gt;启用&lt;/a&gt;
+	&lt;/td&gt;
+&lt;/tr&gt;	
 &lt;/table&gt;</code></pre>
 	<table class="table">
 		<tr class="protitle">
@@ -126,24 +132,96 @@
 			<td>'icon-w-trigger-box'</td>
 			<td>见【基础】-【图标(icon)】界面</td>
 		</tr>
+		<tr>
+			<td>prompt</td>
+			<td>为空时的提示值</td>
+			<td>''</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>value</td>
+			<td>初值</td>
+			<td>''</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>disabled</td>
+			<td>是否禁用</td>
+			<td>false</td>
+			<td></td>
+		</tr>
 		
-		<tr class="mtdtitle">
+		<tr class="mthtitle">
 			<th>方法</th>
 			<th>说明</th>
 			<th>入参</th>
-			<th></th>
+			<th>返回值</th>
 		</tr>
 		<tr>
 			<td>getValue</td>
 			<td>获得组件的值</td>
 			<td>无</td>
-			<td></td>
+			<td>组件值</td>
 		</tr>
 		<tr>
 			<td>setValue</td>
 			<td>给组件赋值</td>
 			<td>val</td>
-			<td></td>
+			<td>当前jq对象</td>
+		</tr>
+		<tr>
+			<td>disable</td>
+			<td>禁用组件</td>
+			<td>无</td>
+			<td>当前jq对象</td>
+		</tr>
+		<tr>
+			<td>enable</td>
+			<td>启用组件</td>
+			<td>无</td>
+			<td>当前jq对象</td>
+		</tr>
+		<tr>
+			<td>options</td>
+			<td>获取组件配置项</td>
+			<td>无</td>
+			<td>配置项</td>
+		</tr>
+		<tr>
+			<td>textbox</td>
+			<td>获取组件输入框jq对象</td>
+			<td>无</td>
+			<td>输入框jq对象</td>
+		</tr>
+		<tr>
+			<td>clear</td>
+			<td>清空值</td>
+			<td>无</td>
+			<td>当前jq对象</td>
+		</tr>
+		<tr>
+			<td>reset</td>
+			<td>还原初值</td>
+			<td>无</td>
+			<td>当前jq对象</td>
+		</tr>
+		<tr>
+			<td>getName</td>
+			<td>获取Name属性</td>
+			<td>无</td>
+			<td>Name属性</td>
+		</tr>
+		<tr>
+			<td>destroy</td>
+			<td>销毁组件</td>
+			<td>无</td>
+			<td>当前jq对象</td>
+		</tr>
+		<tr>
+			<td>resize</td>
+			<td>调整宽度</td>
+			<td>width</td>
+			<td>当前jq对象</td>
 		</tr>
 		<tr class="evttitle">
 			<th>事件</th>
