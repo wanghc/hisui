@@ -79,7 +79,9 @@ $(function(){
 	</div>
 	<script type="text/javascript">
 	function selectHandler(rec){
+
 		console.log({onSelect:rec});
+		console.log($("#stateBox").combobox('getValue'));
 		//$.messager.popover({msg: rec.text,type:'info',timeout: 2000,showType: 'show'});
 	}
 $(function(){
