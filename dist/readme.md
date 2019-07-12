@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2019-07-12 ##
+* `combobox`进行全匹配查询后，进入onSelect后，些时组件value存的是text问题修改。如骨科
+
 ## 2019-07-11 ##
 * `combo`,`combobox`,`datebox`,`spinner`,`lookup`,`searchbox`等输入框样式轻淡化
 
