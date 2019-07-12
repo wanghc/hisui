@@ -4344,7 +4344,8 @@ textarea.textbox,
   margin: 0;
   padding: 0 0 0 5px;
   box-sizing: content-box;
-  border: 1px solid #40a2de;
+  border-radius: 2px;
+  border: 1px solid #9ed2f2;
   color: #000000;
   font-size: 14px;
 }
@@ -4409,6 +4410,7 @@ input[type="text"]:disabled {
   background-color: #ffffff;
 }
 .combo {
+  border-radius: 2px;
   border-color: #9ed2f2;
   background-color: #ffffff;
 }
