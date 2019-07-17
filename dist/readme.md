@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2019-07-17 ##
 * `lookup`修复panelWidth不生效的问题
+* `lookup`默认panelWidth改为350而不是和输入框对齐
 
 ## 2019-07-12 ##
 * `combobox`进行全匹配查询后，进入onSelect后，些时组件value存的是text问题修改。如骨科

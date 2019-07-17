@@ -18478,7 +18478,7 @@ function(a, b, c) {
         }, filter: function (q, row) {
             var opts = $(this).lookup("options");
             return row[opts.textField].toLowerCase().indexOf(q.toLowerCase()) == 0;
-		},width: "auto", height: 30, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: false, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19
+		},width: "auto", height: 30, panelWidth: 350, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: false, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19
 		, onShowPanel: function () {
         }, onHidePanel: function () {
         }, onChange: function (_899, _89a) {  //以前combo有，现在没有 考虑..
