@@ -22,14 +22,17 @@
         <script type='text/javascript'>
             $(function(){
                 $("#group").lookup({
-                    width:200,panelWidth:500,
+                    width:200,panelWidth:800,
                     url:'getGroup',
                     mode:'remote',
                     idField:'HIDDEN',
                     textField:'Description',
                     columns:[[  
                         {field:'Description',title:'安全组名称',width:200},  
-                        {field:'HIDDEN',title:'安全组ID',width:50}  
+                        {field:'HIDDEN',title:'安全组ID',width:100} ,
+                        {field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+                            return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
+                        }} 
                     ]],
                     pagination:true,
                     onSelect:function(index,rowData){
@@ -43,14 +46,17 @@
 &lt;script type='text/javascript'&gt;
     $(function(){
         $("#group").lookup({
-            width:200,panelWidth:500,
+            width:200,panelWidth:800,
             url:'getGroup',
             mode:'remote',
             idField:'HIDDEN',
             textField:'Description',
             columns:[[  
                 {field:'Description',title:'安全组名称',width:200},  
-                {field:'HIDDEN',title:'安全组ID',width:50}  
+                {field:'HIDDEN',title:'安全组ID',width:100}  ,
+                {field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+                    return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
+                }}
             ]],
             pagination:true,
             onSelect:function(index,rowData){

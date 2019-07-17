@@ -36,6 +36,9 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2019-07-12 ##
+* `lookup`修复panelWidth不生效的问题
+
+## 2019-07-12 ##
 * `combobox`进行全匹配查询后，进入onSelect后，些时组件value存的是text问题修改。如骨科
 
 ## 2019-07-11 ##
