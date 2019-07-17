@@ -65,11 +65,14 @@ $(function(){
             }
         });
     });
-    $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
-    <script type="text/javascript" src="../../api/prettify.js"></script>\
-    <script type="text/javascript">\
-        prettyPrint();\
-    </script>');
+    
+    try{
+        $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
+        <script type="text/javascript" src="../../api/prettify.js"></script>\
+        <script type="text/javascript">\
+            prettyPrint();\
+        </script>');
+    }catch(e){}
     $(".plain-anchor").linkbutton({
         plain:true
     }).click(function(){
