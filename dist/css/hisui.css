@@ -3032,6 +3032,9 @@ textarea {
 .icon-snowflake-blue {
   background: url('icons/snowflake_blue.png') no-repeat center center;
 }
+.icon-speci-mt {
+  background: url('icons/speci_mt.png') no-repeat center center;
+}
 .icon-print-box {
   background: url('icons/print_box.png') no-repeat center center;
 }
@@ -3275,6 +3278,9 @@ textarea {
 .icon-paper-blue-line {
   background: url('icons/paper_blue_line.png') no-repeat center center;
 }
+.icon-paper-stat {
+  background: url('icons/paper_stat.png') no-repeat center center;
+}
 .icon-paper-chart {
   background: url('icons/paper_chart.png') no-repeat center center;
 }
@@ -3395,6 +3401,9 @@ textarea {
 .icon-add-report {
   background: url('icons/add_report.png') no-repeat center center;
 }
+.icon-finish-report {
+  background: url('icons/finish_report.png') no-repeat center center;
+}
 .icon-paper-plane {
   background: url('icons/paper_plane.png') no-repeat center center;
 }
@@ -3493,6 +3502,63 @@ textarea {
 }
 .icon-alarm {
   background: url('icons/alarm.png') no-repeat center center;
+}
+.icon-ip-cfg {
+  background: url('icons/ip_cfg.png') no-repeat center center;
+}
+.icon-have-son-node {
+  background: url('icons/have_son_node.png') no-repeat center center;
+}
+.icon-mater-info {
+  background: url('icons/mater_info.png') no-repeat center center;
+}
+.icon-send-msg {
+  background: url('icons/send_msg.png') no-repeat center center;
+}
+.icon-add-item {
+  background: url('icons/add_item.png') no-repeat center center;
+}
+.icon-price-maint {
+  background: url('icons/price_maint.png') no-repeat center center;
+}
+.icon-wax-tat-stat {
+  background: url('icons/wax_tat_stat.png') no-repeat center center;
+}
+.icon-wax-stat {
+  background: url('icons/wax_stat.png') no-repeat center center;
+}
+.icon-sort {
+  background: url('icons/sort.png') no-repeat center center;
+}
+.icon-house-maint {
+  background: url('icons/house_maint.png') no-repeat center center;
+}
+.icon-slice-tat-stat {
+  background: url('icons/slice_tat_stat.png') no-repeat center center;
+}
+.icon-slice-stat {
+  background: url('icons/slice_stat.png') no-repeat center center;
+}
+.icon-take-report {
+  background: url('icons/take_report.png') no-repeat center center;
+}
+.icon-change-pay-way {
+  background: url('icons/change_pay_way.png') no-repeat center center;
+}
+.icon-sample-stat {
+  background: url('icons/sample_stat.png') no-repeat center center;
+}
+.icon-ga-maint {
+  background: url('icons/ga_maint.png') no-repeat center center;
+}
+.icon-house-posi-maint {
+  background: url('icons/house_posi_maint.png') no-repeat center center;
+}
+.icon-qua-pro-dis {
+  background: url('icons/qua_pro_dis.png') no-repeat center center;
+}
+.icon-qua-pro-sort {
+  background: url('icons/qua_pro_sort.png') no-repeat center center;
 }
 /*big icon*/
 .icon-big-save {
