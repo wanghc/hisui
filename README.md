@@ -10,8 +10,12 @@
 ssh - 速度快但公司可能限制端口--提交时要加入ssh公钥到github
 > git remote add origin git@github.com:wanghc/hisui.git
 # 拉取
-> git pull origin master
+> git pull origin master 
+或
 > git fetch origin blue83:blue83
-> git fetch origin greenNFYY:greenNFYY
+# 拉取所有分支
+> git pull --all
+或
+> git fetch --all
 # 提交
 > git push -u origin master

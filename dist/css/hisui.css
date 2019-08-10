@@ -4496,6 +4496,9 @@ input[type="text"]:disabled {
   background-color: #f7f7f7;
   background-image: url(images/combo_arrow_disable.png);
 }
+.combo-p > .combo-panel {
+  border-color: #9ed2f2;
+}
 .combobox-item,
 .combobox-group,
 ._hisui_combobox-selectall {
@@ -4508,9 +4511,9 @@ input[type="text"]:disabled {
 ._hisui_combobox-selectall {
   background: #f6f6f6;
   cursor: pointer;
-  border-left: 1px #509de1 solid;
-  border-right: 1px #509de1 solid;
-  border-top: 1px #509de1 solid;
+  border-left: 1px #9ed2f2 solid;
+  border-right: 1px #9ed2f2 solid;
+  border-top: 1px #9ed2f2 solid;
   height: 26px;
 }
 .btop > .combo-panel {
@@ -5463,6 +5466,25 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   display: inline-block;
   vertical-align: middle;
 }
+/*增加其它色系按钮*/
+.l-btn.l-btn-small.green {
+  background-color: #2ab66a;
+}
+.l-btn.l-btn-small.green:hover {
+  background-color: #239e5b;
+}
+.l-btn.l-btn-small.yellow {
+  background-color: #ffb746;
+}
+.l-btn.l-btn-small.yellow:hover {
+  background-color: #ff9c00;
+}
+.l-btn.l-btn-small.red {
+  background-color: #f16e57;
+}
+.l-btn.l-btn-small.red:hover {
+  background-color: #d35b46;
+}
 .datagrid-cell,
 .datagrid-cell-group,
 .datagrid-header-rownumber,
@@ -5929,8 +5951,7 @@ td.datagrid-value-changed {
   background: url(images/spinner_arrows.png) 0px center no-repeat;
 }
 .spinner {
-  border-color: #40a2de;
-  /*#95B8E7;*/
+  border-color: #9ed2f2;
 }
 .progressbar {
   border-width: 1px;

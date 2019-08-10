@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2010-08-10 ##
+* `linkbutton`增加红黄绿三种按钮
+* `combox`下拉边框色修改
+* `spinner`边框色修改
 
 ## 2019-07-17 ##
 * `lookup`修复panelWidth不生效的问题
