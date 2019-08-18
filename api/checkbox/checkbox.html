@@ -2,29 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HIS UI</title>
+    <title>勾选框</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>   
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 <body>
-    <h2>选择框，源来Bootstrap的<a href="http://www.bootcss.com/p/icheck/" target="_blank">iCheck插件</a>。</h2>
+    <h2>选择框, 通过图片得到蓝色系勾选框</h2>
     <h3>说明:</h3>
     <span>点击勾选，常用于多项选择。</span>
     <h3>如：</h3>
     <div class="demo-exp-code entry-content"> 
         <div style="padding: 5px">
-            <input class='hisui-checkbox' type="checkbox" data-options="onCheckChange:function(event,value){console.log(value)}" label="已出院" id="checkbox1"/>
-            <input class='hisui-checkbox' type="checkbox" checked label="已停止"/>
-            <input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="已帐单"/>
-            <input class='hisui-checkbox' type="checkbox" label="已就诊"/>
+            <input class='hisui-checkbox' type="checkbox" data-options="onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
+            <input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选"/>
+            <input class='hisui-checkbox' type="checkbox" checked label="勾选"/>
+            <input class='hisui-checkbox' type="checkbox" disabled label="禁用"/>
+            <input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用"/>
             <pre class="prettyprint lang-html">
-<code>&lt;input class='hisui-checkbox' type="checkbox" data-options="onCheckChange:function(event,value){console.log(value)}" label="已出院" id="checkbox1"&gt;
-&lt;input class='hisui-checkbox' type="checkbox" checked label="已停止"&gt;
-&lt;input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="已帐单"&gt;
-&lt;input class='hisui-checkbox' type="checkbox" label="已就诊"&gt;
+<code>&lt;input class='hisui-checkbox' type="checkbox" data-options="onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"&gt;
+&lt;input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选"&gt;
+&lt;input class='hisui-checkbox' type="checkbox" checked label="勾选"&gt;
+&lt;input class='hisui-checkbox' type="checkbox" disabled label="禁用"&gt;
+&lt;input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用"&gt;
 </code></pre>
         </div>
    </div>

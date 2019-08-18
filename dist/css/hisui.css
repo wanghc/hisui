@@ -6765,65 +6765,49 @@ input:-ms-input-placeholder {
 .tooltip-bottom .tooltip-arrow {
   border-bottom-color: #ffffff;
 }
-/* iCheck plugin Square skin, blue
------------------------------------ */
-.hischeckbox_square-blue,
-.hisradio_square-blue {
-  display: inline-block;
-  *display: inline;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0;
-  width: 24px;
-  height: 24px;
-  background: url('images/blue/checkbox.png') no-repeat;
-  border: none;
+label.checkbox,
+label.radio {
+  padding-left: 24px;
   cursor: pointer;
+  line-height: 22px;
+  height: 21px;
+  vertical-align: middle;
+  display: inline-block;
 }
-.hischeckbox_square-blue {
-  background-position: 0 0;
+label.radio {
+  background: url('images/blue/checkbox-v.png') no-repeat 0 -120px;
 }
-.hischeckbox_square-blue.hover {
-  background-position: -24px 0;
+label.radio:hover {
+  background-position: 0 -144px;
 }
-.hischeckbox_square-blue.checked {
-  background-position: -48px 0;
+label.radio.checked {
+  background-position: 0 -168px;
 }
-.hischeckbox_square-blue.disabled {
-  background-position: -72px 0;
-  cursor: default;
+label.radio.disabled {
+  background-position: 0 -192px;
 }
-.hischeckbox_square-blue.checked.disabled {
-  background-position: -96px 0;
+label.radio.checked.disabled {
+  background-position: 0 -216px;
 }
-.hisradio_square-blue {
-  background-position: -120px 0;
+label.checkbox,
+label.hischeckbox_square-blue.radio {
+  background: url('images/blue/checkbox-v.png') no-repeat;
 }
-.hisradio_square-blue.hover {
-  background-position: -144px 0;
+label.checkbox:hover,
+label.hischeckbox_square-blue.radio:hover {
+  background-position: 0 -24px;
 }
-.hisradio_square-blue.checked {
-  background-position: -168px 0;
+label.checkbox.checked,
+label.hischeckbox_square-blue.radio.checked {
+  background-position: 0 -48px;
 }
-.hisradio_square-blue.disabled {
-  background-position: -192px 0;
-  cursor: default;
+label.checkbox.disabled,
+label.hischeckbox_square-blue.radio.disabled {
+  background-position: 0 -72px;
 }
-.hisradio_square-blue.checked.disabled {
-  background-position: -216px 0;
-}
-label + .hisradio_square-blue,
-label + .hischeckbox_square-blue {
-  margin-left: 10px;
-}
-/* HiDPI support */
-@media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi), (min-resolution: 1.25dppx) {
-  .hischeckbox_square-blue,
-  .hisradio_square-blue {
-    background-image: url(images/checkbox.png) no-repeat;
-    -webkit-background-size: 240px 24px;
-    background-size: 240px 24px;
-  }
+label.checkbox.checked.disabled,
+label.hischeckbox_square-blue.radio.checked.disabled {
+  background-position: 0 -96px;
 }
 .has-switch {
   display: inline-block;

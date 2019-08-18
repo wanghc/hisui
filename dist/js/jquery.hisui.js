@@ -15589,522 +15589,6 @@ if (typeof JSON !== 'object') {
 //   });
 // })(jQuery);
 
-/*!
- * iCheck v1.0.2, http://git.io/arlzeA
- * ===================================
- * Powerful jQuery and Zepto plugin for checkboxes and radio buttons customization
- *
- * (c) 2013 Damir Sultanov, http://fronteed.com
- * MIT Licensed
- */
-
-(function ($) {
-  // Cached vars
-  var _iCheck = 'iCheck',
-    _iCheckHelper = _iCheck + '-helper',
-    _checkbox = 'checkbox',
-    _radio = 'radio',
-    _checked = 'checked',
-    _unchecked = 'un' + _checked,
-    _disabled = 'disabled',
-    _determinate = 'determinate',
-    _indeterminate = 'in' + _determinate,
-    _update = 'update',
-    _type = 'type',
-    _click = 'click',
-    _touch = 'touchbegin.i touchend.i',
-    _add = 'addClass',
-    _remove = 'removeClass',
-    _callback = 'trigger',
-    _label = 'label',
-    _cursor = 'cursor',
-    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
-
-  // Plugin init
-  $.fn[_iCheck] = function (options, fire) {
-
-    // Walker
-    var handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]',
-      stack = $(),
-      walker = function (object) {
-        object.each(function () {
-          var self = $(this);
-
-          if (self.is(handle)) {
-            stack = stack.add(self);
-          } else {
-            stack = stack.add(self.find(handle));
-          }
-        });
-      };
-
-    // Check if we should operate with some method
-    if (/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(options)) {
-
-      // Normalize method's name
-      options = options.toLowerCase();
-
-      // Find checkboxes and radio buttons
-      walker(this);
-
-      return stack.each(function () {
-        var self = $(this);
-
-        if (options == 'destroy') {
-          tidy(self, 'ifDestroyed');
-        } else {
-          operate(self, true, options);
-        }
-
-        // Fire method's callback
-        if ($.isFunction(fire)) {
-          fire();
-        }
-      });
-
-      // Customization
-    } else if (typeof options == 'object' || !options) {
-
-      // Check if any options were passed
-      var settings = $.extend({
-        checkedClass: _checked,
-        disabledClass: _disabled,
-        indeterminateClass: _indeterminate,
-        labelHover: true
-      }, options),
-
-        selector = settings.handle,
-        hoverClass = settings.hoverClass || 'hover',
-        focusClass = settings.focusClass || 'focus',
-        activeClass = settings.activeClass || 'active',
-        labelHover = !!settings.labelHover,
-        labelHoverClass = settings.labelHoverClass || 'hover',
-
-        // add label config
-        labelText = settings.label || '',
-
-        // Setup clickable area
-        area = ('' + settings.increaseArea).replace('%', '') | 0;
-
-      // Selector limit
-      if (selector == _checkbox || selector == _radio) {
-        handle = 'input[type="' + selector + '"]';
-      }
-
-      // Clickable area limit
-      if (area < -50) {
-        area = -50;
-      }
-
-      // Walk around the selector
-      walker(this);
-
-      return stack.each(function () {
-        var self = $(this);
-
-        // If already customized
-        tidy(self);
-
-        var node = this,
-          id = node.id,
-
-          // Layer styles
-          offset = -area + '%',
-          size = 100 + (area * 2) + '%',
-          layer = {
-            position: 'absolute',
-            top: offset,
-            left: offset,
-            display: 'block',
-            width: size,
-            height: size,
-            margin: 0,
-            padding: 0,
-            background: '#fff',
-            border: 0,
-            opacity: 0
-          },
-
-          // Choose how to hide input
-          hide = _mobile ? {
-            position: 'absolute',
-            visibility: 'hidden'
-          } : area ? layer : {
-            position: 'absolute',
-            opacity: 0
-          },
-
-          // Get proper class
-          className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
-
-
-          //
-          // Find assigned labels
-          label = $(_label + '[for="' + id + '"]').length === 0 ? ($(this).after('<label for="' + id + '">' + labelText + '</label>') ? $(_label + '[for="' + id + '"]').add(self.closest(_label)) : $(_label + '[for="' + id + '"]')) : $(_label + '[for="' + id + '"]').add(self.closest(_label)),
-
-          // Check ARIA option
-          aria = !!settings.aria,
-
-          // Set ARIA placeholder
-          ariaID = _iCheck + '-' + Math.random().toString(36).substr(2, 6),
-
-          // Parent & helper
-          parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
-          helper;
-
-        // Set ARIA "labelledby"
-        if (aria) {
-          label.each(function () {
-            parent += 'aria-labelledby="';
-
-            if (this.id) {
-              parent += this.id;
-            } else {
-              this.id = ariaID;
-              parent += ariaID;
-            }
-
-            parent += '"';
-          });
-        }
-
-        // Wrap input
-        parent = self.wrap(parent + '/>')[_callback]('ifCreated').parent().append(settings.insert);
-
-        // Layer addition
-        helper = $('<ins class="' + _iCheckHelper + '"/>').css(layer).appendTo(parent);
-
-        // Finalize customization
-        self.data(_iCheck, { o: settings, s: self.attr('style') }).css(hide);
-        !!settings.inheritClass && parent[_add](node.className || '');
-        !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
-        parent.css('position') == 'static' && parent.css('position', 'relative');
-        // parent.css('margin-right', '10px');
-        operate(self, true, _update);
-
-        // Label events
-        if (label.length) {
-          label.on(_click + '.i mouseover.i mouseout.i ' + _touch, function (event) {
-            var type = event[_type],
-              item = $(this);
-
-            // Do nothing if input is disabled
-            if (!node[_disabled]) {
-
-              // Click
-              if (type == _click) {
-                if ($(event.target).is('a')) {
-                  return;
-                }
-                operate(self, false, true);
-
-                // Hover state
-              } else if (labelHover) {
-
-                // mouseout|touchend
-                if (/ut|nd/.test(type)) {
-                  parent[_remove](hoverClass);
-                  item[_remove](labelHoverClass);
-                } else {
-                  parent[_add](hoverClass);
-                  item[_add](labelHoverClass);
-                }
-              }
-
-              if (_mobile) {
-                event.stopPropagation();
-              } else {
-                return false;
-              }
-            }
-          });
-        }
-
-        // Input events
-        self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function (event) {
-          var type = event[_type],
-            key = event.keyCode;
-
-          // Click
-          if (type == _click) {
-            return false;
-
-            // Keydown
-          } else if (type == 'keydown' && key == 32) {
-            if (!(node[_type] == _radio && node[_checked])) {
-              if (node[_checked]) {
-                off(self, _checked);
-              } else {
-                on(self, _checked);
-              }
-            }
-
-            return false;
-
-            // Keyup
-          } else if (type == 'keyup' && node[_type] == _radio) {
-            !node[_checked] && on(self, _checked);
-
-            // Focus/blur
-          } else if (/us|ur/.test(type)) {
-            parent[type == 'blur' ? _remove : _add](focusClass);
-          }
-        });
-
-        // Helper events
-        helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function (event) {
-          var type = event[_type],
-
-            // mousedown|mouseup
-            toggle = /wn|up/.test(type) ? activeClass : hoverClass;
-
-          // Do nothing if input is disabled
-          if (!node[_disabled]) {
-
-            // Click
-            if (type == _click) {
-              operate(self, false, true);
-
-              // Active and hover states
-            } else {
-
-              // State is on
-              if (/wn|er|in/.test(type)) {
-
-                // mousedown|mouseover|touchbegin
-                parent[_add](toggle);
-
-                // State is off
-              } else {
-                parent[_remove](toggle + ' ' + activeClass);
-              }
-
-              // Label hover
-              if (label.length && labelHover && toggle == hoverClass) {
-
-                // mouseout|touchend
-                label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
-              }
-            }
-
-            if (_mobile) {
-              event.stopPropagation();
-            } else {
-              return false;
-            }
-          }
-        });
-      });
-    } else {
-      return this;
-    }
-  };
-
-  // Do something with inputs
-  function operate(input, direct, method) {
-    var node = input[0],
-      state = /er/.test(method) ? _indeterminate : /bl/.test(method) ? _disabled : _checked,
-      active = method == _update ? {
-        checked: node[_checked],
-        disabled: node[_disabled],
-        indeterminate: input.attr(_indeterminate) == 'true' || input.attr(_determinate) == 'false'
-      } : node[state];
-
-    // Check, disable or indeterminate
-    if (/^(ch|di|in)/.test(method) && !active) {
-      on(input, state);
-
-      // Uncheck, enable or determinate
-    } else if (/^(un|en|de)/.test(method) && active) {
-      off(input, state);
-
-      // Update
-    } else if (method == _update) {
-
-      // Handle states
-      for (var each in active) {
-        if (active[each]) {
-          on(input, each, true);
-        } else {
-          off(input, each, true);
-        }
-      }
-
-    } else if (!direct || method == 'toggle') {
-
-      // Helper or label was clicked
-      if (!direct) {
-        input[_callback]('ifClicked');
-      }
-
-      // Toggle checked state
-      if (active) {
-        if (node[_type] !== _radio) {
-          off(input, state);
-        }
-      } else {
-        on(input, state);
-      }
-    }
-  }
-
-  // Add checked, disabled or indeterminate state
-  function on(input, state, keep) {
-    var node = input[0],
-      parent = input.parent(),
-      checked = state == _checked,
-      indeterminate = state == _indeterminate,
-      disabled = state == _disabled,
-      callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
-      regular = option(input, callback + capitalize(node[_type])),
-      specific = option(input, state + capitalize(node[_type]));
-
-    // Prevent unnecessary actions
-    if (node[state] !== true) {
-
-      // Toggle assigned radio buttons
-      if (!keep && state == _checked && node[_type] == _radio && node.name) {
-        var form = input.closest('form'),
-          inputs = 'input[name="' + node.name + '"]';
-
-        inputs = form.length ? form.find(inputs) : $(inputs);
-
-        inputs.each(function () {
-          if (this !== node && $(this).data(_iCheck)) {
-            off($(this), state);
-          }
-        });
-      }
-
-      // Indeterminate state
-      if (indeterminate) {
-
-        // Add indeterminate state
-        node[state] = true;
-
-        // Remove checked state
-        if (node[_checked]) {
-          off(input, _checked, 'force');
-        }
-
-        // Checked or disabled state
-      } else {
-
-        // Add checked or disabled state
-        if (!keep) {
-          node[state] = true;
-        }
-
-        // Remove indeterminate state
-        if (checked && node[_indeterminate]) {
-          off(input, _indeterminate, false);
-        }
-      }
-
-      // Trigger callbacks
-      callbacks(input, checked, state, keep);
-    }
-
-    // Add proper cursor
-    if (node[_disabled] && !!option(input, _cursor, true)) {
-      parent.find('.' + _iCheckHelper).css(_cursor, 'default');
-    }
-
-    // Add state class
-    parent[_add](specific || option(input, state) || '');
-
-    // Set ARIA attribute
-    if (!!parent.attr('role') && !indeterminate) {
-      parent.attr('aria-' + (disabled ? _disabled : _checked), 'true');
-    }
-
-    // Remove regular state class
-    parent[_remove](regular || option(input, callback) || '');
-  }
-
-  // Remove checked, disabled or indeterminate state
-  function off(input, state, keep) {
-    var node = input[0],
-      parent = input.parent(),
-      checked = state == _checked,
-      indeterminate = state == _indeterminate,
-      disabled = state == _disabled,
-      callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
-      regular = option(input, callback + capitalize(node[_type])),
-      specific = option(input, state + capitalize(node[_type]));
-
-    // Prevent unnecessary actions
-    if (node[state] !== false) {
-
-      // Toggle state
-      if (indeterminate || !keep || keep == 'force') {
-        node[state] = false;
-      }
-
-      // Trigger callbacks
-      callbacks(input, checked, callback, keep);
-    }
-
-    // Add proper cursor
-    if (!node[_disabled] && !!option(input, _cursor, true)) {
-      parent.find('.' + _iCheckHelper).css(_cursor, 'pointer');
-    }
-
-    // Remove state class
-    parent[_remove](specific || option(input, state) || '');
-
-    // Set ARIA attribute
-    if (!!parent.attr('role') && !indeterminate) {
-      parent.attr('aria-' + (disabled ? _disabled : _checked), 'false');
-    }
-
-    // Add regular state class
-    parent[_add](regular || option(input, callback) || '');
-  }
-
-  // Remove all traces
-  function tidy(input, callback) {
-    if (input.data(_iCheck)) {
-
-      // Remove everything except input
-      input.parent().html(input.attr('style', input.data(_iCheck).s || ''));
-
-      // Callback
-      if (callback) {
-        input[_callback](callback);
-      }
-
-      // Unbind events
-      input.off('.i').unwrap();
-      $(_label + '[for="' + input[0].id + '"]').add(input.closest(_label)).off('.i');
-    }
-  }
-
-  // Get some option
-  function option(input, state, regular) {
-    if (input.data(_iCheck)) {
-      return input.data(_iCheck).o[state + (regular ? '' : 'Class')];
-    }
-  }
-
-  // Capitalize some string
-  function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  // Executable handlers
-  function callbacks(input, checked, callback, keep) {
-    if (!keep) {
-      if (checked) {
-        var checkValue = input.parent().attr("class").indexOf("checked") > -1 ? false : true;
-        input[_callback]('ifToggled', checkValue);
-      }
-
-      input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
-    }
-  }
-})(window.jQuery || window.Zepto);
-
 /*
  *  webui popover plugin  - v1.2.17
  *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
@@ -17002,7 +16486,7 @@ function(a, b, c) {
 })(jQuery);
 
 /**
- * checkbox  在icheck插件基础上编写, 写成easyui类接口 
+ * 兼容IE6,IE8
  */
 (function($){
 	function createCheckBox(target){
@@ -17014,33 +16498,35 @@ function(a, b, c) {
         }
         t.prop("disabled",opts.disabled);
         t.prop("checked",opts.checked);
-        
-        opts.originalValue=t.prop("checked"); //将初始状态值记录下来 cryze 2019-04-04
-        t.addClass('checkbox-f')  //在原dom增加类checkbox-f
-
-        t.after('<label for="'+opts.id+'">'+opts.label+'</label>');
-
+        opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
+        if (!t.hasClass('checkbox-f')){
+            t.addClass('checkbox-f');                //在原dom增加类checkbox-f
+            var labelHtml = '<label class="checkbox';
+            if (opts.disabled){labelHtml += ' disabled'; }
+            if (opts.checked){labelHtml += ' checked'; }
+            labelHtml += '">'+opts.label+'</label>';
+            var objlabel = $(labelHtml).insertAfter(t);
+            objlabel.unbind('click').bind('click.checkbox',function(e){
+                setValue(target,!$(this).hasClass('checked'));
+            });
+            t.unbind('click').bind('click.checkbox',function(e){
+                if ($(this).prop("disabled")==false){
+                    var val = $(this).is(':checked');
+                    if(val){
+                        if (opts.onChecked) opts.onChecked.call(this,e,true);
+                    }else{
+                        if (opts.onUnchecked) opts.onUnchecked.call(this,e,false);
+                    }
+                    if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
+                }
+                e.stopPropagation();
+                return false;
+            });
+        }
         var lastState=$.data(target, 'checkbox'); //cryze 2019-4-15
-        t.iCheck(opts);
         // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
-        $.data(target, 'checkbox',lastState);  
-
-        t.bind('ifChecked',function(e,value){
-            if (!opts.disabled){
-                if (opts.onChecked) opts.onChecked.call(this,e,value);
-			}
-			return false;
-        }).bind('ifUnchecked',function(e,value){
-            if (!opts.disabled){
-                if (opts.onUnchecked) opts.onUnchecked.call(this,e,value);
-			}
-			return false;
-        }).bind('ifToggled',function(e, value){
-            if (!opts.disabled){
-                if (opts.onCheckChange) opts.onCheckChange.call(this,e,value);
-			}
-			return false;            
-        });
+        $.data(target, 'checkbox',lastState);
+        t.hide();
     }
     /*通过直接改变checkbox的值，或者用form.reset()  会出现样式和选中状态不一致的现象  
     *如checkbox未选中 样式选中  这时想调用取消选中方法发现无效果 
@@ -17048,6 +16534,13 @@ function(a, b, c) {
     *add cryze 2019-04-04
     */
     function fixCls(t){
+        /*if($(t).is(':checked')){
+            $(t).next().addClass('checked');
+        }else{
+            $(t).next().removeClass('checked');
+        }*/
+
+        return ;
         //var checkedClass=$(t).checkbox('options').checkedClass||'checked';
         //cryze 2019-04-17 是radio 但是却当checkbox调用  之前没加fixCls是可以正常用的 兼容下错误用法 
         var checkedClass=(($.data(t,'checkbox')||$.data(t,'radio')||{})['options']||{})['checkedClass']||'checked';
@@ -17074,91 +16567,96 @@ function(a, b, c) {
 			createCheckBox(this);
 		});
 	};
-	
+	function setValue(target,val) {
+        if ($(target).prop("disabled")==false){
+            if (val!=$(target).is(":checked")){
+                $(target).prop("checked",val);
+                if (val){
+                    $(target).next().addClass('checked');
+                }else{
+                    $(target).next().removeClass('checked');
+                }
+                $(target).trigger('click.checkbox');
+            }
+        }
+    }
+    function getValue(target){
+        return $(target).is(':checked');
+    }
 	$.fn.checkbox.methods = {
 		options: function(jq){
 			return $.data(jq[0], 'checkbox').options;
         },
         setValue:function(jq,value){
             return jq.each(function(){
-                var _t = $(this);
-                if (value === true) {
-                    _t.iCheck('check');
-				} else {
-                    _t.iCheck('uncheck');
-                }
+                setValue(this,value);
                 fixCls(this);
             });
         },
         getValue:function(jq){
-            return jq.eq(0).is(':checked');  //checkbox 是先改变checkBox的状态，触发事件，改变样式 ,原本getValue取是否有样式类,在onChecked事件获取会获取到未选中  所以getValue改为取checked的状态
+            return getValue(jq[0]);
+            //return jq.eq(0).is(':checked');  
+            //checkbox 是先改变checkBox的状态，触发事件，改变样式 ,原本getValue取是否有样式类,在onChecked事件获取会获取到未选中  所以getValue改为取checked的状态
             //return jq.eq(0).parent().hasClass("checked")?true:false; 
         },
         setDisable:function(jq,value){
             return jq.each(function(){
                 var _t = $(this);
-                if (value === true) {
-					_t.iCheck('disable');
-				} else {
-					_t.iCheck('enable');
-				}
+                _t.prop("disabled",true);
+                _t.next().addClass("disabled");
             });
         },
         check:function(jq){
             return jq.each(function(){
-                $(this).iCheck('check');
+                setValue(this,true);
                 fixCls(this);
             });
         },
         uncheck:function(jq){
             return jq.each(function(){
-                $(this).iCheck('uncheck');
+                setValue(this,false);
                 fixCls(this);
             });
         },
         toggle:function(jq){
             return jq.each(function(){
-                $(this).iCheck('toggle');
+                setValue(this,!getValue(this));
                 fixCls(this);
             });
         },
         disable:function(jq){
             return jq.each(function(){
-                $(this).iCheck('disable');
+                $(this).prop("disabled",true);
+                $(this).next().addClass('disabled');
             });
         },
         enable:function(jq){
             return jq.each(function(){
-                $(this).iCheck('enable');
+                $(this).prop("disabled",false);
+                $(this).next().removeClass('disabled');
             });
         },
         indeterminate:function(jq){ //第三状态
             return jq.each(function(){
-                $(this).iCheck('indeterminate');
+                //$(this).iCheck('indeterminate');
             });
         },
         determinate:function(jq){
             return jq.each(function(){
-                $(this).iCheck('determinate');
+                //$(this).iCheck('determinate');
             });
         },
-        update:function(jq){
+        update:function(jq){},
+        destroy:function(jq){},
+        clear:function(jq){ //cryze 2019-04-04 add clear 
             return jq.each(function(){
-                $(this).iCheck('update');
+                setValue(this,false);
             });
         },
-        destroy:function(jq){
+        reset:function(jq){  //cryze 2019-04-04 add reset 
             return jq.each(function(){
-                $(this).iCheck('destroy');
-            });
-        },clear:function(jq){ //cryze 2019-04-04 add clear 
-            return jq.each(function(){
-                $(this).checkbox('setValue',false);
-            });
-        },reset:function(jq){  //cryze 2019-04-04 add reset 
-            return jq.each(function(){
-                var originalValue=$(this).checkbox('options').originalValue||false;
-                $(this).checkbox('setValue',originalValue);
+                var originalValue = $(this).checkbox('options').originalValue||false;
+                setValue(this,originalValue);
             });
         }
     };
@@ -17173,65 +16671,15 @@ function(a, b, c) {
     $.fn.checkbox.defaults = {
         id:null,
         label:'',
-        // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
-        handle:'',  //icheck插件支持checkbox与radio ,both by default
-        // base class added to customized checkboxes
-        checkboxClass: 'hischeckbox_square-blue', //'icheckbox',
-        // class added on checked state (input.checked = true)
-        checkedClass: 'checked',
-          // if not empty, used instead of 'checkedClass' option (input type specific)
-          checkedCheckboxClass: '',
-        // if not empty, added as class name on unchecked state (input.checked = false)
-        uncheckedClass: '',
-          // if not empty, used instead of 'uncheckedClass' option (input type specific)
-          uncheckedCheckboxClass: '',
-        // class added on disabled state (input.disabled = true)
-        disabledClass: 'disabled',
-          // if not empty, used instead of 'disabledClass' option (input type specific)
-          disabledCheckboxClass: '',
-        // if not empty, added as class name on enabled state (input.disabled = false)
-        enabledClass: '',
-          // if not empty, used instead of 'enabledClass' option (input type specific)
-          enabledCheckboxClass: '',
-        // class added on indeterminate state (input.indeterminate = true)
-        indeterminateClass: 'indeterminate',
-          // if not empty, used instead of 'indeterminateClass' option (input type specific)
-          indeterminateCheckboxClass: '',
-        // if not empty, added as class name on determinate state (input.indeterminate = false)
-        determinateClass: '',
-          // if not empty, used instead of 'determinateClass' option (input type specific)
-          determinateCheckboxClass: '',
-        // class added on hover state (pointer is moved onto input)
-        hoverClass: 'hover',
-        // class added on focus state (input has gained focus)
-        focusClass: 'focus',
-        // class added on active state (mouse button is pressed on input)
-        activeClass: 'active',
-        // adds hoverClass to customized input on label hover and labelHoverClass to label on input hover
-        labelHover: true,
-          // class added to label if labelHover set to true
-          labelHoverClass: 'hover',
-        // increase clickable area by given % (negative number to decrease)
-        increaseArea: '',
-        // true to set 'pointer' CSS cursor over enabled inputs and 'default' over disabled
-        cursor: false,
-        // set true to inherit original input's class name
-        inheritClass: false,
-        // if set to true, input's id is prefixed with 'iCheck-' and attached
-        inheritID: false,
-        // set true to activate ARIA support
-        aria: false,
-        // add HTML code or text inside customized input
-        insert: '',
 		disabled:false,
         checked:false,
         onCheckChange:null,
-        onChecked:null
+        onChecked:null,
+        onUnchecked:null
 	};
 })(jQuery);
-
 /**
- * radio  在icheck插件基础上编写, 写成easyui类接口 
+ * 兼容IE6,IE8 
  */
 (function($){
 	function createRadio(target){
@@ -17241,35 +16689,42 @@ function(a, b, c) {
             opts.id=opts.label;
             t.attr("id",opts.id);
         }
+        if(opts.name!="") t.attr("name",opts.name);
         t.prop("disabled",opts.disabled);
         t.prop("checked",opts.checked);
         
-        opts.originalValue=t.prop("checked");//将初始状态值记录下来 cryze 2019-04-04
-        t.addClass('radio-f'); //在原dom增加类 radio-f
-
-        t.after('<label for="'+opts.id+'">'+opts.label+'</label>');
-        t.attr("name",opts.name); 
+        opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
+        if (!t.hasClass('radio-f')){
+            t.addClass('radio-f')                //在原dom增加类radio-f
+            var labelHtml = '<label class="radio';
+            if (opts.radioClass){ labelHtml+=" hischeckbox_square-blue";}
+            if (opts.disabled){ labelHtml += ' disabled';}
+            if (opts.checked){ labelHtml += ' checked';}
+            labelHtml += '">'+opts.label+'</label>';
+            var objlabel = $(labelHtml).insertAfter(t);
+            /**事件转到input上*/
+            objlabel.unbind('click').bind('click.radio',function(e){
+                setValue(target,!$(this).hasClass('checked'));
+            });
+            t.unbind('click').bind('click.radio',function(e){
+                if ($(this).prop("disabled")==false){
+                    //setValue(this,!$(this).is(':checked'));
+                    var val = $(this).is(':checked');
+                    if (val){
+                        if (opts.onChecked) opts.onChecked.call(this,e,true);
+                    }else{
+                        //if (opts.onUnchecked) opts.onUnchecked.call(this,e,false);
+                    }
+                    if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
+                }
+                e.stopPropagation();
+                return false;
+            });
+        }
         var lastState=$.data(target, 'radio'); //cryze 2019-4-15
-        t.iCheck(opts);
         // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
-        $.data(target, 'radio',lastState);  
-
-        t.bind('ifChecked',function(e,value){
-            if (!opts.disabled){
-                if (opts.onChecked) opts.onChecked.call(this,e,value);
-			}
-			return false;
-        }).bind('ifUnchecked',function(e,value){
-            if (!opts.disabled){
-                if (opts.onUnchecked) opts.onUnchecked.call(this,e,value);
-			}
-			return false;
-        }).bind('ifToggled',function(e, value){
-            if (!opts.disabled){
-                if (opts.onCheckChange) opts.onCheckChange.call(this,e,value);
-			}
-			return false;            
-        });
+        $.data(target, 'radio',lastState);
+        t.hide();
     }
     /*通过直接改变radio的值，或者用form.reset()  会出现样式和选中状态不一致的现象  
     *如radio未选中 样式选中  这时想调用取消选中方法发现无效果 
@@ -17302,92 +16757,100 @@ function(a, b, c) {
 			}
 			createRadio(this);
 		});
-	};
-	
+    };
+	function setValue(target,val) {
+        if ($(target).prop("disabled")==false){
+            if (val!=$(target).is(":checked")){
+                var name = $(target).attr('name');
+                $('input.radio-f[name="'+name+'"]').next().removeClass('checked');
+                $(target).prop("checked",val);
+                if (val){
+                    $(target).next().addClass('checked');
+                }else{
+                    $(target).next().removeClass('checked');
+                }
+                $(target).trigger('click.radio');
+            }
+        }
+    }
+    function getValue(target){
+        return $(target).is(':checked');
+    }
 	$.fn.radio.methods = {
 		options: function(jq){
 			return $.data(jq[0], 'radio').options;
         },
         setValue:function(jq,value){
             return jq.each(function(){
-                var _t = $(this);
-                if (value === true) {
-					_t.iCheck('check');
-				} else {
-					_t.iCheck('uncheck');
-                }
+                setValue(jq[0],value);
                 fixCls(this);
             });
         },
         getValue:function(jq){
-            return jq.eq(0).is(':checked');  //radio 是先改变radio的状态，触发事件，改变样式  所以getValue取checked状态
+            return getValue(jq[0]);
+            //return jq.eq(0).is(':checked');  //radio 是先改变radio的状态，触发事件，改变样式  所以getValue取checked状态
             //return jq.eq(0).parent().hasClass("checked")?true:false; 
         },
         setDisable:function(jq,value){
             return jq.each(function(){
                 var _t = $(this);
-                if (value === true) {
-					_t.iCheck('disable');
-				} else {
-					_t.iCheck('enable');
-				}
+                _t.prop("disabled",true);
+                _t.next().addClass("disabled");
             });
         },
         check:function(jq){
             return jq.each(function(){
-                $(this).iCheck('check');
+                setValue(this,true);
                 fixCls(this);
             });
         },
         uncheck:function(jq){
             return jq.each(function(){
-                $(this).iCheck('uncheck');
+                setValue(this,false);
                 fixCls(this);
             });
         },
         toggle:function(jq){
             return jq.each(function(){
-                $(this).iCheck('toggle');
+                setValue(this,!getValue(this));
                 fixCls(this);
             });
         },
         disable:function(jq){
             return jq.each(function(){
-                $(this).iCheck('disable');
+                $(this).prop("disabled",true);
+                $(this).next().addClass('disabled');
             });
         },
         enable:function(jq){
             return jq.each(function(){
-                $(this).iCheck('enable');
+                $(this).prop("disabled",false);
+                $(this).next().removeClass('disabled');
             });
         },
         indeterminate:function(jq){ //第三状态
             return jq.each(function(){
-                $(this).iCheck('indeterminate');
+                
             });
         },
         determinate:function(jq){
             return jq.each(function(){
-                $(this).iCheck('determinate');
+                
             });
         },
         update:function(jq){
-            return jq.each(function(){
-                $(this).iCheck('update');
-            });
+           
         },
         destroy:function(jq){
-            return jq.each(function(){
-                $(this).iCheck('destroy');
-            });
+            
         },clear:function(jq){ //cryze 2019-04-04 add clear 
             return jq.each(function(){
-                $(this).radio('setValue',false);
+                setValue(this,false);
             });
         },reset:function(jq){  //cryze 2019-04-04 add reset 
             return jq.each(function(){
                 var originalValue=$(this).radio('options').originalValue||false;
-                $(this).radio('setValue',originalValue);
+                setValue(this,originalValue);
             });
         }
     };
@@ -17403,50 +16866,7 @@ function(a, b, c) {
         id:null,
         label:'',
         name:'',
-        // 'checkbox' or 'radio' to style only checkboxes or radio buttons, both by default
-        handle:'',  //icheck插件支持checkbox与radio ,both by default
-        // base class added to customized radio buttons
-        radioClass: 'hisradio_square-blue', //'iradio',
-        // class added on checked state (input.checked = true)
-        checkedClass: 'checked',
-          checkedRadioClass: '',
-        // if not empty, added as class name on unchecked state (input.checked = false)
-        uncheckedClass: '',
-          uncheckedRadioClass: '',
-        // class added on disabled state (input.disabled = true)
-        disabledClass: 'disabled',
-          disabledRadioClass: '',
-        // if not empty, added as class name on enabled state (input.disabled = false)
-        enabledClass: '',
-          enabledRadioClass: '',
-        // class added on indeterminate state (input.indeterminate = true)
-        indeterminateClass: 'indeterminate',
-          indeterminateRadioClass: '',
-        // if not empty, added as class name on determinate state (input.indeterminate = false)
-        determinateClass: '',
-          determinateRadioClass: '',
-        // class added on hover state (pointer is moved onto input)
-        hoverClass: 'hover',
-        // class added on focus state (input has gained focus)
-        focusClass: 'focus',
-        // class added on active state (mouse button is pressed on input)
-        activeClass: 'active',
-        // adds hoverClass to customized input on label hover and labelHoverClass to label on input hover
-        labelHover: true,
-          // class added to label if labelHover set to true
-          labelHoverClass: 'hover',
-        // increase clickable area by given % (negative number to decrease)
-        increaseArea: '',
-        // true to set 'pointer' CSS cursor over enabled inputs and 'default' over disabled
-        cursor: false,
-        // set true to inherit original input's class name
-        inheritClass: false,
-        // if set to true, input's id is prefixed with 'iCheck-' and attached
-        inheritID: false,
-        // set true to activate ARIA support
-        aria: false,
-        // add HTML code or text inside customized input
-        insert: '',
+        radioClass:"",
 		disabled:false,
         checked:false,
         onCheckChange:null,
