@@ -2,6 +2,11 @@
     function init(_3a6) {
         $(_3a6).appendTo("body");
         $(_3a6).addClass("menu-top");
+        var opts = $.data(_3a6,"menu").options;
+        if (opts.isTopZindex){
+            var ocxFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
+            $(_3a6).prepend(ocxFrame);
+        }
         $(document).unbind(".menu").bind("mousedown.menu", function (e) {
             var m = $(e.target).closest("div.menu,div.combo-p");
             if (m.length) {
@@ -425,6 +430,7 @@
         return $.extend({}, $.parser.parseOptions(_3df, ["left", "top", { minWidth: "number", hideOnUnhover: "boolean" }]));
     };
     $.fn.menu.defaults = {
+        isTopZindex:false,
         zIndex: 110000, left: 0, top: 0, alignTo: null, align: "left", minWidth: 120, hideOnUnhover: true, onShow: function () {
         }, onHide: function () {
         }, onClick: function (item) {
