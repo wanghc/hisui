@@ -75,13 +75,13 @@
 	<div class="demo-exp-code entry-content"> 
 
         <a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'">菜单</a>
-        <div id="mm-blue" style="width:100px;">   
+        <div id="mm-blue" data-options='isTopZindex:true' style="width:100px;">   
             <div onclick="console.log('停止');">停止</div>   
             <div onclick="console.log('作废');">作废</div>     
             <!-- data-options="iconCls:'icon-cancel'" -->
         </div>
 
-        <a href="javascript:void(0)" id="mbedit-blue" class="hisui-menubutton" style="width:200px;" data-options="menu:'#mmedit-blue',iconCls:'icon-edit',otherCls:'menubutton-blue'">Edit</a>
+        <a href="javascript:void(0)" id="mbedit-blue" class="hisui-menubutton" style="width:200px;" data-options="isTopZindex:true,menu:'#mmedit-blue',iconCls:'icon-edit',otherCls:'menubutton-blue'">Edit</a>
         <div id="mmedit-blue" style="width:150px;">
             <div data-options="iconCls:'icon-undo'">Undo</div>
             <div data-options="iconCls:'icon-redo'">Redo</div>
@@ -162,7 +162,21 @@
     &lt;div&gt;查询&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-	</div>
-	<prettyprint/>
+    </div>
+    <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isTopZindex</td>
+			<td>是否覆盖在病历编辑器这上</td>
+			<td>false</td>
+			<td>可选值：<code>true|false</code></td>
+		</tr>
+	</table>
+    <prettyprint/>
 </body>
 </html>

@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-08-19 ##
+* `menu`与`menubutton`支持`isTopZindex`属性
+
 ## 2019-08-11 ##
 * `checkbox`与`radio`重写,支持IE6+
 

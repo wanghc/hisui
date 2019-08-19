@@ -14,9 +14,9 @@
         if (opts.menu) {
             $(opts.menu).addClass(opts.otherCls);  //cryze  menubutton 的menu增加类 opts.otherCls
             if ((opts.otherCls=="menubutton-toolbar")||(opts.otherCls=="menubutton-blue")){
-                $(opts.menu).menu({width:btn._outerWidth()});
+                $(opts.menu).menu({width:btn._outerWidth(),isTopZindex:opts.isTopZindex}); //menubutton 支持isTopZindex属性
             }else{
-                $(opts.menu).menu();
+                $(opts.menu).menu({isTopZindex:opts.isTopZindex}); //menubutton 支持isTopZindex属性 20190819
             }
             var _3e2 = $(opts.menu).menu("options");
             var _3e3 = _3e2.onShow;
