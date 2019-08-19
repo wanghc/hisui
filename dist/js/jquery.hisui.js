@@ -16525,8 +16525,8 @@ function(a, b, c) {
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
                 }
-                e.stopPropagation();
-                return false;
+                //e.stopPropagation();
+                //return false;
             });
         }
         var lastState=$.data(target, 'checkbox'); //cryze 2019-4-15
@@ -16576,7 +16576,7 @@ function(a, b, c) {
 	function setValue(target,val) {
         if ($(target).prop("disabled")==false){
             if (val!=$(target).is(":checked")){
-                $(target).prop("checked",val);
+                //$(target).prop("checked",val); --->trigger('click.checkbox')会触发input.checkbox的勾选, 不用手动设置
                 if (val){
                     $(target).next().addClass('checked');
                 }else{
@@ -16723,8 +16723,8 @@ function(a, b, c) {
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
                 }
-                e.stopPropagation();
-                return false;
+                //e.stopPropagation();
+                //return false;
             });
         }
         var lastState=$.data(target, 'radio'); //cryze 2019-4-15
@@ -16766,7 +16766,7 @@ function(a, b, c) {
     };
 	function setValue(target,val) {
         if ($(target).prop("disabled")==false){
-            if (val!=$(target).is(":checked")){
+            if ( (val===true)&&(val!=$(target).is(":checked"))){
                 var name = $(target).attr('name');
                 $('input.radio-f[name="'+name+'"]').next().removeClass('checked');
                 $(target).prop("checked",val);

@@ -5,7 +5,7 @@
     <title>勾选框</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
@@ -16,7 +16,7 @@
     <h3>如：</h3>
     <div class="demo-exp-code entry-content"> 
         <div style="padding: 5px">
-            <input class='hisui-checkbox' type="checkbox" data-options="onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
+            <input class='hisui-checkbox' type="checkbox" data-options="onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
             <input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选"/>
             <input class='hisui-checkbox' type="checkbox" checked label="勾选"/>
             <input class='hisui-checkbox' type="checkbox" disabled label="禁用"/>

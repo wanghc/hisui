@@ -7558,7 +7558,7 @@ label.hischeckbox_square-blue.radio.checked.disabled {
   float: none;
 }
 .lookup {
-  border-color: #40a2de;
+  border-color: #9ed2f2;
   background-color: #ffffff;
   display: inline-block;
   white-space: nowrap;
@@ -7613,6 +7613,9 @@ label.hischeckbox_square-blue.radio.checked.disabled {
 .lookup.disabled .lookup-arrow {
   background-color: #f7f7f7;
   background-image: url(images/lookup_arrow_disable.png);
+}
+.lookup-p > .lookup-panel {
+  border-color: #9ed2f2;
 }
 .kw-chapter {
   clear: both;

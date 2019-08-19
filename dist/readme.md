@@ -37,6 +37,8 @@ $("#btn").linkbutton("disable");
 ## 2019-08-19 ##
 * `menu`与`menubutton`支持`isTopZindex`属性
 * `lookup`边框色修改
+* `checkbox`事件onChecked与onUnchecked入参值问题
+
 ## 2019-08-11 ##
 * `checkbox`与`radio`重写,支持IE6+
 

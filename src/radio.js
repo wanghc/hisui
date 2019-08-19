@@ -37,8 +37,8 @@
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
                 }
-                e.stopPropagation();
-                return false;
+                //e.stopPropagation();
+                //return false;
             });
         }
         var lastState=$.data(target, 'radio'); //cryze 2019-4-15
@@ -80,7 +80,7 @@
     };
 	function setValue(target,val) {
         if ($(target).prop("disabled")==false){
-            if (val!=$(target).is(":checked")){
+            if ( (val===true)&&(val!=$(target).is(":checked"))){
                 var name = $(target).attr('name');
                 $('input.radio-f[name="'+name+'"]').next().removeClass('checked');
                 $(target).prop("checked",val);
