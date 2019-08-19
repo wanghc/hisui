@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-08-19 ##
 * `menu`与`menubutton`支持`isTopZindex`属性
-
+* `lookup`边框色修改
 ## 2019-08-11 ##
 * `checkbox`与`radio`重写,支持IE6+
 
