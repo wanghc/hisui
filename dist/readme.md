@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2019-08-19 ##
-* `menu`与`menubutton`支持`isTopZindex`属性--合并
+* `menu`与`menubutton`支持`isTopZindex`属性
 
 ## 2019-07-05 ##
 * `datebox`增加validParams属性
