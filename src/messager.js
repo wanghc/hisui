@@ -133,8 +133,10 @@
     };
     $.messager = {
         show: function (_284) {
+            if ($.isFunction($g)) _284.msg = $g(_284.msg);
             return _27d(_284);
         }, alert: function (_285, msg, icon, fn) {
+            if ($.isFunction($g)) msg = $g(msg);
             /* 对象文字 add margin-left:42px;*/
             var _286 = "<div style=\"margin-left:42px;\">" + msg + "</div>";
             switch (icon) {
@@ -166,6 +168,7 @@
             var win = _27f(_285, _286, _287);
             return win;
         }, confirm: function (_288, msg, fn) {
+            if ($.isFunction($g)) msg = $g(msg);
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>";
             var _28a = {};
             _28a[$.messager.defaults.ok] = function () {
@@ -185,6 +188,7 @@
             var win = _27f(_288, _289, _28a);
             return win;
         }, prompt: function (_28b, msg, fn) {
+            if ($.isFunction($g)) msg = $g(msg);
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>";
             var _28d = {};
             _28d[$.messager.defaults.ok] = function () {
@@ -220,6 +224,7 @@
                 return _290();
             }
             var opts = $.extend({ title: "", msg: "", text: undefined, interval: 300 }, _28e || {});
+            if ($.isFunction($g)) opts.msg = $g(opts.msg);
             var _291 = "<div class=\"messager-progress\"><div class=\"messager-p-msg\"></div><div class=\"messager-p-bar\"></div></div>";
             var win = _27f(opts.title, _291, null);
             win.find("div.messager-p-msg").html(opts.msg);
@@ -250,6 +255,7 @@
             var defopt = {style:{top:'',left:''},
                msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
+            if ($.isFunction($g)) o.msg = $g(o.msg);
             var html = '<div class="messager-popover '+o.type+'" style="display:none;">\
             <span class="messager-popover-icon '+o.type+'"/><span class="content">'+o.msg+'</span>\
             <span class="close"></span>\
