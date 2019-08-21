@@ -1,32 +1,32 @@
 (function ($) {     //cryze from 1.5
-    function _68(_69) {
-        $(_69).addClass("droppable");
-        $(_69).bind("_dragenter", function (e, _6a) {
-            $.data(_69, "droppable").options.onDragEnter.apply(_69, [e, _6a]);
+    function init(target) {
+        $(target).addClass("droppable");
+        $(target).bind("_dragenter", function (e, source) {
+            $.data(target, "droppable").options.onDragEnter.apply(target, [e, source]);
         });
-        $(_69).bind("_dragleave", function (e, _6b) {
-            $.data(_69, "droppable").options.onDragLeave.apply(_69, [e, _6b]);
+        $(target).bind("_dragleave", function (e, source) {
+            $.data(target, "droppable").options.onDragLeave.apply(target, [e, source]);
         });
-        $(_69).bind("_dragover", function (e, _6c) {
-            $.data(_69, "droppable").options.onDragOver.apply(_69, [e, _6c]);
+        $(target).bind("_dragover", function (e, source) {
+            $.data(target, "droppable").options.onDragOver.apply(target, [e, source]);
         });
-        $(_69).bind("_drop", function (e, _6d) {
-            $.data(_69, "droppable").options.onDrop.apply(_69, [e, _6d]);
+        $(target).bind("_drop", function (e, source) {
+            $.data(target, "droppable").options.onDrop.apply(target, [e, source]);
         });
     };
-    $.fn.droppable = function (_6e, _6f) {
-        if (typeof _6e == "string") {
-            return $.fn.droppable.methods[_6e](this, _6f);
+    $.fn.droppable = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.droppable.methods[options](this, param);
         }
-        _6e = _6e || {};
+        options = options || {};
         return this.each(function () {
-            var _70 = $.data(this, "droppable");
-            if (_70) {
-                $.extend(_70.options, _6e);
+            var state = $.data(this, "droppable");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _68(this);
+                init(this);
                 $.data(this, "droppable", {
-                    options: $.extend({}, $.fn.droppable.defaults, $.fn.droppable.parseOptions(this), _6e)
+                    options: $.extend({}, $.fn.droppable.defaults, $.fn.droppable.parseOptions(this), options)
                 });
             }
         });
@@ -50,18 +50,18 @@
             });
         }
     };
-    $.fn.droppable.parseOptions = function (_71) {
-        var t = $(_71);
-        return $.extend({}, $.parser.parseOptions(_71, ["accept"]), {
+    $.fn.droppable.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["accept"]), {
             disabled: (t.attr("disabled") ? true : undefined)
         });
     };
     $.fn.droppable.defaults = {
         accept: null,
         disabled: false,
-        onDragEnter: function (e, _72) {},
-        onDragOver: function (e, _73) {},
-        onDragLeave: function (e, _74) {},
-        onDrop: function (e, _75) {}
+        onDragEnter: function (e, source) {},
+        onDragOver: function (e, source) {},
+        onDragLeave: function (e, source) {},
+        onDrop: function (e, source) {}
     };
 })(jQuery);

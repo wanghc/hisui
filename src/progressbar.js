@@ -1,72 +1,72 @@
 (function ($) {
-    function init(_1b6) {
-        $(_1b6).addClass("progressbar");
-        $(_1b6).html("<div class=\"progressbar-text\"></div><div class=\"progressbar-value\"><div class=\"progressbar-text\"></div></div>");
-        return $(_1b6);
+    function init(target) {
+        $(target).addClass("progressbar");
+        $(target).html("<div class=\"progressbar-text\"></div><div class=\"progressbar-value\"><div class=\"progressbar-text\"></div></div>");
+        return $(target);
     };
-    function _1b7(_1b8, _1b9) {
-        var opts = $.data(_1b8, "progressbar").options;
-        var bar = $.data(_1b8, "progressbar").bar;
-        if (_1b9) {
-            opts.width = _1b9;
+    function setSize(target, width) {
+        var opts = $.data(target, "progressbar").options;
+        var bar = $.data(target, "progressbar").bar;
+        if (width) {
+            opts.width = width;
         }
         bar._outerWidth(opts.width)._outerHeight(opts.height);
         bar.find("div.progressbar-text").width(bar.width());
         bar.find("div.progressbar-text,div.progressbar-value").css({ height: bar.height() + "px", lineHeight: bar.height() + "px" });
     };
-    $.fn.progressbar = function (_1ba, _1bb) {
-        if (typeof _1ba == "string") {
-            var _1bc = $.fn.progressbar.methods[_1ba];
-            if (_1bc) {
-                return _1bc(this, _1bb);
+    $.fn.progressbar = function (options, param) {
+        if (typeof options == "string") {
+            var method = $.fn.progressbar.methods[options];
+            if (method) {
+                return method(this, param);
             }
         }
-        _1ba = _1ba || {};
+        options = options || {};
         return this.each(function () {
-            var _1bd = $.data(this, "progressbar");
-            if (_1bd) {
-                $.extend(_1bd.options, _1ba);
+            var state = $.data(this, "progressbar");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _1bd = $.data(this, "progressbar", { options: $.extend({}, $.fn.progressbar.defaults, $.fn.progressbar.parseOptions(this), _1ba), bar: init(this) });
+                state = $.data(this, "progressbar", { options: $.extend({}, $.fn.progressbar.defaults, $.fn.progressbar.parseOptions(this), options), bar: init(this) });
             }
-            $(this).progressbar("setValue", _1bd.options.value);
-            _1b7(this);
+            $(this).progressbar("setValue", state.options.value);
+            setSize(this);
         });
     };
     $.fn.progressbar.methods = {
         options: function (jq) {
             return $.data(jq[0], "progressbar").options;
-        }, resize: function (jq, _1be) {
+        }, resize: function (jq, width) {
             return jq.each(function () {
-                _1b7(this, _1be);
+                setSize(this, width);
             });
         }, getValue: function (jq) {
             return $.data(jq[0], "progressbar").options.value;
-        }, setValue: function (jq, _1bf) {
-            if (_1bf < 0) {
-                _1bf = 0;
+        }, setValue: function (jq, value) {
+            if (value < 0) {
+                value = 0;
             }
-            if (_1bf > 100) {
-                _1bf = 100;
+            if (value > 100) {
+                value = 100;
             }
             return jq.each(function () {
                 var opts = $.data(this, "progressbar").options;
-                var text = opts.text.replace(/{value}/, _1bf);
-                var _1c0 = opts.value;
-                opts.value = _1bf;
-                $(this).find("div.progressbar-value").width(_1bf + "%");
+                var text = opts.text.replace(/{value}/, value);
+                var oldValue = opts.value;
+                opts.value = value;
+                $(this).find("div.progressbar-value").width(value + "%");
                 $(this).find("div.progressbar-text").html(text);
-                if (_1c0 != _1bf) {
-                    opts.onChange.call(this, _1bf, _1c0);
+                if (oldValue != value) {
+                    opts.onChange.call(this, value, oldValue);
                 }
             });
         }
     };
-    $.fn.progressbar.parseOptions = function (_1c1) {
-        return $.extend({}, $.parser.parseOptions(_1c1, ["width", "height", "text", { value: "number" }]));
+    $.fn.progressbar.parseOptions = function (target) {
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "text", { value: "number" }]));
     };
     $.fn.progressbar.defaults = {
-        width: "auto", height: 22, value: 0, text: "{value}%", onChange: function (_1c2, _1c3) {
+        width: "auto", height: 22, value: 0, text: "{value}%", onChange: function (newValue, oldValue) {
         }
     };
 })(jQuery);

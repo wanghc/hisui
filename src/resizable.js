@@ -1,84 +1,84 @@
 (function ($) {
-    $.fn.resizable = function (_57, _58) {
-        if (typeof _57 == "string") {
-            return $.fn.resizable.methods[_57](this, _58);
+    $.fn.resizable = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.resizable.methods[options](this, param);
         }
-        function _59(e) {
-            var _5a = e.data;
-            var _5b = $.data(_5a.target, "resizable").options;
-            if (_5a.dir.indexOf("e") != -1) {
-                var _5c = _5a.startWidth + e.pageX - _5a.startX;
-                _5c = Math.min(Math.max(_5c, _5b.minWidth), _5b.maxWidth);
-                _5a.width = _5c;
+        function resize(e) {
+            var resizeData = e.data;
+            var options = $.data(resizeData.target, "resizable").options;
+            if (resizeData.dir.indexOf("e") != -1) {
+                var width = resizeData.startWidth + e.pageX - resizeData.startX;
+                width = Math.min(Math.max(width, options.minWidth), options.maxWidth);
+                resizeData.width = width;
             }
-            if (_5a.dir.indexOf("s") != -1) {
-                var _5d = _5a.startHeight + e.pageY - _5a.startY;
-                _5d = Math.min(Math.max(_5d, _5b.minHeight), _5b.maxHeight);
-                _5a.height = _5d;
+            if (resizeData.dir.indexOf("s") != -1) {
+                var height = resizeData.startHeight + e.pageY - resizeData.startY;
+                height = Math.min(Math.max(height, options.minHeight), options.maxHeight);
+                resizeData.height = height;
             }
-            if (_5a.dir.indexOf("w") != -1) {
-                var _5c = _5a.startWidth - e.pageX + _5a.startX;
-                _5c = Math.min(Math.max(_5c, _5b.minWidth), _5b.maxWidth);
-                _5a.width = _5c;
-                _5a.left = _5a.startLeft + _5a.startWidth - _5a.width;
+            if (resizeData.dir.indexOf("w") != -1) {
+                var width = resizeData.startWidth - e.pageX + resizeData.startX;
+                width = Math.min(Math.max(width, options.minWidth), options.maxWidth);
+                resizeData.width = width;
+                resizeData.left = resizeData.startLeft + resizeData.startWidth - resizeData.width;
             }
-            if (_5a.dir.indexOf("n") != -1) {
-                var _5d = _5a.startHeight - e.pageY + _5a.startY;
-                _5d = Math.min(Math.max(_5d, _5b.minHeight), _5b.maxHeight);
-                _5a.height = _5d;
-                _5a.top = _5a.startTop + _5a.startHeight - _5a.height;
-            }
-        };
-        function _5e(e) {
-            var _5f = e.data;
-            var t = $(_5f.target);
-            t.css({ left: _5f.left, top: _5f.top });
-            if (t.outerWidth() != _5f.width) {
-                t._outerWidth(_5f.width);
-            }
-            if (t.outerHeight() != _5f.height) {
-                t._outerHeight(_5f.height);
+            if (resizeData.dir.indexOf("n") != -1) {
+                var height = resizeData.startHeight - e.pageY + resizeData.startY;
+                height = Math.min(Math.max(height, options.minHeight), options.maxHeight);
+                resizeData.height = height;
+                resizeData.top = resizeData.startTop + resizeData.startHeight - resizeData.height;
             }
         };
-        function _60(e) {
+        function applySize(e) {
+            var resizeData = e.data;
+            var t = $(resizeData.target);
+            t.css({ left: resizeData.left, top: resizeData.top });
+            if (t.outerWidth() != resizeData.width) {
+                t._outerWidth(resizeData.width);
+            }
+            if (t.outerHeight() != resizeData.height) {
+                t._outerHeight(resizeData.height);
+            }
+        };
+        function doDown(e) {
             $.fn.resizable.isResizing = true;
             $.data(e.data.target, "resizable").options.onStartResize.call(e.data.target, e);
             return false;
         };
-        function _61(e) {
-            _59(e);
+        function doMove(e) {
+            resize(e);
             if ($.data(e.data.target, "resizable").options.onResize.call(e.data.target, e) != false) {
-                _5e(e);
+                applySize(e);
             }
             return false;
         };
-        function _62(e) {
+        function doUp(e) {
             $.fn.resizable.isResizing = false;
-            _59(e, true);
-            _5e(e);
+            resize(e, true);
+            applySize(e);
             $.data(e.data.target, "resizable").options.onStopResize.call(e.data.target, e);
             $(document).unbind(".resizable");
             $("body").css("cursor", "");
             return false;
         };
         return this.each(function () {
-            var _63 = null;
-            var _64 = $.data(this, "resizable");
-            if (_64) {
+            var opts = null;
+            var state = $.data(this, "resizable");
+            if (state) {
                 $(this).unbind(".resizable");
-                _63 = $.extend(_64.options, _57 || {});
+                opts = $.extend(state.options, options || {});
             } else {
-                _63 = $.extend({}, $.fn.resizable.defaults, $.fn.resizable.parseOptions(this), _57 || {});
-                $.data(this, "resizable", { options: _63 });
+                opts = $.extend({}, $.fn.resizable.defaults, $.fn.resizable.parseOptions(this), options || {});
+                $.data(this, "resizable", { options: opts });
             }
-            if (_63.disabled == true) {
+            if (opts.disabled == true) {
                 return;
             }
             $(this).bind("mousemove.resizable", { target: this }, function (e) {
                 if ($.fn.resizable.isResizing) {
                     return;
                 }
-                var dir = _65(e);
+                var dir = getDirection(e);
                 if (dir == "") {
                     $(e.data.target).css("cursor", "");
                 } else {
@@ -87,11 +87,11 @@
             }).bind("mouseleave.resizable", { target: this }, function (e) {
                 $(e.data.target).css("cursor", "");
             }).bind("mousedown.resizable", { target: this }, function (e) {
-                var dir = _65(e);
+                var dir = getDirection(e);
                 if (dir == "") {
                     return;
                 }
-                function _66(css) {
+                function getCssValue(css) {
                     var val = parseInt($(e.data.target).css(css));
                     if (isNaN(val)) {
                         return 0;
@@ -99,37 +99,37 @@
                         return val;
                     }
                 };
-                var _67 = { target: e.data.target, dir: dir, startLeft: _66("left"), startTop: _66("top"), left: _66("left"), top: _66("top"), startX: e.pageX, startY: e.pageY, startWidth: $(e.data.target).outerWidth(), startHeight: $(e.data.target).outerHeight(), width: $(e.data.target).outerWidth(), height: $(e.data.target).outerHeight(), deltaWidth: $(e.data.target).outerWidth() - $(e.data.target).width(), deltaHeight: $(e.data.target).outerHeight() - $(e.data.target).height() };
-                $(document).bind("mousedown.resizable", _67, _60);
-                $(document).bind("mousemove.resizable", _67, _61);
-                $(document).bind("mouseup.resizable", _67, _62);
+                var data = { target: e.data.target, dir: dir, startLeft: getCssValue("left"), startTop: getCssValue("top"), left: getCssValue("left"), top: getCssValue("top"), startX: e.pageX, startY: e.pageY, startWidth: $(e.data.target).outerWidth(), startHeight: $(e.data.target).outerHeight(), width: $(e.data.target).outerWidth(), height: $(e.data.target).outerHeight(), deltaWidth: $(e.data.target).outerWidth() - $(e.data.target).width(), deltaHeight: $(e.data.target).outerHeight() - $(e.data.target).height() };
+                $(document).bind("mousedown.resizable", data, doDown);
+                $(document).bind("mousemove.resizable", data, doMove);
+                $(document).bind("mouseup.resizable", data, doUp);
                 $("body").css("cursor", dir + "-resize");
             });
-            function _65(e) {
+            function getDirection(e) {
                 var tt = $(e.data.target);
                 var dir = "";
-                var _68 = tt.offset();
-                var _69 = tt.outerWidth();
-                var _6a = tt.outerHeight();
-                var _6b = _63.edge;
-                if (e.pageY > _68.top && e.pageY < _68.top + _6b) {
+                var offset = tt.offset();
+                var width = tt.outerWidth();
+                var height = tt.outerHeight();
+                var edge = opts.edge;
+                if (e.pageY > offset.top && e.pageY < offset.top + edge) {
                     dir += "n";
                 } else {
-                    if (e.pageY < _68.top + _6a && e.pageY > _68.top + _6a - _6b) {
+                    if (e.pageY < offset.top + height && e.pageY > offset.top + height - edge) {
                         dir += "s";
                     }
                 }
-                if (e.pageX > _68.left && e.pageX < _68.left + _6b) {
+                if (e.pageX > offset.left && e.pageX < offset.left + edge) {
                     dir += "w";
                 } else {
-                    if (e.pageX < _68.left + _69 && e.pageX > _68.left + _69 - _6b) {
+                    if (e.pageX < offset.left + width && e.pageX > offset.left + width - edge) {
                         dir += "e";
                     }
                 }
-                var _6c = _63.handles.split(",");
-                for (var i = 0; i < _6c.length; i++) {
-                    var _6d = _6c[i].replace(/(^\s*)|(\s*$)/g, "");
-                    if (_6d == "all" || _6d == dir) {
+                var handles = opts.handles.split(",");
+                for (var i = 0; i < handles.length; i++) {
+                    var handle = handles[i].replace(/(^\s*)|(\s*$)/g, "");
+                    if (handle == "all" || handle == dir) {
                         return dir;
                     }
                 }
@@ -150,9 +150,9 @@
             });
         }
     };
-    $.fn.resizable.parseOptions = function (_6e) {
-        var t = $(_6e);
-        return $.extend({}, $.parser.parseOptions(_6e, ["handles", { minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number", edge: "number" }]), { disabled: (t.attr("disabled") ? true : undefined) });
+    $.fn.resizable.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["handles", { minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number", edge: "number" }]), { disabled: (t.attr("disabled") ? true : undefined) });
     };
     $.fn.resizable.defaults = {
         disabled: false, handles: "n, e, s, w, ne, se, sw, nw, all", minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000, edge: 5, onStartResize: function (e) {

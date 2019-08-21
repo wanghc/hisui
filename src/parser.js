@@ -75,72 +75,72 @@
     };
     /*--1.5.js--jquery.parser.js--method-----end---*/
     $.parser = {
-        auto: true, onComplete: function (_1) {
-        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox"], parse: function (_2) {
+        auto: true, onComplete: function (context) {
+        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox"], parse: function (context) {
             var aa = [];
             for (var i = 0; i < $.parser.plugins.length; i++) {
-                var _3 = $.parser.plugins[i];
-                var r = $(".hisui-" + _3, _2);
+                var name = $.parser.plugins[i];
+                var r = $(".hisui-" + name, context);
                 if (r.length) {
-                    if (r[_3]) {
-                        r[_3]();
+                    if (r[name]) {
+                        r[name]();
                     } else {
-                        aa.push({ name: _3, jq: r });
+                        aa.push({ name: name, jq: r });
                     }
                 }
             }
             if (aa.length && window.easyloader) {
-                var _4 = [];
+                var names = [];
                 for (var i = 0; i < aa.length; i++) {
-                    _4.push(aa[i].name);
+                    names.push(aa[i].name);
                 }
-                easyloader.load(_4, function () {
+                easyloader.load(names, function () {
                     for (var i = 0; i < aa.length; i++) {
-                        var _5 = aa[i].name;
+                        var name = aa[i].name;
                         var jq = aa[i].jq;
-                        jq[_5]();
+                        jq[name]();
                     }
-                    $.parser.onComplete.call($.parser, _2);
+                    $.parser.onComplete.call($.parser, context);
                 });
             } else {
-                $.parser.onComplete.call($.parser, _2);
+                $.parser.onComplete.call($.parser, context);
             }
-        }, parseOptions: function (_6, _7) {
-            var t = $(_6);
-            var _8 = {};
+        }, parseOptions: function (target, properties) {
+            var t = $(target);
+            var options = {};
             var s = $.trim(t.attr("data-options"));
             if (s) {
                 if (s.substring(0, 1) != "{") {
                     s = "{" + s + "}";
                 }
-                _8 = (new Function("return " + s))();
+                options = (new Function("return " + s))();
             }
-            if (_7) {
-                var _9 = {};
-                for (var i = 0; i < _7.length; i++) {
-                    var pp = _7[i];
+            if (properties) {
+                var opts = {};
+                for (var i = 0; i < properties.length; i++) {
+                    var pp = properties[i];
                     if (typeof pp == "string") {
                         if (pp == "width" || pp == "height" || pp == "left" || pp == "top") {
-                            _9[pp] = parseInt(_6.style[pp]) || undefined;
+                            opts[pp] = parseInt(target.style[pp]) || undefined;
                         } else {
-                            _9[pp] = t.attr(pp);
+                            opts[pp] = t.attr(pp);
                         }
                     } else {
-                        for (var _a in pp) {
-                            var _b = pp[_a];
-                            if (_b == "boolean") {
-                                _9[_a] = t.attr(_a) ? (t.attr(_a) == "true") : undefined;
+                        for (var name in pp) {
+                            var type = pp[name];
+                            if (type == "boolean") {
+                                opts[name] = t.attr(name) ? (t.attr(name) == "true") : undefined;
                             } else {
-                                if (_b == "number") {
-                                    _9[_a] = t.attr(_a) == "0" ? 0 : parseFloat(t.attr(_a)) || undefined;
+                                if (type == "number") {
+                                    opts[name] = t.attr(name) == "0" ? 0 : parseFloat(t.attr(name)) || undefined;
                                 }
                             }
                         }
                     }
                 }
-                $.extend(_8, _9);
+                $.extend(options, opts);
             }
-            return _8;
+            return options;
         }
     };
     $(function () {
@@ -152,8 +152,8 @@
             $.parser.parse();
         }
     });
-    $.fn._outerWidth = function (_c) {
-        if (_c == undefined) {
+    $.fn._outerWidth = function (width) {
+        if (width == undefined) {
             if (this[0] == window) {
                 return this.width() || document.body.clientWidth;
             }
@@ -161,14 +161,14 @@
         }
         return this.each(function () {
             if ($._boxModel) {
-                $(this).width(_c - ($(this).outerWidth() - $(this).width()));
+                $(this).width(width - ($(this).outerWidth() - $(this).width()));
             } else {
-                $(this).width(_c);
+                $(this).width(width);
             }
         });
     };
-    $.fn._outerHeight = function (_d) {
-        if (_d == undefined) {
+    $.fn._outerHeight = function (height) {
+        if (height == undefined) {
             if (this[0] == window) {
                 return this.height() || document.body.clientHeight;
             }
@@ -176,31 +176,31 @@
         }
         return this.each(function () {
             if ($._boxModel) {
-                $(this).height(_d - ($(this).outerHeight() - $(this).height()));
+                $(this).height(height - ($(this).outerHeight() - $(this).height()));
             } else {
-                $(this).height(_d);
+                $(this).height(height);
             }
         });
     };
-    $.fn._scrollLeft = function (_e) {
-        if (_e == undefined) {
+    $.fn._scrollLeft = function (left) {
+        if (left == undefined) {
             return this.scrollLeft();
         } else {
             return this.each(function () {
-                $(this).scrollLeft(_e);
+                $(this).scrollLeft(left);
             });
         }
     };
     $.fn._propAttr = $.fn.prop || $.fn.attr;
-    $.fn._fit = function (_f) {
-        _f = _f == undefined ? true : _f;
+    $.fn._fit = function (fit) {
+        fit = fit == undefined ? true : fit;
         var t = this[0];
         var p = (t.tagName == "BODY" ? t : this.parent()[0]);
-        var _10 = p.fcount || 0;
-        if (_f) {
+        var fcount = p.fcount || 0;
+        if (fit) {
             if (!t.fitted) {
                 t.fitted = true;
-                p.fcount = _10 + 1;
+                p.fcount = fcount + 1;
                 $(p).addClass("panel-noscroll");
                 if (p.tagName == "BODY") {
                     $("html").addClass("panel-fit");
@@ -209,7 +209,7 @@
         } else {
             if (t.fitted) {
                 t.fitted = false;
-                p.fcount = _10 - 1;
+                p.fcount = fcount - 1;
                 if (p.fcount == 0) {
                     $(p).removeClass("panel-noscroll");
                     if (p.tagName == "BODY") {
@@ -222,62 +222,62 @@
     };
 })(jQuery);
 (function ($) {
-    var _11 = null;
-    var _12 = null;
-    var _13 = false;
-    function _14(e) {
+    var longTouchTimer = null;
+    var dblTouchTimer = null;
+    var isDblClick = false;
+    function onTouchStart(e) {
         if (e.touches.length != 1) {
             return;
         }
-        if (!_13) {
-            _13 = true;
+        if (!isDblClick) {
+            isDblClick = true;
             dblClickTimer = setTimeout(function () {
-                _13 = false;
+                isDblClick = false;
             }, 500);
         } else {
             clearTimeout(dblClickTimer);
-            _13 = false;
-            _15(e, "dblclick");
+            isDblClick = false;
+            fire(e, "dblclick");
         }
-        _11 = setTimeout(function () {
-            _15(e, "contextmenu", 3);
+        longTouchTimer = setTimeout(function () {
+            fire(e, "contextmenu", 3);
         }, 1000);
-        _15(e, "mousedown");
+        fire(e, "mousedown");
         if ($.fn.draggable.isDragging || $.fn.resizable.isResizing) {
             e.preventDefault();
         }
     };
-    function _16(e) {
+    function onTouchMove(e) {
         if (e.touches.length != 1) {
             return;
         }
-        if (_11) {
-            clearTimeout(_11);
+        if (longTouchTimer) {
+            clearTimeout(longTouchTimer);
         }
-        _15(e, "mousemove");
+        fire(e, "mousemove");
         if ($.fn.draggable.isDragging || $.fn.resizable.isResizing) {
             e.preventDefault();
         }
     };
-    function _17(e) {
-        if (_11) {
-            clearTimeout(_11);
+    function onTouchEnd(e) {
+        if (longTouchTimer) {
+            clearTimeout(longTouchTimer);
         }
-        _15(e, "mouseup");
+        fire(e, "mouseup");
         if ($.fn.draggable.isDragging || $.fn.resizable.isResizing) {
             e.preventDefault();
         }
     };
-    function _15(e, _18, _19) {
-        var _1a = new $.Event(_18);
-        _1a.pageX = e.changedTouches[0].pageX;
-        _1a.pageY = e.changedTouches[0].pageY;
-        _1a.which = _19 || 1;
-        $(e.target).trigger(_1a);
+    function fire(e, name, which) {
+        var event = new $.Event(name);
+        event.pageX = e.changedTouches[0].pageX;
+        event.pageY = e.changedTouches[0].pageY;
+        event.which = which || 1;
+        $(e.target).trigger(event);
     };
     if (document.addEventListener) {
-        document.addEventListener("touchstart", _14, true);
-        document.addEventListener("touchmove", _16, true);
-        document.addEventListener("touchend", _17, true);
+        document.addEventListener("touchstart", onTouchStart, true);
+        document.addEventListener("touchmove", onTouchMove, true);
+        document.addEventListener("touchend", onTouchEnd, true);
     }
 })(jQuery);

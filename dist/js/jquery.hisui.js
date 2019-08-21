@@ -562,72 +562,72 @@ if (typeof JSON !== 'object') {
     };
     /*--1.5.js--jquery.parser.js--method-----end---*/
     $.parser = {
-        auto: true, onComplete: function (_1) {
-        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox"], parse: function (_2) {
+        auto: true, onComplete: function (context) {
+        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox"], parse: function (context) {
             var aa = [];
             for (var i = 0; i < $.parser.plugins.length; i++) {
-                var _3 = $.parser.plugins[i];
-                var r = $(".hisui-" + _3, _2);
+                var name = $.parser.plugins[i];
+                var r = $(".hisui-" + name, context);
                 if (r.length) {
-                    if (r[_3]) {
-                        r[_3]();
+                    if (r[name]) {
+                        r[name]();
                     } else {
-                        aa.push({ name: _3, jq: r });
+                        aa.push({ name: name, jq: r });
                     }
                 }
             }
             if (aa.length && window.easyloader) {
-                var _4 = [];
+                var names = [];
                 for (var i = 0; i < aa.length; i++) {
-                    _4.push(aa[i].name);
+                    names.push(aa[i].name);
                 }
-                easyloader.load(_4, function () {
+                easyloader.load(names, function () {
                     for (var i = 0; i < aa.length; i++) {
-                        var _5 = aa[i].name;
+                        var name = aa[i].name;
                         var jq = aa[i].jq;
-                        jq[_5]();
+                        jq[name]();
                     }
-                    $.parser.onComplete.call($.parser, _2);
+                    $.parser.onComplete.call($.parser, context);
                 });
             } else {
-                $.parser.onComplete.call($.parser, _2);
+                $.parser.onComplete.call($.parser, context);
             }
-        }, parseOptions: function (_6, _7) {
-            var t = $(_6);
-            var _8 = {};
+        }, parseOptions: function (target, properties) {
+            var t = $(target);
+            var options = {};
             var s = $.trim(t.attr("data-options"));
             if (s) {
                 if (s.substring(0, 1) != "{") {
                     s = "{" + s + "}";
                 }
-                _8 = (new Function("return " + s))();
+                options = (new Function("return " + s))();
             }
-            if (_7) {
-                var _9 = {};
-                for (var i = 0; i < _7.length; i++) {
-                    var pp = _7[i];
+            if (properties) {
+                var opts = {};
+                for (var i = 0; i < properties.length; i++) {
+                    var pp = properties[i];
                     if (typeof pp == "string") {
                         if (pp == "width" || pp == "height" || pp == "left" || pp == "top") {
-                            _9[pp] = parseInt(_6.style[pp]) || undefined;
+                            opts[pp] = parseInt(target.style[pp]) || undefined;
                         } else {
-                            _9[pp] = t.attr(pp);
+                            opts[pp] = t.attr(pp);
                         }
                     } else {
-                        for (var _a in pp) {
-                            var _b = pp[_a];
-                            if (_b == "boolean") {
-                                _9[_a] = t.attr(_a) ? (t.attr(_a) == "true") : undefined;
+                        for (var name in pp) {
+                            var type = pp[name];
+                            if (type == "boolean") {
+                                opts[name] = t.attr(name) ? (t.attr(name) == "true") : undefined;
                             } else {
-                                if (_b == "number") {
-                                    _9[_a] = t.attr(_a) == "0" ? 0 : parseFloat(t.attr(_a)) || undefined;
+                                if (type == "number") {
+                                    opts[name] = t.attr(name) == "0" ? 0 : parseFloat(t.attr(name)) || undefined;
                                 }
                             }
                         }
                     }
                 }
-                $.extend(_8, _9);
+                $.extend(options, opts);
             }
-            return _8;
+            return options;
         }
     };
     $(function () {
@@ -639,8 +639,8 @@ if (typeof JSON !== 'object') {
             $.parser.parse();
         }
     });
-    $.fn._outerWidth = function (_c) {
-        if (_c == undefined) {
+    $.fn._outerWidth = function (width) {
+        if (width == undefined) {
             if (this[0] == window) {
                 return this.width() || document.body.clientWidth;
             }
@@ -648,14 +648,14 @@ if (typeof JSON !== 'object') {
         }
         return this.each(function () {
             if ($._boxModel) {
-                $(this).width(_c - ($(this).outerWidth() - $(this).width()));
+                $(this).width(width - ($(this).outerWidth() - $(this).width()));
             } else {
-                $(this).width(_c);
+                $(this).width(width);
             }
         });
     };
-    $.fn._outerHeight = function (_d) {
-        if (_d == undefined) {
+    $.fn._outerHeight = function (height) {
+        if (height == undefined) {
             if (this[0] == window) {
                 return this.height() || document.body.clientHeight;
             }
@@ -663,31 +663,31 @@ if (typeof JSON !== 'object') {
         }
         return this.each(function () {
             if ($._boxModel) {
-                $(this).height(_d - ($(this).outerHeight() - $(this).height()));
+                $(this).height(height - ($(this).outerHeight() - $(this).height()));
             } else {
-                $(this).height(_d);
+                $(this).height(height);
             }
         });
     };
-    $.fn._scrollLeft = function (_e) {
-        if (_e == undefined) {
+    $.fn._scrollLeft = function (left) {
+        if (left == undefined) {
             return this.scrollLeft();
         } else {
             return this.each(function () {
-                $(this).scrollLeft(_e);
+                $(this).scrollLeft(left);
             });
         }
     };
     $.fn._propAttr = $.fn.prop || $.fn.attr;
-    $.fn._fit = function (_f) {
-        _f = _f == undefined ? true : _f;
+    $.fn._fit = function (fit) {
+        fit = fit == undefined ? true : fit;
         var t = this[0];
         var p = (t.tagName == "BODY" ? t : this.parent()[0]);
-        var _10 = p.fcount || 0;
-        if (_f) {
+        var fcount = p.fcount || 0;
+        if (fit) {
             if (!t.fitted) {
                 t.fitted = true;
-                p.fcount = _10 + 1;
+                p.fcount = fcount + 1;
                 $(p).addClass("panel-noscroll");
                 if (p.tagName == "BODY") {
                     $("html").addClass("panel-fit");
@@ -696,7 +696,7 @@ if (typeof JSON !== 'object') {
         } else {
             if (t.fitted) {
                 t.fitted = false;
-                p.fcount = _10 - 1;
+                p.fcount = fcount - 1;
                 if (p.fcount == 0) {
                     $(p).removeClass("panel-noscroll");
                     if (p.tagName == "BODY") {
@@ -709,188 +709,188 @@ if (typeof JSON !== 'object') {
     };
 })(jQuery);
 (function ($) {
-    var _11 = null;
-    var _12 = null;
-    var _13 = false;
-    function _14(e) {
+    var longTouchTimer = null;
+    var dblTouchTimer = null;
+    var isDblClick = false;
+    function onTouchStart(e) {
         if (e.touches.length != 1) {
             return;
         }
-        if (!_13) {
-            _13 = true;
+        if (!isDblClick) {
+            isDblClick = true;
             dblClickTimer = setTimeout(function () {
-                _13 = false;
+                isDblClick = false;
             }, 500);
         } else {
             clearTimeout(dblClickTimer);
-            _13 = false;
-            _15(e, "dblclick");
+            isDblClick = false;
+            fire(e, "dblclick");
         }
-        _11 = setTimeout(function () {
-            _15(e, "contextmenu", 3);
+        longTouchTimer = setTimeout(function () {
+            fire(e, "contextmenu", 3);
         }, 1000);
-        _15(e, "mousedown");
+        fire(e, "mousedown");
         if ($.fn.draggable.isDragging || $.fn.resizable.isResizing) {
             e.preventDefault();
         }
     };
-    function _16(e) {
+    function onTouchMove(e) {
         if (e.touches.length != 1) {
             return;
         }
-        if (_11) {
-            clearTimeout(_11);
+        if (longTouchTimer) {
+            clearTimeout(longTouchTimer);
         }
-        _15(e, "mousemove");
+        fire(e, "mousemove");
         if ($.fn.draggable.isDragging || $.fn.resizable.isResizing) {
             e.preventDefault();
         }
     };
-    function _17(e) {
-        if (_11) {
-            clearTimeout(_11);
+    function onTouchEnd(e) {
+        if (longTouchTimer) {
+            clearTimeout(longTouchTimer);
         }
-        _15(e, "mouseup");
+        fire(e, "mouseup");
         if ($.fn.draggable.isDragging || $.fn.resizable.isResizing) {
             e.preventDefault();
         }
     };
-    function _15(e, _18, _19) {
-        var _1a = new $.Event(_18);
-        _1a.pageX = e.changedTouches[0].pageX;
-        _1a.pageY = e.changedTouches[0].pageY;
-        _1a.which = _19 || 1;
-        $(e.target).trigger(_1a);
+    function fire(e, name, which) {
+        var event = new $.Event(name);
+        event.pageX = e.changedTouches[0].pageX;
+        event.pageY = e.changedTouches[0].pageY;
+        event.which = which || 1;
+        $(e.target).trigger(event);
     };
     if (document.addEventListener) {
-        document.addEventListener("touchstart", _14, true);
-        document.addEventListener("touchmove", _16, true);
-        document.addEventListener("touchend", _17, true);
+        document.addEventListener("touchstart", onTouchStart, true);
+        document.addEventListener("touchmove", onTouchMove, true);
+        document.addEventListener("touchend", onTouchEnd, true);
     }
 })(jQuery);
 (function ($) {   //cryze from 1.5
-    function _39(e) {
-        var _3a = $.data(e.data.target, "draggable");
-        var _3b = _3a.options;
-        var _3c = _3a.proxy;
-        var _3d = e.data;
-        var _3e = _3d.startLeft + e.pageX - _3d.startX;
-        var top = _3d.startTop + e.pageY - _3d.startY;
-        if (_3c) {
-            if (_3c.parent()[0] == document.body) {
-                if (_3b.deltaX != null && _3b.deltaX != undefined) {
-                    _3e = e.pageX + _3b.deltaX;
+    function drag(e) {
+        var state = $.data(e.data.target, "draggable");
+        var opts = state.options;
+        var proxy = state.proxy;
+        var dragData = e.data;
+        var left = dragData.startLeft + e.pageX - dragData.startX;
+        var top = dragData.startTop + e.pageY - dragData.startY;
+        if (proxy) {
+            if (proxy.parent()[0] == document.body) {
+                if (opts.deltaX != null && opts.deltaX != undefined) {
+                    left = e.pageX + opts.deltaX;
                 } else {
-                    _3e = e.pageX - e.data.offsetWidth;
+                    left = e.pageX - e.data.offsetWidth;
                 }
-                if (_3b.deltaY != null && _3b.deltaY != undefined) {
-                    top = e.pageY + _3b.deltaY;
+                if (opts.deltaY != null && opts.deltaY != undefined) {
+                    top = e.pageY + opts.deltaY;
                 } else {
                     top = e.pageY - e.data.offsetHeight;
                 }
             } else {
-                if (_3b.deltaX != null && _3b.deltaX != undefined) {
-                    _3e += e.data.offsetWidth + _3b.deltaX;
+                if (opts.deltaX != null && opts.deltaX != undefined) {
+                    left += e.data.offsetWidth + opts.deltaX;
                 }
-                if (_3b.deltaY != null && _3b.deltaY != undefined) {
-                    top += e.data.offsetHeight + _3b.deltaY;
+                if (opts.deltaY != null && opts.deltaY != undefined) {
+                    top += e.data.offsetHeight + opts.deltaY;
                 }
             }
         }
         if (e.data.parent != document.body) {
-            _3e += $(e.data.parent).scrollLeft();
+            left += $(e.data.parent).scrollLeft();
             top += $(e.data.parent).scrollTop();
         }
-        if (_3b.axis == "h") {
-            _3d.left = _3e;
+        if (opts.axis == "h") {
+            dragData.left = left;
         } else {
-            if (_3b.axis == "v") {
-                _3d.top = top;
+            if (opts.axis == "v") {
+                dragData.top = top;
             } else {
-                _3d.left = _3e;
-                _3d.top = top;
+                dragData.left = left;
+                dragData.top = top;
             }
         }
     };
 
-    function _3f(e) {
-        var _40 = $.data(e.data.target, "draggable");
-        var _41 = _40.options;
-        var _42 = _40.proxy;
-        if (!_42) {
-            _42 = $(e.data.target);
+    function applyDrag(e) {
+        var state = $.data(e.data.target, "draggable");
+        var opts = state.options;
+        var proxy = state.proxy;
+        if (!proxy) {
+            proxy = $(e.data.target);
         }
-        _42.css({
+        proxy.css({
             left: e.data.left,
             top: e.data.top
         });
-        $("body").css("cursor", _41.cursor);
+        $("body").css("cursor", opts.cursor);
     };
 
-    function _43(e) {
+    function doDown(e) {
         if (!$.fn.draggable.isDragging) {
             return false;
         }
-        var _44 = $.data(e.data.target, "draggable");
-        var _45 = _44.options;
-        var _46 = $(".droppable:visible").filter(function () {
+        var state = $.data(e.data.target, "draggable");
+        var opts = state.options;
+        var droppables = $(".droppable:visible").filter(function () {
             return e.data.target != this;
         }).filter(function () {
-            var _47 = $.data(this, "droppable").options.accept;
-            if (_47) {
-                return $(_47).filter(function () {
+            var accept = $.data(this, "droppable").options.accept;
+            if (accept) {
+                return $(accept).filter(function () {
                     return this == e.data.target;
                 }).length > 0;
             } else {
                 return true;
             }
         });
-        _44.droppables = _46;
-        var _48 = _44.proxy;
-        if (!_48) {
-            if (_45.proxy) {
-                if (_45.proxy == "clone") {
-                    _48 = $(e.data.target).clone().insertAfter(e.data.target);
+        state.droppables = droppables;
+        var proxy = state.proxy;
+        if (!proxy) {
+            if (opts.proxy) {
+                if (opts.proxy == "clone") {
+                    proxy = $(e.data.target).clone().insertAfter(e.data.target);
                 } else {
-                    _48 = _45.proxy.call(e.data.target, e.data.target);
+                    proxy = opts.proxy.call(e.data.target, e.data.target);
                 }
-                _44.proxy = _48;
+                state.proxy = proxy;
             } else {
-                _48 = $(e.data.target);
+                proxy = $(e.data.target);
             }
         }
-        _48.css("position", "absolute");
-        _39(e);
-        _3f(e);
-        _45.onStartDrag.call(e.data.target, e);
+        proxy.css("position", "absolute");
+        drag(e);
+        applyDrag(e);
+        opts.onStartDrag.call(e.data.target, e);
         return false;
     };
 
-    function _49(e) {
+    function doMove(e) {
         if (!$.fn.draggable.isDragging) {
             return false;
         }
-        var _4a = $.data(e.data.target, "draggable");
-        _39(e);
-        if (_4a.options.onDrag.call(e.data.target, e) != false) {
-            _3f(e);
+        var state = $.data(e.data.target, "draggable");
+        drag(e);
+        if (state.options.onDrag.call(e.data.target, e) != false) {
+            applyDrag(e);
         }
-        var _4b = e.data.target;
-        _4a.droppables.each(function () {
-            var _4c = $(this);
-            if (_4c.droppable("options").disabled) {
+        var source = e.data.target;
+        state.droppables.each(function () {
+            var dropObj = $(this);
+            if (dropObj.droppable("options").disabled) {
                 return;
             }
-            var p2 = _4c.offset();
-            if (e.pageX > p2.left && e.pageX < p2.left + _4c.outerWidth() && e.pageY > p2.top && e.pageY < p2.top + _4c.outerHeight()) {
+            var p2 = dropObj.offset();
+            if (e.pageX > p2.left && e.pageX < p2.left + dropObj.outerWidth() && e.pageY > p2.top && e.pageY < p2.top + dropObj.outerHeight()) {
                 if (!this.entered) {
-                    $(this).trigger("_dragenter", [_4b]);
+                    $(this).trigger("_dragenter", [source]);
                     this.entered = true;
                 }
-                $(this).trigger("_dragover", [_4b]);
+                $(this).trigger("_dragover", [source]);
             } else {
                 if (this.entered) {
-                    $(this).trigger("_dragleave", [_4b]);
+                    $(this).trigger("_dragleave", [source]);
                     this.entered = false;
                 }
             }
@@ -898,38 +898,38 @@ if (typeof JSON !== 'object') {
         return false;
     };
 
-    function _4d(e) {
+    function doUp(e) {
         if (!$.fn.draggable.isDragging) {
             _4e();
             return false;
         }
-        _49(e);
-        var _4f = $.data(e.data.target, "draggable");
-        var _50 = _4f.proxy;
-        var _51 = _4f.options;
-        _51.onEndDrag.call(e.data.target, e);
-        if (_51.revert) {
-            if (_52() == true) {
+        doMove(e);
+        var state = $.data(e.data.target, "draggable");
+        var proxy = state.proxy;
+        var opts = state.options;
+        opts.onEndDrag.call(e.data.target, e);
+        if (opts.revert) {
+            if (checkDrop() == true) {
                 $(e.data.target).css({
                     position: e.data.startPosition,
                     left: e.data.startLeft,
                     top: e.data.startTop
                 });
             } else {
-                if (_50) {
-                    var _53, top;
-                    if (_50.parent()[0] == document.body) {
-                        _53 = e.data.startX - e.data.offsetWidth;
+                if (proxy) {
+                    var left, top;
+                    if (proxy.parent()[0] == document.body) {
+                        left = e.data.startX - e.data.offsetWidth;
                         top = e.data.startY - e.data.offsetHeight;
                     } else {
-                        _53 = e.data.startLeft;
+                        left = e.data.startLeft;
                         top = e.data.startTop;
                     }
-                    _50.animate({
-                        left: _53,
+                    proxy.animate({
+                        left: left,
                         top: top
                     }, function () {
-                        _54();
+                        removeProxy();
                     });
                 } else {
                     $(e.data.target).animate({
@@ -946,28 +946,28 @@ if (typeof JSON !== 'object') {
                 left: e.data.left,
                 top: e.data.top
             });
-            _52();
+            checkDrop();
         }
-        _51.onStopDrag.call(e.data.target, e);
+        opts.onStopDrag.call(e.data.target, e);
         _4e();
 
-        function _54() {
-            if (_50) {
-                _50.remove();
+        function removeProxy() {
+            if (proxy) {
+                proxy.remove();
             }
-            _4f.proxy = null;
+            state.proxy = null;
         };
 
-        function _52() {
-            var _55 = false;
-            _4f.droppables.each(function () {
-                var _56 = $(this);
-                if (_56.droppable("options").disabled) {
+        function checkDrop() {
+            var dropped = false;
+            state.droppables.each(function () {
+                var dropObj = $(this);
+                if (dropObj.droppable("options").disabled) {
                     return;
                 }
-                var p2 = _56.offset();
-                if (e.pageX > p2.left && e.pageX < p2.left + _56.outerWidth() && e.pageY > p2.top && e.pageY < p2.top + _56.outerHeight()) {
-                    if (_51.revert) {
+                var p2 = dropObj.offset();
+                if (e.pageX > p2.left && e.pageX < p2.left + dropObj.outerWidth() && e.pageY > p2.top && e.pageY < p2.top + dropObj.outerHeight()) {
+                    if (opts.revert) {
                         $(e.data.target).css({
                             position: e.data.startPosition,
                             left: e.data.startLeft,
@@ -975,16 +975,16 @@ if (typeof JSON !== 'object') {
                         });
                     }
                     $(this).triggerHandler("_drop", [e.data.target]);
-                    _54();
-                    _55 = true;
+                    removeProxy();
+                    dropped = true;
                     this.entered = false;
                     return false;
                 }
             });
-            if (!_55 && !_51.revert) {
-                _54();
+            if (!dropped && !opts.revert) {
+                removeProxy();
             }
-            return _55;
+            return dropped;
         };
         return false;
     };
@@ -1000,37 +1000,37 @@ if (typeof JSON !== 'object') {
             $("body").css("cursor", "");
         }, 100);
     };
-    $.fn.draggable = function (_57, _58) {
-        if (typeof _57 == "string") {
-            return $.fn.draggable.methods[_57](this, _58);
+    $.fn.draggable = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.draggable.methods[options](this, param);
         }
         return this.each(function () {
-            var _59;
-            var _5a = $.data(this, "draggable");
-            if (_5a) {
-                _5a.handle.unbind(".draggable");
-                _59 = $.extend(_5a.options, _57);
+            var opts;
+            var state = $.data(this, "draggable");
+            if (state) {
+                state.handle.unbind(".draggable");
+                opts = $.extend(state.options, options);
             } else {
-                _59 = $.extend({}, $.fn.draggable.defaults, $.fn.draggable.parseOptions(this), _57 || {});
+                opts = $.extend({}, $.fn.draggable.defaults, $.fn.draggable.parseOptions(this), options || {});
             }
-            var _5b = _59.handle ? (typeof _59.handle == "string" ? $(_59.handle, this) : _59.handle) : $(this);
+            var handle = opts.handle ? (typeof opts.handle == "string" ? $(opts.handle, this) : opts.handle) : $(this);
             $.data(this, "draggable", {
-                options: _59,
-                handle: _5b
+                options: opts,
+                handle: handle
             });
-            if (_59.disabled) {
+            if (opts.disabled) {
                 $(this).css("cursor", "");
                 return;
             }
-            _5b.unbind(".draggable").bind("mousemove.draggable", {
+            handle.unbind(".draggable").bind("mousemove.draggable", {
                 target: this
             }, function (e) {
                 if ($.fn.draggable.isDragging) {
                     return;
                 }
-                var _5c = $.data(e.data.target, "draggable").options;
-                if (_5d(e)) {
-                    $(this).css("cursor", _5c.cursor);
+                var opts = $.data(e.data.target, "draggable").options;
+                if (checkArea(e)) {
+                    $(this).css("cursor", opts.cursor);
                 } else {
                     $(this).css("cursor", "");
                 }
@@ -1041,53 +1041,53 @@ if (typeof JSON !== 'object') {
             }).bind("mousedown.draggable", {
                 target: this
             }, function (e) {
-                if (_5d(e) == false) {
+                if (checkArea(e) == false) {
                     return;
                 }
                 $(this).css("cursor", "");
-                var _5e = $(e.data.target).position();
-                var _5f = $(e.data.target).offset();
-                var _60 = {
+                var position = $(e.data.target).position();
+                var offset = $(e.data.target).offset();
+                var data = {
                     startPosition: $(e.data.target).css("position"),
-                    startLeft: _5e.left,
-                    startTop: _5e.top,
-                    left: _5e.left,
-                    top: _5e.top,
+                    startLeft: position.left,
+                    startTop: position.top,
+                    left: position.left,
+                    top: position.top,
                     startX: e.pageX,
                     startY: e.pageY,
                     width: $(e.data.target).outerWidth(),
                     height: $(e.data.target).outerHeight(),
-                    offsetWidth: (e.pageX - _5f.left),
-                    offsetHeight: (e.pageY - _5f.top),
+                    offsetWidth: (e.pageX - offset.left),
+                    offsetHeight: (e.pageY - offset.top),
                     target: e.data.target,
                     parent: $(e.data.target).parent()[0]
                 };
-                $.extend(e.data, _60);
-                var _61 = $.data(e.data.target, "draggable").options;
-                if (_61.onBeforeDrag.call(e.data.target, e) == false) {
+                $.extend(e.data, data);
+                var opts = $.data(e.data.target, "draggable").options;
+                if (opts.onBeforeDrag.call(e.data.target, e) == false) {
                     return;
                 }
-                $(document).bind("mousedown.draggable", e.data, _43);
-                $(document).bind("mousemove.draggable", e.data, _49);
-                $(document).bind("mouseup.draggable", e.data, _4d);
+                $(document).bind("mousedown.draggable", e.data, doDown);
+                $(document).bind("mousemove.draggable", e.data, doMove);
+                $(document).bind("mouseup.draggable", e.data, doUp);
                 $.fn.draggable.timer = setTimeout(function () {
                     $.fn.draggable.isDragging = true;
-                    _43(e);
-                }, _61.delay);
+                    doDown(e);
+                }, opts.delay);
                 return false;
             });
 
-            function _5d(e) {
-                var _62 = $.data(e.data.target, "draggable");
-                var _63 = _62.handle;
-                var _64 = $(_63).offset();
-                var _65 = $(_63).outerWidth();
-                var _66 = $(_63).outerHeight();
-                var t = e.pageY - _64.top;
-                var r = _64.left + _65 - e.pageX;
-                var b = _64.top + _66 - e.pageY;
-                var l = e.pageX - _64.left;
-                return Math.min(t, r, b, l) > _62.options.edge;
+            function checkArea(e) {
+                var state = $.data(e.data.target, "draggable");
+                var handle = state.handle;
+                var offset = $(handle).offset();
+                var width = $(handle).outerWidth();
+                var height = $(handle).outerHeight();
+                var t = e.pageY - offset.top;
+                var r = offset.left + width - e.pageX;
+                var b = offset.top + height - e.pageY;
+                var l = e.pageX - offset.left;
+                return Math.min(t, r, b, l) > state.options.edge;
             };
         });
     };
@@ -1113,9 +1113,9 @@ if (typeof JSON !== 'object') {
             });
         }
     };
-    $.fn.draggable.parseOptions = function (_67) {
-        var t = $(_67);
-        return $.extend({}, $.parser.parseOptions(_67, ["cursor", "handle", "axis", {
+    $.fn.draggable.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["cursor", "handle", "axis", {
             "revert": "boolean",
             "deltaX": "number",
             "deltaY": "number",
@@ -1145,34 +1145,34 @@ if (typeof JSON !== 'object') {
     $.fn.draggable.isDragging = false;
 })(jQuery);
 (function ($) {     //cryze from 1.5
-    function _68(_69) {
-        $(_69).addClass("droppable");
-        $(_69).bind("_dragenter", function (e, _6a) {
-            $.data(_69, "droppable").options.onDragEnter.apply(_69, [e, _6a]);
+    function init(target) {
+        $(target).addClass("droppable");
+        $(target).bind("_dragenter", function (e, source) {
+            $.data(target, "droppable").options.onDragEnter.apply(target, [e, source]);
         });
-        $(_69).bind("_dragleave", function (e, _6b) {
-            $.data(_69, "droppable").options.onDragLeave.apply(_69, [e, _6b]);
+        $(target).bind("_dragleave", function (e, source) {
+            $.data(target, "droppable").options.onDragLeave.apply(target, [e, source]);
         });
-        $(_69).bind("_dragover", function (e, _6c) {
-            $.data(_69, "droppable").options.onDragOver.apply(_69, [e, _6c]);
+        $(target).bind("_dragover", function (e, source) {
+            $.data(target, "droppable").options.onDragOver.apply(target, [e, source]);
         });
-        $(_69).bind("_drop", function (e, _6d) {
-            $.data(_69, "droppable").options.onDrop.apply(_69, [e, _6d]);
+        $(target).bind("_drop", function (e, source) {
+            $.data(target, "droppable").options.onDrop.apply(target, [e, source]);
         });
     };
-    $.fn.droppable = function (_6e, _6f) {
-        if (typeof _6e == "string") {
-            return $.fn.droppable.methods[_6e](this, _6f);
+    $.fn.droppable = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.droppable.methods[options](this, param);
         }
-        _6e = _6e || {};
+        options = options || {};
         return this.each(function () {
-            var _70 = $.data(this, "droppable");
-            if (_70) {
-                $.extend(_70.options, _6e);
+            var state = $.data(this, "droppable");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _68(this);
+                init(this);
                 $.data(this, "droppable", {
-                    options: $.extend({}, $.fn.droppable.defaults, $.fn.droppable.parseOptions(this), _6e)
+                    options: $.extend({}, $.fn.droppable.defaults, $.fn.droppable.parseOptions(this), options)
                 });
             }
         });
@@ -1196,102 +1196,102 @@ if (typeof JSON !== 'object') {
             });
         }
     };
-    $.fn.droppable.parseOptions = function (_71) {
-        var t = $(_71);
-        return $.extend({}, $.parser.parseOptions(_71, ["accept"]), {
+    $.fn.droppable.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["accept"]), {
             disabled: (t.attr("disabled") ? true : undefined)
         });
     };
     $.fn.droppable.defaults = {
         accept: null,
         disabled: false,
-        onDragEnter: function (e, _72) {},
-        onDragOver: function (e, _73) {},
-        onDragLeave: function (e, _74) {},
-        onDrop: function (e, _75) {}
+        onDragEnter: function (e, source) {},
+        onDragOver: function (e, source) {},
+        onDragLeave: function (e, source) {},
+        onDrop: function (e, source) {}
     };
 })(jQuery);
 (function ($) {
-    $.fn.resizable = function (_57, _58) {
-        if (typeof _57 == "string") {
-            return $.fn.resizable.methods[_57](this, _58);
+    $.fn.resizable = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.resizable.methods[options](this, param);
         }
-        function _59(e) {
-            var _5a = e.data;
-            var _5b = $.data(_5a.target, "resizable").options;
-            if (_5a.dir.indexOf("e") != -1) {
-                var _5c = _5a.startWidth + e.pageX - _5a.startX;
-                _5c = Math.min(Math.max(_5c, _5b.minWidth), _5b.maxWidth);
-                _5a.width = _5c;
+        function resize(e) {
+            var resizeData = e.data;
+            var options = $.data(resizeData.target, "resizable").options;
+            if (resizeData.dir.indexOf("e") != -1) {
+                var width = resizeData.startWidth + e.pageX - resizeData.startX;
+                width = Math.min(Math.max(width, options.minWidth), options.maxWidth);
+                resizeData.width = width;
             }
-            if (_5a.dir.indexOf("s") != -1) {
-                var _5d = _5a.startHeight + e.pageY - _5a.startY;
-                _5d = Math.min(Math.max(_5d, _5b.minHeight), _5b.maxHeight);
-                _5a.height = _5d;
+            if (resizeData.dir.indexOf("s") != -1) {
+                var height = resizeData.startHeight + e.pageY - resizeData.startY;
+                height = Math.min(Math.max(height, options.minHeight), options.maxHeight);
+                resizeData.height = height;
             }
-            if (_5a.dir.indexOf("w") != -1) {
-                var _5c = _5a.startWidth - e.pageX + _5a.startX;
-                _5c = Math.min(Math.max(_5c, _5b.minWidth), _5b.maxWidth);
-                _5a.width = _5c;
-                _5a.left = _5a.startLeft + _5a.startWidth - _5a.width;
+            if (resizeData.dir.indexOf("w") != -1) {
+                var width = resizeData.startWidth - e.pageX + resizeData.startX;
+                width = Math.min(Math.max(width, options.minWidth), options.maxWidth);
+                resizeData.width = width;
+                resizeData.left = resizeData.startLeft + resizeData.startWidth - resizeData.width;
             }
-            if (_5a.dir.indexOf("n") != -1) {
-                var _5d = _5a.startHeight - e.pageY + _5a.startY;
-                _5d = Math.min(Math.max(_5d, _5b.minHeight), _5b.maxHeight);
-                _5a.height = _5d;
-                _5a.top = _5a.startTop + _5a.startHeight - _5a.height;
-            }
-        };
-        function _5e(e) {
-            var _5f = e.data;
-            var t = $(_5f.target);
-            t.css({ left: _5f.left, top: _5f.top });
-            if (t.outerWidth() != _5f.width) {
-                t._outerWidth(_5f.width);
-            }
-            if (t.outerHeight() != _5f.height) {
-                t._outerHeight(_5f.height);
+            if (resizeData.dir.indexOf("n") != -1) {
+                var height = resizeData.startHeight - e.pageY + resizeData.startY;
+                height = Math.min(Math.max(height, options.minHeight), options.maxHeight);
+                resizeData.height = height;
+                resizeData.top = resizeData.startTop + resizeData.startHeight - resizeData.height;
             }
         };
-        function _60(e) {
+        function applySize(e) {
+            var resizeData = e.data;
+            var t = $(resizeData.target);
+            t.css({ left: resizeData.left, top: resizeData.top });
+            if (t.outerWidth() != resizeData.width) {
+                t._outerWidth(resizeData.width);
+            }
+            if (t.outerHeight() != resizeData.height) {
+                t._outerHeight(resizeData.height);
+            }
+        };
+        function doDown(e) {
             $.fn.resizable.isResizing = true;
             $.data(e.data.target, "resizable").options.onStartResize.call(e.data.target, e);
             return false;
         };
-        function _61(e) {
-            _59(e);
+        function doMove(e) {
+            resize(e);
             if ($.data(e.data.target, "resizable").options.onResize.call(e.data.target, e) != false) {
-                _5e(e);
+                applySize(e);
             }
             return false;
         };
-        function _62(e) {
+        function doUp(e) {
             $.fn.resizable.isResizing = false;
-            _59(e, true);
-            _5e(e);
+            resize(e, true);
+            applySize(e);
             $.data(e.data.target, "resizable").options.onStopResize.call(e.data.target, e);
             $(document).unbind(".resizable");
             $("body").css("cursor", "");
             return false;
         };
         return this.each(function () {
-            var _63 = null;
-            var _64 = $.data(this, "resizable");
-            if (_64) {
+            var opts = null;
+            var state = $.data(this, "resizable");
+            if (state) {
                 $(this).unbind(".resizable");
-                _63 = $.extend(_64.options, _57 || {});
+                opts = $.extend(state.options, options || {});
             } else {
-                _63 = $.extend({}, $.fn.resizable.defaults, $.fn.resizable.parseOptions(this), _57 || {});
-                $.data(this, "resizable", { options: _63 });
+                opts = $.extend({}, $.fn.resizable.defaults, $.fn.resizable.parseOptions(this), options || {});
+                $.data(this, "resizable", { options: opts });
             }
-            if (_63.disabled == true) {
+            if (opts.disabled == true) {
                 return;
             }
             $(this).bind("mousemove.resizable", { target: this }, function (e) {
                 if ($.fn.resizable.isResizing) {
                     return;
                 }
-                var dir = _65(e);
+                var dir = getDirection(e);
                 if (dir == "") {
                     $(e.data.target).css("cursor", "");
                 } else {
@@ -1300,11 +1300,11 @@ if (typeof JSON !== 'object') {
             }).bind("mouseleave.resizable", { target: this }, function (e) {
                 $(e.data.target).css("cursor", "");
             }).bind("mousedown.resizable", { target: this }, function (e) {
-                var dir = _65(e);
+                var dir = getDirection(e);
                 if (dir == "") {
                     return;
                 }
-                function _66(css) {
+                function getCssValue(css) {
                     var val = parseInt($(e.data.target).css(css));
                     if (isNaN(val)) {
                         return 0;
@@ -1312,37 +1312,37 @@ if (typeof JSON !== 'object') {
                         return val;
                     }
                 };
-                var _67 = { target: e.data.target, dir: dir, startLeft: _66("left"), startTop: _66("top"), left: _66("left"), top: _66("top"), startX: e.pageX, startY: e.pageY, startWidth: $(e.data.target).outerWidth(), startHeight: $(e.data.target).outerHeight(), width: $(e.data.target).outerWidth(), height: $(e.data.target).outerHeight(), deltaWidth: $(e.data.target).outerWidth() - $(e.data.target).width(), deltaHeight: $(e.data.target).outerHeight() - $(e.data.target).height() };
-                $(document).bind("mousedown.resizable", _67, _60);
-                $(document).bind("mousemove.resizable", _67, _61);
-                $(document).bind("mouseup.resizable", _67, _62);
+                var data = { target: e.data.target, dir: dir, startLeft: getCssValue("left"), startTop: getCssValue("top"), left: getCssValue("left"), top: getCssValue("top"), startX: e.pageX, startY: e.pageY, startWidth: $(e.data.target).outerWidth(), startHeight: $(e.data.target).outerHeight(), width: $(e.data.target).outerWidth(), height: $(e.data.target).outerHeight(), deltaWidth: $(e.data.target).outerWidth() - $(e.data.target).width(), deltaHeight: $(e.data.target).outerHeight() - $(e.data.target).height() };
+                $(document).bind("mousedown.resizable", data, doDown);
+                $(document).bind("mousemove.resizable", data, doMove);
+                $(document).bind("mouseup.resizable", data, doUp);
                 $("body").css("cursor", dir + "-resize");
             });
-            function _65(e) {
+            function getDirection(e) {
                 var tt = $(e.data.target);
                 var dir = "";
-                var _68 = tt.offset();
-                var _69 = tt.outerWidth();
-                var _6a = tt.outerHeight();
-                var _6b = _63.edge;
-                if (e.pageY > _68.top && e.pageY < _68.top + _6b) {
+                var offset = tt.offset();
+                var width = tt.outerWidth();
+                var height = tt.outerHeight();
+                var edge = opts.edge;
+                if (e.pageY > offset.top && e.pageY < offset.top + edge) {
                     dir += "n";
                 } else {
-                    if (e.pageY < _68.top + _6a && e.pageY > _68.top + _6a - _6b) {
+                    if (e.pageY < offset.top + height && e.pageY > offset.top + height - edge) {
                         dir += "s";
                     }
                 }
-                if (e.pageX > _68.left && e.pageX < _68.left + _6b) {
+                if (e.pageX > offset.left && e.pageX < offset.left + edge) {
                     dir += "w";
                 } else {
-                    if (e.pageX < _68.left + _69 && e.pageX > _68.left + _69 - _6b) {
+                    if (e.pageX < offset.left + width && e.pageX > offset.left + width - edge) {
                         dir += "e";
                     }
                 }
-                var _6c = _63.handles.split(",");
-                for (var i = 0; i < _6c.length; i++) {
-                    var _6d = _6c[i].replace(/(^\s*)|(\s*$)/g, "");
-                    if (_6d == "all" || _6d == dir) {
+                var handles = opts.handles.split(",");
+                for (var i = 0; i < handles.length; i++) {
+                    var handle = handles[i].replace(/(^\s*)|(\s*$)/g, "");
+                    if (handle == "all" || handle == dir) {
                         return dir;
                     }
                 }
@@ -1363,9 +1363,9 @@ if (typeof JSON !== 'object') {
             });
         }
     };
-    $.fn.resizable.parseOptions = function (_6e) {
-        var t = $(_6e);
-        return $.extend({}, $.parser.parseOptions(_6e, ["handles", { minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number", edge: "number" }]), { disabled: (t.attr("disabled") ? true : undefined) });
+    $.fn.resizable.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["handles", { minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number", edge: "number" }]), { disabled: (t.attr("disabled") ? true : undefined) });
     };
     $.fn.resizable.defaults = {
         disabled: false, handles: "n, e, s, w, ne, se, sw, nw, all", minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000, edge: 5, onStartResize: function (e) {
@@ -1376,49 +1376,49 @@ if (typeof JSON !== 'object') {
     $.fn.resizable.isResizing = false;
 })(jQuery);
 (function ($) {
-    function _6f(_70) {
-        var _71 = $.data(_70, "linkbutton").options;
-        var t = $(_70).empty();
+    function createButton(target) {
+        var opts = $.data(target, "linkbutton").options;
+        var t = $(target).empty();
         t.addClass("l-btn").removeClass("l-btn-plain l-btn-selected l-btn-plain-selected");
-        t.removeClass("l-btn-small l-btn-medium l-btn-large").addClass("l-btn-" + _71.size);
-        if (_71.plain) {
+        t.removeClass("l-btn-small l-btn-medium l-btn-large").addClass("l-btn-" + opts.size);
+        if (opts.plain) {
             t.addClass("l-btn-plain");
         }
-        if (_71.selected) {
-            t.addClass(_71.plain ? "l-btn-selected l-btn-plain-selected" : "l-btn-selected");
+        if (opts.selected) {
+            t.addClass(opts.plain ? "l-btn-selected l-btn-plain-selected" : "l-btn-selected");
         }
-        t.attr("group", _71.group || "");
-        t.attr("id", _71.id || "");
-        var _72 = $("<span class=\"l-btn-left\"></span>").appendTo(t);
-        if (_71.text) {
-            $("<span class=\"l-btn-text\"></span>").html(_71.text).appendTo(_72);
+        t.attr("group", opts.group || "");
+        t.attr("id", opts.id || "");
+        var inner = $("<span class=\"l-btn-left\"></span>").appendTo(t);
+        if (opts.text) {
+            $("<span class=\"l-btn-text\"></span>").html(opts.text).appendTo(inner);
         } else {
-            $("<span class=\"l-btn-text l-btn-empty\">&nbsp;</span>").appendTo(_72);
+            $("<span class=\"l-btn-text l-btn-empty\">&nbsp;</span>").appendTo(inner);
         }
-        if (_71.iconImg){
+        if (opts.iconImg){
              //wanghc  add iconImg
-            $("<span class=\"l-btn-icon\" style=\"background-image:url('"+_71.iconImg+"');background-position:center;background-repeat:no-repeat;\">&nbsp;</span>").appendTo(_72);
-            _72.addClass("l-btn-icon-" + _71.iconAlign);
-        }else if (_71.iconCls) {
-            $("<span class=\"l-btn-icon\">&nbsp;</span>").addClass(_71.iconCls).appendTo(_72);
-            _72.addClass("l-btn-icon-" + _71.iconAlign);
+            $("<span class=\"l-btn-icon\" style=\"background-image:url('"+opts.iconImg+"');background-position:center;background-repeat:no-repeat;\">&nbsp;</span>").appendTo(inner);
+            inner.addClass("l-btn-icon-" + opts.iconAlign);
+        }else if (opts.iconCls) {
+            $("<span class=\"l-btn-icon\">&nbsp;</span>").addClass(opts.iconCls).appendTo(inner);
+            inner.addClass("l-btn-icon-" + opts.iconAlign);
         }
         t.unbind(".linkbutton").bind("focus.linkbutton", function () {
-            if (!_71.disabled) {
+            if (!opts.disabled) {
                 $(this).addClass("l-btn-focus");
             }
         }).bind("blur.linkbutton", function () {
             $(this).removeClass("l-btn-focus");
         }).bind("click.linkbutton", function () {
-            if (!_71.disabled) {
-                if (_71.toggle) {
-                    if (_71.selected) {
+            if (!opts.disabled) {
+                if (opts.toggle) {
+                    if (opts.selected) {
                         $(this).linkbutton("unselect");
                     } else {
                         $(this).linkbutton("select");
                     }
                 }
-                _71.onClick.call(this);
+                opts.onClick.call(this);
             }
             //return false; //不要阻止 cryze 2018-4-10  
             //cryze 2018-4-19 不阻止的话若a href="#" 会有跳转行为   判断是否是filebox的button时不阻止  不是 改为原样 还是阻止吧 
@@ -1426,20 +1426,20 @@ if (typeof JSON !== 'object') {
         });
         //禁用时 通过监听其下面子元素click事件，如果被禁用了，则阻止事件冒泡
         t.children('span').unbind(".linkbutton").bind("click.linkbutton", function () {
-            if (_71.disabled && _71.stopAllEventOnDisabled) {
+            if (opts.disabled && opts.stopAllEventOnDisabled) {
                 return false;
             }else{
                 return true;
             }
         })
-        _73(_70, _71.selected);
-        _74(_70, _71.disabled);
+        setSelected(target, opts.selected);
+        setDisabled(target, opts.disabled);
     };
-    function _73(_75, _76) {
-        var _77 = $.data(_75, "linkbutton").options;
-        if (_76) {
-            if (_77.group) {
-                $("a.l-btn[group=\"" + _77.group + "\"]").each(function () {
+    function setSelected(target, selected) {
+        var opts = $.data(target, "linkbutton").options;
+        if (selected) {
+            if (opts.group) {
+                $("a.l-btn[group=\"" + opts.group + "\"]").each(function () {
                     var o = $(this).linkbutton("options");
                     if (o.toggle) {
                         $(this).removeClass("l-btn-selected l-btn-plain-selected");
@@ -1447,55 +1447,55 @@ if (typeof JSON !== 'object') {
                     }
                 });
             }
-            $(_75).addClass(_77.plain ? "l-btn-selected l-btn-plain-selected" : "l-btn-selected");
-            _77.selected = true;
+            $(target).addClass(opts.plain ? "l-btn-selected l-btn-plain-selected" : "l-btn-selected");
+            opts.selected = true;
         } else {
-            if (!_77.group) {
-                $(_75).removeClass("l-btn-selected l-btn-plain-selected");
-                _77.selected = false;
+            if (!opts.group) {
+                $(target).removeClass("l-btn-selected l-btn-plain-selected");
+                opts.selected = false;
             }
         }
     };
-    function _74(_78, _79) {
-        var _7a = $.data(_78, "linkbutton");
-        var _7b = _7a.options;
-        $(_78).removeClass("l-btn-disabled l-btn-plain-disabled");
-        if (_79) {
-            _7b.disabled = true;
-            var _7c = $(_78).attr("href");
-            if (_7c) {
-                _7a.href = _7c;
-                $(_78).attr("href", "javascript:void(0)");
+    function setDisabled(target, disabled) {
+        var state = $.data(target, "linkbutton");
+        var opts = state.options;
+        $(target).removeClass("l-btn-disabled l-btn-plain-disabled");
+        if (disabled) {
+            opts.disabled = true;
+            var href = $(target).attr("href");
+            if (href) {
+                state.href = href;
+                $(target).attr("href", "javascript:void(0)");
             }
-            if (_78.onclick) {
-                _7a.onclick = _78.onclick;
-                _78.onclick = null;
+            if (target.onclick) {
+                state.onclick = target.onclick;
+                target.onclick = null;
             }
-            _7b.plain ? $(_78).addClass("l-btn-disabled l-btn-plain-disabled") : $(_78).addClass("l-btn-disabled");
+            opts.plain ? $(target).addClass("l-btn-disabled l-btn-plain-disabled") : $(target).addClass("l-btn-disabled");
         } else {
-            _7b.disabled = false;
-            if (_7a.href) {
-                $(_78).attr("href", _7a.href);
+            opts.disabled = false;
+            if (state.href) {
+                $(target).attr("href", state.href);
             }
-            if (_7a.onclick) {
-                _78.onclick = _7a.onclick;
+            if (state.onclick) {
+                target.onclick = state.onclick;
             }
         }
     };
-    $.fn.linkbutton = function (_7d, _7e) {
-        if (typeof _7d == "string") {
-            return $.fn.linkbutton.methods[_7d](this, _7e);
+    $.fn.linkbutton = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.linkbutton.methods[options](this, param);
         }
-        _7d = _7d || {};
+        options = options || {};
         return this.each(function () {
-            var _7f = $.data(this, "linkbutton");
-            if (_7f) {
-                $.extend(_7f.options, _7d);
+            var state = $.data(this, "linkbutton");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                $.data(this, "linkbutton", { options: $.extend({}, $.fn.linkbutton.defaults, $.fn.linkbutton.parseOptions(this), _7d) });
+                $.data(this, "linkbutton", { options: $.extend({}, $.fn.linkbutton.defaults, $.fn.linkbutton.parseOptions(this), options) });
                 $(this).removeAttr("disabled");
             }
-            _6f(this);
+            createButton(this);
         });
     };
     $.fn.linkbutton.methods = {
@@ -1503,25 +1503,25 @@ if (typeof JSON !== 'object') {
             return $.data(jq[0], "linkbutton").options;
         }, enable: function (jq) {
             return jq.each(function () {
-                _74(this, false);
+                setDisabled(this, false);
             });
         }, disable: function (jq) {
             return jq.each(function () {
-                _74(this, true);
+                setDisabled(this, true);
             });
         }, select: function (jq) {
             return jq.each(function () {
-                _73(this, true);
+                setSelected(this, true);
             });
         }, unselect: function (jq) {
             return jq.each(function () {
-                _73(this, false);
+                setSelected(this, false);
             });
         }
     };
-    $.fn.linkbutton.parseOptions = function (_80) {
-        var t = $(_80);
-        return $.extend({}, $.parser.parseOptions(_80, ["id","iconImg", "iconCls", "iconAlign", "group", "size", { plain: "boolean", toggle: "boolean", selected: "boolean" }]), { disabled: (t.attr("disabled") ? true : undefined), text: $.trim(t.html()), iconCls: (t.attr("icon") || t.attr("iconCls")) });
+    $.fn.linkbutton.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["id","iconImg", "iconCls", "iconAlign", "group", "size", { plain: "boolean", toggle: "boolean", selected: "boolean" }]), { disabled: (t.attr("disabled") ? true : undefined), text: $.trim(t.html()), iconCls: (t.attr("icon") || t.attr("iconCls")) });
     };
     $.fn.linkbutton.defaults = {
         //wanghc iconImg:'imgurl' -> background-image:url('../images/uiimages/yellow_paper.png')
@@ -3018,74 +3018,74 @@ if (typeof JSON !== 'object') {
     };
 })(jQuery);
 (function ($) {
-    function init(_1b6) {
-        $(_1b6).addClass("progressbar");
-        $(_1b6).html("<div class=\"progressbar-text\"></div><div class=\"progressbar-value\"><div class=\"progressbar-text\"></div></div>");
-        return $(_1b6);
+    function init(target) {
+        $(target).addClass("progressbar");
+        $(target).html("<div class=\"progressbar-text\"></div><div class=\"progressbar-value\"><div class=\"progressbar-text\"></div></div>");
+        return $(target);
     };
-    function _1b7(_1b8, _1b9) {
-        var opts = $.data(_1b8, "progressbar").options;
-        var bar = $.data(_1b8, "progressbar").bar;
-        if (_1b9) {
-            opts.width = _1b9;
+    function setSize(target, width) {
+        var opts = $.data(target, "progressbar").options;
+        var bar = $.data(target, "progressbar").bar;
+        if (width) {
+            opts.width = width;
         }
         bar._outerWidth(opts.width)._outerHeight(opts.height);
         bar.find("div.progressbar-text").width(bar.width());
         bar.find("div.progressbar-text,div.progressbar-value").css({ height: bar.height() + "px", lineHeight: bar.height() + "px" });
     };
-    $.fn.progressbar = function (_1ba, _1bb) {
-        if (typeof _1ba == "string") {
-            var _1bc = $.fn.progressbar.methods[_1ba];
-            if (_1bc) {
-                return _1bc(this, _1bb);
+    $.fn.progressbar = function (options, param) {
+        if (typeof options == "string") {
+            var method = $.fn.progressbar.methods[options];
+            if (method) {
+                return method(this, param);
             }
         }
-        _1ba = _1ba || {};
+        options = options || {};
         return this.each(function () {
-            var _1bd = $.data(this, "progressbar");
-            if (_1bd) {
-                $.extend(_1bd.options, _1ba);
+            var state = $.data(this, "progressbar");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _1bd = $.data(this, "progressbar", { options: $.extend({}, $.fn.progressbar.defaults, $.fn.progressbar.parseOptions(this), _1ba), bar: init(this) });
+                state = $.data(this, "progressbar", { options: $.extend({}, $.fn.progressbar.defaults, $.fn.progressbar.parseOptions(this), options), bar: init(this) });
             }
-            $(this).progressbar("setValue", _1bd.options.value);
-            _1b7(this);
+            $(this).progressbar("setValue", state.options.value);
+            setSize(this);
         });
     };
     $.fn.progressbar.methods = {
         options: function (jq) {
             return $.data(jq[0], "progressbar").options;
-        }, resize: function (jq, _1be) {
+        }, resize: function (jq, width) {
             return jq.each(function () {
-                _1b7(this, _1be);
+                setSize(this, width);
             });
         }, getValue: function (jq) {
             return $.data(jq[0], "progressbar").options.value;
-        }, setValue: function (jq, _1bf) {
-            if (_1bf < 0) {
-                _1bf = 0;
+        }, setValue: function (jq, value) {
+            if (value < 0) {
+                value = 0;
             }
-            if (_1bf > 100) {
-                _1bf = 100;
+            if (value > 100) {
+                value = 100;
             }
             return jq.each(function () {
                 var opts = $.data(this, "progressbar").options;
-                var text = opts.text.replace(/{value}/, _1bf);
-                var _1c0 = opts.value;
-                opts.value = _1bf;
-                $(this).find("div.progressbar-value").width(_1bf + "%");
+                var text = opts.text.replace(/{value}/, value);
+                var oldValue = opts.value;
+                opts.value = value;
+                $(this).find("div.progressbar-value").width(value + "%");
                 $(this).find("div.progressbar-text").html(text);
-                if (_1c0 != _1bf) {
-                    opts.onChange.call(this, _1bf, _1c0);
+                if (oldValue != value) {
+                    opts.onChange.call(this, value, oldValue);
                 }
             });
         }
     };
-    $.fn.progressbar.parseOptions = function (_1c1) {
-        return $.extend({}, $.parser.parseOptions(_1c1, ["width", "height", "text", { value: "number" }]));
+    $.fn.progressbar.parseOptions = function (target) {
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "text", { value: "number" }]));
     };
     $.fn.progressbar.defaults = {
-        width: "auto", height: 22, value: 0, text: "{value}%", onChange: function (_1c2, _1c3) {
+        width: "auto", height: 22, value: 0, text: "{value}%", onChange: function (newValue, oldValue) {
         }
     };
 })(jQuery);
@@ -3842,212 +3842,212 @@ if (typeof JSON !== 'object') {
     };
 })(jQuery);
 (function ($) {
-    function _23a(_23b, _23c) {
-        var opts = $.data(_23b, "window").options;
-        if (_23c) {
-            $.extend(opts, _23c);
+    function setSize(target, param) {
+        var opts = $.data(target, "window").options;
+        if (param) {
+            $.extend(opts, param);
         }
-        $(_23b).panel("resize", opts);
+        $(target).panel("resize", opts);
     };
-    function _23d(_23e, _23f) {
-        var _240 = $.data(_23e, "window");
-        if (_23f) {
-            if (_23f.left != null) {
-                _240.options.left = _23f.left;
+    function moveWindow(target, param) {
+        var state = $.data(target, "window");
+        if (param) {
+            if (param.left != null) {
+                state.options.left = param.left;
             }
-            if (_23f.top != null) {
-                _240.options.top = _23f.top;
+            if (param.top != null) {
+                state.options.top = param.top;
             }
         }
-        $(_23e).panel("move", _240.options);
-        if (_240.shadow) {
-            _240.shadow.css({ left: _240.options.left, top: _240.options.top });
+        $(target).panel("move", state.options);
+        if (state.shadow) {
+            state.shadow.css({ left: state.options.left, top: state.options.top });
         }
     };
-    function _241(_242, _243) {
-        var _244 = $.data(_242, "window");
-        var opts = _244.options;
-        var _245 = opts.width;
-        if (isNaN(_245)) {
-            _245 = _244.window._outerWidth();
+    function hcenter(target, tomove) {
+        var state = $.data(target, "window");
+        var opts = state.options;
+        var width = opts.width;
+        if (isNaN(width)) {
+            width = state.window._outerWidth();
         }
         if (opts.inline) {
-            var _246 = _244.window.parent();
-            opts.left = (_246.width() - _245) / 2 + _246.scrollLeft();
+            var parent = state.window.parent();
+            opts.left = (parent.width() - width) / 2 + parent.scrollLeft();
         } else {
-            opts.left = ($(window)._outerWidth() - _245) / 2 + $(document).scrollLeft();
+            opts.left = ($(window)._outerWidth() - width) / 2 + $(document).scrollLeft();
         }
-        if (_243) {
-            _23d(_242);
+        if (tomove) {
+            moveWindow(target);
         }
     };
-    function _247(_248, _249) {
-        var _24a = $.data(_248, "window");
-        var opts = _24a.options;
-        var _24b = opts.height;
-        if (isNaN(_24b)) {
-            _24b = _24a.window._outerHeight();
+    function vcenter(target, tomove) {
+        var state = $.data(target, "window");
+        var opts = state.options;
+        var height = opts.height;
+        if (isNaN(height)) {
+            height = state.window._outerHeight();
         }
         if (opts.inline) {
-            var _24c = _24a.window.parent();
-            opts.top = (_24c.height() - _24b) / 2 + _24c.scrollTop();
+            var parent = state.window.parent();
+            opts.top = (parent.height() - height) / 2 + parent.scrollTop();
         } else {
-            opts.top = ($(window)._outerHeight() - _24b) / 2 + $(document).scrollTop();
+            opts.top = ($(window)._outerHeight() - height) / 2 + $(document).scrollTop();
         }
-        if (_249) {
-            _23d(_248);
+        if (tomove) {
+            moveWindow(target);
         }
     };
-    function _24d(_24e) {
-        var _24f = $.data(_24e, "window");
-        var _250 = _24f.options.closed;
-        var win = $(_24e).panel($.extend({}, _24f.options, {
-            border: false, doSize: true, closed: true, cls: "window", headerCls: "window-header", bodyCls: "window-body " + (_24f.options.noheader ? "window-body-noheader" : ""), onBeforeDestroy: function () {
-                if (_24f.options.onBeforeDestroy.call(_24e) == false) {
+    function create(target) {
+        var state = $.data(target, "window");
+        var winClosed = state.options.closed;
+        var win = $(target).panel($.extend({}, state.options, {
+            border: false, doSize: true, closed: true, cls: "window", headerCls: "window-header", bodyCls: "window-body " + (state.options.noheader ? "window-body-noheader" : ""), onBeforeDestroy: function () {
+                if (state.options.onBeforeDestroy.call(target) == false) {
                     return false;
                 }
-                if (_24f.shadow) {
-                    _24f.shadow.remove();
+                if (state.shadow) {
+                    state.shadow.remove();
                 }
-                if (_24f.mask) {
-                    _24f.mask.remove();
+                if (state.mask) {
+                    state.mask.remove();
                 }
             }, onClose: function () {
-                if (_24f.shadow) {
-                    _24f.shadow.hide();
+                if (state.shadow) {
+                    state.shadow.hide();
                 }
-                if (_24f.mask) {
-                    _24f.mask.hide();
+                if (state.mask) {
+                    state.mask.hide();
                 }
-                _24f.options.onClose.call(_24e);
+                state.options.onClose.call(target);
             }, onOpen: function () {
-                if (_24f.mask) {
-                    _24f.mask.css({ display: "block", zIndex: $.fn.window.defaults.zIndex++ });
+                if (state.mask) {
+                    state.mask.css({ display: "block", zIndex: $.fn.window.defaults.zIndex++ });
                 }
-                if (_24f.shadow) {
-                    _24f.shadow.css({ display: "block", zIndex: $.fn.window.defaults.zIndex++, left: _24f.options.left, top: _24f.options.top, width: _24f.window._outerWidth(), height: _24f.window._outerHeight() });
+                if (state.shadow) {
+                    state.shadow.css({ display: "block", zIndex: $.fn.window.defaults.zIndex++, left: state.options.left, top: state.options.top, width: state.window._outerWidth(), height: state.window._outerHeight() });
                 }
-                _24f.window.css("z-index", $.fn.window.defaults.zIndex++);
-                _24f.options.onOpen.call(_24e);
-            }, onResize: function (_251, _252) {
+                state.window.css("z-index", $.fn.window.defaults.zIndex++);
+                state.options.onOpen.call(target);
+            }, onResize: function (width, height) {
                 var opts = $(this).panel("options");
-                $.extend(_24f.options, { width: opts.width, height: opts.height, left: opts.left, top: opts.top });
-                if (_24f.shadow) {
-                    _24f.shadow.css({ left: _24f.options.left, top: _24f.options.top, width: _24f.window._outerWidth(), height: _24f.window._outerHeight() });
+                $.extend(state.options, { width: opts.width, height: opts.height, left: opts.left, top: opts.top });
+                if (state.shadow) {
+                    state.shadow.css({ left: state.options.left, top: state.options.top, width: state.window._outerWidth(), height: state.window._outerHeight() });
                 }
-                _24f.options.onResize.call(_24e, _251, _252);
+                state.options.onResize.call(target, width, height);
             }, onMinimize: function () {
-                if (_24f.shadow) {
-                    _24f.shadow.hide();
+                if (state.shadow) {
+                    state.shadow.hide();
                 }
-                if (_24f.mask) {
-                    _24f.mask.hide();
+                if (state.mask) {
+                    state.mask.hide();
                 }
-                _24f.options.onMinimize.call(_24e);
+                state.options.onMinimize.call(target);
             }, onBeforeCollapse: function () {
-                if (_24f.options.onBeforeCollapse.call(_24e) == false) {
+                if (state.options.onBeforeCollapse.call(target) == false) {
                     return false;
                 }
-                if (_24f.shadow) {
-                    _24f.shadow.hide();
+                if (state.shadow) {
+                    state.shadow.hide();
                 }
             }, onExpand: function () {
-                if (_24f.shadow) {
-                    _24f.shadow.show();
+                if (state.shadow) {
+                    state.shadow.show();
                 }
-                _24f.options.onExpand.call(_24e);
+                state.options.onExpand.call(target);
             }
         }));
-        _24f.window = win.panel("panel");
-        if (_24f.mask) {
-            _24f.mask.remove();
+        state.window = win.panel("panel");
+        if (state.mask) {
+            state.mask.remove();
         }
-        if (_24f.options.modal == true) {
+        if (state.options.modal == true) {
             //wanghc 2017-12-14 ---ocx dll
             var maskFrame = ""; //修改window,使window,dialog,alert,confirm,prompt,progress的mask支持ocx
-            if (_24f.options.isTopZindex){
+            if (state.options.isTopZindex){
                 maskFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
             }
-            _24f.mask = $("<div class=\"window-mask\">"+maskFrame+"</div>").insertAfter(_24f.window);
-            _24f.mask.css({ width: (_24f.options.inline ? _24f.mask.parent().width() : _253().width), height: (_24f.options.inline ? _24f.mask.parent().height() : _253().height), display: "none" });
+            state.mask = $("<div class=\"window-mask\">"+maskFrame+"</div>").insertAfter(state.window);
+            state.mask.css({ width: (state.options.inline ? state.mask.parent().width() : getPageArea().width), height: (state.options.inline ? state.mask.parent().height() : getPageArea().height), display: "none" });
         }
-        if (_24f.shadow) {
-            _24f.shadow.remove();
+        if (state.shadow) {
+            state.shadow.remove();
         }
-        if (_24f.options.shadow == true) {
-            _24f.shadow = $("<div class=\"window-shadow\"></div>").insertAfter(_24f.window);
-            _24f.shadow.css({ display: "none" });
+        if (state.options.shadow == true) {
+            state.shadow = $("<div class=\"window-shadow\"></div>").insertAfter(state.window);
+            state.shadow.css({ display: "none" });
         }
-        if (_24f.options.left == null) {
-            _241(_24e);
+        if (state.options.left == null) {
+            hcenter(target);
         }
-        if (_24f.options.top == null) {
-            _247(_24e);
+        if (state.options.top == null) {
+            vcenter(target);
         }
-        _23d(_24e);
-        if (!_250) {
+        moveWindow(target);
+        if (!winClosed) {
             win.window("open");
         }
     };
-    function _254(_255) {
-        var _256 = $.data(_255, "window");
-        _256.window.draggable({
-            handle: ">div.panel-header>div.panel-title", disabled: _256.options.draggable == false, onStartDrag: function (e) {
-                if (_256.mask) {
-                    _256.mask.css("z-index", $.fn.window.defaults.zIndex++);
+    function setProperties(target) {
+        var state = $.data(target, "window");
+        state.window.draggable({
+            handle: ">div.panel-header>div.panel-title", disabled: state.options.draggable == false, onStartDrag: function (e) {
+                if (state.mask) {
+                    state.mask.css("z-index", $.fn.window.defaults.zIndex++);
                 }
-                if (_256.shadow) {
-                    _256.shadow.css("z-index", $.fn.window.defaults.zIndex++);
+                if (state.shadow) {
+                    state.shadow.css("z-index", $.fn.window.defaults.zIndex++);
                 }
-                _256.window.css("z-index", $.fn.window.defaults.zIndex++);
-                if (!_256.proxy) {
-                    _256.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(_256.window);
+                state.window.css("z-index", $.fn.window.defaults.zIndex++);
+                if (!state.proxy) {
+                    state.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(state.window);
                 }
-                _256.proxy.css({ display: "none", zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top });
-                _256.proxy._outerWidth(_256.window._outerWidth());
-                _256.proxy._outerHeight(_256.window._outerHeight());
+                state.proxy.css({ display: "none", zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top });
+                state.proxy._outerWidth(state.window._outerWidth());
+                state.proxy._outerHeight(state.window._outerHeight());
                 setTimeout(function () {
-                    if (_256.proxy) {
-                        _256.proxy.show();
+                    if (state.proxy) {
+                        state.proxy.show();
                     }
                 }, 500);
             }, onDrag: function (e) {
-                _256.proxy.css({ display: "block", left: e.data.left, top: e.data.top });
+                state.proxy.css({ display: "block", left: e.data.left, top: e.data.top });
                 return false;
             }, onStopDrag: function (e) {
-                _256.options.left = e.data.left;
-                _256.options.top = e.data.top;
-                $(_255).window("move");
-                _256.proxy.remove();
-                _256.proxy = null;
+                state.options.left = e.data.left;
+                state.options.top = e.data.top;
+                $(target).window("move");
+                state.proxy.remove();
+                state.proxy = null;
             }
         });
-        _256.window.resizable({
-            disabled: _256.options.resizable == false, onStartResize: function (e) {
-                _256.pmask = $("<div class=\"window-proxy-mask\"></div>").insertAfter(_256.window);
-                _256.pmask.css({ zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top, width: _256.window._outerWidth(), height: _256.window._outerHeight() });
-                if (!_256.proxy) {
-                    _256.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(_256.window);
+        state.window.resizable({
+            disabled: state.options.resizable == false, onStartResize: function (e) {
+                state.pmask = $("<div class=\"window-proxy-mask\"></div>").insertAfter(state.window);
+                state.pmask.css({ zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top, width: state.window._outerWidth(), height: state.window._outerHeight() });
+                if (!state.proxy) {
+                    state.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(state.window);
                 }
-                _256.proxy.css({ zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top });
-                _256.proxy._outerWidth(e.data.width);
-                _256.proxy._outerHeight(e.data.height);
+                state.proxy.css({ zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top });
+                state.proxy._outerWidth(e.data.width);
+                state.proxy._outerHeight(e.data.height);
             }, onResize: function (e) {
-                _256.proxy.css({ left: e.data.left, top: e.data.top });
-                _256.proxy._outerWidth(e.data.width);
-                _256.proxy._outerHeight(e.data.height);
+                state.proxy.css({ left: e.data.left, top: e.data.top });
+                state.proxy._outerWidth(e.data.width);
+                state.proxy._outerHeight(e.data.height);
                 return false;
             }, onStopResize: function (e) {
-                $.extend(_256.options, { left: e.data.left, top: e.data.top, width: e.data.width, height: e.data.height });
-                _23a(_255);
-                _256.pmask.remove();
-                _256.pmask = null;
-                _256.proxy.remove();
-                _256.proxy = null;
+                $.extend(state.options, { left: e.data.left, top: e.data.top, width: e.data.width, height: e.data.height });
+                setSize(target);
+                state.pmask.remove();
+                state.pmask = null;
+                state.proxy.remove();
+                state.proxy = null;
             }
         });
     };
-    function _253() {
+    function getPageArea() {
         if (document.compatMode == "BackCompat") {
             return { width: Math.max(document.body.scrollWidth, document.body.clientWidth), height: Math.max(document.body.scrollHeight, document.body.clientHeight) };
         } else {
@@ -4057,66 +4057,66 @@ if (typeof JSON !== 'object') {
     $(window).resize(function () {
         $("body>div.window-mask").css({ width: $(window)._outerWidth(), height: $(window)._outerHeight() });
         setTimeout(function () {
-            $("body>div.window-mask").css({ width: _253().width, height: _253().height });
+            $("body>div.window-mask").css({ width: getPageArea().width, height: getPageArea().height });
         }, 50);
     });
-    $.fn.window = function (_257, _258) {
-        if (typeof _257 == "string") {
-            var _259 = $.fn.window.methods[_257];
-            if (_259) {
-                return _259(this, _258);
+    $.fn.window = function (options, param) {
+        if (typeof options == "string") {
+            var method = $.fn.window.methods[options];
+            if (method) {
+                return method(this, param);
             } else {
-                return this.panel(_257, _258);
+                return this.panel(options, param);
             }
         }
-        _257 = _257 || {};
+        options = options || {};
         return this.each(function () {
-            var _25a = $.data(this, "window");
-            if (_25a) {
-                $.extend(_25a.options, _257);
+            var state = $.data(this, "window");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _25a = $.data(this, "window", { options: $.extend({}, $.fn.window.defaults, $.fn.window.parseOptions(this), _257) });
-                if (!_25a.options.inline) {
+                state = $.data(this, "window", { options: $.extend({}, $.fn.window.defaults, $.fn.window.parseOptions(this), options) });
+                if (!state.options.inline) {
                     document.body.appendChild(this);
                 }
             }
-            _24d(this);
-            _254(this);
+            create(this);
+            setProperties(this);
         });
     };
     $.fn.window.methods = {
         options: function (jq) {
-            var _25b = jq.panel("options");
-            var _25c = $.data(jq[0], "window").options;
-            return $.extend(_25c, { closed: _25b.closed, collapsed: _25b.collapsed, minimized: _25b.minimized, maximized: _25b.maximized });
+            var popts = jq.panel("options");
+            var wopts = $.data(jq[0], "window").options;
+            return $.extend(wopts, { closed: popts.closed, collapsed: popts.collapsed, minimized: popts.minimized, maximized: popts.maximized });
         }, window: function (jq) {
             return $.data(jq[0], "window").window;
-        }, resize: function (jq, _25d) {
+        }, resize: function (jq, param) {
             return jq.each(function () {
-                _23a(this, _25d);
+                setSize(this, param);
             });
-        }, move: function (jq, _25e) {
+        }, move: function (jq, param) {
             return jq.each(function () {
-                _23d(this, _25e);
+                moveWindow(this, param);
             });
         }, hcenter: function (jq) {
             return jq.each(function () {
-                _241(this, true);
+                hcenter(this, true);
             });
         }, vcenter: function (jq) {
             return jq.each(function () {
-                _247(this, true);
+                vcenter(this, true);
             });
         }, center: function (jq) {
             return jq.each(function () {
-                _241(this);
-                _247(this);
-                _23d(this);
+                hcenter(this);
+                vcenter(this);
+                moveWindow(this);
             });
         }
     };
-    $.fn.window.parseOptions = function (_25f) {
-        return $.extend({}, $.fn.panel.parseOptions(_25f), $.parser.parseOptions(_25f, [{ draggable: "boolean", resizable: "boolean", shadow: "boolean", modal: "boolean", inline: "boolean" }]));
+    $.fn.window.parseOptions = function (target) {
+        return $.extend({}, $.fn.panel.parseOptions(target), $.parser.parseOptions(target, [{ draggable: "boolean", resizable: "boolean", shadow: "boolean", modal: "boolean", inline: "boolean" }]));
     };
     $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false });
 })(jQuery);
@@ -4390,10 +4390,14 @@ if (typeof JSON !== 'object') {
     };
     $.messager = {
         show: function (_284) {
-            if ($.isFunction($g)) _284.msg = $g(_284.msg);
+            if ("undefined"!=typeof $g) {
+                if ($.isFunction($g)) _284.msg = $g(_284.msg);
+            }
             return _27d(_284);
         }, alert: function (_285, msg, icon, fn) {
-            if ($.isFunction($g)) msg = $g(msg);
+            if ("undefined"!=typeof $g) {
+                if ($.isFunction($g)) msg = $g(msg);
+            }
             /* 对象文字 add margin-left:42px;*/
             var _286 = "<div style=\"margin-left:42px;\">" + msg + "</div>";
             switch (icon) {
@@ -4425,7 +4429,9 @@ if (typeof JSON !== 'object') {
             var win = _27f(_285, _286, _287);
             return win;
         }, confirm: function (_288, msg, fn) {
-            if ($.isFunction($g)) msg = $g(msg);
+            if ("undefined"!=typeof $g) {
+                if ($.isFunction($g)) msg = $g(msg);
+            }
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>";
             var _28a = {};
             _28a[$.messager.defaults.ok] = function () {
@@ -4445,7 +4451,9 @@ if (typeof JSON !== 'object') {
             var win = _27f(_288, _289, _28a);
             return win;
         }, prompt: function (_28b, msg, fn) {
-            if ($.isFunction($g)) msg = $g(msg);
+            if ("undefined"!=typeof $g) {
+                if ($.isFunction($g)) msg = $g(msg);
+            }
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>";
             var _28d = {};
             _28d[$.messager.defaults.ok] = function () {
@@ -4481,7 +4489,9 @@ if (typeof JSON !== 'object') {
                 return _290();
             }
             var opts = $.extend({ title: "", msg: "", text: undefined, interval: 300 }, _28e || {});
-            if ($.isFunction($g)) opts.msg = $g(opts.msg);
+            if ("undefined"!=typeof $g) {
+                if ($.isFunction($g)) opts.msg = $g(opts.msg);
+            }
             var _291 = "<div class=\"messager-progress\"><div class=\"messager-p-msg\"></div><div class=\"messager-p-bar\"></div></div>";
             var win = _27f(opts.title, _291, null);
             win.find("div.messager-p-msg").html(opts.msg);
@@ -4512,7 +4522,9 @@ if (typeof JSON !== 'object') {
             var defopt = {style:{top:'',left:''},
                msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
-            if ($.isFunction($g)) o.msg = $g(o.msg);
+            if ("undefined"!=typeof $g) {
+                if ($.isFunction($g)) o.msg = $g(o.msg);
+            }
             var html = '<div class="messager-popover '+o.type+'" style="display:none;">\
             <span class="messager-popover-icon '+o.type+'"/><span class="content">'+o.msg+'</span>\
             <span class="close"></span>\
@@ -4566,27 +4578,27 @@ if (typeof JSON !== 'object') {
     $.messager.defaults = { ok: "Ok", cancel: "Cancel" };
 })(jQuery);
 (function ($) {
-    function _292(_293) {
-        var _294 = $.data(_293, "accordion");
-        var opts = _294.options;
-        var _295 = _294.panels;
-        var cc = $(_293);
+    function setSize(container) {
+        var state = $.data(container, "accordion");
+        var opts = state.options;
+        var panels = state.panels;
+        var cc = $(container);
         opts.fit ? $.extend(opts, cc._fit()) : cc._fit(false);
         if (!isNaN(opts.width)) {
             cc._outerWidth(opts.width);
         } else {
             cc.css("width", "");
         }
-        var _296 = 0;
-        var _297 = "auto";
-        var _298 = cc.find(">div.panel>div.accordion-header");
-        if (_298.length) {
-            _296 = $(_298[0]).css("height", "")._outerHeight();
+        var headerHeight = 0;
+        var bodyHeight = "auto";
+        var headers = cc.find(">div.panel>div.accordion-header");
+        if (headers.length) {
+            headerHeight = $(headers[0]).css("height", "")._outerHeight();
         }
         
         if (!isNaN(opts.height)) {
             cc._outerHeight(opts.height);
-            _297 = cc.height() - _296 * _298.length;
+            bodyHeight = cc.height() - headerHeight * headers.length;
         } else {
             cc.css("height", "");
         }
@@ -4595,250 +4607,250 @@ if (typeof JSON !== 'object') {
             accordion-gray ==> margin-top:4px;
         */
         if (cc.hasClass('accordion-gray')){
-            _297 -= 4 * (_298.length-1)+1;  // totalHeight - margin-top * (accordionCount-1)
+            bodyHeight -= 4 * (headers.length-1)+1;  // totalHeight - margin-top * (accordionCount-1)
         }
-        _299(true, _297 - _299(false) + 1);
-        function _299(_29a, _29b) {
-            var _29c = 0;
-            for (var i = 0; i < _295.length; i++) {
-                var p = _295[i];
-                var h = p.panel("header")._outerHeight(_296);
-                if (p.panel("options").collapsible == _29a) {
-                    var _29d = isNaN(_29b) ? undefined : (_29b + _296 * h.length);
-                    p.panel("resize", { width: cc.width(), height: (_29a ? _29d : undefined) });
-                    _29c += p.panel("panel").outerHeight() - _296;
+        _resize(true, bodyHeight - _resize(false) + 1);
+        function _resize(collapsible, height) {
+            var totalHeight = 0;
+            for (var i = 0; i < panels.length; i++) {
+                var p = panels[i];
+                var h = p.panel("header")._outerHeight(headerHeight);
+                if (p.panel("options").collapsible == collapsible) {
+                    var pheight = isNaN(height) ? undefined : (height + headerHeight * h.length);
+                    p.panel("resize", { width: cc.width(), height: (collapsible ? pheight : undefined) });
+                    totalHeight += p.panel("panel").outerHeight() - headerHeight;
                 }
             }
-            return _29c;
+            return totalHeight;
         };
     };
-    function _29e(_29f, _2a0, _2a1, all) {
-        var _2a2 = $.data(_29f, "accordion").panels;
+    function findBy(container, property, value, all) {
+        var panels = $.data(container, "accordion").panels;
         var pp = [];
-        for (var i = 0; i < _2a2.length; i++) {
-            var p = _2a2[i];
-            if (_2a0) {
-                if (p.panel("options")[_2a0] == _2a1) {
+        for (var i = 0; i < panels.length; i++) {
+            var p = panels[i];
+            if (property) {
+                if (p.panel("options")[property] == value) {
                     pp.push(p);
                 }
             } else {
-                if (p[0] == $(_2a1)[0]) {
+                if (p[0] == $(value)[0]) {
                     return i;
                 }
             }
         }
-        if (_2a0) {
+        if (property) {
             return all ? pp : (pp.length ? pp[0] : null);
         } else {
             return -1;
         }
     };
-    function _2a3(_2a4) {
-        return _29e(_2a4, "collapsed", false, true);
+    function getSelections(container) {
+        return findBy(container, "collapsed", false, true);
     };
-    function _2a5(_2a6) {
-        var pp = _2a3(_2a6);
+    function getSelected(container) {
+        var pp = getSelections(container);
         return pp.length ? pp[0] : null;
     };
-    function _2a7(_2a8, _2a9) {
-        return _29e(_2a8, null, _2a9);
+    function getPanelIndex(container, panel) {
+        return findBy(container, null, panel);
     };
-    function _2aa(_2ab, _2ac) {
-        var _2ad = $.data(_2ab, "accordion").panels;
-        if (typeof _2ac == "number") {
-            if (_2ac < 0 || _2ac >= _2ad.length) {
+    function getPanel(container, which) {
+        var panels = $.data(container, "accordion").panels;
+        if (typeof which == "number") {
+            if (which < 0 || which >= panels.length) {
                 return null;
             } else {
-                return _2ad[_2ac];
+                return panels[which];
             }
         }
-        return _29e(_2ab, "title", _2ac);
+        return findBy(container, "title", which);
     };
-    function _2ae(_2af) {
-        var opts = $.data(_2af, "accordion").options;
-        var cc = $(_2af);
+    function setProperties(container) {
+        var opts = $.data(container, "accordion").options;
+        var cc = $(container);
         if (opts.border) {
             cc.removeClass("accordion-noborder");
         } else {
             cc.addClass("accordion-noborder");
         }
     };
-    function init(_2b0) {
-        var _2b1 = $.data(_2b0, "accordion");
-        var cc = $(_2b0);
+    function init(container) {
+        var state = $.data(container, "accordion");
+        var cc = $(container);
         cc.addClass("accordion");
-        _2b1.panels = [];
+        state.panels = [];
         cc.children("div").each(function () {
             var opts = $.extend({}, $.parser.parseOptions(this), { selected: ($(this).attr("selected") ? true : undefined) });
             var pp = $(this);
-            _2b1.panels.push(pp);
-            _2b3(_2b0, pp, opts);
+            state.panels.push(pp);
+            createPanel(container, pp, opts);
         });
-        cc.bind("_resize", function (e, _2b2) {
-            var opts = $.data(_2b0, "accordion").options;
-            if (opts.fit == true || _2b2) {
-                _292(_2b0);
+        cc.bind("_resize", function (e, force) {
+            var opts = $.data(container, "accordion").options;
+            if (opts.fit == true || force) {
+                setSize(container);
             }
             return false;
         });
     };
-    function _2b3(_2b4, pp, _2b5) {
-        var opts = $.data(_2b4, "accordion").options;
-        pp.panel($.extend({}, { collapsible: true, minimizable: false, maximizable: false, closable: false, doSize: false, collapsed: true, headerCls: "accordion-header", bodyCls: "accordion-body" }, _2b5, {
+    function createPanel(container, pp, options) {
+        var opts = $.data(container, "accordion").options;
+        pp.panel($.extend({}, { collapsible: true, minimizable: false, maximizable: false, closable: false, doSize: false, collapsed: true, headerCls: "accordion-header", bodyCls: "accordion-body" }, options, {
             onBeforeExpand: function () {
-                if (_2b5.onBeforeExpand) {
-                    if (_2b5.onBeforeExpand.call(this) == false) {
+                if (options.onBeforeExpand) {
+                    if (options.onBeforeExpand.call(this) == false) {
                         return false;
                     }
                 }
                 if (!opts.multiple) {
-                    var all = $.grep(_2a3(_2b4), function (p) {
+                    var all = $.grep(getSelections(container), function (p) {
                         return p.panel("options").collapsible;
                     });
                     for (var i = 0; i < all.length; i++) {
-                        _2be(_2b4, _2a7(_2b4, all[i]));
+                        unselect(container, getPanelIndex(container, all[i]));
                     }
                 }
-                var _2b6 = $(this).panel("header");
-                _2b6.addClass("accordion-header-selected");
-                _2b6.find(".accordion-collapse").removeClass("accordion-expand");
+                var header = $(this).panel("header");
+                header.addClass("accordion-header-selected");
+                header.find(".accordion-collapse").removeClass("accordion-expand");
             }, onExpand: function () {
-                if (_2b5.onExpand) {
-                    _2b5.onExpand.call(this);
+                if (options.onExpand) {
+                    options.onExpand.call(this);
                 }
-                opts.onSelect.call(_2b4, $(this).panel("options").title, _2a7(_2b4, this));
+                opts.onSelect.call(container, $(this).panel("options").title, getPanelIndex(container, this));
             }, onBeforeCollapse: function () {
-                if (_2b5.onBeforeCollapse) {
-                    if (_2b5.onBeforeCollapse.call(this) == false) {
+                if (options.onBeforeCollapse) {
+                    if (options.onBeforeCollapse.call(this) == false) {
                         return false;
                     }
                 }
-                var _2b7 = $(this).panel("header");
-                _2b7.removeClass("accordion-header-selected");
-                _2b7.find(".accordion-collapse").addClass("accordion-expand");
+                var header = $(this).panel("header");
+                header.removeClass("accordion-header-selected");
+                header.find(".accordion-collapse").addClass("accordion-expand");
             }, onCollapse: function () {
-                if (_2b5.onCollapse) {
-                    _2b5.onCollapse.call(this);
+                if (options.onCollapse) {
+                    options.onCollapse.call(this);
                 }
-                opts.onUnselect.call(_2b4, $(this).panel("options").title, _2a7(_2b4, this));
+                opts.onUnselect.call(container, $(this).panel("options").title, getPanelIndex(container, this));
             }
         }));
-        var _2b8 = pp.panel("header");
-        var tool = _2b8.children("div.panel-tool");
+        var header = pp.panel("header");
+        var tool = header.children("div.panel-tool");
         tool.children("a.panel-tool-collapse").hide();
         var t = $("<a href=\"javascript:void(0)\"></a>").addClass("accordion-collapse accordion-expand").appendTo(tool);
         t.bind("click", function () {
-            var _2b9 = _2a7(_2b4, pp);
+            var index = getPanelIndex(container, pp);
             if (pp.panel("options").collapsed) {
-                _2ba(_2b4, _2b9);
+                select(container, index);
             } else {
-                _2be(_2b4, _2b9);
+                unselect(container, index);
             }
             return false;
         });
         pp.panel("options").collapsible ? t.show() : t.hide();
-        _2b8.click(function () {
+        header.click(function () {
             $(this).find("a.accordion-collapse:visible").triggerHandler("click");
             return false;
         });
     };
-    function _2ba(_2bb, _2bc) {
-        var p = _2aa(_2bb, _2bc);
+    function select(container, which) {
+        var p = getPanel(container, which);
         if (!p) {
             return;
         }
-        _2bd(_2bb);
-        var opts = $.data(_2bb, "accordion").options;
+        stopAnimate(container);
+        var opts = $.data(container, "accordion").options;
         p.panel("expand", opts.animate);
     };
-    function _2be(_2bf, _2c0) {
-        var p = _2aa(_2bf, _2c0);
+    function unselect(container, which) {
+        var p = getPanel(container, which);
         if (!p) {
             return;
         }
-        _2bd(_2bf);
-        var opts = $.data(_2bf, "accordion").options;
+        stopAnimate(container);
+        var opts = $.data(container, "accordion").options;
         p.panel("collapse", opts.animate);
     };
-    function _2c1(_2c2) {
-        var opts = $.data(_2c2, "accordion").options;
-        var p = _29e(_2c2, "selected", true);
+    function doFirstSelect(container) {
+        var opts = $.data(container, "accordion").options;
+        var p = findBy(container, "selected", true);
         if (p) {
-            _2c3(_2a7(_2c2, p));
+            _select(getPanelIndex(container, p));
         } else {
-            _2c3(opts.selected);
+            _select(opts.selected);
         }
-        function _2c3(_2c4) {
-            var _2c5 = opts.animate;
+        function _select(index) {
+            var animate = opts.animate;
             opts.animate = false;
-            _2ba(_2c2, _2c4);
-            opts.animate = _2c5;
+            select(container, index);
+            opts.animate = animate;
         };
     };
-    function _2bd(_2c6) {
-        var _2c7 = $.data(_2c6, "accordion").panels;
-        for (var i = 0; i < _2c7.length; i++) {
-            _2c7[i].stop(true, true);
+    function stopAnimate(container) {
+        var panels = $.data(container, "accordion").panels;
+        for (var i = 0; i < panels.length; i++) {
+            panels[i].stop(true, true);
         }
     };
-    function add(_2c8, _2c9) {
-        var _2ca = $.data(_2c8, "accordion");
-        var opts = _2ca.options;
-        var _2cb = _2ca.panels;
-        if (_2c9.selected == undefined) {
-            _2c9.selected = true;
+    function add(container, options) {
+        var state = $.data(container, "accordion");
+        var opts = state.options;
+        var panels = state.panels;
+        if (options.selected == undefined) {
+            options.selected = true;
         }
-        _2bd(_2c8);
-        var pp = $("<div></div>").appendTo(_2c8);
-        _2cb.push(pp);
-        _2b3(_2c8, pp, _2c9);
-        _292(_2c8);
-        opts.onAdd.call(_2c8, _2c9.title, _2cb.length - 1);
-        if (_2c9.selected) {
-            _2ba(_2c8, _2cb.length - 1);
+        stopAnimate(container);
+        var pp = $("<div></div>").appendTo(container);
+        panels.push(pp);
+        createPanel(container, pp, options);
+        setSize(container);
+        opts.onAdd.call(container, options.title, panels.length - 1);
+        if (options.selected) {
+            select(container, panels.length - 1);
         }
     };
-    function _2cc(_2cd, _2ce) {
-        var _2cf = $.data(_2cd, "accordion");
-        var opts = _2cf.options;
-        var _2d0 = _2cf.panels;
-        _2bd(_2cd);
-        var _2d1 = _2aa(_2cd, _2ce);
-        var _2d2 = _2d1.panel("options").title;
-        var _2d3 = _2a7(_2cd, _2d1);
-        if (!_2d1) {
+    function remove(container, which) {
+        var state = $.data(container, "accordion");
+        var opts = state.options;
+        var panels = state.panels;
+        stopAnimate(container);
+        var panel = getPanel(container, which);
+        var title = panel.panel("options").title;
+        var index = getPanelIndex(container, panel);
+        if (!panel) {
             return;
         }
-        if (opts.onBeforeRemove.call(_2cd, _2d2, _2d3) == false) {
+        if (opts.onBeforeRemove.call(container, title, index) == false) {
             return;
         }
-        _2d0.splice(_2d3, 1);
-        _2d1.panel("destroy");
-        if (_2d0.length) {
-            _292(_2cd);
-            var curr = _2a5(_2cd);
+        panels.splice(index, 1);
+        panel.panel("destroy");
+        if (panels.length) {
+            setSize(container);
+            var curr = getSelected(container);
             if (!curr) {
-                _2ba(_2cd, 0);
+                select(container, 0);
             }
         }
-        opts.onRemove.call(_2cd, _2d2, _2d3);
+        opts.onRemove.call(container, title, index);
     };
-    $.fn.accordion = function (_2d4, _2d5) {
-        if (typeof _2d4 == "string") {
-            return $.fn.accordion.methods[_2d4](this, _2d5);
+    $.fn.accordion = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.accordion.methods[options](this, param);
         }
-        _2d4 = _2d4 || {};
+        options = options || {};
         return this.each(function () {
-            var _2d6 = $.data(this, "accordion");
-            if (_2d6) {
-                $.extend(_2d6.options, _2d4);
+            var state = $.data(this, "accordion");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                $.data(this, "accordion", { options: $.extend({}, $.fn.accordion.defaults, $.fn.accordion.parseOptions(this), _2d4), accordion: $(this).addClass("accordion"), panels: [] });
+                $.data(this, "accordion", { options: $.extend({}, $.fn.accordion.defaults, $.fn.accordion.parseOptions(this), options), accordion: $(this).addClass("accordion"), panels: [] });
                 init(this);
             }
-            _2ae(this);
-            _292(this);
-            _2c1(this);
+            setProperties(this);
+            setSize(this);
+            doFirstSelect(this);
         });
     };
     $.fn.accordion.methods = {
@@ -4848,99 +4860,99 @@ if (typeof JSON !== 'object') {
             return $.data(jq[0], "accordion").panels;
         }, resize: function (jq) {
             return jq.each(function () {
-                _292(this);
+                setSize(this);
             });
         }, getSelections: function (jq) {
-            return _2a3(jq[0]);
+            return getSelections(jq[0]);
         }, getSelected: function (jq) {
-            return _2a5(jq[0]);
-        }, getPanel: function (jq, _2d7) {
-            return _2aa(jq[0], _2d7);
-        }, getPanelIndex: function (jq, _2d8) {
-            return _2a7(jq[0], _2d8);
-        }, select: function (jq, _2d9) {
+            return getSelected(jq[0]);
+        }, getPanel: function (jq, which) {
+            return getPanel(jq[0], which);
+        }, getPanelIndex: function (jq, panel) {
+            return getPanelIndex(jq[0], panel);
+        }, select: function (jq, which) {
             return jq.each(function () {
-                _2ba(this, _2d9);
+                select(this, which);
             });
-        }, unselect: function (jq, _2da) {
+        }, unselect: function (jq, which) {
             return jq.each(function () {
-                _2be(this, _2da);
+                unselect(this, which);
             });
-        }, add: function (jq, _2db) {
+        }, add: function (jq, options) {
             return jq.each(function () {
-                add(this, _2db);
+                add(this, options);
             });
-        }, remove: function (jq, _2dc) {
+        }, remove: function (jq, which) {
             return jq.each(function () {
-                _2cc(this, _2dc);
+                remove(this, which);
             });
         }
     };
-    $.fn.accordion.parseOptions = function (_2dd) {
-        var t = $(_2dd);
-        return $.extend({}, $.parser.parseOptions(_2dd, ["width", "height", { fit: "boolean", border: "boolean", animate: "boolean", multiple: "boolean", selected: "number" }]));
+    $.fn.accordion.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", { fit: "boolean", border: "boolean", animate: "boolean", multiple: "boolean", selected: "number" }]));
     };
     $.fn.accordion.defaults = {
-        width: "auto", height: "auto", fit: false, border: true, animate: true, multiple: false, selected: 0, onSelect: function (_2de, _2df) {
-        }, onUnselect: function (_2e0, _2e1) {
-        }, onAdd: function (_2e2, _2e3) {
-        }, onBeforeRemove: function (_2e4, _2e5) {
-        }, onRemove: function (_2e6, _2e7) {
+        width: "auto", height: "auto", fit: false, border: true, animate: true, multiple: false, selected: 0, onSelect: function (title, index) {
+        }, onUnselect: function (title, index) {
+        }, onAdd: function (title, index) {
+        }, onBeforeRemove: function (title, index) {
+        }, onRemove: function (title, index) {
         }
     };
 })(jQuery);
 (function ($) {
-    function _2e8(_2e9) {
-        var opts = $.data(_2e9, "tabs").options;
+    function setScrollers(container) {
+        var opts = $.data(container, "tabs").options;
         if (opts.tabPosition == "left" || opts.tabPosition == "right" || !opts.showHeader) {
             return;
         }
-        var _2ea = $(_2e9).children("div.tabs-header");
-        var tool = _2ea.children("div.tabs-tool");
-        var _2eb = _2ea.children("div.tabs-scroller-left");
-        var _2ec = _2ea.children("div.tabs-scroller-right");
-        var wrap = _2ea.children("div.tabs-wrap");
-        var _2ed = _2ea.outerHeight();
+        var header = $(container).children("div.tabs-header");
+        var tool = header.children("div.tabs-tool");
+        var sLeft = header.children("div.tabs-scroller-left");
+        var sRight = header.children("div.tabs-scroller-right");
+        var wrap = header.children("div.tabs-wrap");
+        var tHeight = header.outerHeight();
         if (opts.plain) {
-            _2ed -= _2ed - _2ea.height();
+            tHeight -= tHeight - header.height();
         }
-        tool._outerHeight(_2ed);
-        var _2ee = 0;
-        $("ul.tabs li", _2ea).each(function () {
-            _2ee += $(this).outerWidth(true);
+        tool._outerHeight(tHeight);
+        var tabsWidth = 0;
+        $("ul.tabs li", header).each(function () {
+            tabsWidth += $(this).outerWidth(true);
         });
-        var _2ef = _2ea.width() - tool._outerWidth();
-        if (_2ee > _2ef) {
-            _2eb.add(_2ec).show()._outerHeight(_2ed);
+        var cWidth = header.width() - tool._outerWidth();
+        if (tabsWidth > cWidth) {
+            sLeft.add(sRight).show()._outerHeight(tHeight);
             if (opts.toolPosition == "left") {
-                tool.css({ left: _2eb.outerWidth(), right: "" });
-                wrap.css({ marginLeft: _2eb.outerWidth() + tool._outerWidth(), marginRight: _2ec._outerWidth(), width: _2ef - _2eb.outerWidth() - _2ec.outerWidth() });
+                tool.css({ left: sLeft.outerWidth(), right: "" });
+                wrap.css({ marginLeft: sLeft.outerWidth() + tool._outerWidth(), marginRight: sRight._outerWidth(), width: cWidth - sLeft.outerWidth() - sRight.outerWidth() });
             } else {
-                tool.css({ left: "", right: _2ec.outerWidth() });
-                wrap.css({ marginLeft: _2eb.outerWidth(), marginRight: _2ec.outerWidth() + tool._outerWidth(), width: _2ef - _2eb.outerWidth() - _2ec.outerWidth() });
+                tool.css({ left: "", right: sRight.outerWidth() });
+                wrap.css({ marginLeft: sLeft.outerWidth(), marginRight: sRight.outerWidth() + tool._outerWidth(), width: cWidth - sLeft.outerWidth() - sRight.outerWidth() });
             }
         } else {
-            _2eb.add(_2ec).hide();
+            sLeft.add(sRight).hide();
             if (opts.toolPosition == "left") {
                 tool.css({ left: 0, right: "" });
-                wrap.css({ marginLeft: tool._outerWidth(), marginRight: 0, width: _2ef });
+                wrap.css({ marginLeft: tool._outerWidth(), marginRight: 0, width: cWidth });
             } else {
                 tool.css({ left: "", right: 0 });
-                wrap.css({ marginLeft: 0, marginRight: tool._outerWidth(), width: _2ef });
+                wrap.css({ marginLeft: 0, marginRight: tool._outerWidth(), width: cWidth });
             }
         }
     };
-    function _2f0(_2f1) {
-        var opts = $.data(_2f1, "tabs").options;
-        var _2f2 = $(_2f1).children("div.tabs-header");
+    function addTools(container) {
+        var opts = $.data(container, "tabs").options;
+        var header = $(container).children("div.tabs-header");
         if (opts.tools) {
             if (typeof opts.tools == "string") {
-                $(opts.tools).addClass("tabs-tool").appendTo(_2f2);
+                $(opts.tools).addClass("tabs-tool").appendTo(header);
                 $(opts.tools).show();
             } else {
-                _2f2.children("div.tabs-tool").remove();
-                var _2f3 = $("<div class=\"tabs-tool\"><table cellspacing=\"0\" cellpadding=\"0\" style=\"height:100%\"><tr></tr></table></div>").appendTo(_2f2);
-                var tr = _2f3.find("tr");
+                header.children("div.tabs-tool").remove();
+                var tools = $("<div class=\"tabs-tool\"><table cellspacing=\"0\" cellpadding=\"0\" style=\"height:100%\"><tr></tr></table></div>").appendTo(header);
+                var tr = tools.find("tr");
                 for (var i = 0; i < opts.tools.length; i++) {
                     var td = $("<td></td>").appendTo(tr);
                     var tool = $("<a href=\"javascript:void(0);\"></a>").appendTo(td);
@@ -4950,25 +4962,25 @@ if (typeof JSON !== 'object') {
                 }
             }
         } else {
-            _2f2.children("div.tabs-tool").remove();
+            header.children("div.tabs-tool").remove();
         }
     };
-    function _2f4(_2f5) {
-        var _2f6 = $.data(_2f5, "tabs");
-        var opts = _2f6.options;
-        var cc = $(_2f5);
+    function setSize(container) {
+        var state = $.data(container, "tabs");
+        var opts = state.options;
+        var cc = $(container);
         opts.fit ? $.extend(opts, cc._fit()) : cc._fit(false);
         cc.width(opts.width).height(opts.height);
-        var _2f7 = $(_2f5).children("div.tabs-header");
-        var _2f8 = $(_2f5).children("div.tabs-panels");
-        var wrap = _2f7.find("div.tabs-wrap");
+        var header = $(container).children("div.tabs-header");
+        var panels = $(container).children("div.tabs-panels");
+        var wrap = header.find("div.tabs-wrap");
         var ul = wrap.find(".tabs");
-        for (var i = 0; i < _2f6.tabs.length; i++) {
-            var _2f9 = _2f6.tabs[i].panel("options");
-            var p_t = _2f9.tab.find("a.tabs-inner");
-            var _2fa = parseInt(_2f9.tabWidth || opts.tabWidth) || undefined;
-            if (_2fa) {
-                p_t._outerWidth(_2fa);
+        for (var i = 0; i < state.tabs.length; i++) {
+            var p_opts = state.tabs[i].panel("options");
+            var p_t = p_opts.tab.find("a.tabs-inner");
+            var width = parseInt(p_opts.tabWidth || opts.tabWidth) || undefined;
+            if (width) {
+                p_t._outerWidth(width);
             } else {
                 p_t.css("width", "");
             }
@@ -4976,89 +4988,89 @@ if (typeof JSON !== 'object') {
             p_t.css("lineHeight", p_t.height() + "px");
         }
         if (opts.tabPosition == "left" || opts.tabPosition == "right") {
-            _2f7._outerWidth(opts.showHeader ? opts.headerWidth : 0);
-            _2f8._outerWidth(cc.width() - _2f7.outerWidth());
-            _2f7.add(_2f8)._outerHeight(opts.height);
-            wrap._outerWidth(_2f7.width());
+            header._outerWidth(opts.showHeader ? opts.headerWidth : 0);
+            panels._outerWidth(cc.width() - header.outerWidth());
+            header.add(panels)._outerHeight(opts.height);
+            wrap._outerWidth(header.width());
             ul._outerWidth(wrap.width()).css("height", "");
         } else {
-            var lrt = _2f7.children("div.tabs-scroller-left,div.tabs-scroller-right,div.tabs-tool");
-            _2f7._outerWidth(opts.width).css("height", "");
+            var lrt = header.children("div.tabs-scroller-left,div.tabs-scroller-right,div.tabs-tool");
+            header._outerWidth(opts.width).css("height", "");
             if (opts.showHeader) {
-                _2f7.css("background-color", "");
+                header.css("background-color", "");
                 wrap.css("height", "");
                 lrt.show();
             } else {
-                _2f7.css("background-color", "transparent");
-                _2f7._outerHeight(0);
+                header.css("background-color", "transparent");
+                header._outerHeight(0);
                 wrap._outerHeight(0);
                 lrt.hide();
             }
             ul._outerHeight(opts.tabHeight).css("width", "");
-            _2e8(_2f5);
-            var _2fb = opts.height;
-            if (!isNaN(_2fb)) {
-                _2f8._outerHeight(_2fb - _2f7.outerHeight());
+            setScrollers(container);
+            var height = opts.height;
+            if (!isNaN(height)) {
+                panels._outerHeight(height - header.outerHeight());
             } else {
-                _2f8.height("auto");
+                panels.height("auto");
             }
-            var _2fa = opts.width;
-            if (!isNaN(_2fa)) {
-                _2f8._outerWidth(_2fa);
+            var width = opts.width;
+            if (!isNaN(width)) {
+                panels._outerWidth(width);
             } else {
-                _2f8.width("auto");
+                panels.width("auto");
             }
         }
     };
-    function _2fc(_2fd) {
-        var opts = $.data(_2fd, "tabs").options;
-        var tab = _2fe(_2fd);
+    function setSelectedSize(container) {
+        var opts = $.data(container, "tabs").options;
+        var tab = getSelectedTab(container);
         if (tab) {
-            var _2ff = $(_2fd).children("div.tabs-panels");
-            var _300 = opts.width == "auto" ? "auto" : _2ff.width();
-            var _301 = opts.height == "auto" ? "auto" : _2ff.height();
-            tab.panel("resize", { width: _300, height: _301 });
+            var panels = $(container).children("div.tabs-panels");
+            var width = opts.width == "auto" ? "auto" : panels.width();
+            var height = opts.height == "auto" ? "auto" : panels.height();
+            tab.panel("resize", { width: width, height: height });
         }
     };
-    function _302(_303) {
-        var tabs = $.data(_303, "tabs").tabs;
-        var cc = $(_303);
+    function wrapTabs(container) {
+        var tabs = $.data(container, "tabs").tabs;
+        var cc = $(container);
         cc.addClass("tabs-container");
         var pp = $("<div class=\"tabs-panels\"></div>").insertBefore(cc);
         cc.children("div").each(function () {
             pp[0].appendChild(this);
         });
         cc[0].appendChild(pp[0]);
-        $("<div class=\"tabs-header\">" + "<div class=\"tabs-scroller-left\"></div>" + "<div class=\"tabs-scroller-right\"></div>" + "<div class=\"tabs-wrap\">" + "<ul class=\"tabs\"></ul>" + "</div>" + "</div>").prependTo(_303);
+        $("<div class=\"tabs-header\">" + "<div class=\"tabs-scroller-left\"></div>" + "<div class=\"tabs-scroller-right\"></div>" + "<div class=\"tabs-wrap\">" + "<ul class=\"tabs\"></ul>" + "</div>" + "</div>").prependTo(container);
         cc.children("div.tabs-panels").children("div").each(function (i) {
             var opts = $.extend({}, $.parser.parseOptions(this), { selected: ($(this).attr("selected") ? true : undefined) });
             var pp = $(this);
             tabs.push(pp);
-            _310(_303, pp, opts);
+            createTab(container, pp, opts);
         });
         cc.children("div.tabs-header").find(".tabs-scroller-left, .tabs-scroller-right").hover(function () {
             $(this).addClass("tabs-scroller-over");
         }, function () {
             $(this).removeClass("tabs-scroller-over");
         });
-        cc.bind("_resize", function (e, _304) {
-            var opts = $.data(_303, "tabs").options;
-            if (opts.fit == true || _304) {
-                _2f4(_303);
-                _2fc(_303);
+        cc.bind("_resize", function (e, force) {
+            var opts = $.data(container, "tabs").options;
+            if (opts.fit == true || force) {
+                setSize(container);
+                setSelectedSize(container);
             }
             return false;
         });
     };
-    function _305(_306) {
-        var _307 = $.data(_306, "tabs");
-        var opts = _307.options;
-        $(_306).children("div.tabs-header").unbind().bind("click", function (e) {
+    function bindEvents(container) {
+        var state = $.data(container, "tabs");
+        var opts = state.options;
+        $(container).children("div.tabs-header").unbind().bind("click", function (e) {
             if ($(e.target).hasClass("tabs-scroller-left")) {
-                $(_306).tabs("scrollBy", -opts.scrollIncrement);
+                $(container).tabs("scrollBy", -opts.scrollIncrement);
             } else {
                 if ($(e.target).hasClass("tabs-scroller-right")) {
-                    $(_306).tabs("scrollBy", opts.scrollIncrement);
+                    $(container).tabs("scrollBy", opts.scrollIncrement);
                 } else {
                     var li = $(e.target).closest("li");
                     if (li.hasClass("tabs-disabled")) {
@@ -5066,15 +5078,15 @@ if (typeof JSON !== 'object') {
                     }
                     var a = $(e.target).closest("a.tabs-close");
                     if (a.length) {
-                        _321(_306, _308(li));
+                        closeTab(container, getLiIndex(li));
                     } else {
                         if (li.length) {
-                            var _309 = _308(li);
-                            var _30a = _307.tabs[_309].panel("options");
-                            if (_30a.collapsible) {
-                                _30a.closed ? _317(_306, _309) : _338(_306, _309);
+                            var index = getLiIndex(li);
+                            var popts = state.tabs[index].panel("options");
+                            if (popts.collapsible) {
+                                popts.closed ? selectTab(container, index) : unselectTab(container, index);
                             } else {
-                                _317(_306, _309);
+                                selectTab(container, index);
                             }
                         }
                     }
@@ -5086,134 +5098,134 @@ if (typeof JSON !== 'object') {
                 return;
             }
             if (li.length) {
-                opts.onContextMenu.call(_306, e, li.find("span.tabs-title").html(), _308(li));
+                opts.onContextMenu.call(container, e, li.find("span.tabs-title").html(), getLiIndex(li));
             }
         });
-        function _308(li) {
-            var _30b = 0;
+        function getLiIndex(li) {
+            var index = 0;
             li.parent().children("li").each(function (i) {
                 if (li[0] == this) {
-                    _30b = i;
+                    index = i;
                     return false;
                 }
             });
-            return _30b;
+            return index;
         };
     };
-    function _30c(_30d) {
-        var opts = $.data(_30d, "tabs").options;
-        var _30e = $(_30d).children("div.tabs-header");
-        var _30f = $(_30d).children("div.tabs-panels");
-        _30e.removeClass("tabs-header-top tabs-header-bottom tabs-header-left tabs-header-right");
-        _30f.removeClass("tabs-panels-top tabs-panels-bottom tabs-panels-left tabs-panels-right");
+    function setProperties(container) {
+        var opts = $.data(container, "tabs").options;
+        var header = $(container).children("div.tabs-header");
+        var panels = $(container).children("div.tabs-panels");
+        header.removeClass("tabs-header-top tabs-header-bottom tabs-header-left tabs-header-right");
+        panels.removeClass("tabs-panels-top tabs-panels-bottom tabs-panels-left tabs-panels-right");
         if (opts.tabPosition == "top") {
-            _30e.insertBefore(_30f);
+            header.insertBefore(panels);
         } else {
             if (opts.tabPosition == "bottom") {
-                _30e.insertAfter(_30f);
-                _30e.addClass("tabs-header-bottom");
-                _30f.addClass("tabs-panels-top");
+                header.insertAfter(panels);
+                header.addClass("tabs-header-bottom");
+                panels.addClass("tabs-panels-top");
             } else {
                 if (opts.tabPosition == "left") {
-                    _30e.addClass("tabs-header-left");
-                    _30f.addClass("tabs-panels-right");
+                    header.addClass("tabs-header-left");
+                    panels.addClass("tabs-panels-right");
                 } else {
                     if (opts.tabPosition == "right") {
-                        _30e.addClass("tabs-header-right");
-                        _30f.addClass("tabs-panels-left");
+                        header.addClass("tabs-header-right");
+                        panels.addClass("tabs-panels-left");
                     }
                 }
             }
         }
         if (opts.plain == true) {
-            _30e.addClass("tabs-header-plain");
+            header.addClass("tabs-header-plain");
         } else {
-            _30e.removeClass("tabs-header-plain");
+            header.removeClass("tabs-header-plain");
         }
         if (opts.border == true) {
-            _30e.removeClass("tabs-header-noborder");
-            _30f.removeClass("tabs-panels-noborder");
+            header.removeClass("tabs-header-noborder");
+            panels.removeClass("tabs-panels-noborder");
         } else {
-            _30e.addClass("tabs-header-noborder");
-            _30f.addClass("tabs-panels-noborder");
+            header.addClass("tabs-header-noborder");
+            panels.addClass("tabs-panels-noborder");
         }
     };
-    function _310(_311, pp, _312) {
-        var _313 = $.data(_311, "tabs");
-        _312 = _312 || {};
-        pp.panel($.extend({}, _312, {
-            border: false, noheader: true, closed: true, doSize: false, iconCls: (_312.icon ? _312.icon : undefined), onLoad: function () {
-                if (_312.onLoad) {
-                    _312.onLoad.call(this, arguments);
+    function createTab(container, pp, options) {
+        var state = $.data(container, "tabs");
+        options = options || {};
+        pp.panel($.extend({}, options, {
+            border: false, noheader: true, closed: true, doSize: false, iconCls: (options.icon ? options.icon : undefined), onLoad: function () {
+                if (options.onLoad) {
+                    options.onLoad.call(this, arguments);
                 }
-                _313.options.onLoad.call(_311, $(this));
+                state.options.onLoad.call(container, $(this));
             }
         }));
         var opts = pp.panel("options");
-        var tabs = $(_311).children("div.tabs-header").find("ul.tabs");
+        var tabs = $(container).children("div.tabs-header").find("ul.tabs");
         
         //cryze 2018-3-15  add class 'tab-brand' to first tab of BrandTabs
-        if (!!_313.options.isBrandTabs && tabs.children('li').length==0) {
+        if (!!state.options.isBrandTabs && tabs.children('li').length==0) {
             opts.tab = $("<li class='tabs-brand'></li>").appendTo(tabs);
         }else{
             opts.tab = $("<li></li>").appendTo(tabs);
         }
         
         opts.tab.append("<a href=\"javascript:void(0)\" class=\"tabs-inner\">" + "<span class=\"tabs-title\"></span>" + "<span class=\"tabs-icon\"></span>" + "</a>");
-        $(_311).tabs("update", { tab: pp, options: opts });
+        $(container).tabs("update", { tab: pp, options: opts });
     };
-    function _314(_315, _316) {
-        var opts = $.data(_315, "tabs").options;
-        var tabs = $.data(_315, "tabs").tabs;
-        if (_316.selected == undefined) {
-            _316.selected = true;
+    function addTab(container, options) {
+        var opts = $.data(container, "tabs").options;
+        var tabs = $.data(container, "tabs").tabs;
+        if (options.selected == undefined) {
+            options.selected = true;
         }
-        var pp = $("<div></div>").appendTo($(_315).children("div.tabs-panels"));
+        var pp = $("<div></div>").appendTo($(container).children("div.tabs-panels"));
         tabs.push(pp);
-        _310(_315, pp, _316);
-        opts.onAdd.call(_315, _316.title, tabs.length - 1);
-        _2f4(_315);
-        if (_316.selected) {
-            _317(_315, tabs.length - 1);
+        createTab(container, pp, options);
+        opts.onAdd.call(container, options.title, tabs.length - 1);
+        setSize(container);
+        if (options.selected) {
+            selectTab(container, tabs.length - 1);
         }
     };
-    function _318(_319, _31a) {
-        var _31b = $.data(_319, "tabs").selectHis;
-        var pp = _31a.tab;
-        var _31c = pp.panel("options").title;
-        pp.panel($.extend({}, _31a.options, { iconCls: (_31a.options.icon ? _31a.options.icon : undefined) }));
+    function updateTab(container, param) {
+        var selectHis = $.data(container, "tabs").selectHis;
+        var pp = param.tab;
+        var oldTitle = pp.panel("options").title;
+        pp.panel($.extend({}, param.options, { iconCls: (param.options.icon ? param.options.icon : undefined) }));
         var opts = pp.panel("options");
         var tab = opts.tab;
-        var _31d = tab.find("span.tabs-title");
-        var _31e = tab.find("span.tabs-icon");
-        _31d.html(opts.title);
-        _31e.attr("class", "tabs-icon");
+        var s_title = tab.find("span.tabs-title");
+        var s_icon = tab.find("span.tabs-icon");
+        s_title.html(opts.title);
+        s_icon.attr("class", "tabs-icon");
         tab.find("a.tabs-close").remove();
         if (opts.closable) {
-            _31d.addClass("tabs-closable");
+            s_title.addClass("tabs-closable");
             $("<a href=\"javascript:void(0)\" class=\"tabs-close\"></a>").appendTo(tab);
         } else {
-            _31d.removeClass("tabs-closable");
+            s_title.removeClass("tabs-closable");
         }
         if (opts.iconCls) {
-            _31d.addClass("tabs-with-icon");
-            _31e.addClass(opts.iconCls);
+            s_title.addClass("tabs-with-icon");
+            s_icon.addClass(opts.iconCls);
         } else {
-            _31d.removeClass("tabs-with-icon");
+            s_title.removeClass("tabs-with-icon");
         }
-        if (_31c != opts.title) {
-            for (var i = 0; i < _31b.length; i++) {
-                if (_31b[i] == _31c) {
-                    _31b[i] = opts.title;
+        if (oldTitle != opts.title) {
+            for (var i = 0; i < selectHis.length; i++) {
+                if (selectHis[i] == oldTitle) {
+                    selectHis[i] = opts.title;
                 }
             }
         }
         tab.find("span.tabs-p-tool").remove();
         if (opts.tools) {
-            var _31f = $("<span class=\"tabs-p-tool\"></span>").insertAfter(tab.find("a.tabs-inner"));
+            var p_tool = $("<span class=\"tabs-p-tool\"></span>").insertAfter(tab.find("a.tabs-inner"));
             if ($.isArray(opts.tools)) {
                 for (var i = 0; i < opts.tools.length; i++) {
-                    var t = $("<a href=\"javascript:void(0)\"></a>").appendTo(_31f);
+                    var t = $("<a href=\"javascript:void(0)\"></a>").appendTo(p_tool);
                     t.addClass(opts.tools[i].iconCls);
                     if (opts.tools[i].handler) {
                         t.bind("click", { handler: opts.tools[i].handler }, function (e) {
@@ -5225,70 +5237,70 @@ if (typeof JSON !== 'object') {
                     }
                 }
             } else {
-                $(opts.tools).children().appendTo(_31f);
+                $(opts.tools).children().appendTo(p_tool);
             }
-            var pr = _31f.children().length * 12;
+            var pr = p_tool.children().length * 12;
             if (opts.closable) {
                 pr += 8;
             } else {
                 pr -= 3;
-                _31f.css("right", "5px");
+                p_tool.css("right", "5px");
             }
-            _31d.css("padding-right", pr + "px");
+            s_title.css("padding-right", pr + "px");
         }
-        _2f4(_319);
-        $.data(_319, "tabs").options.onUpdate.call(_319, opts.title, _320(_319, pp));
+        setSize(container);
+        $.data(container, "tabs").options.onUpdate.call(container, opts.title, getTabIndex(container, pp));
     };
-    function _321(_322, _323) {
-        var opts = $.data(_322, "tabs").options;
-        var tabs = $.data(_322, "tabs").tabs;
-        var _324 = $.data(_322, "tabs").selectHis;
-        if (!_325(_322, _323)) {
+    function closeTab(container, which) {
+        var opts = $.data(container, "tabs").options;
+        var tabs = $.data(container, "tabs").tabs;
+        var selectHis = $.data(container, "tabs").selectHis;
+        if (!exists(container, which)) {
             return;
         }
-        var tab = _326(_322, _323);
-        var _327 = tab.panel("options").title;
-        var _328 = _320(_322, tab);
-        if (opts.onBeforeClose.call(_322, _327, _328) == false) {
+        var tab = getTab(container, which);
+        var title = tab.panel("options").title;
+        var index = getTabIndex(container, tab);
+        if (opts.onBeforeClose.call(container, title, index) == false) {
             return;
         }
-        var tab = _326(_322, _323, true);
+        var tab = getTab(container, which, true);
         tab.panel("options").tab.remove();
         tab.panel("destroy");
-        opts.onClose.call(_322, _327, _328);
-        _2f4(_322);
-        for (var i = 0; i < _324.length; i++) {
-            if (_324[i] == _327) {
-                _324.splice(i, 1);
+        opts.onClose.call(container, title, index);
+        setSize(container);
+        for (var i = 0; i < selectHis.length; i++) {
+            if (selectHis[i] == title) {
+                selectHis.splice(i, 1);
                 i--;
             }
         }
-        var _329 = _324.pop();
-        if (_329) {
-            _317(_322, _329);
+        var hisTitle = selectHis.pop();
+        if (hisTitle) {
+            selectTab(container, hisTitle);
         } else {
             if (tabs.length) {
-                _317(_322, 0);
+                selectTab(container, 0);
             }
         }
     };
-    function _326(_32a, _32b, _32c) {
-        var tabs = $.data(_32a, "tabs").tabs;
-        if (typeof _32b == "number") {
-            if (_32b < 0 || _32b >= tabs.length) {
+    function getTab(container, which, removeit) {
+        var tabs = $.data(container, "tabs").tabs;
+        if (typeof which == "number") {
+            if (which < 0 || which >= tabs.length) {
                 return null;
             } else {
-                var tab = tabs[_32b];
-                if (_32c) {
-                    tabs.splice(_32b, 1);
+                var tab = tabs[which];
+                if (removeit) {
+                    tabs.splice(which, 1);
                 }
                 return tab;
             }
         }
         for (var i = 0; i < tabs.length; i++) {
             var tab = tabs[i];
-            if (tab.panel("options").title == _32b) {
-                if (_32c) {
+            if (tab.panel("options").title == which) {
+                if (removeit) {
                     tabs.splice(i, 1);
                 }
                 return tab;
@@ -5296,8 +5308,8 @@ if (typeof JSON !== 'object') {
         }
         return null;
     };
-    function _320(_32d, tab) {
-        var tabs = $.data(_32d, "tabs").tabs;
+    function getTabIndex(container, tab) {
+        var tabs = $.data(container, "tabs").tabs;
         for (var i = 0; i < tabs.length; i++) {
             if (tabs[i][0] == $(tab)[0]) {
                 return i;
@@ -5305,8 +5317,8 @@ if (typeof JSON !== 'object') {
         }
         return -1;
     };
-    function _2fe(_32e) {
-        var tabs = $.data(_32e, "tabs").tabs;
+    function getSelectedTab(container) {
+        var tabs = $.data(container, "tabs").tabs;
         for (var i = 0; i < tabs.length; i++) {
             var tab = tabs[i];
             if (tab.panel("options").closed == false) {
@@ -5315,179 +5327,179 @@ if (typeof JSON !== 'object') {
         }
         return null;
     };
-    function _32f(_330) {   // init after  select one default selected tab
-        var _331 = $.data(_330, "tabs");
-        var tabs = _331.tabs;
-        var isBrandTabs=!!_331.options.isBrandTabs;  //cryze 2018-3-15
+    function doFirstSelect(container) {   // init after  select one default selected tab
+        var state = $.data(container, "tabs");
+        var tabs = state.tabs;
+        var isBrandTabs=!!state.options.isBrandTabs;  //cryze 2018-3-15
         for (var i = 0; i < tabs.length; i++) {
             if (tabs[i].panel("options").selected && !(isBrandTabs && i==0)) {  //cryze 2018-3-15
-                _317(_330, i);
+                selectTab(container, i);
                 return;
             }
         }
-        if(isBrandTabs && _331.options.selected==0) _331.options.selected=1;   //cryze 2018-3-15
-        _317(_330, _331.options.selected);
+        if(isBrandTabs && state.options.selected==0) state.options.selected=1;   //cryze 2018-3-15
+        selectTab(container, state.options.selected);
     };
-    function _317(_332, _333) {
-        var _334 = $.data(_332, "tabs");
-        var opts = _334.options;
-        var tabs = _334.tabs;
-        var _335 = _334.selectHis;
+    function selectTab(container, which) {
+        var state = $.data(container, "tabs");
+        var opts = state.options;
+        var tabs = state.tabs;
+        var selectHis = state.selectHis;
         if (tabs.length == 0) {
             return;
         }
-        var _336 = _326(_332, _333);
-        if (!_336) {
+        var panel = getTab(container, which);
+        if (!panel) {
             return;
         }
-        var _337 = _2fe(_332);
+        var selected = getSelectedTab(container);
         /*wanghc add onBeforeSelect event*/
         if (opts.onBeforeSelect) {
-            if (false == opts.onBeforeSelect.call(_332, _336.panel("options").title, _320(_332, _336))) {
+            if (false == opts.onBeforeSelect.call(container, panel.panel("options").title, getTabIndex(container, panel))) {
                 return false;
             }
         }
         if (!!opts.isBrandTabs) { /*first tab  is brand tab  . wanghc */
-            if (_320(_332, _336) == 0) {
+            if (getTabIndex(container, panel) == 0) {
                 return false;
             }
         }
-        if (_337) {
-            if (_336[0] == _337[0]) {
-                _2fc(_332);
+        if (selected) {
+            if (panel[0] == selected[0]) {
+                setSelectedSize(container);
                 return;
             }
-            _338(_332, _320(_332, _337));
-            if (!_337.panel("options").closed) {
+            unselectTab(container, getTabIndex(container, selected));
+            if (!selected.panel("options").closed) {
                 return;
             }
         }
-        _336.panel("open");
-        var _339 = _336.panel("options").title;
-        _335.push(_339);
-        var tab = _336.panel("options").tab;
+        panel.panel("open");
+        var title = panel.panel("options").title;
+        selectHis.push(title);
+        var tab = panel.panel("options").tab;
         tab.addClass("tabs-selected");
-        var wrap = $(_332).find(">div.tabs-header>div.tabs-wrap");
+        var wrap = $(container).find(">div.tabs-header>div.tabs-wrap");
         var left = tab.position().left;
-        var _33a = left + tab.outerWidth();
-        if (left < 0 || _33a > wrap.width()) {
-            var _33b = left - (wrap.width() - tab.width()) / 2;
-            $(_332).tabs("scrollBy", _33b);
+        var right = left + tab.outerWidth();
+        if (left < 0 || right > wrap.width()) {
+            var deltaX = left - (wrap.width() - tab.width()) / 2;
+            $(container).tabs("scrollBy", deltaX);
         } else {
-            $(_332).tabs("scrollBy", 0);
+            $(container).tabs("scrollBy", 0);
         }
-        _2fc(_332);
-        opts.onSelect.call(_332, _339, _320(_332, _336));
+        setSelectedSize(container);
+        opts.onSelect.call(container, title, getTabIndex(container, panel));
     };
-    function _338(_33c, _33d) {
-        var _33e = $.data(_33c, "tabs");
-        var p = _326(_33c, _33d);
+    function unselectTab(container, which) {
+        var state = $.data(container, "tabs");
+        var p = getTab(container, which);
         if (p) {
             var opts = p.panel("options");
             if (!opts.closed) {
                 p.panel("close");
                 if (opts.closed) {
                     opts.tab.removeClass("tabs-selected");
-                    _33e.options.onUnselect.call(_33c, opts.title, _320(_33c, p));
+                    state.options.onUnselect.call(container, opts.title, getTabIndex(container, p));
                 }
             }
         }
     };
-    function _325(_33f, _340) {
-        return _326(_33f, _340) != null;
+    function exists(container, which) {
+        return getTab(container, which) != null;
     };
-    function _341(_342, _343) {
-        var opts = $.data(_342, "tabs").options;
-        opts.showHeader = _343;
-        $(_342).tabs("resize");
+    function showHeader(container, visible) {
+        var opts = $.data(container, "tabs").options;
+        opts.showHeader = visible;
+        $(container).tabs("resize");
     };
-    $.fn.tabs = function (_344, _345) {
-        if (typeof _344 == "string") {
-            return $.fn.tabs.methods[_344](this, _345);
+    $.fn.tabs = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.tabs.methods[options](this, param);
         }
-        _344 = _344 || {};
+        options = options || {};
         return this.each(function () {
-            var _346 = $.data(this, "tabs");
+            var state = $.data(this, "tabs");
             var opts;
-            if (_346) {
-                opts = $.extend(_346.options, _344);
-                _346.options = opts;
+            if (state) {
+                opts = $.extend(state.options, options);
+                state.options = opts;
             } else {
-                $.data(this, "tabs", { options: $.extend({}, $.fn.tabs.defaults, $.fn.tabs.parseOptions(this), _344), tabs: [], selectHis: [] });
-                _302(this);
+                $.data(this, "tabs", { options: $.extend({}, $.fn.tabs.defaults, $.fn.tabs.parseOptions(this), options), tabs: [], selectHis: [] });
+                wrapTabs(this);
             }
-            _2f0(this);
-            _30c(this);
-            _2f4(this);
-            _305(this);
-            _32f(this);
+            addTools(this);
+            setProperties(this);
+            setSize(this);
+            bindEvents(this);
+            doFirstSelect(this);
         });
     };
     $.fn.tabs.methods = {
         options: function (jq) {
             var cc = jq[0];
             var opts = $.data(cc, "tabs").options;
-            var s = _2fe(cc);
-            opts.selected = s ? _320(cc, s) : -1;
+            var s = getSelectedTab(cc);
+            opts.selected = s ? getTabIndex(cc, s) : -1;
             return opts;
         }, tabs: function (jq) {
             return $.data(jq[0], "tabs").tabs;
         }, resize: function (jq) {
             return jq.each(function () {
-                _2f4(this);
-                _2fc(this);
+                setSize(this);
+                setSelectedSize(this);
             });
-        }, add: function (jq, _347) {
+        }, add: function (jq, options) {
             return jq.each(function () {
-                _314(this, _347);
+                addTab(this, options);
             });
-        }, close: function (jq, _348) {
+        }, close: function (jq, which) {
             return jq.each(function () {
-                _321(this, _348);
+                closeTab(this, which);
             });
-        }, getTab: function (jq, _349) {
-            return _326(jq[0], _349);
+        }, getTab: function (jq, which) {
+            return getTab(jq[0], which);
         }, getTabIndex: function (jq, tab) {
-            return _320(jq[0], tab);
+            return getTabIndex(jq[0], tab);
         }, getSelected: function (jq) {
-            return _2fe(jq[0]);
-        }, select: function (jq, _34a) {
+            return getSelectedTab(jq[0]);
+        }, select: function (jq, which) {
             return jq.each(function () {
-                _317(this, _34a);
+                selectTab(this, which);
             });
-        }, unselect: function (jq, _34b) {
+        }, unselect: function (jq, which) {
             return jq.each(function () {
-                _338(this, _34b);
+                unselectTab(this, which);
             });
-        }, exists: function (jq, _34c) {
-            return _325(jq[0], _34c);
-        }, update: function (jq, _34d) {
+        }, exists: function (jq, which) {
+            return exists(jq[0], which);
+        }, update: function (jq, options) {
             return jq.each(function () {
-                _318(this, _34d);
+                updateTab(this, options);
             });
-        }, enableTab: function (jq, _34e) {
+        }, enableTab: function (jq, which) {
             return jq.each(function () {
-                $(this).tabs("getTab", _34e).panel("options").tab.removeClass("tabs-disabled");
+                $(this).tabs("getTab", which).panel("options").tab.removeClass("tabs-disabled");
             });
-        }, disableTab: function (jq, _34f) {
+        }, disableTab: function (jq, which) {
             return jq.each(function () {
-                $(this).tabs("getTab", _34f).panel("options").tab.addClass("tabs-disabled");
+                $(this).tabs("getTab", which).panel("options").tab.addClass("tabs-disabled");
             });
         }, showHeader: function (jq) {
             return jq.each(function () {
-                _341(this, true);
+                showHeader(this, true);
             });
         }, hideHeader: function (jq) {
             return jq.each(function () {
-                _341(this, false);
+                showHeader(this, false);
             });
-        }, scrollBy: function (jq, _350) {
+        }, scrollBy: function (jq, deltaX) {
             return jq.each(function () {
                 var opts = $(this).tabs("options");
                 var wrap = $(this).find(">div.tabs-header>div.tabs-wrap");
-                var pos = Math.min(wrap._scrollLeft() + _350, _351());
+                var pos = Math.min(wrap._scrollLeft() + deltaX, getMaxScrollWidth());
                 wrap.animate({ scrollLeft: pos }, opts.scrollDuration);
-                function _351() {
+                function getMaxScrollWidth() {
                     var w = 0;
                     var ul = wrap.children("ul");
                     ul.children("li").each(function () {
@@ -5498,18 +5510,18 @@ if (typeof JSON !== 'object') {
             });
         }
     };
-    $.fn.tabs.parseOptions = function (_352) {
-        return $.extend({}, $.parser.parseOptions(_352, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean" }]));
+    $.fn.tabs.parseOptions = function (target) {
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean" }]));
     };
     $.fn.tabs.defaults = {
-        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 27, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, onLoad: function (_353) {
-        }, onSelect: function (_354, _355) {
-        }, onUnselect: function (_356, _357) {
-        }, onBeforeClose: function (_358, _359) {
-        }, onClose: function (_35a, _35b) {
-        }, onAdd: function (_35c, _35d) {
-        }, onUpdate: function (_35e, _35f) {
-        }, onContextMenu: function (e, _360, _361) {
+        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 27, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, onLoad: function (panel) {
+        }, onSelect: function (title, index) {
+        }, onUnselect: function (title, index) {
+        }, onBeforeClose: function (title, index) {
+        }, onClose: function (title, index) {
+        }, onAdd: function (title, index) {
+        }, onUpdate: function (title, index) {
+        }, onContextMenu: function (e, title, index) {
         }
     };
 })(jQuery);
@@ -5978,13 +5990,13 @@ if (typeof JSON !== 'object') {
     $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null,showCollapsedTitle:false, split: false, collapsedSize: 28,collapsedHeight: 38, minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000 });
 })(jQuery);
 (function ($) {
-    function init(_3a6) {
-        $(_3a6).appendTo("body");
-        $(_3a6).addClass("menu-top");
-        var opts = $.data(_3a6,"menu").options;
+    function init(target) {
+        $(target).appendTo("body");
+        $(target).addClass("menu-top");
+	var opts = $.data(target,"menu").options;
         if (opts.isTopZindex){
             var ocxFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
-            $(_3a6).prepend(ocxFrame);
+            $(target).prepend(ocxFrame);
         }
         $(document).unbind(".menu").bind("mousedown.menu", function (e) {
             var m = $(e.target).closest("div.menu,div.combo-p");
@@ -5993,28 +6005,28 @@ if (typeof JSON !== 'object') {
             }
             $("body>div.menu-top:visible").menu("hide");
         });
-        var _3a7 = _3a8($(_3a6));
-        for (var i = 0; i < _3a7.length; i++) {
-            _3a9(_3a7[i]);
+        var menus = splitMenu($(target));
+        for (var i = 0; i < menus.length; i++) {
+            createMenu(menus[i]);
         }
-        function _3a8(menu) {
-            var _3aa = [];
+        function splitMenu(menu) {
+            var menus = [];
             menu.addClass("menu");
-            _3aa.push(menu);
+            menus.push(menu);
             if (!menu.hasClass("menu-content")) {
                 menu.children("div").each(function () {
-                    var _3ab = $(this).children("div");
-                    if (_3ab.length) {
-                        _3ab.insertAfter(_3a6);
-                        this.submenu = _3ab;
-                        var mm = _3a8(_3ab);
-                        _3aa = _3aa.concat(mm);
+                    var submenu = $(this).children("div");
+                    if (submenu.length) {
+                        submenu.insertAfter(target);
+                        this.submenu = submenu;
+                        var mm = splitMenu(submenu);
+                        menus = menus.concat(mm);
                     }
                 });
             }
-            return _3aa;
+            return menus;
         };
-        function _3a9(menu) {
+        function createMenu(menu) {
             var wh = $.parser.parseOptions(menu[0], ["width", "height"]);
             menu[0].originalHeight = wh.height || 0;
             if (menu.hasClass("menu-content")) {
@@ -6023,76 +6035,76 @@ if (typeof JSON !== 'object') {
                 menu[0].originalWidth = wh.width || 0;
                 menu.children("div").each(function () {
                     var item = $(this);
-                    var _3ac = $.extend({}, $.parser.parseOptions(this, ["name", "iconCls", "href", { separator: "boolean" }]), { disabled: (item.attr("disabled") ? true : undefined) });
-                    if (_3ac.separator) {
+                    var itemOpts = $.extend({}, $.parser.parseOptions(this, ["name", "iconCls", "href", { separator: "boolean" }]), { disabled: (item.attr("disabled") ? true : undefined) });
+                    if (itemOpts.separator) {
                         item.addClass("menu-sep");
                     }
                     if (!item.hasClass("menu-sep")) {
-                        item[0].itemName = _3ac.name || "";
-                        item[0].itemHref = _3ac.href || "";
+                        item[0].itemName = itemOpts.name || "";
+                        item[0].itemHref = itemOpts.href || "";
                         var text = item.addClass("menu-item").html();
                         item.empty().append($("<div class=\"menu-text\"></div>").html(text));
-                        if (_3ac.iconCls) {
-                            $("<div class=\"menu-icon\"></div>").addClass(_3ac.iconCls).appendTo(item);
+                        if (itemOpts.iconCls) {
+                            $("<div class=\"menu-icon\"></div>").addClass(itemOpts.iconCls).appendTo(item);
                         }
-                        if (_3ac.disabled) {
-                            _3ad(_3a6, item[0], true);
+                        if (itemOpts.disabled) {
+                            setDisabled(target, item[0], true);
                         }
                         if (item[0].submenu) {
                             $("<div class=\"menu-rightarrow\"></div>").appendTo(item);
                         }
-                        _3ae(_3a6, item);
+                        bindMenuItemEvent(target, item);
                     }
                 });
                 $("<div class=\"menu-line\"></div>").prependTo(menu);
             }
-            _3af(_3a6, menu);
+            setMenuWidth(target, menu);
             menu.hide();
-            _3b0(_3a6, menu);
+            bindMenuEvent(target, menu);
         };
     };
-    function _3af(_3b1, menu) {
-        var opts = $.data(_3b1, "menu").options;
-        var _3b2 = menu.attr("style") || "";
+    function setMenuWidth(target, menu) {
+        var opts = $.data(target, "menu").options;
+        var style = menu.attr("style") || "";
         menu.css({ display: "block", left: -10000, height: "auto", overflow: "hidden" });
         var el = menu[0];
-        var _3b3 = el.originalWidth || 0;
-        if (!_3b3) {
-            _3b3 = 0;
+        var width = el.originalWidth || 0;
+        if (!width) {
+            width = 0;
             menu.find("div.menu-text").each(function () {
-                if (_3b3 < $(this)._outerWidth()) {
-                    _3b3 = $(this)._outerWidth();
+                if (width < $(this)._outerWidth()) {
+                    width = $(this)._outerWidth();
                 }
                 $(this).closest("div.menu-item")._outerHeight($(this)._outerHeight() + 2);
             });
-            _3b3 += 40;
+            width += 40;
         }
-        _3b3 = Math.max(_3b3, opts.minWidth);
-        var _3b4 = el.originalHeight || menu.outerHeight();
-        var _3b5 = Math.max(el.originalHeight, menu.outerHeight()) - 2;
+        width = Math.max(width, opts.minWidth);
+        var height = el.originalHeight || menu.outerHeight();
+        var lineHeight = Math.max(el.originalHeight, menu.outerHeight()) - 2;
         //cryze menu 若是在options指定宽度，则按指定的宽度
-        if (opts.width&&opts.width>0) _3b3=opts.width;
-        menu._outerWidth(_3b3)._outerHeight(_3b4);
-        menu.children("div.menu-line")._outerHeight(_3b5);
-        _3b2 += ";width:" + el.style.width + ";height:" + el.style.height;
-        menu.attr("style", _3b2);
+        if (opts.width&&opts.width>0) width=opts.width;
+        menu._outerWidth(width)._outerHeight(height);
+        menu.children("div.menu-line")._outerHeight(lineHeight);
+        style += ";width:" + el.style.width + ";height:" + el.style.height;
+        menu.attr("style", style);
     };
-    function _3b0(_3b6, menu) {
-        var _3b7 = $.data(_3b6, "menu");
+    function bindMenuEvent(target, menu) {
+        var state = $.data(target, "menu");
         menu.unbind(".menu").bind("mouseenter.menu", function () {
-            if (_3b7.timer) {
-                clearTimeout(_3b7.timer);
-                _3b7.timer = null;
+            if (state.timer) {
+                clearTimeout(state.timer);
+                state.timer = null;
             }
         }).bind("mouseleave.menu", function () {
-            if (_3b7.options.hideOnUnhover) {
-                _3b7.timer = setTimeout(function () {
-                    _3b8(_3b6);
+            if (state.options.hideOnUnhover) {
+                state.timer = setTimeout(function () {
+                    hideAll(target);
                 }, 100);
             }
         });
     };
-    function _3ae(_3b9, item) {
+    function bindMenuItemEvent(target, item) {
         if (!item.hasClass("menu-item")) {
             return;
         }
@@ -6102,18 +6114,18 @@ if (typeof JSON !== 'object') {
                 return;
             }
             if (!this.submenu) {
-                _3b8(_3b9);
+                hideAll(target);
                 var href = $(this).attr("href");
                 if (href) {
                     location.href = href;
                 }
             }
-            var item = $(_3b9).menu("getItem", this);
-            $.data(_3b9, "menu").options.onClick.call(_3b9, item);
+            var item = $(target).menu("getItem", this);
+            $.data(target, "menu").options.onClick.call(target, item);
         }).bind("mouseenter.menu", function (e) {
             item.siblings().each(function () {
                 if (this.submenu) {
-                    _3bc(this.submenu);
+                    hideMenu(this.submenu);
                 }
                 $(this).removeClass("menu-active");
             });
@@ -6122,41 +6134,41 @@ if (typeof JSON !== 'object') {
                 item.addClass("menu-active-disabled");
                 return;
             }
-            var _3ba = item[0].submenu;
-            if (_3ba) {
-                $(_3b9).menu("show", { menu: _3ba, parent: item });
+            var submenu = item[0].submenu;
+            if (submenu) {
+                $(target).menu("show", { menu: submenu, parent: item });
             }
         }).bind("mouseleave.menu", function (e) {
             item.removeClass("menu-active menu-active-disabled");
-            var _3bb = item[0].submenu;
-            if (_3bb) {
-                if (e.pageX >= parseInt(_3bb.css("left"))) {
+            var submenu = item[0].submenu;
+            if (submenu) {
+                if (e.pageX >= parseInt(submenu.css("left"))) {
                     item.addClass("menu-active");
                 } else {
-                    _3bc(_3bb);
+                    hideMenu(submenu);
                 }
             } else {
                 item.removeClass("menu-active");
             }
         });
     };
-    function _3b8(_3bd) {
-        var _3be = $.data(_3bd, "menu");
-        if (_3be) {
-            if ($(_3bd).is(":visible")) {
-                _3bc($(_3bd));
-                _3be.options.onHide.call(_3bd);
+    function hideAll(target) {
+        var state = $.data(target, "menu");
+        if (state) {
+            if ($(target).is(":visible")) {
+                hideMenu($(target));
+                state.options.onHide.call(target);
             }
         }
         return false;
     };
-    function _3bf(_3c0, _3c1) {
+    function showMenu(target, param) {
         var left, top;
-        _3c1 = _3c1 || {};
-        var menu = $(_3c1.menu || _3c0);
+        param = param || {};
+        var menu = $(param.menu || target);
         if (menu.hasClass("menu-top")) {
-            var opts = $.data(_3c0, "menu").options;
-            $.extend(opts, _3c1);
+            var opts = $.data(target, "menu").options;
+            $.extend(opts, param);
             left = opts.left;
             top = opts.top;
             if (opts.alignTo) {
@@ -6177,12 +6189,12 @@ if (typeof JSON !== 'object') {
                 top = $(window)._outerHeight() + $(document).scrollTop() - menu.outerHeight() - 5;
             }
         } else {
-            var _3c2 = _3c1.parent;
-            left = _3c2.offset().left + _3c2.outerWidth() - 2;
+            var parent = param.parent;
+            left = parent.offset().left + parent.outerWidth() - 2;
             if (left + menu.outerWidth() + 5 > $(window)._outerWidth() + $(document).scrollLeft()) {
-                left = _3c2.offset().left - menu.outerWidth() + 2;
+                left = parent.offset().left - menu.outerWidth() + 2;
             }
-            var top = _3c2.offset().top - 3;
+            var top = parent.offset().top - 3;
             if (top + menu.outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
                 top = $(window)._outerHeight() + $(document).scrollTop() - menu.outerHeight() - 5;
             }
@@ -6199,18 +6211,18 @@ if (typeof JSON !== 'object') {
             }
         });
     };
-    function _3bc(menu) {
+    function hideMenu(menu) {
         if (!menu) {
             return;
         }
-        _3c3(menu);
+        hideit(menu);
         menu.find("div.menu-item").each(function () {
             if (this.submenu) {
-                _3bc(this.submenu);
+                hideMenu(this.submenu);
             }
             $(this).removeClass("menu-active");
         });
-        function _3c3(m) {
+        function hideit(m) {
             m.stop(true, true);
             if (m[0].shadow) {
                 m[0].shadow.hide();
@@ -6218,130 +6230,130 @@ if (typeof JSON !== 'object') {
             m.hide();
         };
     };
-    function _3c4(_3c5, text) {
-        var _3c6 = null;
+    function findItem(target, text) {
+        var result = null;
         var tmp = $("<div></div>");
         function find(menu) {
             menu.children("div.menu-item").each(function () {
-                var item = $(_3c5).menu("getItem", this);
+                var item = $(target).menu("getItem", this);
                 var s = tmp.empty().html(item.text).text();
                 if (text == $.trim(s)) {
-                    _3c6 = item;
+                    result = item;
                 } else {
-                    if (this.submenu && !_3c6) {
+                    if (this.submenu && !result) {
                         find(this.submenu);
                     }
                 }
             });
         };
-        find($(_3c5));
+        find($(target));
         tmp.remove();
-        return _3c6;
+        return result;
     };
-    function _3ad(_3c7, _3c8, _3c9) {
-        var t = $(_3c8);
+    function setDisabled(target, itemEl, disabled) {
+        var t = $(itemEl);
         if (!t.hasClass("menu-item")) {
             return;
         }
-        if (_3c9) {
+        if (disabled) {
             t.addClass("menu-item-disabled");
-            if (_3c8.onclick) {
-                _3c8.onclick1 = _3c8.onclick;
-                _3c8.onclick = null;
+            if (itemEl.onclick) {
+                itemEl.onclick1 = itemEl.onclick;
+                itemEl.onclick = null;
             }
         } else {
             t.removeClass("menu-item-disabled");
-            if (_3c8.onclick1) {
-                _3c8.onclick = _3c8.onclick1;
-                _3c8.onclick1 = null;
+            if (itemEl.onclick1) {
+                itemEl.onclick = itemEl.onclick1;
+                itemEl.onclick1 = null;
             }
         }
     };
-    function _3ca(_3cb, _3cc) {
-        var menu = $(_3cb);
-        if (_3cc.parent) {
-            if (!_3cc.parent.submenu) {
-                var _3cd = $("<div class=\"menu\"><div class=\"menu-line\"></div></div>").appendTo("body");
-                _3cd.hide();
-                _3cc.parent.submenu = _3cd;
-                $("<div class=\"menu-rightarrow\"></div>").appendTo(_3cc.parent);
+    function appendItem(target, param) {
+        var menu = $(target);
+        if (param.parent) {
+            if (!param.parent.submenu) {
+                var submenu = $("<div class=\"menu\"><div class=\"menu-line\"></div></div>").appendTo("body");
+                submenu.hide();
+                param.parent.submenu = submenu;
+                $("<div class=\"menu-rightarrow\"></div>").appendTo(param.parent);
             }
-            menu = _3cc.parent.submenu;
+            menu = param.parent.submenu;
         }
-        if (_3cc.separator) {
+        if (param.separator) {
             var item = $("<div class=\"menu-sep\"></div>").appendTo(menu);
         } else {
             var item = $("<div class=\"menu-item\"></div>").appendTo(menu);
-            $("<div class=\"menu-text\"></div>").html(_3cc.text).appendTo(item);
+            $("<div class=\"menu-text\"></div>").html(param.text).appendTo(item);
         }
-        if (_3cc.iconCls) {
-            $("<div class=\"menu-icon\"></div>").addClass(_3cc.iconCls).appendTo(item);
+        if (param.iconCls) {
+            $("<div class=\"menu-icon\"></div>").addClass(param.iconCls).appendTo(item);
         }
-        if (_3cc.id) {
-            item.attr("id", _3cc.id);
+        if (param.id) {
+            item.attr("id", param.id);
         }
-        if (_3cc.name) {
-            item[0].itemName = _3cc.name;
+        if (param.name) {
+            item[0].itemName = param.name;
         }
-        if (_3cc.href) {
-            item[0].itemHref = _3cc.href;
+        if (param.href) {
+            item[0].itemHref = param.href;
         }
-        if (_3cc.onclick) {
-            if (typeof _3cc.onclick == "string") {
-                item.attr("onclick", _3cc.onclick);
+        if (param.onclick) {
+            if (typeof param.onclick == "string") {
+                item.attr("onclick", param.onclick);
             } else {
-                item[0].onclick = eval(_3cc.onclick);
+                item[0].onclick = eval(param.onclick);
             }
         }
-        if (_3cc.handler) {
-            item[0].onclick = eval(_3cc.handler);
+        if (param.handler) {
+            item[0].onclick = eval(param.handler);
         }
-        if (_3cc.disabled) {
-            _3ad(_3cb, item[0], true);
+        if (param.disabled) {
+            setDisabled(target, item[0], true);
         }
-        _3ae(_3cb, item);
-        _3b0(_3cb, menu);
-        _3af(_3cb, menu);
+        bindMenuItemEvent(target, item);
+        bindMenuEvent(target, menu);
+        setMenuWidth(target, menu);
     };
-    function _3ce(_3cf, _3d0) {
-        function _3d1(el) {
+    function removeItem(target, itemEl) {
+        function removeit(el) {
             if (el.submenu) {
                 el.submenu.children("div.menu-item").each(function () {
-                    _3d1(this);
+                    removeit(this);
                 });
-                var _3d2 = el.submenu[0].shadow;
-                if (_3d2) {
-                    _3d2.remove();
+                var shadow = el.submenu[0].shadow;
+                if (shadow) {
+                    shadow.remove();
                 }
                 el.submenu.remove();
             }
             $(el).remove();
         };
-        _3d1(_3d0);
+        removeit(itemEl);
     };
-    function _3d3(_3d4) {
-        $(_3d4).children("div.menu-item").each(function () {
-            _3ce(_3d4, this);
+    function destroyMenu(target) {
+        $(target).children("div.menu-item").each(function () {
+            removeItem(target, this);
         });
-        if (_3d4.shadow) {
-            _3d4.shadow.remove();
+        if (target.shadow) {
+            target.shadow.remove();
         }
-        $(_3d4).remove();
+        $(target).remove();
     };
-    $.fn.menu = function (_3d5, _3d6) {
-        if (typeof _3d5 == "string") {
-            return $.fn.menu.methods[_3d5](this, _3d6);
+    $.fn.menu = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.menu.methods[options](this, param);
         }
-        _3d5 = _3d5 || {};
+        options = options || {};
         return this.each(function () {
-            var _3d7 = $.data(this, "menu");
-            if (_3d7) {
-                $.extend(_3d7.options, _3d5);
+            var state = $.data(this, "menu");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _3d7 = $.data(this, "menu", { options: $.extend({}, $.fn.menu.defaults, $.fn.menu.parseOptions(this), _3d5) });
+                state = $.data(this, "menu", { options: $.extend({}, $.fn.menu.defaults, $.fn.menu.parseOptions(this), options) });
                 init(this);
             }
-            $(this).css({ left: _3d7.options.left, top: _3d7.options.top });
+            $(this).css({ left: state.options.left, top: state.options.top });
         });
     };
     $.fn.menu.methods = {
@@ -6349,30 +6361,30 @@ if (typeof JSON !== 'object') {
             return $.data(jq[0], "menu").options;
         }, show: function (jq, pos) {
             return jq.each(function () {
-                _3bf(this, pos);
+                showMenu(this, pos);
             });
         }, hide: function (jq) {
             return jq.each(function () {
-                _3b8(this);
+                hideAll(this);
             });
         }, destroy: function (jq) {
             return jq.each(function () {
-                _3d3(this);
+                destroyMenu(this);
             });
-        }, setText: function (jq, _3d8) {
+        }, setText: function (jq, param) {
             return jq.each(function () {
-                $(_3d8.target).children("div.menu-text").html(_3d8.text);
+                $(param.target).children("div.menu-text").html(param.text);
             });
-        }, setIcon: function (jq, _3d9) {
+        }, setIcon: function (jq, param) {
             return jq.each(function () {
-                $(_3d9.target).children("div.menu-icon").remove();
-                if (_3d9.iconCls) {
-                    $("<div class=\"menu-icon\"></div>").addClass(_3d9.iconCls).appendTo(_3d9.target);
+                $(param.target).children("div.menu-icon").remove();
+                if (param.iconCls) {
+                    $("<div class=\"menu-icon\"></div>").addClass(param.iconCls).appendTo(param.target);
                 }
             });
-        }, getItem: function (jq, _3da) {
-            var t = $(_3da);
-            var item = { target: _3da, id: t.attr("id"), text: $.trim(t.children("div.menu-text").html()), disabled: t.hasClass("menu-item-disabled"), name: _3da.itemName, href: _3da.itemHref, onclick: _3da.onclick };
+        }, getItem: function (jq, itemEl) {
+            var t = $(itemEl);
+            var item = { target: itemEl, id: t.attr("id"), text: $.trim(t.children("div.menu-text").html()), disabled: t.hasClass("menu-item-disabled"), name: itemEl.itemName, href: itemEl.itemHref, onclick: itemEl.onclick };
             var icon = t.children("div.menu-icon");
             if (icon.length) {
                 var cc = [];
@@ -6386,27 +6398,27 @@ if (typeof JSON !== 'object') {
             }
             return item;
         }, findItem: function (jq, text) {
-            return _3c4(jq[0], text);
-        }, appendItem: function (jq, _3db) {
+            return findItem(jq[0], text);
+        }, appendItem: function (jq, param) {
             return jq.each(function () {
-                _3ca(this, _3db);
+                appendItem(this, param);
             });
-        }, removeItem: function (jq, _3dc) {
+        }, removeItem: function (jq, itemEl) {
             return jq.each(function () {
-                _3ce(this, _3dc);
+                removeItem(this, itemEl);
             });
-        }, enableItem: function (jq, _3dd) {
+        }, enableItem: function (jq, itemEl) {
             return jq.each(function () {
-                _3ad(this, _3dd, false);
+                setDisabled(this, itemEl, false);
             });
-        }, disableItem: function (jq, _3de) {
+        }, disableItem: function (jq, itemEl) {
             return jq.each(function () {
-                _3ad(this, _3de, true);
+                setDisabled(this, itemEl, true);
             });
         }
     };
-    $.fn.menu.parseOptions = function (_3df) {
-        return $.extend({}, $.parser.parseOptions(_3df, ["left", "top", { minWidth: "number", hideOnUnhover: "boolean" }]));
+    $.fn.menu.parseOptions = function (target) {
+        return $.extend({}, $.parser.parseOptions(target, ["left", "top", { minWidth: "number", hideOnUnhover: "boolean" }]));
     };
     $.fn.menu.defaults = {
         isTopZindex:false,
@@ -7074,66 +7086,66 @@ if (typeof JSON !== 'object') {
     };
 })(jQuery);
 (function ($) {
-    function _449(_44a, _44b) {
-        _44b = _44b || {};
-        var _44c = {};
-        if (_44b.onSubmit) {
-            if (_44b.onSubmit.call(_44a, _44c) == false) {
+    function ajaxSubmit(target, options) {
+        options = options || {};
+        var param = {};
+        if (options.onSubmit) {
+            if (options.onSubmit.call(target, param) == false) {
                 return;
             }
         }
-        var form = $(_44a);
-        if (_44b.url) {
-            form.attr("action", _44b.url);
+        var form = $(target);
+        if (options.url) {
+            form.attr("action", options.url);
         }
-        var _44d = "hisui_frame_" + (new Date().getTime());
-        var _44e = $("<iframe id=" + _44d + " name=" + _44d + "></iframe>").attr("src", window.ActiveXObject ? "javascript:false" : "about:blank").css({ position: "absolute", top: -1000, left: -1000 });
+        var frameId = "hisui_frame_" + (new Date().getTime());
+        var frame = $("<iframe id=" + frameId + " name=" + frameId + "></iframe>").attr("src", window.ActiveXObject ? "javascript:false" : "about:blank").css({ position: "absolute", top: -1000, left: -1000 });
         var t = form.attr("target"), a = form.attr("action");
-        form.attr("target", _44d);
-        var _44f = $();
+        form.attr("target", frameId);
+        var paramFields = $();
         try {
-            _44e.appendTo("body");
-            _44e.bind("load", cb);
-            for (var n in _44c) {
-                var f = $("<input type=\"hidden\" name=\"" + n + "\">").val(_44c[n]).appendTo(form);
-                _44f = _44f.add(f);
+            frame.appendTo("body");
+            frame.bind("load", cb);
+            for (var n in param) {
+                var f = $("<input type=\"hidden\" name=\"" + n + "\">").val(param[n]).appendTo(form);
+                paramFields = paramFields.add(f);
             }
-            _450();
+            checkState();
             form[0].submit();
         }
         finally {
             form.attr("action", a);
             t ? form.attr("target", t) : form.removeAttr("target");
-            _44f.remove();
+            paramFields.remove();
         }
-        function _450() {
-            var f = $("#" + _44d);
+        function checkState() {
+            var f = $("#" + frameId);
             if (!f.length) {
                 return;
             }
             try {
                 var s = f.contents()[0].readyState;
                 if (s && s.toLowerCase() == "uninitialized") {
-                    setTimeout(_450, 100);
+                    setTimeout(checkState, 100);
                 }
             }
             catch (e) {
                 cb();
             }
         };
-        var _451 = 10;
+        var checkCount = 10;
         function cb() {
-            var _452 = $("#" + _44d);
-            if (!_452.length) {
+            var frame = $("#" + frameId);
+            if (!frame.length) {
                 return;
             }
-            _452.unbind();
+            frame.unbind();
             var data = "";
             try {
-                var body = _452.contents().find("body");
+                var body = frame.contents().find("body");
                 data = body.html();
                 if (data == "") {
-                    if (--_451) {
+                    if (--checkCount) {
                         setTimeout(cb, 100);
                         return;
                     }
@@ -7150,55 +7162,55 @@ if (typeof JSON !== 'object') {
             }
             catch (e) {
             }
-            if (_44b.success) {
-                _44b.success(data);
+            if (options.success) {
+                options.success(data);
             }
             setTimeout(function () {
-                _452.unbind();
-                _452.remove();
+                frame.unbind();
+                frame.remove();
             }, 100);
         };
     };
-    function load(_453, data) {
-        if (!$.data(_453, "form")) {
-            $.data(_453, "form", { options: $.extend({}, $.fn.form.defaults) });
+    function load(target, data) {
+        if (!$.data(target, "form")) {
+            $.data(target, "form", { options: $.extend({}, $.fn.form.defaults) });
         }
-        var opts = $.data(_453, "form").options;
+        var opts = $.data(target, "form").options;
         if (typeof data == "string") {
-            var _454 = {};
-            if (opts.onBeforeLoad.call(_453, _454) == false) {
+            var param = {};
+            if (opts.onBeforeLoad.call(target, param) == false) {
                 return;
             }
             $.ajax({
-                url: data, data: _454, dataType: "json", success: function (data) {
-                    _455(data);
+                url: data, data: param, dataType: "json", success: function (data) {
+                    _load(data);
                 }, error: function () {
-                    opts.onLoadError.apply(_453, arguments);
+                    opts.onLoadError.apply(target, arguments);
                 }
             });
         } else {
-            _455(data);
+            _load(data);
         }
-        function _455(data) {
-            var form = $(_453);
+        function _load(data) {
+            var form = $(target);
             for (var name in data) {
                 var val = data[name];
-                var rr = _456(name, val);
+                var rr = _checkField(name, val);
                 if (!rr.length) {
-                    var _457 = _458(name, val);
-                    if (!_457) {
+                    var count = _loadOther(name, val);
+                    if (!count) {
                         $("input[name=\"" + name + "\"]", form).val(val);
                         $("textarea[name=\"" + name + "\"]", form).val(val);
                         $("select[name=\"" + name + "\"]", form).val(val);
                     }
                 }
-                _459(name, val);
+                _loadCombo(name, val);
             }
-            opts.onLoadSuccess.call(_453, data);
-            _460(_453);
+            opts.onLoadSuccess.call(target, data);
+            validate(target);
         };
-        function _456(name, val) {
-            var rr = $(_453).find("input[name=\"" + name + "\"][type=radio], input[name=\"" + name + "\"][type=checkbox]");
+        function _checkField(name, val) {
+            var rr = $(target).find("input[name=\"" + name + "\"][type=radio], input[name=\"" + name + "\"][type=checkbox]");
             rr._propAttr("checked", false);
             rr.each(function () {
                 var f = $(this);
@@ -7208,21 +7220,21 @@ if (typeof JSON !== 'object') {
             });
             return rr;
         };
-        function _458(name, val) {
-            var _45a = 0;
+        function _loadOther(name, val) {
+            var count = 0;
             var pp = ["numberbox", "slider"];
             for (var i = 0; i < pp.length; i++) {
                 var p = pp[i];
-                var f = $(_453).find("input[" + p + "Name=\"" + name + "\"]");
+                var f = $(target).find("input[" + p + "Name=\"" + name + "\"]");
                 if (f.length) {
                     f[p]("setValue", val);
-                    _45a += f.length;
+                    count += f.length;
                 }
             }
-            return _45a;
+            return count;
         };
-        function _459(name, val) {
-            var form = $(_453);
+        function _loadCombo(name, val) {
+            var form = $(target);
             var cc = ["combobox", "combotree", "combogrid", "datetimebox", "datebox", "combo"];
             var c = form.find("[comboName=\"" + name + "\"]");
             if (c.length) {
@@ -7240,19 +7252,19 @@ if (typeof JSON !== 'object') {
             }
         };
     };
-    function _45b(_45c) {
-        $("input,select,textarea", _45c).each(function () {
+    function clear(target) {
+        $("input,select,textarea", target).each(function () {
             var t = this.type, tag = this.tagName.toLowerCase();
             if (t == "text" || t == "hidden" || t == "password" || tag == "textarea") {
                 this.value = "";
             } else {
                 if (t == "file") {
                     var file = $(this);
-                    var _45d = file.clone().val("");
-                    _45d.insertAfter(file);
+                    var newfile = file.clone().val("");
+                    newfile.insertAfter(file);
                     if (file.data("validatebox")) {
                         file.validatebox("destroy");
-                        _45d.validatebox();
+                        newfile.validatebox();
                     } else {
                         file.remove();
                     }
@@ -7267,70 +7279,70 @@ if (typeof JSON !== 'object') {
                 }
             }
         });
-        var t = $(_45c);
-        var _45e = ["combo", "combobox", "combotree", "combogrid", "slider","radio","checkbox"];  //cryze 2019-04-04 增加支持封装的radio和checkbox 
-        for (var i = 0; i < _45e.length; i++) {
-            var _45f = _45e[i];
-            var r = t.find("." + _45f + "-f");
-            if (r.length && r[_45f]) {
-                r[_45f]("clear");
+        var t = $(target);
+        var plugins = ["combo", "combobox", "combotree", "combogrid", "slider","radio","checkbox"];  //cryze 2019-04-04 增加支持封装的radio和checkbox 
+        for (var i = 0; i < plugins.length; i++) {
+            var plugin = plugins[i];
+            var r = t.find("." + plugin + "-f");
+            if (r.length && r[plugin]) {
+                r[plugin]("clear");
             }
         }
-        _460(_45c);
+        validate(target);
     };
-    function _461(_462) {
-        _462.reset();
-        var t = $(_462);
-        var _463 = ["combo", "combobox", "combotree", "combogrid", "datebox", "datetimebox", "spinner", "timespinner", "numberbox", "numberspinner", "slider","radio","checkbox"]; //cryze 2019-04-04 增加支持封装的radio和checkbox 
-        for (var i = 0; i < _463.length; i++) {
-            var _464 = _463[i];
-            var r = t.find("." + _464 + "-f");
-            if (r.length && r[_464]) {
-                r[_464]("reset");
+    function reset(target) {
+        target.reset();
+        var t = $(target);
+        var plugins = ["combo", "combobox", "combotree", "combogrid", "datebox", "datetimebox", "spinner", "timespinner", "numberbox", "numberspinner", "slider","radio","checkbox"]; //cryze 2019-04-04 增加支持封装的radio和checkbox 
+        for (var i = 0; i < plugins.length; i++) {
+            var plugin = plugins[i];
+            var r = t.find("." + plugin + "-f");
+            if (r.length && r[plugin]) {
+                r[plugin]("reset");
             }
         }
-        _460(_462);
+        validate(target);
     };
-    function _465(_466) {
-        var _467 = $.data(_466, "form").options;
-        var form = $(_466);
+    function setForm(target) {
+        var options = $.data(target, "form").options;
+        var form = $(target);
         form.unbind(".form").bind("submit.form", function () {
             setTimeout(function () {
-                _449(_466, _467);
+                ajaxSubmit(target, options);
             }, 0);
             return false;
         });
     };
-    function _460(_468) {
+    function validate(target) {
         if ($.fn.validatebox) {
-            var t = $(_468);
+            var t = $(target);
             t.find(".validatebox-text:not(:disabled)").validatebox("validate");
-            var _469 = t.find(".validatebox-invalid");
-            _469.filter(":not(:disabled):first").focus();
-            return _469.length == 0;
+            var invalidbox = t.find(".validatebox-invalid");
+            invalidbox.filter(":not(:disabled):first").focus();
+            return invalidbox.length == 0;
         }
         return true;
     };
-    function _46a(_46b, _46c) {
-        $(_46b).find(".validatebox-text:not(:disabled)").validatebox(_46c ? "disableValidation" : "enableValidation");
+    function setValidation(target, novalidate) {
+        $(target).find(".validatebox-text:not(:disabled)").validatebox(novalidate ? "disableValidation" : "enableValidation");
     };
-    $.fn.form = function (_46d, _46e) {
-        if (typeof _46d == "string") {
-            return $.fn.form.methods[_46d](this, _46e);
+    $.fn.form = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.form.methods[options](this, param);
         }
-        _46d = _46d || {};
+        options = options || {};
         return this.each(function () {
             if (!$.data(this, "form")) {
-                $.data(this, "form", { options: $.extend({}, $.fn.form.defaults, _46d) });
+                $.data(this, "form", { options: $.extend({}, $.fn.form.defaults, options) });
             }
-            _465(this);
+            setForm(this);
         });
     };
     $.fn.form.methods = {
-        submit: function (jq, _46f) {
+        submit: function (jq, options) {
             return jq.each(function () {
-                var opts = $.extend({}, $.fn.form.defaults, $.data(this, "form") ? $.data(this, "form").options : {}, _46f || {});
-                _449(this, opts);
+                var opts = $.extend({}, $.fn.form.defaults, $.data(this, "form") ? $.data(this, "form").options : {}, options || {});
+                ajaxSubmit(this, opts);
             });
         }, load: function (jq, data) {
             return jq.each(function () {
@@ -7338,21 +7350,21 @@ if (typeof JSON !== 'object') {
             });
         }, clear: function (jq) {
             return jq.each(function () {
-                _45b(this);
+                clear(this);
             });
         }, reset: function (jq) {
             return jq.each(function () {
-                _461(this);
+                reset(this);
             });
         }, validate: function (jq) {
-            return _460(jq[0]);
+            return validate(jq[0]);
         }, disableValidation: function (jq) {
             return jq.each(function () {
-                _46a(this, true);
+                setValidation(this, true);
             });
         }, enableValidation: function (jq) {
             return jq.each(function () {
-                _46a(this, false);
+                setValidation(this, false);
             });
         }
     };
@@ -7360,7 +7372,7 @@ if (typeof JSON !== 'object') {
         url: null, onSubmit: function (_470) {
             return $(this).form("validate");
         }, success: function (data) {
-        }, onBeforeLoad: function (_471) {
+        }, onBeforeLoad: function (param) {
         }, onLoadSuccess: function (data) {
         }, onLoadError: function () {
         }
@@ -7617,57 +7629,57 @@ if (typeof JSON !== 'object') {
     });
 })(jQuery);
 (function ($) {
-    function _492(_493) {
-        var opts = $.data(_493, "calendar").options;
-        var t = $(_493);
+    function setSize(target) {
+        var opts = $.data(target, "calendar").options;
+        var t = $(target);
         opts.fit ? $.extend(opts, t._fit()) : t._fit(false);
-        var _494 = t.find(".calendar-header");
+        var header = t.find(".calendar-header");
         t._outerWidth(opts.width);
         t._outerHeight(opts.height);
-        t.find(".calendar-body")._outerHeight(t.height() - _494._outerHeight());
+        t.find(".calendar-body")._outerHeight(t.height() - header._outerHeight());
     };
-    function init(_495) {
-        $(_495).addClass("calendar").html("<div class=\"calendar-header\">" + "<div class=\"calendar-prevmonth\"></div>" + "<div class=\"calendar-nextmonth\"></div>" + "<div class=\"calendar-prevyear\"></div>" + "<div class=\"calendar-nextyear\"></div>" + "<div class=\"calendar-title\">" + "<span>Aprial 2010</span>" + "</div>" + "</div>" + "<div class=\"calendar-body\">" + "<div class=\"calendar-menu\">" + "<div class=\"calendar-menu-year-inner\">" + "<span class=\"calendar-menu-prev\"></span>" + "<span><input class=\"calendar-menu-year\" type=\"text\"></input></span>" + "<span class=\"calendar-menu-next\"></span>" + "</div>" + "<div class=\"calendar-menu-month-inner\">" + "</div>" + "</div>" + "</div>");
-        $(_495).find(".calendar-title span").hover(function () {
+    function init(target) {
+        $(target).addClass("calendar").html("<div class=\"calendar-header\">" + "<div class=\"calendar-prevmonth\"></div>" + "<div class=\"calendar-nextmonth\"></div>" + "<div class=\"calendar-prevyear\"></div>" + "<div class=\"calendar-nextyear\"></div>" + "<div class=\"calendar-title\">" + "<span>Aprial 2010</span>" + "</div>" + "</div>" + "<div class=\"calendar-body\">" + "<div class=\"calendar-menu\">" + "<div class=\"calendar-menu-year-inner\">" + "<span class=\"calendar-menu-prev\"></span>" + "<span><input class=\"calendar-menu-year\" type=\"text\"></input></span>" + "<span class=\"calendar-menu-next\"></span>" + "</div>" + "<div class=\"calendar-menu-month-inner\">" + "</div>" + "</div>" + "</div>");
+        $(target).find(".calendar-title span").hover(function () {
             $(this).addClass("calendar-menu-hover");
         }, function () {
             $(this).removeClass("calendar-menu-hover");
         }).click(function () {
-            var menu = $(_495).find(".calendar-menu");
+            var menu = $(target).find(".calendar-menu");
             if (menu.is(":visible")) {
                 menu.hide();
             } else {
-                _49c(_495);
+                showSelectMenus(target);
             }
         });
-        $(".calendar-prevmonth,.calendar-nextmonth,.calendar-prevyear,.calendar-nextyear", _495).hover(function () {
+        $(".calendar-prevmonth,.calendar-nextmonth,.calendar-prevyear,.calendar-nextyear", target).hover(function () {
             $(this).addClass("calendar-nav-hover");
         }, function () {
             $(this).removeClass("calendar-nav-hover");
         });
-        $(_495).find(".calendar-nextmonth").click(function () {
-            _496(_495, 1);
+        $(target).find(".calendar-nextmonth").click(function () {
+            showMonth(target, 1);
         });
-        $(_495).find(".calendar-prevmonth").click(function () {
-            _496(_495, -1);
+        $(target).find(".calendar-prevmonth").click(function () {
+            showMonth(target, -1);
         });
-        $(_495).find(".calendar-nextyear").click(function () {
-            _499(_495, 1);
+        $(target).find(".calendar-nextyear").click(function () {
+            showYear(target, 1);
         });
-        $(_495).find(".calendar-prevyear").click(function () {
-            _499(_495, -1);
+        $(target).find(".calendar-prevyear").click(function () {
+            showYear(target, -1);
         });
-        $(_495).bind("_resize", function () {
-            var opts = $.data(_495, "calendar").options;
+        $(target).bind("_resize", function () {
+            var opts = $.data(target, "calendar").options;
             if (opts.fit == true) {
-                _492(_495);
+                setSize(target);
             }
             return false;
         });
     };
-    function _496(_497, _498) {
-        var opts = $.data(_497, "calendar").options;
-        opts.month += _498;
+    function showMonth(target, delta) {
+        var opts = $.data(target, "calendar").options;
+        opts.month += delta;
         if (opts.month > 12) {
             opts.year++;
             opts.month = 1;
@@ -7677,24 +7689,24 @@ if (typeof JSON !== 'object') {
                 opts.month = 12;
             }
         }
-        show(_497);
-        var menu = $(_497).find(".calendar-menu-month-inner");
+        show(target);
+        var menu = $(target).find(".calendar-menu-month-inner");
         menu.find("td.calendar-selected").removeClass("calendar-selected");
         menu.find("td:eq(" + (opts.month - 1) + ")").addClass("calendar-selected");
     };
-    function _499(_49a, _49b) {
-        var opts = $.data(_49a, "calendar").options;
-        opts.year += _49b;
-        show(_49a);
-        var menu = $(_49a).find(".calendar-menu-year");
+    function showYear(target, delta) {
+        var opts = $.data(target, "calendar").options;
+        opts.year += delta;
+        show(target);
+        var menu = $(target).find(".calendar-menu-year");
         menu.val(opts.year);
     };
-    function _49c(_49d) {
-        var opts = $.data(_49d, "calendar").options;
-        $(_49d).find(".calendar-menu").show();
-        if ($(_49d).find(".calendar-menu-month-inner").is(":empty")) {
-            $(_49d).find(".calendar-menu-month-inner").empty();
-            var t = $("<table class=\"calendar-mtable\"></table>").appendTo($(_49d).find(".calendar-menu-month-inner"));
+    function showSelectMenus(target) {
+        var opts = $.data(target, "calendar").options;
+        $(target).find(".calendar-menu").show();
+        if ($(target).find(".calendar-menu-month-inner").is(":empty")) {
+            $(target).find(".calendar-menu-month-inner").empty();
+            var t = $("<table class=\"calendar-mtable\"></table>").appendTo($(target).find(".calendar-menu-month-inner"));
             var idx = 0;
             for (var i = 0; i < 3; i++) {
                 var tr = $("<tr></tr>").appendTo(t);
@@ -7702,142 +7714,142 @@ if (typeof JSON !== 'object') {
                     $("<td class=\"calendar-menu-month\"></td>").html(opts.months[idx++]).attr("abbr", idx).appendTo(tr);
                 }
             }
-            $(_49d).find(".calendar-menu-prev,.calendar-menu-next").hover(function () {
+            $(target).find(".calendar-menu-prev,.calendar-menu-next").hover(function () {
                 $(this).addClass("calendar-menu-hover");
             }, function () {
                 $(this).removeClass("calendar-menu-hover");
             });
-            $(_49d).find(".calendar-menu-next").click(function () {
-                var y = $(_49d).find(".calendar-menu-year");
+            $(target).find(".calendar-menu-next").click(function () {
+                var y = $(target).find(".calendar-menu-year");
                 if (!isNaN(y.val())) {
                     y.val(parseInt(y.val()) + 1);
-                    _49e();
+                    setDate();
                 }
             });
-            $(_49d).find(".calendar-menu-prev").click(function () {
-                var y = $(_49d).find(".calendar-menu-year");
+            $(target).find(".calendar-menu-prev").click(function () {
+                var y = $(target).find(".calendar-menu-year");
                 if (!isNaN(y.val())) {
                     y.val(parseInt(y.val() - 1));
-                    _49e();
+                    setDate();
                 }
             });
-            $(_49d).find(".calendar-menu-year").keypress(function (e) {
+            $(target).find(".calendar-menu-year").keypress(function (e) {
                 if (e.keyCode == 13) {
-                    _49e(true);
+                    setDate(true);
                 }
             });
-            $(_49d).find(".calendar-menu-month").hover(function () {
+            $(target).find(".calendar-menu-month").hover(function () {
                 $(this).addClass("calendar-menu-hover");
             }, function () {
                 $(this).removeClass("calendar-menu-hover");
             }).click(function () {
-                var menu = $(_49d).find(".calendar-menu");
+                var menu = $(target).find(".calendar-menu");
                 menu.find(".calendar-selected").removeClass("calendar-selected");
                 $(this).addClass("calendar-selected");
-                _49e(true);
+                setDate(true);
             });
         }
-        function _49e(_49f) {
-            var menu = $(_49d).find(".calendar-menu");
+        function setDate(hideMenu) {
+            var menu = $(target).find(".calendar-menu");
             var year = menu.find(".calendar-menu-year").val();
-            var _4a0 = menu.find(".calendar-selected").attr("abbr");
+            var month = menu.find(".calendar-selected").attr("abbr");
             if (!isNaN(year)) {
                 opts.year = parseInt(year);
-                opts.month = parseInt(_4a0);
-                show(_49d);
+                opts.month = parseInt(month);
+                show(target);
             }
-            if (_49f) {
+            if (hideMenu) {
                 menu.hide();
             }
         };
-        var body = $(_49d).find(".calendar-body");
-        var sele = $(_49d).find(".calendar-menu");
-        var _4a1 = sele.find(".calendar-menu-year-inner");
-        var _4a2 = sele.find(".calendar-menu-month-inner");
-        _4a1.find("input").val(opts.year).focus();
-        _4a2.find("td.calendar-selected").removeClass("calendar-selected");
-        _4a2.find("td:eq(" + (opts.month - 1) + ")").addClass("calendar-selected");
+        var body = $(target).find(".calendar-body");
+        var sele = $(target).find(".calendar-menu");
+        var seleYear = sele.find(".calendar-menu-year-inner");
+        var seleMonth = sele.find(".calendar-menu-month-inner");
+        seleYear.find("input").val(opts.year).focus();
+        seleMonth.find("td.calendar-selected").removeClass("calendar-selected");
+        seleMonth.find("td:eq(" + (opts.month - 1) + ")").addClass("calendar-selected");
         sele._outerWidth(body._outerWidth());
         sele._outerHeight(body._outerHeight());
-        _4a2._outerHeight(sele.height() - _4a1._outerHeight());
+        seleMonth._outerHeight(sele.height() - seleYear._outerHeight());
     };
-    function _4a3(_4a4, year, _4a5) {
-        var opts = $.data(_4a4, "calendar").options;
-        var _4a6 = [];
-        var _4a7 = new Date(year, _4a5, 0).getDate();
-        for (var i = 1; i <= _4a7; i++) {
-            _4a6.push([year, _4a5, i]);
+    function getWeeks(target, year, month) {
+        var opts = $.data(target, "calendar").options;
+        var dates = [];
+        var lastDay = new Date(year, month, 0).getDate();
+        for (var i = 1; i <= lastDay; i++) {
+            dates.push([year, month, i]);
         }
-        var _4a8 = [], week = [];
-        var _4a9 = -1;
-        while (_4a6.length > 0) {
-            var date = _4a6.shift();
+        var weeks = [], week = [];
+        var memoDay = -1;
+        while (dates.length > 0) {
+            var date = dates.shift();
             week.push(date);
             var day = new Date(date[0], date[1] - 1, date[2]).getDay();
-            if (_4a9 == day) {
+            if (memoDay == day) {
                 day = 0;
             } else {
                 if (day == (opts.firstDay == 0 ? 7 : opts.firstDay) - 1) {
-                    _4a8.push(week);
+                    weeks.push(week);
                     week = [];
                 }
             }
-            _4a9 = day;
+            memoDay = day;
         }
         if (week.length) {
-            _4a8.push(week);
+            weeks.push(week);
         }
-        var _4aa = _4a8[0];
-        if (_4aa.length < 7) {
-            while (_4aa.length < 7) {
-                var _4ab = _4aa[0];
-                var date = new Date(_4ab[0], _4ab[1] - 1, _4ab[2] - 1);
-                _4aa.unshift([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+        var firstWeek = weeks[0];
+        if (firstWeek.length < 7) {
+            while (firstWeek.length < 7) {
+                var firstDate = firstWeek[0];
+                var date = new Date(firstDate[0], firstDate[1] - 1, firstDate[2] - 1);
+                firstWeek.unshift([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
             }
         } else {
-            var _4ab = _4aa[0];
+            var firstDate = firstWeek[0];
             var week = [];
             for (var i = 1; i <= 7; i++) {
-                var date = new Date(_4ab[0], _4ab[1] - 1, _4ab[2] - i);
+                var date = new Date(firstDate[0], firstDate[1] - 1, firstDate[2] - i);
                 week.unshift([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
             }
-            _4a8.unshift(week);
+            weeks.unshift(week);
         }
-        var _4ac = _4a8[_4a8.length - 1];
-        while (_4ac.length < 7) {
-            var _4ad = _4ac[_4ac.length - 1];
-            var date = new Date(_4ad[0], _4ad[1] - 1, _4ad[2] + 1);
-            _4ac.push([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
+        var lastWeek = weeks[weeks.length - 1];
+        while (lastWeek.length < 7) {
+            var lastDate = lastWeek[lastWeek.length - 1];
+            var date = new Date(lastDate[0], lastDate[1] - 1, lastDate[2] + 1);
+            lastWeek.push([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
         }
-        if (_4a8.length < 6) {
-            var _4ad = _4ac[_4ac.length - 1];
+        if (weeks.length < 6) {
+            var lastDate = lastWeek[lastWeek.length - 1];
             var week = [];
             for (var i = 1; i <= 7; i++) {
-                var date = new Date(_4ad[0], _4ad[1] - 1, _4ad[2] + i);
+                var date = new Date(lastDate[0], lastDate[1] - 1, lastDate[2] + i);
                 week.push([date.getFullYear(), date.getMonth() + 1, date.getDate()]);
             }
-            _4a8.push(week);
+            weeks.push(week);
         }
-        return _4a8;
+        return weeks;
     };
-    function show(_4ae) {
-        var opts = $.data(_4ae, "calendar").options;
-        if (opts.current && !opts.validator.call(_4ae, opts.current)) {
+    function show(target) {
+        var opts = $.data(target, "calendar").options;
+        if (opts.current && !opts.validator.call(target, opts.current)) {
             opts.current = null;
         }
         var now = new Date();
-        var _4af = now.getFullYear() + "," + (now.getMonth() + 1) + "," + now.getDate();
-        var _4b0 = opts.current ? (opts.current.getFullYear() + "," + (opts.current.getMonth() + 1) + "," + opts.current.getDate()) : "";
-        var _4b1 = 6 - opts.firstDay;
-        var _4b2 = _4b1 + 1;
-        if (_4b1 >= 7) {
-            _4b1 -= 7;
+        var todayInfo = now.getFullYear() + "," + (now.getMonth() + 1) + "," + now.getDate();
+        var currentInfo = opts.current ? (opts.current.getFullYear() + "," + (opts.current.getMonth() + 1) + "," + opts.current.getDate()) : "";
+        var saIndex = 6 - opts.firstDay;
+        var suIndex = saIndex + 1;
+        if (saIndex >= 7) {
+            saIndex -= 7;
         }
-        if (_4b2 >= 7) {
-            _4b2 -= 7;
+        if (suIndex >= 7) {
+            suIndex -= 7;
         }
-        $(_4ae).find(".calendar-title span").html(opts.months[opts.month - 1] + " " + opts.year);
-        var body = $(_4ae).find("div.calendar-body");
+        $(target).find(".calendar-title span").html(opts.months[opts.month - 1] + " " + opts.year);
+        var body = $(target).find("div.calendar-body");
         body.children("table").remove();
         var data = ["<table class=\"calendar-dtable\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"];
         data.push("<thead><tr>");
@@ -7849,14 +7861,14 @@ if (typeof JSON !== 'object') {
         }
         data.push("</tr></thead>");
         data.push("<tbody>");
-        var _4b3 = _4a3(_4ae, opts.year, opts.month);
-        for (var i = 0; i < _4b3.length; i++) {
-            var week = _4b3[i];
+        var weeks = getWeeks(target, opts.year, opts.month);
+        for (var i = 0; i < weeks.length; i++) {
+            var week = weeks[i];
             var cls = "";
             if (i == 0) {
                 cls = "calendar-first";
             } else {
-                if (i == _4b3.length - 1) {
+                if (i == weeks.length - 1) {
                     cls = "calendar-last";
                 }
             }
@@ -7864,33 +7876,33 @@ if (typeof JSON !== 'object') {
             for (var j = 0; j < week.length; j++) {
                 var day = week[j];
                 var s = day[0] + "," + day[1] + "," + day[2];
-                var _4b4 = new Date(day[0], parseInt(day[1]) - 1, day[2]);
-                var d = opts.formatter.call(_4ae, _4b4);
-                var css = opts.styler.call(_4ae, _4b4);
-                var _4b5 = "";
-                var _4b6 = "";
+                var dvalue = new Date(day[0], parseInt(day[1]) - 1, day[2]);
+                var d = opts.formatter.call(target, dvalue);
+                var css = opts.styler.call(target, dvalue);
+                var classValue = "";
+                var styleValue = "";
                 if (typeof css == "string") {
-                    _4b6 = css;
+                    styleValue = css;
                 } else {
                     if (css) {
-                        _4b5 = css["class"] || "";
-                        _4b6 = css["style"] || "";
+                        classValue = css["class"] || "";
+                        styleValue = css["style"] || "";
                     }
                 }
                 var cls = "calendar-day";
                 if (!(opts.year == day[0] && opts.month == day[1])) {
                     cls += " calendar-other-month";
                 }
-                if (s == _4af) {
+                if (s == todayInfo) {
                     cls += " calendar-today";
                 }
-                if (s == _4b0) {
+                if (s == currentInfo) {
                     cls += " calendar-selected";
                 }
-                if (j == _4b1) {
+                if (j == saIndex) {
                     cls += " calendar-saturday";
                 } else {
-                    if (j == _4b2) {
+                    if (j == suIndex) {
                         cls += " calendar-sunday";
                     }
                 }
@@ -7901,11 +7913,11 @@ if (typeof JSON !== 'object') {
                         cls += " calendar-last";
                     }
                 }
-                cls += " " + _4b5;
-                if (!opts.validator.call(_4ae, _4b4)) {
+                cls += " " + classValue;
+                if (!opts.validator.call(target, dvalue)) {
                     cls += " calendar-disabled";
                 }
-                data.push("<td class=\"" + cls + "\" abbr=\"" + s + "\" style=\"" + _4b6 + "\">" + d + "</td>");
+                data.push("<td class=\"" + cls + "\" abbr=\"" + s + "\" style=\"" + styleValue + "\">" + d + "</td>");
             }
             data.push("</tr>");
         }
@@ -7918,34 +7930,34 @@ if (typeof JSON !== 'object') {
         }, function () {
             $(this).removeClass("calendar-hover");
         }).click(function () {
-            var _4b7 = opts.current;
+            var oldValue = opts.current;
             t.find(".calendar-selected").removeClass("calendar-selected");
             $(this).addClass("calendar-selected");
-            var _4b8 = $(this).attr("abbr").split(",");
-            opts.current = new Date(_4b8[0], parseInt(_4b8[1]) - 1, _4b8[2]);
-            opts.onSelect.call(_4ae, opts.current);
-            if (!_4b7 || _4b7.getTime() != opts.current.getTime()) {
-                opts.onChange.call(_4ae, opts.current, _4b7);
+            var parts = $(this).attr("abbr").split(",");
+            opts.current = new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
+            opts.onSelect.call(target, opts.current);
+            if (!oldValue || oldValue.getTime() != opts.current.getTime()) {
+                opts.onChange.call(target, opts.current, oldValue);
             }
         });
     };
-    $.fn.calendar = function (_4b9, _4ba) {
-        if (typeof _4b9 == "string") {
-            return $.fn.calendar.methods[_4b9](this, _4ba);
+    $.fn.calendar = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.calendar.methods[options](this, param);
         }
-        _4b9 = _4b9 || {};
+        options = options || {};
         return this.each(function () {
-            var _4bb = $.data(this, "calendar");
-            if (_4bb) {
-                $.extend(_4bb.options, _4b9);
+            var state = $.data(this, "calendar");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _4bb = $.data(this, "calendar", { options: $.extend({}, $.fn.calendar.defaults, $.fn.calendar.parseOptions(this), _4b9) });
+                state = $.data(this, "calendar", { options: $.extend({}, $.fn.calendar.defaults, $.fn.calendar.parseOptions(this), options) });
                 init(this);
             }
-            if (_4bb.options.border == false) {
+            if (state.options.border == false) {
                 $(this).addClass("calendar-noborder");
             }
-            _492(this);
+            setSize(this);
             show(this);
             $(this).find("div.calendar-menu").hide();
         });
@@ -7955,24 +7967,24 @@ if (typeof JSON !== 'object') {
             return $.data(jq[0], "calendar").options;
         }, resize: function (jq) {
             return jq.each(function () {
-                _492(this);
+                setSize(this);
             });
         }, moveTo: function (jq, date) {
             return jq.each(function () {
                 var opts = $(this).calendar("options");
                 if (opts.validator.call(this, date)) {
-                    var _4bc = opts.current;
+                    var oldValue = opts.current;
                     $(this).calendar({ year: date.getFullYear(), month: date.getMonth() + 1, current: date });
-                    if (!_4bc || _4bc.getTime() != date.getTime()) {
-                        opts.onChange.call(this, opts.current, _4bc);
+                    if (!oldValue || oldValue.getTime() != date.getTime()) {
+                        opts.onChange.call(this, opts.current, oldValue);
                     }
                 }
             });
         }
     };
-    $.fn.calendar.parseOptions = function (_4bd) {
-        var t = $(_4bd);
-        return $.extend({}, $.parser.parseOptions(_4bd, ["width", "height", { firstDay: "number", fit: "boolean", border: "boolean" }]));
+    $.fn.calendar.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", { firstDay: "number", fit: "boolean", border: "boolean" }]));
     };
     $.fn.calendar.defaults = {
         width: 180, height: 180, fit: false, border: true, firstDay: 0, weeks: ["S", "M", "T", "W", "T", "F", "S"], months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], year: new Date().getFullYear(), month: new Date().getMonth() + 1, current: (function () {
@@ -7985,7 +7997,7 @@ if (typeof JSON !== 'object') {
         }, validator: function (date) {
             return true;
         }, onSelect: function (date) {
-        }, onChange: function (_4be, _4bf) {
+        }, onChange: function (newDate, oldDate) {
         }
     };
 })(jQuery);
@@ -11211,27 +11223,27 @@ if (typeof JSON !== 'object') {
     });
 })(jQuery);
 (function ($) {
-    var _73c;
-    function _73d(_73e) {
-        var _73f = $.data(_73e, "propertygrid");
-        var opts = $.data(_73e, "propertygrid").options;
-        $(_73e).datagrid($.extend({}, opts, {
-            cls: "propertygrid", view: (opts.showGroup ? opts.groupView : opts.view), onClickRow: function (_740, row) {
-                if (_73c != this) {
-                    _741(_73c);
-                    _73c = this;
+    var currTarget;
+    function buildGrid(target) {
+        var state = $.data(target, "propertygrid");
+        var opts = $.data(target, "propertygrid").options;
+        $(target).datagrid($.extend({}, opts, {
+            cls: "propertygrid", view: (opts.showGroup ? opts.groupView : opts.view), onClickRow: function (index, row) {
+                if (currTarget != this) {
+                    stopEditing(currTarget);
+                    currTarget = this;
                 }
-                if (opts.editIndex != _740 && row.editor) {
+                if (opts.editIndex != index && row.editor) {
                     var col = $(this).datagrid("getColumnOption", "value");
                     col.editor = row.editor;
-                    _741(_73c);
-                    $(this).datagrid("beginEdit", _740);
-                    $(this).datagrid("getEditors", _740)[0].target.focus();
-                    opts.editIndex = _740;
+                    stopEditing(currTarget);
+                    $(this).datagrid("beginEdit", index);
+                    $(this).datagrid("getEditors", index)[0].target.focus();
+                    opts.editIndex = index;
                 }
-                opts.onClickRow.call(_73e, _740, row);
+                opts.onClickRow.call(target, index, row);
             }, loadFilter: function (data) {
-                _741(this);
+                stopEditing(this);
                 return opts.loadFilter.call(this, data);
             }
         }));
@@ -11240,52 +11252,52 @@ if (typeof JSON !== 'object') {
             if (p.length) {
                 return;
             }
-            _741(_73c);
-            _73c = undefined;
+            stopEditing(currTarget);
+            currTarget = undefined;
         });
     };
-    function _741(_742) {
-        var t = $(_742);
+    function stopEditing(target) {
+        var t = $(target);
         if (!t.length) {
             return;
         }
-        var opts = $.data(_742, "propertygrid").options;
-        var _743 = opts.editIndex;
-        if (_743 == undefined) {
+        var opts = $.data(target, "propertygrid").options;
+        var index = opts.editIndex;
+        if (index == undefined) {
             return;
         }
-        var ed = t.datagrid("getEditors", _743)[0];
+        var ed = t.datagrid("getEditors", index)[0];
         if (ed) {
             ed.target.blur();
-            if (t.datagrid("validateRow", _743)) {
-                t.datagrid("endEdit", _743);
+            if (t.datagrid("validateRow", index)) {
+                t.datagrid("endEdit", index);
             } else {
-                t.datagrid("cancelEdit", _743);
+                t.datagrid("cancelEdit", index);
             }
         }
         opts.editIndex = undefined;
     };
-    $.fn.propertygrid = function (_744, _745) {
-        if (typeof _744 == "string") {
-            var _746 = $.fn.propertygrid.methods[_744];
-            if (_746) {
-                return _746(this, _745);
+    $.fn.propertygrid = function (options, param) {
+        if (typeof options == "string") {
+            var method = $.fn.propertygrid.methods[options];
+            if (method) {
+                return method(this, param);
             } else {
-                return this.datagrid(_744, _745);
+                return this.datagrid(options, param);
             }
         }
-        _744 = _744 || {};
+        options = options || {};
         return this.each(function () {
-            var _747 = $.data(this, "propertygrid");
-            if (_747) {
-                $.extend(_747.options, _744);
+            var state = $.data(this, "propertygrid");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                var opts = $.extend({}, $.fn.propertygrid.defaults, $.fn.propertygrid.parseOptions(this), _744);
+                var opts = $.extend({}, $.fn.propertygrid.defaults, $.fn.propertygrid.parseOptions(this), options);
                 opts.frozenColumns = $.extend(true, [], opts.frozenColumns);
                 opts.columns = $.extend(true, [], opts.columns);
                 $.data(this, "propertygrid", { options: opts });
             }
-            _73d(this);
+            buildGrid(this);
         });
     };
     $.fn.propertygrid.methods = {
@@ -11293,121 +11305,121 @@ if (typeof JSON !== 'object') {
             return $.data(jq[0], "propertygrid").options;
         }
     };
-    $.fn.propertygrid.parseOptions = function (_748) {
-        return $.extend({}, $.fn.datagrid.parseOptions(_748), $.parser.parseOptions(_748, [{ showGroup: "boolean" }]));
+    $.fn.propertygrid.parseOptions = function (target) {
+        return $.extend({}, $.fn.datagrid.parseOptions(target), $.parser.parseOptions(target, [{ showGroup: "boolean" }]));
     };
-    var _749 = $.extend({}, $.fn.datagrid.defaults.view, {
-        render: function (_74a, _74b, _74c) {
-            var _74d = [];
-            var _74e = this.groups;
-            for (var i = 0; i < _74e.length; i++) {
-                _74d.push(this.renderGroup.call(this, _74a, i, _74e[i], _74c));
+    var groupview = $.extend({}, $.fn.datagrid.defaults.view, {
+        render: function (target, container, frozen) {
+            var table = [];
+            var groups = this.groups;
+            for (var i = 0; i < groups.length; i++) {
+                table.push(this.renderGroup.call(this, target, i, groups[i], frozen));
             }
-            $(_74b).html(_74d.join(""));
-        }, renderGroup: function (_74f, _750, _751, _752) {
-            var _753 = $.data(_74f, "datagrid");
-            var opts = _753.options;
-            var _754 = $(_74f).datagrid("getColumnFields", _752);
-            var _755 = [];
-            _755.push("<div class=\"datagrid-group\" group-index=" + _750 + ">");
-            _755.push("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"height:100%\"><tbody>");
-            _755.push("<tr>");
-            if ((_752 && (opts.rownumbers || opts.frozenColumns.length)) || (!_752 && !(opts.rownumbers || opts.frozenColumns.length))) {
-                _755.push("<td style=\"border:0;text-align:center;width:25px\"><span class=\"datagrid-row-expander datagrid-row-collapse\" style=\"display:inline-block;width:16px;height:16px;cursor:pointer\">&nbsp;</span></td>");
+            $(container).html(table.join(""));
+        }, renderGroup: function (target, groupIndex, group, frozen) {
+            var state = $.data(target, "datagrid");
+            var opts = state.options;
+            var fields = $(target).datagrid("getColumnFields", frozen);
+            var table = [];
+            table.push("<div class=\"datagrid-group\" group-index=" + groupIndex + ">");
+            table.push("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" style=\"height:100%\"><tbody>");
+            table.push("<tr>");
+            if ((frozen && (opts.rownumbers || opts.frozenColumns.length)) || (!frozen && !(opts.rownumbers || opts.frozenColumns.length))) {
+                table.push("<td style=\"border:0;text-align:center;width:25px\"><span class=\"datagrid-row-expander datagrid-row-collapse\" style=\"display:inline-block;width:16px;height:16px;cursor:pointer\">&nbsp;</span></td>");
             }
-            _755.push("<td style=\"border:0;\">");
-            if (!_752) {
-                _755.push("<span class=\"datagrid-group-title\">");
-                _755.push(opts.groupFormatter.call(_74f, _751.value, _751.rows));
-                _755.push("</span>");
+            table.push("<td style=\"border:0;\">");
+            if (!frozen) {
+                table.push("<span class=\"datagrid-group-title\">");
+                table.push(opts.groupFormatter.call(target, group.value, group.rows));
+                table.push("</span>");
             }
-            _755.push("</td>");
-            _755.push("</tr>");
-            _755.push("</tbody></table>");
-            _755.push("</div>");
-            _755.push("<table class=\"datagrid-btable\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody>");
-            var _756 = _751.startIndex;
-            for (var j = 0; j < _751.rows.length; j++) {
-                var css = opts.rowStyler ? opts.rowStyler.call(_74f, _756, _751.rows[j]) : "";
-                var _757 = "";
-                var _758 = "";
+            table.push("</td>");
+            table.push("</tr>");
+            table.push("</tbody></table>");
+            table.push("</div>");
+            table.push("<table class=\"datagrid-btable\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tbody>");
+            var index = group.startIndex;
+            for (var j = 0; j < group.rows.length; j++) {
+                var css = opts.rowStyler ? opts.rowStyler.call(target, index, group.rows[j]) : "";
+                var classValue = "";
+                var styleValue = "";
                 if (typeof css == "string") {
-                    _758 = css;
+                    styleValue = css;
                 } else {
                     if (css) {
-                        _757 = css["class"] || "";
-                        _758 = css["style"] || "";
+                        classValue = css["class"] || "";
+                        styleValue = css["style"] || "";
                     }
                 }
-                var cls = "class=\"datagrid-row " + (_756 % 2 && opts.striped ? "datagrid-row-alt " : " ") + _757 + "\"";
-                var _759 = _758 ? "style=\"" + _758 + "\"" : "";
-                var _75a = _753.rowIdPrefix + "-" + (_752 ? 1 : 2) + "-" + _756;
-                _755.push("<tr id=\"" + _75a + "\" datagrid-row-index=\"" + _756 + "\" " + cls + " " + _759 + ">");
-                _755.push(this.renderRow.call(this, _74f, _754, _752, _756, _751.rows[j]));
-                _755.push("</tr>");
-                _756++;
+                var cls = "class=\"datagrid-row " + (index % 2 && opts.striped ? "datagrid-row-alt " : " ") + classValue + "\"";
+                var style = styleValue ? "style=\"" + styleValue + "\"" : "";
+                var rowId = state.rowIdPrefix + "-" + (frozen ? 1 : 2) + "-" + index;
+                table.push("<tr id=\"" + rowId + "\" datagrid-row-index=\"" + index + "\" " + cls + " " + style + ">");
+                table.push(this.renderRow.call(this, target, fields, frozen, index, group.rows[j]));
+                table.push("</tr>");
+                index++;
             }
-            _755.push("</tbody></table>");
-            return _755.join("");
-        }, bindEvents: function (_75b) {
-            var _75c = $.data(_75b, "datagrid");
-            var dc = _75c.dc;
+            table.push("</tbody></table>");
+            return table.join("");
+        }, bindEvents: function (target) {
+            var state = $.data(target, "datagrid");
+            var dc = state.dc;
             var body = dc.body1.add(dc.body2);
-            var _75d = ($.data(body[0], "events") || $._data(body[0], "events")).click[0].handler;
+            var clickHandler = ($.data(body[0], "events") || $._data(body[0], "events")).click[0].handler;
             body.unbind("click").bind("click", function (e) {
                 var tt = $(e.target);
-                var _75e = tt.closest("span.datagrid-row-expander");
-                if (_75e.length) {
-                    var _75f = _75e.closest("div.datagrid-group").attr("group-index");
-                    if (_75e.hasClass("datagrid-row-collapse")) {
-                        $(_75b).datagrid("collapseGroup", _75f);
+                var expander = tt.closest("span.datagrid-row-expander");
+                if (expander.length) {
+                    var gindex = expander.closest("div.datagrid-group").attr("group-index");
+                    if (expander.hasClass("datagrid-row-collapse")) {
+                        $(target).datagrid("collapseGroup", gindex);
                     } else {
-                        $(_75b).datagrid("expandGroup", _75f);
+                        $(target).datagrid("expandGroup", gindex);
                     }
                 } else {
-                    _75d(e);
+                    clickHandler(e);
                 }
                 e.stopPropagation();
             });
-        }, onBeforeRender: function (_760, rows) {
-            var _761 = $.data(_760, "datagrid");
-            var opts = _761.options;
-            _762();
-            var _763 = [];
+        }, onBeforeRender: function (target, rows) {
+            var state = $.data(target, "datagrid");
+            var opts = state.options;
+            initCss();
+            var groups = [];
             for (var i = 0; i < rows.length; i++) {
                 var row = rows[i];
-                var _764 = _765(row[opts.groupField]);
-                if (!_764) {
-                    _764 = { value: row[opts.groupField], rows: [row] };
-                    _763.push(_764);
+                var group = getGroup(row[opts.groupField]);
+                if (!group) {
+                    group = { value: row[opts.groupField], rows: [row] };
+                    groups.push(group);
                 } else {
-                    _764.rows.push(row);
+                    group.rows.push(row);
                 }
             }
-            var _766 = 0;
-            var _767 = [];
-            for (var i = 0; i < _763.length; i++) {
-                var _764 = _763[i];
-                _764.startIndex = _766;
-                _766 += _764.rows.length;
-                _767 = _767.concat(_764.rows);
+            var index = 0;
+            var newRows = [];
+            for (var i = 0; i < groups.length; i++) {
+                var group = groups[i];
+                group.startIndex = index;
+                index += group.rows.length;
+                newRows = newRows.concat(group.rows);
             }
-            _761.data.rows = _767;
-            this.groups = _763;
+            state.data.rows = newRows;
+            this.groups = groups;
             var that = this;
             setTimeout(function () {
-                that.bindEvents(_760);
+                that.bindEvents(target);
             }, 0);
-            function _765(_768) {
-                for (var i = 0; i < _763.length; i++) {
-                    var _769 = _763[i];
-                    if (_769.value == _768) {
-                        return _769;
+            function getGroup(value) {
+                for (var i = 0; i < groups.length; i++) {
+                    var group = groups[i];
+                    if (group.value == value) {
+                        return group;
                     }
                 }
                 return null;
             };
-            function _762() {
+            function initCss() {
                 if (!$("#datagrid-group-style").length) {
                     $("head").append("<style id=\"datagrid-group-style\">" + ".datagrid-group{height:25px;overflow:hidden;font-weight:bold;border-bottom:1px solid #ccc;}" + "</style>");
                 }
@@ -11415,33 +11427,33 @@ if (typeof JSON !== 'object') {
         }
     });
     $.extend($.fn.datagrid.methods, {
-        expandGroup: function (jq, _76a) {
+        expandGroup: function (jq, groupIndex) {
             return jq.each(function () {
                 var view = $.data(this, "datagrid").dc.view;
-                var _76b = view.find(_76a != undefined ? "div.datagrid-group[group-index=\"" + _76a + "\"]" : "div.datagrid-group");
-                var _76c = _76b.find("span.datagrid-row-expander");
-                if (_76c.hasClass("datagrid-row-expand")) {
-                    _76c.removeClass("datagrid-row-expand").addClass("datagrid-row-collapse");
-                    _76b.next("table").show();
+                var group = view.find(groupIndex != undefined ? "div.datagrid-group[group-index=\"" + groupIndex + "\"]" : "div.datagrid-group");
+                var expander = group.find("span.datagrid-row-expander");
+                if (expander.hasClass("datagrid-row-expand")) {
+                    expander.removeClass("datagrid-row-expand").addClass("datagrid-row-collapse");
+                    group.next("table").show();
                 }
                 $(this).datagrid("fixRowHeight");
             });
-        }, collapseGroup: function (jq, _76d) {
+        }, collapseGroup: function (jq, groupIndex) {
             return jq.each(function () {
                 var view = $.data(this, "datagrid").dc.view;
-                var _76e = view.find(_76d != undefined ? "div.datagrid-group[group-index=\"" + _76d + "\"]" : "div.datagrid-group");
-                var _76f = _76e.find("span.datagrid-row-expander");
-                if (_76f.hasClass("datagrid-row-collapse")) {
-                    _76f.removeClass("datagrid-row-collapse").addClass("datagrid-row-expand");
-                    _76e.next("table").hide();
+                var group = view.find(groupIndex != undefined ? "div.datagrid-group[group-index=\"" + groupIndex + "\"]" : "div.datagrid-group");
+                var expander = group.find("span.datagrid-row-expander");
+                if (expander.hasClass("datagrid-row-collapse")) {
+                    expander.removeClass("datagrid-row-collapse").addClass("datagrid-row-expand");
+                    group.next("table").hide();
                 }
                 $(this).datagrid("fixRowHeight");
             });
         }
     });
     $.fn.propertygrid.defaults = $.extend({}, $.fn.datagrid.defaults, {
-        singleSelect: true, remoteSort: false, fitColumns: true, loadMsg: "", frozenColumns: [[{ field: "f", width: 16, resizable: false }]], columns: [[{ field: "name", title: "Name", width: 100, sortable: true }, { field: "value", title: "Value", width: 100, resizable: false }]], showGroup: false, groupView: _749, groupField: "group", groupFormatter: function (_770, rows) {
-            return _770;
+        singleSelect: true, remoteSort: false, fitColumns: true, loadMsg: "", frozenColumns: [[{ field: "f", width: 16, resizable: false }]], columns: [[{ field: "name", title: "Name", width: 100, sortable: true }, { field: "value", title: "Value", width: 100, resizable: false }]], showGroup: false, groupView: groupview, groupField: "group", groupFormatter: function (fvalue, rows) {
+            return fvalue;
         }
     });
 })(jQuery);
@@ -14940,217 +14952,217 @@ if (typeof JSON !== 'object') {
     });
 })(jQuery);
 (function ($) {
-    function init(_96e) {
-        var _96f = $("<div class=\"slider\">" + "<div class=\"slider-inner\">" + "<a href=\"javascript:void(0)\" class=\"slider-handle\"></a>" + "<span class=\"slider-tip\"></span>" + "</div>" + "<div class=\"slider-rule\"></div>" + "<div class=\"slider-rulelabel\"></div>" + "<div style=\"clear:both\"></div>" + "<input type=\"hidden\" class=\"slider-value\">" + "</div>").insertAfter(_96e);
-        var t = $(_96e);
+    function init(target) {
+        var slider = $("<div class=\"slider\">" + "<div class=\"slider-inner\">" + "<a href=\"javascript:void(0)\" class=\"slider-handle\"></a>" + "<span class=\"slider-tip\"></span>" + "</div>" + "<div class=\"slider-rule\"></div>" + "<div class=\"slider-rulelabel\"></div>" + "<div style=\"clear:both\"></div>" + "<input type=\"hidden\" class=\"slider-value\">" + "</div>").insertAfter(target);
+        var t = $(target);
         t.addClass("slider-f").hide();
         var name = t.attr("name");
         if (name) {
-            _96f.find("input.slider-value").attr("name", name);
+            slider.find("input.slider-value").attr("name", name);
             t.removeAttr("name").attr("sliderName", name);
         }
-        return _96f;
+        return slider;
     };
-    function _970(_971, _972) {
-        var _973 = $.data(_971, "slider");
-        var opts = _973.options;
-        var _974 = _973.slider;
-        if (_972) {
-            if (_972.width) {
-                opts.width = _972.width;
+    function setSize(target, param) {
+        var state = $.data(target, "slider");
+        var opts = state.options;
+        var slider = state.slider;
+        if (param) {
+            if (param.width) {
+                opts.width = param.width;
             }
-            if (_972.height) {
-                opts.height = _972.height;
+            if (param.height) {
+                opts.height = param.height;
             }
         }
         if (opts.mode == "h") {
-            _974.css("height", "");
-            _974.children("div").css("height", "");
+            slider.css("height", "");
+            slider.children("div").css("height", "");
             if (!isNaN(opts.width)) {
-                _974.width(opts.width);
+                slider.width(opts.width);
             }
         } else {
-            _974.css("width", "");
-            _974.children("div").css("width", "");
+            slider.css("width", "");
+            slider.children("div").css("width", "");
             if (!isNaN(opts.height)) {
-                _974.height(opts.height);
-                _974.find("div.slider-rule").height(opts.height);
-                _974.find("div.slider-rulelabel").height(opts.height);
-                _974.find("div.slider-inner")._outerHeight(opts.height);
+                slider.height(opts.height);
+                slider.find("div.slider-rule").height(opts.height);
+                slider.find("div.slider-rulelabel").height(opts.height);
+                slider.find("div.slider-inner")._outerHeight(opts.height);
             }
         }
-        _975(_971);
+        initValue(target);
     };
-    function _976(_977) {
-        var _978 = $.data(_977, "slider");
-        var opts = _978.options;
-        var _979 = _978.slider;
+    function showRule(target) {
+        var state = $.data(target, "slider");
+        var opts = state.options;
+        var slider = state.slider;
         var aa = opts.mode == "h" ? opts.rule : opts.rule.slice(0).reverse();
         if (opts.reversed) {
             aa = aa.slice(0).reverse();
         }
-        _97a(aa);
-        function _97a(aa) {
-            var rule = _979.find("div.slider-rule");
-            var _97b = _979.find("div.slider-rulelabel");
+        _build(aa);
+        function _build(aa) {
+            var rule = slider.find("div.slider-rule");
+            var label = slider.find("div.slider-rulelabel");
             rule.empty();
-            _97b.empty();
+            label.empty();
             for (var i = 0; i < aa.length; i++) {
-                var _97c = i * 100 / (aa.length - 1) + "%";
+                var distance = i * 100 / (aa.length - 1) + "%";
                 var span = $("<span></span>").appendTo(rule);
-                span.css((opts.mode == "h" ? "left" : "top"), _97c);
+                span.css((opts.mode == "h" ? "left" : "top"), distance);
                 if (aa[i] != "|") {
-                    span = $("<span></span>").appendTo(_97b);
+                    span = $("<span></span>").appendTo(label);
                     span.html(aa[i]);
                     if (opts.mode == "h") {
-                        span.css({ left: _97c, marginLeft: -Math.round(span.outerWidth() / 2) });
+                        span.css({ left: distance, marginLeft: -Math.round(span.outerWidth() / 2) });
                     } else {
-                        span.css({ top: _97c, marginTop: -Math.round(span.outerHeight() / 2) });
+                        span.css({ top: distance, marginTop: -Math.round(span.outerHeight() / 2) });
                     }
                 }
             }
         };
     };
-    function _97d(_97e) {
-        var _97f = $.data(_97e, "slider");
-        var opts = _97f.options;
-        var _980 = _97f.slider;
-        _980.removeClass("slider-h slider-v slider-disabled");
-        _980.addClass(opts.mode == "h" ? "slider-h" : "slider-v");
-        _980.addClass(opts.disabled ? "slider-disabled" : "");
-        _980.find("a.slider-handle").draggable({
+    function buildSlider(target) {
+        var state = $.data(target, "slider");
+        var opts = state.options;
+        var slider = state.slider;
+        slider.removeClass("slider-h slider-v slider-disabled");
+        slider.addClass(opts.mode == "h" ? "slider-h" : "slider-v");
+        slider.addClass(opts.disabled ? "slider-disabled" : "");
+        slider.find("a.slider-handle").draggable({
             axis: opts.mode, cursor: "pointer", disabled: opts.disabled, onDrag: function (e) {
                 var left = e.data.left;
-                var _981 = _980.width();
+                var width = slider.width();
                 if (opts.mode != "h") {
                     left = e.data.top;
-                    _981 = _980.height();
+                    width = slider.height();
                 }
-                if (left < 0 || left > _981) {
+                if (left < 0 || left > width) {
                     return false;
                 } else {
-                    var _982 = _994(_97e, left);
-                    _983(_982);
+                    var value = pos2value(target, left);
+                    adjustValue(value);
                     return false;
                 }
             }, onBeforeDrag: function () {
-                _97f.isDragging = true;
+                state.isDragging = true;
             }, onStartDrag: function () {
-                opts.onSlideStart.call(_97e, opts.value);
+                opts.onSlideStart.call(target, opts.value);
             }, onStopDrag: function (e) {
-                var _984 = _994(_97e, (opts.mode == "h" ? e.data.left : e.data.top));
-                _983(_984);
-                opts.onSlideEnd.call(_97e, opts.value);
-                opts.onComplete.call(_97e, opts.value);
-                _97f.isDragging = false;
+                var value = pos2value(target, (opts.mode == "h" ? e.data.left : e.data.top));
+                adjustValue(value);
+                opts.onSlideEnd.call(target, opts.value);
+                opts.onComplete.call(target, opts.value);
+                state.isDragging = false;
             }
         });
-        _980.find("div.slider-inner").unbind(".slider").bind("mousedown.slider", function (e) {
-            if (_97f.isDragging) {
+        slider.find("div.slider-inner").unbind(".slider").bind("mousedown.slider", function (e) {
+            if (state.isDragging) {
                 return;
             }
             var pos = $(this).offset();
-            var _985 = _994(_97e, (opts.mode == "h" ? (e.pageX - pos.left) : (e.pageY - pos.top)));
-            _983(_985);
-            opts.onComplete.call(_97e, opts.value);
+            var value = pos2value(target, (opts.mode == "h" ? (e.pageX - pos.left) : (e.pageY - pos.top)));
+            adjustValue(value);
+            opts.onComplete.call(target, opts.value);
         });
-        function _983(_986) {
-            var s = Math.abs(_986 % opts.step);
+        function adjustValue(value) {
+            var s = Math.abs(value % opts.step);
             if (s < opts.step / 2) {
-                _986 -= s;
+                value -= s;
             } else {
-                _986 = _986 - s + opts.step;
+                value = value - s + opts.step;
             }
-            _987(_97e, _986);
+            setValue(target, value);
         };
     };
-    function _987(_988, _989) {
-        var _98a = $.data(_988, "slider");
-        var opts = _98a.options;
-        var _98b = _98a.slider;
-        var _98c = opts.value;
-        if (_989 < opts.min) {
-            _989 = opts.min;
+    function setValue(target, value) {
+        var state = $.data(target, "slider");
+        var opts = state.options;
+        var slider = state.slider;
+        var oldValue = opts.value;
+        if (value < opts.min) {
+            value = opts.min;
         }
-        if (_989 > opts.max) {
-            _989 = opts.max;
+        if (value > opts.max) {
+            value = opts.max;
         }
-        opts.value = _989;
-        $(_988).val(_989);
-        _98b.find("input.slider-value").val(_989);
-        var pos = _98d(_988, _989);
-        var tip = _98b.find(".slider-tip");
+        opts.value = value;
+        $(target).val(value);
+        slider.find("input.slider-value").val(value);
+        var pos = value2pos(target, value);
+        var tip = slider.find(".slider-tip");
         if (opts.showTip) {
             tip.show();
-            tip.html(opts.tipFormatter.call(_988, opts.value));
+            tip.html(opts.tipFormatter.call(target, opts.value));
         } else {
             tip.hide();
         }
         if (opts.mode == "h") {
-            var _98e = "left:" + pos + "px;";
-            _98b.find(".slider-handle").attr("style", _98e);
-            tip.attr("style", _98e + "margin-left:" + (-Math.round(tip.outerWidth() / 2)) + "px");
+            var style = "left:" + pos + "px;";
+            slider.find(".slider-handle").attr("style", style);
+            tip.attr("style", style + "margin-left:" + (-Math.round(tip.outerWidth() / 2)) + "px");
         } else {
-            var _98e = "top:" + pos + "px;";
-            _98b.find(".slider-handle").attr("style", _98e);
-            tip.attr("style", _98e + "margin-left:" + (-Math.round(tip.outerWidth())) + "px");
+            var style = "top:" + pos + "px;";
+            slider.find(".slider-handle").attr("style", style);
+            tip.attr("style", style + "margin-left:" + (-Math.round(tip.outerWidth())) + "px");
         }
-        if (_98c != _989) {
-            opts.onChange.call(_988, _989, _98c);
+        if (oldValue != value) {
+            opts.onChange.call(target, value, oldValue);
         }
     };
-    function _975(_98f) {
-        var opts = $.data(_98f, "slider").options;
+    function initValue(target) {
+        var opts = $.data(target, "slider").options;
         var fn = opts.onChange;
         opts.onChange = function () {
         };
-        _987(_98f, opts.value);
+        setValue(target, opts.value);
         opts.onChange = fn;
     };
-    function _98d(_990, _991) {
-        var _992 = $.data(_990, "slider");
-        var opts = _992.options;
-        var _993 = _992.slider;
-        var size = opts.mode == "h" ? _993.width() : _993.height();
-        var pos = opts.converter.toPosition.call(_990, _991, size);
+    function value2pos(target, value) {
+        var state = $.data(target, "slider");
+        var opts = state.options;
+        var slider = state.slider;
+        var size = opts.mode == "h" ? slider.width() : slider.height();
+        var pos = opts.converter.toPosition.call(target, value, size);
         if (opts.mode == "v") {
-            pos = _993.height() - pos;
+            pos = slider.height() - pos;
         }
         if (opts.reversed) {
             pos = size - pos;
         }
         return pos.toFixed(0);
     };
-    function _994(_995, pos) {
-        var _996 = $.data(_995, "slider");
-        var opts = _996.options;
-        var _997 = _996.slider;
-        var size = opts.mode == "h" ? _997.width() : _997.height();
-        var _998 = opts.converter.toValue.call(_995, opts.mode == "h" ? (opts.reversed ? (size - pos) : pos) : (size - pos), size);
-        return _998.toFixed(0);
+    function pos2value(target, pos) {
+        var state = $.data(target, "slider");
+        var opts = state.options;
+        var slider = state.slider;
+        var size = opts.mode == "h" ? slider.width() : slider.height();
+        var value = opts.converter.toValue.call(target, opts.mode == "h" ? (opts.reversed ? (size - pos) : pos) : (size - pos), size);
+        return value.toFixed(0);
     };
-    $.fn.slider = function (_999, _99a) {
-        if (typeof _999 == "string") {
-            return $.fn.slider.methods[_999](this, _99a);
+    $.fn.slider = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.slider.methods[options](this, param);
         }
-        _999 = _999 || {};
+        options = options || {};
         return this.each(function () {
-            var _99b = $.data(this, "slider");
-            if (_99b) {
-                $.extend(_99b.options, _999);
+            var state = $.data(this, "slider");
+            if (state) {
+                $.extend(state.options, options);
             } else {
-                _99b = $.data(this, "slider", { options: $.extend({}, $.fn.slider.defaults, $.fn.slider.parseOptions(this), _999), slider: init(this) });
+                state = $.data(this, "slider", { options: $.extend({}, $.fn.slider.defaults, $.fn.slider.parseOptions(this), options), slider: init(this) });
                 $(this).removeAttr("disabled");
             }
-            var opts = _99b.options;
+            var opts = state.options;
             opts.min = parseFloat(opts.min);
             opts.max = parseFloat(opts.max);
             opts.value = parseFloat(opts.value);
             opts.step = parseFloat(opts.step);
             opts.originalValue = opts.value;
-            _97d(this);
-            _976(this);
-            _970(this);
+            buildSlider(this);
+            showRule(this);
+            setSize(this);
         });
     };
     $.fn.slider.methods = {
@@ -15161,57 +15173,57 @@ if (typeof JSON !== 'object') {
                 $.data(this, "slider").slider.remove();
                 $(this).remove();
             });
-        }, resize: function (jq, _99c) {
+        }, resize: function (jq, param) {
             return jq.each(function () {
-                _970(this, _99c);
+                setSize(this, param);
             });
         }, getValue: function (jq) {
             return jq.slider("options").value;
-        }, setValue: function (jq, _99d) {
+        }, setValue: function (jq, value) {
             return jq.each(function () {
-                _987(this, _99d);
+                setValue(this, value);
             });
         }, clear: function (jq) {
             return jq.each(function () {
                 var opts = $(this).slider("options");
-                _987(this, opts.min);
+                setValue(this, opts.min);
             });
         }, reset: function (jq) {
             return jq.each(function () {
                 var opts = $(this).slider("options");
-                _987(this, opts.originalValue);
+                setValue(this, opts.originalValue);
             });
         }, enable: function (jq) {
             return jq.each(function () {
                 $.data(this, "slider").options.disabled = false;
-                _97d(this);
+                buildSlider(this);
             });
         }, disable: function (jq) {
             return jq.each(function () {
                 $.data(this, "slider").options.disabled = true;
-                _97d(this);
+                buildSlider(this);
             });
         }
     };
-    $.fn.slider.parseOptions = function (_99e) {
-        var t = $(_99e);
-        return $.extend({}, $.parser.parseOptions(_99e, ["width", "height", "mode", { reversed: "boolean", showTip: "boolean", min: "number", max: "number", step: "number" }]), { value: (t.val() || undefined), disabled: (t.attr("disabled") ? true : undefined), rule: (t.attr("rule") ? eval(t.attr("rule")) : undefined) });
+    $.fn.slider.parseOptions = function (target) {
+        var t = $(target);
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "mode", { reversed: "boolean", showTip: "boolean", min: "number", max: "number", step: "number" }]), { value: (t.val() || undefined), disabled: (t.attr("disabled") ? true : undefined), rule: (t.attr("rule") ? eval(t.attr("rule")) : undefined) });
     };
     $.fn.slider.defaults = {
-        width: "auto", height: "auto", mode: "h", reversed: false, showTip: false, disabled: false, value: 0, min: 0, max: 100, step: 1, rule: [], tipFormatter: function (_99f) {
-            return _99f;
+        width: "auto", height: "auto", mode: "h", reversed: false, showTip: false, disabled: false, value: 0, min: 0, max: 100, step: 1, rule: [], tipFormatter: function (value) {
+            return value;
         }, converter: {
-            toPosition: function (_9a0, size) {
+            toPosition: function (value, size) {
                 var opts = $(this).slider("options");
-                return (_9a0 - opts.min) / (opts.max - opts.min) * size;
+                return (value - opts.min) / (opts.max - opts.min) * size;
             }, toValue: function (pos, size) {
                 var opts = $(this).slider("options");
                 return opts.min + (opts.max - opts.min) * (pos / size);
             }
-        }, onChange: function (_9a1, _9a2) {
-        }, onSlideStart: function (_9a3) {
-        }, onSlideEnd: function (_9a4) {
-        }, onComplete: function (_9a5) {
+        }, onChange: function (value, oldValue) {
+        }, onSlideStart: function (value) {
+        }, onSlideEnd: function (value) {
+        }, onComplete: function (value) {
         }
     };
 })(jQuery);
@@ -16519,10 +16531,11 @@ function(a, b, c) {
             labelHtml += '">'+opts.label+'</label>';
             var objlabel = $(labelHtml).insertAfter(t);
             objlabel.unbind('click').bind('click.checkbox',function(e){
-                setValue(target,!$(this).hasClass('checked'));
+                if($(target).prop("disabled")==false) setValue(target,!$(this).hasClass('checked'));
             });
-            t.unbind('click').bind('click.checkbox',function(e){
-                if ($(this).prop("disabled")==false){
+            t.unbind('click').bind('click.checkbox',function(e){ 
+                //如果原生checkbox是disabled时,不会进入
+                //if ($(this).prop("disabled")==false){
                     var val = $(this).is(':checked');
                     if(val){
                         if (opts.onChecked) opts.onChecked.call(this,e,true);
@@ -16530,7 +16543,7 @@ function(a, b, c) {
                         if (opts.onUnchecked) opts.onUnchecked.call(this,e,false);
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
-                }
+                //}
                 //e.stopPropagation();
                 //return false;
             });
@@ -16580,16 +16593,19 @@ function(a, b, c) {
 		});
 	};
 	function setValue(target,val) {
-        if ($(target).prop("disabled")==false){
-            if (val!=$(target).is(":checked")){
-                //$(target).prop("checked",val); --->trigger('click.checkbox')会触发input.checkbox的勾选, 不用手动设置
-                if (val){
-                    $(target).next().addClass('checked');
-                }else{
-                    $(target).next().removeClass('checked');
-                }
-                $(target).trigger('click.checkbox');
+        if (val != $(target).is(":checked")){
+            if ($(target).prop("disabled")==true){
+                //disabled时: 1.测试发现icheck可以setValue,建卡--默认密码勾; 2.不trigger事件
+                $(target).prop("disabled",false);
+                $(target).prop("checked",val);
+                $(target).prop("disabled",true);
             }
+            if (val){
+                $(target).next().addClass('checked');
+            }else{
+                $(target).next().removeClass('checked');
+            }
+            $(target).trigger('click.checkbox');
         }
     }
     function getValue(target){

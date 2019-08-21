@@ -1,64 +1,64 @@
 (function ($) {
-    function _449(_44a, _44b) {
-        _44b = _44b || {};
-        var _44c = {};
-        if (_44b.onSubmit) {
-            if (_44b.onSubmit.call(_44a, _44c) == false) {
+    function ajaxSubmit(target, options) {
+        options = options || {};
+        var param = {};
+        if (options.onSubmit) {
+            if (options.onSubmit.call(target, param) == false) {
                 return;
             }
         }
-        var form = $(_44a);
-        if (_44b.url) {
-            form.attr("action", _44b.url);
+        var form = $(target);
+        if (options.url) {
+            form.attr("action", options.url);
         }
-        var _44d = "hisui_frame_" + (new Date().getTime());
-        var _44e = $("<iframe id=" + _44d + " name=" + _44d + "></iframe>").attr("src", window.ActiveXObject ? "javascript:false" : "about:blank").css({ position: "absolute", top: -1000, left: -1000 });
+        var frameId = "hisui_frame_" + (new Date().getTime());
+        var frame = $("<iframe id=" + frameId + " name=" + frameId + "></iframe>").attr("src", window.ActiveXObject ? "javascript:false" : "about:blank").css({ position: "absolute", top: -1000, left: -1000 });
         var t = form.attr("target"), a = form.attr("action");
-        form.attr("target", _44d);
-        var _44f = $();
+        form.attr("target", frameId);
+        var paramFields = $();
         try {
-            _44e.appendTo("body");
-            _44e.bind("load", cb);
-            for (var n in _44c) {
-                var f = $("<input type=\"hidden\" name=\"" + n + "\">").val(_44c[n]).appendTo(form);
-                _44f = _44f.add(f);
+            frame.appendTo("body");
+            frame.bind("load", cb);
+            for (var n in param) {
+                var f = $("<input type=\"hidden\" name=\"" + n + "\">").val(param[n]).appendTo(form);
+                paramFields = paramFields.add(f);
             }
-            _450();
+            checkState();
             form[0].submit();
         }
         finally {
             form.attr("action", a);
             t ? form.attr("target", t) : form.removeAttr("target");
-            _44f.remove();
+            paramFields.remove();
         }
-        function _450() {
-            var f = $("#" + _44d);
+        function checkState() {
+            var f = $("#" + frameId);
             if (!f.length) {
                 return;
             }
             try {
                 var s = f.contents()[0].readyState;
                 if (s && s.toLowerCase() == "uninitialized") {
-                    setTimeout(_450, 100);
+                    setTimeout(checkState, 100);
                 }
             }
             catch (e) {
                 cb();
             }
         };
-        var _451 = 10;
+        var checkCount = 10;
         function cb() {
-            var _452 = $("#" + _44d);
-            if (!_452.length) {
+            var frame = $("#" + frameId);
+            if (!frame.length) {
                 return;
             }
-            _452.unbind();
+            frame.unbind();
             var data = "";
             try {
-                var body = _452.contents().find("body");
+                var body = frame.contents().find("body");
                 data = body.html();
                 if (data == "") {
-                    if (--_451) {
+                    if (--checkCount) {
                         setTimeout(cb, 100);
                         return;
                     }
@@ -75,55 +75,55 @@
             }
             catch (e) {
             }
-            if (_44b.success) {
-                _44b.success(data);
+            if (options.success) {
+                options.success(data);
             }
             setTimeout(function () {
-                _452.unbind();
-                _452.remove();
+                frame.unbind();
+                frame.remove();
             }, 100);
         };
     };
-    function load(_453, data) {
-        if (!$.data(_453, "form")) {
-            $.data(_453, "form", { options: $.extend({}, $.fn.form.defaults) });
+    function load(target, data) {
+        if (!$.data(target, "form")) {
+            $.data(target, "form", { options: $.extend({}, $.fn.form.defaults) });
         }
-        var opts = $.data(_453, "form").options;
+        var opts = $.data(target, "form").options;
         if (typeof data == "string") {
-            var _454 = {};
-            if (opts.onBeforeLoad.call(_453, _454) == false) {
+            var param = {};
+            if (opts.onBeforeLoad.call(target, param) == false) {
                 return;
             }
             $.ajax({
-                url: data, data: _454, dataType: "json", success: function (data) {
-                    _455(data);
+                url: data, data: param, dataType: "json", success: function (data) {
+                    _load(data);
                 }, error: function () {
-                    opts.onLoadError.apply(_453, arguments);
+                    opts.onLoadError.apply(target, arguments);
                 }
             });
         } else {
-            _455(data);
+            _load(data);
         }
-        function _455(data) {
-            var form = $(_453);
+        function _load(data) {
+            var form = $(target);
             for (var name in data) {
                 var val = data[name];
-                var rr = _456(name, val);
+                var rr = _checkField(name, val);
                 if (!rr.length) {
-                    var _457 = _458(name, val);
-                    if (!_457) {
+                    var count = _loadOther(name, val);
+                    if (!count) {
                         $("input[name=\"" + name + "\"]", form).val(val);
                         $("textarea[name=\"" + name + "\"]", form).val(val);
                         $("select[name=\"" + name + "\"]", form).val(val);
                     }
                 }
-                _459(name, val);
+                _loadCombo(name, val);
             }
-            opts.onLoadSuccess.call(_453, data);
-            _460(_453);
+            opts.onLoadSuccess.call(target, data);
+            validate(target);
         };
-        function _456(name, val) {
-            var rr = $(_453).find("input[name=\"" + name + "\"][type=radio], input[name=\"" + name + "\"][type=checkbox]");
+        function _checkField(name, val) {
+            var rr = $(target).find("input[name=\"" + name + "\"][type=radio], input[name=\"" + name + "\"][type=checkbox]");
             rr._propAttr("checked", false);
             rr.each(function () {
                 var f = $(this);
@@ -133,21 +133,21 @@
             });
             return rr;
         };
-        function _458(name, val) {
-            var _45a = 0;
+        function _loadOther(name, val) {
+            var count = 0;
             var pp = ["numberbox", "slider"];
             for (var i = 0; i < pp.length; i++) {
                 var p = pp[i];
-                var f = $(_453).find("input[" + p + "Name=\"" + name + "\"]");
+                var f = $(target).find("input[" + p + "Name=\"" + name + "\"]");
                 if (f.length) {
                     f[p]("setValue", val);
-                    _45a += f.length;
+                    count += f.length;
                 }
             }
-            return _45a;
+            return count;
         };
-        function _459(name, val) {
-            var form = $(_453);
+        function _loadCombo(name, val) {
+            var form = $(target);
             var cc = ["combobox", "combotree", "combogrid", "datetimebox", "datebox", "combo"];
             var c = form.find("[comboName=\"" + name + "\"]");
             if (c.length) {
@@ -165,19 +165,19 @@
             }
         };
     };
-    function _45b(_45c) {
-        $("input,select,textarea", _45c).each(function () {
+    function clear(target) {
+        $("input,select,textarea", target).each(function () {
             var t = this.type, tag = this.tagName.toLowerCase();
             if (t == "text" || t == "hidden" || t == "password" || tag == "textarea") {
                 this.value = "";
             } else {
                 if (t == "file") {
                     var file = $(this);
-                    var _45d = file.clone().val("");
-                    _45d.insertAfter(file);
+                    var newfile = file.clone().val("");
+                    newfile.insertAfter(file);
                     if (file.data("validatebox")) {
                         file.validatebox("destroy");
-                        _45d.validatebox();
+                        newfile.validatebox();
                     } else {
                         file.remove();
                     }
@@ -192,70 +192,70 @@
                 }
             }
         });
-        var t = $(_45c);
-        var _45e = ["combo", "combobox", "combotree", "combogrid", "slider","radio","checkbox"];  //cryze 2019-04-04 增加支持封装的radio和checkbox 
-        for (var i = 0; i < _45e.length; i++) {
-            var _45f = _45e[i];
-            var r = t.find("." + _45f + "-f");
-            if (r.length && r[_45f]) {
-                r[_45f]("clear");
+        var t = $(target);
+        var plugins = ["combo", "combobox", "combotree", "combogrid", "slider","radio","checkbox"];  //cryze 2019-04-04 增加支持封装的radio和checkbox 
+        for (var i = 0; i < plugins.length; i++) {
+            var plugin = plugins[i];
+            var r = t.find("." + plugin + "-f");
+            if (r.length && r[plugin]) {
+                r[plugin]("clear");
             }
         }
-        _460(_45c);
+        validate(target);
     };
-    function _461(_462) {
-        _462.reset();
-        var t = $(_462);
-        var _463 = ["combo", "combobox", "combotree", "combogrid", "datebox", "datetimebox", "spinner", "timespinner", "numberbox", "numberspinner", "slider","radio","checkbox"]; //cryze 2019-04-04 增加支持封装的radio和checkbox 
-        for (var i = 0; i < _463.length; i++) {
-            var _464 = _463[i];
-            var r = t.find("." + _464 + "-f");
-            if (r.length && r[_464]) {
-                r[_464]("reset");
+    function reset(target) {
+        target.reset();
+        var t = $(target);
+        var plugins = ["combo", "combobox", "combotree", "combogrid", "datebox", "datetimebox", "spinner", "timespinner", "numberbox", "numberspinner", "slider","radio","checkbox"]; //cryze 2019-04-04 增加支持封装的radio和checkbox 
+        for (var i = 0; i < plugins.length; i++) {
+            var plugin = plugins[i];
+            var r = t.find("." + plugin + "-f");
+            if (r.length && r[plugin]) {
+                r[plugin]("reset");
             }
         }
-        _460(_462);
+        validate(target);
     };
-    function _465(_466) {
-        var _467 = $.data(_466, "form").options;
-        var form = $(_466);
+    function setForm(target) {
+        var options = $.data(target, "form").options;
+        var form = $(target);
         form.unbind(".form").bind("submit.form", function () {
             setTimeout(function () {
-                _449(_466, _467);
+                ajaxSubmit(target, options);
             }, 0);
             return false;
         });
     };
-    function _460(_468) {
+    function validate(target) {
         if ($.fn.validatebox) {
-            var t = $(_468);
+            var t = $(target);
             t.find(".validatebox-text:not(:disabled)").validatebox("validate");
-            var _469 = t.find(".validatebox-invalid");
-            _469.filter(":not(:disabled):first").focus();
-            return _469.length == 0;
+            var invalidbox = t.find(".validatebox-invalid");
+            invalidbox.filter(":not(:disabled):first").focus();
+            return invalidbox.length == 0;
         }
         return true;
     };
-    function _46a(_46b, _46c) {
-        $(_46b).find(".validatebox-text:not(:disabled)").validatebox(_46c ? "disableValidation" : "enableValidation");
+    function setValidation(target, novalidate) {
+        $(target).find(".validatebox-text:not(:disabled)").validatebox(novalidate ? "disableValidation" : "enableValidation");
     };
-    $.fn.form = function (_46d, _46e) {
-        if (typeof _46d == "string") {
-            return $.fn.form.methods[_46d](this, _46e);
+    $.fn.form = function (options, param) {
+        if (typeof options == "string") {
+            return $.fn.form.methods[options](this, param);
         }
-        _46d = _46d || {};
+        options = options || {};
         return this.each(function () {
             if (!$.data(this, "form")) {
-                $.data(this, "form", { options: $.extend({}, $.fn.form.defaults, _46d) });
+                $.data(this, "form", { options: $.extend({}, $.fn.form.defaults, options) });
             }
-            _465(this);
+            setForm(this);
         });
     };
     $.fn.form.methods = {
-        submit: function (jq, _46f) {
+        submit: function (jq, options) {
             return jq.each(function () {
-                var opts = $.extend({}, $.fn.form.defaults, $.data(this, "form") ? $.data(this, "form").options : {}, _46f || {});
-                _449(this, opts);
+                var opts = $.extend({}, $.fn.form.defaults, $.data(this, "form") ? $.data(this, "form").options : {}, options || {});
+                ajaxSubmit(this, opts);
             });
         }, load: function (jq, data) {
             return jq.each(function () {
@@ -263,21 +263,21 @@
             });
         }, clear: function (jq) {
             return jq.each(function () {
-                _45b(this);
+                clear(this);
             });
         }, reset: function (jq) {
             return jq.each(function () {
-                _461(this);
+                reset(this);
             });
         }, validate: function (jq) {
-            return _460(jq[0]);
+            return validate(jq[0]);
         }, disableValidation: function (jq) {
             return jq.each(function () {
-                _46a(this, true);
+                setValidation(this, true);
             });
         }, enableValidation: function (jq) {
             return jq.each(function () {
-                _46a(this, false);
+                setValidation(this, false);
             });
         }
     };
@@ -285,7 +285,7 @@
         url: null, onSubmit: function (_470) {
             return $(this).form("validate");
         }, success: function (data) {
-        }, onBeforeLoad: function (_471) {
+        }, onBeforeLoad: function (param) {
         }, onLoadSuccess: function (data) {
         }, onLoadError: function () {
         }
