@@ -20,10 +20,11 @@
             labelHtml += '">'+opts.label+'</label>';
             var objlabel = $(labelHtml).insertAfter(t);
             objlabel.unbind('click').bind('click.checkbox',function(e){
-                setValue(target,!$(this).hasClass('checked'));
+                if($(target).prop("disabled")==false) setValue(target,!$(this).hasClass('checked'));
             });
-            t.unbind('click').bind('click.checkbox',function(e){
-                if ($(this).prop("disabled")==false){
+            t.unbind('click').bind('click.checkbox',function(e){ 
+                //如果原生checkbox是disabled时,不会进入
+                //if ($(this).prop("disabled")==false){
                     var val = $(this).is(':checked');
                     if(val){
                         if (opts.onChecked) opts.onChecked.call(this,e,true);
@@ -31,7 +32,7 @@
                         if (opts.onUnchecked) opts.onUnchecked.call(this,e,false);
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
-                }
+                //}
                 //e.stopPropagation();
                 //return false;
             });
@@ -81,16 +82,19 @@
 		});
 	};
 	function setValue(target,val) {
-        if ($(target).prop("disabled")==false){
-            if (val!=$(target).is(":checked")){
-                //$(target).prop("checked",val); --->trigger('click.checkbox')会触发input.checkbox的勾选, 不用手动设置
-                if (val){
-                    $(target).next().addClass('checked');
-                }else{
-                    $(target).next().removeClass('checked');
-                }
-                $(target).trigger('click.checkbox');
+        if (val != $(target).is(":checked")){
+            if ($(target).prop("disabled")==true){
+                //disabled时: 1.测试发现icheck可以setValue,建卡--默认密码勾; 2.不trigger事件
+                $(target).prop("disabled",false);
+                $(target).prop("checked",val);
+                $(target).prop("disabled",true);
             }
+            if (val){
+                $(target).next().addClass('checked');
+            }else{
+                $(target).next().removeClass('checked');
+            }
+            $(target).trigger('click.checkbox');
         }
     }
     function getValue(target){
