@@ -37,9 +37,10 @@ gulp.task('js-min',function(){
 gulp.task('js',function(){
     var arr = jsArr;
     return gulp.src(arr)
-    .pipe(concat('jquery.hisui.js'))
-    .pipe(gulp.dest('dist/js'))
-    .pipe(notify({message:'gen jquery.hisui.js success!'}));        //提示成功
+    .pipe(concat('jquery.hisui.src.js'))
+    //.pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('src'))
+    .pipe(notify({message:'gen jquery.hisui.src.js success!'}));        //提示成功
 });
 
 gulp.task('css-min', function() {
@@ -111,6 +112,7 @@ gulp.task('auto', function () {
     //gulp.watch('less/**.less', ['less'])
 });
 //dist -> default
+// dist目录下的js全修改成min, 不留源代码
 gulp.task('default',['js','css'],function(){
     //-----压缩css且保存成min.css
     //不放回调中,css与css-min只能运行一个
@@ -121,13 +123,17 @@ gulp.task('default',['js','css'],function(){
     .pipe(notify({message:'gen min css success!'}));        //提示成功
 
     //----压缩js且保存成min.js
-    gulp.src("dist/js/jquery.hisui.js")
+    gulp.src("src/jquery.hisui.src.js")
     .pipe(uglify({
         ie8:true
     }))
     .pipe(rename('jquery.hisui.min.js'))
     .pipe(gulp.dest("dist/js"))
     .pipe(notify({message:'gen min js success!'}));        //提示成功
+
+    gulp.src("dist/js/jquery.hisui.min.js")
+    .pipe(rename('jquery.hisui.js'))
+    .pipe(gulp.dest("dist/js"));
 });
 
 // 使用 gulp.task('default') 定义默认任务
