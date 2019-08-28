@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 * `radio`允许使用$(selector).radio('setValue',false),使其变成不勾选状态
 * `checkbox`与`radio` 允许自己使用`<label for='id'>text</label>`方式去去控制勾选状态
 * `lookup`双击行时，会选中弹出层后面元素。
+* 增加27个图标
 
 ## 2019-08-21 ##
 * `checkbox`在disabled时也可以setValue
