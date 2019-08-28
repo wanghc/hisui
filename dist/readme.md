@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-08-28 ##
+* `checkbox`与`radio` 在初始化之后通过$(selector).plugName({checked:true})方式修改值会导致组件不能使用
+* `radio`允许使用$(selector).radio('setValue',false),使其变成不勾选状态
+* `checkbox`与`radio` 允许自己使用`<label for='id'>text</label>`方式去去控制勾选状态
+
 ## 2019-08-21 ##
 * `checkbox`在disabled时也可以setValue
 * 合并源代码，增加可读性

@@ -42,6 +42,15 @@ gulp.task('js',function(){
     .pipe(gulp.dest('src'))
     .pipe(notify({message:'gen jquery.hisui.src.js success!'}));        //提示成功
 });
+//开发测试时在dist生成未压缩js 调试   
+gulp.task('js-dev',function(){
+    var arr = jsArr;
+    return gulp.src(arr)
+    .pipe(concat('jquery.hisui.js'))
+    .pipe(gulp.dest('dist/js'))
+    .pipe(notify({message:'gen jquery.hisui.js success!'}));        //提示成功
+});
+
 
 gulp.task('css-min', function() {
     var lessPath = "less/";
@@ -111,29 +120,32 @@ gulp.task('auto', function () {
     // 监听文件修改，当文件被修改则执行 less 任务
     //gulp.watch('less/**.less', ['less'])
 });
-//dist -> default
-// dist目录下的js全修改成min, 不留源代码
-gulp.task('default',['js','css'],function(){
-    //-----压缩css且保存成min.css
-    //不放回调中,css与css-min只能运行一个
-    gulp.src("dist/css/hisui.css")
-    .pipe(minifycss())                  //压缩css
-    .pipe(rename('hisui.min.css'))      //命名
-    .pipe(gulp.dest("dist/css"))             //存到css目录
-    .pipe(notify({message:'gen min css success!'}));        //提示成功
 
+gulp.task('min-js',['js'],function(){
     //----压缩js且保存成min.js
-    gulp.src("src/jquery.hisui.src.js")
+    return gulp.src("src/jquery.hisui.src.js")
     .pipe(uglify({
         ie8:true
     }))
     .pipe(rename('jquery.hisui.min.js'))
     .pipe(gulp.dest("dist/js"))
-    .pipe(notify({message:'gen min js success!'}));        //提示成功
+    .pipe(notify({message:'gen min js success!'}));
+})
+gulp.task('min-css',['css'],function(){
+    return gulp.src("dist/css/hisui.css")
+    .pipe(minifycss())                  //压缩css
+    .pipe(rename('hisui.min.css'))      //命名
+    .pipe(gulp.dest("dist/css"))             //存到css目录
+    .pipe(notify({message:'gen min css success!'}));        //提示成功
+})
 
+//dist -> default
+// dist目录下的js全修改成min, 不留源代码
+gulp.task('default',['min-js','min-css'],function(){
     gulp.src("dist/js/jquery.hisui.min.js")
     .pipe(rename('jquery.hisui.js'))
-    .pipe(gulp.dest("dist/js"));
+    .pipe(gulp.dest("dist/js"))
+    .pipe(notify({message:'copy min js to js success!'}));
 });
 
 // 使用 gulp.task('default') 定义默认任务

@@ -6780,6 +6780,9 @@ label.radio {
 label.radio:hover {
   background-position: 0 -144px;
 }
+label.radio.hover {
+  background-position: 0 -144px;
+}
 label.radio.checked {
   background-position: 0 -168px;
 }
@@ -6795,6 +6798,10 @@ label.hischeckbox_square-blue.radio {
 }
 label.checkbox:hover,
 label.hischeckbox_square-blue.radio:hover {
+  background-position: 0 -24px;
+}
+label.checkbox.hover,
+label.hischeckbox_square-blue.radio.hover {
   background-position: 0 -24px;
 }
 label.checkbox.checked,

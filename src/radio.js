@@ -4,7 +4,8 @@
 (function($){
 	function createRadio(target){
         var t = $(target).empty();
-        var opts = $.data(target, 'radio').options;
+        var state=$.data(target, 'radio');
+        var opts = state.options;
         if (!opts.id){
             opts.id=opts.label;
             t.attr("id",opts.id);
@@ -39,7 +40,59 @@
                 }
                 //e.stopPropagation();
                 //return false;
+            }).bind('ifChecked',function(e,value){ //原生事件太怪了 自定义事件处理
+                if (!($(this).prop("disabled"))){
+                    if (opts.onChecked) opts.onChecked.call(this,e,value);
+                }
+                return false;
+            }).bind('ifUnchecked',function(e,value){
+                if (!($(this).prop("disabled"))){
+                    if (opts.onUnchecked) opts.onUnchecked.call(this,e,value);
+                }
+                return false;
+            }).bind('ifToggled',function(e, value){
+                if (!($(this).prop("disabled"))){
+                    if (opts.onCheckChange) opts.onCheckChange.call(this,e,value);
+                }
+                return false;            
             });
+            var assignedLabels=$('label[for="' + opts.id + '"]').add(t.closest('label')) ; //for= 或radio在label内
+            if (assignedLabels.length) {
+                assignedLabels.off('.radio').on('click.radio mouseover.radio mouseout.radio ', function (event) {
+                  var type = event['type'],
+                    item = $(this);
+                  if (!$(target).prop("disabled")) {
+                    if (type == 'click') {
+                      if ($(event.target).is('a')) {
+                        return;
+                      }
+                      setValue(target,!objlabel.hasClass('checked')); //此处也和objlabel 点击取值一致
+                    } else {
+                      // mouseout|touchend
+                      if (/ut|nd/.test(type)) {
+                        objlabel.removeClass('hover');
+                      } else {
+                        objlabel.addClass('hover');
+                      }
+                    }
+                    return false;
+                  }
+                });
+              }
+
+
+            state.proxy=objlabel; //把objlabel存起来
+
+
+        }else{
+            var objlabel=state.proxy; //取到对应label
+            if (opts.disabled && !objlabel.hasClass('disabled')) objlabel.addClass('disabled');
+            if (!opts.disabled && objlabel.hasClass('disabled')) objlabel.removeClass('disabled');
+
+            if (opts.checked && !objlabel.hasClass('checked')) objlabel.addClass('checked');
+            if (!opts.checked && objlabel.hasClass('checked')) objlabel.removeClass('checked');
+
+            if (opts.label!=objlabel.text()) objlabel.text(opts.label);
         }
         var lastState=$.data(target, 'radio'); //cryze 2019-4-15
         // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
@@ -51,14 +104,12 @@
     *在 check uncheck setValue toggle 后调用 fixCls 同步样式
     *add cryze 2019-04-04
     */
-    function fixCls(t){
-        //var checkedClass=$(t).radio('options').checkedClass||'checked'
-        //cryze 2019-04-17 是checkbox 但是却当radio  之前没加fixCls是可以正常用的 兼容下错误用法 
-        var checkedClass=(($.data(t,'radio')||$.data(t,'checkbox')||{})['options']||{})['checkedClass']||'checked';  
-        if ( $(t).prop('checked') ){ //checkbox是选中的  样式处于未选中  添加选中样式
-            if (!$(t).parent().hasClass(checkedClass)) $(t).parent().addClass(checkedClass);  //
-        }else{   //checkbox未选中的     样式是选中的  移除选中样式
-            if ($(t).parent().hasClass(checkedClass)) $(t).parent().removeClass(checkedClass);  
+    function fixCls(target){
+        //新版如果直接改原生组件值 同样有问题
+        var objlabel= ($.data(target, 'radio')||$.data(target, 'checkbox')||{})['proxy'];
+        if (objlabel){
+            if ($(target).prop('checked') && !objlabel.hasClass('checked')) objlabel.addClass('checked');
+            if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
         }
     }
 	$.fn.radio = function(options, param){
@@ -78,23 +129,53 @@
 			createRadio(this);
 		});
     };
-	function setValue(target,val) {
-        if ($(target).prop("disabled")==false){
-            if ( (val===true)&&(val!=$(target).is(":checked"))){
+    /**
+     * 
+     * @param {*} target 
+     * @param {*} val 
+     * @param {*} force 通过点击 不允许设置未选中  但是允许通过js调用setValue
+     */
+	function setValue(target,val,force) {
+        var t=$(target);
+        if (val!=t.is(":checked")) { 
+            var objlabel= ($.data(target, 'radio')||$.data(target, 'checkbox')||{})['proxy'];
+            if (val==true){ //on
                 var name = $(target).attr('name');
-                $('input.radio-f[name="'+name+'"]').next().removeClass('checked');
-                $(target).prop("checked",val);
-                if (val){
-                    $(target).next().addClass('checked');
-                }else{
-                    $(target).next().removeClass('checked');
+                if (name ){
+                    var form = t.closest('form'),
+                    inputs = 'input[name="' + name + '"]';
+                    inputs = form.length ? form.find(inputs) : $(inputs);
+
+                    inputs.each(function () {
+                        if (this !== target && $.data(this,'radio') ) {
+                            setValue(this,false,true);
+                        }
+                    });
                 }
-                $(target).trigger('click.radio');
+                objlabel.addClass('checked');
+                $(target).prop('checked',true).trigger('ifChecked',true).trigger('ifToggled',true);
+            }else{
+                if (force) {
+                    objlabel.removeClass('checked');
+                    $(target).prop('checked',false).trigger('ifUnchecked',false).trigger('ifToggled',false); 
+                }
             }
         }
+        fixCls(target); 
     }
     function getValue(target){
         return $(target).is(':checked');
+    }
+    function setDisable(target,value){  //设置禁用状态 cryze 2019-08-27
+        value=(value==true);
+        var state= $.data(target, 'radio')||$.data(target, 'checkbox')||{};
+        var objlabel=state.proxy;
+        if (objlabel) {
+            $(target).prop("disabled",value);
+            if (value) objlabel.addClass('disabled');
+            else objlabel.removeClass('disabled');
+            state.options.disabled=value;
+        }
     }
 	$.fn.radio.methods = {
 		options: function(jq){
@@ -102,8 +183,7 @@
         },
         setValue:function(jq,value){
             return jq.each(function(){
-                setValue(jq[0],value);
-                fixCls(this);
+                setValue(this,value,true);
             });
         },
         getValue:function(jq){
@@ -113,39 +193,32 @@
         },
         setDisable:function(jq,value){
             return jq.each(function(){
-                var _t = $(this);
-                _t.prop("disabled",true);
-                _t.next().addClass("disabled");
+                setDisable(this,value);
             });
         },
         check:function(jq){
             return jq.each(function(){
-                setValue(this,true);
-                fixCls(this);
+                setValue(this,true,true);
             });
         },
         uncheck:function(jq){
             return jq.each(function(){
-                setValue(this,false);
-                fixCls(this);
+                setValue(this,false,true);
             });
         },
         toggle:function(jq){
             return jq.each(function(){
-                setValue(this,!getValue(this));
-                fixCls(this);
+                setValue(this,!getValue(this),true);
             });
         },
         disable:function(jq){
             return jq.each(function(){
-                $(this).prop("disabled",true);
-                $(this).next().addClass('disabled');
+                setDisable(this,true);
             });
         },
         enable:function(jq){
             return jq.each(function(){
-                $(this).prop("disabled",false);
-                $(this).next().removeClass('disabled');
+                setDisable(this,false);
             });
         },
         indeterminate:function(jq){ //第三状态
@@ -165,12 +238,12 @@
             
         },clear:function(jq){ //cryze 2019-04-04 add clear 
             return jq.each(function(){
-                setValue(this,false);
+                setValue(this,false,true);
             });
         },reset:function(jq){  //cryze 2019-04-04 add reset 
             return jq.each(function(){
                 var originalValue=$(this).radio('options').originalValue||false;
-                setValue(this,originalValue);
+                setValue(this,originalValue,true);
             });
         }
     };
