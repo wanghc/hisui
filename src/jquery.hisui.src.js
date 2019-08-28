@@ -17425,10 +17425,11 @@ function(a, b, c) {
             state.remainText = false;
             //触发顺序 点击行 选中行 触发grid的onSelect 设置text 调用lookup配置项onSelect 触发grid onClickRow走到这儿 设置text 触发lookup的onClickRow
             //_90a();  //cryze 2018-7-3 用户自己写的处理放在了onSelect 所以在这儿不再调用_90a设置值
-            if (!opts.multiple) {
-                $(target).lookup("hidePanel");
-            }
+            
             opts.onClickRow.call(this, _90c, row);
+            if (!opts.multiple) {
+                window.setTimeout(function(){$(target).lookup("hidePanel");},300);
+            }
         };
         function _90a() {
             var rows = grid.datagrid("getSelections");
