@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-08-29 ##
+* `datagrid`支持className与queryName名来生成columns，以便支持自定义列属性
+
 ## 2019-08-28 ##
 * `checkbox`与`radio` 在初始化之后通过$(selector).plugName({checked:true})方式修改值会导致组件不能使用
 * `radio`允许使用$(selector).radio('setValue',false),使其变成不勾选状态

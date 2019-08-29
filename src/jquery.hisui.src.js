@@ -8526,6 +8526,7 @@ if (typeof JSON !== 'object') {
         }
         a.push(r);
     };
+    // init
     function _506(_507) {
         var _508 = $.data(_507, "datagrid");
         var opts = _508.options;
@@ -9009,7 +9010,14 @@ if (typeof JSON !== 'object') {
             opts.onHeaderContextMenu.call(_55a, e, _55f);
         }).bind("dblclick.datagrid", function (e) {   //cryze 双击列头事件 和表头右键菜单的监听放在一起
             var _55f = $(this).attr("field");
-            opts.onDblClickHeader.call(_55a, e, _55f);
+            if (opts.queryName!=""){
+                e.preventDefault();
+                var flag = $cm({ClassName:"BSP.SYS.SRV.SSGroup",MethodName:"CurrAllowColumnMgr"},false);
+                if(flag==1) websys_lu('../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K'+opts.className+":"+opts.queryName,false,'hisui=true');
+                return false;
+            }else{
+                opts.onDblClickHeader.call(_55a, e, _55f);
+            }
         })
         _55e.unbind(".datagrid").bind("click.datagrid", function (e) {
             var p1 = $(this).offset().left + 5;
@@ -10254,6 +10262,17 @@ if (typeof JSON !== 'object') {
         }
         _596(_64a);
     };
+    function getColumns (options){
+        if (options.className!="" && options.queryName!=""){
+            if ("undefined"!=typeof $cm){
+                var json = $cm({ClassName:"websys.Query",MethodName:"ColumnDefJson",cn:options.className,qn:options.queryName},false);
+                return json;
+            }else{
+                throw new Error("Not find $cm function. Please include scripts/websys.jquery.js or Setting configuration columns");
+            }
+        }
+        return "";
+    }
     $.fn.datagrid = function (_64d, _64e) {
         if (typeof _64d == "string") {
             return $.fn.datagrid.methods[_64d](this, _64e);
@@ -10274,6 +10293,12 @@ if (typeof JSON !== 'object') {
                 }
                 if (!opts.frozenColumns) {
                     opts.frozenColumns = _650.frozenColumns;
+                }
+                if(opts.queryName){ //从query中取cm
+                    var json = getColumns(opts);
+                    opts.columns = [json.cm];
+                    opts.pageSize = json.pageSize;
+                    if(opts.pageList) opts.pageList.push(opts.pageSize);
                 }
                 opts.columns = $.extend(true, [], opts.columns);
                 opts.frozenColumns = $.extend(true, [], opts.frozenColumns);
@@ -11109,6 +11134,9 @@ if (typeof JSON !== 'object') {
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        className:"",
+        queryName:"",
+        compContext:"",
         showChangedStyle:true, /*wanghc editor状态下,是否显示修改后的左上小红三角 */
         fixRowNumber:false, /*wanghc 行号列是否自动适应 */
         autoSizeColumn:true, /*wanghc 速度更新配置成false*/
