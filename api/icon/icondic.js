@@ -245,6 +245,7 @@ var iconDictionary={
     "icon-w-trigger-box":"触发",
     "icon-w-paid":"支付，出院结算",
     "icon-w-zoom":"放大，扩展",
+    "icon-w-book":"个性化宣教内容",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
