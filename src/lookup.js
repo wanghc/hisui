@@ -36,7 +36,7 @@
                         p.css("z-index", $.fn.window.defaults.zIndex++);
                     }
                 }
-				$(this).panel("resize");
+				//$(this).panel("resize");
 				lookupPanelOnOpen();
             }, onBeforeClose: function () {
                 _854(this);
@@ -56,7 +56,7 @@
 		var lastTarget=GLOBAL_LOOKUP_LAST_TARGET;
 		var target=GLOBAL_LOOKUP_CURRENT_TARGET;
 		if ($(lastTarget).is($(target)) ) return true;
-
+        doPanelResize(target); //add cryze 2019-07-07 由于共用一个panel,打开时调整大小
         var state = $.data(target, "lookup");
 		var opts = state.options;
 		var grid = state.grid;
@@ -116,10 +116,11 @@
             state.remainText = false;
             //触发顺序 点击行 选中行 触发grid的onSelect 设置text 调用lookup配置项onSelect 触发grid onClickRow走到这儿 设置text 触发lookup的onClickRow
             //_90a();  //cryze 2018-7-3 用户自己写的处理放在了onSelect 所以在这儿不再调用_90a设置值
-            if (!opts.multiple) {
-                $(target).lookup("hidePanel");
-            }
+            
             opts.onClickRow.call(this, _90c, row);
+            if (!opts.multiple) {
+                window.setTimeout(function(){$(target).lookup("hidePanel");},300);
+            }
         };
         function _90a() {
             var rows = grid.datagrid("getSelections");
@@ -180,9 +181,27 @@
         _844._outerWidth(_842.width() - _846);
         _844.css({ height: _842.height() + "px", lineHeight: _842.height() + "px" });
         _845._outerHeight(_842.height());
-    	_843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
+        //_843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
+        doPanelResize(target); //cryze 2019-07-17
 
     };
+    /**
+     * 把调整panel大小独立出来 2019-07-17 cryze
+     * @param {*} target 
+     */
+    function doPanelResize(target){
+        var state = $.data(target, "lookup");
+        var opts = state.options;
+        var $lookup = state.lookup;
+        var $panel = state.panel;
+        var currPanelWidth=$panel.panel('options').width||0,currPanelHeight=$panel.panel('options').height||0;
+        var panelWidth=opts.panelWidth ? opts.panelWidth : $lookup.outerWidth(),panelHeight=opts.panelHeight;
+        if (currPanelWidth!=panelWidth || currPanelHeight!=panelHeight) {
+            opts.panelWidth=panelWidth;
+            $panel.panel("resize", { width: panelWidth, height: panelHeight });
+        }
+        
+    }
 
 	function _854(_855) {  //这个在easyui的combogrid 应该是考虑嵌套combo的
 		return;  //lookup 先不考虑嵌套的
@@ -709,7 +728,7 @@
         }, filter: function (q, row) {
             var opts = $(this).lookup("options");
             return row[opts.textField].toLowerCase().indexOf(q.toLowerCase()) == 0;
-		},width: "auto", height: 30, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: false, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19
+		},width: "auto", height: 30, panelWidth: 350, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: false, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19
 		, onShowPanel: function () {
         }, onHidePanel: function () {
         }, onChange: function (_899, _89a) {  //以前combo有，现在没有 考虑..
