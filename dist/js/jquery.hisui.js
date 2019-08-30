@@ -8508,6 +8508,7 @@ if (typeof JSON !== 'object') {
         }
         a.push(r);
     };
+    // init
     function _506(_507) {
         var _508 = $.data(_507, "datagrid");
         var opts = _508.options;
@@ -8991,7 +8992,14 @@ if (typeof JSON !== 'object') {
             opts.onHeaderContextMenu.call(_55a, e, _55f);
         }).bind("dblclick.datagrid", function (e) {   //cryze 双击列头事件 和表头右键菜单的监听放在一起
             var _55f = $(this).attr("field");
-            opts.onDblClickHeader.call(_55a, e, _55f);
+            if (opts.queryName!=""){
+                e.preventDefault();
+                var flag = $cm({ClassName:"BSP.SYS.SRV.SSGroup",MethodName:"CurrAllowColumnMgr"},false);
+                if(flag==1) websys_lu('../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K'+opts.className+":"+opts.queryName,false,'hisui=true');
+                return false;
+            }else{
+                opts.onDblClickHeader.call(_55a, e, _55f);
+            }
         })
         _55e.unbind(".datagrid").bind("click.datagrid", function (e) {
             var p1 = $(this).offset().left + 5;
@@ -10236,6 +10244,17 @@ if (typeof JSON !== 'object') {
         }
         _596(_64a);
     };
+    function getColumns (options){
+        if (options.className!="" && options.queryName!=""){
+            if ("undefined"!=typeof $cm){
+                var json = $cm({ClassName:"websys.Query",MethodName:"ColumnDefJson",cn:options.className,qn:options.queryName},false);
+                return json;
+            }else{
+                throw new Error("Not find $cm function. Please include scripts/websys.jquery.js or Setting configuration columns");
+            }
+        }
+        return "";
+    }
     $.fn.datagrid = function (_64d, _64e) {
         if (typeof _64d == "string") {
             return $.fn.datagrid.methods[_64d](this, _64e);
@@ -10256,6 +10275,12 @@ if (typeof JSON !== 'object') {
                 }
                 if (!opts.frozenColumns) {
                     opts.frozenColumns = _650.frozenColumns;
+                }
+                if(opts.queryName){ //从query中取cm
+                    var json = getColumns(opts);
+                    opts.columns = [json.cm];
+                    opts.pageSize = json.pageSize;
+                    if(opts.pageList) opts.pageList.push(opts.pageSize);
                 }
                 opts.columns = $.extend(true, [], opts.columns);
                 opts.frozenColumns = $.extend(true, [], opts.frozenColumns);
@@ -11091,6 +11116,9 @@ if (typeof JSON !== 'object') {
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        className:"",
+        queryName:"",
+        compContext:"",
         showChangedStyle:true, /*wanghc editor状态下,是否显示修改后的左上小红三角 */
         fixRowNumber:false, /*wanghc 行号列是否自动适应 */
         autoSizeColumn:true, /*wanghc 速度更新配置成false*/
@@ -17790,7 +17818,7 @@ function(a, b, c) {
                         p.css("z-index", $.fn.window.defaults.zIndex++);
                     }
                 }
-				$(this).panel("resize");
+				//$(this).panel("resize");
 				lookupPanelOnOpen();
             }, onBeforeClose: function () {
                 _854(this);
@@ -17810,7 +17838,7 @@ function(a, b, c) {
 		var lastTarget=GLOBAL_LOOKUP_LAST_TARGET;
 		var target=GLOBAL_LOOKUP_CURRENT_TARGET;
 		if ($(lastTarget).is($(target)) ) return true;
-
+        doPanelResize(target); //add cryze 2019-07-07 由于共用一个panel,打开时调整大小
         var state = $.data(target, "lookup");
 		var opts = state.options;
 		var grid = state.grid;
@@ -17870,10 +17898,11 @@ function(a, b, c) {
             state.remainText = false;
             //触发顺序 点击行 选中行 触发grid的onSelect 设置text 调用lookup配置项onSelect 触发grid onClickRow走到这儿 设置text 触发lookup的onClickRow
             //_90a();  //cryze 2018-7-3 用户自己写的处理放在了onSelect 所以在这儿不再调用_90a设置值
-            if (!opts.multiple) {
-                $(target).lookup("hidePanel");
-            }
+            
             opts.onClickRow.call(this, _90c, row);
+            if (!opts.multiple) {
+                window.setTimeout(function(){$(target).lookup("hidePanel");},300);
+            }
         };
         function _90a() {
             var rows = grid.datagrid("getSelections");
@@ -17934,9 +17963,27 @@ function(a, b, c) {
         _844._outerWidth(_842.width() - _846);
         _844.css({ height: _842.height() + "px", lineHeight: _842.height() + "px" });
         _845._outerHeight(_842.height());
-    	_843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
+        //_843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
+        doPanelResize(target); //cryze 2019-07-17
 
     };
+    /**
+     * 把调整panel大小独立出来 2019-07-17 cryze
+     * @param {*} target 
+     */
+    function doPanelResize(target){
+        var state = $.data(target, "lookup");
+        var opts = state.options;
+        var $lookup = state.lookup;
+        var $panel = state.panel;
+        var currPanelWidth=$panel.panel('options').width||0,currPanelHeight=$panel.panel('options').height||0;
+        var panelWidth=opts.panelWidth ? opts.panelWidth : $lookup.outerWidth(),panelHeight=opts.panelHeight;
+        if (currPanelWidth!=panelWidth || currPanelHeight!=panelHeight) {
+            opts.panelWidth=panelWidth;
+            $panel.panel("resize", { width: panelWidth, height: panelHeight });
+        }
+        
+    }
 
 	function _854(_855) {  //这个在easyui的combogrid 应该是考虑嵌套combo的
 		return;  //lookup 先不考虑嵌套的
@@ -18463,7 +18510,7 @@ function(a, b, c) {
         }, filter: function (q, row) {
             var opts = $(this).lookup("options");
             return row[opts.textField].toLowerCase().indexOf(q.toLowerCase()) == 0;
-		},width: "auto", height: 30, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: false, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19
+		},width: "auto", height: 30, panelWidth: 350, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: false, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19
 		, onShowPanel: function () {
         }, onHidePanel: function () {
         }, onChange: function (_899, _89a) {  //以前combo有，现在没有 考虑..

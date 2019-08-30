@@ -3138,9 +3138,6 @@ a {
 .icon-clock-record {
   background: url('icons/clock_record.png') no-repeat center center;
 }
-.icon-clock-black {
-  background: url('icons/clock_black.png') no-repeat center center;
-}
 .icon-close-word {
   background: url('icons/close_word.png') no-repeat center center;
 }
@@ -3411,12 +3408,6 @@ a {
 .icon-done {
   background: url('icons/done.png') no-repeat center center;
 }
-.icon-user-black {
-  background: url('icons/user_black.png') no-repeat center center;
-}
-.icon-report-check-black {
-  background: url('icons/report_check_black.png') no-repeat center center;
-}
 .icon-up-gray {
   background: url('icons/up_gray.png') no-repeat center center;
 }
@@ -3495,138 +3486,6 @@ a {
 .icon-alarm {
   background: url('icons/alarm.png') no-repeat center center;
 }
-<<<<<<< HEAD
-=======
-.icon-ip-cfg {
-  background: url('icons/ip_cfg.png') no-repeat center center;
-}
-.icon-have-son-node {
-  background: url('icons/have_son_node.png') no-repeat center center;
-}
-.icon-mater-info {
-  background: url('icons/mater_info.png') no-repeat center center;
-}
-.icon-send-msg {
-  background: url('icons/send_msg.png') no-repeat center center;
-}
-.icon-add-item {
-  background: url('icons/add_item.png') no-repeat center center;
-}
-.icon-price-maint {
-  background: url('icons/price_maint.png') no-repeat center center;
-}
-.icon-wax-tat-stat {
-  background: url('icons/wax_tat_stat.png') no-repeat center center;
-}
-.icon-wax-stat {
-  background: url('icons/wax_stat.png') no-repeat center center;
-}
-.icon-sort {
-  background: url('icons/sort.png') no-repeat center center;
-}
-.icon-house-maint {
-  background: url('icons/house_maint.png') no-repeat center center;
-}
-.icon-slice-tat-stat {
-  background: url('icons/slice_tat_stat.png') no-repeat center center;
-}
-.icon-slice-stat {
-  background: url('icons/slice_stat.png') no-repeat center center;
-}
-.icon-take-report {
-  background: url('icons/take_report.png') no-repeat center center;
-}
-.icon-change-pay-way {
-  background: url('icons/change_pay_way.png') no-repeat center center;
-}
-.icon-sample-stat {
-  background: url('icons/sample_stat.png') no-repeat center center;
-}
-.icon-ga-maint {
-  background: url('icons/ga_maint.png') no-repeat center center;
-}
-.icon-house-posi-maint {
-  background: url('icons/house_posi_maint.png') no-repeat center center;
-}
-.icon-qua-pro-dis {
-  background: url('icons/qua_pro_dis.png') no-repeat center center;
-}
-.icon-qua-pro-sort {
-  background: url('icons/qua_pro_sort.png') no-repeat center center;
-}
-.icon-person-key-yel {
-  background: url('icons/person_key_yel.png') no-repeat center center;
-}
-.icon-key-switch {
-  background: url('icons/key_switch.png') no-repeat center center;
-}
-.icon-report-switch {
-  background: url('icons/report_switch.png') no-repeat center center;
-}
-.icon-report-blue-shie-key {
-  background: url('icons/report_blue_shie_key.png') no-repeat center center;
-}
-.icon-rectangle-flow {
-  background: url('icons/rectangle_flow.png') no-repeat center center;
-}
-.icon-paper-switch {
-  background: url('icons/paper_switch.png') no-repeat center center;
-}
-.icon-pat-house-switch {
-  background: url('icons/pat_house_switch.png') no-repeat center center;
-}
-.icon-qua-pro-blue {
-  background: url('icons/qua_pro_blue.png') no-repeat center center;
-}
-.icon-slice-only {
-  background: url('icons/slice_only.png') no-repeat center center;
-}
-.icon-barbell {
-  background: url('icons/barbell.png') no-repeat center center;
-}
-.icon-target-arrow {
-  background: url('icons/target_arrow.png') no-repeat center center;
-}
-.icon-big-switch {
-  background: url('icons/big_switch.png') no-repeat center center;
-}
-.icon-disabler {
-  background: url('icons/disabler.png') no-repeat center center;
-}
-.icon-produce {
-  background: url('icons/produce.png') no-repeat center center;
-}
-.icon-children {
-  background: url('icons/children.png') no-repeat center center;
-}
-.icon-lung {
-  background: url('icons/lung.png') no-repeat center center;
-}
-.icon-high {
-  background: url('icons/high.png') no-repeat center center;
-}
-.icon-spirit {
-  background: url('icons/spirit.png') no-repeat center center;
-}
-.icon-old {
-  background: url('icons/old.png') no-repeat center center;
-}
-.icon-poor {
-  background: url('icons/poor.png') no-repeat center center;
-}
-.icon-sugar {
-  background: url('icons/sugar.png') no-repeat center center;
-}
-.icon-free {
-  background: url('icons/free.png') no-repeat center center;
-}
-.icon-out-poverty {
-  background: url('icons/out_poverty.png') no-repeat center center;
-}
-.icon-pregnant-woman {
-  background: url('icons/pregnant_woman.png') no-repeat center center;
-}
->>>>>>> 225c6ca... 增加27个图标
 /*big icon*/
 .icon-big-save {
   background: url('icons/big/save.png') no-repeat top center;
@@ -4057,6 +3916,9 @@ a {
 }
 .icon-w-zoom {
   background: url('icons/white/zoom.png') no-repeat center center;
+}
+.icon-w-book {
+  background: url('icons/white/book.png') no-repeat center center;
 }
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
