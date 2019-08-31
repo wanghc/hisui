@@ -427,7 +427,36 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			pagination:true"&gt; &lt;/table&gt;
 		</code></pre>
 	</div>
-
+	<h3>五、用在M中特有属性<code>2019-08-31</code></h3>
+	<div class="demo-exp-code entry-content">
+		可以定义<code>className</code>与<code>queryName</code>来生成columns
+		<pre class="prettyprint hide lang-js"><code>$("#querydg").datagrid({
+	//不用定义columns属性, 支持自定义列头
+	className:"web.Test",
+	queryName:"LookUp", 
+	url:$URL+"?ClassName=web.Test&QueryName=LookUp&...",
+	...
+});</code></pre>
+		如要对columns加工处理，可使用<code>onColumnsLoad(cm)</code>来加工columns
+		<pre class="prettyprint hide lang-js"><code>$("#querydg").datagrid({
+	className:"web.Test",
+	queryName:"LookUp", 
+	onColumnsLoad:function(cm){
+		for (var i=0;i&lt;cm.length;i++){
+			if(cm[i]['field']=="TStDate"){
+				cm[i].formatter = function(val,row,index){
+					return "日期"+val;
+				}
+				cm[i].styler=function(val,row,index){
+					return 'color:red;';
+				}
+			}
+		}
+	},
+	url:$URL+"?ClassName=web.Test&QueryName=LookUp&...",
+	...
+});</code></pre>
+	</div>
 	<script type="text/javascript">
 	function loadData(){
 		var rows = [];
@@ -511,6 +540,18 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>null</td>
 			<td>默认不显示。<code>(20190510)</code></td>
 		</tr>
+		<tr>
+			<td>className</td>
+			<td>m中类名</td>
+			<td>""</td>
+			<td>默认为空。非常规属性。<code>(20190829)</code></td>
+		</tr>
+		<tr>
+			<td>queryName</td>
+			<td>m中query名</td>
+			<td>""</td>
+			<td>默认为空。非常规属性。通过className与queryName生成columns，且能自定义列属性。<code>(20190829)</code></td>
+		</tr>	
 		<tr class="mthtitle">
 			<th>方法名</th>
 			<th>说明</th>
@@ -565,7 +606,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>rowIndex,rowData</td>
 			<td></td>
 		</tr>
-
+		<tr>
+			<td>onColumnsLoad</td>
+			<td>获得columns后触发事件</td>
+			<td>cm</td>
+			<td>配置className与queryName后有效<code>2019-09-31</code></td>
+		</tr>
 	</table>
 	<prettyprint />	
 </body>
