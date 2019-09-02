@@ -39,7 +39,7 @@
 }
 .bloop(1);
 /*white icon*/
-@wlist:plus,plus,add,add,arrow-down,arrow_down,arrow-up,arrow_up,back,back,cal,cal,cancel,cancel,card,card,clean,clean,close,close,config,config,edit,edit,epr,epr,file,file,file-open,file_open,find,find,home,home,list,list,new,new,other,other,paper,paper,plus,plus,print,print,save,save,switch,switch,update,update,import,import,export,export,star,star,msg,msg,copy,copy,stamp,stamp,batch-cfg,batch_cfg,inv,inv,batch-add,batch_add,eye,eye,arrow-left,arrow_left,arrow-right,arrow_right,calc,calc,submit,submit,run,run,rent,rent,takes,takes,line-key,line_key,clock,clock,key,key,setting,setting,img,img,ok,ok,filter,filter,predrug,predrug,trigger-box,trigger_box,paid,paid,zoom,zoom;
+@wlist:plus,plus,add,add,arrow-down,arrow_down,arrow-up,arrow_up,back,back,cal,cal,cancel,cancel,card,card,clean,clean,close,close,config,config,edit,edit,epr,epr,file,file,file-open,file_open,find,find,home,home,list,list,new,new,other,other,paper,paper,plus,plus,print,print,save,save,switch,switch,update,update,import,import,export,export,star,star,msg,msg,copy,copy,stamp,stamp,batch-cfg,batch_cfg,inv,inv,batch-add,batch_add,eye,eye,arrow-left,arrow_left,arrow-right,arrow_right,calc,calc,submit,submit,run,run,rent,rent,takes,takes,line-key,line_key,clock,clock,key,key,setting,setting,img,img,ok,ok,filter,filter,predrug,predrug,trigger-box,trigger_box,paid,paid,zoom,zoom,book,book;
 .wloop(@i) when (@i < length(@wlist)+1){
     .c-w-icon(extract(@wlist, @i),extract(@wlist,1+@i));
     .wloop(2+@i);

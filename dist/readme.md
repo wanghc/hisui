@@ -37,6 +37,9 @@ $("#btn").linkbutton("disable");
 ## 2019-09-02 ##
 * `validatebox`支持disabled属性及setDisabled方法
 
+## 2019-08-30 ##
+* `datagrid`支持onColumnsLoad事件
+
 ## 2019-08-29 ##
 * `datagrid`支持className与queryName名来生成columns，以便支持自定义列属性
 

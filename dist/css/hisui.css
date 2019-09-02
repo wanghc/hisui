@@ -4072,6 +4072,9 @@ textarea {
 .icon-w-zoom {
   background: url('icons/white/zoom.png') no-repeat center center;
 }
+.icon-w-book {
+  background: url('icons/white/book.png') no-repeat center center;
+}
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;

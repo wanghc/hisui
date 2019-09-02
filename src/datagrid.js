@@ -1801,6 +1801,7 @@
                 }
                 if(opts.queryName){ //从query中取cm
                     var json = getColumns(opts);
+                    if(opts.onColumnsLoad) opts.onColumnsLoad.call(_64f,json.cm);
                     opts.columns = [json.cm];
                     opts.pageSize = json.pageSize;
                     if(opts.pageList) opts.pageList.push(opts.pageSize);
@@ -2752,6 +2753,7 @@
         },onDblClickHeader:function(e,_739){    //cryze 双击表格头事件，默认
         },lazy:false    //cryze 2018-3-22 为true初始化不加载列表数据
         ,onHighlightRow:function(index,row){ //cryze datagrid 高亮行(鼠标悬浮和combogrid上下选时)触发事件
+        },onColumnsLoad:function(grid,cm){
         }
     });
 })(jQuery);
