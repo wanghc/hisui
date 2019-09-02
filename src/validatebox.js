@@ -150,6 +150,17 @@
         }
         return true;
     };
+    /*输入框支持disabled属性 yp 2019-9-2*/
+    function setDisabled(target, value) {
+        var opts = $.data(target, "validatebox").options;
+        if (value) {
+            opts.disabled = true;
+            $(target).attr("disabled", true);
+        } else {
+            opts.disabled = false;
+            $(target).removeAttr("disabled");
+        }
+    };
     function _43b(_43c, _43d) {
         var opts = $.data(_43c, "validatebox").options;
         if (_43d != undefined) {
@@ -178,6 +189,7 @@
                 init(this);
                 $.data(this, "validatebox", { options: $.extend({}, $.fn.validatebox.defaults, $.fn.validatebox.parseOptions(this), _43e) });
             }
+            setDisabled(this, $.data(this, "validatebox").options.disabled);
             _43b(this);
             _42e(this);
         });
@@ -203,13 +215,18 @@
             return jq.each(function () {
                 _43b(this, true);
             });
+        }, setDisabled: function (jq,value) {
+            return jq.each(function () {
+                setDisabled(this, value);
+            });
         }
     };
     $.fn.validatebox.parseOptions = function (_441) {
         var t = $(_441);
-        return $.extend({}, $.parser.parseOptions(_441, ["placeholder","validType", "missingMessage", "invalidMessage", "tipPosition", { delay: "number", deltaX: "number" }]), { required: (t.attr("required") ? true : undefined), novalidate: (t.attr("novalidate") != undefined ? true : undefined) });
+        return $.extend({}, $.parser.parseOptions(_441, ["disabled","placeholder","validType", "missingMessage", "invalidMessage", "tipPosition", { delay: "number", deltaX: "number" }]), { required: (t.attr("required") ? true : undefined), novalidate: (t.attr("novalidate") != undefined ? true : undefined) });
     };
     $.fn.validatebox.defaults = {
+        disabled: false, /*输入框支持disabled属性 yp 2019-9-2*/
         placeholder:"",/*输入框支持placeholder属性 wanghc 2018-10-18*/
         required: false, validType: null, validParams: null, delay: 200, missingMessage: "This field is required.", invalidMessage: null, tipPosition: "right", deltaX: 0, novalidate: false, tipOptions: {
             showEvent: "none", hideEvent: "none", showDelay: 0, hideDelay: 0, zIndex: "", onShow: function () {

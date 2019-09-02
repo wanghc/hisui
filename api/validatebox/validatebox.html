@@ -35,6 +35,9 @@
 				<td>
 					<a id="btn" href="#" class="hisui-linkbutton">验证序号</a>
 				</td>
+				<td>
+					<a id="btn2" href="#" class="hisui-linkbutton">禁用URL</a>
+				</td>
 			</tr>						
 			<tr>
 				<td class="r-label">序号</td>
@@ -57,7 +60,7 @@
 			<tr>
 				<td class="r-label">URL</td>
 				<td>
-					<input class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
+					<input id="urlVx" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 				</td>
 			</tr>
 			<tr>
@@ -104,6 +107,9 @@ closable:true,collapsible:true,minimizable:true,maximizable:true">
 			&lt;td>
 				&lt;a id="btn" href="#" class="hisui-linkbutton">验证序号&lt;/a>
 			&lt;/td>
+			&lt;td>
+				&lt;a id="btn2" href="#" class="hisui-linkbutton">禁用URL&lt;/a>
+			&lt;/td>
 		&lt;/tr>						
 		&lt;tr>
 			&lt;td class="r-label">序号&lt;/td>
@@ -126,7 +132,7 @@ closable:true,collapsible:true,minimizable:true,maximizable:true">
 		&lt;tr>
 			&lt;td class="r-label">URL&lt;/td>
 			&lt;td>
-				&lt;input class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
+				&lt;input id="urlVx" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 			&lt;/td>
 		&lt;/tr>
 		&lt;tr>
@@ -163,6 +169,20 @@ var init = function () {
 			alert("序号为空");
 		}
 	});
+	$("#btn2").click(function(){
+		var box = $("#urlVx");
+		var value = box.prop("disabled");
+		if(value == false){
+			box.validatebox("setDisabled",true);
+			$("#btn2 > span > span").text("启用URL");
+			box.validatebox("validate");
+		}
+		else{
+			box.validatebox("setDisabled",false);
+			$("#btn2 > span > span").text("禁用URL");
+			box.validatebox("validate");
+		}
+	});
 }
 $(init);
 &lt;/script&gt;	
@@ -193,6 +213,20 @@ $(init);
 					alert("序号为空");
 				}
 			});
+			$("#btn2").click(function(){
+				var box = $("#urlVx");
+				var value = box.prop("disabled");
+				if(value == false){
+					box.validatebox("setDisabled",true);
+					$("#btn2 > span > span").text("启用URL");
+					box.validatebox("validate");
+				}
+				else{
+					box.validatebox("setDisabled",false);
+					$("#btn2 > span > span").text("禁用URL");
+					box.validatebox("validate");
+				}
+			});
 
 		}
 		$(init);
@@ -210,6 +244,24 @@ $(init);
 				<td>当不为空时，在输入框显示placeholder,<code>IE9+</code>,<code>chrome</code>支持<code>。2018-10-18</code></td>
 				<td></td>
 			</tr>
+			<tr>
+				<td>disabled</td>
+				<td>默认值"false"</td>
+				<td>当为true时，输入框被禁止使用。<code>2019-9-2</code></td>
+				<td></td>
+			</tr>
+            <tr class="mthtitle">
+                <th>方法名</th>
+                <th>说明</th>
+                <th>入参</th>
+                <th>返回值</th>
+            </tr>
+            <tr>
+                <td>setDisabled</td>
+                <td>改变disabled属性的值</td>
+                <td>false/true</td>
+                <td>jquery对象</td>
+            </tr>
 		</table>
 	<prettyprint/>	
 </body>
