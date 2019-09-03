@@ -46,7 +46,7 @@
             height: 30px;
             display: inline-block;
         }
-        .iconlist, .fontlist, .arrowlist, .bigiconlist{
+        .iconlist, .fontlist, .arrowlist, .bigiconlist, chinCharlist{
             display: inline-block;
         }
         .bigicon{
@@ -94,6 +94,10 @@
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="文字处理图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
         <ul class="fontlist"></ul>
+    </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="汉字图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
+        <ul class="chinCharlist"></ul>
     </div>
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="箭头图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
@@ -191,7 +195,7 @@
             ,'uncheckin','checkin','end-adm','change-loc','doctor','clear-screen','read-card','update','upload-cloud','unload-cloud','reset'
             ,'other','patient-info','del-diag','add-diag','emr-cri'
             ,'funnel-eye','funnel-half','funnel-empty','eye','export','import','download','omega'
-            ,'fee-arrow','fee','inpatient','outpatient','emergency','disabler','produce','children','lung','high','spirit','old','poor','sugar','free','out-poverty',"pregnant-woman"
+            ,'fee-arrow','fee'
             ,'star-yellow','star-light-yellow','star','star-half','star-empty','book','all-select','all-unselect'
             ,'select-grant','cancel-select-grant','refuse-select-grant','double-quotes','transfer'
             ,'batch-cfg','batch-add','import-xls','init','inv-search','submit','chart-sum','chart-year'
@@ -199,13 +203,13 @@
             ,'stamp','stamp-cancel','stamp-pass','line-paid','split','alert','user','money-down'
             ,'max-no','excel','img','save-to','save-sure','export-data','export-all','set-col','template','adjust-inventory','cancel-money'
             ,'set-zero','accept-money','accept','show-set','camera','blue-edit','gray-edit','pat-write','up','down','fx','key','run','muti-key'
-            ,'pause','forbid','make-oppointment','ignore','re-ignore','unuse','arrow-up'
+            ,'pause','forbid','ignore','re-ignore','unuse','arrow-up'
             ,'scanning','return','doc-caseload','snowflake-blue','speci-mt','print-box','tube-add','tube-del','wrench-blue','gen'
             ,'paper-submit','open-book','export-paper','track','paper-eye','run-red',"compare-no","compare-yes","compare","paper-arrow"
-            ,'adm-add','adm-same','alert-red','allergy-word','all-screen','analysis','arrow-blue','arrow-zoom','audit-x','base-info','base-word','blue-drug-ok','blue-move','book-green','bottle-drug','cal-pen','cancel-ref','cancel-top','check','checkbox','chg-doctor-grant','clock','clock-blod','clock-record','clock-black','close-word','complex-word','barbell','target-arrow','contain','doctor-green-no','down-arrow-box','drug','drug-arrow-red','drug-audit','drug-clock','drug-link','dsh-water','durg-freq','durg-ref','face-red','find-adm','fire','format-line','format-line-dott','format-line-num','gen-barcode','green-chart','home-black','home-gray','icd','injector','knw-submit','list-word','location','lock','move-left-most','move-up-most','mtpaper-add','mtpaper-arrw-lftp','mtpaper-redo','mtpaper-undo','mttext','mutpaper-tri','mutpaper-x','nail','no-conatin','other-yellow','paper-bed','paper-blue-line','paper-chart','paper-drug','paper-link-pen','paper-new','paper-no','paper-ok','paper-opr-record','paper-save','paper-table','paper-upgrade','paper-upgrade-add','paper-x','pat-add-red','pat-alert-red','pat-house','pat-house-switch','pat-opr','private-word','public-word','radio','ref','repeat-drug','right-arrow','switch','tel','text','text-word','tip-blue','top-green','translate-word','trans-pat','tube','unlock','upload','virus','virus-drug','water-drop','yellow-qa'
+            ,'adm-add','adm-same','alert-red','all-screen','analysis','arrow-blue','arrow-zoom','audit-x','base-info','blue-drug-ok','blue-move','book-green','bottle-drug','cal-pen','cancel-ref','cancel-top','check','checkbox','chg-doctor-grant','clock','clock-blod','clock-record','clock-black','barbell','target-arrow','contain','doctor-green-no','down-arrow-box','drug','drug-arrow-red','drug-audit','drug-clock','drug-link','dsh-water','durg-freq','durg-ref','face-red','find-adm','fire','format-line','format-line-dott','format-line-num','gen-barcode','green-chart','home-black','home-gray','icd','injector','knw-submit','location','lock','move-left-most','move-up-most','mtpaper-add','mtpaper-arrw-lftp','mtpaper-redo','mtpaper-undo','mttext','mutpaper-tri','mutpaper-x','nail','no-conatin','other-yellow','paper-bed','paper-blue-line','paper-chart','paper-drug','paper-link-pen','paper-new','paper-no','paper-ok','paper-opr-record','paper-save','paper-table','paper-upgrade','paper-upgrade-add','paper-x','pat-add-red','pat-alert-red','pat-house','pat-house-switch','pat-opr','radio','ref','repeat-drug','right-arrow','switch','tel','text','tip-blue','top-green','trans-pat','tube','unlock','upload','virus','virus-drug','water-drop','yellow-qa'
             ,'down-blue','export-report','add-report','finish-report','take-report','paper-plane','undo-paper-plane','h24-stat','stat','wax-stat','wax-tat-stat','paper-stat','slice-stat','slice-tat-stat','slice-only','sample-stat','paper-pen','wating','done','user-black','report-check-black','up-gray','down-gray','pat-info','tooth',
             'paid','return-paid','int-bill','cancel-int-bill','reprint-inv','print-inv','rebill','pat-fee-det','find-paid-det','find-ord-det',
-            'find-fee-itm','skip-no','injector-water','alert-pen','board-alert','doctor-green-pen','minus','alarm','ip-cfg','have-son-node','mater-info','send-msg','price-maint','ga-maint','sort','qua-pro-sort','change-pay-way','qua-pro-dis','qua-pro-blue','rectangle-flow','paper-switch'
+            'find-fee-itm','skip-no','injector-water','alert-pen','board-alert','doctor-green-pen','minus','alarm','ip-cfg','have-son-node','mater-info','send-msg','price-maint','ga-maint','qua-pro-sort','change-pay-way','qua-pro-dis','qua-pro-blue','rectangle-flow','paper-switch'
             ];
             //icons.sort();
             for(var i=0;i<icons.length;i++){
@@ -239,6 +243,17 @@
                     <span class="icon icon-'+fonticons[i]+'">icon-'+fonticons[i]+'</span>\
                     </li>'
                 ).appendTo(".fontlist");
+            }
+            //-----
+            var chinCharicons=['inpatient','outpatient','emergency','disabler','produce','children','lung','high','spirit','old'
+            ,'poor','sugar','free','out-poverty',"pregnant-woman",'make-oppointment','allergy-word','base-word','close-word'
+            ,'complex-word','list-word','private-word','public-word','text-word','translate-word','sort'];
+            for(var i=0;i<chinCharicons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+chinCharicons[i]+'">icon-'+chinCharicons[i]+'</span>\
+                    </li>'
+                ).appendTo(".chinCharlist");
             }
             //----
             var arrowicons=['arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back'];
@@ -275,7 +290,7 @@
             }
             /*-------------------------------------------------*/
             var allicondesclist={};
-            var alliconlist=[].concat(icons,papericons,fonticons,arrowicons);
+            var alliconlist=[].concat(icons,papericons,fonticons,arrowicons,chinCharicons);
             
             for(var i=0;i<wicons.length;i++){
                 $('<tr class="wicon-tr"><td><span class="icon icon-w-'+wicons[i]+'">&nbsp</span></td><td>icon-w-'+
