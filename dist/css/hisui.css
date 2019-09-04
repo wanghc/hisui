@@ -3909,6 +3909,21 @@ textarea {
 .icon-big-search-pat {
   background: url('icons/big/search_pat.png') no-repeat top center;
 }
+.icon-big-cardiogram {
+  background: url('icons/big/cardiogram.png') no-repeat top center;
+}
+.icon-big-conical-bottle {
+  background: url('icons/big/conical_bottle.png') no-repeat top center;
+}
+.icon-big-patient-mach {
+  background: url('icons/big/patient_mach.png') no-repeat top center;
+}
+.icon-big-movie-mach {
+  background: url('icons/big/movie_mach.png') no-repeat top center;
+}
+.icon-big-chopsticks-bowl {
+  background: url('icons/big/chopsticks_bowl.png') no-repeat top center;
+}
 /*white icon*/
 .icon-w-plus {
   background: url('icons/white/plus.png') no-repeat center center;
