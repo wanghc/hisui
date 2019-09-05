@@ -1,3 +1,490 @@
+/*
+    json2.js
+    2013-05-26
+
+    Public Domain.
+
+    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
+
+    See http://www.JSON.org/js.html
+
+
+    This code should be minified before deployment.
+    See http://javascript.crockford.com/jsmin.html
+
+    USE YOUR OWN COPY. IT IS EXTREMELY UNWISE TO LOAD CODE FROM SERVERS YOU DO
+    NOT CONTROL.
+
+
+    This file creates a global JSON object containing two methods: stringify
+    and parse.
+
+        JSON.stringify(value, replacer, space)
+            value       any JavaScript value, usually an object or array.
+
+            replacer    an optional parameter that determines how object
+                        values are stringified for objects. It can be a
+                        function or an array of strings.
+
+            space       an optional parameter that specifies the indentation
+                        of nested structures. If it is omitted, the text will
+                        be packed without extra whitespace. If it is a number,
+                        it will specify the number of spaces to indent at each
+                        level. If it is a string (such as '\t' or '&nbsp;'),
+                        it contains the characters used to indent at each level.
+
+            This method produces a JSON text from a JavaScript value.
+
+            When an object value is found, if the object contains a toJSON
+            method, its toJSON method will be called and the result will be
+            stringified. A toJSON method does not serialize: it returns the
+            value represented by the name/value pair that should be serialized,
+            or undefined if nothing should be serialized. The toJSON method
+            will be passed the key associated with the value, and this will be
+            bound to the value
+
+            For example, this would serialize Dates as ISO strings.
+
+                Date.prototype.toJSON = function (key) {
+                    function f(n) {
+                        // Format integers to have at least two digits.
+                        return n < 10 ? '0' + n : n;
+                    }
+
+                    return this.getUTCFullYear()   + '-' +
+                         f(this.getUTCMonth() + 1) + '-' +
+                         f(this.getUTCDate())      + 'T' +
+                         f(this.getUTCHours())     + ':' +
+                         f(this.getUTCMinutes())   + ':' +
+                         f(this.getUTCSeconds())   + 'Z';
+                };
+
+            You can provide an optional replacer method. It will be passed the
+            key and value of each member, with this bound to the containing
+            object. The value that is returned from your method will be
+            serialized. If your method returns undefined, then the member will
+            be excluded from the serialization.
+
+            If the replacer parameter is an array of strings, then it will be
+            used to select the members to be serialized. It filters the results
+            such that only members with keys listed in the replacer array are
+            stringified.
+
+            Values that do not have JSON representations, such as undefined or
+            functions, will not be serialized. Such values in objects will be
+            dropped; in arrays they will be replaced with null. You can use
+            a replacer function to replace those with JSON values.
+            JSON.stringify(undefined) returns undefined.
+
+            The optional space parameter produces a stringification of the
+            value that is filled with line breaks and indentation to make it
+            easier to read.
+
+            If the space parameter is a non-empty string, then that string will
+            be used for indentation. If the space parameter is a number, then
+            the indentation will be that many spaces.
+
+            Example:
+
+            text = JSON.stringify(['e', {pluribus: 'unum'}]);
+            // text is '["e",{"pluribus":"unum"}]'
+
+
+            text = JSON.stringify(['e', {pluribus: 'unum'}], null, '\t');
+            // text is '[\n\t"e",\n\t{\n\t\t"pluribus": "unum"\n\t}\n]'
+
+            text = JSON.stringify([new Date()], function (key, value) {
+                return this[key] instanceof Date ?
+                    'Date(' + this[key] + ')' : value;
+            });
+            // text is '["Date(---current time---)"]'
+
+
+        JSON.parse(text, reviver)
+            This method parses a JSON text to produce an object or array.
+            It can throw a SyntaxError exception.
+
+            The optional reviver parameter is a function that can filter and
+            transform the results. It receives each of the keys and values,
+            and its return value is used instead of the original value.
+            If it returns what it received, then the structure is not modified.
+            If it returns undefined then the member is deleted.
+
+            Example:
+
+            // Parse the text. Values that look like ISO date strings will
+            // be converted to Date objects.
+
+            myData = JSON.parse(text, function (key, value) {
+                var a;
+                if (typeof value === 'string') {
+                    a =
+/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/.exec(value);
+                    if (a) {
+                        return new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4],
+                            +a[5], +a[6]));
+                    }
+                }
+                return value;
+            });
+
+            myData = JSON.parse('["Date(09/09/2001)"]', function (key, value) {
+                var d;
+                if (typeof value === 'string' &&
+                        value.slice(0, 5) === 'Date(' &&
+                        value.slice(-1) === ')') {
+                    d = new Date(value.slice(5, -1));
+                    if (d) {
+                        return d;
+                    }
+                }
+                return value;
+            });
+
+
+    This is a reference implementation. You are free to copy, modify, or
+    redistribute.
+*/
+
+/*jslint evil: true, regexp: true */
+
+/*members "", "\b", "\t", "\n", "\f", "\r", "\"", JSON, "\\", apply,
+    call, charCodeAt, getUTCDate, getUTCFullYear, getUTCHours,
+    getUTCMinutes, getUTCMonth, getUTCSeconds, hasOwnProperty, join,
+    lastIndex, length, parse, prototype, push, replace, slice, stringify,
+    test, toJSON, toString, valueOf
+*/
+
+
+// Create a JSON object only if one does not already exist. We create the
+// methods in a closure to avoid creating global variables.
+
+if (typeof JSON !== 'object') {
+    JSON = {};
+}
+
+(function () {
+    'use strict';
+
+    function f(n) {
+        // Format integers to have at least two digits.
+        return n < 10 ? '0' + n : n;
+    }
+
+    if (typeof Date.prototype.toJSON !== 'function') {
+
+        Date.prototype.toJSON = function () {
+
+            return isFinite(this.valueOf())
+                ? this.getUTCFullYear()     + '-' +
+                    f(this.getUTCMonth() + 1) + '-' +
+                    f(this.getUTCDate())      + 'T' +
+                    f(this.getUTCHours())     + ':' +
+                    f(this.getUTCMinutes())   + ':' +
+                    f(this.getUTCSeconds())   + 'Z'
+                : null;
+        };
+
+        String.prototype.toJSON      =
+            Number.prototype.toJSON  =
+            Boolean.prototype.toJSON = function () {
+                return this.valueOf();
+            };
+    }
+
+    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+        gap,
+        indent,
+        meta = {    // table of character substitutions
+            '\b': '\\b',
+            '\t': '\\t',
+            '\n': '\\n',
+            '\f': '\\f',
+            '\r': '\\r',
+            '"' : '\\"',
+            '\\': '\\\\'
+        },
+        rep;
+
+
+    function quote(string) {
+
+// If the string contains no control characters, no quote characters, and no
+// backslash characters, then we can safely slap some quotes around it.
+// Otherwise we must also replace the offending characters with safe escape
+// sequences.
+
+        escapable.lastIndex = 0;
+        return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
+            var c = meta[a];
+            return typeof c === 'string'
+                ? c
+                : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+        }) + '"' : '"' + string + '"';
+    }
+
+
+    function str(key, holder) {
+
+// Produce a string from holder[key].
+
+        var i,          // The loop counter.
+            k,          // The member key.
+            v,          // The member value.
+            length,
+            mind = gap,
+            partial,
+            value = holder[key];
+
+// If the value has a toJSON method, call it to obtain a replacement value.
+
+        if (value && typeof value === 'object' &&
+                typeof value.toJSON === 'function') {
+            value = value.toJSON(key);
+        }
+
+// If we were called with a replacer function, then call the replacer to
+// obtain a replacement value.
+
+        if (typeof rep === 'function') {
+            value = rep.call(holder, key, value);
+        }
+
+// What happens next depends on the value's type.
+
+        switch (typeof value) {
+        case 'string':
+            return quote(value);
+
+        case 'number':
+
+// JSON numbers must be finite. Encode non-finite numbers as null.
+
+            return isFinite(value) ? String(value) : 'null';
+
+        case 'boolean':
+        case 'null':
+
+// If the value is a boolean or null, convert it to a string. Note:
+// typeof null does not produce 'null'. The case is included here in
+// the remote chance that this gets fixed someday.
+
+            return String(value);
+
+// If the type is 'object', we might be dealing with an object or an array or
+// null.
+
+        case 'object':
+
+// Due to a specification blunder in ECMAScript, typeof null is 'object',
+// so watch out for that case.
+
+            if (!value) {
+                return 'null';
+            }
+
+// Make an array to hold the partial results of stringifying this object value.
+
+            gap += indent;
+            partial = [];
+
+// Is the value an array?
+
+            if (Object.prototype.toString.apply(value) === '[object Array]') {
+
+// The value is an array. Stringify every element. Use null as a placeholder
+// for non-JSON values.
+
+                length = value.length;
+                for (i = 0; i < length; i += 1) {
+                    partial[i] = str(i, value) || 'null';
+                }
+
+// Join all of the elements together, separated with commas, and wrap them in
+// brackets.
+
+                v = partial.length === 0
+                    ? '[]'
+                    : gap
+                    ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+                    : '[' + partial.join(',') + ']';
+                gap = mind;
+                return v;
+            }
+
+// If the replacer is an array, use it to select the members to be stringified.
+
+            if (rep && typeof rep === 'object') {
+                length = rep.length;
+                for (i = 0; i < length; i += 1) {
+                    if (typeof rep[i] === 'string') {
+                        k = rep[i];
+                        v = str(k, value);
+                        if (v) {
+                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                        }
+                    }
+                }
+            } else {
+
+// Otherwise, iterate through all of the keys in the object.
+
+                for (k in value) {
+                    if (Object.prototype.hasOwnProperty.call(value, k)) {
+                        v = str(k, value);
+                        if (v) {
+                            partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                        }
+                    }
+                }
+            }
+
+// Join all of the member texts together, separated with commas,
+// and wrap them in braces.
+
+            v = partial.length === 0
+                ? '{}'
+                : gap
+                ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+                : '{' + partial.join(',') + '}';
+            gap = mind;
+            return v;
+        }
+    }
+
+// If the JSON object does not yet have a stringify method, give it one.
+
+    if (typeof JSON.stringify !== 'function') {
+        JSON.stringify = function (value, replacer, space) {
+
+// The stringify method takes a value and an optional replacer, and an optional
+// space parameter, and returns a JSON text. The replacer can be a function
+// that can replace values, or an array of strings that will select the keys.
+// A default replacer method can be provided. Use of the space parameter can
+// produce text that is more easily readable.
+
+            var i;
+            gap = '';
+            indent = '';
+
+// If the space parameter is a number, make an indent string containing that
+// many spaces.
+
+            if (typeof space === 'number') {
+                for (i = 0; i < space; i += 1) {
+                    indent += ' ';
+                }
+
+// If the space parameter is a string, it will be used as the indent string.
+
+            } else if (typeof space === 'string') {
+                indent = space;
+            }
+
+// If there is a replacer, it must be a function or an array.
+// Otherwise, throw an error.
+
+            rep = replacer;
+            if (replacer && typeof replacer !== 'function' &&
+                    (typeof replacer !== 'object' ||
+                    typeof replacer.length !== 'number')) {
+                throw new Error('JSON.stringify');
+            }
+
+// Make a fake root object containing our value under the key of ''.
+// Return the result of stringifying the value.
+
+            return str('', {'': value});
+        };
+    }
+
+
+// If the JSON object does not yet have a parse method, give it one.
+
+    if (typeof JSON.parse !== 'function') {
+        JSON.parse = function (text, reviver) {
+
+// The parse method takes a text and an optional reviver function, and returns
+// a JavaScript value if the text is a valid JSON text.
+
+            var j;
+
+            function walk(holder, key) {
+
+// The walk method is used to recursively walk the resulting structure so
+// that modifications can be made.
+
+                var k, v, value = holder[key];
+                if (value && typeof value === 'object') {
+                    for (k in value) {
+                        if (Object.prototype.hasOwnProperty.call(value, k)) {
+                            v = walk(value, k);
+                            if (v !== undefined) {
+                                value[k] = v;
+                            } else {
+                                delete value[k];
+                            }
+                        }
+                    }
+                }
+                return reviver.call(holder, key, value);
+            }
+
+
+// Parsing happens in four stages. In the first stage, we replace certain
+// Unicode characters with escape sequences. JavaScript handles many characters
+// incorrectly, either silently deleting them, or treating them as line endings.
+
+            text = String(text);
+            cx.lastIndex = 0;
+            if (cx.test(text)) {
+                text = text.replace(cx, function (a) {
+                    return '\\u' +
+                        ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                });
+            }
+
+// In the second stage, we run the text against regular expressions that look
+// for non-JSON patterns. We are especially concerned with '()' and 'new'
+// because they can cause invocation, and '=' because it can cause mutation.
+// But just to be safe, we want to reject all unexpected forms.
+
+// We split the second stage into 4 regexp operations in order to work around
+// crippling inefficiencies in IE's and Safari's regexp engines. First we
+// replace the JSON backslash pairs with '@' (a non-JSON character). Second, we
+// replace all simple value tokens with ']' characters. Third, we delete all
+// open brackets that follow a colon or comma or that begin the text. Finally,
+// we look to see that the remaining characters are only whitespace or ']' or
+// ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+
+            if (/^[\],:{}\s]*$/
+                    .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+                        .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+                        .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+// In the third stage we use the eval function to compile the text into a
+// JavaScript structure. The '{' operator is subject to a syntactic ambiguity
+// in JavaScript: it can begin a block or an object literal. We wrap the text
+// in parens to eliminate the ambiguity.
+
+                j = eval('(' + text + ')');
+
+// In the optional fourth stage, we recursively walk the new structure, passing
+// each name/value pair to a reviver function for possible transformation.
+
+                return typeof reviver === 'function'
+                    ? walk({'': j}, '')
+                    : j;
+            }
+
+// If the text is not JSON parseable, then a SyntaxError is thrown.
+
+            throw new SyntaxError('JSON.parse');
+        };
+    }
+}());
+
 /**
  * jQuery HISUI 0.1.0
  * 
@@ -14787,6 +15274,1120 @@
         }
     };
 })(jQuery);
+/*! ============================================================
+ * bootstrapSwitch v1.8 by Larentis Mattia @SpiritualGuru
+ * http://www.larentis.eu/
+ * 
+ * Enhanced for radiobuttons by Stein, Peter @BdMdesigN
+ * http://www.bdmdesign.org/
+ *
+ * Project site:
+ * http://www.larentis.eu/switch/
+ * ============================================================
+ * Licensed under the Apache License, Version 2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * ============================================================ */
+
+!function ($) {
+  "use strict";
+
+  $.fn['bootstrapSwitch'] = function (method) {
+    var inputSelector = 'input[type!="hidden"]';
+    var methods = {
+      init: function () {
+        return this.each(function () {
+          var $element = $(this)
+            , $div
+            , $switchLeft
+            , $switchRight
+            , $label
+            , $form = $element.closest('form')
+            , myClasses = ""
+            , classes = $element.attr('class')
+            , color
+            , moving
+            , onLabel = "ON"
+            , offLabel = "OFF"
+            , icon = false
+            , textLabel = false;
+
+          $.each(['switch-mini', 'switch-small', 'switch-large'], function (i, el) {
+            if (classes && classes.indexOf(el) >= 0)  //添加classes undefined保护
+              myClasses = el;
+          });
+
+          $element.addClass('has-switch');
+
+          if ($element.data('on') !== undefined)
+            color = "switch-" + $element.data('on');
+
+          if ($element.data('on-label') !== undefined)
+            onLabel = $element.data('on-label');
+
+          if ($element.data('off-label') !== undefined)
+            offLabel = $element.data('off-label');
+
+          if ($element.data('label-icon') !== undefined)
+            icon = $element.data('label-icon');
+
+          if ($element.data('text-label') !== undefined)
+            textLabel = $element.data('text-label');
+
+          $switchLeft = $('<span>')
+            .addClass("switch-left")
+            .addClass(myClasses)
+            .addClass(color)
+            .html(onLabel);
+
+          color = '';
+          if ($element.data('off') !== undefined)
+            color = "switch-" + $element.data('off');
+
+          $switchRight = $('<span>')
+            .addClass("switch-right")
+            .addClass(myClasses)
+            .addClass(color)
+            .html(offLabel);
+
+          $label = $('<label>')
+            .html("&nbsp;")
+            .addClass(myClasses)
+            .attr('for', $element.find(inputSelector).attr('id'));
+
+          if (icon) {
+            $label.html('<i class="icon ' + icon + '"></i>');
+          }
+
+          if (textLabel) {
+            $label.html('' + textLabel + '');
+          }
+
+          $div = $element.find(inputSelector).wrap($('<div>')).parent().data('animated', false);
+
+          if ($element.data('animated') !== false)
+            $div.addClass('switch-animate').data('animated', true);
+
+          $div
+            .append($switchLeft)
+            .append($label)
+            .append($switchRight);
+
+          $element.find('>div').addClass(
+            $element.find(inputSelector).is(':checked') ? 'switch-on' : 'switch-off'
+          );
+
+          if ($element.find(inputSelector).is(':disabled'))
+            $(this).addClass('deactivate');
+
+          var changeStatus = function ($this) {
+            if ($element.parent('label').is('.label-change-switch')) {
+
+            } else {
+              $this.siblings('label').trigger('mousedown').trigger('mouseup').trigger('click');
+            }
+          };
+
+          $element.on('keydown', function (e) {
+            if (e.keyCode === 32) {
+              e.stopImmediatePropagation();
+              e.preventDefault();
+              changeStatus($(e.target).find('span:first'));
+            }
+          });
+
+          $switchLeft.on('click', function (e) {
+            changeStatus($(this));
+          });
+
+          $switchRight.on('click', function (e) {
+            changeStatus($(this));
+          });
+
+          $element.find(inputSelector).on('change', function (e, skipOnChange) {
+            var $this = $(this)
+              , $element = $this.parent()
+              , thisState = $this.is(':checked')
+              , state = $element.is('.switch-off');
+
+            e.preventDefault();
+
+            $element.css('left', '');
+
+            if (state === thisState) {
+
+              if (thisState)
+                $element.removeClass('switch-off').addClass('switch-on');
+              else $element.removeClass('switch-on').addClass('switch-off');
+
+              if ($element.data('animated') !== false)
+                $element.addClass("switch-animate");
+
+              if (typeof skipOnChange === 'boolean' && skipOnChange)
+                return;
+
+              $element.parent().trigger('switch-change', { 'el': $this, 'value': thisState })
+            }
+          });
+          
+          $element.find('label').on('mousedown touchstart', function (e) {
+            var $this = $(this);
+            moving = false;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            $this.closest('div').removeClass('switch-animate');
+
+            if ($this.closest('.has-switch').is('.deactivate')) {
+              $this.unbind('click');
+            } else if ($this.closest('.switch-on').parent().is('.radio-no-uncheck')) {
+              $this.unbind('click');
+            } else {
+              
+              $this.on('mousemove touchmove', function (e) {
+                var $element = $(this).closest('.make-switch')
+                if ($element.length==0) return ; /*增加判断 add by wanghc 2018-05-23,点击会报错 */
+                var relativeX = (e.pageX || e.originalEvent.targetTouches[0].pageX) - $element.offset().left
+                  , percent = (relativeX / $element.width()) * 100
+                  , left = 25
+                  , right = 75;
+
+                moving = true;
+
+                if (percent < left)
+                  percent = left;
+                else if (percent > right)
+                  percent = right;
+
+                $element.find('>div').css('left', (percent - right) + "%")
+              });
+
+              $this.on('click touchend', function (e) {
+                var $this = $(this)
+                  , $target = $(e.target)
+                  , $myRadioCheckBox = $target.siblings('input');
+
+                e.stopImmediatePropagation();
+                e.preventDefault();
+
+                $this.unbind('mouseleave');
+
+                if (moving)
+                  $myRadioCheckBox.prop('checked', !(parseInt($this.parent().css('left')) < -25));
+                else
+                  $myRadioCheckBox.prop("checked", !$myRadioCheckBox.is(":checked"));
+
+                moving = false;
+                $myRadioCheckBox.trigger('change');
+              });
+
+              $this.on('mouseleave', function (e) {
+                var $this = $(this)
+                  , $myInputBox = $this.siblings('input');
+
+                e.preventDefault();
+                e.stopImmediatePropagation();
+
+                $this.unbind('mouseleave');
+                $this.trigger('mouseup');
+
+                $myInputBox.prop('checked', !(parseInt($this.parent().css('left')) < -25)).trigger('change');
+              });
+
+              $this.on('mouseup', function (e) {
+                e.stopImmediatePropagation();
+                e.preventDefault();
+
+                $(this).unbind('mousemove');
+              });
+            }
+          });
+          
+          if ($form.data('bootstrapSwitch') !== 'injected') {
+            $form.bind('reset', function () {
+              setTimeout(function () {
+                $form.find('.make-switch').each(function () {
+                  var $input = $(this).find(inputSelector);
+
+                  $input.prop('checked', $input.is(':checked')).trigger('change');
+                });
+              }, 1);
+            });
+            $form.data('bootstrapSwitch', 'injected');
+          }
+        }
+        );
+      },
+      toggleActivation: function () {
+        var $this = $(this);
+
+        $this.toggleClass('deactivate');
+        $this.find(inputSelector).prop('disabled', $this.is('.deactivate'));
+      },
+      isActive: function () {
+        return !$(this).hasClass('deactivate');
+      },
+      setActive: function (active) {
+        var $this = $(this);
+
+        if (active) {
+          $this.removeClass('deactivate');
+          $this.find(inputSelector).removeAttr('disabled');
+        }
+        else {
+          $this.addClass('deactivate');
+          $this.find(inputSelector).attr('disabled', 'disabled');
+        }
+      },
+      toggleState: function (skipOnChange) {
+        var $input = $(this).find(':checkbox');
+        $input.prop('checked', !$input.is(':checked')).trigger('change', skipOnChange);
+      },
+      toggleRadioState: function (skipOnChange) {
+        var $radioinput = $(this).find(':radio');
+        $radioinput.not(':checked').prop('checked', !$radioinput.is(':checked')).trigger('change', skipOnChange);
+      },
+      toggleRadioStateAllowUncheck: function (uncheck, skipOnChange) {
+        var $radioinput = $(this).find(':radio');
+        if (uncheck) {
+          $radioinput.not(':checked').trigger('change', skipOnChange);
+        }
+        else {
+          $radioinput.not(':checked').prop('checked', !$radioinput.is(':checked')).trigger('change', skipOnChange);
+        }
+      },
+      setState: function (value, skipOnChange) {
+        $(this).find(inputSelector).prop('checked', value).trigger('change', skipOnChange);
+      },
+      setOnLabel: function (value) {
+        var $switchLeft = $(this).find(".switch-left");
+        $switchLeft.html(value);
+      },
+      setOffLabel: function (value) {
+        var $switchRight = $(this).find(".switch-right");
+        $switchRight.html(value);
+      },
+      setOnClass: function (value) {
+        var $switchLeft = $(this).find(".switch-left");
+        var color = '';
+        if (value !== undefined) {
+          if ($(this).attr('data-on') !== undefined) {
+            color = "switch-" + $(this).attr('data-on')
+          }
+          $switchLeft.removeClass(color);
+          color = "switch-" + value;
+          $switchLeft.addClass(color);
+        }
+      },
+      setOffClass: function (value) {
+        var $switchRight = $(this).find(".switch-right");
+        var color = '';
+        if (value !== undefined) {
+          if ($(this).attr('data-off') !== undefined) {
+            color = "switch-" + $(this).attr('data-off')
+          }
+          $switchRight.removeClass(color);
+          color = "switch-" + value;
+          $switchRight.addClass(color);
+        }
+      },
+      setAnimated: function (value) {
+        var $element = $(this).find(inputSelector).parent();
+        if (value === undefined) value = false;
+        $element.data('animated', value);
+        $element.attr('data-animated', value);
+
+        if ($element.data('animated') !== false) {
+          $element.addClass("switch-animate");
+        } else {
+          $element.removeClass("switch-animate");
+        }
+      },
+      setSizeClass: function (value) {
+        var $element = $(this);
+        var $switchLeft = $element.find(".switch-left");
+        var $switchRight = $element.find(".switch-right");
+        var $label = $element.find("label");
+        $.each(['switch-mini', 'switch-small', 'switch-large'], function (i, el) {
+          if (el !== value) {
+            $switchLeft.removeClass(el)
+            $switchRight.removeClass(el);
+            $label.removeClass(el);
+          } else {
+            $switchLeft.addClass(el);
+            $switchRight.addClass(el);
+            $label.addClass(el);
+          }
+        });
+      },
+      status: function () {
+        return $(this).find(inputSelector).is(':checked');
+      },
+      destroy: function () {
+        var $element = $(this)
+          , $div = $element.find('div')
+          , $form = $element.closest('form')
+          , $inputbox;
+
+        $div.find(':not(input)').remove();
+
+        $inputbox = $div.children();
+        $inputbox.unwrap().unwrap();
+
+        $inputbox.unbind('change');
+
+        if ($form) {
+          $form.unbind('reset');
+          $form.removeData('bootstrapSwitch');
+        }
+
+        return $inputbox;
+      }
+    };
+
+    if (methods[method])
+      return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+    else if (typeof method === 'object' || !method)
+      return methods.init.apply(this, arguments);
+    else
+      $.error('Method ' + method + ' does not exist!');
+  };
+}(jQuery);
+
+// (function ($) {
+//   $(function () {
+//     $('.hisui-switch')['bootstrapSwitch'](); //make修改为 hisui
+//   });
+// })(jQuery);
+
+/*
+ *  webui popover plugin  - v1.2.17
+ *  A lightWeight popover plugin with jquery ,enchance the  popover plugin of bootstrap with some awesome new features. It works well with bootstrap ,but bootstrap is not necessary!
+ *  https://github.com/sandywalker/webui-popover
+ *
+ *  Made by Sandy Duan
+ *  Under MIT License
+ */
+!
+function(a, b, c) {
+    "use strict"; !
+    function(b) {
+        "function" == typeof define && define.amd ? define(["jquery"], b) : "object" == typeof exports ? module.exports = b(require("jquery")) : b(a.jQuery)
+    } (function(d) {
+        function e(a, b) {
+            return this.$element = d(a),
+            b && ("string" === d.type(b.delay) || "number" === d.type(b.delay)) && (b.delay = {
+                show: b.delay,
+                hide: b.delay
+            }),
+            this.options = d.extend({},
+            i, b),
+            this._defaults = i,
+            this._name = f,
+            this._targetclick = !1,
+            this.init(),
+            k.push(this.$element),
+            this
+        }
+        var f = "webuiPopover",
+        g = "webui-popover",
+        h = "webui.popover",
+        i = {
+            placement: "auto",
+            container: null,
+            width: "auto",
+            height: "auto",
+            trigger: "click",
+            style: "",
+            selector: !1,
+            delay: {
+                show: null,
+                hide: 300
+            },
+            async: {
+                type: "GET",
+                before: null,
+                success: null,
+                error: null
+            },
+            cache: !0,
+            multi: !1,
+            arrow: !0,
+            title: "",
+            content: "",
+            closeable: !1,
+            padding: !0,
+            url: "",
+            type: "html",
+            direction: "",
+            animation: null,
+            template: '<div class="webui-popover"><div class="webui-arrow"></div><div class="webui-popover-inner"><a href="#" class="close"></a><h3 class="webui-popover-title"></h3><div class="webui-popover-content"><i class="icon-refresh"></i> <p>&nbsp;</p></div></div></div>',
+            backdrop: !1,
+            dismissible: !0,
+            onShow: null,
+            onHide: null,
+            abortXHR: !0,
+            autoHide: !1,
+            offsetTop: 0,
+            offsetLeft: 0,
+            iframeOptions: {
+                frameborder: "0",
+                allowtransparency: "true",
+                id: "",
+                name: "",
+                scrolling: "",
+                onload: "",
+                height: "",
+                width: ""
+            },
+            hideEmpty: !1
+        },
+        j = g + "-rtl",
+        k = [],
+        l = d('<div class="webui-popover-backdrop"></div>'),
+        m = 0,
+        n = !1,
+        o = -2e3,
+        p = d(b),
+        q = function(a, b) {
+            return isNaN(a) ? b || 0 : Number(a)
+        },
+        r = function(a) {
+            return a.data("plugin_" + f)
+        },
+        s = function() {
+            for (var a = null,
+            b = 0; b < k.length; b++) a = r(k[b]),
+            a && a.hide(!0);
+            p.trigger("hiddenAll." + h)
+        },
+        t = function(a) {
+            for (var b = null,
+            c = 0; c < k.length; c++) b = r(k[c]),
+            b && b.id !== a.id && b.hide(!0);
+            p.trigger("hiddenAll." + h)
+        },
+        u = "ontouchstart" in b.documentElement && /Mobi/.test(navigator.userAgent),
+        v = function(a) {
+            var b = {
+                x: 0,
+                y: 0
+            };
+            if ("touchstart" === a.type || "touchmove" === a.type || "touchend" === a.type || "touchcancel" === a.type) {
+                var c = a.originalEvent.touches[0] || a.originalEvent.changedTouches[0];
+                b.x = c.pageX,
+                b.y = c.pageY
+            } else("mousedown" === a.type || "mouseup" === a.type || "click" === a.type) && (b.x = a.pageX, b.y = a.pageY);
+            return b
+        };
+        e.prototype = {
+            init: function() {
+                if (this.$element[0] instanceof b.constructor && !this.options.selector) throw new Error("`selector` option must be specified when initializing " + this.type + " on the window.document object!");
+                "manual" !== this.getTrigger() && (u ? this.$element.off("touchend", this.options.selector).on("touchend", this.options.selector, d.proxy(this.toggle, this)) : "click" === this.getTrigger() ? this.$element.off("click", this.options.selector).on("click", this.options.selector, d.proxy(this.toggle, this)) : "hover" === this.getTrigger() && this.$element.off("mouseenter mouseleave click", this.options.selector).on("mouseenter", this.options.selector, d.proxy(this.mouseenterHandler, this)).on("mouseleave", this.options.selector, d.proxy(this.mouseleaveHandler, this))),
+                this._poped = !1,
+                this._inited = !0,
+                this._opened = !1,
+                this._idSeed = m,
+                this.id = f + this._idSeed,
+                this.options.container = d(this.options.container || b.body).first(),
+                this.options.backdrop && l.appendTo(this.options.container).hide(),
+                m++,
+                "sticky" === this.getTrigger() && this.show(),
+                this.options.selector && (this._options = d.extend({},
+                this.options, {
+                    selector: ""
+                }))
+            },
+            destroy: function() {
+                for (var a = -1,
+                b = 0; b < k.length; b++) if (k[b] === this.$element) {
+                    a = b;
+                    break
+                }
+                k.splice(a, 1),
+                this.hide(),
+                this.$element.data("plugin_" + f, null),
+                "click" === this.getTrigger() ? this.$element.off("click") : "hover" === this.getTrigger() && this.$element.off("mouseenter mouseleave"),
+                this.$target && this.$target.remove()
+            },
+            getDelegateOptions: function() {
+                var a = {};
+                return this._options && d.each(this._options,
+                function(b, c) {
+                    i[b] !== c && (a[b] = c)
+                }),
+                a
+            },
+            hide: function(a, b) {
+                if ((a || "sticky" !== this.getTrigger()) && this._opened) {
+                    b && (b.preventDefault(), b.stopPropagation()),
+                    this.xhr && this.options.abortXHR === !0 && (this.xhr.abort(), this.xhr = null);
+                    var c = d.Event("hide." + h);
+                    if (this.$element.trigger(c, [this.$target]), this.$target) {
+                        this.$target.removeClass("in").addClass(this.getHideAnimation());
+                        var e = this;
+                        setTimeout(function() {
+                            e.$target.hide(),
+                            e.getCache() || e.$target.remove()
+                        },
+                        e.getHideDelay())
+                    }
+                    this.options.backdrop && l.hide(),
+                    this._opened = !1,
+                    this.$element.trigger("hidden." + h, [this.$target]),
+                    this.options.onHide && this.options.onHide(this.$target)
+                }
+            },
+            resetAutoHide: function() {
+                var a = this,
+                b = a.getAutoHide();
+                b && (a.autoHideHandler && clearTimeout(a.autoHideHandler), a.autoHideHandler = setTimeout(function() {
+                    a.hide()
+                },
+                b))
+            },
+            delegate: function(a) {
+                var b = d(a).data("plugin_" + f);
+                return b || (b = new e(a, this.getDelegateOptions()), d(a).data("plugin_" + f, b)),
+                b
+            },
+            toggle: function(a) {
+                var b = this;
+                a && (a.preventDefault(), a.stopPropagation(), this.options.selector && (b = this.delegate(a.currentTarget))),
+                b[b.getTarget().hasClass("in") ? "hide": "show"]()
+            },
+            hideAll: function() {
+                s()
+            },
+            hideOthers: function() {
+                t(this)
+            },
+            show: function() {
+                if (!this._opened) {
+                    var a = this.getTarget().removeClass().addClass(g).addClass(this._customTargetClass);
+                    if (this.options.multi || this.hideOthers(), !this.getCache() || !this._poped || "" === this.content) {
+                        if (this.content = "", this.setTitle(this.getTitle()), this.options.closeable || a.find(".close").off("click").remove(), this.isAsync() ? this.setContentASync(this.options.content) : this.setContent(this.getContent()), this.canEmptyHide() && "" === this.content) return;
+                        a.show()
+                    }
+                    this.displayContent(),
+                    this.options.onShow && this.options.onShow(a),
+                    this.bindBodyEvents(),
+                    this.options.backdrop && l.show(),
+                    this._opened = !0,
+                    this.resetAutoHide()
+                }
+            },
+            displayContent: function() {
+                var a = this.getElementPosition(),
+                b = this.getTarget().removeClass().addClass(g).addClass(this._customTargetClass),
+                c = this.getContentElement(),
+                e = b[0].offsetWidth,
+                f = b[0].offsetHeight,
+                i = "bottom",
+                k = d.Event("show." + h);
+                if (this.canEmptyHide()) {
+                    var l = c.children().html();
+                    if (null !== l && 0 === l.trim().length) return
+                }
+                this.$element.trigger(k, [b]);
+                var m = this.$element.data("width") || this.options.width;
+                "" === m && (m = this._defaults.width),
+                "auto" !== m && b.width(m);
+                var n = this.$element.data("height") || this.options.height;
+                "" === n && (n = this._defaults.height),
+                "auto" !== n && c.height(n),
+                this.options.style && this.$target.addClass(g + "-" + this.options.style),
+                "rtl" !== this.options.direction || c.hasClass(j) || c.addClass(j),
+                this.options.arrow || b.find(".webui-arrow").remove(),
+                b.detach().css({
+                    top: o,
+                    left: o,
+                    display: "block"
+                }),
+                this.getAnimation() && b.addClass(this.getAnimation()),
+                b.appendTo(this.options.container),
+                i = this.getPlacement(a),
+                this.$element.trigger("added." + h),
+                this.initTargetEvents(),
+                this.options.padding || ("auto" !== this.options.height && c.css("height", c.outerHeight()), this.$target.addClass("webui-no-padding")),
+                this.options.maxHeight && c.css("maxHeight", this.options.maxHeight),
+                this.options.maxWidth && c.css("maxWidth", this.options.maxWidth),
+                e = b[0].offsetWidth,
+                f = b[0].offsetHeight;
+                var p = this.getTargetPositin(a, i, e, f);
+                if (this.$target.css(p.position).addClass(i).addClass("in"), "iframe" === this.options.type) {
+                    var q = b.find("iframe"),
+                    r = b.width(),
+                    s = q.parent().height();
+                    "" !== this.options.iframeOptions.width && "auto" !== this.options.iframeOptions.width && (r = this.options.iframeOptions.width),
+                    "" !== this.options.iframeOptions.height && "auto" !== this.options.iframeOptions.height && (s = this.options.iframeOptions.height),
+                    q.width(r).height(s)
+                }
+                if (this.options.arrow || this.$target.css({
+                    margin: 0
+                }), this.options.arrow) {
+                    var t = this.$target.find(".webui-arrow");
+                    t.removeAttr("style"),
+                    "left" === i || "right" === i ? t.css({
+                        top: this.$target.height() / 2
+                    }) : ("top" === i || "bottom" === i) && t.css({
+                        left: this.$target.width() / 2
+                    }),
+                    p.arrowOffset && ( - 1 === p.arrowOffset.left || -1 === p.arrowOffset.top ? t.hide() : t.css(p.arrowOffset))
+                }
+                this._poped = !0,
+                this.$element.trigger("shown." + h, [this.$target])
+            },
+            isTargetLoaded: function() {
+                return 0 === this.getTarget().find("i.glyphicon-refresh").length
+            },
+            getTriggerElement: function() {
+                return this.$element
+            },
+            getTarget: function() {
+                if (!this.$target) {
+                    var a = f + this._idSeed;
+                    this.$target = d(this.options.template).attr("id", a),
+                    this._customTargetClass = this.$target.attr("class") !== g ? this.$target.attr("class") : null,
+                    this.getTriggerElement().attr("data-target", a)
+                }
+                return this.$target.data("trigger-element") || this.$target.data("trigger-element", this.getTriggerElement()),
+                this.$target
+            },
+            removeTarget: function() {
+                this.$target.remove(),
+                this.$target = null,
+                this.$contentElement = null
+            },
+            getTitleElement: function() {
+                return this.getTarget().find("." + g + "-title")
+            },
+            getContentElement: function() {
+                return this.$contentElement || (this.$contentElement = this.getTarget().find("." + g + "-content")),
+                this.$contentElement
+            },
+            getTitle: function() {
+                return this.$element.attr("data-title") || this.options.title || this.$element.attr("title")
+            },
+            getUrl: function() {
+                return this.$element.attr("data-url") || this.options.url
+            },
+            getAutoHide: function() {
+                return this.$element.attr("data-auto-hide") || this.options.autoHide
+            },
+            getOffsetTop: function() {
+                return q(this.$element.attr("data-offset-top")) || this.options.offsetTop
+            },
+            getOffsetLeft: function() {
+                return q(this.$element.attr("data-offset-left")) || this.options.offsetLeft
+            },
+            getCache: function() {
+                var a = this.$element.attr("data-cache");
+                if ("undefined" != typeof a) switch (a.toLowerCase()) {
+                case "true":
+                case "yes":
+                case "1":
+                    return ! 0;
+                case "false":
+                case "no":
+                case "0":
+                    return ! 1
+                }
+                return this.options.cache
+            },
+            getTrigger: function() {
+                return this.$element.attr("data-trigger") || this.options.trigger
+            },
+            getDelayShow: function() {
+                var a = this.$element.attr("data-delay-show");
+                return "undefined" != typeof a ? a: 0 === this.options.delay.show ? 0 : this.options.delay.show || 100
+            },
+            getHideDelay: function() {
+                var a = this.$element.attr("data-delay-hide");
+                return "undefined" != typeof a ? a: 0 === this.options.delay.hide ? 0 : this.options.delay.hide || 100
+            },
+            getAnimation: function() {
+                var a = this.$element.attr("data-animation");
+                return a || this.options.animation
+            },
+            getHideAnimation: function() {
+                var a = this.getAnimation();
+                return a ? a + "-out": "out"
+            },
+            setTitle: function(a) {
+                var b = this.getTitleElement();
+                a ? ("rtl" !== this.options.direction || b.hasClass(j) || b.addClass(j), b.html(a)) : b.remove()
+            },
+            hasContent: function() {
+                return this.getContent()
+            },
+            canEmptyHide: function() {
+                return this.options.hideEmpty && "html" === this.options.type
+            },
+            getIframe: function() {
+                var a = d("<iframe></iframe>").attr("src", this.getUrl()),
+                b = this;
+                return d.each(this._defaults.iframeOptions,
+                function(c) {
+                    "undefined" != typeof b.options.iframeOptions[c] && a.attr(c, b.options.iframeOptions[c])
+                }),
+                a
+            },
+            getContent: function() {
+                if (this.getUrl()) switch (this.options.type) {
+                case "iframe":
+                    this.content = this.getIframe();
+                    break;
+                case "html":
+                    try {
+                        this.content = d(this.getUrl()),
+                        this.content.is(":visible") || this.content.show()
+                    } catch(a) {
+                        throw new Error("Unable to get popover content. Invalid selector specified.")
+                    }
+                } else if (!this.content) {
+                    var b = "";
+                    if (b = d.isFunction(this.options.content) ? this.options.content.apply(this.$element[0], [this]) : this.options.content, this.content = this.$element.attr("data-content") || b, !this.content) {
+                        var c = this.$element.next();
+                        c && c.hasClass(g + "-content") && (this.content = c)
+                    }
+                }
+                return this.content
+            },
+            setContent: function(a) {
+                var b = this.getTarget(),
+                c = this.getContentElement();
+                "string" == typeof a ? c.html(a) : a instanceof d && (c.html(""), this.options.cache ? a.removeClass(g + "-content").appendTo(c) : a.clone(!0, !0).removeClass(g + "-content").appendTo(c)),
+                this.$target = b
+            },
+            isAsync: function() {
+                return "async" === this.options.type
+            },
+            setContentASync: function(a) {
+                var b = this;
+                this.xhr || (this.xhr = d.ajax({
+                    url: this.getUrl(),
+                    type: this.options.async.type,
+                    cache: this.getCache(),
+                    beforeSend: function(a, c) {
+                        b.options.async.before && b.options.async.before(b, a, c)
+                    },
+                    success: function(c) {
+                        b.bindBodyEvents(),
+                        a && d.isFunction(a) ? b.content = a.apply(b.$element[0], [c]) : b.content = c,
+                        b.setContent(b.content);
+                        var e = b.getContentElement();
+                        e.removeAttr("style"),
+                        b.displayContent(),
+                        b.options.async.success && b.options.async.success(b, c)
+                    },
+                    complete: function() {
+                        b.xhr = null
+                    },
+                    error: function(a, c) {
+                        b.options.async.error && b.options.async.error(b, a, c)
+                    }
+                }))
+            },
+            bindBodyEvents: function() {
+                n || (this.options.dismissible && "click" === this.getTrigger() ? u ? p.off("touchstart.webui-popover").on("touchstart.webui-popover", d.proxy(this.bodyTouchStartHandler, this)) : (p.off("keyup.webui-popover").on("keyup.webui-popover", d.proxy(this.escapeHandler, this)), p.off("click.webui-popover").on("click.webui-popover", d.proxy(this.bodyClickHandler, this))) : "hover" === this.getTrigger() && p.off("touchend.webui-popover").on("touchend.webui-popover", d.proxy(this.bodyClickHandler, this)))
+            },
+            mouseenterHandler: function(a) {
+                var b = this;
+                a && this.options.selector && (b = this.delegate(a.currentTarget)),
+                b._timeout && clearTimeout(b._timeout),
+                b._enterTimeout = setTimeout(function() {
+                    b.getTarget().is(":visible") || b.show()
+                },
+                this.getDelayShow())
+            },
+            mouseleaveHandler: function() {
+                var a = this;
+                clearTimeout(a._enterTimeout),
+                a._timeout = setTimeout(function() {
+                    a.hide()
+                },
+                this.getHideDelay())
+            },
+            escapeHandler: function(a) {
+                27 === a.keyCode && this.hideAll()
+            },
+            bodyTouchStartHandler: function(a) {
+                var b = this,
+                c = d(a.currentTarget);
+                c.on("touchend",
+                function(a) {
+                    b.bodyClickHandler(a),
+                    c.off("touchend")
+                }),
+                c.on("touchmove",
+                function() {
+                    c.off("touchend")
+                })
+            },
+            bodyClickHandler: function(a) {
+                n = !0;
+                for (var b = !0,
+                c = 0; c < k.length; c++) {
+                    var d = r(k[c]);
+                    if (d && d._opened) {
+                        var e = d.getTarget().offset(),
+                        f = e.left,
+                        g = e.top,
+                        h = e.left + d.getTarget().width(),
+                        i = e.top + d.getTarget().height(),
+                        j = v(a),
+                        l = j.x >= f && j.x <= h && j.y >= g && j.y <= i;
+                        if (l) {
+                            b = !1;
+                            break
+                        }
+                    }
+                }
+                b && s()
+            },
+            initTargetEvents: function() {
+                "hover" === this.getTrigger() && this.$target.off("mouseenter mouseleave").on("mouseenter", d.proxy(this.mouseenterHandler, this)).on("mouseleave", d.proxy(this.mouseleaveHandler, this)),
+                this.$target.find(".close").off("click").on("click", d.proxy(this.hide, this, !0))
+            },
+            getPlacement: function(a) {
+                var b, c = this.options.container,
+                d = c.innerWidth(),
+                e = c.innerHeight(),
+                f = c.scrollTop(),
+                g = c.scrollLeft(),
+                h = Math.max(0, a.left - g),
+                i = Math.max(0, a.top - f);
+                b = "function" == typeof this.options.placement ? this.options.placement.call(this, this.getTarget()[0], this.$element[0]) : this.$element.data("placement") || this.options.placement;
+                var j = "horizontal" === b,
+                k = "vertical" === b,
+                l = "auto" === b || j || k;
+                return l ? b = d / 3 > h ? e / 3 > i ? j ? "right-bottom": "bottom-right": 2 * e / 3 > i ? k ? e / 2 >= i ? "bottom-right": "top-right": "right": j ? "right-top": "top-right": 2 * d / 3 > h ? e / 3 > i ? j ? d / 2 >= h ? "right-bottom": "left-bottom": "bottom": 2 * e / 3 > i ? j ? d / 2 >= h ? "right": "left": e / 2 >= i ? "bottom": "top": j ? d / 2 >= h ? "right-top": "left-top": "top": e / 3 > i ? j ? "left-bottom": "bottom-left": 2 * e / 3 > i ? k ? e / 2 >= i ? "bottom-left": "top-left": "left": j ? "left-top": "top-left": "auto-top" === b ? b = d / 3 > h ? "top-right": 2 * d / 3 > h ? "top": "top-left": "auto-bottom" === b ? b = d / 3 > h ? "bottom-right": 2 * d / 3 > h ? "bottom": "bottom-left": "auto-left" === b ? b = e / 3 > i ? "left-top": 2 * e / 3 > i ? "left": "left-bottom": "auto-right" === b && (b = e / 3 > i ? "right-bottom": 2 * e / 3 > i ? "right": "right-top"),
+                b
+            },
+            getElementPosition: function() {
+                var a = this.$element[0].getBoundingClientRect(),
+                c = this.options.container,
+                e = c.css("position");
+                if (c.is(b.body) || "static" === e) return d.extend({},
+                this.$element.offset(), {
+                    width: this.$element[0].offsetWidth || a.width,
+                    height: this.$element[0].offsetHeight || a.height
+                });
+                if ("fixed" === e) {
+                    var f = c[0].getBoundingClientRect();
+                    return {
+                        top: a.top - f.top + c.scrollTop(),
+                        left: a.left - f.left + c.scrollLeft(),
+                        width: a.width,
+                        height: a.height
+                    }
+                }
+                return "relative" === e ? {
+                    top: this.$element.offset().top - c.offset().top,
+                    left: this.$element.offset().left - c.offset().left,
+                    width: this.$element[0].offsetWidth || a.width,
+                    height: this.$element[0].offsetHeight || a.height
+                }: void 0
+            },
+            getTargetPositin: function(a, c, d, e) {
+                var f = a,
+                g = this.options.container,
+                h = this.$element.outerWidth(),
+                i = this.$element.outerHeight(),
+                j = b.documentElement.scrollTop + g.scrollTop(),
+                k = b.documentElement.scrollLeft + g.scrollLeft(),
+                l = {},
+                m = null,
+                n = this.options.arrow ? 20 : 0,
+                p = 10,
+                q = n + p > h ? n: 0,
+                r = n + p > i ? n: 0,
+                s = 0,
+                t = b.documentElement.clientHeight + j,
+                u = b.documentElement.clientWidth + k,
+                v = f.left + f.width / 2 - q > 0,
+                w = f.left + f.width / 2 + q < u,
+                x = f.top + f.height / 2 - r > 0,
+                y = f.top + f.height / 2 + r < t;
+                switch (c) {
+                case "bottom":
+                    l = {
+                        top: f.top + f.height,
+                        left: f.left + f.width / 2 - d / 2
+                    };
+                    break;
+                case "top":
+                    l = {
+                        top: f.top - e,
+                        left: f.left + f.width / 2 - d / 2
+                    };
+                    break;
+                case "left":
+                    l = {
+                        top: f.top + f.height / 2 - e / 2,
+                        left: f.left - d
+                    };
+                    break;
+                case "right":
+                    l = {
+                        top: f.top + f.height / 2 - e / 2,
+                        left: f.left + f.width
+                    };
+                    break;
+                case "top-right":
+                    l = {
+                        top: f.top - e,
+                        left: v ? f.left - q: p
+                    },
+                    m = {
+                        left: v ? Math.min(h, d) / 2 + q: o
+                    };
+                    break;
+                case "top-left":
+                    s = w ? q: -p,
+                    l = {
+                        top: f.top - e,
+                        left: f.left - d + f.width + s
+                    },
+                    m = {
+                        left: w ? d - Math.min(h, d) / 2 - q: o
+                    };
+                    break;
+                case "bottom-right":
+                    l = {
+                        top: f.top + f.height,
+                        left: v ? f.left - q: p
+                    },
+                    m = {
+                        left: v ? Math.min(h, d) / 2 + q: o
+                    };
+                    break;
+                case "bottom-left":
+                    s = w ? q: -p,
+                    l = {
+                        top: f.top + f.height,
+                        left: f.left - d + f.width + s
+                    },
+                    m = {
+                        left: w ? d - Math.min(h, d) / 2 - q: o
+                    };
+                    break;
+                case "right-top":
+                    s = y ? r: -p,
+                    l = {
+                        top: f.top - e + f.height + s,
+                        left: f.left + f.width
+                    },
+                    m = {
+                        top: y ? e - Math.min(i, e) / 2 - r: o
+                    };
+                    break;
+                case "right-bottom":
+                    l = {
+                        top: x ? f.top - r: p,
+                        left: f.left + f.width
+                    },
+                    m = {
+                        top: x ? Math.min(i, e) / 2 + r: o
+                    };
+                    break;
+                case "left-top":
+                    s = y ? r: -p,
+                    l = {
+                        top: f.top - e + f.height + s,
+                        left: f.left - d
+                    },
+                    m = {
+                        top: y ? e - Math.min(i, e) / 2 - r: o
+                    };
+                    break;
+                case "left-bottom":
+                    l = {
+                        top: x ? f.top - r: p,
+                        left: f.left - d
+                    },
+                    m = {
+                        top: x ? Math.min(i, e) / 2 + r: o
+                    }
+                }
+                return l.top += this.getOffsetTop(),
+                l.left += this.getOffsetLeft(),
+                {
+                    position: l,
+                    arrowOffset: m
+                }
+            }
+        },
+        d.fn[f] = function(a, b) {
+            var c = [],
+            g = this.each(function() {
+                var g = d.data(this, "plugin_" + f);
+                g ? "destroy" === a ? g.destroy() : "string" == typeof a && c.push(g[a]()) : (a ? "string" == typeof a ? "destroy" !== a && (b || (g = new e(this, null), c.push(g[a]()))) : "object" == typeof a && (g = new e(this, a)) : g = new e(this, null), d.data(this, "plugin_" + f, g))
+            });
+            return c.length ? c: g
+        };
+        var w = function() {
+            var a = function() {
+                s()
+            },
+            b = function(a, b) {
+                b = b || {},
+                d(a).webuiPopover(b)
+            },
+            e = function(a) {
+                var b = !0;
+                return d(a).each(function(a, e) {
+                    b = b && d(e).data("plugin_" + f) !== c
+                }),
+                b
+            },
+            g = function(a, b) {
+                b ? d(a).webuiPopover(b).webuiPopover("show") : d(a).webuiPopover("show")
+            },
+            h = function(a) {
+                d(a).webuiPopover("hide")
+            },
+            j = function(a) {
+                i = d.extend({},
+                i, a)
+            },
+            k = function(a, b) {
+                var c = d(a).data("plugin_" + f);
+                if (c) {
+                    var e = c.getCache();
+                    c.options.cache = !1,
+                    c.options.content = b,
+                    c._opened ? (c._opened = !1, c.show()) : c.isAsync() ? c.setContentASync(b) : c.setContent(b),
+                    c.options.cache = e
+                }
+            },
+            l = function(a, b) {
+                var c = d(a).data("plugin_" + f);
+                if (c) {
+                    var e = c.getCache(),
+                    g = c.options.type;
+                    c.options.cache = !1,
+                    c.options.url = b,
+                    c._opened ? (c._opened = !1, c.show()) : (c.options.type = "async", c.setContentASync(c.content)),
+                    c.options.cache = e,
+                    c.options.type = g
+                }
+            };
+            return {
+                show: g,
+                hide: h,
+                create: b,
+                isCreated: e,
+                hideAll: a,
+                updateContent: k,
+                updateContentAsync: l,
+                setDefaultOptions: j
+            }
+        } ();
+        a.WebuiPopovers = w
+    })
+} (window, document);
 /**
  * switchbox  在switch插件基础上编写, 写成easyui类接口 
  */
