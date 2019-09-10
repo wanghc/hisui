@@ -586,6 +586,59 @@
                 }
             });
         });
+        function dgBodyClickFun(e){  //原click事件
+            var tt = $(e.target);
+            var tr = tt.closest("tr.datagrid-row");
+            if (!_563(tr)) {
+                return;
+            }
+            var _567 = _565(tr);
+            if (tt.parent().hasClass("datagrid-cell-check")) {
+                if (opts.singleSelect && opts.selectOnCheck) {
+                    if (!opts.checkOnSelect) {
+                        _5e5(_55a, true);
+                    }
+                    _5d2(_55a, _567);
+                } else {
+                    if (tt.is(":checked")) {
+                        _5d2(_55a, _567);
+                    } else {
+                        _5d9(_55a, _567);
+                    }
+                }
+            } else {
+                var row = opts.finder.getRow(_55a, _567);
+                var td = tt.closest("td[field]", tr);
+                if (td.length) {
+                    var _568 = td.attr("field");
+                    opts.onClickCell.call(_55a, _567, _568, row[_568]);
+                }
+                if (opts.singleSelect == true) {
+                    _5cb(_55a, _567);
+                } else {
+                    if (opts.ctrlSelect) {
+                        if (e.ctrlKey) {
+                            if (tr.hasClass("datagrid-row-selected")) {
+                                _5d3(_55a, _567);
+                            } else {
+                                _5cb(_55a, _567);
+                            }
+                        } else {
+                            $(_55a).datagrid("clearSelections");
+                            _5cb(_55a, _567);
+                        }
+                    } else {
+                        if (tr.hasClass("datagrid-row-selected")) {
+                            _5d3(_55a, _567);
+                        } else {
+                            _5cb(_55a, _567);
+                        }
+                    }
+                }
+                opts.onClickRow.call(_55a, _567, row);
+            }
+        }
+        var debouncedDgBodyClickFun=($.hisui.debounce && parseInt(opts.clickDelay)>0)?$.hisui.debounce(dgBodyClickFun,parseInt(opts.clickDelay)):dgBodyClickFun;
         dc.body1.add(dc.body2).unbind().bind("mouseover", function (e) {
             if (_55b.resizing) {
                 return;
@@ -636,55 +689,10 @@
             opts.finder.getTr(_55a, _566).removeClass("datagrid-row-over");
             e.stopPropagation();
         }).bind("click", function (e) {
-            var tt = $(e.target);
-            var tr = tt.closest("tr.datagrid-row");
-            if (!_563(tr)) {
-                return;
-            }
-            var _567 = _565(tr);
-            if (tt.parent().hasClass("datagrid-cell-check")) {
-                if (opts.singleSelect && opts.selectOnCheck) {
-                    if (!opts.checkOnSelect) {
-                        _5e5(_55a, true);
-                    }
-                    _5d2(_55a, _567);
-                } else {
-                    if (tt.is(":checked")) {
-                        _5d2(_55a, _567);
-                    } else {
-                        _5d9(_55a, _567);
-                    }
-                }
-            } else {
-                var row = opts.finder.getRow(_55a, _567);
-                var td = tt.closest("td[field]", tr);
-                if (td.length) {
-                    var _568 = td.attr("field");
-                    opts.onClickCell.call(_55a, _567, _568, row[_568]);
-                }
-                if (opts.singleSelect == true) {
-                    _5cb(_55a, _567);
-                } else {
-                    if (opts.ctrlSelect) {
-                        if (e.ctrlKey) {
-                            if (tr.hasClass("datagrid-row-selected")) {
-                                _5d3(_55a, _567);
-                            } else {
-                                _5cb(_55a, _567);
-                            }
-                        } else {
-                            $(_55a).datagrid("clearSelections");
-                            _5cb(_55a, _567);
-                        }
-                    } else {
-                        if (tr.hasClass("datagrid-row-selected")) {
-                            _5d3(_55a, _567);
-                        } else {
-                            _5cb(_55a, _567);
-                        }
-                    }
-                }
-                opts.onClickRow.call(_55a, _567, row);
+            if (parseInt(opts.clickDelay)>0){
+                debouncedDgBodyClickFun.call(this,e);
+            }else{
+                dgBodyClickFun.call(this,e);
             }
             e.stopPropagation();
         }).bind("dblclick", function (e) {
@@ -2754,6 +2762,6 @@
         },lazy:false    //cryze 2018-3-22 为true初始化不加载列表数据
         ,onHighlightRow:function(index,row){ //cryze datagrid 高亮行(鼠标悬浮和combogrid上下选时)触发事件
         },onColumnsLoad:function(grid,cm){
-        }
+        },clickDelay:0  //cryze 2019-09-10 解决lookup 快速点击行问题
     });
 })(jQuery);

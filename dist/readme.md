@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-09-10 ##
+* 增加工具方法`$.hisui.debounce`,实现防抖
+* datagrid增加配置项`clickDelay`,用于解决`lookup`快速多次点击行，会触发panel下面元素的点击
+
 ## 2019-09-04 ##
 * 增加5个大图标
 
