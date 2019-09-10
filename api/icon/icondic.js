@@ -545,5 +545,10 @@ var iconDictionary={
     "icon-big-paid":"付款，交押金",
     "icon-big-pat-list":"病人列表，住院患者一览",
     "icon-big-read-card":"读卡",
-    "icon-big-search-pat":"查询病人，查询"
+    "icon-big-search-pat":"查询病人，查询",
+    "icon-big-cardiogram":"急救设备",
+    "icon-big-conical-bottle":"检验设备",
+    "icon-big-patient-mach":"康复设备",
+    "icon-big-movie-mach":"影像设备",
+    "icon-big-chopsticks-bowl":"中医设备"
 };

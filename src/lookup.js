@@ -108,6 +108,7 @@
                     fixRowtipStyle();
                 }
             }
+            ,clickDelay:200 //cryze 2019-09-10 datagrid 的点击支持防抖 
         }));
         state.previousValue=undefined;
 		
@@ -119,7 +120,8 @@
             
             opts.onClickRow.call(this, _90c, row);
             if (!opts.multiple) {
-                window.setTimeout(function(){$(target).lookup("hidePanel");},300);
+                $(target).lookup("hidePanel");
+                //window.setTimeout(function(){$(target).lookup("hidePanel");},300);
             }
         };
         function _90a() {
