@@ -57,6 +57,7 @@ $(function(){
         jobj.click(function(){
             var _t = $(this);
             if(_t.text().indexOf("+显示")>-1){
+                prettyPrint();
                 _t.find("+pre.prettyprint").show();
                 _t.text("-隐藏"+_t.text().slice(3));
             }else{
@@ -69,9 +70,7 @@ $(function(){
     try{
         $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
         <script type="text/javascript" src="../../api/prettify.js"></script>\
-        <script type="text/javascript">\
-            prettyPrint();\
-        </script>');
+        ');
     }catch(e){}
     $(".plain-anchor").linkbutton({
         plain:true
