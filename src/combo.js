@@ -23,7 +23,7 @@
         _844.css({ height: _842.height() + "px", lineHeight: _842.height() + "px" });
         
         _845._outerHeight(_842.height());
-        _843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
+        //_843.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : _842.outerWidth()), height: opts.panelHeight });
         _842.insertAfter(_83f);
     };
     function init(_847) {
@@ -187,6 +187,9 @@
         _863.panel("move", { left: _864(), top: _865() });
         if (_863.panel("options").closed) {
             _863.panel("open");
+            //resize不在初始化时做, 提升首屏速度
+            var co = _861.combo;
+            _863.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight });
             opts.onShowPanel.call(_860);
         }
         (function () {
