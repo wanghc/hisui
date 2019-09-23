@@ -190,6 +190,11 @@
             //resize不在初始化时做, 提升首屏速度
             var co = _861.combo;
             _863.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight });
+            if(_863.find(".datagrid").length>0){ 
+                // datagrid--width=0,height=0
+                $.data(_860, "combogrid").grid.datagrid("resize",{ width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight })
+            }
+            //---end 
             opts.onShowPanel.call(_860);
         }
         (function () {

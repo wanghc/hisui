@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-09-23 ##
+* 优化`combo`速度导致`combogrid`点击下拉箭头不能出来数据
+
 ## 2019-09-16 ##
 * `combo`组件在init时不调用panel的resize方法，优化速度20ms
 * api界面显示prettyprint速度优化
