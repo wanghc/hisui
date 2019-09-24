@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-09-24 ##
+* textarea,input,`validatebox`线框与宽度修改 
+
 ## 2019-09-23 ##
 * 优化`combo`速度导致`combogrid`点击下拉箭头不能出来数据
 
