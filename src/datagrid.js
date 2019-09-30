@@ -2335,6 +2335,7 @@
             });
         }, deleteRow: function (jq, _6c4) {
             return jq.each(function () {
+                _6c4 = parseInt(_6c4);  /** 当传入的rowIndex为字符串时（如"1"，+1后就变成了"11"，而不是期待的数字2) ,导致出现一行空白行*/
                 _623(this, _6c4);
             });
         }, getChanges: function (jq, _6c5) {

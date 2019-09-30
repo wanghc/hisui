@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2019-09-24 ##
+* 解决`datagrid`编辑行时，偶尔出现空白行的bug
+
+## 2019-09-24 ##
 * textarea,input,`validatebox`线框与宽度修改 
 
 ## 2019-09-23 ##
