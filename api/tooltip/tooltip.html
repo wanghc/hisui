@@ -22,8 +22,8 @@
 			鼠标移动到这
 		</a>
 	  	<a id="btn" class='hisui-linkbutton' href="javascript:void(0)" style='margin-left: 200px'>点我提示</a>
-		<pre class="prettyprint lang-html"><code>&lt;a id="tt1" href="#" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">鼠标移动到这(点击试试)&lt;/a></code></pre>
-		<pre class="prettyprint lang-js">
+		<pre class="prettyprint hide lang-html"><code>&lt;a id="tt1" href="#" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">鼠标移动到这(点击试试)&lt;/a></code></pre>
+		<pre class="prettyprint hide lang-js">
 $(function(){
 	$("#btn").click(function(){
 		$HUI.tooltip("#tt1",{position:'bottom'}).show();

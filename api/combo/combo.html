@@ -18,7 +18,7 @@
     <h3>如：</h3>
     <div class="demo-exp-code entry-content">
 		<input id="cc" placeholder="空面板">
-		<pre class="prettyprint lang-html"><code>&lt;input id="cc" placeholder="空面板"&gt;
+		<pre class="prettyprint hide lang-html"><code>&lt;input id="cc" placeholder="空面板"&gt;
 &lt;script type="text/javascript"&gt;
 $(function(){
 	var ccObj=$HUI.combo('#cc',{});
@@ -41,7 +41,7 @@ $(function(){
 				<input class='hisui-radio' type="radio" name="lang" value="06" label='CSS'>
 			</div>
 		</div>
-		<pre class="prettyprint lang-html"><code>&lt;select id="cc2" style="width:150px"&gt;&lt;/select&gt;
+		<pre class="prettyprint hide lang-html"><code>&lt;select id="cc2" style="width:150px"&gt;&lt;/select&gt;
 &lt;div id="sp"&gt;
 	&lt;div style="color:#99BBE8;background:#fafafa;padding:5px;"&gt;Select a language&lt;/div&gt;
 	&lt;div style="padding:10px"&gt;
@@ -53,7 +53,7 @@ $(function(){
 		&lt;input class='hisui-radio' type="radio" name="lang" value="06" label='CSS'&gt;
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
-		<pre class="prettyprint lang-js"><code>$(function(){
+		<pre class="prettyprint hide lang-js"><code>$(function(){
 	var cc2Obj=$HUI.combo('#cc2',{editable:false,placeholder:'输入查询条件'});
 	$('#sp').appendTo(cc2Obj.panel());
 	$('#sp input').radio({onCheckChange:function(e,v){

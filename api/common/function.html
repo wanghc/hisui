@@ -63,7 +63,7 @@
             console.log($.hisui.indexOfArray(arr,'id',2)); //1 根据id字段获取
             console.log($.hisui.indexOfArray(arr,'id',3)); //2
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.hisui.indexOfArray');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.indexOfArray');
 var item={id:'2',name:'李四'};
 var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
 console.log($.hisui.indexOfArray(arr,{id:'2',name:'李四'})); //-1 对象类型 不是同一引用就不是
@@ -124,7 +124,7 @@ console.log($.hisui.indexOfArray(arr,'id',3)); //2</code></pre>
             console.log(arr); //可以删掉 根据id字段名
 
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.hisui.removeArrayItem');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.removeArrayItem');
 var item={id:'2',name:'李四'};
 
 var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
@@ -194,7 +194,7 @@ console.log(arr); //可以删掉 根据id字段名</code></pre>
             console.log(arr); //根据id字段判断不存在 增加
 
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.hisui.addArrayItem');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.addArrayItem');
 var item={id:'2',name:'李四'};
 
 var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
@@ -254,7 +254,7 @@ console.log(arr); //根据id字段判断不存在 增加</code></pre>
             console.log($.hisui.getArrayItem(arr,'id',2)); // 根据id字段获取
             console.log($.hisui.getArrayItem(arr,'id',3)); 
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.hisui.getArrayItem');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.getArrayItem');
 var item={id:'2',name:'李四'};
 var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
 console.log($.hisui.getArrayItem(arr,'id',2)); // 根据id字段获取
@@ -273,7 +273,7 @@ console.log($.hisui.getArrayItem(arr,'id',3)); </code></pre>
             console.log($.hisui.getChineseSpellArray('你好,hello')) //只处理中文
             console.log($.hisui.getChineseSpellArray('俱往矣数风流人物还看今朝朝')) //多音字  多音字实际可以考虑语义、词库，但是这儿显然不可能
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.hisui.getChineseSpellArray');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.getChineseSpellArray');
 console.log($.hisui.getChineseSpellArray('你好')) 
 console.log($.hisui.getChineseSpellArray('你好,hello')) //英文字符不处理
 console.log($.hisui.getChineseSpellArray('俱往矣数风流人物还看今朝朝')) //多音字  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
@@ -290,7 +290,7 @@ console.log($.hisui.getChineseSpellArray('俱往矣数风流人物还看今朝�
             console.log($.hisui.toChineseSpell('你好,hello')) //只处理中文
             console.log($.hisui.toChineseSpell('俱往矣数风流人物还看今朝朝')) //多音字多音字只取第一个结果  多音字实际可以考虑语义、词库，但是这儿显然不可能
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.hisui.toChineseSpell');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.toChineseSpell');
 console.log($.hisui.toChineseSpell('你好')) 
 console.log($.hisui.toChineseSpell('你好,hello')) //英文字符不处理
 console.log($.hisui.toChineseSpell('俱往矣数风流人物还看今朝朝')) //多音字只取第一个结果  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
@@ -323,7 +323,7 @@ console.log($.hisui.toChineseSpell('俱往矣数风流人物还看今朝朝')) /
             console.log('test $.fn.datebox.defaults.formatter');
             console.log($.fn.datebox.defaults.formatter(new Date())) 
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.fn.datebox.defaults.formatter');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.fn.datebox.defaults.formatter');
 console.log($.fn.datebox.defaults.formatter(new Date())) </code></pre>
     </div>
     <!--******************************************华丽的分割线******************************************************-->
@@ -358,7 +358,7 @@ console.log($.fn.datebox.defaults.formatter(new Date())) </code></pre>
             console.log(datestr);
             console.log($.fn.datebox.defaults.parser(datestr)) ;
         </script>
-<pre class="prettyprint lang-js"><code>console.log('test $.fn.datebox.defaults.parser');
+<pre class="prettyprint hide lang-js"><code>console.log('test $.fn.datebox.defaults.parser');
 var date=new Date();
 console.log(date);
 var datestr=$.fn.datebox.defaults.formatter(date);
