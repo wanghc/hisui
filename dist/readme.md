@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-10-15 ##
+* 解决`combogrid`使用回车键选中下拉框数据时，会触发两次onSelect事件的bug
+
 ## 2019-10-14 ##
 * 默认隐藏js和html代码
 

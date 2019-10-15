@@ -197,7 +197,10 @@
         });
         /*当配匹值为空且enterNullValueClear为flase时不清空输入框。add wanghc 2018-5-22*/
         if(vv.length==0 && !opts.enterNullValueClear){
-        }else{
+        }
+        else if(vv.length==1 && opts.enterSelectRow){/*当enterSelectRow为true时不执行setValues方法，避免回车选中数据时多触发一次onSelect事件。add yp 2019-10-15*/
+        }
+        else{
             $(_91e).combogrid("setValues", vv);
         }
         if (!opts.multiple) {
@@ -269,7 +272,8 @@
         return $.extend({}, $.fn.combo.parseOptions(_928), $.fn.datagrid.parseOptions(_928), $.parser.parseOptions(_928, ["idField", "textField", "mode"]));
     };
     $.fn.combogrid.defaults = $.extend({}, $.fn.combo.defaults, $.fn.datagrid.defaults, {
-        loadMsg: null, idField: null, textField: null, mode: "local", keyHandler: {
+         /*enterSelectRow判断 是否通过回车选中下拉框的数据。by yp */
+         enterSelectRow: false, loadMsg: null, idField: null, textField: null, mode: "local", keyHandler: {
             up: function (e) {
                 nav(this, "prev");
                 e.preventDefault();
@@ -279,7 +283,10 @@
             }, left: function (e) {
             }, right: function (e) {
             }, enter: function (e) {
+                /*当通过回车键选中下拉框的数据时，修改enterSelectRow属性。add yp 2019-10-15*/
+                $.data(this, "combogrid").options.enterSelectRow = true;
                 _91d(this);
+                $.data(this, "combogrid").options.enterSelectRow = false;
             }, query: function (q, e) {
                 _91a(this, q);
             }
