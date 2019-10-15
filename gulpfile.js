@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     notify=require('gulp-notify');   //提示
     //foal = require('gulp-foal');    //传参
+    prettier = require("gulp-prettier");   //格式化
 var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagination','tree','progressbar','tooltip','panel','window','dialog','messager',
 'accordion','tabs','layout','menu','menubutton','splitbutton','searchbox','validatebox','form','numberbox','calendar',
 'spinner','numberspinner','timespinner','datagrid','propertygrid','treegrid','combo','combobox','combotree','combogrid',
@@ -144,6 +145,12 @@ gulp.task('min-css',['css'],function(){
 gulp.task('default',['min-js','min-css'],function(){
     gulp.src("dist/js/jquery.hisui.min.js")
     .pipe(rename('jquery.hisui.js'))
+    .pipe(
+        prettier({
+          singleQuote: true,
+          trailingComma: "all"
+        })
+      )
     .pipe(gulp.dest("dist/js"))
     .pipe(notify({message:'copy min js to js success!'}));
 });

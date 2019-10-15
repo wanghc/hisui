@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2019-10-15 ##
+* 解压缩jquery.hisui.js
+
+## 2019-10-15 ##
 * 解决`combogrid`使用回车键选中下拉框数据时，会触发两次onSelect事件的bug
 
 ## 2019-10-14 ##
