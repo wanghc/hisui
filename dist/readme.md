@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2019-10-19 ##
+* 修改gulp生成,先生成调试js,再生成min.js
+
 ## 2019-10-15 ##
 * 解压缩jquery.hisui.js
 
