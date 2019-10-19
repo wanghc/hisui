@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2019-10-19 ##
 * 修改gulp生成,先生成调试js,再生成min.js
+* 优化`datagrid`加载速度. IE11下200行20列1-2秒加载
 
 ## 2019-10-15 ##
 * 解压缩jquery.hisui.js

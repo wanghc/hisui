@@ -410,7 +410,7 @@
                             td.append("<div class=\"datagrid-cell\"><span></span><span class=\"datagrid-sort-icon\"></span></div>");
                             $("span", td).html(col.title);
                             $("span.datagrid-sort-icon", td).html(""); //html("&nbsp;");-html(""); neer 2019-4-4 当align:'right'时列头与内容没对齐
-                            var cell = td.find("div.datagrid-cell");
+                           var cell = td.find("div.datagrid-cell");
                             var pos = _502(_553, col.field);
                             if (pos >= 0) {
                                 cell.addClass("datagrid-sort-" + _554[pos]);
@@ -2432,7 +2432,8 @@
                     _6d5.push("</tr>");
                 }
                 _6d5.push("</tbody></table>");
-                $(_6d1).html(_6d5.join(""));
+                //$(_6d1).html(_6d5.join("")); // IE中提升速度
+                $(_6d1)[0].innerHTML =_6d5.join(""); 
             }else{
                 // 增加判断,空数据增加滚动条 2018-12-20 wanghc
                 $(_6d1).html("<div style='width:"+_6d3.dc.view2.find(".datagrid-header-row").width()+"px;border:solid 0px;height:1px;'></div>");
