@@ -38,6 +38,13 @@ $("#btn").linkbutton("disable");
 * 解决选中`combobox`某行后再取消选中时，获取的值是undefined的bug
 * 解决`popover`的cache属性是false时，重建了popover后内容没有重建的bug
 
+## 2019-10-21 ##
+* 修复能把`panel`,`window`,`dialog`拖动到小于(0,0)的位置
+
+## 2019-10-19 ##
+* 修改gulp生成,先生成调试js,再生成min.js
+* 优化`datagrid`加载速度. IE11下200行20列1-2秒加载
+
 ## 2019-10-15 ##
 * 解压缩jquery.hisui.js
 
