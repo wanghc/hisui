@@ -331,6 +331,10 @@
     };
     function _887(_888) {
         var _889 = _87d(_888);
+        // yp 2019-10-21 判断值是否是undefined，避免getValue方法获取的值是undefined
+        if(typeof _889[0] == "undefined"){
+            _889[0] = "";
+        }
         return _889[0];
     };
     function _88a(_88b, _88c) {

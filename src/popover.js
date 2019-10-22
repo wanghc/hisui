@@ -54,7 +54,13 @@
         hide:function(jq){
             return jq.each(function(){
                 var _t = $(this);
-                _t.webuiPopover('hide');
+                // yp 2019-10-22 判断cache是否是false，避免cache是false的时候无法彻底销毁popover，导致popover重构出错
+                if(!$.data(this, 'popover').options.cache){
+                    _t.webuiPopover('destroy');
+                }
+                else{
+                    _t.webuiPopover('hide');
+                }
             });
         },
         destroy:function(jq){
