@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2019-10-22 ##
+* `datagrid`加载速度优化
+* 修复`panel`,`window`,`dialog`移动到负数位置BUG
+
 ## 2019-08-19 ##
 * `menu`与`menubutton`支持`isTopZindex`属性
 

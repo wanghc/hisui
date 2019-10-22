@@ -62,6 +62,8 @@
                 opts.top = _1eb.top;
             }
         }
+        if(opts.left<0){opts.left = 0; }
+        if(opts.top<0){opts.top = 0; }
         _1ec.css({ left: opts.left, top: opts.top });
         opts.onMove.apply(_1ea, [opts.left, opts.top]);
     };
