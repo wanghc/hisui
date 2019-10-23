@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-10-23 ##
+* 增加5个大图标
+
 ## 2019-10-22 ##
 * 解决选中`combobox`某行后再取消选中时，获取的值是undefined的bug
 * 解决`popover`的cache属性是false时，重建了popover后内容没有重建的bug
