@@ -562,5 +562,10 @@ var iconDictionary={
     "icon-big-conical-bottle":"检验设备",
     "icon-big-patient-mach":"康复设备",
     "icon-big-movie-mach":"影像设备",
-    "icon-big-chopsticks-bowl":"中医设备"
+    "icon-big-chopsticks-bowl":"中医设备",
+    "icon-big-rectangle-tree":"会诊构成",
+    "icon-big-message-clock":"会诊及时率",
+    "icon-big-message-cate":"会诊类别",
+    "icon-big-message-colum":"会诊量",
+    "icon-big-message-pen":"手术会诊"
 };
