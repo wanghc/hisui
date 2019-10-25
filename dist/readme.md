@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-10-24 ##
+* messager不再支持$g
+
 ## 2019-10-23 ##
 * 增加5个大图标
 
