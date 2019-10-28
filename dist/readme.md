@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-10-28 ##
+* 修改`datagrid`、`filebox`、`searchbox`、`triggerbox`的边框颜色为新版配色
+
 ## 2019-10-23 ##
 * 增加5个大图标
 
