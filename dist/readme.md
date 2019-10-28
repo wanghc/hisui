@@ -37,6 +37,9 @@ $("#btn").linkbutton("disable");
 ## 2019-10-28 ##
 * 修改`datagrid`、`filebox`、`searchbox`、`triggerbox`的边框颜色为新版配色
 
+## 2019-10-24 ##
+* messager不再支持$g
+
 ## 2019-10-23 ##
 * 增加5个大图标
 
