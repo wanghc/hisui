@@ -627,35 +627,31 @@
 /*gray 且选中蓝条在下方*/
 .tabs-gray-btm{
   .tabs-header, .tabs-tool{
-    background-color: #eeeeee;
-    border-color: #eeeeee;
+    background-color: @tabs-header-gray-bgcolor;
+    border-color: @tabs-header-gray-bgcolor;
   }
   .tabs-panels{
     border-color:#ffffff;
-  }
-  /*
+  }  
   .tabs{
     border-bottom:1px solid #cccccc;
-  }*/
-  .tabs li a.tabs-inner{
-    background-color:#eeeeee;
   }
   .tabs li a.tabs-inner{
-    border-top: 0px solid #eeeeee;
-    border-bottom: 2px solid #eeeeee;
+    background-color:@tabs-header-gray-bgcolor;
+    border-top: 0px solid @tabs-header-gray-bgcolor;
+    border-bottom: 3px solid @tabs-header-gray-bgcolor;
     color: #000000;
+    &:hover{
+      background: @tabs-header-gray-select-bgcolor;
+      color: #000000;
+      filter: none;
+      border-bottom: 3px solid @tabs-header-gray-select-top-color;
+    }
   }
   .tabs li.tabs-selected a.tabs-inner {
-    border-top: 0px solid #eeeeee;
-    border-bottom: 3px solid #0063A7;
-    background: #ffffff;
-  }
-  .tabs li a.tabs-inner:hover {
-    border-top-color: #017bce;
-    background: #ffffff;
-    color: #000000;
-    filter: none;
-    border-bottom: 3px solid #0063A7;
+    border-top: 0px solid @tabs-header-gray-bgcolor;
+    border-bottom: 3px solid @tabs-header-gray-select-top-color;
+    background: @tabs-header-gray-select-bgcolor;
   }
   .tabs li:not(:last-child)::after {
     content: '';
@@ -663,12 +659,15 @@
     height: 20px;
     width: 0;
     vertical-align: middle;
-    border-left: 1px solid #cccccc;
-    border-right: 1px solid #eeeeee;
+    border-left: 1px solid @tabs-header-gray-border;
+    border-right: 1px solid @tabs-header-gray-bgcolor;
     margin-left: 1px;
   }
   .tabs li a.tabs-close {
-      background-position-x: 0;
-    margin-top:-11px;
+    background-position-x: 0;
+    margin-top:-13px;
+    &:hover{
+      background: url(images/tabs_icons_2.png) no-repeat -36px 0;
+    }
   }
 }
