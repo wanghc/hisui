@@ -29,10 +29,13 @@
                     var val = $(this).is(':checked');
                     if(val){
                         if (opts.onChecked) opts.onChecked.call(this,e,true);
+                        if (opts.ifChecked) opts.ifChecked.call(this,e,true);
                     }else{
                         if (opts.onUnchecked) opts.onUnchecked.call(this,e,false);
+                        if (opts.ifUnchecked) opts.ifUnchecked.call(this,e,false);
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
+                    if (opts.ifToggled) opts.ifToggled.call(this,e,val);
                 //}
                 //e.stopPropagation();
                 //return false;
@@ -229,6 +232,9 @@
         checked:false,
         onCheckChange:null,
         onChecked:null,
-        onUnchecked:null
+        onUnchecked:null,
+        ifChecked:null,
+        ifUnchecked:null,
+        ifToggled:null
 	};
 })(jQuery);
