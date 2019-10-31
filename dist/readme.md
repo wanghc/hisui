@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-10-31 ##
+* `tabs`增加tabs-gray-btm样式类
 
 ## 2019-10-22 ##
 * `datagrid`加载速度优化
