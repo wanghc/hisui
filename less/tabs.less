@@ -624,3 +624,51 @@
     }
   }
 }
+/*gray 且选中蓝条在下方*/
+.tabs-gray-btm{
+  .tabs-header, .tabs-tool{
+    background-color: #eeeeee;
+    border-color: #eeeeee;
+  }
+  .tabs-panels{
+    border-color:#ffffff;
+  }
+  /*
+  .tabs{
+    border-bottom:1px solid #cccccc;
+  }*/
+  .tabs li a.tabs-inner{
+    background-color:#eeeeee;
+  }
+  .tabs li a.tabs-inner{
+    border-top: 0px solid #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+    color: #000000;
+  }
+  .tabs li.tabs-selected a.tabs-inner {
+    border-top: 0px solid #eeeeee;
+    border-bottom: 3px solid #0063A7;
+    background: #ffffff;
+  }
+  .tabs li a.tabs-inner:hover {
+    border-top-color: #017bce;
+    background: #ffffff;
+    color: #000000;
+    filter: none;
+    border-bottom: 3px solid #0063A7;
+  }
+  .tabs li:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 0;
+    vertical-align: middle;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #eeeeee;
+    margin-left: 1px;
+  }
+  .tabs li a.tabs-close {
+      background-position-x: 0;
+    margin-top:-11px;
+  }
+}

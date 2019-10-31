@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## ##
 * 为`checkbox`增加ifChecked,ifUnchecked,ifToggled三个事件，兼容老版接口-有某些产品组使用
+* 为`tabs`增加tabs-gray-btm样式
 
 ## 2019-10-29 ##
 * 修改`tree`的一行描述过长时，选中该行后文字底色显示不全的bug
