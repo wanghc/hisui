@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-11-01 ##
+* 增加32个小图标
+
 ## 2019-10-31 ##
 * 修改对当`tree`的一行元素的文字长度超过了父元素的宽度时，该行被选中后超出的文字没有底色的bug的解决方法
 * 为`checkbox`增加ifChecked,ifUnchecked,ifToggled三个事件，兼容老版接口-有某些产品组使用
@@ -50,7 +53,6 @@ $("#btn").linkbutton("disable");
 
 ## 2019-10-23 ##
 * 增加5个大图标
-
 ## 2019-10-22 ##
 * 解决选中`combobox`某行后再取消选中时，获取的值是undefined的bug
 * 解决`popover`的cache属性是false时，重建了popover后内容没有重建的bug
