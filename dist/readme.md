@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-11-05 ##
+* 为`checkbox`与`radio`增加boxPosition属性
 ## 2019-10-31 ##
 * 为`checkbox`增加ifChecked,ifUnchecked,ifToggled三个事件，兼容老版接口-有某些产品组使用
 * 为`tabs`增加tabs-gray-btm样式

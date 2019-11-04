@@ -1,24 +1,37 @@
 label.checkbox,label.radio{
+  background: url('@{images-path}/checkbox-v.png') no-repeat;
   padding-left: 24px;
   cursor:pointer;
   line-height:22px;
   height: 21px;
   vertical-align:middle;
   display:inline-block;
+  &.right{
+    padding-left: 0px;
+    padding-right: 24px;
+  }
 }
 label.radio{
-	background: url('@{images-path}/checkbox-v.png') no-repeat 0 -120px;
-  &:hover{background-position:0 -144px;}
-  &.hover{background-position:0 -144px;}
-  &.checked {background-position:0 -168px;} 
-  &.disabled{background-position:0 -192px;}
-  &.checked.disabled{background-position:0 -216px;}
+  background-position-x:0 ;
+  background-position-y:-120px;
+  &:hover{background-position-y:-144px;}
+  &.hover{background-position-y:-144px;}
+  &.checked {background-position-y:-168px;} 
+  &.disabled{background-position-y:-192px;}
+  &.checked.disabled{background-position-y:-216px;}
+  &.right{
+    background-position-x: right;
+  }
 }
 label.checkbox,label.hischeckbox_square-blue.radio {
-  background: url('@{images-path}/checkbox-v.png') no-repeat;
-  &:hover{background-position:0 -24px;}
-  &.hover{background-position:0 -24px;}
-  &.checked {background-position:0 -48px;} 
-  &.disabled{background-position:0 -72px;}
-  &.checked.disabled{background-position:0 -96px;}
+  background-position-x: 0;
+  background-position-y: 0;
+  &:hover{background-position-y:-24px;}
+  &.hover{background-position-y:-24px;}
+  &.checked {background-position-y:-48px;} 
+  &.disabled{background-position-y:-72px;}
+  &.checked.disabled{background-position-y:-96px;}
+  &.right {
+    background-position-x:right;
+  }
 }

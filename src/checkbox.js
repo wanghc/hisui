@@ -16,6 +16,7 @@
         if (!t.hasClass('checkbox-f')){
             t.addClass('checkbox-f');                //在原dom增加类checkbox-f
             var labelHtml = '<label class="checkbox';
+            if (opts.boxPosition=="right"){labelHtml +=' right';}
             if (opts.disabled){labelHtml += ' disabled'; }
             if (opts.checked){labelHtml += ' checked'; }
             labelHtml += '">'+opts.label+'</label>';
@@ -228,6 +229,7 @@
     $.fn.checkbox.defaults = {
         id:null,
         label:'',
+        boxPosition:"left",
 		disabled:false,
         checked:false,
         onCheckChange:null,

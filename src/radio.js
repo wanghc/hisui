@@ -18,6 +18,7 @@
         if (!t.hasClass('radio-f')){
             t.addClass('radio-f')                //在原dom增加类radio-f
             var labelHtml = '<label class="radio';
+            if (opts.boxPosition=="right"){labelHtml +=' right';}
             if (opts.radioClass){ labelHtml+=" hischeckbox_square-blue";}
             if (opts.disabled){ labelHtml += ' disabled';}
             if (opts.checked){ labelHtml += ' checked';}
@@ -259,6 +260,7 @@
         id:null,
         label:'',
         name:'',
+        boxPosition:"left",
         radioClass:"",
 		disabled:false,
         checked:false,

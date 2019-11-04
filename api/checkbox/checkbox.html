@@ -13,14 +13,14 @@
     <h2>选择框, 通过图片得到蓝色系勾选框</h2>
     <h3>说明:</h3>
     <span>点击勾选，常用于多项选择。</span>
-    <h3>如：</h3>
+    <h3>一.各种状态例子</h3>
     <div class="demo-exp-code entry-content"> 
         <div style="padding: 5px">
             <input class='hisui-checkbox' type="checkbox" data-options="onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
-            <input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选"/>
-            <input class='hisui-checkbox' type="checkbox" checked label="勾选"/>
-            <input class='hisui-checkbox' type="checkbox" disabled label="禁用"/>
-            <input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用"/>
+            <input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选" id="cb2"/>
+            <input class='hisui-checkbox' type="checkbox" checked label="勾选" id="cb3"/>
+            <input class='hisui-checkbox' type="checkbox" disabled label="禁用" id="cb4"/>
+            <input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" id="cb5"/>
             <pre class="prettyprint lang-html hide">
 <code>&lt;input class='hisui-checkbox' type="checkbox" data-options="onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"&gt;
 &lt;input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选"&gt;
@@ -30,6 +30,24 @@
 </code></pre>
         </div>
    </div>
+   <h3>二. 框在文本右边(<code>right</code>)</h3>
+    <div class="demo-exp-code entry-content"> 
+        <div style="padding: 5px">
+            <input class='hisui-checkbox' type="checkbox" data-options="boxPosition:'right',onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="cb11"/>
+            <input class='hisui-checkbox' type="checkbox" data-options="checked:true,boxPosition:'right'" label="勾选" id="cb12"/>
+            <input class='hisui-checkbox' type="checkbox" checked label="勾选" data-options="boxPosition:'right'" id="cb13"/>
+            <input class='hisui-checkbox' type="checkbox" disabled label="禁用" data-options="boxPosition:'right'" id="cb14"/>
+            <input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" data-options="boxPosition:'right'" id="cb15"/>
+            <pre class="prettyprint lang-html hide">
+<code>&lt;input class='hisui-checkbox' type="checkbox" data-options="boxPosition:'right',onCheckChange:function(event,value){console.log(value)}" label="正常"&gt;
+&lt;input class='hisui-checkbox' type="checkbox" data-options="checked:true,boxPosition:'right'" label="勾选"&gt;
+&lt;input class='hisui-checkbox' type="checkbox" checked label="勾选" data-options="boxPosition:'right'" &gt;
+&lt;input class='hisui-checkbox' type="checkbox" disabled label="禁用" data-options="boxPosition:'right'" &gt;
+&lt;input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" data-options="boxPosition:'right'" &gt;
+</code></pre>
+        </div>
+   </div>
+   
     <div>
         <h3>复选框组件的相关配置、事件、方法</h3>
         <table class="table">
@@ -62,6 +80,12 @@
                 <td>是否选中。默认不选中</td>
                 <td>false</td>
                 <td></td>
+            </tr>
+            <tr>
+                <td>boxPosition</td>
+                <td>勾选框位置</td>
+                <td>'left'</td>
+                <td>可选'right'<code>20191104</code></td>
             </tr>
             <tr class="evttitle">
                 <th>事件名</th>
