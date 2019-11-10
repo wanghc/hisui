@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../src/jquery.hisui.src.js"></script>
+</head>
+<body>
+        <div class="hisui-tabs" fit="true">
+            
+            <div id="QueryDiv" title="aaa" border="false" style="overflow:hidden; padding:10px;">
+                <div class="hisui-layout" id="layout1" fit="true" border="false">
+                    <div class="hisui-layout" id="layout2" data-options="region:'west'" style="width:240px;">
+                        <div data-options="region:'north'" id="layout2north" style="height:270px;">north</div>
+                        <div data-options="region:'center'" id="layout2center" style="border:1px solid red;">
+                            center,修改前我不能显示,height为0
+                        </div>
+                    </div>
+                    <div border="false" data-options="region:'center'" id="layout1center" style="overflow:hidden; ">
+                    center2
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        function startMu(){
+            $("#layout2center").bind("_resize", function () {
+                debugger;
+            });
+            var targetNode = document.getElementById("layout2");
+            var cfg = {attributes:true};
+            var callback = function(mlist,observer){
+                for(var mitem of mlist){                
+                    if (mitem.type=="attributes"){
+                        if(mitem.attributeName=='style'){
+                            debugger;
+                        }
+                    }
+                }
+            }
+            var observer = new MutationObserver(callback);
+            observer.observe(targetNode,cfg);
+            //observer.disconnect();
+        }
+        </script>
+</body>
+</html>

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2019-11-10 ##
+* `layout`的东南西北四区域中包含layout时，不能自适应问题
+
 ## 2019-11-05 ##
 * 为`checkbox`与`radio`增加boxPosition属性
 

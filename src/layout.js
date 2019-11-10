@@ -1,5 +1,6 @@
 (function ($) {
     var _362 = false;
+    // layout.resize
     function _363(_364) {
         var _365 = $.data(_364, "layout");
         var opts = _365.options;
@@ -10,7 +11,6 @@
         } else {
             opts.fit ? cc.css(cc._fit()) : cc._fit(false);
         }
-        var cpos = { top: 0, left: 0, width: cc.width(), height: cc.height() };
         var cpos = { top: 0, left: 0, width: cc.width(), height: cc.height() };
 		/*在body内实现padding=10px的layout时,底部没有padding问题 by wanghc */
 		if (_364.tagName !== "BODY"){
@@ -24,6 +24,7 @@
         _369(_368(_366.expandEast) ? _366.expandEast : _366.east, "e");
         _369(_368(_366.expandWest) ? _366.expandWest : _366.west, "w");
         _366.center.panel("resize", cpos);
+        resizeSubLayout(_366);
         function _36a(pp) {
             var opts = pp.panel("options");
             return Math.min(Math.max(opts.height, opts.minHeight), opts.maxHeight);
@@ -69,6 +70,25 @@
             }
         };
     };
+    /*如果w,n,s,e包含layout也得再次触发resize,再例子layout-bug20191110.html*/
+    function resizeSubLayout(myObj){
+        var subLayoutTarget = "";
+        if(myObj.north.hasClass("layout")){
+            subLayoutTarget = myObj.north[0];
+        }
+        if(myObj.south.hasClass("layout")){
+            subLayoutTarget = myObj.south[0];
+        }
+        if(myObj.east.hasClass("layout")){
+            subLayoutTarget = myObj.east[0];
+        }
+        if(myObj.west.hasClass("layout")){
+            subLayoutTarget = myObj.west[0];
+        }
+        if($.data(subLayoutTarget, "layout")){ //判断子也初始化过,才去reszie
+            _363(subLayoutTarget);
+        }
+    }
     function init(_36e) {
         var cc = $(_36e);
         cc.addClass("layout");
