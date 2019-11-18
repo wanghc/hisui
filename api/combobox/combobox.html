@@ -297,7 +297,58 @@ $(function(){
 		});
 	});
   </script>
-
+<h3>七、数据延迟</h3>
+<div class="demo-exp-code entry-content">
+	<select id="loaddataCB" style="width:200px;"></select>
+	<pre class="prettyprint lang-js hide"><code>$(function(){
+	$("#loaddataCB").combobox({  
+		valueField: 'id',
+		textField: 'text',
+		value:20,data:[{id:20,text:"中国"}], //当前框中默认选中【中国】，如果默认空时可以去掉这行
+		onShowPanel: function () { // 只有在下拉层显示时,才去关联url拉取数据,提高首屏速度
+			var url = $(this).combobox('options').url;
+			if (!url){
+				//$(this).combobox('options').mode = 'remote';
+				var url = $URL+"?ClassName=web.Nation&QueryName=Find&ResultSetType=array";
+				$(this).combobox('reload',url);
+			}
+		},
+		onBeforeLoad: function(param){
+			param.ndesc = param.q;
+		}
+	}); 
+	// $("#loaddataCB").combobox("setValue","20").combobox("setText","中国");
+});</code></pre>
+  </div>
+  <script type="text/javascript">
+$(function(){
+	Mock.mock("FindNation",function(param){
+		return [{id:1,text:"美国"},{id:19,text:"英国"},{id:20,text:"中国"},{id:21,text:"德国"},{id:22,text:"法国"}];
+		
+	});
+	$("#loaddataCB").combobox({  
+		valueField: 'id',
+		textField: 'text',
+		value:20,data:[{id:20,text:"中国"}], //当前框中默认选中【中国】，如果默认空时可以去掉这行
+		onShowPanel: function () { // 只有在下拉层显示时,才去关联url拉取数据,提高首屏速度
+			var url = $(this).combobox('options').url;
+			if (!url){
+				//var url = $URL+"?ClassName=web.Nation&QueryName=Find&ResultSetType=array";
+				//$(this).combobox('reload',url);
+				//var url = "FindNation" ;
+				//$(this).combobox('reload',url);
+				//$(this).combobox('options').mode = 'remote';
+				$(this).combobox('options').url = "FindNation";
+				$(this).combobox('reload');
+			}
+		},
+		onBeforeLoad: function(param){
+			param.ndesc = param.q;
+		}
+	}); 
+	//$("#loaddataCB").combobox("setValue","20").combobox("setText","中国");
+});
+  </script>
   <table class="table">
 		<tr class="protitle">
 			<th>属性</th>
