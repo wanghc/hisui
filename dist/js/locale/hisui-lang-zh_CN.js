@@ -48,6 +48,10 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.okText = '确定';
 	$.fn.datebox.defaults.missingMessage = '该输入项为必输项';
 	$.fn.datebox.defaults.rules.datebox.message = '非法日期,正确格式:2019-01-06';
+	$.fn.datebox.defaults.rules.minMaxDate.messageMax = '日期必须小于{1}';
+	$.fn.datebox.defaults.rules.minMaxDate.messageMin = '日期必须大于{0}';
+	$.fn.datebox.defaults.rules.minMaxDate.message = '非有效日期范围';
+	$.fn.datebox.defaults.rules.minMaxDate.messageDef = '有效日期范围：{0} 至 {1}';
 	$.fn.datebox.defaults.formatter = function(date){
 		var y = date.getFullYear();
 		var m = date.getMonth()+1;

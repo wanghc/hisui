@@ -34,8 +34,13 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2019-11-26 ##
+* `datebox`增加`minDate`,`maxDate`属性
+
 ## 2019-11-25 ##
-* radio增加`required`选项.默认false为可取消选中
+* `radio`增加`required`选项.默认false为可取消选中
+
 
 ## 2019-11-18 ##
 * 解决消息框`messager`的提示内容为英文且过长时，超出消息框的提示内容没有显示的bug

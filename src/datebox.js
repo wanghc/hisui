@@ -83,6 +83,19 @@
 					setValue(this.target, opts.formatter.call(this.target, date));
 					$(this.target).combo('hidePanel');
 					opts.onSelect.call(target, date);
+				},
+				validator: function(date){
+					var tmpState = $.data(target, 'datebox');
+					var tmpOpt = tmpState.options;
+					if (null != tmpOpt.minDate){
+						var d1 = tmpOpt.parser.call(target, tmpOpt.minDate);
+						if (d1>date) return false;
+					}
+					if (null != tmpOpt.maxDate){
+						var d2 = tmpOpt.parser.call(target, tmpOpt.maxDate);
+						if (d2<date) return false;
+					}
+					return true;
 				}
 			});
 //			setValue(target, opts.value);
@@ -245,7 +258,7 @@
 	$.fn.datebox.parseOptions = function(target){
 		return $.extend({}, $.fn.combo.parseOptions(target), $.parser.parseOptions(target, ['sharedCalendar']));
 	};
-	
+
 	$.fn.datebox.defaults = $.extend({}, $.fn.combo.defaults, {
 		panelWidth:180,
 		panelHeight:'auto',
@@ -300,17 +313,41 @@
 			doBlur(target);
 		},
         onSelect:function(date){},
-		validType:'datebox',
-		validParams:"YMD",
-        rules: {
-            datebox: {
-                validator: function (_442,params) {
-					if (params=="YMD"){
-						return validDate(_442);
+		validType:['datebox["YMD"]','minMaxDate[null,null]'],
+		//validParams:"YMD",
+		minDate:null,
+		maxDate:null
+	});
+	/*20191120 单独extend,不然会覆盖validatebox的rules*/
+	$.extend($.fn.datebox.defaults.rules, {
+		datebox: {
+			validator: function (_442,params) {
+				if (params==["YMD"]){
+					return validDate(_442);
+				}
+				return true;
+			}, message:"Please enter a valid date."
+		},
+		minMaxDate:{
+			validator: function (_442,params) {
+				var target = $(this).closest('.datebox').prev()[0];
+				if (target){
+					var state = $.data(target, 'datebox');
+					var tmpOpt = state.options;
+					var v = tmpOpt.parser.call(target, _442);
+					params[0] = tmpOpt.minDate;
+					params[1] = tmpOpt.maxDate;
+					if(tmpOpt.minDate==null&&$.fn.datebox.defaults.rules.minMaxDate.messageMax){
+						$.fn.datebox.defaults.rules.minMaxDate.message = $.fn.datebox.defaults.rules.minMaxDate.messageMax;
+					}else if(tmpOpt.maxDate==null&&$.fn.datebox.defaults.rules.minMaxDate.messageMin){
+						$.fn.datebox.defaults.rules.minMaxDate.message = $.fn.datebox.defaults.rules.minMaxDate.messageMin;
+					}else{
+						$.fn.datebox.defaults.rules.minMaxDate.message = $.fn.datebox.defaults.rules.minMaxDate.messageDef;
 					}
-					return true;
-                }, message:"Please enter a valid date."
-            }
-        }
+					return state.calendar.calendar('options').validator(v);
+				}
+				return true;
+			}, message:"Please enter a valid date.", messageDef:"Please enter a valid date."
+		}
 	});
 })(jQuery);
