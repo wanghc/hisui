@@ -348,6 +348,8 @@
                     if (!oldValue || oldValue.getTime() != date.getTime()) {
                         opts.onChange.call(this, opts.current, oldValue);
                     }
+                }else{
+                    show(this); //日期不在要求日期范围(datebox-minDate~datebox-maxDate)内,得重划calendar 20191126 by wanghc
                 }
             });
         }

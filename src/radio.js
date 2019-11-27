@@ -16,7 +16,8 @@
         
         opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
         if (!t.hasClass('radio-f')){
-            t.addClass('radio-f')                //在原dom增加类radio-f
+            var optRequired = opts.required;
+            t.addClass('radio-f');                //在原dom增加类radio-f
             var labelHtml = '<label class="radio';
             if (opts.boxPosition=="right"){labelHtml +=' right';}
             if (opts.radioClass){ labelHtml+=" hischeckbox_square-blue";}
@@ -26,7 +27,7 @@
             var objlabel = $(labelHtml).insertAfter(t);
             /**事件转到input上*/
             objlabel.unbind('click').bind('click.radio',function(e){
-                setValue(target,!$(this).hasClass('checked'));
+                setValue(target,!$(this).hasClass('checked'),!optRequired);
             });
             t.unbind('click').bind('click.radio',function(e){
                 if ($(this).prop("disabled")==false){
@@ -67,7 +68,7 @@
                       if ($(event.target).is('a')) {
                         return;
                       }
-                      setValue(target,!objlabel.hasClass('checked')); //此处也和objlabel 点击取值一致
+                      setValue(target,!objlabel.hasClass('checked'),!optRequired); //此处也和objlabel 点击取值一致
                     } else {
                       // mouseout|touchend
                       if (/ut|nd/.test(type)) {
@@ -265,7 +266,8 @@
 		disabled:false,
         checked:false,
         onCheckChange:null,
-        onChecked:null
+        onChecked:null,
+        required:false /*20191125--默认可以取消选中*/
 	};
 	
 })(jQuery);

@@ -36,8 +36,9 @@
 						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
 					</td>
 					<td class='r-label'>
-							<a class="hisui-linkbutton" id="dbBtn">获取值</a>
-						</td>
+						<a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期</a>
+						<a class="hisui-linkbutton" id="dbBtn">获取值</a>
+					</td>
 				</tr>
 				<tr>
 					<td class='r-label'>结算时间</td>
@@ -69,6 +70,7 @@
 			&lt;input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
 		&lt;/td>
 		&lt;td class='r-label'>
+			&lt;a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期&lt;/a>
 			&lt;a class="hisui-linkbutton" id="dbBtn">获取值&lt;/a>
 		&lt;/td>
 	&lt;/tr>
@@ -87,6 +89,15 @@
 function onSelect(date){
 	$('#result').text(date)
 }
+$("#setDateDisBtn").click(function(){
+	var now = new Date();
+	var now6 = new Date();
+	now6.setTime(now.getTime()+(6*24*60*60*1000));
+	var opt = $("#db").datebox('options');
+	opt.minDate = opt.formatter(now); //'2019-11-24';
+	opt.maxDate = opt.formatter(now6); //'2019-11-30';
+	$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
+});
 &lt;/script&gt;	
 	</pre>
 
@@ -99,6 +110,15 @@ function onSelect(date){
 			$("#samthBtn").click(function(){
 				var val = $("#samth").datebox('getValue');
 				$.messager.alert( "提示",val);
+			});
+			$("#setDateDisBtn").click(function(){
+				var now = new Date();
+				var now6 = new Date();
+				now6.setTime(now.getTime()+(6*24*60*60*1000));
+				var opt = $("#db").datebox('options');
+				opt.minDate = opt.formatter(now); //'2019-11-24';
+				opt.maxDate = opt.formatter(now6); //'2019-11-30';
+				$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
 			});
 			$("#dbBtn").click(function(){
 				var val = $("#db").datebox('getValue');
@@ -127,9 +147,21 @@ function onSelect(date){
 	</tr>
 	<tr>
 		<td>validParams</td>
-		<td>默认值为YMD.表示日期显示成YYYY-MM-DD</td>
+		<td>默认值为YMD。表示日期显示成YYYY-MM-DD</td>
 		<td>YMD</td>
 		<td>如果是其它格式则不强制检查. 如配置成YM再实现formatter可实现例1效果<code>2019-07-05</code></td>
+	</tr>
+	<tr>
+		<td>minDate</td>
+		<td>可选最小日期。如:2019-11-25</td>
+		<td>默认null</td>
+		<td><code>2019-11-26</code></td>
+	</tr>
+	<tr>
+		<td>maxDate</td>
+		<td>可选最大日期。如:2019-11-25</td>
+		<td>默认null</td>
+		<td><code>2019-11-26</code></td>
 	</tr>
 </table>
 <prettyprint/>
