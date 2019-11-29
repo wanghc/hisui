@@ -109,6 +109,7 @@
                 }
             }
             ,clickDelay:200 //cryze 2019-09-10 datagrid 的点击支持防抖 
+            ,lookup:$(target) //反向绑定 可以根据grid 获取到当前lookup元素
         }));
         state.previousValue=undefined;
 		
