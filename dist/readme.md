@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-12 ##
+* 解决`tree`选中大节点时背景色变黄问题. 
+* 
+*
+
 ## 2019-11-29 ##
 * `lookup`在展开面板时，把当前元素jq对象绑定到grid的`options.lookup`上，可通过`grid.datagrid('options').lookup`获取到当前`lookup`的jq对象
 
