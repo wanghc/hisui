@@ -50,10 +50,20 @@
         }
         _1e6.css("height", "");
         opts.onResize.apply(_1e4, [opts.width, opts.height]);
-        /*wanghc 2019-11-10 增加each . 否则只触发find->[0]对应的事件*/
+        
+        var childList = _1e4.children;
+        for(var i=0; i<childList.length; i++){
+            if(childList[i].tagName.toUpperCase()=="DIV" || childList[i].tagName.toUpperCase()=="FORM" ){
+                if(childList[i].style && childList[i].style.display!='none'){
+                    $(childList[i]).triggerHandler("_resize");
+                }
+            }          
+        }
+        /*2019-12-03优化性能
+        wanghc 2019-11-10 增加each . 否则只触发find->[0]对应的事件
         $(_1e4).find(">div:visible,>form>div:visible").each(function(){
             $(this).triggerHandler("_resize");
-        });
+        });*/
     };
     function _1e9(_1ea, _1eb) {
         var opts = $.data(_1ea, "panel").options;
@@ -215,9 +225,26 @@
         });
     };
     function _1fe(_1ff) {
+        var divList = _1ff.getElementsByTagName("div");
+        for(var i=0; i<divList.length; i++){
+            var classNameArr = divList[i].className.split(' ');
+            for(var j=0;j<classNameArr.length;j++){
+                if(classNameArr[j]=='panel' 
+                || classNameArr[j]=='accordion'
+                || classNameArr[j]=='tabs-container'
+                || classNameArr[j]=='layout'){
+                    if(divList[i].style && divList[i].style.display!='none'){
+                        $(divList[i]).triggerHandler("_resize", [true]);
+                    }
+                }
+            }
+           
+        }
+        /* $(_1ff).find("div.panel,div.accordion,div.tabs-container,div.layout").filter(":visible");
+        //性能重写
         $(_1ff).find("div.panel:visible,div.accordion:visible,div.tabs-container:visible,div.layout:visible").each(function () {
             $(this).triggerHandler("_resize", [true]);
-        });
+        });*/
     };
     function _200(_201, _202) {
         var opts = $.data(_201, "panel").options;
@@ -454,9 +481,24 @@
         }, panel: function (jq) {
             return $.data(jq[0], "panel").panel;
         }, header: function (jq) {
-            return $.data(jq[0], "panel").panel.find(">div.panel-header");
+            return $.data(jq[0], "panel").panel.children("div.panel-header"); 
+            //return $.data(jq[0], "panel").panel.find(">div.panel-header");
         }, body: function (jq) {
-            return $.data(jq[0], "panel").panel.find(">div.panel-body");
+            var jp = $.data(jq[0], "panel").panel[0]; 
+            var childList = jp.children;
+            for (var i = 0; i < childList.length; i++) {
+                var element = childList[i];
+                if(element.tagName.toUpperCase()=="DIV"){
+                    var classNameArr = element.className.split(" ");
+                    for (var j = 0; j < classNameArr.length; j++) {
+                        if(classNameArr[j]=='panel-body'){
+                            return $(element);
+                        }
+                    }
+                }
+            }
+            return null;
+            //return $.data(jq[0], "panel").panel.find(">div.panel-body");
         }, setTitle: function (jq, _228) {
             return jq.each(function () {
                 _220(this, _228);

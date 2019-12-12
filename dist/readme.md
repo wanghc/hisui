@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 * 增加`layoutq`新组件,新五方布局
 * 增加`dateboxq`新组件
 * `datebox`增加allParse配置项
+* `panel`中jquery关于visible选择器改成原生
 
 
 ## 2019-11-29 ##
