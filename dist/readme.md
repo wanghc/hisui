@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 * 解决`tree`选中大节点时背景色变黄问题. 
 * 增加`layoutq`新组件,新五方布局
 * 增加`dateboxq`新组件
+* `datebox`增加allParse配置项
 
 
 ## 2019-11-29 ##

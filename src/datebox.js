@@ -8,6 +8,9 @@
 		
 		$(target).addClass('datebox-f').combo($.extend({}, opts, {
 			onShowPanel:function(){
+				if (!state.calendar){
+					createCalendar();
+				}
 				setCalendar();
 				setValue(target, $(target).datebox('getText'), true);
 //				setValue(target, $(target).datebox('getText'));
@@ -19,8 +22,11 @@
 		/**
 		 * if the calendar isn't created, create it.
 		 */
-		if (!state.calendar){
-			createCalendar();
+		/**初始化时不画日历 */
+		if (opts.allParse){
+			if (!state.calendar){
+				createCalendar();
+			}
 		}
 		setValue(target, opts.value);
 		$(target).combo('textbox').unbind('.datebox').bind("blur.datebox",function(e){
@@ -38,9 +44,11 @@
 			}*/	
 			/** 点击 calendar时不触发doBlur, 点击今天没办法判断(转成setTimeout判断) */
 			if ($(target).combo('textbox').parent().find('.combo-arrow-hover').length>0){return ;}
-			var cl = $.data(target,'datebox').calendar.closest('.panel-body');
-			if (cl.find('.calendar-hover').length>0){return ;}
-			if (cl.find('.calendar-nav-hover').length>0){return ;}
+			if ($.data(target,'datebox').calendar){
+				var cl = $.data(target,'datebox').calendar.closest('.panel-body');
+				if (cl.find('.calendar-hover').length>0){return ;}
+				if (cl.find('.calendar-nav-hover').length>0){return ;}
+			}
 			var curVal = $(target).combo('getText'); 
 			setTimeout(function(){
 				// curVal不为空才去校验日期格式, 为空时调用doEnter会默认上当天日期
@@ -177,8 +185,11 @@
 	 */
 	function doEnter(target){
 		var state = $.data(target, 'datebox');
-        var opts = state.options;
-		var current = state.calendar.calendar('options').current;
+		var opts = state.options;
+		var current ;
+		if (state.calendar){
+			current = state.calendar.calendar('options').current;
+		}
 		if (current){
 			setValue(target, opts.formatter.call(target, current));
 			$(target).combo('hidePanel');
@@ -193,12 +204,16 @@
 	function setValue(target, value, remainText){
 		var state = $.data(target, 'datebox');
 		var opts = state.options;
+		$(target).combo('setValue', value);
 		var calendar = state.calendar;
-        $(target).combo('setValue', value);
-        calendar.calendar('moveTo', opts.parser.call(target, value));
+		if(calendar) {calendar.calendar('moveTo', opts.parser.call(target, value));}
 		if (!remainText){
 			if (value){
-				value = opts.formatter.call(target, calendar.calendar('options').current);
+				if (calendar) {
+					value = opts.formatter.call(target, calendar.calendar('options').current);
+				}else{
+					value = opts.formatter.call(target, opts.parser.call(target,value));
+				}
 				$(target).combo('setValue', value).combo('setText', value);
 			} else {
 				$(target).combo('setText', value);
@@ -316,13 +331,14 @@
 		validType:['datebox["YMD"]','minMaxDate[null,null]'],
 		//validParams:"YMD",
 		minDate:null,
-		maxDate:null
+		maxDate:null,
+		allParse:true  //默认初始化calendar,设置false提升速度一个日期控件(110ms--36ms)
 	});
 	/*20191120 单独extend,不然会覆盖validatebox的rules*/
 	$.extend($.fn.datebox.defaults.rules, {
 		datebox: {
 			validator: function (_442,params) {
-				if (params==["YMD"]){
+				if (params=="YMD"){
 					return validDate(_442);
 				}
 				return true;
@@ -335,16 +351,14 @@
 					var state = $.data(target, 'datebox');
 					var tmpOpt = state.options;
 					var v = tmpOpt.parser.call(target, _442);
-					params[0] = tmpOpt.minDate;
-					params[1] = tmpOpt.maxDate;
-					if(tmpOpt.minDate==null&&$.fn.datebox.defaults.rules.minMaxDate.messageMax){
-						$.fn.datebox.defaults.rules.minMaxDate.message = $.fn.datebox.defaults.rules.minMaxDate.messageMax;
-					}else if(tmpOpt.maxDate==null&&$.fn.datebox.defaults.rules.minMaxDate.messageMin){
-						$.fn.datebox.defaults.rules.minMaxDate.message = $.fn.datebox.defaults.rules.minMaxDate.messageMin;
+					if(tmpOpt.minDate==null&&tmpOpt.rules.minMaxDate.messageMax){
+						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMax;
+					}else if(tmpOpt.maxDate==null&&tmpOpt.rules.minMaxDate.messageMin){
+						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMin;
 					}else{
-						$.fn.datebox.defaults.rules.minMaxDate.message = $.fn.datebox.defaults.rules.minMaxDate.messageDef;
+						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageDef;
 					}
-					return state.calendar.calendar('options').validator(v);
+					if (state.calendar) return state.calendar.calendar('options').validator(v);
 				}
 				return true;
 			}, message:"Please enter a valid date.", messageDef:"Please enter a valid date."
