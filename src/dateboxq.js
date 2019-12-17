@@ -13,7 +13,8 @@
 		}
 		return false;
 	}
-	function _hide(){
+	function _hide(target,opts){
+		opts.onHidePanel.call(this,target);
 		$($.hisui.globalContainerSelector).hide();
 	}
 	function createBox(target){
@@ -27,12 +28,14 @@
 		_t.validatebox(opts);
 		_t.unbind('.dateboxq').bind('mousemove.dateboxq',function(e){
 			if ($(this).hasClass('disabled')) return ;
+			this.style.opacity = 1;
 			if(_mouse2Right(e,this)){
 				this.style.cursor = "pointer";
 			}else{
 				this.style.cursor = "auto";
 			}
 		}).bind('mouseleave.dateboxq',function(){
+			//this.style.opacity = 0.7;
 			this.style.cursor = "auto";
 		}).bind('click.dateboxq',function(e){
 			if ($(this).hasClass('disabled')) return ;
@@ -61,14 +64,35 @@
 		var offset = _t.offset();
 		panel.show();
 		panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
-		$('<div></div>').appendTo(panel).calendar({
+		if (opts.minDate!=null || opts.maxDate!=null){
+			$(target).dateboxq('calendar').options.validator = function(date,validParams){
+				var tmpState = $.data(target, 'dateboxq');
+				var tmpOpt = tmpState.options;
+				var rtn = true;
+				if (null != tmpOpt.minDate){
+					if (validParams) validParams[0]=tmpOpt.minDate;
+					var d1 = tmpOpt.parser.call(target, tmpOpt.minDate);
+					if (d1>date) rtn= false;
+				}
+				if (null != tmpOpt.maxDate){
+					if (validParams) validParams[1]=tmpOpt.maxDate;
+					var d2 = tmpOpt.parser.call(target, tmpOpt.maxDate);
+					if (d2<date) rtn = false;
+				}
+				return rtn;
+			}
+		}
+		var calOpt = $.extend({
 			current: cur,
+			//validator: $(target).dateboxq('calendar').options.validator,
 			onSelect: function(date){
 				var opts = $(target).dateboxq('options');
 				setValue(target,opts.formatter.call(target, date));
-				panel.hide();
+				//panel.hide();
+				_hide(target,opts);
 			}
-		});
+		}, $(target).dateboxq("calendar").calendar('options'));
+		$('<div></div>').appendTo(panel).calendar(calOpt);
 		var button = $('<div class="datebox-button"><table cellspacing="0" cellpadding="0" style="width:100%"><tr></tr></table></div>').appendTo(panel);
 		var tr = button.find('tr');
 		for(var i=0; i<opts.buttons.length; i++){
@@ -80,6 +104,8 @@
 			});
 		}
 		tr.find('td').css('width', (100/opts.buttons.length)+'%');
+		opts.onShowPanel.call(target);
+
 		return ;
 	}
 	function doEnter(target,hidePanel){
@@ -89,7 +115,7 @@
 		var current = $(target).val();
 		if (current){
 			setValue(target, opts.formatter.call(target, opts.parser.call(target,current)));
-			if(hidePanel) _hide();
+			if(hidePanel) _hide(target,opts);
 		}
 	}
 	function doBlur(target){
@@ -130,7 +156,27 @@
 			if (state){
 				$.extend(state.options, options);
 			} else {
+				var _t = this;
 				$.data(this, 'dateboxq', {
+					calendar:{ 
+						/*为了兼容老的写法
+						$('#dbq').dateboxq('calendar').calendar({
+							validator:function(date){
+								var now = new Date();
+								return date<=now;
+							}
+						});*/
+						options:{
+							validator:$.fn.calendar.defaults.validator
+						},
+						calendar:function(calendarOpt){
+							if (typeof calendarOpt == 'string'){
+								if (calendarOpt=='options') return $.data(_t,'dateboxq').calendar.options;
+							}else{
+								$.extend($.data(_t,'dateboxq').calendar.options,calendarOpt);
+							}
+						}
+					},
 					options: $.extend({
 						parser:$.fn.datebox.defaults.parser,
 						formatter:$.fn.datebox.defaults.formatter,
@@ -161,6 +207,9 @@
 			return jq.each(function () {
                 setDisabled(this, value);
             });
+		},
+		calendar:function(jq){
+			return $.data(jq[0], 'dateboxq').calendar;
 		}
 	};	
 	$.fn.dateboxq.parseOptions = function(target){
@@ -178,13 +227,15 @@
 		},{
 			text: function(target){return $(target).dateboxq('options').closeText;},
 			handler: function(target){
-				$($.hisui.globalContainerSelector).hide();
+				_hide(target,$(target).dateboxq('options'));
 			}
 		}],
 		onBlur:function(target){
 			doBlur(target);
 		},
-        onSelect:function(date){},
+		onSelect:function(date){},
+		onHidePanel:function(){},
+		onShowPanel:function(){},
 		validType:['datebox["YMD"]','minMaxDate[null,null]'],
 		minDate:null,
 		maxDate:null

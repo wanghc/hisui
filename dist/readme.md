@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-17 ##
+* 为dateboxq增加calendar方法，minDate,maxDate配置项
+
 ## 2019-12-12 ##
 * 解决`tree`选中大节点时背景色变黄问题. 
 * 增加`layoutq`新组件,新五方布局
