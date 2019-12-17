@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-12-17 ##
 * 为dateboxq增加calendar方法，minDate,maxDate配置项
+* datebox在配置minDate与maxDate时提示问题
 
 ## 2019-12-12 ##
 * 解决`tree`选中大节点时背景色变黄问题. 

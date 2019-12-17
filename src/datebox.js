@@ -92,18 +92,21 @@
 					$(this.target).combo('hidePanel');
 					opts.onSelect.call(target, date);
 				},
-				validator: function(date){
+				validator: function(date,validParams){
 					var tmpState = $.data(target, 'datebox');
 					var tmpOpt = tmpState.options;
+					var rtn = true;
 					if (null != tmpOpt.minDate){
+						if (validParams) validParams[0]=tmpOpt.minDate;
 						var d1 = tmpOpt.parser.call(target, tmpOpt.minDate);
-						if (d1>date) return false;
+						if (d1>date) rtn= false;
 					}
 					if (null != tmpOpt.maxDate){
+						if (validParams) validParams[1]=tmpOpt.maxDate;
 						var d2 = tmpOpt.parser.call(target, tmpOpt.maxDate);
-						if (d2<date) return false;
+						if (d2<date) rtn = false;
 					}
-					return true;
+					return rtn;
 				}
 			});
 //			setValue(target, opts.value);
@@ -346,19 +349,32 @@
 		},
 		minMaxDate:{
 			validator: function (_442,params) {
-				var target = $(this).closest('.datebox').prev()[0];
-				if (target){
-					var state = $.data(target, 'datebox');
+				var _t = $(this);
+				var state = "", target = "";
+				if (_t.hasClass('dateboxq')){
+					target = this;
+					state = $.data(target, 'dateboxq');
+				}else{
+					target = _t.closest('.datebox').prev()[0];
+					if (target){
+						state = $.data(target, 'datebox');
+					}
+				}
+				if(state){
 					var tmpOpt = state.options;
 					var v = tmpOpt.parser.call(target, _442);
-					if(tmpOpt.minDate==null&&tmpOpt.rules.minMaxDate.messageMax){
-						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMax;
-					}else if(tmpOpt.maxDate==null&&tmpOpt.rules.minMaxDate.messageMin){
-						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMin;
+					if (tmpOpt.minDate!=null || tmpOpt.maxDate!=null){
+						if(tmpOpt.minDate==null&&tmpOpt.rules.minMaxDate.messageMax){
+							tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMax;
+						}else if(tmpOpt.maxDate==null&&tmpOpt.rules.minMaxDate.messageMin){
+							tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMin;
+						}else{
+							tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageDef;
+						}
 					}else{
-						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageDef;
+						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.datebox.message;
 					}
-					if (state.calendar) return state.calendar.calendar('options').validator(v);
+					if (state.calendar) return state.calendar.calendar('options').validator(v,params);
 				}
 				return true;
 			}, message:"Please enter a valid date.", messageDef:"Please enter a valid date."
