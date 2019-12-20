@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-20 ##
+* datagrid中数据json中有<与>进行转义
+
 ## 2019-12-17 ##
 * 为dateboxq增加calendar方法，minDate,maxDate配置项
 * datebox在配置minDate与maxDate时提示问题
