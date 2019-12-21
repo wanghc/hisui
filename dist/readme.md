@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-12-21 ##
 * fix:`tabs`配置项`border:false`时，页签头外部边框还存在问题
+* fix:`switchbox`开关关闭时左侧有绿色线问题
 
 ## 2019-12-20 ##
 * datagrid中数据json中有<与>进行转义
