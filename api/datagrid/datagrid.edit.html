@@ -18,7 +18,7 @@
 	<span>编辑列表中<code>text</code>,<code>textarea</code>,<code>checkbox</code>,<code>numberbox</code>,<code>validatebox</code>,<code>datebox</code>,<code>datetimebox</code>,<code>combobox</code>,<code>combotree</code>,<code>combogrid</code>,<code>icheckbox</code>,<code>switchbox</code>,<code>linkbutton</code>组件的使用示例</span>
 	<h3>一、数据列表编辑-基于已有编辑类型</h3>
 	<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:980px;height:300px"
-	data-options="singleSelect: true,url: 'data.csp',method: 'get',onClickRow: onClickRow">
+	data-options="singleSelect: true,headerCls:'panel-header-gray',iconCls:'icon-paper',url: 'data.csp',method: 'get',onClickRow: onClickRow">
 	<thead>
 	<tr>
 		<th data-options="field:'patid',width:80">病人Id</th>
@@ -107,7 +107,7 @@
 	);
 	</script>
 	<pre class="prettyprint lang-html hide"><code>&lt;table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:980px;height:300px"
-data-options="singleSelect: true,url: 'data.csp',method: 'get',onClickRow: onClickRow">
+data-options="singleSelect: true,headerCls:'panel-header-gray',iconCls:'icon-paper',url: 'data.csp',method: 'get',onClickRow: onClickRow">
 	&lt;thead>
 	&lt;tr>
 		&lt;th data-options="field:'patid',width:80">病人Id&lt;/th>
@@ -178,7 +178,7 @@ data-options="singleSelect: true,url: 'data.csp',method: 'get',onClickRow: onCli
 
 <h3>二、数据列表编辑-实现自己的编辑器(<code>20180830</code>)</h3>
 <table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
-data-options="headerCls:'panel-header-gray',singleSelect: true,url:'data2.csp',method: 'get',rownumbers:true,onClickRow: onClickRow2">
+data-options="headerCls:'panel-header-gray',iconCls:'icon-paper',singleSelect: true,url:'data2.csp',method: 'get',rownumbers:true,onClickRow: onClickRow2">
 <thead>
 <tr>	
 	<th data-options="field:'grantBtnGroup',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
@@ -208,7 +208,7 @@ $.extend($.fn.datagrid.defaults.editors, {
 			initRtnObj.find("input[type='checkbox']").each(function(){
 				var lbl = $(this).attr('label');
 				var id = $(this).attr('id');
-				var chck = $(this).parent().hasClass('checked');
+				var chck = $(this).next('label').hasClass('checked');
 				chck = chck?1:0;
 				rtnArr.push(id+"^"+lbl+"^"+chck);
 			});
@@ -268,7 +268,7 @@ Mock.mock("data2.csp",{
 })
 </script>
 <pre class="prettyprint lang-html hide"><code>&lt;table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
-data-options="headerCls:'panel-header-gray',singleSelect: true,url:'data2.csp',method: 'get',rownumbers:true,onClickRow: onClickRow2">
+headerCls:'panel-header-gray',iconCls:'icon-paper',singleSelect: true,url:'data2.csp',method: 'get',rownumbers:true,onClickRow: onClickRow2">
 &lt;thead>
 &lt;tr>	
 	&lt;th data-options="field:'grantBtnGroup',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){

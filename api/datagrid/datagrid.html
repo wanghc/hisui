@@ -106,8 +106,8 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 		data-options="autoSizeColumn:false,iconCls:'icon-paper',fitColumns:true,headerCls:'panel-header-gray',iconCls:'icon-paper',
 		singleSelect:true,
 		pagination:true,toolbar: [{
-			iconCls: 'icon-edit',
-			text:'编辑',
+			iconCls: 'icon-write-order',
+			text:'修改',
 			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('beginEdit',curInd);}
 		},{
 			iconCls: 'icon-save',
@@ -166,7 +166,7 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 
 		<pre class="prettyprint hide lang-html"><code>&lt;table class="hisui-datagrid" title="病人列表" style="width:600px;height:400px" 
 			data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',iconCls:'icon-paper',pagination:true,toolbar: [{
-			iconCls: 'icon-edit',
+			iconCls: 'icon-write-order',
 			text:'编辑',
 			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
 				$('#mytb').datagrid('beginEdit',curInd);}
