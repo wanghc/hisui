@@ -34,7 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-## 2019-12-21 #3
+## 2019-12-21 
+* `tabs`配置项`border:false`时，页签头外部边框还存在问题
+* `switchbox`开关关闭时左侧有绿色线问题
 * `radio`在`disabled`状态下禁用点击
 * `combobox`点击全局按钮,只选中当前可见元素
 * `datagrid`数据中只包含<或只包含>时才转义，formatter不转义

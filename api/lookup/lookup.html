@@ -11,14 +11,25 @@
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
     <script src="../mock-min.js" type="text/javascript"></script>
     <script src="./data.js" type="text/javascript"></script>
+    <style>
+        span.r-label{
+            padding-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <h2>放大镜</h2>
     <h3>说明:</h3>
     <span>在首次初始化时不初始化列表，且个界面只有一个列表。即只保留当前下拉框列表数据。</span>
+
+    <h3>基础使用</h3>
 	<div class="demo-exp-code entry-content"> 
-        <p>基础使用</p>
-        安全组 &nbsp;&nbsp;&nbsp;<input id="group" class="textbox" />
+        <table>
+            <tr>
+                <td class="r-label">安全组</td>
+                <td><input id="group" class="textbox" /></td>
+            </tr>
+        </table>
         <script type='text/javascript'>
             $(function(){
                 $("#group").lookup({
@@ -42,33 +53,43 @@
                 });
             })
         </script>
-        <pre class="prettyprint lang-html hide"><code>安全组 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="group" class="textbox" /&gt;
-&lt;script type='text/javascript'&gt;
-    $(function(){
-        $("#group").lookup({
-            width:200,panelWidth:800,
-            url:'getGroup',
-            mode:'remote',
-            idField:'HIDDEN',
-            textField:'Description',
-            columns:[[  
-                {field:'Description',title:'安全组名称',width:200},  
-                {field:'HIDDEN',title:'安全组ID',width:100}  ,
-                {field:'Other',title:'其他信息',width:400,formatter:function(val,row){
-                    return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
-                }}
-            ]],
-            pagination:true,
-            onSelect:function(index,rowData){
-                console.log("index="+index+",rowData=",rowData);
-                //$('#group').lookup('setText',rowData.HIDDEN+"-"+rowData.Description);  //textField虽是Description，在onSelect这可以自己改显示的值 但此种操作需要自己处理好查询条件间的关系
-            }
-        });
-    })
-&lt;/script&gt;</code></pre>
+        <pre class="prettyprint lang-html hide"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td class="r-label"&gt;安全组&lt;/td&gt;
+        &lt;td&gt;&lt;input id="group" class="textbox" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <pre class="prettyprint lang-js hide"><code>$(function(){
+    $("#group").lookup({
+        width:200,panelWidth:800,
+        url:'getGroup',
+        mode:'remote',
+        idField:'HIDDEN',
+        textField:'Description',
+        columns:[[  
+            {field:'Description',title:'安全组名称',width:200},  
+            {field:'HIDDEN',title:'安全组ID',width:100}  ,
+            {field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+                return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
+            }}
+        ]],
+        pagination:true,
+        onSelect:function(index,rowData){
+            console.log("index="+index+",rowData=",rowData);
+            //$('#group').lookup('setText',rowData.HIDDEN+"-"+rowData.Description);  //textField虽是Description，在onSelect这可以自己改显示的值 但此种操作需要自己处理好查询条件间的关系
+        }
+    });
+})</code></pre>
+    </div><!--END demo-exp-code entry-content-->
 
-        <p>当输入3个字符以上开始查询</p>
-        科室 &nbsp;&nbsp;&nbsp; <input id="loc" class="textbox" />
+    <h3>当输入3个字符以上开始查询</h3>
+    <div class="demo-exp-code entry-content"> 
+        <table>
+            <tr>
+                <td class="r-label">科室</td>
+                <td><input id="loc" class="textbox" /></td>
+            </tr>
+        </table>
         <script type='text/javascript'>
             $(function(){
                 $("#loc").lookup({
@@ -91,33 +112,46 @@
                 });
             })
         </script>
-        <pre class="prettyprint lang-html hide"><code>科室 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="loc" class="textbox" /&gt;
-&lt;script type='text/javascript'&gt;
-    $(function(){
-        $("#loc").lookup({
-            width:200,panelWidth:500,
-            url:'getLoc',
-            mode:'remote',
-            idField:'HIDDEN',
-            textField:'Description',
-            columns:[[  
-                {field:'Code',title:'科室代码',width:200},  
-                {field:'Description',title:'科室描述',width:200},  
-                {field:'HIDDEN',title:'科室ID',width:50}  
-            ]],
-            pagination:true,
-            onSelect:function(index,rowData){
-                console.log("index="+index+",rowData=",rowData);
-            },
-            isCombo:true,
-            minQueryLen:3
-        });
-    })
-&lt;/script&gt;</code></pre>
+        <pre class="prettyprint lang-html hide"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td class="r-label"&gt;科室&lt;/td&gt;
+        &lt;td&gt;&lt;input id="loc" class="textbox" /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <pre class="prettyprint lang-js hide"><code>$(function(){
+    $("#loc").lookup({
+        width:200,panelWidth:500,
+        url:'getLoc',
+        mode:'remote',
+        idField:'HIDDEN',
+        textField:'Description',
+        columns:[[  
+            {field:'Code',title:'科室代码',width:200},  
+            {field:'Description',title:'科室描述',width:200},  
+            {field:'HIDDEN',title:'科室ID',width:50}  
+        ]],
+        pagination:true,
+        onSelect:function(index,rowData){
+            console.log("index="+index+",rowData=",rowData);
+        },
+        isCombo:true,
+        minQueryLen:3
+    });
+})</code></pre>
+    </div><!--END demo-exp-code entry-content-->
 
-        <p>禁用启用，是否只读切换示例</p>
-        用户 &nbsp;&nbsp;&nbsp; <input id="user" class="textbox"/> &nbsp;&nbsp;
-        <a class="op-btn">禁用</a>&nbsp;<a class="op-btn">启用</a>&nbsp;<a class="op-btn">只读</a>&nbsp;<a class="op-btn">取消只读</a>&nbsp;
+    <h3>禁用启用，是否只读切换示例</h3>
+    <div class="demo-exp-code entry-content"> 
+        <table>
+            <tr>
+                <td class="r-label">用户</td>
+                <td><input id="user" class="textbox"/></td>
+                <td style="padding-left: 10px;"><a class="op-btn">禁用</a></td>
+                <td style="padding-left: 10px;"><a class="op-btn">启用</a></td>
+                <td style="padding-left: 10px;"><a class="op-btn">只读</a></td>
+                <td style="padding-left: 10px;"><a class="op-btn">取消只读</a></td>
+            </tr>
+        </table>
         <script type='text/javascript'>
             $(function(){
                 $("#user").lookup({
@@ -160,88 +194,113 @@
                 })
             });
         </script>
-        <pre class="prettyprint lang-html hide"><code>用户 &amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;input id="user" class="textbox"/&gt; &amp;nbsp;&amp;nbsp;
-&lt;a class="op-btn"&gt;禁用&lt;/a&gt;&amp;nbsp;&lt;a class="op-btn"&gt;启用&lt;/a&gt;&amp;nbsp;&lt;a class="op-btn"&gt;只读&lt;/a&gt;&amp;nbsp;&lt;a class="op-btn"&gt;取消只读&lt;/a&gt;&amp;nbsp;
-&lt;script type='text/javascript'&gt;
-    $(function(){
-        $("#user").lookup({
-            url:'getUser',
-            mode:'remote',
-            idField:'HIDDEN',
-            textField:'Description',
-            columnsLoader:function(){
-                return [[  
-                    {field:'Code',title:'工号',width:150},  
-                    {field:'Description',title:'姓名',width:150},  
-                    {field:'HIDDEN',title:'用户ID',width:50}  
-                ]];
-            },
-            pagination:true,
-            panelWidth:500,
-        });
-        $('.op-btn').linkbutton({
-            onClick:function(){
-                if($(this).text()=="禁用") $("#user").lookup("disable");
-                if($(this).text()=="启用") $("#user").lookup("enable");
-                if($(this).text()=="只读") $("#user").lookup("readonly",true);
-                if($(this).text()=="取消只读") $("#user").lookup("readonly",false);
-            
-            }
-        })
+        <pre class="prettyprint lang-html hide"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td class="r-label"&gt;用户&lt;/td&gt;
+        &lt;td&gt;&lt;input id="user" class="textbox"/&gt;&lt;/td&gt;
+        &lt;td style="padding-left: 10px;"&gt;&lt;a class="op-btn"&gt;禁用&lt;/a&gt;&lt;/td&gt;
+        &lt;td style="padding-left: 10px;"&gt;&lt;a class="op-btn"&gt;启用&lt;/a&gt;&lt;/td&gt;
+        &lt;td style="padding-left: 10px;"&gt;&lt;a class="op-btn"&gt;只读&lt;/a&gt;&lt;/td&gt;
+        &lt;td style="padding-left: 10px;"&gt;&lt;a class="op-btn"&gt;取消只读&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <pre class="prettyprint lang-js hide"><code>$(function(){
+    $("#user").lookup({
+        url:'getUser',
+        mode:'remote',
+        idField:'HIDDEN',
+        textField:'Description',
+        columnsLoader:function(){
+            return [[  
+                {field:'Code',title:'工号',width:150},  
+                {field:'Description',title:'姓名',width:150},  
+                {field:'HIDDEN',title:'用户ID',width:50}  
+            ]];
+        },
+        pagination:true,
+        panelWidth:500,
     });
-&lt;/script&gt;</code></pre>
-
-<p>onBeforeShowPanel事件</p>
-安全组 &nbsp;&nbsp;&nbsp;<input id="group2" class="textbox" /> 当输入值为ad时，不能展开下拉面板
-<script type='text/javascript'>
-    $(function(){
-        $("#group2").lookup({
-            width:200,panelWidth:500,
-            url:'getGroup',
-            mode:'remote',
-            idField:'HIDDEN',
-            textField:'Description',
-            columns:[[  
-                {field:'Description',title:'安全组名称',width:200},  
-                {field:'HIDDEN',title:'安全组ID',width:50}  
-            ]],
-            pagination:true,
-            onSelect:function(index,rowData){
-                console.log("index="+index+",rowData=",rowData);
-            },
-            onBeforeShowPanel:function(){
-                if ($(this).val()=="ad") return false;
-            }
-        });
+    $('.op-btn').linkbutton({
+        onClick:function(){
+            if($(this).text()=="禁用") $("#user").lookup("disable");
+            if($(this).text()=="启用") $("#user").lookup("enable");
+            if($(this).text()=="只读") $("#user").lookup("readonly",true);
+            if($(this).text()=="取消只读") $("#user").lookup("readonly",false);
+        
+        }
     })
-</script>
-<pre class="prettyprint lang-html hide"><code>安全组 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="group" class="textbox" /&gt;
-&lt;script type='text/javascript'&gt;
-$(function(){
-$("#group2").lookup({
-    width:200,panelWidth:500,
-    url:'getGroup',
-    mode:'remote',
-    idField:'HIDDEN',
-    textField:'Description',
-    columns:[[  
-        {field:'Description',title:'安全组名称',width:200},  
-        {field:'HIDDEN',title:'安全组ID',width:50}  
-    ]],
-    pagination:true,
-    onSelect:function(index,rowData){
-        console.log("index="+index+",rowData=",rowData);
-    },
-    onBeforeShowPanel:function(){
-        if ($(this).val()=="ad") return false;
-    }
-});
-})
-&lt;/script&gt;</code></pre>
+});</code></pre>
+    </div><!--END demo-exp-code entry-content-->
 
+    <h3>onBeforeShowPanel事件</h3>
+    <div class="demo-exp-code entry-content"> 
+        <table>
+            <tr>
+                <td class="r-label">安全组</td>
+                <td><input id="group2" class="textbox" /> </td>
+                <td style="padding-left: 10px;">当输入值为ad时，不能展开下拉面板</td>
+            </tr>
+        </table>
+        <script type='text/javascript'>
+            $(function(){
+                $("#group2").lookup({
+                    width:200,panelWidth:500,
+                    url:'getGroup',
+                    mode:'remote',
+                    idField:'HIDDEN',
+                    textField:'Description',
+                    columns:[[  
+                        {field:'Description',title:'安全组名称',width:200},  
+                        {field:'HIDDEN',title:'安全组ID',width:50}  
+                    ]],
+                    pagination:true,
+                    onSelect:function(index,rowData){
+                        console.log("index="+index+",rowData=",rowData);
+                    },
+                    onBeforeShowPanel:function(){
+                        if ($(this).val()=="ad") return false;
+                    }
+                });
+            })
+        </script>
+        <pre class="prettyprint lang-html hide"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td class="r-label"&gt;安全组&lt;/td&gt;
+        &lt;td&gt;&lt;input id="group2" class="textbox" /&gt; &lt;/td&gt;
+        &lt;td style="padding-left: 10px;"&gt;当输入值为ad时，不能展开下拉面板&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <pre class="prettyprint lang-js hide"><code>$(function(){
+    $("#group2").lookup({
+        width:200,panelWidth:500,
+        url:'getGroup',
+        mode:'remote',
+        idField:'HIDDEN',
+        textField:'Description',
+        columns:[[  
+            {field:'Description',title:'安全组名称',width:200},  
+            {field:'HIDDEN',title:'安全组ID',width:50}  
+        ]],
+        pagination:true,
+        onSelect:function(index,rowData){
+            console.log("index="+index+",rowData=",rowData);
+        },
+        onBeforeShowPanel:function(){
+            if ($(this).val()=="ad") return false;
+        }
+    });
+})</code></pre>
+    </div><!--END demo-exp-code entry-content-->
 
-        <p>selectRowRender</p>
-        安全组 &nbsp;&nbsp;&nbsp;<input id="group3" class="textbox" />  <span style="padding-left:20px">安全组名字长度大于10 提示出来</span>
+    <h3>selectRowRender</h3>
+    <div class="demo-exp-code entry-content"> 
+        <table>
+            <tr>
+                <td class="r-label">安全组</td>
+                <td><input id="group3" class="textbox" /> </td>
+                <td style="padding-left: 10px;">安全组名字长度大于10 提示出来</td>
+            </tr>
+        </table>
         <script type='text/javascript'>
             $(function(){
                 $("#group3").lookup({
@@ -268,39 +327,39 @@ $("#group2").lookup({
                 });
             })
         </script>
-<pre class="prettyprint lang-html hide"><code>&lt;p&gt;selectRowRender&lt;/p&gt;
-安全组 &amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;input id="group3" class="textbox" /&gt;  &lt;span style="padding-left:20px"&gt;安全组名字长度大于10 提示出来&lt;/span&gt;
-&lt;script type='text/javascript'&gt;
-    $(function(){
-        $("#group3").lookup({
-            width:200,panelWidth:500,
-            url:'getGroup',
-            mode:'remote',
-            idField:'HIDDEN',
-            textField:'Description',
-            columns:[[  
-                {field:'Description',title:'安全组名称',width:200},  
-                {field:'HIDDEN',title:'安全组ID',width:50}  
-            ]],
-            pagination:true,
-            onSelect:function(index,rowData){
-                console.log("index="+index+",rowData=",rowData);
-            },selectRowRender:function(row){
-                console.log('selectRowRender',row);
-                if (!row) return;
-                if (row.Description.length&gt;10){ //安全组名字长于10 显示提示信息
-                    return '&lt;p style="margin:0;padding:10px;"&gt;&lt;span style="font-weight:bold;"&gt;&lt;/sapn&gt;安全组&lt;span style="color:red;"&gt;'+row.Description+'&lt;/span&gt;';
-                }
-                
+        <pre class="prettyprint lang-html hide"><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td class="r-label"&gt;安全组&lt;/td&gt;
+        &lt;td&gt;&lt;input id="group3" class="textbox" /&gt; &lt;/td&gt;
+        &lt;td style="padding-left: 10px;"&gt;安全组名字长度大于10 提示出来&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+        <pre class="prettyprint lang-js hide"><code>$(function(){
+    $("#group3").lookup({
+        width:200,panelWidth:500,
+        url:'getGroup',
+        mode:'remote',
+        idField:'HIDDEN',
+        textField:'Description',
+        columns:[[  
+            {field:'Description',title:'安全组名称',width:200},  
+            {field:'HIDDEN',title:'安全组ID',width:50}  
+        ]],
+        pagination:true,
+        onSelect:function(index,rowData){
+            console.log("index="+index+",rowData=",rowData);
+        },selectRowRender:function(row){
+            console.log('selectRowRender',row);
+            if (!row) return;
+            if (row.Description.length&gt;10){ //安全组名字长于10 显示提示信息
+                return '&lt;p style="margin:0;padding:10px;"&gt;&lt;span style="font-weight:bold;"&gt;&lt;/sapn&gt;安全组&lt;span style="color:red;"&gt;'+row.Description+'&lt;/span&gt;';
             }
-        });
-    })
-&lt;/script&gt;</code></pre>
-    
+            
+        }
+    });
+})</code></pre>
+    </div><!--END demo-exp-code entry-content-->
 
-
-
-    </div>
     <div class="demo-exp-code entry-content">
         <h3>放大镜(lookup)组件，属性、事件、方法 </h3>
         <span>扩展自验证框（validatebox）和数据网格（datagrid），下面是为放大镜（lookup）添加的属性、事件、方法</span>
@@ -537,6 +596,13 @@ $("#group2").lookup({
 			</tr>
         </table>
     </div>
-	<prettyprint/>
+    <prettyprint/>
+    <script type="text/javascript">
+        $(function(){
+            $('.demo-exp-code.entry-content').prev('h3').each(function(ind){
+                $(this).text('一二三四五六七八九十'.charAt(ind)+'、'+ $(this).text());
+            })
+        })
+    </script>
 </body>
 </html>
