@@ -27,7 +27,10 @@
             var objlabel = $(labelHtml).insertAfter(t);
             /**事件转到input上*/
             objlabel.unbind('click').bind('click.radio',function(e){
-                setValue(target,!$(this).hasClass('checked'),!optRequired);
+                var _t = $(this); 
+                if (!_t.hasClass('disabled')){ // disabled时不能点击 
+                    setValue(target,!_t.hasClass('checked'),!optRequired);
+                }
             });
             t.unbind('click').bind('click.radio',function(e){
                 if ($(this).prop("disabled")==false){

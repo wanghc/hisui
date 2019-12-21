@@ -34,12 +34,15 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-21 #3
+* `radio`在`disabled`状态下禁用点击
+
 ## 2019-12-20 ##
-* datagrid中数据json中有<与>进行转义
+* `datagrid`中数据json中有<与>进行转义
 
 ## 2019-12-17 ##
-* 为dateboxq增加calendar方法，minDate,maxDate配置项
-* datebox在配置minDate与maxDate时提示问题
+* 为`dateboxq`增加calendar方法，minDate,maxDate配置项
+* `datebox`在配置minDate与maxDate时提示问题
 
 ## 2019-12-12 ##
 * 解决`tree`选中大节点时背景色变黄问题. 
