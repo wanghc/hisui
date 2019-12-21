@@ -36,6 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-12-21 #3
 * `radio`在`disabled`状态下禁用点击
+* `combobox`点击全局按钮,只选中当前可见元素
+* `datagrid`数据中只包含<或只包含>时才转义，formatter不转义
 
 ## 2019-12-20 ##
 * `datagrid`中数据json中有<与>进行转义
