@@ -127,8 +127,8 @@
 &lt;/table></code></pre>
 		<pre class="prettyprint hide lang-js"><code>function log(o){
 	$('#logspan').html("");
-	for (var i=0,len=arguments.length;i<len;i++){
-		if(i>0) $('#logspan').append('\n,');
+	for (var i=0,len=arguments.length;i&lt;len;i++){
+		if(i&gt;0) $('#logspan').append('\n,');
 		$('#logspan').append(JSON.stringify(arguments[i],null,4));
 	}
 }
