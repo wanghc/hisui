@@ -15,48 +15,48 @@
     <span>树形网格（TreeGrid）从数据网格（DataGrid）继承，但是允许在行之间存在父/子节点关系。许多属性继承至数据网格（DataGrid），可以用在树形网格（TreeGrid）中。为了使用树形网格（TreeGrid），用户必须定义 'treeField' 属性，指明哪个字段作为树节点。</span>
 	<h3>如：</h3>
 	<h3>基本使用</h3>
+	<script type="text/javascript">
+		function log(o){
+			$('#logspan').html("").html(JSON.stringify(o));
+		}
+	</script>
 	<div class="demo-exp-code entry-content"> 
-		<div class="hisui-layout" style="width:1200px;height:400px;">
-			<div  data-options="region:'center',border:false" style="overflow: hidden;padding:10px;">
-				
-					<table title="菜单管理" id="treegrid2"
-						data-options="idField: 'id',headerCls:'panel-header-gray',iconCls:'icon-paper',fit:true,treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,toolbar:[{
-							iconCls: 'icon-edit',
-							text:'获得所有选中',
-							handler: function(){
-								debugger;
-								var o = $('#treegrid2').treegrid('getCheckedNodes','checked');
-								log(o);
-							}
-						},{
-							iconCls:'icon-edit',
-							text:'取消选中2',
-							handler:function(){
-								log($('#treegrid2').treegrid('uncheckNode',2));
-							}
-						},{
-							iconCls:'icon-edit',
-							text:'选中2',
-							handler:function(){
-								log($('#treegrid2').treegrid('checkNode',2));
-							}
-						}]"
-					>
+		<div class="hisui-layout" style="width:1200px;height:500px;" >
+			<div region='center' data-options="border:false">
+				<table title="菜单管理" class='hisui-treegrid' id="treegrid2"
+					data-options="fit:true,idField:'id',headerCls:'panel-header-gray',iconCls:'icon-paper',treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,toolbar:[{
+						iconCls: 'icon-paper-table',text:'获得所有选中',
+						handler: function(){
+							debugger;
+							var o = $('#treegrid2').treegrid('getCheckedNodes','checked');
+							log(o);
+						}
+					},{
+						iconCls:'icon-all-unselect',
+						text:'取消选中【医生站】',
+						handler:function(){
+							log($('#treegrid2').treegrid('uncheckNode',2));
+						}
+					},{
+						iconCls:'icon-all-select',
+						text:'选中【医生站】',
+						handler:function(){
+							log($('#treegrid2').treegrid('checkNode',2));
+						}
+					}]">
 						<thead>
 							<tr>
 								<th field="menuName" width="160" align="left">菜单名</th>
 								<th field="menuLink" width="100" align="right">链接</th>
 								<th field="menuCode" width="160" align="right">代码</th>
 								<th field="menuSort" width="60" align="right">顺序</th>
-								<th field="menuEx" width="60" align="right">表达式</th>
+								<th field="menuEx" width="160" align="right">表达式</th>
 							</tr>
 						</thead>
 					</table>
 			</div>
-			<div data-options="region:'east',border:false,split:false" style="width:400px;padding: 10px 10px 10px 0;">
-				<div class="hisui-panel" data-options="headerCls:'panel-header-gray',title:'控制台',fit:true,iconCls:'icon-paper'">
-					<pre><code id="logspan" ></code></pre>
-				</div>
+			<div data-options="region:'south',title:'控制台',split:true,headerCls:'panel-header-gray',iconCls:'icon-format-line'" style="height:100px">
+					<code id="logspan" ></code>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -94,49 +94,37 @@
 				]});
 			});
 		</script>
-		<pre class="prettyprint hide lang-html"><code>&lt;div class="hisui-layout" style="width:1200px;height:400px;"&gt;
-	&lt;div  data-options="region:'center',border:false" style="overflow: hidden;padding:10px;"&gt;
-		
-			&lt;table title="菜单管理" id="treegrid2"
-				data-options="idField: 'id',headerCls:'panel-header-gray',iconCls:'icon-paper',fit:true,treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,toolbar:[{
-					iconCls: 'icon-edit',
-					text:'获得所有选中',
-					handler: function(){
-						debugger;
-						var o = $('#treegrid2').treegrid('getCheckedNodes','checked');
-						log(o);
-					}
-				},{
-					iconCls:'icon-edit',
-					text:'取消选中2',
-					handler:function(){
-						log($('#treegrid2').treegrid('uncheckNode',2));
-					}
-				},{
-					iconCls:'icon-edit',
-					text:'选中2',
-					handler:function(){
-						log($('#treegrid2').treegrid('checkNode',2));
-					}
-				}]"
-			&gt;
-				&lt;thead&gt;
-					&lt;tr&gt;
-						&lt;th field="menuName" width="160" align="left"&gt;菜单名&lt;/th&gt;
-						&lt;th field="menuLink" width="100" align="right"&gt;链接&lt;/th&gt;
-						&lt;th field="menuCode" width="160" align="right"&gt;代码&lt;/th&gt;
-						&lt;th field="menuSort" width="60" align="right"&gt;顺序&lt;/th&gt;
-						&lt;th field="menuEx" width="60" align="right"&gt;表达式&lt;/th&gt;
-					&lt;/tr&gt;
-				&lt;/thead&gt;
-			&lt;/table&gt;
-	&lt;/div&gt;
-	&lt;div data-options="region:'east',border:false,split:false" style="width:400px;padding: 10px 10px 10px 0;"&gt;
-		&lt;div class="hisui-panel" data-options="headerCls:'panel-header-gray',title:'控制台',fit:true,iconCls:'icon-paper'"&gt;
-			&lt;pre&gt;&lt;code id="logspan" &gt;&lt;/code&gt;&lt;/pre&gt;
-		&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+	<pre class="prettyprint hide lang-html"><code>&lt;table title="菜单管理" class='hisui-treegrid' id="treegrid2"
+	data-options="fit:true,idField:'id',headerCls:'panel-header-gray',iconCls:'icon-paper',treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,toolbar:[{
+		iconCls: 'icon-paper-table',text:'获得所有选中',
+		handler: function(){
+			debugger;
+			var o = $('#treegrid2').treegrid('getCheckedNodes','checked');
+			log(o);
+		}
+	},{
+		iconCls:'icon-all-unselect',
+		text:'取消选中【医生站】',
+		handler:function(){
+			log($('#treegrid2').treegrid('uncheckNode',2));
+		}
+	},{
+		iconCls:'icon-all-select',
+		text:'选中【医生站】',
+		handler:function(){
+			log($('#treegrid2').treegrid('checkNode',2));
+		}
+	}]">
+	&lt;thead>
+		&lt;tr>
+			&lt;th field="menuName" width="160" align="left">菜单名&lt;th>
+			&lt;th field="menuLink" width="100" align="right">链接&lt;th>
+			&lt;th field="menuCode" width="160" align="right">代码&lt;th>
+			&lt;th field="menuSort" width="60" align="right">顺序&lt;th>
+			&lt;th field="menuEx" width="160" align="right">表达式&lt;th>
+		&lt;/tr>
+	&lt;thead>
+&lt;/table></code></pre>
 		<pre class="prettyprint hide lang-js"><code>function log(o){
 	$('#logspan').html("");
 	for (var i=0,len=arguments.length;i<len;i++){
@@ -174,8 +162,8 @@ $(function(){
 
 	<h3>报表 合并列</h3>
 	<div class="demo-exp-code entry-content"> 
-		<table title="报表" class="hisui-treegrid" id="treegrid1" style="width:880px;height:400px"
-		data-options="method: 'get',
+		<table title="报表" class="hisui-treegrid" id="treegrid1" style="width:680px;height:400px"
+		data-options="method: 'get',headerCls:'panel-header-gray',iconCls:'icon-paper',
 			showFooter: true,
 			idField: 'id',
 			treeField: 'region',
@@ -338,7 +326,65 @@ data-options="method: 'get',
 				<tr><td>...</td><td>可查看1.5的treegrid</td><td></td></tr>
 		</table>
 	</div>
-
+	<h3>1.3.6树组件扩展的相关配置、事件、方法</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>checkbox</td>
+			<td>可勾选树</td>
+			<td>false</td>
+			<td>从1.5代码修改</td>
+		</tr>
+		<tr class="mthtitle">
+			<th>方法名</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>getCheckedNodes</td>
+			<td>获得所有选中</td>
+			<td>checked</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>uncheckNode</td>
+			<td>取消选中</td>
+			<td>id</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>checkNode</td>
+			<td>选中</td>
+			<td>id</td>
+			<td></td>
+		</tr>
+		<tr><td>...</td><td>可查看1.5的treegrid</td><td></td></tr>
+		<tr class="mthtitle">
+				<th>事件名</th>
+				<th>说明</th>
+				<th>默认值</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>onCheckNode</td>
+				<td>勾选后</td>
+				<td>row,checked</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>onBeforeCheckNode</td>
+				<td>勾选前，返回false可取消动作</td>
+				<td>row,checked</td>
+				<td></td>
+			</tr>
+			<tr><td>...</td><td>可查看1.5的treegrid</td><td></td></tr>
+	</table>
 	<prettyprint/>	
 	<script type="text/javascript">
         $(function(){

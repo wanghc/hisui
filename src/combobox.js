@@ -194,7 +194,13 @@
                 myPanelJObj.closest('.combo-p').children('._hisui_combobox-selectall').remove();
                 var myPanelWidth = myPanelJObj.width() - 5; //5是padding-left
                 var myallselJObj = $('<div style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>全选/取消全选</div>')
-                .bind('click',function(e){
+                .bind('mouseenter',function(e){
+                    $(e.target).closest("div._hisui_combobox-selectall").addClass("combobox-selectall-hover");
+                    e.stopPropagation();
+                }).bind('mouseleave',function(e){
+                    $(e.target).closest("div._hisui_combobox-selectall").removeClass("combobox-selectall-hover");
+                    e.stopPropagation();
+                }).bind('click',function(e){
                     var _t = $(this);
                     if (_t.hasClass('checked')){
                         _t.removeClass('checked');
@@ -202,9 +208,23 @@
                     }else{
                         var tmpArr = [];
                         _t.addClass('checked');
-                        $.map(data,function(v){
-                            tmpArr.push(v[opts.valueField]);
+                        //全选为当前 可见的
+                        var panel = $(target).combo('panel');
+                        panel.find('div.combobox-item').filter(":visible").each(function(){
+                            var item = $(this);
+                            if (!item.length || item.hasClass("combobox-item-disabled")) {
+                                return;
+                            }
+                            var row = opts.finder.getRow(target, item);
+                            if (!row) {
+                                return;
+                            }
+                            var value = row[opts.valueField];
+                            tmpArr.push(value);
                         });
+                        // $.map(data,function(v){
+                        //     tmpArr.push(v[opts.valueField]);
+                        // });
                         $(target).combobox("setValues",tmpArr);
                     }
                     if (opts.onAllSelectClick){
@@ -401,7 +421,9 @@
                 state.options.forceValidValue = true; //这时强制设置值检查
                 var _t = this;
                 $(_t).combo('textbox').bind("blur.combo-text", function (e) {
-                    if ($(_t).combo('panel').find(".combobox-item-hover").length==0){ //click---combo-p
+                    // mouse在全选上时也不触发blur
+                    if ($(_t).combo('panel').closest('.panel').find(".combobox-selectall-hover").length==0 
+                    && $(_t).combo('panel').find(".combobox-item-hover").length==0){ //click---combo-p
                         var val = $(_t).combobox("getValue");
                         if (val==undefined || val=="" || val==null){
                             $(e.target).val("");
