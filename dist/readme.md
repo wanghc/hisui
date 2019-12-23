@@ -38,12 +38,9 @@ $("#btn").linkbutton("disable");
 * `layout`的面板`header`的上下paddding改为4px 使整体高度为36px(含边框)
 * `menubutton`的`menubutton-blue`的箭头图标改为白色
 * `triggerbox`与`filebox`的图标支持透明背景的样式 
-<<<<<<< HEAD
 * `panel`的默认背景色改为`#509de1`,与边框颜色一致
 * `lookup`,`triggerbox`,`filebox`,`spinner`,`searchbox`都加上2px的圆角
-=======
 * `datetimebox`功能实现
->>>>>>> 8348bdf9e352200fba5977c568de814a19c3c3c3
 
 ## 2019-12-21 
 * `tabs`配置项`border:false`时，页签头外部边框还存在问题
