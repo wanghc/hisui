@@ -34,6 +34,32 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-23
+* `layout`的面板`header`的上下paddding改为4px 使整体高度为36px(含边框)
+* `menubutton`的`menubutton-blue`的箭头图标改为白色
+
+## 2019-12-21 
+* `tabs`配置项`border:false`时，页签头外部边框还存在问题
+* `switchbox`开关关闭时左侧有绿色线问题
+* `radio`在`disabled`状态下禁用点击
+* `combobox`点击全局按钮,只选中当前可见元素
+* `datagrid`数据中只包含<或只包含>时才转义，formatter不转义
+
+## 2019-12-20 ##
+* `datagrid`中数据json中有<与>进行转义
+
+## 2019-12-17 ##
+* 为`dateboxq`增加calendar方法，minDate,maxDate配置项
+* `datebox`在配置minDate与maxDate时提示问题
+
+## 2019-12-12 ##
+* 解决`tree`选中大节点时背景色变黄问题. 
+* 增加`layoutq`新组件,新五方布局
+* 增加`dateboxq`新组件
+* `datebox`增加allParse配置项
+* `panel`中jquery关于visible选择器改成原生
+
+
 ## 2019-11-29 ##
 * `lookup`在展开面板时，把当前元素jq对象绑定到grid的`options.lookup`上，可通过`grid.datagrid('options').lookup`获取到当前`lookup`的jq对象
 

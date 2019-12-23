@@ -10,57 +10,26 @@
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 <body>
-    <h2>分块按钮</h2>
+    <h2>分割按钮</h2>
     <h3>说明:</h3>
     <span>分割按钮（Split Button）包含一个链接按钮（Link Button）和一个菜单（Menu）。当用户点击或者鼠标悬停在向下箭头区域，将会显示一个对应的菜单。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
     <div style="width: 533px;border: 1px solid transparent;padding: 1px">
-		<a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱</a>   
+		<a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-abort-order',onClick:function(){
+            $.messager.popover({msg:'按钮自己',type:'info'});
+        }">作废医嘱</a>   
         <div id="mm2" style="width:100px;" class="menu-no-icon">   
-            <div>停止</div>   
-            <div>作废</div>   
-        </div>
-        <a href="javascript:void(0)" id="sb2" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单</a>
-        <div id="mm3" style="width:100px;" class="menu-no-icon">   
-            <div>停止</div>   
-            <div>作废</div>     
-            <!-- data-options="iconCls:'icon-cancel'" -->
-        </div>
-        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit</a>
-        <div id="mmedit" style="width:150px;">
-            <div data-options="iconCls:'icon-undo'">Undo</div>
-            <div data-options="iconCls:'icon-redo'">Redo</div>
-            <div class="menu-sep"></div>
-            <div>Cut</div>
-            <div>Copy</div>
-            <div>Paste</div>
-            <div class="menu-sep"></div>
-            <div data-options="iconCls:'icon-remove'">Delete</div>
-            <div>Select All</div>
+            <div onclick="$.messager.popover({msg:'停止',type:'info'});">停止</div>   
+            <div onclick="$.messager.popover({msg:'作废',type:'info'});">作废</div>   
         </div>
     </div>
-		<pre class="prettyprint hide lang-html"><code>&lt;a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱&lt;/a>   
-&lt;div id="mm2" style="width:100px;" class="menu-no-icon">   
-    &lt;div>停止&lt;/div>   
-    &lt;div>作废&lt;/div>   
-&lt;/div>
-&lt;a href="javascript:void(0)" id="sb" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单&lt;/a>
-&lt;div id="mm3" style="width:100px;" class="menu-no-icon">   
-    &lt;div>停止&lt;/div>   
-    &lt;div>作废&lt;/div>     
-&lt;/div>
-&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit&lt;/a>
-&lt;div id="mmedit" style="width:150px;">
-    &lt;div data-options="iconCls:'icon-undo'">Undo&lt;/div>
-    &lt;div data-options="iconCls:'icon-redo'">Redo&lt;/div>
-    &lt;div class="menu-sep">&lt;/div>
-    &lt;div>Cut&lt;/div>
-    &lt;div>Copy&lt;/div>
-    &lt;div>Paste&lt;/div>
-    &lt;div class="menu-sep">&lt;/div>
-    &lt;div data-options="iconCls:'icon-remove'">Delete&lt;/div>
-    &lt;div>Select All&lt;/div>
+		<pre class="prettyprint hide lang-html"><code>&lt;a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-abort-order',onClick:function(){
+    $.messager.popover({msg:'按钮自己',type:'info'});
+}"&gt;作废医嘱&lt;/a&gt;   
+&lt;div id="mm2" style="width:100px;" class="menu-no-icon"&gt;   
+    &lt;div onclick="$.messager.popover({msg:'停止',type:'info'});"&gt;停止&lt;/div&gt;   
+    &lt;div onclick="$.messager.popover({msg:'作废',type:'info'});"&gt;作废&lt;/div&gt;   
 &lt;/div&gt;</code></pre>
 	</div>
 	<prettyprint/>

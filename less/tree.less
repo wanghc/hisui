@@ -9,7 +9,8 @@
   height: auto;
   line-height: 28px;
 }
-.tree-node-selected .tree-title{
+/*增加.tree>li>ul解决 大节点也变色背景问题 */
+.tree>li>ul .tree-node-selected .tree-title{
   background: #ffe48d;
 }
 .tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
@@ -76,7 +77,7 @@
     &>.tree-node{
       height: 36px;
       line-height: 36px;
-     background-color:@tree-node-bgcolor;
+      background-color:@tree-node-bgcolor;
       position: relative;
       .tree-hit{
         position: absolute;
@@ -123,6 +124,9 @@
         }
         &.tree-node-selected{
           background-color: #e3e3e3;
+          .tree-title{ /*2019-12-12 解决选中行变黄底色问题 */
+            background: #e3e3e3;
+          }
         }
         .tree-hit{
           width: 15px;

@@ -83,8 +83,22 @@ var Level = {
         $(this).tooltip("tip");
     };
 	//websys.combo.defaults.height=22修改成30
-	$.fn.combo.defaults.width=177;
-    $.fn.combo.defaults.height = 30;
+	$.fn.combo.defaults.width = 155;
+	$.fn.combobox.defaults.width = 155;
+	$.fn.combotree.defaults.width = 155;
+	$.fn.combogrid.defaults.width = 155;
+	$.fn.datebox.defaults.width = 155;
+	$.fn.dateboxq.defaults.width = 155;
+	$.fn.datetimebox.defaults.width = 155;
+	$.fn.validatebox.defaults.width = 155;
+	$.fn.searchbox.defaults.width = 155;
+	$.fn.lookup.defaults.width = 155;
+	$.fn.numberbox.defaults.width = 155;
+	$.fn.triggerbox.defaults.width = 155;
+	$.fn.timespinner.defaults.width = 155;
+	$.fn.filebox.defaults.width = 155;
+
+	$.fn.combo.defaults.height = 30;
 	$.fn.combobox.defaults.height = 30;
 	$.fn.combotree.defaults.height = 30;
 	$.fn.combogrid.defaults.height = 30;
@@ -162,7 +176,7 @@ var Level = {
 		//}
 	}
 	//cryze 在combobox前增加combo
-    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover','lookup','keywords','triggerbox'];
+    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover','lookup','keywords','triggerbox','layoutq','dateboxq'];
 	$.each(comps, function (index, comp) {
         //index comp ---let
         HUIObject[comp] = function (selector, options) {
@@ -269,3 +283,12 @@ var Level = {
         //ShowDHCMessageCount();
     }*/
 })(window, jQuery);
+$(function(){
+	$('body').click(function(e){
+		/*点击其它非弹出层时隐藏*/
+		var c = $(e.target).closest($.hisui.globalContainerSelector);
+		if (c.length==0){
+			$($.hisui.globalContainerSelector).hide();
+		}
+	});
+});
