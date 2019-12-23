@@ -90,6 +90,7 @@ var Level = {
 	$.fn.datebox.defaults.width = 155;
 	$.fn.dateboxq.defaults.width = 155;
 	$.fn.datetimebox.defaults.width = 155;
+	$.fn.datetimeboxq.defaults.width = 155;
 	$.fn.validatebox.defaults.width = 155;
 	$.fn.searchbox.defaults.width = 155;
 	$.fn.lookup.defaults.width = 155;

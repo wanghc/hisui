@@ -28,7 +28,7 @@
 		_t.validatebox(opts);
 		_t.unbind('.dateboxq').bind('mousemove.dateboxq',function(e){
 			if ($(this).hasClass('disabled')) return ;
-			this.style.opacity = 1;
+			//this.style.opacity = 1;
 			if(_mouse2Right(e,this)){
 				this.style.cursor = "pointer";
 			}else{
@@ -84,6 +84,7 @@
 		}
 		var calOpt = $.extend({
 			current: cur,
+			border:false,
 			//validator: $(target).dateboxq('calendar').options.validator,
 			onSelect: function(date){
 				var opts = $(target).dateboxq('options');
@@ -136,6 +137,10 @@
 	function setValue(target, value, remainText){
 		var state = $.data(target,'dateboxq');
 		var opts = state.options;
+		var oldVal = $(target).val();
+		if (oldVal != value){
+			opts.onChange.call(target,value,oldVal);
+		}
 		$(target).val(value);
 		if ($(target).validatebox('isValid')){
 			opts.onSelect.call(target,opts.parser.call(target,value));
@@ -177,13 +182,7 @@
 							}
 						}
 					},
-					options: $.extend({
-						parser:$.fn.datebox.defaults.parser,
-						formatter:$.fn.datebox.defaults.formatter,
-						currentText:$.fn.datebox.defaults.currentText,
-						closeText:$.fn.datebox.defaults.closeText,
-						okText:$.fn.datebox.defaults.okText,
-					}, $.fn.dateboxq.defaults, $.fn.dateboxq.parseOptions(this), options)
+					options: $.extend({}, $.fn.dateboxq.defaults, $.fn.dateboxq.parseOptions(this), options)
 				});
 				$(this).css({ imeMode: "disabled" });
 			}
@@ -218,6 +217,11 @@
 	$.fn.dateboxq.defaults = $.extend({}, $.fn.validatebox.defaults, {
 		disabled:false,
 		readOnly:false,
+		parser:$.fn.datebox.defaults.parser,
+		formatter:$.fn.datebox.defaults.formatter,
+		currentText:$.fn.datebox.defaults.currentText,
+		closeText:$.fn.datebox.defaults.closeText,
+		okText:$.fn.datebox.defaults.okText,
 		buttons:[{
 			text: function(target){return $(target).dateboxq('options').currentText;},
 			handler: function(target){
@@ -236,6 +240,7 @@
 		onSelect:function(date){},
 		onHidePanel:function(){},
 		onShowPanel:function(){},
+		onChange:function(newValue,oldValue){},
 		validType:['datebox["YMD"]','minMaxDate[null,null]'],
 		minDate:null,
 		maxDate:null
