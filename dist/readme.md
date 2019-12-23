@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-23
+* `layout`的面板`header`的上下paddding改为4px 使整体高度为36px(含边框)
+
 ## 2019-12-21 
 * `tabs`配置项`border:false`时，页签头外部边框还存在问题
 * `switchbox`开关关闭时左侧有绿色线问题
