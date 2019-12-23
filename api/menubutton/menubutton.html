@@ -16,7 +16,7 @@
    
     <h3>一、多级菜单</h3>
 	<div class="demo-exp-code entry-content"> 
-        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">编辑</a>
+        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改</a>
         <div id="mmedit" style="width:150px;">
             <div data-options="iconCls:'icon-undo'">撤销</div>
             <div data-options="iconCls:'icon-redo'">撤回</div>
@@ -35,7 +35,7 @@
             <div data-options="iconCls:'icon-remove'">删除</div>
             <div>选择</div>
         </div>
-		<pre class="prettyprint lang-html hide"><code>&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">编辑&lt;/a>
+		<pre class="prettyprint lang-html hide"><code>&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改&lt;/a>
     &lt;div id="mmedit" style="width:150px;">
         &lt;div data-options="iconCls:'icon-undo'">撤销&lt;/div>
         &lt;div data-options="iconCls:'icon-redo'">撤回&lt;/div>
@@ -74,7 +74,7 @@
     
 	<div class="demo-exp-code entry-content"> 
 
-        <a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'">菜单</a>
+        <a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'">操作</a>
         <div id="mm-blue" data-options='isTopZindex:true' style="width:100px;">   
             <div onclick="console.log('停止');">停止</div>   
             <div onclick="console.log('作废');">作废</div>     
@@ -96,7 +96,7 @@
         <p>两种实现方式 &nbsp;&nbsp;&nbsp; a)为HTML元素增加类<code>menubutton-blue</code>  &nbsp;&nbsp;&nbsp; b) data-options增加<code>otherCls:'menubutton-blue'</code></p>
         <p>此类型不显示任何图标，菜单的宽度和按钮的宽度等同，可通过按钮的style属性控制宽度 </p>
 
-        <pre class="prettyprint lang-html hide"><code >&lt;a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'"&gt;菜单&lt;/a&gt;
+        <pre class="prettyprint lang-html hide"><code >&lt;a href="javascript:void(0)" id="menubtn-blue" class="hisui-menubutton menubutton-blue" style="width:130px;" data-options="menu:'#mm-blue'"&gt;操作&lt;/a&gt;
 &lt;div id="mm-blue" style="width:100px;"&gt;   
     &lt;div onclick="console.log('停止');"&gt;停止&lt;/div&gt;   
     &lt;div onclick="console.log('作废');"&gt;作废&lt;/div&gt;     
@@ -121,13 +121,13 @@
     <h3>四、工具栏的MenuButton如：</h3>
     
 	<div class="demo-exp-code entry-content"> 
-        <a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-arrow-left-top'">菜单</a>
+        <a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-paper-info'">操作</a>
         <div id="mm-toolbar" style="width:100px;">   
             <div onclick="console.log('停止');">停止</div>   
             <div onclick="console.log('作废');">作废</div>
         </div>
 
-        <a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-edit',otherCls:'menubutton-toolbar'">Edit</a>
+        <a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-write-order',otherCls:'menubutton-toolbar'">修改</a>
         <div id="mmedit-toolbar" style="width:150px;">
             <div data-options="iconCls:'icon-undo'">撤销</div>
             <div data-options="iconCls:'icon-redo'">撤回</div>
@@ -142,14 +142,14 @@
         <p>两种实现方式 &nbsp;&nbsp;&nbsp; a)为HTML元素增加类<code>menubutton-toolbar</code>  &nbsp;&nbsp;&nbsp; b) data-options增加<code>otherCls:'menubutton-toolbar'</code></p>
         <p>此类型按钮显示图标，菜单不显示图标，菜单的宽度和按钮的宽度等同，可通过按钮的style属性控制宽度 </p>
 
-        <pre class="prettyprint lang-html hide"><code >&lt;a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-arrow-left-top'"&gt;菜单&lt;/a&gt;
+        <pre class="prettyprint lang-html hide"><code >&lt;a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-paper-info'"&gt;操作&lt;/a&gt;
 &lt;div id="mm-toolbar" style="width:100px;"&gt;   
     &lt;div onclick="console.log('停止');"&gt;停止&lt;/div&gt;   
     &lt;div onclick="console.log('作废');"&gt;作废&lt;/div&gt;     
     &lt;!-- data-options="iconCls:'icon-cancel'" --&gt;
 &lt;/div&gt;
 
-&lt;a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-edit',otherCls:'menubutton-toolbar'"&gt;Edit&lt;/a&gt;
+&lt;a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-write-order',otherCls:'menubutton-toolbar'"&gt;修改&lt;/a&gt;
 &lt;div id="mmedit-toolbar" style="width:150px;"&gt;
     &lt;div data-options="iconCls:'icon-undo'"&gt;撤销&lt;/div&gt;
     &lt;div data-options="iconCls:'icon-redo'"&gt;撤回&lt;/div&gt;

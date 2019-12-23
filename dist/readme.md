@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-12-23
 * `layout`的面板`header`的上下paddding改为4px 使整体高度为36px(含边框)
+* `menubutton`的`menubutton-blue`的箭头图标改为白色
 
 ## 2019-12-21 
 * `tabs`配置项`border:false`时，页签头外部边框还存在问题
