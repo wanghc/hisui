@@ -32,6 +32,9 @@
        
         _401._outerHeight(sb.height());
         sb.insertAfter(_3ff);
+
+        if (!opts.plain && sb.hasClass('triggerbox-plain') ) sb.removeClass('triggerbox-plain');  //add 2019-12-23 cryze
+        if (opts.plain && !sb.hasClass('triggerbox-plain') ) sb.addClass('triggerbox-plain');
     };
     function _409(_40a) {
         var _40b = $.data(_40a, "triggerbox");
@@ -103,7 +106,12 @@
             if (_419) {
                 $.extend(_419.options, _417);
             } else {
-                _419 = $.data(this, "triggerbox", { options: $.extend({}, $.fn.triggerbox.defaults, $.fn.triggerbox.parseOptions(this), _417), triggerbox: init(this) });
+                var userOpts=$.extend({},$.fn.triggerbox.parseOptions(this), _417);
+                if (typeof userOpts.icon=="undefined" && typeof userOpts.plain=="undefined") { //plain默认还是false 但当使用者不传icon和plain时 plain为true,icon为icon-trigger-box
+                    userOpts.icon='icon-trigger-box';
+                    userOpts.plain=true;
+                }
+                _419 = $.data(this, "triggerbox", { options: $.extend({}, $.fn.triggerbox.defaults, userOpts), triggerbox: init(this) });
             }
             _413(this);
             _409(this);
@@ -159,9 +167,9 @@
     $.fn.triggerbox.parseOptions = function (_41c) {
         var t = $(_41c);
         var w = t._outerWidth(); //wanghc 增加宽度定义
-        return $.extend({}, $.parser.parseOptions(_41c, ["width", "height", "prompt"]), { width:w,value: (t.val() || undefined), disabled: (t.attr("disabled") ? true : undefined), handler: (t.attr("handler") ? eval(t.attr("handler")) : undefined) });
+        return $.extend({}, $.parser.parseOptions(_41c, ["width", "height", "prompt", { plain: "boolean"}]), { width:w,value: (t.val() || undefined), disabled: (t.attr("disabled") ? true : undefined), handler: (t.attr("handler") ? eval(t.attr("handler")) : undefined) });
     };
     $.fn.triggerbox.defaults = {
-        icon:"icon-w-trigger-box",width: "auto", height: 30, prompt: "", value: "", disabled: false, handler: function (_41d, name) {}
+        icon:"icon-w-trigger-box",width: "auto", height: 30, prompt: "", value: "", disabled: false, handler: function (_41d, name) {},plain:false
     };
 })(jQuery);

@@ -14,6 +14,7 @@
     border-color:@main-disabled-border-color;
     background-color: @main-disabled-bgcolor;
     .filebox-text{
+      background-color: @main-disabled-bgcolor;
       color: #999;
     }
   }
@@ -44,6 +45,62 @@
     position: absolute;
     top: 0;
     left: -5000px;
+  }
+  &.filebox-plain{
+    .filebox-button.l-btn { 
+      background-color: transparent;
+      .l-btn-text{
+        &.l-btn-empty{
+          background-color: transparent;
+        }
+        background: @linkbutton-bgcolor;
+      }
+      .l-btn-icon {
+        background-color: transparent;
+        opacity: 0.7;
+        filter: alpha(opacity=70);
+      }
+      &:hover{
+        .l-btn-text{
+          &.l-btn-empty{
+            background-color: transparent;
+          }
+          background: @linkbutton-hover-bgcolor;
+        }
+        .l-btn-icon {
+          opacity: 1;
+          filter: alpha(opacity=100);
+        }
+      }
+      &.l-btn-disabled{
+        .l-btn-text{
+          &.l-btn-empty{
+            background-color: transparent;
+          }
+          background: @linkbutton-disabled-bgcolor;
+        }
+        .l-btn-icon {
+          background-color: transparent;
+          opacity: 1;
+          filter: alpha(opacity=100);
+          &.icon-folder{
+            background: url(icons/folder_disabled.png) no-repeat center center;
+          }
+        }
+        &:hover{
+          .l-btn-text{
+            &.l-btn-empty{
+              background-color: transparent;
+            }
+            background: @linkbutton-disabled-bgcolor;
+          }
+          .l-btn-icon {
+            opacity: 1;
+            filter: alpha(opacity=100);
+          }
+        }
+      }
+    }
   }
 }
 .filebox-label {

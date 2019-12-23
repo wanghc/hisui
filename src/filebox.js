@@ -16,6 +16,7 @@
             span.find("input.filebox-value").attr("name", name);
             $(_570).removeAttr("name").attr("fileboxName", name);
         }
+        if (opts.plain) span.addClass('filebox-plain');
         if(opts.disabled) span.addClass('disabled');
         var btn = $("<a href=\"javascript:;\" class=\"filebox-button\"></a>").prependTo(span);
         btn.addClass("filebox-button-" + opts.buttonAlign).linkbutton({
@@ -177,6 +178,7 @@
         height:'30',
         disabled:false,
         onClickButton:function(){},
-        onChange:function(){}
+        onChange:function(){},
+        plain:false //图标背景是否透明
     });
 })(jQuery);

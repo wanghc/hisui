@@ -10,6 +10,7 @@
   vertical-align: middle;
   &.disabled{
     border-color: @main-disabled-border-color;
+    background-color: @main-disabled-bgcolor;
     .triggerbox-button{
       background-color: @main-disabled-border-color;
     }
@@ -75,6 +76,35 @@
 .triggerbox {
   border-color: @input-border-color;/*#95B8E7;*/
   background-color: @searchbox-bgcolor;
+  &.triggerbox-plain{
+    background-color: #ffffff;
+    &.disabled{
+      background-color: @main-disabled-bgcolor;
+      .triggerbox-button {
+        &.icon-trigger-box{
+          background: url(icons/trigger_box_disabled.png) center center no-repeat;
+        }
+        &.icon-copy-blue{
+          background: url(icons/copy_blue_disabled.png) center center no-repeat;
+        }
+        &.icon-folder{
+          background: url(icons/folder_disabled.png) center center no-repeat;
+        }
+        &.icon-img-blue{
+          background: url(icons/img_blue_disabled.png) center center no-repeat;
+        }
+      }
+    }
+    .triggerbox-button {
+      opacity: 0.7;
+      filter: alpha(opacity=70);
+      &.triggerbox-button-hover {
+        opacity: 1.0;
+        filter: alpha(opacity=100);
+        background-color:transparent;
+      }
+    }
+  }
 }
 .triggerbox .l-btn-plain {
   background: #E0ECFF;
