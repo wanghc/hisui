@@ -8,6 +8,9 @@
   border-style: @searchbox-border-type;
   overflow: hidden;
   vertical-align: middle;
+  -moz-border-radius: @input-border-radius;
+  -webkit-border-radius: @input-border-radius;
+  border-radius: @input-border-radius;
   &.disabled{
     border-color: @main-disabled-border-color;
     .searchbox-button{
@@ -15,6 +18,7 @@
       background-image: url('images/searchbox_button_disable.png');
     }
   }
+
 }
 .searchbox .searchbox-text {
   font-size: @searchbox-font-size;

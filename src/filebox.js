@@ -18,6 +18,9 @@
         }
         if (opts.plain) span.addClass('filebox-plain');
         if(opts.disabled) span.addClass('disabled');
+        if(!opts.buttonText) span.addClass('filebox-no-txet');
+        if(opts.buttonAlign=="left") span.addClass('filebox-left');
+
         var btn = $("<a href=\"javascript:;\" class=\"filebox-button\"></a>").prependTo(span);
         btn.addClass("filebox-button-" + opts.buttonAlign).linkbutton({
             text: opts.buttonText,
