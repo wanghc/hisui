@@ -64,6 +64,7 @@
 		var offset = _t.offset();
 		panel.show();
 		panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
+		
 		if (opts.minDate!=null || opts.maxDate!=null){
 			$(target).dateboxq('calendar').options.validator = function(date,validParams){
 				var tmpState = $.data(target, 'dateboxq');
@@ -106,7 +107,33 @@
 		}
 		tr.find('td').css('width', (100/opts.buttons.length)+'%');
 		opts.onShowPanel.call(target);
-
+		/*每200ms, 重计算位置*/
+		(function () {
+            if (panel.is(":visible")) {
+                panel.offset({top: getRight() }); //left: getLeft(),
+				setTimeout(arguments.callee, 200);
+            }
+        })();
+        function getLeft() {
+            var left = _t.offset().left;
+            if (left + panel._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
+                left = $(window)._outerWidth() + $(document).scrollLeft() - panel._outerWidth();
+            }
+            if (left < 0) {
+                left = 0;
+            }
+            return left;
+        };
+        function getRight() {
+            var top = _t.offset().top + _t._outerHeight();  //默认向下
+            if (top + panel._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
+                top = _t.offset().top - panel._outerHeight(); //在上面显示
+            }
+            if (top < $(document).scrollTop()) {
+                top = _t.offset().top + _t._outerHeight(); //向下显示 
+            }
+            return top;
+        };
 		return ;
 	}
 	function doEnter(target,hidePanel){
