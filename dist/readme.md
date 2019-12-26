@@ -35,6 +35,11 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2019-12-23
+* `messager`中的`prompt`框中输入框加10px的左内间距
+* `timespinner`中的面板标题部分图标改为icon-paper，输入框加2px圆角值
+* `panel`中灰色系面板中的大面板标题部分文字字号大小设为16px
+
+## 2019-12-23
 * `layout`的面板`header`的上下paddding改为4px 使整体高度为36px(含边框)
 * `menubutton`的`menubutton-blue`的箭头图标改为白色
 * `triggerbox`与`filebox`的图标支持透明背景的样式 
