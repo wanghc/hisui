@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2019-12-25 ##
+* `dateboxq`,`datetimeboxq`位置自动适应
+
 ## 2019-12-23
 * `messager`中的`prompt`框中输入框加10px的左内间距
 * `timespinner`中的面板标题部分图标改为icon-paper，输入框加2px圆角值

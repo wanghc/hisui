@@ -132,7 +132,7 @@
             return $.data(jq[0], "datetimeboxq").spinner;
         }, setValue: function (jq, _960) {
             return jq.each(function () {
-                _94e(this, _960);
+                setValue(this, _960);
             });
         }, reset: function (jq) {
             return jq.each(function () {
