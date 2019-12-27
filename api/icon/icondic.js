@@ -505,6 +505,7 @@ var iconDictionary={
     "icon-clock-pen-gray":"修改入室时间-禁用",
     "icon-drug-eye":"用药数据总览",
     "icon-drug-eye-gray":"用药数据总览-禁用",
+    "icon-miss-img":"没找到图片，默认图片",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
@@ -604,5 +605,6 @@ var iconDictionary={
     "icon-big-message-clock":"会诊及时率",
     "icon-big-message-cate":"会诊类别",
     "icon-big-message-colum":"会诊量",
-    "icon-big-message-pen":"手术会诊"
+    "icon-big-message-pen":"手术会诊",
+    "icon-big-miss-img":"没找到图片，默认图片"
 };
