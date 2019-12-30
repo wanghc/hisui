@@ -34,7 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-## 2019-12-26
+## 2019-12-30 ##
+* `panel`的visible查找修改
+
+## 2019-12-26 ##
 * `messager`中的`prompt`框中输入框加10px的左内间距
 * `timespinner`中的面板标题部分图标改为icon-paper，输入框加2px圆角值
 * `panel`中灰色系面板中的大面板标题部分文字字号大小设为16px
