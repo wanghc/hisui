@@ -234,6 +234,16 @@
                 setDisabled(this, value);
             });
 		},
+		disable:function(jq){
+			return jq.each(function () {
+                setDisabled(this, true);
+            });
+		},
+		enable:function(jq){
+			return jq.each(function () {
+                setDisabled(this, false);
+            });
+		},
 		calendar:function(jq){
 			return $.data(jq[0], 'dateboxq').calendar;
 		}

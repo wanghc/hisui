@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2019-12-30 ##
 * `panel`的visible查找修改
+* 为`dateboxq`增加disable与enable方法
 
 ## 2019-12-26 ##
 * `messager`中的`prompt`框中输入框加10px的左内间距
