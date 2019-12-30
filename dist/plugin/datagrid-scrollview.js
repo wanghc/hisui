@@ -221,10 +221,12 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		dc.body1.add(dc.body2).empty();
 		this.rows = [];	// the rows to be rendered
 		this.r1 = this.r2 = [];	// the first part and last part of rows
-		
-		init();
-		createHeaderExpander();
-		
+		//tanjs 20190529 增加IF判断条件，如果两次BeforeRender相差时间很近，
+		//防止出现onLoadSuccess被重复置空，和setTimeout引起连锁反应
+		if(!(view.scrollTimer && view.scrollTimer!="")){
+			init();
+			createHeaderExpander();
+		}		
 		function init(){
 			opts.rowHeight = $(target).datagrid('getRowHeight');
 			var pager = $(target).datagrid('getPager');
