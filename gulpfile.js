@@ -8,6 +8,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     notify=require('gulp-notify');   //提示
     //foal = require('gulp-foal');    //传参
+    //livereload-半自动,connect-全自动
 var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagination','tree','progressbar','tooltip','panel','window','dialog','messager',
 'accordion','tabs','layout','menu','menubutton','splitbutton','searchbox','validatebox','form','numberbox','calendar',
 'spinner','numberspinner','timespinner','datagrid','propertygrid','treegrid','combo','combobox','combotree','combogrid',
@@ -17,29 +18,6 @@ var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagi
 var slfCmpArr = ['lib/bootstrap-switch-1.8.0/static/js/bootstrap-switch.js','lib/popover1.2.17/jquery.webui-popover.min.js','src/switchbox.js','src/checkbox.js','src/radio.js','src/filebox.js','src/popover.js','src/lookup.js','src/keywords.js','src/triggerbox.js','src/chinesespell.js','src/dateboxq.js','src/datetimeboxq.js','src/hisui.js'];
 var jsArr    = ['lib/json2.js'].concat(orgCmpArr.map(function(i){return 'src/'+i+'.js';})).concat(slfCmpArr);
 var lessArr = ["easyui","icon","panel","accordion","window","dialog","textbox","combo","combobox","layout","tabs","linkbutton","datagrid","propertygrid","pagination","calendar","datebox","combogrid","numberbox","spinner","progressbar","searchbox","numberspinner","timespinner","calendar","datebox","numberbox","spinner","progressbar","searchbox","slider","menu","menubutton","splitbutton","messager","tree","validatebox","tooltip","checkbox","switchbox","filebox","popover","lookup","keywords","triggerbox","dateboxq","datetimeboxq"];
-//var ;
-gulp.task('js-min',function(){
-    var arr = jsArr;
-    return gulp.src(arr)
-    .pipe(concat('jquery.hisui.min.js'))
-    //.pipe(babel())
-    .pipe(uglify({
-        ie8: true
-    }))
-        //{mangle: false,   //类型：Boolean 默认：true 是否修改变量名
-        //compress: false, //类型：Boolean 默认：true 是否完全压缩
-        //preserveComments: 'all' //all-保留所有注释,license保存/*@license
-        //}                  //压缩js
-    .pipe(gulp.dest('dist/js'))
-    .pipe(notify({message:'gen jquery.hisui.min.js success!'}));        //提示成功
-});
-gulp.task('js',function(){
-    var arr = jsArr;
-    return gulp.src(arr)
-    .pipe(concat('jquery.hisui.src.js'))
-    .pipe(gulp.dest('src'))
-    .pipe(notify({message:'gen jquery.hisui.src.js success!'}));        //提示成功
-});
 //开发测试时在dist生成未压缩js 调试   
 gulp.task('js-dev',function(){
     var arr = jsArr;
@@ -47,56 +25,6 @@ gulp.task('js-dev',function(){
     .pipe(concat('jquery.hisui.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(notify({message:'gen jquery.hisui.js success!'}));        //提示成功
-});
-gulp.task('css-min', function() {
-    var lessPath = "less/";
-    //var arr = ["variables","draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog"];
-    var arr = lessArr;
-    arr.forEach(function(value,index){
-        arr[index]=lessPath+value+".less"
-    })
-    return gulp.src(arr)
-    .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
-    .pipe(gulp.dest("less"))            //保存到less目录
-    .pipe(less())                       //less编译
-    .pipe(minifycss())                  //压缩css
-    .pipe(rename('hisui.min.css'))      //命名
-    .pipe(gulp.dest("dist/css"))             //存到css目录
-    .pipe(notify({message:'gen min css success!'}));        //提示成功
-});
-gulp.task('css', function() {
-    var lessPath = "less/";
-    //var arr = ["variables","draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog"];
-    var arr = lessArr;
-    arr.forEach(function(value,index){
-        arr[index]=lessPath+value+".less"
-    })
-    return gulp.src(arr)
-    .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
-    .pipe(gulp.dest("less"))            //保存到less目录
-    .pipe(less())                       //less编译
-    //.pipe(minifycss())                  //压缩css
-    .pipe(rename('hisui.css'))      //命名
-    .pipe(gulp.dest("dist/css"))             //存到css目录
-    .pipe(notify({message:'gen css success!'}));        //提示成功
-
-});
-// 把重写css的抽出来
-gulp.task('css2', function() {
-    var lessPath = "less/";
-    // icon,easyui,..
-    var arr = lessArr;
-    arr.forEach(function(value,index){
-        arr[index]=lessPath+value+".less"
-    })
-    //gulp.src("lib/easyui-1.3.6/themes/default/easyui.css").pipe(gulp.dest("dist/css"));
-   return  gulp.src(arr)
-    .pipe(concat('hisui.tmp.less'))     //合并所有less文件到hisui.min.less
-    .pipe(gulp.dest("less"))            //保存到less目录
-    .pipe(less())                       //less编译
-    //.pipe(minifycss())                //压缩css
-    .pipe(rename('hisui.css'))          //命名
-    .pipe(gulp.dest("dist/css")) ;      //存到css目录   
 });
 // 在命令行输入gulp less 启动此任务,一个less文件生成一个css
 gulp.task('css-s', function() {
@@ -112,42 +40,43 @@ gulp.task('css-s', function() {
 });
 // 在命令行使用 gulp auto 启动此任务
 gulp.task('auto', function () {
-    console.log("auto------");
     // 监听文件修改，当文件被修改则执行 less 任务
     //gulp.watch('less/**.less', ['less'])
 });
-gulp.task('mangle-js',['js'],function(){
-     //----混淆名称
-     return gulp.src("src/jquery.hisui.src.js")
-     .pipe(uglify({
-        compress:false,
-        output:{beautify:true},
-        ie8:true
-     }))
-     .pipe(rename('jquery.hisui.js'))
-     .pipe(gulp.dest("dist/js"))
-     .pipe(notify({message:'gen mangle-js success!'}));
+gulp.task('min-js',function(){
+    var arr = jsArr;
+    var prefix = "jquery.hisui" ;
+    return gulp.src(arr)
+    .pipe(concat(prefix+'.src.js'))
+    .pipe(gulp.dest('src'))
+    //{mangle: false,   //类型：Boolean 默认：true 是否修改变量名
+    //preserveComments: 'all' //all-保留所有注释,license保存/*@license
+    //compress: false, //类型：Boolean 默认：true 是否完全压缩
+    //混淆变量名,但不混淆结构
+    .pipe(uglify({compress:false,output:{beautify:true},ie8:true}))
+    .pipe(rename(prefix+'.js'))
+    .pipe(gulp.dest('dist/js'))
+    .pipe(uglify({compress:false,output:{beautify:false},ie8:true}))   //压缩大小 //compress=true完全混淆
+    .pipe(rename(prefix+'.min.js'))
+    .pipe(gulp.dest('dist/js'));
 });
-gulp.task('min-js',['mangle-js'],function(){
-    //----压缩js且保存成min.js
-    return gulp.src("dist/js/jquery.hisui.js")
-    .pipe(uglify({
-        ie8:true
-    }))
-    .pipe(rename('jquery.hisui.min.js'))
-    .pipe(gulp.dest("dist/js"))
-    .pipe(notify({message:'gen min js success!'}));
-})
-gulp.task('min-css',['css'],function(){
-    return gulp.src("dist/css/hisui.css")
+gulp.task('min-css',function(){
+    var lessPath = "less/";
+    var arr = lessArr;
+    arr.forEach(function(value,index){
+        arr[index]=lessPath+value+".less"
+    })
+    return gulp.src(arr)
+    .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
+    .pipe(gulp.dest("less"))            //保存到less目录
+    .pipe(less())                       //less编译
+    .pipe(rename('hisui.css'))
+    .pipe(gulp.dest("dist/css"))
     .pipe(minifycss())                  //压缩css
     .pipe(rename('hisui.min.css'))      //命名
-    .pipe(gulp.dest("dist/css"))             //存到css目录
-    .pipe(notify({message:'gen min css success!'}));        //提示成功
+    .pipe(gulp.dest("dist/css"));
 })
 
 //dist -> default
 // dist目录下的js全修改成min, 不留源代码
-gulp.task('default',['min-js','min-css'],function(){
-    notify({message:'dist hisui success!'});
-});
+gulp.task('default',['min-js','min-css']);
