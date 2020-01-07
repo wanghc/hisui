@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2010-01-07 ##
 * 增加`select.textbox`样式定义，使与`input.textbox`得到的`combobox`一样宽
 * `dateboxq`输入框增加`comboq`样式,为了统一q系列宽度
+* `dateboxq`与`datetimeboxq`在IE8下图标位置显示处理
 
 ## 2019-12-30 ##
 * `panel`的visible查找修改
