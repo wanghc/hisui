@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2010-01-07 ##
+* 增加select.textbox样式定义，使与input.textbox得到的combobox一样宽
+
 ## 2019-12-30 ##
 * `panel`的visible查找修改
 * 为`dateboxq`增加disable与enable方法
