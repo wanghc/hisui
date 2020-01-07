@@ -81,24 +81,13 @@ var Level = {
     // jquery.validatebox.js中写死了color
     $.fn.validatebox.defaults.tipOptions.onShow = function () {
         $(this).tooltip("tip");
-    };
-	//websys.combo.defaults.height=22修改成30
-	$.fn.combo.defaults.width = 155;
-	$.fn.combobox.defaults.width = 155;
-	$.fn.combotree.defaults.width = 155;
-	$.fn.combogrid.defaults.width = 155;
-	$.fn.datebox.defaults.width = 155;
-	$.fn.dateboxq.defaults.width = 155;
-	$.fn.datetimebox.defaults.width = 155;
-	$.fn.datetimeboxq.defaults.width = 155;
-	$.fn.validatebox.defaults.width = 155;
-	$.fn.searchbox.defaults.width = 155;
-	$.fn.lookup.defaults.width = 155;
-	$.fn.numberbox.defaults.width = 155;
-	$.fn.triggerbox.defaults.width = 155;
-	$.fn.timespinner.defaults.width = 155;
-	$.fn.filebox.defaults.width = 155;
-
+	};
+	/*
+	还原到最初的几个定义
+	不能定义fn.x.defaults.width默认宽度。
+	如有某元素定义class='hisui-combobox width110',此时组件不会去拿对应框的宽度110,而是此处定义的宽度
+	*/
+	$.fn.combo.defaults.width = 177;
 	$.fn.combo.defaults.height = 30;
 	$.fn.combobox.defaults.height = 30;
 	$.fn.combotree.defaults.height = 30;
