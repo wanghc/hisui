@@ -21,7 +21,7 @@
 		var state = $.data(target, 'dateboxq');
 		var opts = state.options;
 		var _t = $(target);
-		_t.addClass('dateboxq');
+		_t.addClass('comboq dateboxq');
 		if (opts.disabled || opts.readOnly){
 			_t.addClass('disabled');
 		}
