@@ -37,6 +37,9 @@ $("#btn").linkbutton("disable");
 ## 2020-01-14 ##
 * `popover`的`title`与`websys.css`中h3冲突处理
 
+## 2020-01-13 ##
+* 修复`datagrid`，点击`checkbox`在事件`onBeforeCheck`与`onBeforeUncheck`事件返回了`false`，但是显示上的勾选状态变了的bug
+
 ## 2020-01-07 ##
 * 增加`select.textbox`样式定义，使与`input.textbox`得到的`combobox`一样宽
 * `dateboxq`输入框增加`comboq`样式,为了统一q系列宽度
