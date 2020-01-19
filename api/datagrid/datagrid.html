@@ -271,6 +271,20 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 					onSelect:function(rowIndex,rowData){
 						console.log("onSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
 					},
+					onBeforeCheck:function(ind,row){
+						console.log('onBeforeCheck',ind,row)
+						if(ind==0){
+							$.messager.popover({msg:'第一行不能选中',type:'error'})
+							return false;
+						} 
+					},
+					onBeforeUncheck:function(ind,row){
+						console.log('onBeforeUncheck',ind,row)
+						if(ind==1) {
+							$.messager.popover({msg:'第二行不能取消选中',type:'error'})
+							return false;
+						} 
+					},
 					onLoadSuccess:function(data){
 						//$(this).datagrid('columnMoving');
 						/*$('.mytooltip').tooltip({
@@ -291,6 +305,7 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 						return data;
 					},
 					columns:[[
+						{field:'ck',title:'代码',checkbox:true},
 						{field:'code',title:'代码',width:100},
 						{field:'name',title:'描述',width:100},
 						{field:'price',title:'价格',width:100,align:'right'},
@@ -346,6 +361,20 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			},
 			onSelect:function(rowIndex,rowData){
 				console.log("onSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
+			},
+			onBeforeCheck:function(ind,row){
+				console.log('onBeforeCheck',ind,row)
+				if(ind==0){
+					$.messager.popover({msg:'第一行不能选中',type:'error'})
+					return false;
+				} 
+			},
+			onBeforeUncheck:function(ind,row){
+				console.log('onBeforeUncheck',ind,row)
+				if(ind==1) {
+					$.messager.popover({msg:'第二行不能取消选中',type:'error'})
+					return false;
+				} 
 			},
 			autoSizeColumn:false,
 			fitColumns:true,

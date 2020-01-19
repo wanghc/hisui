@@ -1335,7 +1335,13 @@
         var opts = _5ea.options;
         /*add onBeforeCheck event by wanghc 2018-05-23*/
         var row = opts.finder.getRow(_5e7, _5e8);
-        if (false === opts.onBeforeCheck.call(_5e7, _5e8, row)){
+        if (false === opts.onBeforeCheck.call(_5e7, _5e8, row)){ 
+            //点击checkbox时，checkbox在触发onBeforeCheck事件前 就变成了选中 在此要变回去 add 2020-01-13 cryze
+            var tr = opts.finder.getTr(_5e7, _5e8);
+            if (!tr.hasClass("datagrid-row-checked")){  // 是原本是未选中状态 才能改
+                var ck = tr.find("div.datagrid-cell-check input[type=checkbox]");
+                ck._propAttr("checked", false);
+            }
             return ;
         }
         if (!_5e9 && opts.selectOnCheck) {
@@ -1362,6 +1368,12 @@
         /*add onBeforeUncheck event by wanghc 2018-05-23 */
         var row = opts.finder.getRow(_5ec, _5ed);
         if(false===opts.onBeforeUncheck.call(_5ec, _5ed, row)){
+            //点击checkbox时，checkbox在触发onBeforeUncheck事件前 就变成了未选中 在此要变回去 add 2020-01-13 cryze
+            var tr = opts.finder.getTr(_5ec, _5ed);
+            if (tr.hasClass("datagrid-row-checked")){  // 得原本是选中状态 才能改
+                var ck = tr.find("div.datagrid-cell-check input[type=checkbox]");
+                ck._propAttr("checked", true);
+            }
             return ;
         }
         if (!_5ee && opts.selectOnCheck) {
