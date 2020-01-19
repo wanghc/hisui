@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2020-01-19 ##
+* `validatebox`增加idcard,mobilephone二种校验类型
+
 ## 2020-01-14 ##
 * `popover`的`title`与`websys.css`中h3冲突处理
 

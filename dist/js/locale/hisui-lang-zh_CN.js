@@ -19,6 +19,11 @@ if ($.fn.validatebox){
 	$.fn.validatebox.defaults.rules.url.message = '请输入有效的URL地址';
 	$.fn.validatebox.defaults.rules.length.message = '输入内容长度必须介于{0}和{1}之间';
 	$.fn.validatebox.defaults.rules.remote.message = '请修正该字段';
+	$.fn.validatebox.defaults.rules.idcard.message = "请输入有效的身份证号";
+	$.fn.validatebox.defaults.rules.idcard.formattermessage = "请输入有效的身份证号,格式错误";
+	$.fn.validatebox.defaults.rules.idcard.addrmessage = "请输入有效的身份证号，检查前二位";
+	$.fn.validatebox.defaults.rules.idcard.paritymessage = "请输入有效的身份证号,校验位错误";
+	$.fn.validatebox.defaults.rules.mobilephone.message = "请输入有效的手机号";
 }
 if ($.fn.spinner){
 	$.fn.spinner.defaults.missingMessage = '该输入项为必输项';
