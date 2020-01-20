@@ -10,6 +10,7 @@
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 <body>
+    <style>.wd120{width: 120px;}</style>
     <h2>选择框, 通过图片得到蓝色系勾选框</h2>
     <h3>说明:</h3>
     <span>点击勾选，常用于多项选择。</span>
@@ -18,7 +19,7 @@
         <div style="padding: 5px">
             <input class='hisui-checkbox' type="checkbox" data-options="onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
             <input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="勾选" id="cb2"/>
-            <input class='hisui-checkbox' type="checkbox" checked label="勾选" id="cb3"/>
+            <input class='hisui-checkbox wd120' type="checkbox" style="width: 100px;" checked label="勾选这是一个很长很长的描述" id="cb3"/>
             <input class='hisui-checkbox' type="checkbox" disabled label="禁用" id="cb4"/>
             <input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" id="cb5"/>
             <pre class="prettyprint lang-html hide">

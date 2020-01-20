@@ -15,11 +15,14 @@
         opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
         if (!t.hasClass('checkbox-f')){
             t.addClass('checkbox-f');                //在原dom增加类checkbox-f
-            var labelHtml = '<label class="checkbox';
+            var inputCls = target.className.replace('hisui-checkbox') ;
+            var labelHtml = '<label class="checkbox '+inputCls;
             if (opts.boxPosition=="right"){labelHtml +=' right';}
             if (opts.disabled){labelHtml += ' disabled'; }
             if (opts.checked){labelHtml += ' checked'; }
-            labelHtml += '">'+opts.label+'</label>';
+            labelHtml += '"'; //className handler end
+            if (opts.width){ labelHtml+=' style="width:'+opts.width+'px" '}
+            labelHtml += '>'+opts.label+'</label>';
             var objlabel = $(labelHtml).insertAfter(t);
             objlabel.unbind('click').bind('click.checkbox',function(e){
                 if($(target).prop("disabled")==false) setValue(target,!$(this).hasClass('checked'));  
@@ -64,10 +67,7 @@
                   }
                 });
               }
-
-
             state.proxy=objlabel; //把objlabel存起来
-
         }else{
             
             var objlabel=state.proxy; //取到对应label
@@ -221,7 +221,7 @@
     
 	$.fn.checkbox.parseOptions = function(target){
 		var t = $(target);
-		return $.extend({}, $.parser.parseOptions(target,["label","name","id","checked"]), {
+		return $.extend({}, $.parser.parseOptions(target,["label","name","id","checked","width"]), {
 			disabled: (t.attr('disabled') ? true : undefined)
 		});
 	};
@@ -229,6 +229,7 @@
     $.fn.checkbox.defaults = {
         id:null,
         label:'',
+        width:null,
         boxPosition:"left",
 		disabled:false,
         checked:false,

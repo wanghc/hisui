@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2020-1-20 ##
+* `checkbox`增加width处理,className处理
+
 ## 2020-01-19 ##
 * `validatebox`增加idcard,mobilephone二种校验类型
 
