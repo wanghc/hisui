@@ -36,6 +36,17 @@
 })();
 
 $(function(){
+    /**实现通过源HTML生成示例。用法：class="use-prettyprint" prettyprintfor="#mypp"  by wanghc 2020-1-21*/
+    $(".use-prettyprint").each((i,item)=>{
+        let sel = $(item).attr('prettyprintfor');
+        let h = item.innerHTML ;
+        h = h.replace(/^(\n)+/g,'');
+        let arr = h.split('\n');
+        let tabNum = arr[0].indexOf('<');
+        let reg = new RegExp("^\t{"+tabNum+"}")
+        h = arr.map(x => x.replace(reg,"")).join('\n').replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        $(sel).addClass('prettyprint linenums').html("<code>"+h+"</code>");
+    });
     $("pre.prettyprint").addClass("linenums");
     $("pre.prettyprint").each(function(e){
         var _desc_ = "-隐藏";
@@ -66,7 +77,6 @@ $(function(){
             }
         });
     });
-    
     try{
         $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
         <script type="text/javascript" src="../../api/prettify.js"></script>\
