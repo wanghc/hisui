@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-1-21 ##
 * `numberbox`增加min与max检测值且提示功能
+* `panel`的width支持百分比
 
 ## 2020-1-20 ##
 * `checkbox`增加width处理,className处理

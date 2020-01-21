@@ -21,6 +21,7 @@
         if (_1e5) {
             $.extend(opts, { width: _1e5.width, height: _1e5.height, left: _1e5.left, top: _1e5.top });
         }
+        opts['width'] = $.parser.parseValue("width", opts['width'], $(_1e6).parent());
         opts.fit ? $.extend(opts, _1e6._fit()) : _1e6._fit(false);
         _1e6.css({ left: opts.left, top: opts.top });
         if (!isNaN(opts.width)) {

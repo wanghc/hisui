@@ -6,9 +6,9 @@
 	<title>面板示例</title>
 	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
 	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
-	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -17,14 +17,20 @@
 	<span>面板是其他组件或元素的容器</span>
 	<h3>一、卡片式面板</h3>
 	<div class="demo-exp-code entry-content">
-		<div class="hisui-panel" title="登记（不常用）" style="height:150px;width:400px;padding:20px" 
-		data-options="headerCls:'panel-header-card'">卡片面板<code>headerCls:'panel-header-card'</code>
+		<div class="use-prettyprint" prettyprintfor="#mypanelpp1">
+			<div class="hisui-panel" title="登记（不常用）" style="height:150px;width:400px;padding:20px" data-options="headerCls:'panel-header-card'">
+				卡片面板
+				<code>headerCls:'panel-header-card'</code>
+			</div>
 		</div>
-		<pre class="prettyprint lang-html hide"><code>&lt;div class="hisui-panel" title="登记（不常用）" style="height:150px;width:400px;padding:20px" data-options="headerCls:'panel-header-card'"&gt;卡片面板&lt;/div&gt;</code></pre>
-		<div class="hisui-panel" title="登记（不常用）" style="width:400px;height:150px;padding:20px" 
-			data-options="headerCls:'panel-header-card-gray'">灰色卡片面板<code>"headerCls:'panel-header-card-gray'"</code>
+		<pre class='lang-html hide' id='mypanelpp1'></pre>
+		<div class="use-prettyprint" prettyprintfor="#mypanelpp2">
+			<div class="hisui-panel" title="登记（不常用）" style="height:150px;width:400px;padding:20px" data-options="headerCls:'panel-header-card-gray'">
+				灰色卡片面板
+				<code>"headerCls:'panel-header-card-gray'"</code>
+			</div>
 		</div>
-		<pre class="prettyprint lang-html hide"><code>&lt;div class="hisui-panel" title="登记（不常用）" style="width:400px;height:150px;padding:20px" data-options="headerCls:'panel-header-card-gray'">灰色卡片面板&lt;/div></code></pre>	
+		<pre class='lang-html hide' id='mypanelpp2'></pre>
 	</div>
 	<!--<div class="demo-exp-code entry-content">
 		<div class="hisui-panel" title="病人信息" style="width:400px;padding:10px 30px 20px 30px" 
@@ -51,28 +57,10 @@
 		</div>
 		<pre class="prettyprint lang-html hide"><code>&lt;div data-options="headerCls:'panel-header-big panel-header-gray',..."&gt;&lt;/div&gt;</code></pre>
 		<div id="accPanel" title="病人信息" style="width:400px;padding:20px;">
-				还可通过js生成
-			</div>
-			<pre class="prettyprint lang-html hide"><code>&lt;div id="accPanel" title="病人信息" style="width:400px;padding:20px;"&gt;还可通过js生成&lt;/div&gt;</code></pre>
-			<pre class="prettyprint lang-js hide">
-	&lt;script type="text/javascript"&gt;
-	var init = function () {
-		var valbox = $HUI.panel("#accPanel",{
-			iconCls:'icon-paper',
-			closable:true,
-			onBeforeClose:function(){alert("你点击了关闭!");return false},
-			collapsible:true,
-			onBeforeCollapse:function(){alert("你点击了收起!");return false},
-			minimizable:true,
-			onMinimize:function(){alert("你点击了最小化!");return false},
-			maximizable:true,
-			onMaximize:function(){alert("你点击了最大化!");return false},
-			headerCls:'panel-header-gray'
-		});
-	}
-	$(init);
-	&lt;/script&gt;	
-		</pre>
+			还可通过js生成
+		</div>
+		<pre class="prettyprint lang-html hide"><code>&lt;div id="accPanel" title="病人信息" style="width:400px;padding:20px;"&gt;还可通过js生成&lt;/div&gt;</code></pre>
+		<pre class="lang-js hide" id="mypanelppjs"></pre>
 	</div>
 	<h3>三、其它色系</h3>
 	<div class="demo-exp-code entry-content">
@@ -89,7 +77,7 @@
 			没标题 没有title
 		</div>
 	</div>
-	<script type="text/javascript">
+	<script type="text/javascript" class="use-prettyprint" prettyprintfor="#mypanelppjs" >
 		var init = function () {
 			var valbox = $HUI.panel("#accPanel", {
 				iconCls: 'icon-paper',

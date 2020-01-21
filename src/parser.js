@@ -106,7 +106,7 @@
     /*--1.5.js--jquery.parser.js--method-----end---*/
     $.parser = {
         auto: true, onComplete: function (context) {
-        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox","dateboxq","datetimeboxq"], parse: function (context) {
+        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox","comboq","dateboxq","datetimeboxq"], parse: function (context) {
             var aa = [];
             for (var i = 0; i < $.parser.plugins.length; i++) {
                 var name = $.parser.plugins[i];
@@ -135,7 +135,33 @@
             } else {
                 $.parser.onComplete.call($.parser, context);
             }
-        }, parseOptions: function (target, properties) {
+        }, 
+	parseValue: function(property, value, parent, delta){  /*width支持百分比,引入1.7.0中的方法*/
+			delta = delta || 0;
+			var v = $.trim(String(value||''));
+			var endchar = v.substr(v.length-1, 1);
+			if (endchar == '%'){
+				v = parseFloat(v.substr(0, v.length-1));
+				if (property.toLowerCase().indexOf('width') >= 0){
+					delta += parent[0].offsetWidth-parent[0].clientWidth;
+					v = Math.floor((parent.width()-delta) * v / 100.0);
+				} else {
+					delta += parent[0].offsetHeight-parent[0].clientHeight;
+					v = Math.floor((parent.height()-delta) * v / 100.0);
+				}
+			} else {
+				v = parseInt(v) || undefined;
+			}
+			return v;
+        },
+        /**
+        * parse options, including standard 'data-options' attribute.
+        * 
+        * calling examples:
+        * $.parser.parseOptions(target);
+        * $.parser.parseOptions(target, ['id','title','width',{fit:'boolean',border:'boolean'},{min:'number'}]);
+        */
+       parseOptions: function (target, properties) {
             var t = $(target);
             var options = {};
             var s = $.trim(t.attr("data-options"));
@@ -145,16 +171,28 @@
                 }
                 options = (new Function("return " + s))();
             }
+            $.map(['width','height','left','top','minWidth','maxWidth','minHeight','maxHeight'], function(p){
+                var pv = $.trim(target.style[p] || '');
+                if (pv){
+                    if (pv.indexOf('%') == -1){
+                        pv = parseInt(pv);
+                        if (isNaN(pv)){
+                            pv = undefined;
+                        }
+                    }
+                    options[p] = pv;
+                }
+            });
             if (properties) {
                 var opts = {};
                 for (var i = 0; i < properties.length; i++) {
                     var pp = properties[i];
                     if (typeof pp == "string") {
-                        if (pp == "width" || pp == "height" || pp == "left" || pp == "top") {
-                            opts[pp] = parseInt(target.style[pp]) || undefined;
-                        } else {
+                        //if (pp == "width" || pp == "height" || pp == "left" || pp == "top") {
+                        //    opts[pp] = parseInt(target.style[pp]) || undefined;
+                        //} else {
                             opts[pp] = t.attr(pp);
-                        }
+                        //}
                     } else {
                         for (var name in pp) {
                             var type = pp[name];
