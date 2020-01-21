@@ -33,6 +33,8 @@ if ($.fn.timespinner){
 }
 if ($.fn.numberbox){
 	$.fn.numberbox.defaults.missingMessage = '该输入项为必输项';
+	$.fn.numberbox.defaults.rules.min.message = '输入的值必须大于{0}';
+	$.fn.numberbox.defaults.rules.max.message = '输入的值必须小于{0}';
 }
 if ($.fn.combobox){
 	$.fn.combobox.defaults.missingMessage = '该输入项为必输项';

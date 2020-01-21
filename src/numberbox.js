@@ -77,6 +77,11 @@
     function _482(_483) {
         if ($.fn.validatebox) {
             var opts = $.data(_483, "numberbox").options;
+            if (!opts.validType) {
+                opts.validType = [];
+            }
+            if (typeof (opts.min) == "number") opts.validType.push('min['+opts.min+']');
+            if (typeof (opts.max) == "number") opts.validType.push('max['+opts.max+']');
             $(_483).validatebox(opts);
         }
     };
@@ -165,6 +170,7 @@
         return $.extend({}, $.fn.validatebox.parseOptions(_48e), $.parser.parseOptions(_48e, ["width", "height", "decimalSeparator", "groupSeparator", "suffix", { min: "number", max: "number", precision: "number" }]), { prefix: (t.attr("prefix") ? t.attr("prefix") : undefined), disabled: (t.attr("disabled") ? true : undefined), value: (t.val() || undefined) });
     };
     $.fn.numberbox.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        fix:true, /*原始功能是强制值在min~max之间, false时只提示 by wanghc 2020-1-21*/
         isKeyupChange:false, /*是否在按键时就同步组件的值。默认是blur时同步值 */
         /**wanghc height:22修改成30*/
         width: "auto", height: 30, disabled: false, value: "", min: null, max: null, precision: 0, decimalSeparator: ".", groupSeparator: "", prefix: "", suffix: "", filter: function (e) {
@@ -235,16 +241,39 @@
             if (isNaN(val)) {
                 val = "";
             } else {
-                if (typeof (opts.min) == "number" && val < opts.min) {
-                    val = opts.min.toFixed(opts.precision);
-                } else {
-                    if (typeof (opts.max) == "number" && val > opts.max) {
-                        val = opts.max.toFixed(opts.precision);
+                if (opts.fix){
+                    if (typeof (opts.min) == "number" && val < opts.min) {
+                        val = opts.min.toFixed(opts.precision);
+                    } else {
+                        if (typeof (opts.max) == "number" && val > opts.max) {
+                            val = opts.max.toFixed(opts.precision);
+                        }
                     }
+                }else{
+                    var vt = $.data(this,'validatebox').options.validType;
+                    if (!vt) $.data(this,'validatebox').options.validType = [];
+                    var myvt = $.data(this,'validatebox').options.validType;
+                    if (typeof (opts.min) == "number") myvt.push('min['+opts.min+']');
+                    if (typeof (opts.max) == "number") myvt.push('max['+opts.max+']');
+                    $(this).validatebox("validate");
                 }
             }
             return val;
         }, onChange: function (_490, _491) {
         }
     });
+    $.extend($.fn.numberbox.defaults.rules, {
+		min: {
+			validator: function (_442,mins) {
+				if (parseFloat(mins[0])>parseFloat(_442)) return false;
+				return true;
+			}, message:"Please enter a value greater than {0}"
+        },
+        max:{
+            validator: function (_442,maxs) {
+				if (parseFloat(maxs[0])<parseFloat(_442)) return false;
+				return true;
+			}, message:"Please enter a value less than {0}"
+        }
+    })
 })(jQuery);
