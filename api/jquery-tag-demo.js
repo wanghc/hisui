@@ -40,11 +40,11 @@ $(function(){
     $(".use-prettyprint").each((i,item)=>{
         let sel = $(item).attr('prettyprintfor');
         let h = item.innerHTML ;
-        h = h.replace(/^(\n)+/g,'');
+        h = h.replace(/^(\n+)|(\n+)$|(\t+)$/g,'');
         let arr = h.split('\n');
-        let tabNum = arr[0].indexOf('<');
-        let reg = new RegExp("^\t{"+tabNum+"}")
-        h = arr.map(x => x.replace(reg,"")).join('\n').replace(/</g,"&lt;").replace(/>/g,"&gt;");
+        let tabNum = arr[0].search(/[^\t]/);
+        let reg = new RegExp("^\t{1,"+tabNum+"}")
+        h = arr.map(x => x.replace(reg,"")).join('\n').replace(/<|>/g,w=>(w=="<")?"&lt;":(w==">"?"&gt;":''));
         $(sel).addClass('prettyprint linenums').html("<code>"+h+"</code>");
     });
     $("pre.prettyprint").addClass("linenums");
