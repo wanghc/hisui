@@ -43,6 +43,7 @@ $(function(){
         h = h.replace(/^(\n+)|(\n+)$|(\t+)$/g,'');
         let arr = h.split('\n');
         let tabNum = arr[0].search(/[^\t]/);
+        if (tabNum<1) tabNum=1;
         let reg = new RegExp("^\t{1,"+tabNum+"}")
         h = arr.map(x => x.replace(reg,"")).join('\n').replace(/<|>/g,w=>(w=="<")?"&lt;":(w==">"?"&gt;":''));
         $(sel).addClass('prettyprint linenums').html("<code>"+h+"</code>");
