@@ -6,10 +6,10 @@
 	<title>面板示例</title>
 	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
 	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
-	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script src="../mock-min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -17,37 +17,40 @@
 	<h3>说明:</h3>
 	<span>编辑列表中<code>text</code>,<code>textarea</code>,<code>checkbox</code>,<code>numberbox</code>,<code>validatebox</code>,<code>datebox</code>,<code>datetimebox</code>,<code>combobox</code>,<code>combotree</code>,<code>combogrid</code>,<code>icheckbox</code>,<code>switchbox</code>,<code>linkbutton</code>组件的使用示例</span>
 	<h3>一、数据列表编辑-基于已有编辑类型</h3>
-	<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:980px;height:300px"
-	data-options="singleSelect: true,headerCls:'panel-header-gray',iconCls:'icon-paper',url: 'data.csp',method: 'get',onClickRow: onClickRow">
-	<thead>
-	<tr>
-		<th data-options="field:'patid',width:80">病人Id</th>
-		<th data-options="field:'feetypeid',width:100,
-				formatter:function(value,row){
-					return row.feetypename;
-				},
-				editor:{
-					type:'combobox',
-					options:{
-						valueField:'feetypeid',
-						textField:'feetypename',
-						method:'get',
-						url:'feetype.csp',
-						required:true,
-						blurValidValue:true
-					}
-				}">费用类型combobox</th>
-		<th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)</th>
-		<th data-options="field:'feetotal',width:80,align:'right',editor:'numberbox'">数量numberbox</th>
-		<th data-options="field:'note',width:250,editor:'text'">说明(text)</th>
-		<th data-options="field:'active',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">激活checkbox</th>
-		<th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox</th>
-		<th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox</th>
-		<th data-options="field:'op',width:140,align:'center',editor:{type:'linkbutton',options:{iconCls:'icon-save',handler:function(){endEditing();}}}">按钮linkbutton</th>
-	</tr>
-	</thead>
-	</table>
-	<script type="text/javascript">
+	<div class="use-prettyprint" prettyprintfor="#mydg1codehtml">
+		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:980px;height:300px"
+		data-options="toolbar:[],singleSelect: true,
+		headerCls:'panel-header-gray',onClickRow: onClickRow,iconCls:'icon-paper',url: 'data.csp'">
+		<thead>
+		<tr>
+			<th data-options="field:'patid',width:80">病人Id</th>
+			<th data-options="field:'feetypeid',width:100,
+					formatter:function(value,row){
+						return row.feetypename;
+					},
+					editor:{
+						type:'combobox',
+						options:{
+							valueField:'feetypeid',
+							textField:'feetypename',
+							method:'get',
+							url:'feetype.csp',
+							required:true,
+							blurValidValue:true
+						}
+					}">费用类型combobox</th>
+			<th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)</th>
+			<th data-options="field:'feetotal',width:80,align:'right',editor:'numberbox'">数量numberbox</th>
+			<th data-options="field:'note',width:250,editor:'text'">说明(text)</th>
+			<th data-options="field:'active',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">激活checkbox</th>
+			<th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox</th>
+			<th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox</th>
+			<th data-options="field:'op',width:140,align:'center',editor:{type:'linkbutton',options:{iconCls:'icon-save',handler:function(){endEditing();}}}">按钮linkbutton</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
+	<script type="text/javascript" class="use-prettyprint" prettyprintfor="#mydg1codejs">
 	var editIndex=undefined;
 	var modifyBeforeRow = {};
 	var modifyAfterRow = {};
@@ -87,6 +90,8 @@
 			}
 		}
 	}
+	</script>
+	<script type="text/javascript">
 	Mock.mock("data.csp",{
 		"rows|10":[{
 			"patid|+1":100,
@@ -106,127 +111,63 @@
 		[{"feetypeid":1,'feetypename':'自费'},{"feetypeid":2,'feetypename':'职工'},{"feetypeid":3,'feetypename':'医保'}]
 	);
 	</script>
-	<pre class="prettyprint lang-html hide"><code>&lt;table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:980px;height:300px"
-data-options="singleSelect: true,headerCls:'panel-header-gray',iconCls:'icon-paper',url: 'data.csp',method: 'get',onClickRow: onClickRow">
-	&lt;thead>
-	&lt;tr>
-		&lt;th data-options="field:'patid',width:80">病人Id&lt;/th>
-		&lt;th data-options="field:'feetypeid',width:100,
-				formatter:function(value,row){
-					return row.feetypename;
-				},
-				editor:{
-					type:'combobox',
-					options:{
-						valueField:'feetypeid',
-						textField:'feetypename',
-						method:'get',
-						url:'feetype.csp',
-						required:true
-					}
-				}">费用类型combobox&lt;/th>
-		&lt;th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)&lt;/th>
-		&lt;th data-options="field:'feetotal',width:80,align:'right',editor:'numberbox'">数量numberbox&lt;/th>
-		&lt;th data-options="field:'note',width:250,editor:'text'">说明(text)&lt;/th>
-		&lt;th data-options="field:'active',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">激活checkbox&lt;/th>
-		&lt;th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox&lt;/th>
-		&lt;th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox&lt;/th>
-		&lt;th data-options="field:'op',width:140,align:'center',editor:{type:'linkbutton',options:{iconCls:'icon-save',handler:function(){endEditing();}}}">按钮linkbutton&lt;/th>
-	&lt;/tr&gt;
-	&lt;/thead&gt;
-	&lt;/table&gt;
-	&lt;script type="text/javascript"&gt;
-	var editIndex=undefined;
-	var modifyBeforeRow = {};
-	var modifyAfterRow = {};
-	function endEditing(){
-			if (editIndex == undefined){return true}
-			if ($('#dg').datagrid('validateRow', editIndex)){
-				//列表中下拉框实现，修改后把回写feetypename，因为formatter显示的是feetypename字段
-				var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'feetypeid'});
-				var feetypename = $(ed.target).combobox('getText');
-				$('#dg').datagrid('getRows')[editIndex]['feetypename'] = feetypename;
-				$('#dg').datagrid('endEdit', editIndex);
-				modifyAfterRow = $('#dg').datagrid('getRows')[editIndex];
-				var aStr = JSON.stringify(modifyAfterRow);
-				var bStr = JSON.stringify(modifyBeforeRow);
-				if(aStr!=bStr){
-					console.log('修改前：');
-					console.dir(modifyBeforeRow);
-					console.log('修改后：');
-					console.dir(modifyAfterRow);
-				}
-				editIndex = undefined;
-				return true;
-			} else {
-				return false;
-			}
-		}
-	function onClickRow(index){
-		if (editIndex!=index) {
-			if (endEditing()){
-				$('#dg').datagrid('selectRow', index)
-						.datagrid('beginEdit', index);
-				editIndex = index;
-				modifyBeforeRow = $.extend({},$('#dg').datagrid('getRows')[editIndex]);
-			} else {
-				$('#dg').datagrid('selectRow', editIndex);
-			}
-		}
-	}
-&lt;/script&gt;</code></pre>
+	<pre class="hide lang-html" id='mydg1codehtml'></pre>
+	<pre class="hide lang-js" id='mydg1codejs'></pre>
 
-<h3>二、数据列表编辑-实现自己的编辑器(<code>20180830</code>)</h3>
-<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
-data-options="headerCls:'panel-header-gray',iconCls:'icon-paper',singleSelect: true,url:'data2.csp',method: 'get',rownumbers:true,onClickRow: onClickRow2">
-<thead>
-<tr>	
-	<th data-options="field:'grantBtnGroup',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
-		var valArr = value.split('#');
-		var rtnArr = [];
-		$.each(valArr,function(i,item){
-			var itemArr = item.split('^');
-			if (itemArr[2]==1) rtnArr.push(itemArr[1]);
-		});
-		return rtnArr.join();
-	},">授权</th>
-</tr>
-</thead>
-</table>
-<script type="text/javascript">
-$.extend($.fn.datagrid.defaults.editors, {
-	mybtns: {
-		// "grantBtnGroup":"id1^保存^1#id2^删除^0#id3^打印^0#id4^新建^1"
-		init: function (_662, _663) {
-			var opt = $.extend({on:'on',off:'off'},_663);
-			var _664 = $("<div></div>").appendTo(_662);
-			//_664.checkbox(opt);
-			_664.data("opt",opt);
-			return _664;
-		}, getValue: function (initRtnObj) {
-			var rtnArr = [];
-			initRtnObj.find("input[type='checkbox']").each(function(){
-				var lbl = $(this).attr('label');
-				var id = $(this).attr('id');
-				var chck = $(this).next('label').hasClass('checked');
-				chck = chck?1:0;
-				rtnArr.push(id+"^"+lbl+"^"+chck);
-			});
-			return rtnArr.join("#");
-		}, setValue: function (initRtnObj, val) {
-			var btnArr = val.split("#");
-			var opt = initRtnObj.data("opt");
-			$.each(btnArr,function(i,item){
-				var itemArr = item.split("^");
-				$("<input type=\"checkbox\" id="+itemArr[0]+" label="+itemArr[1]+">").appendTo(initRtnObj).checkbox({checked:itemArr[2]==1?true:false});
-			});
+	<h3>二、数据列表编辑-实现自己的编辑器(<code>20180830</code>)</h3>
+	<div class="use-prettyprint" prettyprintfor="#mydg2codehtml">
+		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
+		data-options="headerCls:'panel-header-gray',iconCls:'icon-paper',singleSelect: true,url:'data2.csp',
+		method: 'get',rownumbers:true,onClickRow: onClickRow2,toolbar:[]">
+		<thead>
+		<tr>	
+			<th data-options="field:'grantBtnGroup',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
+				var valArr = value.split('#');
+				var rtnArr = [];
+				$.each(valArr,function(i,item){
+					var itemArr = item.split('^');
+					if (itemArr[2]==1) rtnArr.push(itemArr[1]);
+				});
+				return rtnArr.join();
+			},">授权</th>
+		</tr>
+		</thead>
+		</table>
+	</div>
+	<script type="text/javascript"  class="use-prettyprint" prettyprintfor="#mydg2codejs">
+	$.extend($.fn.datagrid.defaults.editors, {
+		mybtns: {
+			// "grantBtnGroup":"id1^保存^1#id2^删除^0#id3^打印^0#id4^新建^1"
+			init: function (_662, _663) {
+				var opt = $.extend({on:'on',off:'off'},_663);
+				var _664 = $("<div></div>").appendTo(_662);
+				//_664.checkbox(opt);
+				_664.data("opt",opt);
+				return _664;
+			}, getValue: function (initRtnObj) {
+				var rtnArr = [];
+				initRtnObj.find("input[type='checkbox']").each(function(){
+					var lbl = $(this).attr('label');
+					var id = $(this).attr('id');
+					var chck = $(this).next('label').hasClass('checked');
+					chck = chck?1:0;
+					rtnArr.push(id+"^"+lbl+"^"+chck);
+				});
+				return rtnArr.join("#");
+			}, setValue: function (initRtnObj, val) {
+				var btnArr = val.split("#");
+				var opt = initRtnObj.data("opt");
+				$.each(btnArr,function(i,item){
+					var itemArr = item.split("^");
+					$("<input type=\"checkbox\" id="+itemArr[0]+" label="+itemArr[1]+">").appendTo(initRtnObj).checkbox({checked:itemArr[2]==1?true:false});
+				});
+			}
 		}
-	}
-});
-var editIndex2=undefined;
-var modifyBeforeRow2 = {};
-var modifyAfterRow2 = {};
-function endEditing2(){
+	});
+	var editIndex2=undefined;
+	var modifyBeforeRow2 = {};
+	var modifyAfterRow2 = {};
+	function endEditing2(){
 		if (editIndex2 == undefined){return true}
 		if ($('#dg2').datagrid('validateRow', editIndex2)){
 			$('#dg2').datagrid('endEdit', editIndex2);
@@ -248,110 +189,29 @@ function endEditing2(){
 			return false;
 		}
 	}
-function onClickRow2(index){
-	if (editIndex2!=index) {
-		if (endEditing2()){
-			$('#dg2').datagrid('selectRow', index)
-					.datagrid('beginEdit', index);
-			editIndex2 = index;
-			modifyBeforeRow2 = $.extend({},$('#dg2').datagrid('getRows')[editIndex2]);
-		} else {
-			$('#dg2').datagrid('selectRow', editIndex2);
-		}
-	}
-}
-Mock.mock("data2.csp",{
-	"rows|10":[{
-		"grantBtnGroup":"id1^保存^1#id2^删除^0#id3^打印^0#id4^新建^1" //|(复制^0#新建^0)/
-	}],
-	"total":10
-})
-</script>
-<pre class="prettyprint lang-html hide"><code>&lt;table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
-headerCls:'panel-header-gray',iconCls:'icon-paper',singleSelect: true,url:'data2.csp',method: 'get',rownumbers:true,onClickRow: onClickRow2">
-&lt;thead>
-&lt;tr>	
-	&lt;th data-options="field:'grantBtnGroup',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
-		var valArr = value.split('#');
-		var rtnArr = [];
-		$.each(valArr,function(i,item){
-			var itemArr = item.split('^');
-			if (itemArr[2]==1) rtnArr.push(itemArr[1]);
-		});
-		return rtnArr.join();
-	},">授权&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;/table>
-&lt;script type="text/javascript">
-$.extend($.fn.datagrid.defaults.editors, {
-	mybtns: {
-		// "grantBtnGroup":"id1^保存^1#id2^删除^0#id3^打印^0#id4^新建^1"
-		init: function (_662, _663) {
-			var opt = $.extend({on:'on',off:'off'},_663);
-			var _664 = $("&lt;div>&lt;/div>").appendTo(_662);
-			//_664.checkbox(opt);
-			_664.data("opt",opt);
-			return _664;
-		}, getValue: function (initRtnObj) {
-			var rtnArr = [];
-			initRtnObj.find("input[type='checkbox']").each(function(){
-				var lbl = $(this).attr('label');
-				var id = $(this).attr('id');
-				var chck = $(this).parent().hasClass('checked');
-				chck = chck?1:0;
-				rtnArr.push(id+"^"+lbl+"^"+chck);
-			});
-			return rtnArr.join("#");
-		}, setValue: function (initRtnObj, val) {
-			var btnArr = val.split("#");
-			var opt = initRtnObj.data("opt");
-			$.each(btnArr,function(i,item){
-				var itemArr = item.split("^");
-				$("&lt;input type=\"checkbox\" id="+itemArr[0]+" label="+itemArr[1]+">").appendTo(initRtnObj).checkbox({checked:itemArr[2]==1?true:false});
-			});
-		}
-	}
-});
-var editIndex2=undefined;
-var modifyBeforeRow2 = {};
-var modifyAfterRow2 = {};
-function endEditing2(){
-		if (editIndex2 == undefined){return true}
-		if ($('#dg2').datagrid('validateRow', editIndex2)){
-			$('#dg2').datagrid('endEdit', editIndex2);
-			modifyAfterRow2 = $('#dg2').datagrid('getRows')[editIndex2];
-			var aStr = JSON.stringify(modifyAfterRow2);
-			var bStr = JSON.stringify(modifyBeforeRow2);
-			if(aStr!=bStr){
-				console.log('表格二修改前：');
-				console.dir(modifyBeforeRow2);
-				console.log('表格二修改后：');
-				console.dir(modifyAfterRow2);
-				$.messager.popover({msg:'保存成功',type:'success'});
+	function onClickRow2(index){
+		if (editIndex2!=index) {
+			if (endEditing2()){
+				$('#dg2').datagrid('selectRow', index)
+						.datagrid('beginEdit', index);
+				editIndex2 = index;
+				modifyBeforeRow2 = $.extend({},$('#dg2').datagrid('getRows')[editIndex2]);
+			} else {
+				$('#dg2').datagrid('selectRow', editIndex2);
 			}
-			//去除授权列修改标志
-			$("#dg2").datagrid("getPanel").find("tr.datagrid-row[datagrid-row-index="+editIndex2+"]>td[field='grantBtnGroup']").removeClass("datagrid-value-changed");
-			editIndex2 = undefined;
-			return true;
-		} else {
-			return false;
 		}
 	}
-function onClickRow2(index){
-	if (editIndex2!=index) {
-		if (endEditing2()){
-			$('#dg2').datagrid('selectRow', index)
-					.datagrid('beginEdit', index);
-			editIndex2 = index;
-			modifyBeforeRow2 = $.extend({},$('#dg2').datagrid('getRows')[editIndex2]);
-		} else {
-			$('#dg2').datagrid('selectRow', editIndex2);
-		}
-	}
-}
-&lt;/script>
-</code></pre>
+	</script>
+	<script type='text/javascript'>
+	Mock.mock("data2.csp",{
+		"rows|10":[{
+			"grantBtnGroup":"id1^保存^1#id2^删除^0#id3^打印^0#id4^新建^1" //|(复制^0#新建^0)/
+		}],
+		"total":10
+	})
+	</script>
+	<pre class="hide lang-html" id='mydg2codehtml'></pre>
+	<pre class="hide lang-js" id='mydg2codejs'></pre>
 	<table class="table">
 		<tr>
 			<th colspan="4">增加列编辑类型</th>
