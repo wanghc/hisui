@@ -10,6 +10,8 @@
             t.attr("id",opts.id);
         }
         t.prop("disabled",opts.disabled);
+        if(!opts.cache)
+            t.webuiPopover('destroy');// yp 2020-01-05 删除该元素所绑定的popover及绑定的数据，避免重复为同一个元素新建popover时无法成功新建，导致popover显示的依然是新建前的内容
         t.webuiPopover(opts);
         /*t.bind('ifChecked',function(e,value){
             if (!opts.disabled){
@@ -66,6 +68,20 @@
         destroy:function(jq){
             return jq.each(function(){
                 $(this).webuiPopover('destroy');
+            });
+        },
+        senContent:function(jq,value){//yp 2020-02-11 添加setContent方法，用于修改popover弹出层的内容
+            return jq.each(function(){
+                var oldCache = $.data(this, 'popover').options.cache;
+                if($.data(this, 'popover').options.cache){
+                    $.data(this, 'popover').options.cache = false;
+                }
+                var _t = $(this);
+                var opts = $.data(this, 'popover').options;
+                opts.content = value;
+                _t.webuiPopover('destroy');
+                _t.webuiPopover(opts);
+                $.data(this, 'popover').options.cache = oldCache;
             });
         }
     };

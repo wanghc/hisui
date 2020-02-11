@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-2-11 ##
+* `popover`增加setContent方法，以及解决为一个已经绑定了popover的元素再次绑定一个新的popover时内容没有改变的bug
 
 ## 2020-1-20 ##
 * `checkbox`增加width处理,className处理
