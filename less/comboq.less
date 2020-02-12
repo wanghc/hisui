@@ -8,3 +8,22 @@ input.comboq::-ms-clear{
   width: 0px;
   height: 0px;
 }
+.comboq.disabled {
+  background-image: url('images/combo_arrow_disable.png'); // no-repeat center center;
+  background-color: @main-disabled-bgcolor;
+  color:#ccc;
+}
+.comboq {
+  background-image: url(images/combo_arrow.png);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-position-x: 96%\9;
+  background-position-y: 50%\9;
+}
+input.comboq.textbox{
+  padding-right: 30px;
+}
+.comboq.bginone{
+  background-image: none;
+  padding-right: 0px;
+}

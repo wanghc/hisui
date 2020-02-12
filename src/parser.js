@@ -106,7 +106,7 @@
     /*--1.5.js--jquery.parser.js--method-----end---*/
     $.parser = {
         auto: true, onComplete: function (context) {
-        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","lookup","triggerbox","comboq","dateboxq","datetimeboxq"], parse: function (context) {
+        }, plugins: ["draggable", "droppable", "resizable", "pagination", "tooltip", "linkbutton", "menu", "menubutton", "splitbutton", "progressbar", "tree", "combobox", "combotree", "combogrid", "numberbox", "validatebox", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "datetimebox", "slider", "layout", "panel", "datagrid", "propertygrid", "treegrid", "tabs", "accordion", "window", "dialog","checkbox","radio","switchbox","keywords","comboq","lookup","triggerbox","dateboxq","datetimeboxq"], parse: function (context) {
             var aa = [];
             for (var i = 0; i < $.parser.plugins.length; i++) {
                 var name = $.parser.plugins[i];
