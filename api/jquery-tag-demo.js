@@ -37,7 +37,7 @@
 
 $(function(){
     /**实现通过源HTML生成示例。用法：class="use-prettyprint" prettyprintfor="#mypp"  by wanghc 2020-1-21*/
-    $(".use-prettyprint").each((i,item)=>{
+    $(".use-prettyprint").each(function(i,item){
         let sel = $(item).attr('prettyprintfor');
         let h = item.innerHTML ;
         h = h.replace(/^(\n+)|(\n+)$|(\t+)$/g,'');
@@ -45,7 +45,13 @@ $(function(){
         let tabNum = arr[0].search(/[^\t]/);
         if (tabNum<1) tabNum=1;
         let reg = new RegExp("^\t{1,"+tabNum+"}")
-        h = arr.map(x => x.replace(reg,"")).join('\n').replace(/<|>/g,w=>(w=="<")?"&lt;":(w==">"?"&gt;":''));
+        h = arr.map(function(x){
+            return x.replace(reg,"")
+        })
+        .join('\n')
+        .replace(/<|>/g,function(w){
+            return (w=="<")?"&lt;":(w==">"?"&gt;":'');
+    });
         $(sel).addClass('prettyprint linenums').html("<code>"+h+"</code>");
     });
     $("pre.prettyprint").addClass("linenums");
