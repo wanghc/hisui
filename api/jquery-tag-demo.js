@@ -38,7 +38,6 @@
 $(function(){
     /**实现通过源HTML生成示例。用法：class="use-prettyprint" prettyprintfor="#mypp"  by wanghc 2020-1-21*/
     $(".use-prettyprint").each(function(i,item){
-        let sel = $(item).attr('prettyprintfor');
         let h = item.innerHTML ;
         h = h.replace(/^(\n+)|(\n+)$|(\t+)$/g,'');
         let arr = h.split('\n');
@@ -51,8 +50,16 @@ $(function(){
         .join('\n')
         .replace(/<|>/g,function(w){
             return (w=="<")?"&lt;":(w==">"?"&gt;":'');
-    });
-        $(sel).addClass('prettyprint linenums').html("<code>"+h+"</code>");
+        });
+        let sel = $(item).attr('prettyprintfor');
+        if (!sel){ sel = $('<pre></pre>');};
+        if (h.slice(0,4)=="&lt;"){
+            sel.addClass('lang-html');
+        }else{
+            sel.addClass('lang-js');
+        }
+        sel.appendTo($(item).parent()).addClass('hide prettyprint linenums').html("<code>"+h+"</code>");
+        
     });
     $("pre.prettyprint").addClass("linenums");
     $("pre.prettyprint").each(function(e){
