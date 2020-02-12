@@ -159,6 +159,8 @@ var Level = {
 		,treegrid:{
 			superui:'datagrid'
 		},lookup:{  //cryze 2018-5-10  新增lookup
+			superui:'comboq'
+		},comboq:{
 			superui:'validatebox'
 		}
 		//,datagrid:{ //$.fn.datagrid.defaults=$.extend({},$.fn.panel.defaults,{...});
@@ -166,7 +168,7 @@ var Level = {
 		//}
 	}
 	//cryze 在combobox前增加combo
-    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover','lookup','keywords','triggerbox','layoutq','dateboxq'];
+    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover','comboq','lookup','keywords','triggerbox','layoutq','dateboxq'];
 	$.each(comps, function (index, comp) {
         //index comp ---let
         HUIObject[comp] = function (selector, options) {
@@ -274,11 +276,11 @@ var Level = {
     }*/
 })(window, jQuery);
 $(function(){
-	$('body').click(function(e){
-		/*点击其它非弹出层时隐藏*/
-		var c = $(e.target).closest($.hisui.globalContainerSelector);
-		if (c.length==0){
-			$($.hisui.globalContainerSelector).hide();
-		}
-	});
+	// $('body').click(function(e){
+	// 	/*点击其它非弹出层时隐藏*/
+	// 	var c = $(e.target).closest($.hisui.globalContainerSelector);
+	// 	if (c.length==0){
+	// 		$($.hisui.globalContainerSelector).hide();
+	// 	}
+	// });
 });

@@ -1,69 +1,13 @@
 @import "variables.less";
-
+.lookup.disabled {
+  background-image: url('images/lookup_arrow_disable.png'); // no-repeat center center;
+  background-color: @main-disabled-bgcolor;
+  color:#ccc;
+}
 .lookup {
-  border-color: @input-border-color;
-  background-color: @combo-bgcolor;
-  display: inline-block;
-  white-space: nowrap;
-  margin: 0;
-  padding: 0;
-  border-width: 1px;
-  border-style: solid;
-  overflow: hidden;
-  vertical-align: middle;
-  -moz-border-radius: @input-border-radius;
-  -webkit-border-radius: @input-border-radius;
-  border-radius: @input-border-radius;
-}
-.lookup .lookup-text {
-  font-size: @combo-font-size;
-  border:0; //px solid transparent;
-  line-height: @combo-input-line-height;
-  height: @combo-input-line-height;
- 
-  padding: 0px 0px 0px @combo-padding-left;
- 
-  *height:  @combo-input-line-height-ie8;
-  *line-height:  @combo-input-line-height-ie8;
-  _height: @combo-input-line-height-ie8;
-  _line-height: @combo-input-line-height-ie8;
-  
-}
-.lookup-arrow {
-  width: @combo-arrow-width;
-  height: @combo-arrow-height;
-  opacity: @input-arrow-opacity;
-  filter: alpha(opacity=@input-arrow-opacity-ie);
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: top;
-  cursor: pointer;
-  background:  url('images/lookup_arrow.png') no-repeat center center;
-}
-.lookup,
-.lookup-panel {
-  background-color: @combo-bgcolor;
-}
-.lookup-rowtip{
-  position: absolute;
-  border-width: 1px;
-  border-style: solid;
-  border-color: @panel-border-color @panel-border-color @panel-border-color @panel-border-color;
-  background-color: #fff;
-}
-.lookup-arrow.lookup-arrow-hover {
-  opacity: @input-arrow-hover-opacity;
-  filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-  background-color: @input-arrow-hover-bgcolor;
-}
-
-.lookup.disabled{
-  border-color: @main-disabled-border-color;
-  .lookup-arrow{
-    background-color: @main-disabled-bgcolor;
-    background-image:url(images/lookup_arrow_disable.png);
-  }
-}
-.lookup-p > .lookup-panel{
-  border-color: @combo-panel-border-color;
+  background-image: url(images/lookup_arrow.png);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-position-x: 96%\9;
+  background-position-y: 50%\9;
 }

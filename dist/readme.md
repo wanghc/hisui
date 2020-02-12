@@ -37,6 +37,8 @@ $("#btn").linkbutton("disable");
 
 ## 2020-2-12 ##
 * `combobox`组件setValue("")时，导致vv数组值为[""]问题,协同需求号:1194563
+* 增加`comboq`组件
+* 重写`lookup`组件，继承于`comboq`
 
 ## 2020-2-11 ##
 * `popover`增加setContent方法，以及解决为一个已经绑定了popover的元素再次绑定一个新的popover时内容没有改变的bug
