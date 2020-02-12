@@ -125,6 +125,9 @@
         for (var i = 0; i < values.length; i++) {
             var v = values[i];
             var s = v;
+            if (v=="" || v==undefined || v==null) { //多选时,如果setValue("")后会导致vv值变成[""],此时为选中一行,协同需求号:1194563
+                if (opts.finder.getEl(target, v).length==0) break;
+            }
             opts.finder.getEl(target, v).addClass("combobox-item-selected");
             var row = opts.finder.getRow(target, v);
             if (row) { 

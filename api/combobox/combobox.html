@@ -106,7 +106,7 @@ $(function(){
 			,{id:'sql',text:'结构化查询语言'}
 		],
 		editable:false,
-		panelHeight:"200", //"auto"
+		panelHeight:"200" //"auto"
 		//onChange:function(newval,oldval){
 			/*$(this).combobox("panel").find('input').prop('checked',false);
 			for (var i=0;i<newval.length;i++){
@@ -114,6 +114,7 @@ $(function(){
 			}*/
 		//}
 	});
+	cbox.setValue("");
 	$("#cboxbtn").click(function(){
 		console.log(cbox.getValues());
 		//cbox.setValues([]);
