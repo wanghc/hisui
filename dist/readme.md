@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2020-2-13 ##
 * `dateboxq`重写,继承自`comboq`
+* `numberbox`如果定义validType为字符串时报错修复
 
 ## 2020-2-12 ##
 * `combobox`组件setValue("")时，导致vv数组值为[""]问题,协同需求号:1194563

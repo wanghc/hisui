@@ -80,6 +80,7 @@
             if (!opts.validType) {
                 opts.validType = [];
             }
+            if ("string"==typeof opts.validType)  opts.validType = [opts.validType];
             if (typeof (opts.min) == "number") opts.validType.push('min['+opts.min+']');
             if (typeof (opts.max) == "number") opts.validType.push('max['+opts.max+']');
             $(_483).validatebox(opts);
@@ -252,6 +253,7 @@
                 }else{
                     var vt = $.data(this,'validatebox').options.validType;
                     if (!vt) $.data(this,'validatebox').options.validType = [];
+                    if ("string"==typeof vt)  $.data(this,'validatebox').options.validType = [vt];
                     var myvt = $.data(this,'validatebox').options.validType;
                     if (typeof (opts.min) == "number") myvt.push('min['+opts.min+']');
                     if (typeof (opts.max) == "number") myvt.push('max['+opts.max+']');
@@ -275,5 +277,5 @@
 				return true;
 			}, message:"Please enter a value less than {0}"
         }
-    })
+    });
 })(jQuery);
