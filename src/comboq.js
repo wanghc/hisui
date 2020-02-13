@@ -14,14 +14,30 @@
 			return true;
 		}
 		return false;
-	}
+    }
+    function doResize(target,offset){
+
+    }
 	function _hide(target){
-        var state = $.data(target, 'comboq');
-        var opts = state.options;
-        state.isShow = false;
-		opts.onHidePanel.call(this,target);
-        $($.hisui.globalContainerSelector).hide();
-        return target;
+        var panel = $($.hisui.globalContainerSelector);
+        if ("undefined" == typeof target) {
+            if ($.data(panel[0], "data")) target = $.data(panel[0], "data").srcTargetDom ;
+        }
+        if (panel.is(":visible")) {
+            var state = $.data(target, 'comboq');
+            var opts = state.options;
+            state.isShow = false;
+            // console.log(" _hide "+ state.isShow );
+            opts.onHidePanel.call(this,target);
+            $($.hisui.globalContainerSelector).hide();
+            return $(target);
+        }
+        if ("undefined" != typeof target) return $(target);
+        return null;
+    }
+    function _clear(target){
+        _setText(target,"");
+        _setValue(target,"");
     }
     function _setText (target,text){
         var state = $.data(target, "comboq");
@@ -29,6 +45,17 @@
             $(target).val(text);
             $(target).comboq("validate");
             state.previousValue = text;
+        }
+    }
+    function _setValue(target,value){
+        var state = $.data(target, "comboq");
+        var opts = state.options;
+        var oldVal = $(target).data('value');
+        if (value != oldVal){
+            opts.onChange.call(target,value,oldVal);
+            $(target).data('value',value);
+            $(target).comboq("validate");
+            state.originalRealValue = value;
         }
     }
     function init(target){
@@ -49,12 +76,14 @@
         _t.validatebox(opts);
         $(document).unbind(".comboq").bind("mousedown.comboq", function (e) {
             var input = $(e.target).closest('input.comboq');
-            if (input.length && $.data(e.target,'comboq').isShow){ return ; }
+            // if (input.length>0) console.log(" document mousedown "+ $.data(input[0],'comboq').isShow );
+            if (input.length>0 && $.data(input[0],'comboq').isShow){ return ;/*点击自已输入框时不隐藏*/ }
+
             var p = $(e.target).closest($.hisui.globalContainerSelector);
             if (p.length) {
-                return; 
+                return; /*点击弹出层时不隐藏*/
             }
-            _hide(target);
+            if ($($.hisui.globalContainerSelector).is(":visible")) _hide();
         });
 		_t.unbind('.comboq').bind('mousemove.comboq',function(e){
             if ($(this).hasClass('disabled')) return ;
@@ -69,6 +98,7 @@
 			//this.style.opacity = 0.7;
 			this.style.cursor = "auto";
 		}).bind('click.comboq',function(e){
+            // console.log(" comboq click = "+ $.data(this,'comboq').isShow );
             if ($(this).hasClass('disabled')) return ;
             if ($(this).hasClass('readonly')) return ;
 			if (_mouse2Right(e,this)){
@@ -108,7 +138,7 @@
                     return false;
                 case 9:
                 case 27:  //Esc
-                    _hide(target);
+                    _hide();
                     break;
                 default:
                     setTimeout(function (){
@@ -134,6 +164,15 @@
         });
 		return ;
     }
+    function setDisabled(target,value){
+		if (value) {
+            $(target).addClass('disabled');
+            $(target).prop("disabled",true);
+		}else{
+            $(target).removeClass('disabled');
+            $(target).prop("disabled",false);
+		}
+	}
     /**fix panel top left width height */
     function _fixPanelTLWH(target){
         var _t = $(target);
@@ -190,7 +229,9 @@
         if (!opts.panelWidth) {opts.panelWidth = _t._outerWidth()}
         panel.width(opts.panelWidth);
         state.isShow = true;
+        // console.log("showpanel "+state.isShow);
         panel.show();
+        $.data(document.getElementById($.hisui.globalContainerId), "data", {srcTargetDom : target}); /*下拉层上记录住当前对应的target*/
         opts.onShowPanel.call(target);
         _fixPanelTLWH(target);
     }
@@ -200,9 +241,8 @@
             if (_891) {
                 return _891(this, param);
             } else {
-                return this.each(function () {
-                    $(this).validatebox(opts, param);
-                });
+                return this.validatebox(opts, param);
+            
             }
         }
         opts = opts || {};
@@ -225,9 +265,7 @@
         }, textbox: function (jq) {
             return jq;
         }, destroy: function (jq) {
-            return jq.each(function () {
-                _850(this);
-            });
+            return ;
         }, resize: function (jq, _894) {
             return jq.each(function () {
                 doResize(this, _894);
@@ -235,16 +273,18 @@
         }, showPanel: function (jq) {
             return showPanel(jq[0]);
         }, hidePanel: function (jq) {
-            return _hide(jq[0]);
-        }, disable: function (jq) {
+            return _hide();
+        }, setDisabled:function(jq,value){
+			return jq.each(function () {
+                setDisabled(this, value);
+            });
+		}, disable: function (jq) {
             return jq.each(function () {
-                $(this).prop("disabled",true);
-                $(this).addClass('disabled');
+                setDisabled(this,true);
             });
         }, enable: function (jq) {
             return jq.each(function () {
-                $(this).prop("disabled",false);
-                $(this).removeClass('disabled');
+                setDisabled(this,false);
             });
         }, readonly: function (jq, mode) {
             return jq.each(function () {
@@ -259,15 +299,17 @@
             return jq.validatebox("isValid");
         }, clear: function (jq) {
             return jq.each(function () {
-                _872(this);
+                _clear(this);
             });
         }, reset: function (jq) {
             return jq.each(function () {
                 var opts = $.data(this, "comboq").options;
                 if (opts.multiple) {
-                    $(this).comboq("setValues", opts.originalValue);
+                    $(this).comboq("setValues", opts.originalRealValue);
+                    $(this).comboq('setText',opts.originalValue);
                 } else {
-                    $(this).comboq("setValue", opts.originalValue);
+                    $(this).comboq("setValue", opts.originalRealValue);
+                    $(this).comboq('setText',opts.originalValue);
                 }
             });
         }, getText: function (jq) {
@@ -277,16 +319,17 @@
                 _setText(this,text);
             });
         }, getValues: function (jq) {
-            return _87d(jq[0]);
+            return jq.data('value');
         }, setValues: function (jq, _896) {
             return jq.each(function () {
-                _881(this, _896);
+                if ($.isArray(_896) && _896.length>0) _setValue(this,_896[0]);
+                else{_setValue(this,"");}
             });
         }, getValue: function (jq) {
-            return jq.data('value');;
+            return jq.data('value');
         }, setValue: function (jq, val) {
             return jq.each(function () {
-                $(this).data('value',val);
+                _setValue(this,val)
             });
         }, createPanelBody:function(){
             var panel = $($.hisui.globalContainerSelector); /*全局固定div*/
@@ -324,7 +367,7 @@
 
         },onShowPanel: function () {
         }, onHidePanel: function () {
-        }, onChange: function (_899, _89a) {
+        }, onChange: function (newValue,oldValue) {
         }
     });
 })(jQuery);

@@ -1,70 +1,24 @@
 ﻿(function($){
-	function _mouse2Right(e,t){
-		var mouseX = e.pageX;
-		/*var e = event || window.event;
-		var scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-		var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-		var x = e.pageX || e.clientX + scrollX;
-		var y = e.pageY || e.clientY + scrollY;*/
-		var boxWidth = $(t)._outerWidth();
-		var xy = $(t).offset(); 
-		if (mouseX < xy.left+boxWidth && mouseX>(xy.left+boxWidth-40)){
-			return true;
-		}
-		return false;
-	}
-	function _hide(target,opts){
-		opts.onHidePanel.call(this,target);
-		$($.hisui.globalContainerSelector).hide();
-	}
 	function createBox(target){
 		var state = $.data(target, 'dateboxq');
 		var opts = state.options;
 		var _t = $(target);
-		_t.addClass('comboq dateboxq');
-		if (opts.disabled || opts.readOnly){
-			_t.addClass('disabled');
-		}
-		_t.validatebox(opts);
-		_t.unbind('.dateboxq').bind('mousemove.dateboxq',function(e){
-			if ($(this).hasClass('disabled')) return ;
-			//this.style.opacity = 1;
-			if(_mouse2Right(e,this)){
-				this.style.cursor = "pointer";
-			}else{
-				this.style.cursor = "auto";
-			}
-		}).bind('mouseleave.dateboxq',function(){
-			//this.style.opacity = 0.7;
-			this.style.cursor = "auto";
-		}).bind('click.dateboxq',function(e){
-			if ($(this).hasClass('disabled')) return ;
-			if (_mouse2Right(e,this)){
-				e.preventDefault();
-				e.stopPropagation();
+		_t.comboq($.extend({},opts,{
+			onShowPanel:function(){
+				state.panel = $(target).comboq('panel');
 				createCalendar(target);
-				return false;
+                opts.onShowPanel.call(target);
 			}
-		}).bind('blur.dateboxq',function(e){
-			opts.onBlur.call(this,target);
-		});
+		}));
+		_t.addClass('dateboxq');
 		return ;
 	}
 	function createCalendar(target){
 		var _t = $(target);
-		var panel = $($.hisui.globalContainerSelector); /*全局固定div*/
-		if (panel.length){
-			panel.empty();
-		}else{
-			panel = $('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
-		}
-		var opts = $.data(target,"dateboxq").options;
-		var txt = _t.val();
-		var cur = opts.parser.call(target,txt);
-		var offset = _t.offset();
-		panel.show();
-		panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
-		
+		var state = $.data(target,"dateboxq");
+		var opts = state.options;
+		var txt = $(target).comboq('getText');
+		var cur = opts.parser.call(target,txt);		
 		if (opts.minDate!=null || opts.maxDate!=null){
 			$(target).dateboxq('calendar').options.validator = function(date,validParams){
 				var tmpState = $.data(target, 'dateboxq');
@@ -89,12 +43,14 @@
 			//validator: $(target).dateboxq('calendar').options.validator,
 			onSelect: function(date){
 				var opts = $(target).dateboxq('options');
-				setValue(target,opts.formatter.call(target, date));
-				//panel.hide();
-				_hide(target,opts);
+				setValue(target , opts.formatter.call(target, date));
+				$(target).comboq('hidePanel');
 			}
-		}, $(target).dateboxq("calendar").calendar('options'));
-		$('<div></div>').appendTo(panel).calendar(calOpt);
+		},  $(target).dateboxq("calendar").calendar('options') );
+		var panel = $(target).comboq('panel');
+		var panelBody = $(target).comboq('createPanelBody');
+		panelBody.calendar(calOpt);
+
 		var button = $('<div class="datebox-button"><table cellspacing="0" cellpadding="0" style="width:100%"><tr></tr></table></div>').appendTo(panel);
 		var tr = button.find('tr');
 		for(var i=0; i<opts.buttons.length; i++){
@@ -106,34 +62,6 @@
 			});
 		}
 		tr.find('td').css('width', (100/opts.buttons.length)+'%');
-		opts.onShowPanel.call(target);
-		/*每200ms, 重计算位置*/
-		(function () {
-            if (panel.is(":visible")) {
-                panel.offset({top: getRight() }); //left: getLeft(),
-				setTimeout(arguments.callee, 200);
-            }
-        })();
-        function getLeft() {
-            var left = _t.offset().left;
-            if (left + panel._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
-                left = $(window)._outerWidth() + $(document).scrollLeft() - panel._outerWidth();
-            }
-            if (left < 0) {
-                left = 0;
-            }
-            return left;
-        };
-        function getRight() {
-            var top = _t.offset().top + _t._outerHeight();  //默认向下
-            if (top + panel._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
-                top = _t.offset().top - panel._outerHeight(); //在上面显示
-            }
-            if (top < $(document).scrollTop()) {
-                top = _t.offset().top + _t._outerHeight(); //向下显示 
-            }
-            return top;
-        };
 		return ;
 	}
 	function doEnter(target,hidePanel){
@@ -143,19 +71,12 @@
 		var current = $(target).val();
 		if (current){
 			setValue(target, opts.formatter.call(target, opts.parser.call(target,current)));
-			if(hidePanel) _hide(target,opts);
+			if(hidePanel) $(target).comboq('hidePanel');
 		}
 	}
 	function doBlur(target){
 		if ($(target).validatebox("isValid")) {
 			doEnter(target,false);
-		}
-	}
-	function setDisabled(target,value){
-		if (value) {
-			$(target).addClass('disabled');
-		}else{
-			$(target).removeClass('disabled');
 		}
 	}
 	function getValue(target){
@@ -171,7 +92,7 @@
 		$(target).val(value);
 		if ($(target).validatebox('isValid')){
 			opts.onSelect.call(target,opts.parser.call(target,value));
-		}		
+		}
 	}	
 	$.fn.dateboxq = function(options, param){
 		if (typeof options == 'string'){
@@ -179,7 +100,7 @@
 			if (method){
 				return method(this, param);
 			} else {
-				return this.validatebox(options, param);
+				return this.comboq(options, param);
 			}
 		}
 		options = options || {};
@@ -229,31 +150,14 @@
 		getValue:function(jq){
 			return getValue(jq[0]);
 		},
-		setDisabled:function(jq,value){
-			return jq.each(function () {
-                setDisabled(this, value);
-            });
-		},
-		disable:function(jq){
-			return jq.each(function () {
-                setDisabled(this, true);
-            });
-		},
-		enable:function(jq){
-			return jq.each(function () {
-                setDisabled(this, false);
-            });
-		},
 		calendar:function(jq){
 			return $.data(jq[0], 'dateboxq').calendar;
 		}
 	};	
 	$.fn.dateboxq.parseOptions = function(target){
-		return $.extend({}, $.fn.validatebox.parseOptions(target), $.parser.parseOptions(target));
+		return $.extend({}, $.fn.comboq.parseOptions(target), $.parser.parseOptions(target));
 	};
-	$.fn.dateboxq.defaults = $.extend({}, $.fn.validatebox.defaults, {
-		disabled:false,
-		readOnly:false,
+	$.fn.dateboxq.defaults = $.extend({}, $.fn.comboq.defaults, {
 		parser:$.fn.datebox.defaults.parser,
 		formatter:$.fn.datebox.defaults.formatter,
 		currentText:$.fn.datebox.defaults.currentText,
@@ -268,15 +172,13 @@
 		},{
 			text: function(target){return $(target).dateboxq('options').closeText;},
 			handler: function(target){
-				_hide(target,$(target).dateboxq('options'));
+				$(target).comboq('hidePanel');
 			}
 		}],
 		onBlur:function(target){
 			doBlur(target);
 		},
 		onSelect:function(date){},
-		onHidePanel:function(){},
-		onShowPanel:function(){},
 		onChange:function(newValue,oldValue){},
 		validType:['datebox["YMD"]','minMaxDate[null,null]'],
 		minDate:null,

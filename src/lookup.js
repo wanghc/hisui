@@ -178,10 +178,14 @@
                     }
                     opts.onLoadSuccess.apply(target, arguments);
                 }, onSelect: function(index,rows){
-                    if (false===opts.onSelect.call(this, index, rows)) return false; 
+                    var fn = opts.onChange;
+                    opts.onChange = function () {};
                     $(target).comboq("setText",rows[opts.textField]);
                     $(target).comboq("setValue",rows[opts.idField]);
-                    $(target).comboq("hidePanel");
+                    opts.onChange = fn ;
+                    if (false !== opts.onSelect.call(this, index, rows)){  //返回false不隐藏
+                        $(target).comboq("hidePanel");
+                    }
                 },lazy:true
                 ,onHighlightRow:function(index,row){
                     var html=opts.selectRowRender.call(this,row);
@@ -207,7 +211,7 @@
         _t.comboq($.extend({}, opts, {
             onShowPanel : function(){
                 state.panel = $(target).comboq('panel');
-                initGrid(target,opts);
+                initGrid(target);
                 opts.onShowPanel.call(target);
             }
         }));

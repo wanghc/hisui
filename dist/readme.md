@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2020-2-13 ##
+* `dateboxq`重写,继承自`comboq`
+
 ## 2020-2-12 ##
 * `combobox`组件setValue("")时，导致vv数组值为[""]问题,协同需求号:1194563
 * 增加`comboq`组件
