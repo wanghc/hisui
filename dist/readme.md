@@ -35,7 +35,7 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2020-02-13 ##
-*修复`triggerbox`鼠标`hover`与`focus`状态下，图标背景色问题
+* 修复`triggerbox`鼠标`hover`与`focus`状态下，图标背景色问题
 
 ## 2020-2-12 ##
 * `combobox`组件setValue("")时，导致vv数组值为[""]问题,协同需求号:1194563
