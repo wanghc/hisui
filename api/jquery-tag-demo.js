@@ -51,14 +51,19 @@ $(function(){
         .replace(/<|>/g,function(w){
             return (w=="<")?"&lt;":(w==">"?"&gt;":'');
         });
-        let sel = $(item).attr('prettyprintfor');
-        if (!sel){ sel = $('<pre></pre>');};
-        if (h.slice(0,4)=="&lt;"){
-            sel.addClass('lang-html');
+        var sel = $(item).attr('prettyprintfor');
+        if (!sel){
+            sel = $('<pre></pre>');
+            if (h.slice(0,4)=="&lt;"){
+                sel.addClass('lang-html');
+            }else{
+                sel.addClass('lang-js');
+            }
+            sel.appendTo($(item).parent());
         }else{
-            sel.addClass('lang-js');
-        }
-        sel.appendTo($(item).parent()).addClass('hide prettyprint linenums').html("<code>"+h+"</code>");
+            sel=$(sel);
+        };
+        sel.addClass('hide prettyprint linenums').html("<code>"+h+"</code>");
         
     });
     $("pre.prettyprint").addClass("linenums");
