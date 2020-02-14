@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 * 弹出层z-index设置
 * `lookup`有限支持`jobj.lookup('panel').panel("resize")`方法
 * `comboq`禁用autocomplete功能
+* `lookup`支持按数字选行, 默认增加行号
 
 ## 2020-2-13 ##
 * `dateboxq`重写,继承自`comboq`

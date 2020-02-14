@@ -83,11 +83,21 @@
 	/**
 	 * query 
 	 */
-    function doQuery(target, q) {
+    function doQuery(target, q, e) {
         var _91c = $.data(target, "lookup");
         var opts = _91c.options;
         var grid = _91c.grid;
-        
+        if (opts.isCombo && opts.enableNumberEvent){
+            var key = e.keyCode;
+            if (key<=57 && key >=49){ // 1=49
+                //  第二个入参0表示第一行
+                grid.datagrid("selectRow", key-49);
+                return false;
+            }else if (key<=105 && key>=97) {  // 小键盘1=97
+                grid.datagrid("selectRow", key-97);
+                return false;
+            }
+        }
         _91c.remainText = true;
         if (opts.multiple && !q) {
             _911(target, [], true);
@@ -171,7 +181,9 @@
             if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target);
             grid.datagrid($.extend({}, opts, { 
                 title:opts.gridTitle||"",
-                border: false, fit: true, singleSelect: (!opts.multiple), onLoadSuccess: function (data) {
+                rownumbers:true,lazy:true,
+                border: false, fit: true, singleSelect: (!opts.multiple), 
+                onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){
                         $(target).focus();
                         grid.datagrid("highlightRow", 0);
@@ -186,13 +198,13 @@
                     if (false !== opts.onSelect.call(this, index, rows)){  //返回false不隐藏
                         $(target).comboq("hidePanel");
                     }
-                },lazy:true
-                ,onHighlightRow:function(index,row){
+                },
+                onHighlightRow:function(index,row){
                     var html=opts.selectRowRender.call(this,row);
                     if (typeof html!='string') html='';
                     renderRowSummary(target,html);
-                }
-                ,clickDelay:200  // datagrid 的点击支持防抖 
+                },
+                clickDelay:200  // datagrid 的点击支持防抖 
                 ,lookup:$(target) // 反向绑定 可以根据grid 获取到当前lookup元素
             }));
             state.grid = grid;
@@ -272,7 +284,7 @@
             }, enter: function (e) {
                 doEnter(this);
             }, query: function (q, e) {
-                doQuery(this, q);
+                doQuery(this, q, e );
             },pageUp: function(e){
                 page(this,"prev");
                 e.preventDefault();
@@ -289,8 +301,9 @@
         },
         panelWidth: 350, panelHeight: 200, panelAlign: "left", selectOnNavigation: false, separator: ",",
         isCombo:false,minQueryLen:0,
-        queryOnSameQueryString: true //当查询条件相同时，在回车和点击按钮是否查询
-        ,onBeforeShowPanel:function(){
+        queryOnSameQueryString: true, //当查询条件相同时，在回车和点击按钮是否查询
+        enableNumberEvent:false, /*是否启用数字选行功能，当按数字n键时选中第n行记录*/
+        onBeforeShowPanel:function(){
         },selectRowRender:function(row){ //高亮一行数据时 显示提示内容html
         }
     });
