@@ -16,8 +16,8 @@
     <span>数字验证框（numberbox）用来验证数字表单，在输入框上加入简单的验证 。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div class="hisui-panel" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-save',closable:true,collapsible:true,minimizable:true,maximizable:true">
-			<table cellpadding="5" class="use-prettyprint" prettyprintfor="#mypp">
+		<div class="hisui-panel use-prettyprint" title="登记" style="width:400px;padding:10px 30px 20px 30px" data-options="iconCls:'icon-paper',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-gray'">
+			<table cellpadding="5">
 			<tbody>
 				<tr>
 					<td class="r-label">重量</td>
@@ -36,19 +36,17 @@
 			</tbody>
 			</table>
 		</div>
-		<pre class="hide lang-html" id='mypp'></pre>
-		<pre class="hide lang-js" id='myppjs'></pre>
+		<script type="text/javascript"  class="use-prettyprint">
+			$(function(){
+				$("#nb").on('keyup',function(e){
+					console.log("numberbox value = "+$(this).numberbox('getValue'));
+					if (e.keyCode==13){
+						console.log("numberbox value enterkey ="+$(this).numberbox('getValue'));
+					}
+				});
+			})
+		</script>
 	</div>
-	<script type="text/javascript"  class="use-prettyprint" prettyprintfor="#myppjs">
-		$(function(){
-			$("#nb").on('keyup',function(e){
-				console.log("numberbox value = "+$(this).numberbox('getValue'));
-				if (e.keyCode==13){
-					console.log("numberbox value enterkey ="+$(this).numberbox('getValue'));
-				}
-			});
-		})
-	</script>
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>
