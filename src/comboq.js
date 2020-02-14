@@ -173,47 +173,6 @@
             $(target).prop("disabled",false);
 		}
 	}
-    /**fix panel top left width height */
-    function _fixPanelTLWH(target){
-        var _t = $(target);
-        var state = $.data(target,"comboq");
-        var panel = $($.hisui.globalContainerSelector);
-        var offset = _t.offset();
-        panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
-        /*每200ms, 重计算位置*/
-		(function () {
-            if (panel.is(":visible")) {
-                var myTop = getTop();
-                if (Math.abs(myTop-panel.offset().top)>2){
-                    panel.offset({top: myTop }); //left: getLeft(),
-                    clearTimeout(state.offsettimer);
-                    state.offsettimer = null;
-                }
-				state.offsettimer = setTimeout(arguments.callee, 60);
-            }
-        })();
-        function getLeft() {
-            var left = _t.offset().left;
-            if (left + panel._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
-                left = $(window)._outerWidth() + $(document).scrollLeft() - panel._outerWidth();
-            }
-            if (left < 0) {
-                left = 0;
-            }
-            return left;
-        };
-        function getTop() {
-            var top = _t.offset().top + _t._outerHeight();  //默认向下
-            if (top + panel._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
-                top = _t.offset().top - panel._outerHeight(); //在上面显示
-            }
-            if (top < $(document).scrollTop()) {
-                top = _t.offset().top + _t._outerHeight(); //向下显示 
-            }
-            top = parseInt(top);
-            return top;
-        };
-    }
     function showPanel(target){
         var _t = $(target);
         var state = $.data(target,"comboq");
@@ -233,7 +192,7 @@
         panel.show();
         $.data(document.getElementById($.hisui.globalContainerId), "data", {srcTargetDom : target}); /*下拉层上记录住当前对应的target*/
         opts.onShowPanel.call(target);
-        _fixPanelTLWH(target);
+        $.hisui.fixPanelTLWH();
     }
     $.fn.comboq = function (opts, param) {
         if (typeof opts == "string") {
@@ -339,10 +298,6 @@
                 panel = $('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
             }
             return $('<div></div>').appendTo(panel);
-        },fixPanelTLWH:function(jq){
-            return jq.each(function () {
-               _fixPanelTLWH(this);
-            });
         }
     };
     $.fn.comboq.parseOptions = function (_898) {

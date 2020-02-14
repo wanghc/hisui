@@ -14,6 +14,13 @@
     };
     // panel.resize
     function _1e3(_1e4, _1e5) {
+        //$(this).lookup('panel').panel('resize',{width:1000});
+        var _t = $(_1e4);
+        if (_t.attr('id')==$.hisui.globalContainerId) {
+            _t.css(_1e5);
+            $.hisui.fixPanelTLWH();
+            return ;
+        }
         var opts = $.data(_1e4, "panel").options;
         var _1e6 = $.data(_1e4, "panel").panel;
         var _1e7 = _1e6.children("div.panel-header");

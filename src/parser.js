@@ -103,6 +103,51 @@
     };
     $.hisui.globalContainerId = 'z-q-container';
     $.hisui.globalContainerSelector = '#'+$.hisui.globalContainerId;
+    $.hisui.getLastSrcTargetDom = function(){
+        return $.data(document.getElementById($.hisui.globalContainerId), "data").srcTargetDom;
+    }
+    /**fix panel top left width height */
+    $.hisui.fixPanelTLWH = function(){
+        var state = $.data(document.getElementById($.hisui.globalContainerId), "data");
+        var target = state.srcTargetDom;
+        var _t = $(target);
+        var panel = $($.hisui.globalContainerSelector);
+        var offset = _t.offset();
+        panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
+        /*60ms, 重计算位置*/
+		(function () {
+            if (panel.is(":visible")) {
+                var myTop = getTop();
+                if (Math.abs(myTop-panel.offset().top)>2){
+                    panel.offset({top: myTop }); //left: getLeft(),
+                    clearTimeout(state.offsettimer);
+                    state.offsettimer = null;
+                }
+				state.offsettimer = setTimeout(arguments.callee, 60);
+            }
+        })();
+        function getLeft() {
+            var left = _t.offset().left;
+            if (left + panel._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
+                left = $(window)._outerWidth() + $(document).scrollLeft() - panel._outerWidth();
+            }
+            if (left < 0) {
+                left = 0;
+            }
+            return left;
+        };
+        function getTop() {
+            var top = _t.offset().top + _t._outerHeight();  //默认向下
+            if (top + panel._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
+                top = _t.offset().top - panel._outerHeight(); //在上面显示
+            }
+            if (top < $(document).scrollTop()) {
+                top = _t.offset().top + _t._outerHeight(); //向下显示 
+            }
+            top = parseInt(top);
+            return top;
+        };
+    }
     /*--1.5.js--jquery.parser.js--method-----end---*/
     $.parser = {
         auto: true, onComplete: function (context) {

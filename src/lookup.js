@@ -159,7 +159,7 @@
             cont.find('.lookup-rowSummary').remove();
             var rowSummaryHeight = $('<div class="lookup-rowSummary">'+html+'</div>').appendTo(cont)._outerHeight();
             cont._outerHeight(cont.children('.datagrid')._outerHeight()+rowSummaryHeight);
-            $(target).comboq('fixPanelTLWH');
+            $.hisui.fixPanelTLWH();
         }
         return;
     }
