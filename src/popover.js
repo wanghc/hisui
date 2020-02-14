@@ -70,7 +70,7 @@
                 $(this).webuiPopover('destroy');
             });
         },
-        senContent:function(jq,value){//yp 2020-02-11 添加setContent方法，用于修改popover弹出层的内容
+        setContent:function(jq,value){//yp 2020-02-11 添加setContent方法，用于修改popover弹出层的内容
             return jq.each(function(){
                 var oldCache = $.data(this, 'popover').options.cache;
                 if($.data(this, 'popover').options.cache){
