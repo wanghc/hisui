@@ -34,12 +34,14 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-## 2020-02-13 ##
-* 修复`triggerbox`鼠标`hover`与`focus`状态下，图标背景色问题
+
+## 2020-02-14 ##
+* 弹出层z-index设置
 
 ## 2020-2-13 ##
 * `dateboxq`重写,继承自`comboq`
 * `numberbox`如果定义validType为字符串时报错修复
+* 修复`triggerbox`鼠标`hover`与`focus`状态下，图标背景色问题
 
 ## 2020-2-12 ##
 * `combobox`组件setValue("")时，导致vv数组值为[""]问题,协同需求号:1194563
