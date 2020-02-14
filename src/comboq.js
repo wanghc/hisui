@@ -63,6 +63,7 @@
 		var opts = state.options;
 		var _t = $(target);
         _t.addClass('comboq');
+        _t.attr('autocomplete','off');
         if ($.isNumeric(opts.width)) _t._outerWidth(opts.width);
 		if (opts.disabled){
 			_t.addClass('disabled');
