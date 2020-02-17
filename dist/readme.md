@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-02-17 ##
+* `lookup`在textbox修饰下长度与原保持一致 
 
 ## 2020-02-14 ##
 * 弹出层z-index设置
