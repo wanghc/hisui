@@ -52,9 +52,10 @@
 			var curVal = $(target).combo('getText'); 
 			setTimeout(function(){
 				// curVal不为空才去校验日期格式, 为空时调用doEnter会默认上当天日期
-				if (curVal!="" && curVal == $(target).combo('getText')){ //没有点击今天,或日历中其它日期
+				// 2020-02-17 注掉下面if,doEnter增加calender显示状态下回车才选中值
+				//if (curVal!="" && curVal == $(target).combo('getText')){ //没有点击今天,或日历中其它日期
 					opts.onBlur(target);
-				}
+				//}
 			},200);
 		})
 		function createCalendar(){
@@ -190,7 +191,7 @@
 		var state = $.data(target, 'datebox');
 		var opts = state.options;
 		var current ;
-		if (state.calendar){
+		if (state.calendar && state.calendar.is(":visible")){  //日历可见时,回车才默认日期
 			current = state.calendar.calendar('options').current;
 		}
 		if (current){

@@ -18,114 +18,75 @@
     <span>日期框（datebox）把可编辑的文本框和下拉日历面板结合起来，用户可以从下拉日历面板中选择日期，在文本框中输入的字符串可转换为有效日期。支持快捷t方式输入,t+2表示二天后,t-2表示二天前的日期。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
-		<table> 
-				<tr>
-					<td class='r-label'>统计月份</td>
-					<td class='r-label'>
-						<input id="samth" class="hisui-datebox textbox" data-options='onSelect:onSelect,formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
-						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
-					</td>
-					<td class='r-label'>
-						<a class="hisui-linkbutton" id="samthBtn">获取值</a>
-					</td>
-				</tr>
-				<tr>
-					<td class='r-label'>生日</td>
-					<td>
-						<input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
-						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
-					</td>
-					<td class='r-label'>
-						<a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期</a>
-						<a class="hisui-linkbutton" id="dbBtn">获取值</a>
-					</td>
-				</tr>
-				<tr>
-					<td class='r-label'>结算时间</td>
-					<td>
-						<input class="hisui-datetimebox textbox" data-options="onSelect:onSelect"/>
-						<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
-					</td>
-				</tr>
+		<table class="use-prettyprint">
+			<tr>
+				<td class='r-label'>统计月份</td>
+				<td class='r-label'>
+					<input id="samth" class="hisui-datebox textbox" data-options='onSelect:onSelect,
+					formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
+					<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
+				</td>
+				<td class='r-label'>
+					<a class="hisui-linkbutton" id="samthBtn">获取值</a>
+				</td>
+			</tr>
+			<tr>
+				<td class='r-label'>生日</td>
+				<td>
+					<input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
+					<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
+				</td>
+				<td class='r-label'>
+					<a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期</a>
+					<a class="hisui-linkbutton" id="dbBtn">获取值</a>
+				</td>
+			</tr>
+			<tr>
+				<td class='r-label'>停止日期</td>
+				<td>
+					<input class="hisui-datebox textbox" value="2020-02-17" data-options='required:true'/>
+				</td>
+				<td style="color: red;">
+					必填项
+				</td>
+			</tr>
+			<tr>
+				<td class='r-label'>结算时间</td>
+				<td>
+					<input class="hisui-datetimebox textbox" data-options="onSelect:onSelect"/>
+					<!-- <a id="btn1" class="hisui-linkbutton">sure</a> -->
+				</td>
+			</tr>
 		</table>
+		<script type="text/javascript" class="use-prettyprint">
+			function onSelect(date){
+				$('#result').text(date)
+			}
+			$(function(){
+				$("#samthBtn").click(function(){
+					var val = $("#samth").datebox('getValue');
+					$.messager.alert( "提示",val);
+				});
+				$("#setDateDisBtn").click(function(){
+					var now = new Date();
+					var now6 = new Date();
+					now6.setTime(now.getTime()+(6*24*60*60*1000));
+					var opt = $("#db").datebox('options');
+					opt.minDate = opt.formatter(now); //'2019-11-24';
+					opt.maxDate = opt.formatter(now6); //'2019-11-30';
+					$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
+				});
+				$("#dbBtn").click(function(){
+					var val = $("#db").datebox('getValue');
+					$.messager.alert( "提示",val);
+				});
+			})
+		</script>
 		<div style="margin:10px 0">
 			<span>Selected Date: </span>
 			<span id="result"></span>
 		</div>
-		<pre class="prettyprint hide lang-html"><code>&lt;style>td{padding:5px 0;}&lt;/style>
-&lt;table> 
-	&lt;tr>
-		&lt;td class='r-label'>统计月份&lt;/td>
-		&lt;td class='r-label'>
-			&lt;input id="samth" class="hisui-datebox textbox" 
-			data-options='onSelect:onSelect,formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
-		&lt;/td>
-		&lt;td class='r-label'>
-			&lt;a class="hisui-linkbutton" id="samthBtn">获取值&lt;/a>
-		&lt;/td>
-	&lt;/tr>
-	&lt;tr>
-		&lt;td class='r-label'>生日&lt;/td>
-		&lt;td>
-			&lt;input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
-		&lt;/td>
-		&lt;td class='r-label'>
-			&lt;a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期&lt;/a>
-			&lt;a class="hisui-linkbutton" id="dbBtn">获取值&lt;/a>
-		&lt;/td>
-	&lt;/tr>
-	&lt;tr>
-		&lt;td class='r-label'>结算时间&lt;/td>
-		&lt;td>
-			&lt;input class="hisui-datetimebox textbox" data-options="onSelect:onSelect"/>
-		&lt;/td>
-	&lt;/tr>
-&lt;/table&gt;
-&lt;div style="margin:10px 0">
-	&lt;span>Selected Date: &lt;/span>
-	&lt;span id="result">&lt;/span>
-&lt;/div></code></pre><pre class="prettyprint hide lang-js">
-&lt;script type="text/javascript"&gt;
-function onSelect(date){
-	$('#result').text(date)
-}
-$("#setDateDisBtn").click(function(){
-	var now = new Date();
-	var now6 = new Date();
-	now6.setTime(now.getTime()+(6*24*60*60*1000));
-	var opt = $("#db").datebox('options');
-	opt.minDate = opt.formatter(now); //'2019-11-24';
-	opt.maxDate = opt.formatter(now6); //'2019-11-30';
-	$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
-});
-&lt;/script&gt;	
-	</pre>
-
 	</div>
-	<script>
-		function onSelect(date){
-			$('#result').text(date)
-		}
-		$(function(){
-			$("#samthBtn").click(function(){
-				var val = $("#samth").datebox('getValue');
-				$.messager.alert( "提示",val);
-			});
-			$("#setDateDisBtn").click(function(){
-				var now = new Date();
-				var now6 = new Date();
-				now6.setTime(now.getTime()+(6*24*60*60*1000));
-				var opt = $("#db").datebox('options');
-				opt.minDate = opt.formatter(now); //'2019-11-24';
-				opt.maxDate = opt.formatter(now6); //'2019-11-30';
-				$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
-			});
-			$("#dbBtn").click(function(){
-				var val = $("#db").datebox('getValue');
-				$.messager.alert( "提示",val);
-			});
-		})
-	</script>
  <script type="text/javascript">
 // 	var init = function () {
 // 		$("#btn1").click(function(){

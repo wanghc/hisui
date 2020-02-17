@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2020-02-17 ##
 * `lookup`在textbox修饰下长度与原保持一致 
 * `checkbox`生成的代码有undefined类问题
+* 修复`datebox`对required不生效问题
 
 ## 2020-02-14 ##
 * 弹出层z-index设置
