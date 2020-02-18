@@ -207,6 +207,7 @@
                 clickDelay:200  // datagrid 的点击支持防抖 
                 ,lookup:$(target) // 反向绑定 可以根据grid 获取到当前lookup元素
             }));
+            grid.datagrid('loadData',{total:0,rows:[]});
             state.grid = grid;
         }
         if (opts.minQueryLen<0){ opts.minQueryLen=0;}

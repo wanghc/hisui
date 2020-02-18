@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-02-18 ##
+* `lookup`的`minQueryLen`属性非0时，在放大镜内回车弹出的翻页条上显示共10行问题
+
 ## 2020-02-17 ##
 * `lookup`在textbox修饰下长度与原保持一致 
 * `checkbox`生成的代码有undefined类问题

@@ -130,21 +130,6 @@
 					pagination:true,
 					panelWidth:500,
 				});
-				$("#user").lookup({
-					url:'getUser',
-					mode:'remote',
-					idField:'HIDDEN',
-					textField:'Description',
-					columnsLoader:function(){
-						return [[  
-							{field:'Code',title:'工号',width:150},  
-							{field:'Description',title:'姓名',width:150},  
-							{field:'HIDDEN',title:'用户ID',width:50}  
-						]];
-					},
-					pagination:true,
-					panelWidth:500,
-				});
 				$('.op-btn').linkbutton({
 					onClick:function(){
 						if($(this).text()=="禁用") $("#user").lookup("disable");
