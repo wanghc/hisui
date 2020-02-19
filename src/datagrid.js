@@ -2096,6 +2096,20 @@
             }, resize: function (_682, _683) {
                 //$(_682).linkbutton("resize", _683);
             }
+        },lookup:{
+            init: function (_696, _697) {
+                var _698 = $("<input class='textbox' type=\"text\">").appendTo(_696);
+                _698.lookup(_697);
+                return _698;
+            }, destroy: function (_699) {
+                $(_699).lookup("destroy");
+            }, getValue: function (target) {
+                return $(target).lookup("getText");
+            }, setValue: function (target, val) {
+                $(target).lookup("setText", val);
+            }, resize: function (target, _69e) {
+                $(target).lookup("resize", _69e);
+            }
         }
     };
     $.fn.datagrid.methods = {
