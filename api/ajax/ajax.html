@@ -29,11 +29,11 @@
 				<th>说明</th>
 			</tr>
 			<tr>
-				<td>data</td>
-				<td>{ Object }</td>
-				<td>必填项</td>
+				<td><div style="width: 60px;">data</div></td>
+				<td><div style="width: 140px;">{ Object }</div></td>
+				<td><div style="width: 80px;">必填项</div></td>
 				<td>
-					<table class="table" style="width:770px;">
+					<table class="table" style="width:100%;">
 						<tr >
 							<th>属性</th>
 							<th>类型</th>
@@ -85,7 +85,19 @@
 								<br/>
 								如：totalFields:<code>'amt,cost'</code>,返回格式为:
 								<br/>
-								<code>{"rows":[...],"footer":[{"amt":110,"cost":120}],"total":3}</code>
+								{"rows":[...],<code>"footer":[{"amt":110,"cost":120}],</code>"total":3}
+							</td>
+						</tr>
+						<tr>
+							<td><code>totalFooter</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>
+								配置totalFooter后，会在数值合计后，拼接到数据json前。
+								<br/>
+								如：totalFooter:<code>'"colName":"押金合计"'</code>,返回格式为:
+								<br/>
+								{"rows":[...],"footer":[{<code>"colName":"押金合计",</code>"amt":1100}],"total":3} <code>20200224</code>
 								
 							</td>
 						</tr>
