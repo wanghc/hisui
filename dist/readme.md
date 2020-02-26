@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2020-02-26 ##
+* `datebox`验证dtformat=DMY格式
+
 ## 2020-02-19 ##
 * `datagrid`支持lookup编辑
 

@@ -152,7 +152,18 @@
         /*t-n , t+n*/
 		if (!s) return false;
 		if (s.charAt(0).toUpperCase()=='T'){return true;}
-		if ("undefined"!=typeof dtformat &&  dtformat == 'DMY'){return true;}
+		if ("undefined"!=typeof dtformat &&  dtformat == 'DMY'){
+			var ss = s.split('/');
+			y = parseInt(ss[2],10);
+			m = parseInt(ss[1],10);
+			d = parseInt(ss[0],10);
+			if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+				if ((m>12)||(d>31)){ return false;}
+				return true;
+			} else {
+				return false;
+			}
+		}
 		if (s.charAt(0).toUpperCase()=='T'){
 			/*2019-6-6 => 2019-06-06 */
 			var ss =  s.split('-');
