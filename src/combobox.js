@@ -121,12 +121,16 @@
         var opts = $.data(target, "combobox").options;
         var panel = $(target).combo("panel");
         panel.find("div.combobox-item-selected").removeClass("combobox-item-selected");
-        var vv = [], ss = [];
+        var vv = [], ss = [],vvn=[];
         for (var i = 0; i < values.length; i++) {
             var v = values[i];
             var s = v;
-            if (v=="" || v==undefined || v==null) { //多选时,如果setValue("")后会导致vv值变成[""],此时为选中一行,协同需求号:1194563
-                if (opts.finder.getEl(target, v).length==0) break;
+            if (v!="" && v!=undefined && v!=null) {
+                //多选时,如果setValue("")后会导致vv值变成[""],此时为选中一行,协同需求号:1194563
+                // break后，vv的length与老逻辑中length不同, 导致编辑表格中有Combobox时,初始化时触发onChange获取getEditor方法出错。bill-jf-zyw
+                if (opts.finder.getEl(target, v).length>0){
+                    vvn.push(v);
+                }
             }
             opts.finder.getEl(target, v).addClass("combobox-item-selected");
             var row = opts.finder.getRow(target, v);
@@ -147,7 +151,7 @@
         if(opts.rowStyle && opts.rowStyle=='checkbox'){ 
             //wanghc 2018-10-17 rowStyle=checkbox 选中数据行时,判断是不是应该选中全选勾
             var tmpLen = $.data(target, "combobox").data.length;
-            if (vv.length==tmpLen){
+            if (vvn.length==tmpLen){
                 panel.parent().children("._hisui_combobox-selectall").addClass("checked");
             }else{
                 panel.parent().children("._hisui_combobox-selectall").removeClass("checked");
