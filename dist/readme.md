@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-03-11 ##
+* `comboq`系组件弹出位置适应修改 
+
 ## 2020-03-08 ##
 * `combobox`获得值方法修改,逻辑保持以前一致,解决datagrid编辑内包含combobox时，onChange事件触发问题
 * `tabs`表头在360浏览器下tab有横向滚动问题

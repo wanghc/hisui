@@ -118,8 +118,9 @@
 		(function () {
             if (panel.is(":visible")) {
                 var myTop = getTop();
-                if (Math.abs(myTop-panel.offset().top)>2){
-                    panel.offset({top: myTop }); //left: getLeft(),
+                var myLeft = getLeft();
+                if (Math.abs(myTop-panel.offset().top)>2 || Math.abs(myLeft-panel.offset().left)>2){
+                    panel.offset({top: myTop, left: myLeft});
                     clearTimeout(state.offsettimer);
                     state.offsettimer = null;
                 }
