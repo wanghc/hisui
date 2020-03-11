@@ -2530,11 +2530,11 @@
                             cc.push(col.formatter(_6e6, _6e3, _6e2));
                         } else {
                             if('string'==typeof _6e6){
-                                if (_6e6.indexOf("<")>=0 && _6e6.indexOf(">")==-1) {
+                                if (_6e6.indexOf("<")>-1 && _6e6.indexOf(">")==-1) {
                                     _6e6 = _6e6.replace(/</g,'&lt;'); // wanghc 2019-12-18 转义 <后是字母会导致后面不值不显示
                                 }
-                                if (_6e6.indexOf(">")>=0 && _6e6.indexOf("<")==-1) {
-                                    _6e6 = _6e6.replace(/>/g,'&lt;'); // wanghc 2019-12-18 转义 <后是字母会导致后面不值不显示
+                                if (_6e6.indexOf(">")>-1 && _6e6.indexOf("<")==-1) {
+                                    _6e6 = _6e6.replace(/>/g,'&gt;'); // wanghc 2019-12-18 转义 <后是字母会导致后面不值不显示
                                 }
                             }
                             cc.push(_6e6);
