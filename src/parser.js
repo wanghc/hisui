@@ -218,15 +218,17 @@
                 options = (new Function("return " + s))();
             }
             $.map(['width','height','left','top','minWidth','maxWidth','minHeight','maxHeight'], function(p){
-                var pv = $.trim(target.style[p] || '');
-                if (pv){
-                    if (pv.indexOf('%') == -1){
-                        pv = parseInt(pv);
-                        if (isNaN(pv)){
-                            pv = undefined;
+                if ('undefined'!==typeof properties[p]){ //1.3.2是第二个参数有这些值才去取
+                    var pv = $.trim(target.style[p] || '');
+                    if (pv){
+                        if (pv.indexOf('%') == -1){
+                            pv = parseInt(pv);
+                            if (isNaN(pv)){
+                                pv = undefined;
+                            }
                         }
+                        options[p] = pv;
                     }
-                    options[p] = pv;
                 }
             });
             if (properties) {

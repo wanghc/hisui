@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2020-03-11 ##
 * `comboq`系组件弹出位置适应修改 
 * `datagrid`对>号处理逻辑修复
+* parser宽高时要通过入参判断,不能解析所有宽高属性
 
 ## 2020-03-08 ##
 * `combobox`获得值方法修改,逻辑保持以前一致,解决datagrid编辑内包含combobox时，onChange事件触发问题
