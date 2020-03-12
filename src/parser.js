@@ -210,37 +210,23 @@
        parseOptions: function (target, properties) {
             var t = $(target);
             var options = {};
-            var s = $.trim(t.attr("data-options"));
+            var s = $.trim(t.attr('data-options'));
             if (s) {
                 if (s.substring(0, 1) != "{") {
                     s = "{" + s + "}";
                 }
-                options = (new Function("return " + s))();
+                options = (new Function('return ' + s))();
             }
-            $.map(['width','height','left','top','minWidth','maxWidth','minHeight','maxHeight'], function(p){
-                if ('undefined'!==typeof properties[p]){ //1.3.2是第二个参数有这些值才去取
-                    var pv = $.trim(target.style[p] || '');
-                    if (pv){
-                        if (pv.indexOf('%') == -1){
-                            pv = parseInt(pv);
-                            if (isNaN(pv)){
-                                pv = undefined;
-                            }
-                        }
-                        options[p] = pv;
-                    }
-                }
-            });
             if (properties) {
                 var opts = {};
                 for (var i = 0; i < properties.length; i++) {
                     var pp = properties[i];
                     if (typeof pp == "string") {
-                        //if (pp == "width" || pp == "height" || pp == "left" || pp == "top") {
-                        //    opts[pp] = parseInt(target.style[pp]) || undefined;
-                        //} else {
+                        if (pp == "width" || pp == "height" || pp == "left" || pp == "top") {
+                            opts[pp] = parseInt(target.style[pp]) || undefined;
+                        } else {
                             opts[pp] = t.attr(pp);
-                        //}
+                        }
                     } else {
                         for (var name in pp) {
                             var type = pp[name];

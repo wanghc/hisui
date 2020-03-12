@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-03-12 ##
+* 去除百分比支持,影响panel及popover取宽高
+
 ## 2020-03-11 ##
 * `comboq`系组件弹出位置适应修改 
 * `datagrid`对>号处理逻辑修复
