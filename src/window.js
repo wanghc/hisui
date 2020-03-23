@@ -55,6 +55,81 @@
             moveWindow(target);
         }
     };
+    function findEditorFrame(state,win,toHide){
+        if ($.browser.msie) return ;
+        if (windowNPAPITotal<0) return ;
+        windowNPAPITotal--;
+        var frm = win.document.getElementById("editorFrame");
+        if (frm){
+            if(toHide){
+                if (frm.style.display!='none'){
+                    frm.style.display = "none";
+                    state.options.changeVisibilityNPAPI = true;
+                }
+            }else{
+                if (state.options.changeVisibilityNPAPI == true){
+                    frm.style.display = 'block';
+                    state.options.changeVisibilityNPAPI = false;
+                }
+            }
+        }else{
+            var count = win.frames.length;
+            for (var i=0; i<count; i++){
+                var tmpWin = win.frames[i].window;
+                findEditorFrame(state,tmpWin,toHide);
+            }
+        }
+    }
+    function findObjectDom(state,win,toHide){
+        if (windowNPAPITotal<0) return ;
+        windowNPAPITotal--;
+        if (typeof win.frames){}
+        var count = win.frames.length;
+        for (var i=0; i<count; i++){
+            var tmpWin = win.frames[i].window;
+            var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
+            if (tmpObjList.length>0){
+                for(var j=0;j<tmpObjList.length; j++){
+                    if (tmpObjList[j].type.toLowerCase()=="application/x-iemrplugin"){
+                        var editorFrame = tmpWin.parent.document.getElementById("editorFrame");
+                        if (editorFrame) {
+                            if(toHide){
+                                if (editorFrame.style.display!='none'){
+                                    editorFrame.style.display = "none";
+                                    state.options.changeVisibilityNPAPI = true;
+                                    
+                                    //if (tmpWin.parent.document.body.style.display!="none"){
+                                    // $(tmpObjList[j]).parent().hide(); 只是插件父元素隐藏会导致，show时不能显示
+                                    //tmpWin.parent.document.body.style.display = "none";
+                                }
+                                /*var panel = tmpWin.parent.window.$('.panel.layout-panel-center');
+                                panel.each(function(){
+                                    if ($(this).find('#editor').length>0){
+                                        panel.hide();
+                                    }
+                                    
+                                });
+                                */
+                            }else{
+                                if (state.options.changeVisibilityNPAPI == true){
+                                    editorFrame.style.display = 'block';
+                                    state.options.changeVisibilityNPAPI = false;
+                                }
+                                /*var panel = tmpWin.parent.window.$('.panel.layout-panel-center');
+                                panel.each(function(){
+                                    if ($(this).find('#editor').length>0){
+                                        panel.show();
+                                    }
+                                    
+                                });*/
+                            }
+                        }
+                    }
+                }
+            }
+            findObjectDom(state,tmpWin,toHide);
+        }
+    }
     function create(target) {
         var state = $.data(target, "window");
         var winClosed = state.options.closed;
@@ -76,6 +151,7 @@
                 if (state.mask) {
                     state.mask.hide();
                 }
+                if (state.options.isTopZindex){windowNPAPITotal=200;findEditorFrame(state,window,false);}
                 state.options.onClose.call(target);
             }, onOpen: function () {
                 if (state.mask) {
@@ -85,6 +161,7 @@
                     state.shadow.css({ display: "block", zIndex: $.fn.window.defaults.zIndex++, left: state.options.left, top: state.options.top, width: state.window._outerWidth(), height: state.window._outerHeight() });
                 }
                 state.window.css("z-index", $.fn.window.defaults.zIndex++);
+                if (state.options.isTopZindex){windowNPAPITotal=200;findEditorFrame(state,window,true);}
                 state.options.onOpen.call(target);
             }, onResize: function (width, height) {
                 var opts = $(this).panel("options");
@@ -275,5 +352,5 @@
     $.fn.window.parseOptions = function (target) {
         return $.extend({}, $.fn.panel.parseOptions(target), $.parser.parseOptions(target, [{ draggable: "boolean", resizable: "boolean", shadow: "boolean", modal: "boolean", inline: "boolean" }]));
     };
-    $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false });
+    $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false ,changeVisibilityNPAPI:false});
 })(jQuery);

@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-03-23 ##
+* 修复`window`.isTopZindex不能覆盖NPAPI插件问题
+
 ## 2020-03-12 ##
 * 去除百分比支持,影响panel及popover取宽高
 
