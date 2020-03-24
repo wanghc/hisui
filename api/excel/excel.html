@@ -86,9 +86,10 @@ location.href = rtn;</code></pre>
 <pre class="prettyprint hide lang-js">
 	<code>
 		//依赖 jquery.js , websys.jquery.js
+		// 异步导出Query
 		$cm({
 			ResultSetType:"ExcelPlugin",  //表示通过DLL生成Excel，可支持IE与Chrome系。Chrome系浏览器请安装中间件
-			//ResultSetTypeDo:"Print",    //默认导出，可以设置为：Print
+			//ResultSetTypeDo:"Print",    //默认Export，可以设置为：Print
 			//localDir:"D:\\" 			 //指定导出路径，默认让用户选择路径
 			ExcelName:"excelname",				 //默认DHCCExcel
 			ClassName:"web.DHCSSUserLogonLog",
@@ -98,7 +99,19 @@ location.href = rtn;</code></pre>
 			Guser:Guser , 
 			StartTime:StartTime,
 			EndTime:EndTime
-		});</code></pre>
+		});
+		// 同步导出Query
+		$cm({
+			ResultSetType:"ExcelPlugin",
+			ExcelName:"excelname",
+			ClassName:"web.DHCSSUserLogonLog",
+			QueryName:"FindUserLog",
+			Stdate:Stdate ,
+			Enddate:Enddate ,
+			Guser:Guser , 
+			StartTime:StartTime,
+			EndTime:EndTime
+		},false);</code></pre>
 </div>
 <prettyprint/>
 </body>
