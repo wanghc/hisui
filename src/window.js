@@ -56,7 +56,7 @@
         }
     };
     function findEditorFrame(state,win,toHide){
-        if ($.browser.msie) return ;
+        if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
         if (windowNPAPITotal<0) return ;
         windowNPAPITotal--;
         var frm = win.document.getElementById("editorFrame");
