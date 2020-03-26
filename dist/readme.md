@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-03-26 ##
+* 对于Chrome下NPAPI插件的覆盖问题处理移置`panel`
+
 ## 2020-03-25 ##
 * 在IE下处理isTopZindex不能隐藏NPAPI插件
 * `panel`的card类型的覆盖问题调整

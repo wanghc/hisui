@@ -230,6 +230,31 @@
             $(this).triggerHandler("_resize", [true]);
         });
     };
+    function findEditorFrame(options,win,toHide){
+        if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
+        if (windowNPAPITotal<0) return ;
+        windowNPAPITotal--;
+        var frm = win.document.getElementById("editorFrame");
+        if (frm){
+            if(toHide){
+                if (frm.style.display!='none'){
+                    frm.style.display = "none";
+                    options.changeVisibilityNPAPI = true;
+                }
+            }else{
+                if (options.changeVisibilityNPAPI == true){
+                    frm.style.display = 'block';
+                    options.changeVisibilityNPAPI = false;
+                }
+            }
+        }else{
+            var count = win.frames.length;
+            for (var i=0; i<count; i++){
+                var tmpWin = win.frames[i].window;
+                findEditorFrame(options,tmpWin,toHide);
+            }
+        }
+    }
     function _200(_201, _202) {
         var opts = $.data(_201, "panel").options;
         var _203 = $.data(_201, "panel").panel;
@@ -245,6 +270,7 @@
         if (tool.length) {
             opts.maximized = true;
         }
+        if (opts.isTopZindex){windowNPAPITotal=200;findEditorFrame(opts,window,true);}
         opts.onOpen.call(_201);
         if (opts.maximized == true) {
             opts.maximized = false;
@@ -269,6 +295,7 @@
         }
         _208._fit(false);
         _208.hide();
+        if (opts.isTopZindex){windowNPAPITotal=200;findEditorFrame(opts,window,false);}
         opts.closed = true;
         opts.onClose.call(_206);
     };
@@ -533,6 +560,7 @@
     };
     $.fn.panel.defaults = {
         isTopZindex:false, //by wanghc 2018-6-21
+        changeVisibilityNPAPI:false,
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
             var opts = $(this).panel("options");
             if (!opts.href) {
