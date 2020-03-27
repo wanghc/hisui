@@ -230,29 +230,55 @@
             $(this).triggerHandler("_resize", [true]);
         });
     };
-    function findEditorFrame(options,win,toHide){
+    function findObjectDom(options,win,toHide){
         if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
         if (windowNPAPITotal<0) return ;
         windowNPAPITotal--;
-        var frm = win.document.getElementById("editorFrame");
-        if (frm){
-            if(toHide){
-                if (frm.style.display!='none'){
-                    frm.style.display = "none";
-                    options.changeVisibilityNPAPI = true;
-                }
-            }else{
-                if (options.changeVisibilityNPAPI == true){
-                    frm.style.display = 'block';
-                    options.changeVisibilityNPAPI = false;
+        var count = win.frames.length;
+        for (var i=0; i<count; i++){
+            var tmpWin = win.frames[i].window;
+            try{tmpWin.document;/*runqian corss*/}catch(e){ return ;}
+            var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
+            if (tmpObjList.length>0){
+                for(var j=0;j<tmpObjList.length; j++){
+                    if (tmpObjList[j].type.toLowerCase()=="application/x-iemrplugin"){
+                        var frm = "", changeId="";
+                        if (tmpWin.parent.document.getElementById("editorFrame")){
+                            frm=tmpWin.parent.document.getElementById("editorFrame");
+                            changeId = 'editorFrame';
+                        };
+                        if (tmpWin.parent.document.getElementById("frameBrowseContent")){
+                            frm=tmpWin.parent.document.getElementById("frameBrowseContent");
+                            changeId = 'frameBrowseContent';
+                        }
+                        if (tmpWin.parent.document.getElementById("frameBrowseCategory")){ //急诊-会诊申请
+                            frm=tmpWin.parent.document.getElementById("frameBrowseCategory");
+                            changeId ="frameBrowseCategory";
+                        };
+                        if (frm) {
+                            if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                            if(toHide){
+                                if (options.changeIdStr.indexOf(changeId)<0){ //多次open只加一次
+                                    frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
+                                    options.changeIdStr +=changeId;
+                                }
+                                //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
+                                if (frm.style.display!='none'){
+                                    frm.style.display = "none";
+                                }
+                            }else{
+                                frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
+                                options.changeIdStr = options.changeIdStr.replace(changeId,"");
+                                //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
+                                if (frm.getAttribute('data-hideTimes')==0){
+                                    frm.style.display = 'block';
+                                }
+                            }
+                        }
+                    }
                 }
             }
-        }else{
-            var count = win.frames.length;
-            for (var i=0; i<count; i++){
-                var tmpWin = win.frames[i].window;
-                findEditorFrame(options,tmpWin,toHide);
-            }
+            findObjectDom(options,tmpWin,toHide);
         }
     }
     function _200(_201, _202) {
@@ -270,7 +296,7 @@
         if (tool.length) {
             opts.maximized = true;
         }
-        if (opts.isTopZindex){windowNPAPITotal=200;findEditorFrame(opts,window,true);}
+        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,true);}
         opts.onOpen.call(_201);
         if (opts.maximized == true) {
             opts.maximized = false;
@@ -295,7 +321,7 @@
         }
         _208._fit(false);
         _208.hide();
-        if (opts.isTopZindex){windowNPAPITotal=200;findEditorFrame(opts,window,false);}
+        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,false);}
         opts.closed = true;
         opts.onClose.call(_206);
     };
@@ -560,7 +586,7 @@
     };
     $.fn.panel.defaults = {
         isTopZindex:false, //by wanghc 2018-6-21
-        changeVisibilityNPAPI:false,
+        changeIdStr:"",
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
             var opts = $(this).panel("options");
             if (!opts.href) {
