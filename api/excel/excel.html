@@ -90,7 +90,9 @@ location.href = rtn;</code></pre>
 		$cm({
 			ResultSetType:"ExcelPlugin",  //表示通过DLL生成Excel，可支持IE与Chrome系。Chrome系浏览器请安装中间件
 			//ResultSetTypeDo:"Print",    //默认Export，可以设置为：Print
-			//localDir:"D:\\" 			 //指定导出路径，默认让用户选择路径
+			//localDir:"D:\\tmp\\",	      //固定文件路径
+			//localDir:"Self",            //用户选择路径
+			//localDir:""                 //默认桌面
 			ExcelName:"excelname",				 //默认DHCCExcel
 			ClassName:"web.DHCSSUserLogonLog",
 			QueryName:"FindUserLog",
