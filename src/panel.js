@@ -242,8 +242,8 @@
             if (tmpObjList.length>0){
                 for(var j=0;j<tmpObjList.length; j++){
                     if (tmpObjList[j].type.toLowerCase()=="application/x-iemrplugin"){
-                        var frm = "", changeId="";
-                        if (tmpWin.parent.document.getElementById("editorFrame")){
+                        var frm = tmpWin.frameElement; changeId=frm.id;
+                        /*if (tmpWin.parent.document.getElementById("editorFrame")){
                             frm=tmpWin.parent.document.getElementById("editorFrame");
                             changeId = 'editorFrame';
                         };
@@ -254,9 +254,10 @@
                         if (tmpWin.parent.document.getElementById("frameBrowseCategory")){ //急诊-会诊申请
                             frm=tmpWin.parent.document.getElementById("frameBrowseCategory");
                             changeId ="frameBrowseCategory";
-                        };
+                        };*/
                         if (frm) {
                             if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                            if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
                             if(toHide){
                                 if (options.changeIdStr.indexOf(changeId)<0){ //多次open只加一次
                                     frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
@@ -322,6 +323,7 @@
         _208._fit(false);
         _208.hide();
         if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,false);}
+        opts.changeIdStr = ""; //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
         opts.closed = true;
         opts.onClose.call(_206);
     };
