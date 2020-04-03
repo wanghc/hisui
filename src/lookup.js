@@ -200,9 +200,11 @@
                     }
                 },
                 onHighlightRow:function(index,row){
-                    var html=opts.selectRowRender.call(this,row);
-                    if (typeof html!='string') html='';
-                    renderRowSummary(target,html);
+                    if ('function'==typeof opts.selectRowRender){
+                        var html = opts.selectRowRender.call(this,row);
+                        if (typeof html!='string') html='';
+                        renderRowSummary(target,html);
+                    }
                 },
                 clickDelay:200  // datagrid 的点击支持防抖 
                 ,lookup:$(target) // 反向绑定 可以根据grid 获取到当前lookup元素

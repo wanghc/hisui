@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-04-03 ##
+* `lookup`有`selectRowRender`配置时才监听`onHighlightRow`
+
+
 ## 2020-03-31 ##
 * Chrome下覆盖病历不再绑定ID
 
