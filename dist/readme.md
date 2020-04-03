@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-04-03 ##
 * `lookup`有`selectRowRender`配置时才监听`onHighlightRow`
-
+* panel-card的标题覆盖列表问题
 
 ## 2020-03-31 ##
 * Chrome下覆盖病历不再绑定ID
