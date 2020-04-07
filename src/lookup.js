@@ -141,7 +141,7 @@
 	/**
 	 * 回车事件
 	 */
-    function doEnter(target) {
+    function doEnter(target,e) {
         var state = $.data(target, "lookup");
         var opts = state.options;
         var grid = state.grid;
@@ -157,7 +157,7 @@
                     return;
                 }
             }
-            doQuery(target, $(target).lookup("getText"))           
+            doQuery(target, $(target).lookup("getText"),e)           
         }else{
             $(target).comboq("showPanel");
         }
@@ -214,9 +214,9 @@
         }
         if (opts.minQueryLen<0){ opts.minQueryLen=0;}
         var q = $(target).lookup('getText');
-        if (q.length>=opts.minQueryLen){
+        //if (q.length>=opts.minQueryLen){ //回车或点击图标强制查询
             state.grid.datagrid("load", $.extend({}, opts.queryParams, { q: q }));
-        }    
+        //}    
     }
     function init(target){
         var state = $.data(target, 'lookup');
@@ -285,7 +285,7 @@
             }, left: function (e) {
             }, right: function (e) {
             }, enter: function (e) {
-                doEnter(this);
+                doEnter(this,e);
             }, query: function (q, e) {
                 doQuery(this, q, e );
             },pageUp: function(e){
