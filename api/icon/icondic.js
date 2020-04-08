@@ -606,5 +606,15 @@ var iconDictionary={
     "icon-big-message-cate":"会诊类别",
     "icon-big-message-colum":"会诊量",
     "icon-big-message-pen":"手术会诊",
-    "icon-big-miss-img":"没找到图片，默认图片"
+    "icon-big-miss-img":"没找到图片，默认图片",
+    "icon-big-paper-yellow":"产品库",
+    "icon-big-mach-blue-red":"防疫设备",
+    "icon-big-first-second":"甲乙类设备",
+    "icon-big-clock-back-blue":"非计划重返情况",
+    "icon-big-clock-back-gree":"非计划重返涉及范围",
+    "icon-big-soldier":"军人重返情况",
+    "icon-big-report-yel-pen":"收治量及手术量",
+    "icon-big-two-pill-gray":"治疗结果情况",
+    "icon-big-paper-orange":"重点病术种重返情况",
+    "icon-big-person-seal":"专家评审"
 };
