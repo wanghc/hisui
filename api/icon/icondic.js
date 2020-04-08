@@ -612,7 +612,7 @@ var iconDictionary={
     "icon-big-first-second":"甲乙类设备",
     "icon-big-clock-back-blue":"非计划重返情况",
     "icon-big-clock-back-gree":"非计划重返涉及范围",
-    "icon-big-soldier":"军人重返情况",
+    "icon-big-armyman-green":"军人重返情况",
     "icon-big-report-yel-pen":"收治量及手术量",
     "icon-big-two-pill-gray":"治疗结果情况",
     "icon-big-paper-orange":"重点病术种重返情况",
