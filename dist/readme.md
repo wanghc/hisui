@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-04-11 ##
 * `panel`,`window`只有IE下isTopZindex才插入iframe
+* 解决`popover`与`window`覆盖问题
 
 ## 2020-04-07 ##
 * `lookup`回车或点击按钮强制检索

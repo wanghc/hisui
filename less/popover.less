@@ -9,7 +9,7 @@
     position:absolute;
     top:0;;
     left:0;
-    z-index:9999;
+    z-index:8999; /*9999;*/
     display:none;
     min-width:50px;
     min-height:32px;
@@ -260,7 +260,7 @@
     position:fixed;
     top:0;
     left:0;
-    z-index:9998
+    z-index:8998; /*9998 应该小于window-mask的z-index:9000,不然messager.alert显示有问题*/
 }
 .webui-popover .dropdown-menu{
     display:block;
