@@ -1,4 +1,3 @@
-
 /**
 *IE8--- console=undefined 
 *logger.level=1; // debug,info,warn,error ---print
@@ -283,4 +282,31 @@ $(function(){
 	// 		$($.hisui.globalContainerSelector).hide();
 	// 	}
 	// });
+	$(document.body).on('keydown',function(e){
+		var keycode = e.keyCode;
+		try{
+			if (e.altKey&&keycode==37){ //alt + [<-]
+				e.preventDefault(); return false;	
+			}
+			if (keycode==8) {
+				var srcEl = e.target;
+				var srcElementTag = srcEl.tagName.toUpperCase();
+				if ($(srcEl).prop('readonly')){ e.preventDefault(); return false;}
+				if (srcElementTag=="INPUT"){
+					var scrElementType = srcEl.type.toUpperCase();
+					if (scrElementType=="CHECKBOX"){
+						e.preventDefault();return false;
+					}
+					if (scrElementType=="RADIO"){
+						e.preventDefault();return false;
+					}
+				}
+				//2018-1-24 list上backspace,&&(srcElementTag!=="SELECT")
+				if ((srcElementTag!=="INPUT")&&(srcElementTag!=="TEXTAREA")){
+					e.preventDefault();return false;
+				}
+			}
+		}catch(e){}
+		return true;
+	});
 });
