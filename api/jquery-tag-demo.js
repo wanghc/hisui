@@ -54,11 +54,17 @@ $(function(){
         var sel = $(item).attr('prettyprintfor');
         if (!sel){
             sel = $('<pre></pre>');
-            if (h.slice(0,4)=="&lt;"){
+            if ($(item).hasClass('lang-html')){
                 sel.addClass('lang-html');
-            }else{
+            }else if ($(item).hasClass('lang-js')){
                 sel.addClass('lang-js');
-            }
+            }else{
+                if (h.slice(0,4)=="&lt;"){
+                    sel.addClass('lang-html');
+                }else{
+                    sel.addClass('lang-js');
+                }
+            }            
             sel.appendTo($(item).parent());
         }else{
             sel=$(sel);
