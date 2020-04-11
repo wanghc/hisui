@@ -123,7 +123,9 @@
             //wanghc 2017-12-14 ---ocx dll
             var maskFrame = ""; //修改window,使window,dialog,alert,confirm,prompt,progress的mask支持ocx
             if (state.options.isTopZindex){
-                maskFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
+                if (!!window.ActiveXObject || "ActiveXObject" in window){ /**Only IE*/
+                    maskFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
+                }
             }
             state.mask = $("<div class=\"window-mask\">"+maskFrame+"</div>").insertAfter(state.window);
             state.mask.css({ width: (state.options.inline ? state.mask.parent().width() : getPageArea().width), height: (state.options.inline ? state.mask.parent().height() : getPageArea().height), display: "none" });

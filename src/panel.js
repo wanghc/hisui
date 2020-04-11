@@ -164,8 +164,10 @@
         }
         var ocxFrame="";
         if (opts.isTopZindex){ //modify panel 使window,dialog,alert,confirm,prompt,progress都支持isTopZindex属性 by wanghc 2018-6-21 
-            ocxFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
-            _1f2.prepend(ocxFrame);
+            if (!!window.ActiveXObject || "ActiveXObject" in window) { /**Only IE*/
+                ocxFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
+                _1f2.prepend(ocxFrame);
+            }
         }
     };
     function _1f5(_1f6, _1f7) {
