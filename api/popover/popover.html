@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<title>下拉框示例</title>
 	 <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
-    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
-    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 <body>
 	<h2>提示框。源自jquery的<a href="https://github.com/sandywalker/webui-popover" target="_blank">webui-popover</a>插件。</h2>
@@ -16,49 +16,39 @@
 	<br>
 	<h3>如：</h3>
     <div class="demo-exp-code entry-content">
-		点击<a id="pp" style="cursor: pointer;text-decoration-line: underline;">关于</a>显示HISUI说明
-		<pre class="prettyprint hide lang-html"><code>&lt;a id="pp"&gt;关于&lt;/a&gt;</code></pre>
-		<pre class="prettyprint hide lang-js"><code>var ccObj=$HUI.popover('#pp',{title:'许可证关于',content:'...'});
-//或用如下方式 
-$("#pp").popover({title:'HUI关于',content:'...'});'});</code></pre>
-	</div><!--demo-exp-code entry-content-->
-
+		<div class="use-prettyprint lang-html">
+			点击<a id="pp" style="cursor: pointer;text-decoration-line: underline;">关于</a>显示HISUI说明
+		</div>
+		<script type="text/javascript" class="use-prettyprint">
+			$(function(){
+				//var ccObj=$HUI.popover('#pp',{title:'许可证关于',content:'统一常用前端组件库，统一开发界面风格'});
+				$("#pp").popover({title:'HUI关于',content:'统一常用前端组件库，统一开发界面风格'});
+			});
+		</script>
+	</div>
 	<h3>手动触发提示</h3>
-
 	<div class="demo-exp-code entry-content">
-		点击弹出按钮,<a id="manualpp" style="cursor:pointer;text-decoration-line:underline;">关于</a>显示HISUI说明
-		<a id="showPP" class="hisui-linkbutton">弹出</a>
-		<a id="hidePP" class="hisui-linkbutton">隐藏</a>
-		<pre class="prettyprint hide lang-html"><code>&lt;a id="manualpp"&gt;关于&lt;/a&gt;</code>
-&lt;a id="showPP" class="hisui-linkbutton"&gt;弹出&lt;/a&gt;
-&lt;a id="hidePP" class="hisui-linkbutton"&gt;隐藏&lt;/a&gt;
-</pre>
-		<pre class="prettyprint hide lang-js"><code>$("#manualpp").popover({trigger:'manual',placement:'top',title:'HUI关于',content:'content'});
-$("#showPP").click(function(){
-	$("#manualpp").popover('show');
-});
-$("#hidePP").click(function(){
-	$("#manualpp").popover('hide');
-});</code></pre>
-</div><!--demo-exp-code entry-content-->
-		
-	<script type="text/javascript">
-		$(function(){
-			//var ccObj=$HUI.popover('#pp',{title:'许可证关于',content:'统一常用前端组件库，统一开发界面风格'});
-			$("#pp").popover({title:'HUI关于',content:'统一常用前端组件库，统一开发界面风格'});
-			$("#manualpp").popover({
-				trigger:'manual',placement:'top',title:'HUI关于',
-				content:'content',
-				delay:{show: null,hide:500}
+		<div class="use-prettyprint lang-html">
+			点击弹出按钮,<a id="manualpp" style="cursor:pointer;text-decoration-line:underline;">关于</a>显示HISUI说明
+			<a id="showPP" class="hisui-linkbutton">弹出</a>
+			<a id="hidePP" class="hisui-linkbutton">隐藏</a>
+		</div>
+		<script type="text/javascript" class="use-prettyprint">
+			$(function(){
+				$("#manualpp").popover({
+					trigger:'manual',placement:'top',title:'HUI关于',
+					content:'content',//backdrop:true,
+					delay:{show: null,hide:500}
+				});
+				$("#showPP").click(function(){
+					$("#manualpp").popover('show');
+				});
+				$("#hidePP").click(function(){
+					$("#manualpp").popover('hide');
+				});
 			});
-			$("#showPP").click(function(){
-				$("#manualpp").popover('show');
-			});
-			$("#hidePP").click(function(){
-				$("#manualpp").popover('hide');
-			});
-		});
-  </script>
+			</script>
+	</div>
   <div>
         <h3>提示组件的相关配置、事件、方法</h3>
         <table class="table">
