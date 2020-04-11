@@ -34,10 +34,15 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
 ## 2020-04-11 ##
 * `panel`,`window`只有IE下isTopZindex才插入iframe
 * 解决`popover`与`window`覆盖问题
 * 统一处理IE下回退键问题
+
+## 2020-04-08 ##
+* 增加10个大图标
+* 有1个大图标无法提交，改了名字后重新提交
 
 ## 2020-04-07 ##
 * `lookup`回车或点击按钮强制检索
