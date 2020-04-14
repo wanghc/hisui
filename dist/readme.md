@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-04-14 ##
+* 解决`combobox`下拉多选框影响其它输入框按回删键问题
 
 ## 2020-04-11 ##
 * `panel`,`window`只有IE下isTopZindex才插入iframe

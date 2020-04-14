@@ -99,6 +99,11 @@
                 return;
             }
             $("body>div.combo-p>div.combo-panel:visible").panel("close");
+            /*2020-04-14 
+            解决在IE下，多选下拉框中选择元素后，再点击到普通INPUT框中，不能回删除值的问题，发现Backspace时，target为body而不是Input
+            需求号：1228151
+            */
+            $(e.target).focus();
         });
         _85b.unbind(".combo");
         _85c.unbind(".combo");
