@@ -506,6 +506,7 @@ var iconDictionary={
     "icon-drug-eye":"用药数据总览",
     "icon-drug-eye-gray":"用药数据总览-禁用",
     "icon-miss-img":"没找到图片，默认图片",
+    "icon-person-seal":"专家评审",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
@@ -615,6 +616,5 @@ var iconDictionary={
     "icon-big-person-green":"军人重返情况",
     "icon-big-report-yel-pen":"收治量及手术量",
     "icon-big-two-pill-gray":"治疗结果情况",
-    "icon-big-paper-orange":"重点病术种重返情况",
-    "icon-big-person-seal":"专家评审"
+    "icon-big-paper-orange":"重点病术种重返情况"
 };

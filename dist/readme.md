@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-04-17 ##
+* `lookupq`看不到周六问题
+* 把一个16*16的图标移到16*16的图标应在的位置
+
 ## 2020-04-16 ##
 * 在json.html中增加对ext.util.JsonObject.cls中Put方法的说明
 
