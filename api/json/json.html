@@ -27,36 +27,6 @@ JSON.parse(jsonStr);
 
 var str = "{id:'01',name:'wang'}";   //不符合规范的json字符串，尽量避免
 JSON.parse(str);</code></pre>
-
-<h3><code class="fun">Put</code>(<code class="param">key</code>,<code class="param">value</code>,<code class="param">isRealValue</code>)</h3>
-<span>通过Put方法把key与value存放进一个对象中，然后调用Json方法返回json字符串</span>
-<pre class="prettyprint hide">
-<code>s jsonObj=##class(ext.util.JsonObject).%New()
-d jsonObj.Put("id","01").Put("name","wang") //"key"与"value"应该使用双引号包裹
-s jsonStr=jsonObj.Json() //标准json字符串</code></pre>
-<table class='table'>
-	<tr class="protitle">
-		<th>属性</th>
-		<th>说明</th>
-		<th>默认值</th>
-	</tr>
-	<tr>
-		<td>key</td>
-		<td>json字符串的键</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>value</td>
-		<td>json字符串的值</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>isRealValue</td>
-		<td>值的类型，取值可以为%Boolean、%Integer、%Float或%String</td>
-		<td>''</td>
-	</tr>
-</table>
-
 <prettyprint/>
 </body>
 </html>
