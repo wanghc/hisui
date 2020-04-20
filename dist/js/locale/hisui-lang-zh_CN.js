@@ -154,3 +154,7 @@ if ($.fn.datetimeboxq){
 	$.fn.datetimeboxq.defaults.closeText = $.fn.datebox.defaults.closeText;
 	$.fn.datetimeboxq.defaults.okText = $.fn.datebox.defaults.okText;
 }
+if ($.fn.switchbox){
+	$.fn.switchbox.defaults.onText = '开';
+	$.fn.switchbox.defaults.offText = '关';
+}

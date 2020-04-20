@@ -157,8 +157,8 @@
         checked:true,
         animated:false,
 		size: 'mini',	//mini  small,large
-        onText:'开',     // <i class='icon-ok icon-white'></i>
-        offText:'关',    // <i class='icon-remove'></i>
+        onText:'ON', //'开',     // <i class='icon-ok icon-white'></i>
+        offText:'OFF', //'关',    // <i class='icon-remove'></i>
         onClass:'success', // primary info success warning danger 
         offClass:'warning',
         onSwitchChange:function(event,value){}
