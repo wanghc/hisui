@@ -14,7 +14,7 @@
     //返回值:拼音首字母串数组
     function makePy(str) {
         if (typeof (str) != "string")
-            throw new Error(-1, "函数makePy需要字符串类型参数!");
+            throw new Error(-1, "makePy parameter type must 'string'!");
         var arrResult = new Array(); //保存中间结果的数组
         for (var i = 0, len = str.length; i < len; i++) {
             //获得unicode码
