@@ -125,16 +125,16 @@
 	}
 	$.fn.keywords.methods = {
 		options: function(jq){
-			return $.data(jq[0], 'keywords').options;
+			if (jq.length>0) return $.data(jq[0], 'keywords').options;
 		},
 		getSelected:function(jq){
-			return getAllSelected(jq[0]);
+			if (jq.length>0) return getAllSelected(jq[0]);
 		},
 		select:function(jq,id){
-			return selectById(jq[0],id);
+			if (jq.length>0) return selectById(jq[0],id);
 		},
 		switchById:function(jq,id){
-			return selectById(jq[0],id);
+			if (jq.length>0) return selectById(jq[0],id);
 		},
 		clearAllSelected:function(jq,id){
 			jq.each(function(ind,item){
