@@ -74,7 +74,7 @@
             }
         }, { title: "", width: 250, height: 100, showType: "slide", showSpeed: 600, msg: "", timeout: 4000 }, _27e);
         opts.style.zIndex = $.fn.window.defaults.zIndex++;
-        var win = $("<div class=\"messager-body\"></div>").html(opts.msg).appendTo("body");
+        var win = $("<div class=\"messager-body\"></div>").html($.hisui.getTrans(opts.msg)).appendTo("body"); //add trans
         win.window(opts);
         win.window("window").css(opts.style);
         win.window("open");
@@ -136,7 +136,7 @@
             return _27d(_284);
         }, alert: function (_285, msg, icon, fn) {
             /* 对象文字 add margin-left:42px;*/
-            var _286 = "<div style=\"margin-left:42px;\">" + msg + "</div>";
+            var _286 = "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>";  //add trans
             switch (icon) {
                 case "error":
                     _286 = "<div class=\"messager-icon messager-error\"></div>" + _286;
@@ -166,7 +166,7 @@
             var win = _27f(_285, _286, _287);
             return win;
         }, confirm: function (_288, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>";
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
             _28a[$.messager.defaults.ok] = function () {
                 win.window("close");
@@ -185,7 +185,7 @@
             var win = _27f(_288, _289, _28a);
             return win;
         }, prompt: function (_28b, msg, fn) {
-            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>";
+            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
             _28d[$.messager.defaults.ok] = function () {
                 win.window("close");
@@ -223,7 +223,7 @@
             
             var _291 = "<div class=\"messager-progress\"><div class=\"messager-p-msg\"></div><div class=\"messager-p-bar\"></div></div>";
             var win = _27f(opts.title, _291, null);
-            win.find("div.messager-p-msg").html(opts.msg);
+            win.find("div.messager-p-msg").html($.hisui.getTrans(opts.msg));  //add trans
             var bar = win.find("div.messager-p-bar");
             bar.progressbar({ text: opts.text });
             win.window({
@@ -251,10 +251,11 @@
             var defopt = {style:{top:'',left:''},
                msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
-            var html = '<div class="messager-popover '+o.type+'" style="display:none;">\
-            <span class="messager-popover-icon '+o.type+'"/><span class="content">'+o.msg+'</span>\
-            <span class="close"></span>\
-            </div>';
+            var html = '<div class="messager-popover '+o.type+'" style="display:none;">'
+            +'<span class="messager-popover-icon '+o.type+'"/><span class="content">'+$.hisui.getTrans(o.msg)+'</span>' //add trans
+            +'<span class="close"></span>'
+            +'</div>';  
+            
             var t = $(html).appendTo("body");
             if (o.style.left==''){
                 o.style.left = document.body.clientWidth/2-(t.width()/2)

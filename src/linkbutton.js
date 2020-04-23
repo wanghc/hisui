@@ -14,7 +14,7 @@
         t.attr("id", opts.id || "");
         var inner = $("<span class=\"l-btn-left\"></span>").appendTo(t);
         if (opts.text) {
-            $("<span class=\"l-btn-text\"></span>").html(opts.text).appendTo(inner);
+            $("<span class=\"l-btn-text\"></span>").html($.hisui.getTrans(opts.text)).appendTo(inner); //add trans
         } else {
             $("<span class=\"l-btn-text l-btn-empty\">&nbsp;</span>").appendTo(inner);
         }

@@ -408,7 +408,7 @@
                         if (col.field) {
                             td.attr("field", col.field);
                             td.append("<div class=\"datagrid-cell\"><span></span><span class=\"datagrid-sort-icon\"></span></div>");
-                            $("span", td).html(col.title);
+                            $("span", td).html( $.hisui.getTrans(col.title));  //add trans
                             $("span.datagrid-sort-icon", td).html(""); //html("&nbsp;");-html(""); neer 2019-4-4 当align:'right'时列头与内容没对齐
                            var cell = td.find("div.datagrid-cell");
                             var pos = _502(_553, col.field);
@@ -428,7 +428,7 @@
                             col.cellClass = _547.cellClassPrefix + "-" + col.field.replace(/[\.|\s]/g, "-");
                             cell.addClass(col.cellClass).css("width", "");
                         } else {
-                            $("<div class=\"datagrid-cell-group\"></div>").html(col.title).appendTo(td);
+                            $("<div class=\"datagrid-cell-group\"></div>").html($.hisui.getTrans(col.title)).appendTo(td);   //add trans
                         }
                     }
                     if (col.hidden) {
@@ -2401,7 +2401,7 @@
                 var _69f = $.data($(this)[0], "datagrid").dc.header2;
                 //var _6ca = $(this).datagrid("getPanel");
                 for(var f in colOpt){
-                    _69f.find('.datagrid-header-row td[field="'+f+'"] .datagrid-cell span').first().html(colOpt[f]);
+                    _69f.find('.datagrid-header-row td[field="'+f+'"] .datagrid-cell span').first().html( $.hisui.getTrans(colOpt[f])  ); //add trans
                 }
             });
         }

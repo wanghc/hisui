@@ -22,7 +22,7 @@
             if (opts.checked){labelHtml += ' checked'; }
             labelHtml += '"'; //className handler end
             if (opts.width){ labelHtml+=' style="width:'+opts.width+'px" '}
-            labelHtml += '>'+opts.label+'</label>';
+            labelHtml += '>'+$.hisui.getTrans(opts.label)+'</label>';  //add trans
             var objlabel = $(labelHtml).insertAfter(t);
             objlabel.unbind('click').bind('click.checkbox',function(e){
                 if($(target).prop("disabled")==false) setValue(target,!$(this).hasClass('checked'));  

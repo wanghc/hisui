@@ -23,7 +23,7 @@
             if (opts.radioClass){ labelHtml+=" hischeckbox_square-blue";}
             if (opts.disabled){ labelHtml += ' disabled';}
             if (opts.checked){ labelHtml += ' checked';}
-            labelHtml += '">'+opts.label+'</label>';
+            labelHtml += '">'+$.hisui.getTrans(opts.label)+'</label>';  //add trans
             var objlabel = $(labelHtml).insertAfter(t);
             /**事件转到input上*/
             objlabel.unbind('click').bind('click.radio',function(e){

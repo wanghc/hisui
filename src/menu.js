@@ -52,7 +52,7 @@
                         item[0].itemName = itemOpts.name || "";
                         item[0].itemHref = itemOpts.href || "";
                         var text = item.addClass("menu-item").html();
-                        item.empty().append($("<div class=\"menu-text\"></div>").html(text));
+                        item.empty().append($("<div class=\"menu-text\"></div>").html($.hisui.getTrans(text))); //add trans
                         if (itemOpts.iconCls) {
                             $("<div class=\"menu-icon\"></div>").addClass(itemOpts.iconCls).appendTo(item);
                         }
@@ -240,12 +240,13 @@
         };
     };
     function findItem(target, text) {
+        text=$.hisui.getTrans(text); //add trans  用翻译后的值查找 
         var result = null;
         var tmp = $("<div></div>");
         function find(menu) {
             menu.children("div.menu-item").each(function () {
                 var item = $(target).menu("getItem", this);
-                var s = tmp.empty().html(item.text).text();
+                var s = tmp.empty().html(item.text).text(); //getItem 拿到的text是元素html 是翻译后的值
                 if (text == $.trim(s)) {
                     result = item;
                 } else {
@@ -293,7 +294,7 @@
             var item = $("<div class=\"menu-sep\"></div>").appendTo(menu);
         } else {
             var item = $("<div class=\"menu-item\"></div>").appendTo(menu);
-            $("<div class=\"menu-text\"></div>").html(param.text).appendTo(item);
+            $("<div class=\"menu-text\"></div>").html($.hisui.getTrans(param.text)).appendTo(item);  //add trans
         }
         if (param.iconCls) {
             $("<div class=\"menu-icon\"></div>").addClass(param.iconCls).appendTo(item);
@@ -382,7 +383,7 @@
             });
         }, setText: function (jq, param) {
             return jq.each(function () {
-                $(param.target).children("div.menu-text").html(param.text);
+                $(param.target).children("div.menu-text").html($.hisui.getTrans(param.text));  //add trans
             });
         }, setIcon: function (jq, param) {
             return jq.each(function () {

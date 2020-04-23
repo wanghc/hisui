@@ -111,7 +111,7 @@
             return;
         }
         var cc = typeof opts.content == "function" ? opts.content.call(_1d6) : opts.content;
-        _1d8.tip.children(".tooltip-content").html(cc);
+        _1d8.tip.children(".tooltip-content").html($.hisui.getTrans(cc)); //add trans
         opts.onUpdate.call(_1d6, cc);
     };
     function _1d9(_1da) {

@@ -195,7 +195,12 @@
                 return;
             }
             if (li.length) {
-                opts.onContextMenu.call(container, e, li.find("span.tabs-title").html(), getLiIndex(li));
+                var liIndex= getLiIndex(li);
+                var liTitle= getTab(container,liIndex).panel('options').title;
+                //opts.onContextMenu.call(container, e, li.find("span.tabs-title").html(), getLiIndex(li));
+                var liIndex= getLiIndex(li);
+                var liTitle= getTab(container,liIndex).panel('options').title;
+                opts.onContextMenu.call(container, e, liTitle,liIndex); //opts上的title不翻译 元素显示上的是翻译过后的
             }
         });
         function getLiIndex(li) {
@@ -295,7 +300,7 @@
         var tab = opts.tab;
         var s_title = tab.find("span.tabs-title");
         var s_icon = tab.find("span.tabs-icon");
-        s_title.html(opts.title);
+        s_title.html($.hisui.getTrans(opts.title));  //add trans
         s_icon.attr("class", "tabs-icon");
         tab.find("a.tabs-close").remove();
         if (opts.closable) {

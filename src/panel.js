@@ -103,7 +103,7 @@
         }
         _1e2(_1f2.children("div.panel-header"));
         if (opts.title && !opts.noheader) {
-            var _1f3 = $("<div class=\"panel-header\"><div class=\"panel-title\">" + opts.title + "</div></div>").prependTo(_1f2);
+            var _1f3 = $("<div class=\"panel-header\"><div class=\"panel-title\">" + $.hisui.getTrans(opts.title) + "</div></div>").prependTo(_1f2); //add trans
             if (opts.iconCls) {
                 _1f3.find(".panel-title").addClass("panel-with-icon");
                 $("<div class=\"panel-icon\"></div>").addClass(opts.iconCls).appendTo(_1f3);
@@ -461,7 +461,7 @@
     };
     function _220(_221, _222) {
         $.data(_221, "panel").options.title = _222;
-        $(_221).panel("header").find("div.panel-title").html(_222);
+        $(_221).panel("header").find("div.panel-title").html($.hisui.getTrans(_222)); //add trans
     };
     var TO = false;
     var _223 = true;
