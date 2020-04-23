@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 * 国际化支持
 * `popover`自动改变zIndex
 * `keywords`方法增加jq对象存在与否判断
+* 增加英文翻译
 
 ## 2020-04-20 ##
 * 整理lang文件翻译
