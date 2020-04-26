@@ -40,6 +40,7 @@ $("#btn").linkbutton("disable");
 * 加上对`popover`中对fixPopoverWidth函数的说明
 * 解决`popover`中fixPopoverWidth函数的一个bug
 * 不对<xx/>标签翻译
+* 对validatebox系的placeholder翻译键采集
 
 ## 2020-04-25 ##
 * 解决`radio`重复初始化导致翻译无效

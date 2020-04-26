@@ -172,7 +172,7 @@
         }
         /*输入框支持placeholder属性 wanghc 2018-6-30*/
         if (opts.placeholder!=""){
-            $(_43c).attr("placeholder",opts.placeholder);
+            $(_43c).attr("placeholder",$.hisui.getTrans(opts.placeholder));
         }
         _422(_43c);
     };
