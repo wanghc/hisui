@@ -101,7 +101,7 @@
             return debounced;
         }
         ,getTrans:function(key){
-            if (typeof $g=='function' && typeof key=='string' && /(<[^>]+>)|(&nbsp;)/.test(key)==false) {
+            if (typeof $g=='function' && typeof key=='string' && /(<[^>]+>)|(&nbsp;)|(<[^>]+\/>)/.test(key)==false) {
                 return $g(key);
             }
             return key;
