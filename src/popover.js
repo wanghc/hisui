@@ -27,16 +27,19 @@
     }
     // yp 2020-04-26 ，在popover初始化的时候就设置webui-popover-inner类的宽度，防止iframe框架的宽度不断缩短时，popover的内容会换行
     function fixPopoverWidth(target){
-        var htmlStr = $(target).data().plugin_webuiPopover.options.template;
-        var title = $(target).data().popover.options.title;
-        var content = $(target).data().popover.options.content;
-        var width = $('<div class="webui-popover top in" id="tempPopover" style="display: block; top: 451.6px; left: 11.375px; visibility:hidden">'+
-        '<div class="webui-arrow" style="left: 199px;"></div>'+
-        '<div class="webui-popover-inner">'+
-            '<h3 class="webui-popover-title">'+title+'</h3>'+
-            '<div class="webui-popover-content">'+content+'</div></div></div>').appendTo("body").width();
-        $(target).data().plugin_webuiPopover.options.template = htmlStr.replace("\"webui-popover-inner\"","\"webui-popover-inner\" style=\"width: "+width+"px\"");
-        $("#tempPopover").remove();
+        var opts =$.data(target, 'popover').options;
+        if(opts.width === "auto"){
+            var htmlStr = $(target).data().plugin_webuiPopover.options.template;
+            var title = opts.title;
+            var content = opts.content;
+            var width = $('<div class="webui-popover top in" id="tempPopover" style="display: block; top: 451.6px; left: 11.375px; visibility:hidden">'+
+            '<div class="webui-arrow" style="left: 199px;"></div>'+
+            '<div class="webui-popover-inner">'+
+                '<h3 class="webui-popover-title">'+title+'</h3>'+
+                '<div class="webui-popover-content">'+content+'</div></div></div>').appendTo("body").width();
+            $(target).data().plugin_webuiPopover.options.template = htmlStr.replace("\"webui-popover-inner\"","\"webui-popover-inner\" style=\"width: "+width+"px\"");
+            $("#tempPopover").remove();
+        }
     }
 	$.fn.popover = function(options, param){
 		if (typeof options == 'string'){

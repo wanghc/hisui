@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2020-04-26 ##
 * 解决当iframe框架的宽度不断缩短时，`popover`的内容会换行的问题
 * 加上对`popover`中对fixPopoverWidth函数的说明
+* 解决`popover`中fixPopoverWidth函数的一个bug
 
 ## 2020-04-25 ##
 * 解决`radio`重复初始化导致翻译无效
