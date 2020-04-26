@@ -84,11 +84,7 @@
                   }
                 });
               }
-
-
             state.proxy=objlabel; //把objlabel存起来
-
-
         }else{
             var objlabel=state.proxy; //取到对应label
             if (opts.disabled && !objlabel.hasClass('disabled')) objlabel.addClass('disabled');
@@ -97,7 +93,7 @@
             if (opts.checked && !objlabel.hasClass('checked')) objlabel.addClass('checked');
             if (!opts.checked && objlabel.hasClass('checked')) objlabel.removeClass('checked');
 
-            if (opts.label!=objlabel.text()) objlabel.text(opts.label);
+            if ($.hisui.getTrans(opts.label)!=objlabel.text()) objlabel.text($.hisui.getTrans(opts.label));
         }
         var lastState=$.data(target, 'radio'); //cryze 2019-4-15
         // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去

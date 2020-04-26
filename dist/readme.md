@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-04-25 ##
+* 解决`radio`重复初始化导致翻译无效
+
 ## 2020-04-22 ##
 * 国际化支持
 * `popover`自动改变zIndex
