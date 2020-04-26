@@ -25,6 +25,18 @@
 			return false;
         })*/
     }
+    function fixPopoverWidth(target){
+        var htmlStr = $(target).data().plugin_webuiPopover.options.template;
+        var title = $(target).data().popover.options.title;
+        var content = $(target).data().popover.options.content;
+        var width = $('<div class="webui-popover top in" id="tempPopover" style="display: block; top: 451.6px; left: 11.375px; visibility:hidden">'+
+        '<div class="webui-arrow" style="left: 199px;"></div>'+
+        '<div class="webui-popover-inner">'+
+            '<h3 class="webui-popover-title">'+title+'</h3>'+
+            '<div class="webui-popover-content">'+content+'</div></div></div>').appendTo("body").width();
+        $(target).data().plugin_webuiPopover.options.template = htmlStr.replace("\"webui-popover-inner\"","\"webui-popover-inner\" style=\"width: "+width+"px\"");
+        $("#tempPopover").remove();
+    }
 	$.fn.popover = function(options, param){
 		if (typeof options == 'string'){
 			return $.fn.popover.methods[options](this, param);
@@ -39,8 +51,9 @@
 					options: $.extend({}, $.fn.popover.defaults, $.fn.popover.parseOptions(this), options)
 				});
 			}
-			createPopover(this);
-		});
+            createPopover(this);
+            fixPopoverWidth(this);
+           });
 	};
 	
 	$.fn.popover.methods = {
@@ -81,6 +94,7 @@
                 opts.content = value;
                 _t.webuiPopover('destroy');
                 _t.webuiPopover(opts);
+                fixPopoverWidth(this);
                 $.data(this, 'popover').options.cache = oldCache;
             });
         }
