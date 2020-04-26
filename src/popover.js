@@ -25,6 +25,7 @@
 			return false;
         })*/
     }
+    // yp 2020-04-26 ，在popover初始化的时候就设置webui-popover-inner类的宽度，防止iframe框架的宽度不断缩短时，popover的内容会换行
     function fixPopoverWidth(target){
         var htmlStr = $(target).data().plugin_webuiPopover.options.template;
         var title = $(target).data().popover.options.title;
