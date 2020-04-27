@@ -56,7 +56,7 @@
 		for(var i=0; i<opts.buttons.length; i++){
 			var td = $('<td></td>').appendTo(tr);
 			var btn = opts.buttons[i];
-			var t = $('<a href="javascript:void(0)"></a>').html($.isFunction(btn.text) ? btn.text(target) : btn.text).appendTo(td);
+			var t = $('<a href="javascript:void(0)" onclick="javascript:return false;"></a>').html($.isFunction(btn.text) ? btn.text(target) : btn.text).appendTo(td);
 			t.bind('click', {target: target, handler: btn.handler}, function(e){
 				e.data.handler.call(this, e.data.target);
 			});

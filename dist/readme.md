@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-04-27 ##
+* `datebox`中按钮加onclick属性，兼容血透调用病历界面，解决弹出空白界面问题
 
 ## 2020-04-26 ##
 * 解决当iframe框架的宽度不断缩短时，`popover`的内容会换行的问题
