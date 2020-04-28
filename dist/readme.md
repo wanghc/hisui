@@ -35,7 +35,7 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2020-04-28 ##
-* `progress`只触发一次window打开，处理病历编辑器覆盖问题
+* `progress`只触发一次window打开，处理病历编辑器覆盖问题.
 
 
 ## 2020-04-27 ##

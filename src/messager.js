@@ -226,14 +226,21 @@
             win.find("div.messager-p-msg").html($.hisui.getTrans(opts.msg));  //add trans
             var bar = win.find("div.messager-p-bar");
             bar.progressbar({ text: opts.text });
-            win.window({
+            /*win.window({
                 closable: false, onClose: function () {
                     if (this.timer) {
                         clearInterval(this.timer);
                     }
                     $(this).window("destroy");
                 }
-            });
+            });*/
+            /*会触发二次window,关闭只触发一次, 且Options不同导致在病历编辑npapi隐藏不显示*/
+            win.window('options').onClose = function () {
+                if (this.timer) {
+                    clearInterval(this.timer);
+                }
+                $(this).window("destroy");
+            };
             if (opts.interval) {
                 win[0].timer = setInterval(function () {
                     var v = bar.progressbar("getValue");
