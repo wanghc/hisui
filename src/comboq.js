@@ -21,14 +21,18 @@
 	function _hide(target){
         var panel = $($.hisui.globalContainerSelector);
         if ("undefined" == typeof target) {
-            if ($.data(panel[0], "data")) target = $.data(panel[0], "data").srcTargetDom ;
+            if ($.data(panel[0], "data")){
+                var qState = $.data(panel[0], "data").qState ;
+                target = $.data(panel[0], "data").srcTargetDom ;
+            }
         }
         if (panel.is(":visible")) {
-            var state = $.data(target, 'comboq');
-            var opts = state.options;
-            state.isShow = false;
-            // console.log(" _hide "+ state.isShow );
-            opts.onHidePanel.call(this,target);
+            var state = $.data(target, 'comboq') || qState;
+            if (state){
+                var opts = state.options;
+                state.isShow = false;
+                opts.onHidePanel.call(this,target);
+            }
             $($.hisui.globalContainerSelector).hide();
             return $(target);
         }
@@ -191,7 +195,11 @@
         state.isShow = true;
         // console.log("showpanel "+state.isShow);
         panel.show();
-        $.data(document.getElementById($.hisui.globalContainerId), "data", {srcTargetDom : target}); /*下拉层上记录住当前对应的target*/
+        $.data(document.getElementById($.hisui.globalContainerId), "data", {
+            srcTargetDom : target,
+            qState : state     // 医嘱录入界页，先删除行后，再隐藏放大镜，那时就拿不到放大镜上的options
+        }); /*下拉层上记录住当前对应的target*/
+
         opts.onShowPanel.call(target);
         $.hisui.fixPanelTLWH();
     }
