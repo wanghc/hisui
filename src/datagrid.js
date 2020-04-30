@@ -2110,6 +2110,20 @@
             }, resize: function (target, _69e) {
                 $(target).lookup("resize", _69e);
             }
+        },timespinner:{
+            init: function (celltd, cfg) {
+                var _698 = $("<input class='textbox' type=\"text\">").appendTo(celltd);
+                _698.timespinner(cfg);
+                return _698;
+            }, destroy: function (target) {
+                $(target).timespinner("destroy");
+            }, getValue: function (target) {
+                return $(target).timespinner("getValue");
+            }, setValue: function (target, val) {
+                $(target).timespinner("setValue", val);
+            }, resize: function (target, _69e) {
+                $(target).timespinner("resize", _69e);
+            }
         }
     };
     $.fn.datagrid.methods = {

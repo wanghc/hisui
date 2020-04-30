@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 * `dateboxq`必填提示修改成中文
 * 翻译方法加报错保护
 * `comboq`系的zindex动态增加
+* `datagrid`增加timespinner编辑类型
 
 ## 2020-04-28 ##
 * `progress`只触发一次window打开，处理病历编辑器覆盖问题.
