@@ -190,6 +190,7 @@
             panel = $('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
         }
         panel.height(opts.panelHeight);
+        panel.css("z-index",$.fn.window.defaults.zIndex++);
         if (!opts.panelWidth) {opts.panelWidth = _t._outerWidth()}
         panel.width(opts.panelWidth);
         state.isShow = true;

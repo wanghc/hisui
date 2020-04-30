@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-04-30 ##
+* `dateboxq`必填提示修改成中文
+* 翻译方法加报错保护
+* `comboq`系的zindex动态增加
+
 ## 2020-04-28 ##
 * `progress`只触发一次window打开，处理病历编辑器覆盖问题.
 

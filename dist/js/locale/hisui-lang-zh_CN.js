@@ -147,6 +147,7 @@ if ($.fn.dateboxq){
 	$.fn.dateboxq.defaults.currentText = $.fn.datebox.defaults.currentText;
 	$.fn.dateboxq.defaults.closeText = $.fn.datebox.defaults.closeText;
 	$.fn.dateboxq.defaults.okText = $.fn.datebox.defaults.okText;
+	$.fn.dateboxq.defaults.missingMessage = $.fn.datebox.defaults.missingMessage
 }
 if ($.fn.datetimeboxq){
 	$.fn.datetimeboxq.defaults.missingMessage = $.fn.datebox.defaults.missingMessage;

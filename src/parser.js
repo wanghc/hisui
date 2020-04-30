@@ -102,7 +102,9 @@
         }
         ,getTrans:function(key){
             if (typeof $g=='function' && typeof key=='string' && /(<[^>]+>)|(&nbsp;)|(<[^>]+\/>)/.test(key)==false) {
-                return $g(key);
+                var lan = key;
+                try{ lan = $g(key);}catch(e){}  //Ext翻译会报错。\r\n
+                return lan;
             }
             return key;
         }
