@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-05-06 ##
+* `datebox`与`dateboxq`默认最小日期1841-01-01
+ 
 ## 2020-04-30 ##
 * `dateboxq`必填提示修改成中文
 * 翻译方法加报错保护

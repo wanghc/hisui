@@ -344,9 +344,9 @@
 			doBlur(target);
 		},
         onSelect:function(date){},
-		validType:['datebox["YMD"]','minMaxDate[null,null]'],
+		validType:{"datebox":"YMD","minMaxDate":[null,null]}, //['datebox["YMD"]','minMaxDate[null,null]'],
 		//validParams:"YMD",
-		minDate:null,
+		minDate:'1841-1-1',
 		maxDate:null,
 		allParse:true  //默认初始化calendar,设置false提升速度一个日期控件(110ms--36ms)
 	});
@@ -354,6 +354,21 @@
 	$.extend($.fn.datebox.defaults.rules, {
 		datebox: {
 			validator: function (_442,params) {
+				var _t = $(this);
+				var state = "", target = "";
+				if (_t.hasClass('dateboxq')){
+					target = this;
+					state = $.data(target, 'dateboxq');
+				}else{
+					target = _t.closest('.datebox').prev()[0];
+					if (target){
+						state = $.data(target, 'datebox');
+					}
+				}
+				if(state){
+					var tmpOpt = state.options;
+					if (tmpOpt.validParams=="YM") return true;
+				}
 				if (params=="YMD"){
 					return validDate(_442);
 				}
@@ -376,6 +391,7 @@
 				if(state){
 					var tmpOpt = state.options;
 					var v = tmpOpt.parser.call(target, _442);
+					tmpOpt.validType.minMaxDate = [null,null];
 					if (tmpOpt.minDate!=null || tmpOpt.maxDate!=null){
 						if(tmpOpt.minDate==null&&tmpOpt.rules.minMaxDate.messageMax){
 							tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageMax;
@@ -384,6 +400,8 @@
 						}else{
 							tmpOpt.rules.minMaxDate.message = tmpOpt.rules.minMaxDate.messageDef;
 						}
+						if(tmpOpt.minDate!=null) tmpOpt.validType.minMaxDate[0]=tmpOpt.minDate;
+						if(tmpOpt.maxDate!=null) tmpOpt.validType.minMaxDate[1]=tmpOpt.maxDate;
 					}else{
 						tmpOpt.rules.minMaxDate.message = tmpOpt.rules.datebox.message;
 					}

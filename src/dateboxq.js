@@ -181,8 +181,8 @@
 		},
 		onSelect:function(date){},
 		onChange:function(newValue,oldValue){},
-		validType:['datebox["YMD"]','minMaxDate[null,null]'],
-		minDate:null,
+		validType:{"datebox":"YMD","minMaxDate":[null,null]}, 
+		minDate:'1841-1-1',
 		maxDate:null
 	});
 })(jQuery);
