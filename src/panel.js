@@ -232,7 +232,7 @@
             $(this).triggerHandler("_resize", [true]);
         });
     };
-    function findObjectDom(options,win,toHide){
+    function findObjectDom(options,win,toHide,trgt){
         if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
         if (windowNPAPITotal<0) return ;
         windowNPAPITotal--;
@@ -260,10 +260,11 @@
                         if (frm) {
                             if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
                             if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                            if (!$.data(trgt,"changeIdStr")){$.data(trgt,"changeIdStr",{NPAPIIdStr:""});}
                             if(toHide){
-                                if (options.changeIdStr.indexOf(changeId)<0){ //多次open只加一次
+                                if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)<0){ //多次open只加一次
                                     frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
-                                    options.changeIdStr +=changeId;
+                                    $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
                                 }
                                 //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
                                 if (frm.style.display!='none'){
@@ -271,7 +272,7 @@
                                 }
                             }else{
                                 frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
-                                options.changeIdStr = options.changeIdStr.replace(changeId,"");
+                                $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
                                 //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
                                 if (frm.getAttribute('data-hideTimes')==0){
                                     frm.style.display = 'block';
@@ -281,7 +282,7 @@
                     }
                 }
             }
-            findObjectDom(options,tmpWin,toHide);
+            findObjectDom(options,tmpWin,toHide,trgt);
         }
     }
     function _200(_201, _202) {
@@ -299,7 +300,7 @@
         if (tool.length) {
             opts.maximized = true;
         }
-        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,true);}
+        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,true,_201);}
         opts.onOpen.call(_201);
         if (opts.maximized == true) {
             opts.maximized = false;
@@ -324,8 +325,9 @@
         }
         _208._fit(false);
         _208.hide();
-        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,false);}
-        opts.changeIdStr = ""; //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
+        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,false,_206);}
+        //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
+        $.data(_206,"changeIdStr",{NPAPIIdStr:""});
         opts.closed = true;
         opts.onClose.call(_206);
     };
@@ -590,7 +592,6 @@
     };
     $.fn.panel.defaults = {
         isTopZindex:false, //by wanghc 2018-6-21
-        changeIdStr:"",
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
             var opts = $(this).panel("options");
             if (!opts.href) {
