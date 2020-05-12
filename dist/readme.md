@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-05-12 ##
+* `datagrid` 选中行样式大于鼠标悬浮样式
+
 ## 2020-05-11 ##
 * 将样式中的textbox类指定给type=text的input元素使用
 
