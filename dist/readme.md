@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-05-14 ##
+* `datagrid`列头高度可定义
+
 ## 2020-05-12 ##
 * `datagrid` 选中行样式大于鼠标悬浮样式
 

@@ -389,7 +389,11 @@
             //var tmpclone = $(_550).clone()[0];  //add by lan---2018-12-19 先clone一个节点,生成grid,生成完后再置回
             var t = $("<table class=\"datagrid-htable\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"><tbody></tbody></table>").appendTo(_550);
             for (var i = 0; i < _551.length; i++) {
-                var tr = $("<tr class=\"datagrid-header-row\"></tr>").appendTo($("tbody", t));
+                // 2020-05-14 列头高度     -- nurse - yucz 2019-9-26
+                var temptr = "<tr class=\"datagrid-header-row ";
+                if (opts.id) temptr += opts.id + "-header-row" + i ; //第i行
+                temptr += "\"></tr>";
+                var tr = $(temptr).appendTo($("tbody", t));
                 var cols = _551[i];
                 for (var j = 0; j < cols.length; j++) {
                     var col = cols[j];
@@ -428,7 +432,13 @@
                             col.cellClass = _547.cellClassPrefix + "-" + col.field.replace(/[\.|\s]/g, "-");
                             cell.addClass(col.cellClass).css("width", "");
                         } else {
-                            $("<div class=\"datagrid-cell-group\"></div>").html($.hisui.getTrans(col.title)).appendTo(td);   //add trans
+                            //$("<div class=\"datagrid-cell-group\"></div>").html($.hisui.getTrans(col.title)).appendTo(td);   //add trans //这是原来的代码，下面是新加的
+                            // add yucz 2019-9-26 支持不固定的标题行
+                            td.append("<div class=\"datagrid-cell-group\"><span></span></div>");
+                            $("span", td).html($.hisui.getTrans(col.title));
+                            var cell = td.find("div.datagrid-cell-group");
+                            cell.css("height", "auto");
+                            if (col.halign||col.align) cell.css("text-align", (col.halign || col.align || ""));
                         }
                     }
                     if (col.hidden) {
@@ -1318,10 +1328,16 @@
         var opts = _5e3.options;
         var rows = opts.finder.getRows(_5e1);
         var _5e4 = $.data(_5e1, "datagrid").selectedRows;
+        var lastSelectedRowIndex = _5b7(_5e1,_5e4[0]);
         if (!_5e2 && opts.checkOnSelect) {
             _5e5(_5e1, true);
         }
         opts.finder.getTr(_5e1, "", "selected").removeClass("datagrid-row-selected");
+
+        //yucz 2019-11-4 当用户取消选中一行时触发
+        if (lastSelectedRowIndex > -1)
+            opts.onUnselect.call(_5e1, lastSelectedRowIndex, _5e4[0]);
+
         if (opts.idField) {
             for (var _5e6 = 0; _5e6 < rows.length; _5e6++) {
                 _503(_5e4, opts.idField, rows[_5e6][opts.idField]);
