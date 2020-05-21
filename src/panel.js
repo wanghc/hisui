@@ -241,42 +241,30 @@
             var tmpWin = win.frames[i].window;
             try{tmpWin.document;/*runqian corss*/}catch(e){ return ;}
             var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
-            if (tmpObjList.length>0){
+            if (tmpObjList.length>0) {
                 for(var j=0;j<tmpObjList.length; j++){
-                    if (tmpObjList[j].type.toLowerCase()=="application/x-iemrplugin"){
-                        var frm = tmpWin.frameElement; changeId=frm.id;
-                        /*if (tmpWin.parent.document.getElementById("editorFrame")){
-                            frm=tmpWin.parent.document.getElementById("editorFrame");
-                            changeId = 'editorFrame';
-                        };
-                        if (tmpWin.parent.document.getElementById("frameBrowseContent")){
-                            frm=tmpWin.parent.document.getElementById("frameBrowseContent");
-                            changeId = 'frameBrowseContent';
-                        }
-                        if (tmpWin.parent.document.getElementById("frameBrowseCategory")){ //急诊-会诊申请
-                            frm=tmpWin.parent.document.getElementById("frameBrowseCategory");
-                            changeId ="frameBrowseCategory";
-                        };*/
-                        if (frm) {
-                            if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                            if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                            if (!$.data(trgt,"changeIdStr")){$.data(trgt,"changeIdStr",{NPAPIIdStr:""});}
-                            if(toHide){
-                                if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)<0){ //多次open只加一次
-                                    frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
-                                    $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
-                                }
-                                //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
-                                if (frm.style.display!='none'){
-                                    frm.style.display = "none";
-                                }
-                            }else{
-                                frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
-                                $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
-                                //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
-                                if (frm.getAttribute('data-hideTimes')==0){
-                                    frm.style.display = 'block';
-                                }
+                    if ("undefined"==typeof tmpObjList[j].attributes['type']) continue;
+                    if ("application/x-iemrplugin"==tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
+                    var frm = tmpWin.frameElement; changeId=frm.id;
+                    if (frm) {
+                        if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                        if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                        if (!$.data(trgt,"changeIdStr")){$.data(trgt,"changeIdStr",{NPAPIIdStr:""});}
+                        if(toHide){
+                            if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)<0){     //多次open只加一次
+                                frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
+                                $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
+                            }
+                            //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
+                            if (frm.style.display!='none'){
+                                frm.style.display = "none";
+                            }
+                        }else{
+                            frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
+                            $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
+                            //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
+                            if (frm.getAttribute('data-hideTimes')==0){
+                                frm.style.display = 'block';
                             }
                         }
                     }

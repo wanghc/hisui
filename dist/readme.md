@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-05-21 ##
+* `isTopZindex`兼容360企业浏览器 
+
 ## 2020-05-14 ##
 * `datagrid`列头高度可定义
 * 合并护理的单选下拉
