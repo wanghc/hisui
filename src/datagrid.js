@@ -1060,7 +1060,24 @@
         for (var i = 0; i < _5a3.length; i++) {
             _5a7(i);
         }
-			return _5a4;
+		
+		var _newRe = [];
+		//2020-05-21 护理 add yucz 2019-12-9 返回正确顺序的列字段 
+		if (!!$.data(_5a1, "amendDataDisplay") && !!$.data(_5a1, "filelds"))
+		{
+			_newRe = _newRe.concat($.data(_5a1, "filelds"));
+			for (var i = 0;i< _5a4.length; i++)
+			{
+				var testReg = /^ID/;
+				if (testReg.test(_5a4[i]))
+				{
+					_newRe.splice(i,0,_5a4[i]);
+				}				
+			}		
+			return _newRe;
+		}else{
+            return _5a4;
+        }
     };
     function _578(_5a8, data) {
         var _5a9 = $.data(_5a8, "datagrid");
