@@ -48,6 +48,7 @@
 				var cl = $.data(target,'datebox').calendar.closest('.panel-body');
 				if (cl.find('.calendar-hover').length>0){return ;}
 				if (cl.find('.calendar-nav-hover').length>0){return ;}
+				if (cl.find('.calendar-menu-hover').length>0){return ;}
 			}
 			var curVal = $(target).combo('getText'); 
 			setTimeout(function(){
