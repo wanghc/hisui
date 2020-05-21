@@ -449,7 +449,7 @@
         if (opts.border) {
             _21f.removeClass("panel-header-noborder");
             body.removeClass("panel-body-noborder");
-        } else {
+        } else { //没边框时,panel=height*0 ==> 见484行注释，导致tab下的无border的datagrid显示空白
             _21f.addClass("panel-header-noborder");
             body.addClass("panel-body-noborder");
         }
@@ -481,6 +481,7 @@
                 _224.layout("resize");
             } else {
                 /*wanghc 2019-11-10 增加each. 否则只执行children->[0]的_resize*/
+                /*宽度都大小0时才触发 :visible选择器*/
                 $("body").children("div.panel,div.accordion,div.tabs-container,div.layout").filter(":visible").each(function(){
                     $(this).triggerHandler("_resize");
                 });

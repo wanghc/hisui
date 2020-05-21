@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+</head>
+<body>
+	<div class="hisui-tabs tabs-gray" style="width:400px;height:250px;" data-options="headerCls:'panel-header-gray'">
+		<div title="菜单授权">
+			<table id="menuBox"></table>
+		</div>
+		<div title="功能授权">
+			<table id="actionBox"></table>
+		</div>
+	</div>
+	<script type='text/javascript'>
+		function initMenuItems(){
+			$("#menuBox").treegrid({
+				idField: "RowId",
+				treeField: "Description",
+				fit: true,
+				singleSelect: true,
+				rownumbers: true,
+				pagination: true,
+				border:false,
+				bodyCls:"panel-header-gray",
+				checkbox: true,
+				pageSize: 200,
+				pageList: [50, 100, 200],
+				url: '',
+				columns: [
+					[
+						{ field: "Description", title: "名称", width: 280 },
+						{ field: "Url", title: "链接页面", width: 280 },
+						{ field: "MenuDesc", title: "菜单", width: 160 },
+						{ field: "PermissionID", title: "授权ID", width: 160,hidden:true },
+						{ field: "Active", title: "激活状态", width: 160,hidden:true },
+					]
+				]
+			});
+		}
+
+		function initOperActions(){
+			$("#actionBox").datagrid({
+				fit: true,
+				//当border为false时，此页的默认宽度为0，导致不能触panel.js中的$(this).triggerHandler("_resize");
+				border:false,
+				rownumbers: true,
+				bodyCls:"panel-header-gray",
+				pageSize: 200,
+				pageList: [50, 100, 200],
+				toolbar: "#actionTool",
+				url: '',
+				checkOnSelect: false,
+				selectOnCheck: false,
+				columns: [
+					[
+						{ field: "CheckStatus", checkbox: true },
+						{ field: "Description", title: "操作功能", width: 120 },
+						{ field: "DataModuleDesc", title: "数据模块", width: 100 },
+						{ field: "ElementID", title: "关联元素", width: 100 },
+						{ field: "Icon", title: "图标", width: 120 },
+						{ field: "ExecFunc", title: "执行函数", width: 160 },
+						{ field: "LinkModuleDesc", title: "链接模块", width: 100,hidden:true },
+						{ field: "LinkModuleURL", title: "链接csp", width: 240,hidden:true },
+						{ field: "PermissionID", title: "授权ID", width: 80, hidden: true }
+					]
+				],
+				groupField: "DataModuleDesc",
+				groupFormatter: function(value, rows) {
+					return value + " 共" + rows.length + "项功能";
+				}
+			});
+		}
+		$(function(){
+			initMenuItems();
+			initOperActions();
+		})
+	</script>
+</body>
+</html>

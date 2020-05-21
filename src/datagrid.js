@@ -114,6 +114,8 @@
         }
         if (opts.fit == true) {
             var p = _518.panel("panel").parent();
+            // 解决tab-panel-border.debug.html演示问题，如果为0设置为1，解决tab切换后空白问题
+            if (p.width()==0){p.width(1)}
             opts.width = p.width();
             opts.height = p.height();
         }
@@ -1058,7 +1060,7 @@
         for (var i = 0; i < _5a3.length; i++) {
             _5a7(i);
         }
-        return _5a4;
+			return _5a4;
     };
     function _578(_5a8, data) {
         var _5a9 = $.data(_5a8, "datagrid");
