@@ -355,7 +355,7 @@
                 }
             }
             _54d.pagination({
-                total: (opts.pageNumber * opts.pageSize), 
+                total:0 ,// (opts.pageNumber * opts.pageSize),  //cryze 2020-05-22 分页条初始total改为0 在datagrid为lazy或者其它情况一开始没加载数据时显示不正确
                 pageNumber: opts.pageNumber, 
                 showRefresh: opts.showRefresh,  // wanghc 2018-1-29
                 showPageList:opts.showPageList, // wanghc 2018-1-29

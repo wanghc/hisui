@@ -26,17 +26,17 @@
 		$.each(opts.items,function(indc,chp){
 			if(chp.type=="chapter"){
 				html +='<div class="kw-chapter">';
-				if(chp.text!="") html += '<a></a>'+chp.text; //章节为空时,不显示前台蓝条
+				if(chp.text!="") html += '<a></a>'+$.hisui.getTrans(chp.text); //章节为空时,不显示前台蓝条 //add trans
 				html +='</div><div class="kw-line"></div>';
 				$.each(chp.items,function(inds,sec){
 					if(sec.type=='section'){
-						html +='<div class="kw-section"><div class="kw-section-header">'+sec.text+'</div>';
+						html +='<div class="kw-section"><div class="kw-section-header">'+$.hisui.getTrans(sec.text)+'</div>'; //add trans
 						if (sec.items){
 							html += '<ul class="kw-section-list keywords">';
 						}
 						$.each(sec.items, function(indl,lbl){
 							var s = lbl.selected?'class="selected"':'';
-							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+'><a>'+lbl.text+'</a></li>'
+							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+'><a>'+$.hisui.getTrans(lbl.text)+'</a></li>'; //add trans
 						});
 						if (sec.items){
 							html +='</ul>'
@@ -45,18 +45,18 @@
 					}else{ //默认label
 						if (inds==0) {html += '<ul class="kw-section-list keywords">';}
 						var s = sec.selected?'class="selected"':'';
-						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+'><a>'+sec.text+'</a></li>';
+						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+'><a>'+$.hisui.getTrans(sec.text)+'</a></li>'; //add trans
 						if (inds==(chp.items.length-1)) html +='</ul>';
 					}
 				});
 			}else if(chp.type=="section"){
-				html +='<div class="kw-section"><div class="kw-section-header">'+chp.text+'</div>';
+				html +='<div class="kw-section"><div class="kw-section-header">'+$.hisui.getTrans(chp.text)+'</div>'; //add trans
 				if (chp.items){
 					html += '<ul class="kw-section-list keywords">';
 				}
 				$.each(chp.items, function(indl,lbl){
 					var s = lbl.selected?'class="selected"':'';
-					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+lbl.text+'</a></li>'
+					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+$.hisui.getTrans(lbl.text)+'</a></li>' //add trans
 				});
 				if (chp.items){
 					html +='</ul>'
@@ -65,7 +65,7 @@
 			}else{
 				if (indc==0) {html += '<ul class="kw-section-list keywords">';}
 				var s = chp.selected?'class="selected"':'';
-				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+'><a>'+chp.text+'</a></li>';
+				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+'><a>'+$.hisui.getTrans(chp.text)+'</a></li>'; //add trans
 				if (indc==(opts.items.length-1)) html +='</ul>';
 			}
 		});
