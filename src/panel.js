@@ -244,7 +244,7 @@
             if (tmpObjList.length>0) {
                 for(var j=0;j<tmpObjList.length; j++){
                     if ("undefined"==typeof tmpObjList[j].attributes['type']) continue;
-                    if ("application/x-iemrplugin"==tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
+                    if ("application/x-iemrplugin"!=tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
                     var frm = tmpWin.frameElement; changeId=frm.id;
                     if (frm) {
                         if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
