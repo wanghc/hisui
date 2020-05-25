@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-05-25
+* `isTopZindex` win.frames[index]可能是undefined
+
 ## 2020-05-22
 * `datagrid` 分页条初始total改为0 在datagrid为lazy或者其它情况一开始没加载数据时显示不正确
 * `keywords` 翻译信息采集
