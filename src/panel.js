@@ -238,6 +238,7 @@
         windowNPAPITotal--;
         var count = win.frames.length;
         for (var i=0; i<count; i++){
+            if(!win.frames[i]) continue; //有可能undefined
             var tmpWin = win.frames[i].window;
             try{tmpWin.document;/*runqian corss*/}catch(e){ return ;}
             var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
