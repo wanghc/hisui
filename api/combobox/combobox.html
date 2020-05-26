@@ -220,38 +220,65 @@ $(function(){
 <h3>四、通过<code>defaultFilter</code>配置默认过滤规则</h3>
 <div class="demo-exp-code entry-content">
   <select id="dfCB" style="width:200px;"></select>
+
   <pre class="prettyprint lang-js hide"><code>$(function(){
 	var cbox = $HUI.combobox("#dfCB",{
 		valueField:'id', textField:'text',panelHeight:"auto",
 		data:[
-			{id:'1',text:'高血压病'}
-			,{id:'2',text:'伤寒性肝炎'}
-			,{id:'3',text:'猪霍乱沙门菌败血症'}
-			,{id:'4',text:'细菌性食物中毒'}
-			,{id:'5',text:'骨髓增生异常综合征'}
-			,{id:'6',text:'难治性贫血'}
-			,{id:'7',text:'难治性贫血,单系病态造血'}
+			{id:'1',text:'高血压病',spell:'GXYB'}
+			,{id:'2',text:'伤寒性肝炎',spell:'SHXGY'}
+			,{id:'3',text:'猪霍乱沙门菌败血症',spell:'ZHLSMJBXZ'}
+			,{id:'4',text:'细菌性食物中毒',spell:'XJXSWZD'}
+			,{id:'5',text:'骨髓增生异常综合征',spell:'GSZSYCZHZ'}
+			,{id:'6',text:'难治性贫血',spell:'NZXPX'}
+			,{id:'7',text:'多尿',spell:'DN'}
 		],
-		defaultFilter:4
+		defaultFilter:6
 	});
 });
   </code></pre>
 </div>
 <script type="text/javascript">
 $(function(){
+	var div=$('<div style="padding:10px;display:inline"></div>').insertAfter('#dfCB');
 	var cbox = $HUI.combobox("#dfCB",{
 		valueField:'id', textField:'text',panelHeight:"auto",
 		data:[
-			{id:'1',text:'高血压病'}
-			,{id:'2',text:'伤寒性肝炎'}
-			,{id:'3',text:'猪霍乱沙门菌败血症'}
-			,{id:'4',text:'细菌性食物中毒'}
-			,{id:'5',text:'骨髓增生异常综合征'}
-			,{id:'6',text:'难治性贫血'}
-			,{id:'7',text:'难治性贫血,单系病态造血'}
+			{id:'1',text:'高血压病',spell:'GXYB'}
+			,{id:'2',text:'伤寒性肝炎',spell:'SHXGY'}
+			,{id:'3',text:'猪霍乱沙门菌败血症',spell:'ZHLSMJBXZ'}
+			,{id:'4',text:'细菌性食物中毒',spell:'XJXSWZD'}
+			,{id:'5',text:'骨髓增生异常综合征',spell:'GSZSYCZHZ'}
+			,{id:'6',text:'难治性贫血',spell:'NZXPX'}
+			,{id:'7',text:'多尿',spell:'DN'}
 		],
-		defaultFilter:4
+		defaultFilter:6
 	});
+
+
+	$('<span style="padding-left:20px;color:red;font-weight:bold;">defaultFilter:</span>').appendTo(div);
+	for(var i=1;i<=6;i++){
+		$('<input type="radio" name="dfCB-df" id="dfCB-df-'+i+'" label="值:'+i+'" value="'+i+'"/>').appendTo(div);
+	}
+	$('input[type=radio][name=dfCB-df]').radio({
+		onChecked:function(){
+			$('#dfCB').combobox('options').defaultFilter=parseInt( $(this).attr('value'));
+			$('#dfCB').combobox('clear').combobox('setValue','');
+		}
+	})
+	$('#dfCB-df-6').radio('check');
+	$('<span style="padding-left:20px;color:red;font-weight:bold;">spellField:</span>').appendTo(div);
+	$('<input type="radio" id="dfCB-spellField-empty" name="dfCB-spellField" label="值:空" value=""/>').appendTo(div);
+	$('<input type="radio" id="dfCB-spellField-spell" name="dfCB-spellField" label="值:spell" value="spell"/>').appendTo(div);
+	$('input[type=radio][name=dfCB-spellField]').radio({
+		onChecked:function(){
+			$('#dfCB').combobox('options').spellField=$(this).attr('value');
+			$('#dfCB').combobox('clear').combobox('setValue','');
+		}
+	})
+	$('#dfCB-spellField-empty').radio('check');
+
+
 });
 </script>
 <h3>五、远程数据</h3>
@@ -375,10 +402,23 @@ $(function(){
 				默认的filter过滤规则<br>
 				<code>1</code>：text字段左匹配 不区分大小写<br>
 				<code>2</code>：text字段包含匹配 不区分大小写<br>
-				<code>3</code>：text字段左匹配或拼音首字母左匹配 不区分大小写<br>
-				<code>4</code>：text字段包含匹配或拼音首字母包含匹配  不区分大小写<br>
+				<code>3</code>：text字段左匹配或拼音首字母左匹配(多音字只取获取到的第一个拼音简拼) 不区分大小写<br>
+				<code>4</code>：text字段包含匹配或拼音首字母包含匹配(多音字只取获取到的第一个拼音简拼)  不区分大小写<br>
+				<code>5</code>：text字段左匹配或拼音首字母左匹配(考虑多音字) 不区分大小写 <code>2020-05-26</code><br>
+				<code>6</code>：text字段包含匹配或拼音首字母包含匹配(考虑多音字)  不区分大小写 <code>2020-05-26</code><br>
 			</td>
 			<td>1</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>spellField</td>
+			<td>
+				简拼字段名,用于指定行数据中的简拼字段 <code>2020-05-26</code><br>
+				defaultFilter为<code>3-6</code>时才有效<br>
+				当defaultFilter为<code>3-6</code>时，如果配置了此配置项,则获取行数据的此字段值作为简拼，而不是程序自己转化简拼<br>
+				程序自动转的简拼由于没有词库以及语义分析在多音字处理上是不准的
+			</td>
+			<td></td>
 			<td></td>
 		</tr>
 		<tr>

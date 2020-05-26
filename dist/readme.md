@@ -34,10 +34,14 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-## 2020-05-25
+## 2020-05-26 ##
+* `combobox` 的`defaultFilter`增加`5,6`支持多音字
+* `combobox` 增加`spellField`用于指定简拼字段，用于`defaultFilter`为`3,4,5,6`时的简拼过滤
+
+## 2020-05-25 ##
 * `isTopZindex` win.frames[index]可能是undefined
 
-## 2020-05-22
+## 2020-05-22 ##
 * `datagrid` 分页条初始total改为0 在datagrid为lazy或者其它情况一开始没加载数据时显示不正确
 * `keywords` 翻译信息采集
 

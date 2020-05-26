@@ -82,21 +82,46 @@
         defaultFilter:1,
         filter:function(q,row){
             var opts = $(this).combobox("options");
-            var text=row[opts.textField];
+            var text=row[opts.textField]||'',textL=text.toLowerCase();
+            var qL=q.toLowerCase();
             var defaultFilter=opts.defaultFilter||1;
+            //全都不区分大小写
+            //1 text字段左匹配
+            //2 text字段包含
+            //3 text字段左匹配 或者简拼左匹配(多音字只取获取到的第一个拼音简拼)
+            //4 text字段包含 或者简拼包含(多音字只取获取到的第一个拼音简拼)
+            //5 text字段左匹配 或者简拼左匹配(考虑多音字)
+            //6 text字段包含 或者简拼包含(考虑多音字)
+            //3-6 当配置了spellField 程序不再自己取简拼而是使用spellField的值
 
-            if (defaultFilter==2){ // 包含 不区分大小写
-                return text.toLowerCase().indexOf(q.toLowerCase()) >- 1;
-            }else if (defaultFilter==3){   // 左匹配 或拼音首字母左匹配 
-                return text.toLowerCase().indexOf(q.toLowerCase()) ==0 || 
-                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(q.toLowerCase()) ==0;
-            }else if (defaultFilter==4){  // 包含  或拼音首字母包含   不区分大小写
-                return text.toLowerCase().indexOf(q.toLowerCase()) >-1 || 
-                        $.hisui.toChineseSpell(text).toLowerCase().indexOf(q.toLowerCase()) >-1;
-            }else{  //默认的  左匹配 不区分大小写
-                return text.toLowerCase().indexOf(q.toLowerCase()) == 0;
-            }
+            var isLeftMatch=(defaultFilter%2==1); //1 3 5都是左匹配
+            var textIndex=textL.indexOf(qL);
+            if (textIndex==0) return true; //显示字段左匹配了 满足默认的1-6规则 直接返回
+            if (textIndex>-1 && !isLeftMatch) return true; //显示字段包含  满足2,4,6
             
+            if (defaultFilter>=3 && defaultFilter<=6) { //3-6才考虑简拼
+                if (opts.spellField){
+                    var spell=row[opts.spellField]||'',spellL=spell.toLowerCase();
+                    var spellIndex=spellL.indexOf(qL);
+                    return spellIndex ==0 || (spellIndex>-1 && !isLeftMatch);
+                }else{
+                    var spellArr=$.hisui.getChineseSpellArray(text);
+                    var len=spellArr.length;
+                    if (defaultFilter<=4) len=Math.min(len,1); //3、4只考虑第一个拼音
+                    var spellMatch=false;
+                    for (var i=0;i<len;i++){
+                        var spellL=(spellArr[i]||'').toLowerCase();
+                        var spellIndex=spellL.indexOf(qL);
+                        if(spellIndex ==0 || (spellIndex>-1 && !isLeftMatch)) {
+                            spellMatch=true;
+                            break;
+                        }
+                    }
+                    return spellMatch;
+                }
+            }else{
+                return false;
+            }
         }
     })
 })(jQuery);
