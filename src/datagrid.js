@@ -115,7 +115,8 @@
         if (opts.fit == true) {
             var p = _518.panel("panel").parent();
             // 解决tab-panel-border.debug.html演示问题，如果为0设置为1，解决tab切换后空白问题
-            if (p.width()==0){p.width(1)}
+            // 体检中心--个人预约界面--其他项目页签空白问题 datagrid的父不是panel是自己写的div,如果把parent的width设置为1，则后面fit时datagrid的宽也会为1  2020-06-04 
+            if (p.hasClass('panel-body') && p.width()==0){p.width(1)}
             opts.width = p.width();
             opts.height = p.height();
         }

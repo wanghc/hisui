@@ -17,6 +17,14 @@
 		<div title="功能授权">
 			<table id="actionBox"></table>
 		</div>
+		<div title="其他项目" style="border:false;border-radius:0;">
+			<div style="height:12%;">
+			   查询条件
+			 </div>
+			 <div style="height:88%;border:1px solid #ccc;"> 
+			  <table id="dg3" data-options="bodyCls:'panel-header-gray',fit:true,singleSelect:true,border:false"></table>
+			 </div>
+		   </div>
 	</div>
 	<script type='text/javascript'>
 		function initMenuItems(){
@@ -77,9 +85,40 @@
 				}
 			});
 		}
+		function initdg3(){
+			$("#dg3").datagrid({
+				fit: true,
+				border:false,
+				rownumbers: true,
+				bodyCls:"panel-header-gray",
+				pageSize: 200,
+				pageList: [50, 100, 200],
+				url: '',
+				checkOnSelect: false,
+				selectOnCheck: false,
+				columns: [
+					[
+						{ field: "CheckStatus", checkbox: true },
+						{ field: "Description", title: "操作功能", width: 120 },
+						{ field: "DataModuleDesc", title: "数据模块", width: 100 },
+						{ field: "ElementID", title: "关联元素", width: 100 },
+						{ field: "Icon", title: "图标", width: 120 },
+						{ field: "ExecFunc", title: "执行函数", width: 160 },
+						{ field: "LinkModuleDesc", title: "链接模块", width: 100,hidden:true },
+						{ field: "LinkModuleURL", title: "链接csp", width: 240,hidden:true },
+						{ field: "PermissionID", title: "授权ID", width: 80, hidden: true }
+					]
+				],
+				groupField: "DataModuleDesc",
+				groupFormatter: function(value, rows) {
+					return value + " 共" + rows.length + "项功能";
+				}
+			});
+		}
 		$(function(){
 			initMenuItems();
 			initOperActions();
+			initdg3();
 		})
 	</script>
 </body>

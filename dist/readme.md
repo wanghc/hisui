@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-06-04 ##
 * 增加3个28*28大图标
+* `tabs`切换页签空白问题
 
 ## 2020-05-26 ##
 * `combobox` 的`defaultFilter`增加`5,6`支持多音字
