@@ -616,5 +616,8 @@ var iconDictionary={
     "icon-big-person-green":"军人重返情况",
     "icon-big-report-yel-pen":"收治量及手术量",
     "icon-big-two-pill-gray":"治疗结果情况",
-    "icon-big-paper-orange":"重点病术种重返情况"
+    "icon-big-paper-orange":"重点病术种重返情况",
+    "icon-big-blue-white-circle":"单选",
+    "icon-big-three-blue-bar":"段落",
+    "icon-big-blue-frame-ok":"多选"
 };
