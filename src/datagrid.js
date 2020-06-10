@@ -1206,8 +1206,10 @@
             return _502(rows, row);
         } else {
             for (var i = 0; i < rows.length; i++) {
-                if (rows[i][opts.idField] == row) {
-                    return i;
+                if (opts.idField){ // wanghc 20200609 增加判断。 解决idField未定义时rows[i][null]=>undefined问题，此时return i=>return 0，应该返回-1。合并护理程序导致
+                    if (rows[i][opts.idField] == row) {
+                        return i;
+                    }
                 }
             }
             return -1;
@@ -1354,7 +1356,7 @@
         }
         opts.finder.getTr(_5e1, "", "selected").removeClass("datagrid-row-selected");
 
-        //yucz 2019-11-4 当用户取消选中一行时触发
+        //护理 yucz 2019-11-4 当用户取消选中一行时触发
         if (lastSelectedRowIndex > -1)
             opts.onUnselect.call(_5e1, lastSelectedRowIndex, _5e4[0]);
 

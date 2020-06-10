@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-06-09 ##
+* 解决`datagrid`事件`onUnselect`异常触发问题
+
 ## 2020-06-04 ##
 * 增加3个28*28大图标
 * `tabs`切换页签空白问题
