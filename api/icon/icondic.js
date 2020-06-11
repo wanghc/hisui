@@ -507,6 +507,7 @@ var iconDictionary={
     "icon-drug-eye-gray":"用药数据总览-禁用",
     "icon-miss-img":"没找到图片，默认图片",
     "icon-person-seal":"专家评审",
+    "icon-out":"出院",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
