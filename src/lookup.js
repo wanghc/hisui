@@ -209,7 +209,7 @@
                 clickDelay:200  // datagrid 的点击支持防抖 
                 ,lookup:$(target) // 反向绑定 可以根据grid 获取到当前lookup元素
             }));
-            grid.datagrid('loadData',{total:0,rows:[]});
+            //grid.datagrid('loadData',{total:0,rows:[]});  //这样会导致 使用本地数据data不生效  原本为解决显示共10行的问题已在datagrid初始化分页条解决 此处注释掉即可 cryze 2020-06-12
             state.grid = grid;
         }
         if (opts.minQueryLen<0){ opts.minQueryLen=0;}

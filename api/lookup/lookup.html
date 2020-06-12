@@ -59,6 +59,7 @@
 		</script>
 	</div><!--END demo-exp-code entry-content-->
 
+
 	<h3>当输入3个字符以上开始查询</h3>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint">
@@ -217,6 +218,62 @@
 			})
 		</script>
 	</div><!--END demo-exp-code entry-content-->
+
+	<!--
+	<h3>本地数据</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint">
+			<table>
+				<tbody>
+					<tr>
+						<td class="r-label">安全组</td>
+						<td><input id="group-local" class="textbox" /></td>
+
+						<td class="r-label" style="padding-left: 20px;">用户</td>
+						<td><input id="user-local" class="textbox" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script type='text/javascript' class="use-prettyprint">
+			$(function(){
+				$("#group-local").lookup({
+					width:200,panelWidth:800,
+					
+					mode:'local',
+					data:[{Description:'住院医师',HIDDEN:'1'},{Description:'门诊医师',HIDDEN:'2'},{Description:'门诊护士',HIDDEN:'3'}],
+					idField:'HIDDEN',
+					textField:'Description',
+					columns:[[  
+						{field:'Description',title:'安全组名称',width:200},  
+						{field:'HIDDEN',title:'安全组ID',width:100} ,
+						{field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+							return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
+						}} 
+					]],
+					isCombo:true,
+					pagination:true
+				});
+				$("#user-local").lookup({
+					width:200,panelWidth:800,
+					
+					mode:'local',
+					data:[{Description:'医生01',Code:'ys01',HIDDEN:'1'},{Description:'医生02',Code:'ys02',HIDDEN:'2'},{Description:'护士01',Code:'hs01',HIDDEN:'3'}],
+					idField:'HIDDEN',
+					textField:'Description',
+					columnsLoader:function(){
+						return [[  
+							{field:'Code',title:'工号',width:150},  
+							{field:'Description',title:'姓名',width:150},  
+							{field:'HIDDEN',title:'用户ID',width:50}  
+						]];
+					},
+					isCombo:true,
+					panelWidth:500,
+				});
+			})
+		</script>
+	</div>--><!--END demo-exp-code entry-content-->
 
 	<div class="demo-exp-code entry-content">
 		<h3>放大镜(lookup)组件，属性、事件、方法 </h3>
