@@ -10,6 +10,10 @@
 	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script src="../mock-min.js" type="text/javascript"></script>
 	<style>
+		span.deleted{
+			color:#bbb;
+			text-decoration : line-through;
+		}
 	</style>
 </head>
 <body>
@@ -402,8 +406,8 @@ $(function(){
 				默认的filter过滤规则<br>
 				<code>1</code>：text字段左匹配 不区分大小写<br>
 				<code>2</code>：text字段包含匹配 不区分大小写<br>
-				<code>3</code>：text字段左匹配或拼音首字母左匹配(多音字只取获取到的第一个拼音简拼) 不区分大小写<br>
-				<code>4</code>：text字段包含匹配或拼音首字母包含匹配(多音字只取获取到的第一个拼音简拼)  不区分大小写<br>
+				<code>3</code>：<span class="deleted">text字段左匹配或拼音首字母左匹配(多音字只取获取到的第一个拼音简拼) 不区分大小写</span>改为同<code>5</code> <code>2020-06-12</code><br>
+				<code>4</code>：<span class="deleted">text字段包含匹配或拼音首字母包含匹配(多音字只取获取到的第一个拼音简拼)  不区分大小写</span>改为同<code>6</code> <code>2020-06-12</code><br>
 				<code>5</code>：text字段左匹配或拼音首字母左匹配(考虑多音字) 不区分大小写 <code>2020-05-26</code><br>
 				<code>6</code>：text字段包含匹配或拼音首字母包含匹配(考虑多音字)  不区分大小写 <code>2020-05-26</code><br>
 			</td>

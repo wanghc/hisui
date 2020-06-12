@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-06-12 ##
+* `combobox`的`defaultFilter`的`3,4`改为考虑多音字，即和`5,6`相同
+* `lookup`当调用不是最后操作的lookup的`clear`方法时会报错问题
+
 ## 2020-06-11 ##
 * 增加一个文字图标
 

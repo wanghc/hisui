@@ -262,12 +262,19 @@
             return $.data(jq[0], "lookup").grid;
         }, clear: function (jq) {
             return jq.each(function () {
+                var state=$.data(this, 'lookup');
+                if (state){
+                    if (isSelfGrid(state))  $(this).lookup("grid").datagrid("clearSelections");  //表格只有当表格为当前lookup的表格才需要清除 cryze 2020-06-12
+                    $(this).lookup("setText","");
+                    $(this).lookup("setValue","");
+                }
+                /*
                 var g = $(this).lookup("grid");
                 if (g){
                     g.datagrid("clearSelections");
                     $(this).lookup("setText","");
                     $(this).lookup("setValue","");
-                }
+                }*/
             });
         }
     };

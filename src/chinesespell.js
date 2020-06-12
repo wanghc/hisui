@@ -94,6 +94,8 @@
             //6 text字段包含 或者简拼包含(考虑多音字)
             //3-6 当配置了spellField 程序不再自己取简拼而是使用spellField的值
 
+            if (defaultFilter==3||defaultFilter==4) defaultFilter+=2; //3、4当作5、6来处理
+
             var isLeftMatch=(defaultFilter%2==1); //1 3 5都是左匹配
             var textIndex=textL.indexOf(qL);
             if (textIndex==0) return true; //显示字段左匹配了 满足默认的1-6规则 直接返回
