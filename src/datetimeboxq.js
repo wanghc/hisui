@@ -146,7 +146,7 @@
         return $.extend({}, $.fn.dateboxq.parseOptions(_961), $.parser.parseOptions(_961, [{ showSeconds: "boolean" }]));
     };
     $.fn.datetimeboxq.defaults = $.extend({}, $.fn.dateboxq.defaults, {
-		showSeconds: true,
+		showSeconds: true,panelHeight:232,
 		buttons: [{
             text: function (_962) {
                 return $(_962).dateboxq("options").currentText;

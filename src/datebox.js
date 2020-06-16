@@ -345,9 +345,9 @@
 			doBlur(target);
 		},
         onSelect:function(date){},
-		validType:{"datebox":"YMD","minMaxDate":[null,null]}, //['datebox["YMD"]','minMaxDate[null,null]'],
+		validType:{"datebox":(typeof dtformat=="undefined"?"":dtformat),"minMaxDate":[null,null]}, //['datebox["YMD"]','minMaxDate[null,null]'],
 		//validParams:"YMD",
-		minDate:'1841-1-1',
+		minDate:(typeof dtformat=="undefined"?null:(dtformat=="YMD"?'1841-01-01':null)),
 		maxDate:null,
 		allParse:true  //默认初始化calendar,设置false提升速度一个日期控件(110ms--36ms)
 	});

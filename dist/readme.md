@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-06-16 ##
+* 解决`datetimeboxq`面板高度异常问题
+* 解决系统配置中配置日期格式不同导致`datebox`验证提示问题. `dtformat=""`时走组件自身验证
+
 ## 2020-06-12 ##
 * `combobox`的`defaultFilter`的`3,4`改为考虑多音字，即和`5,6`相同
 * `lookup`当调用不是最后操作的lookup的`clear`方法时会报错问题
