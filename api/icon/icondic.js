@@ -620,5 +620,6 @@ var iconDictionary={
     "icon-big-paper-orange":"重点病术种重返情况",
     "icon-big-blue-white-circle":"单选",
     "icon-big-three-blue-bar":"段落",
-    "icon-big-blue-frame-ok":"多选"
+    "icon-big-blue-frame-ok":"多选",
+    "icon-big-white-p-red":"输入中，编写中，操作中，辅助输入"
 };
