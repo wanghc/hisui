@@ -179,13 +179,13 @@
         if (!isSelfGrid(state)){
             var grid = $(target).comboq('createPanelBody');
             if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target);
-            grid.datagrid($.extend({}, opts, { 
+            grid.datagrid($.extend({}, opts, {
                 title:opts.gridTitle||"",
                 rownumbers:true,lazy:true,
                 border: false, fit: true, singleSelect: (!opts.multiple), 
                 onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){
-                        $(target).focus();
+                        if (opts.forceFocus) {$(target).focus();}
                         grid.datagrid("highlightRow", 0);
                     }
                     opts.onLoadSuccess.apply(target, arguments);
@@ -226,7 +226,7 @@
         _t.comboq($.extend({}, opts, {
             onShowPanel : function(){
                 state.panel = $(target).comboq('panel');
-                initGrid(target);
+               initGrid(target);
                 opts.onShowPanel.call(target);
             }
         }));
@@ -282,6 +282,7 @@
         return $.extend({}, $.fn.comboq.parseOptions(target),$.fn.datagrid.parseOptions(target), $.parser.parseOptions(target, ["idField", "textField", "mode",{isCombo:"boolean",minQueryLen:'number'}]));
     };
     $.fn.lookup.defaults = $.extend({}, $.fn.comboq.defaults, $.fn.datagrid.defaults, {
+        forceFocus:true, /*是否强制光标到放大镜输入框*/
         loadMsg: null, idField: null, textField: null, mode: "local", keyHandler: {
             up: function (e) {
                 nav(this, "prev");
@@ -314,7 +315,7 @@
         queryOnSameQueryString: true, //当查询条件相同时，在回车和点击按钮是否查询
         enableNumberEvent:false, /*是否启用数字选行功能，当按数字n键时选中第n行记录*/
         onBeforeShowPanel:function(){
-        },selectRowRender:function(row){ //高亮一行数据时 显示提示内容html
-        }
+        },selectRowRender:null // 应为function， 高亮一行数据时 显示提示内容html，修改成null不进入render方法
+        
     });
 })(jQuery);

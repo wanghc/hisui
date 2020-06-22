@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2020-06-22 ##
+* `lookup`增加`forceFocus`,解决toolbar输入查询问题
+* `lookup`修改`selectRowRender`默认为null, 解决选行时闪烁问题
+
 ## 2020-06-19 ## 
 * 解决`scrollview`插件能显示下也出现纵向滚动条问题
 
