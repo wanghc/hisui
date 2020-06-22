@@ -476,7 +476,14 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 			} else if (bottomHeight == 0){
 				var lastCount = state.data.total % opts.pageSize;
 				if (lastCount){
-					fillHeight(bottomDiv, dc.body2.height() - lastCount * rowHeight);
+					//songcl 解决，表格存在横向滚动条时，这个高度没有减去滚动条的高度
+					//会导致页面出现纵向滚动条，比如说显示8条医嘱时出现纵向滚动条
+					if ($(dc.body2)[0].scrollWidth > $(dc.body2)[0].clientWidth) {
+						fillHeight(bottomDiv, dc.body2.height() - lastCount * rowHeight - 17);
+					}else{
+						fillHeight(bottomDiv, dc.body2.height() - lastCount * rowHeight);
+					}
+					//fillHeight(bottomDiv, dc.body2.height() - lastCount * rowHeight);
 				}
 			}
 
