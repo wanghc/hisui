@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-06-24 ##
+* `lookup`默认行号列自适应
 
 ## 2020-06-22 ##
 * `lookup`增加`forceFocus`,解决toolbar输入查询问题

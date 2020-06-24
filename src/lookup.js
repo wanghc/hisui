@@ -283,6 +283,7 @@
     };
     $.fn.lookup.defaults = $.extend({}, $.fn.comboq.defaults, $.fn.datagrid.defaults, {
         forceFocus:true, /*是否强制光标到放大镜输入框*/
+        fixRowNumber:true,
         loadMsg: null, idField: null, textField: null, mode: "local", keyHandler: {
             up: function (e) {
                 nav(this, "prev");
