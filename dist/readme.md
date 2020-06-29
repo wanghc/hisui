@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-06-29 ##
 * `menu`在Chrome系浏览器中`isTopZindex`实现
+* `datagrid`的`columns`中对象的`showTip`属性对空值不生成tip
 
 ## 2020-06-24 ##
 * `lookup`默认行号列自适应

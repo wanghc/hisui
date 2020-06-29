@@ -663,7 +663,7 @@
                 td = td.closest('td');
            }
            colname = td.attr('field');
-           if (colname){
+           if (colname && $.trim(td.text())!=""){
                var tmpdg = $.data(_55a, "datagrid");
                var cm = tmpdg.options.columns;
                for (var i=0;i<cm.length; i++){
