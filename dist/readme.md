@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-06-29 ##
+* `menu`在Chrome系浏览器中`isTopZindex`实现
+
 ## 2020-06-24 ##
 * `lookup`默认行号列自适应
 

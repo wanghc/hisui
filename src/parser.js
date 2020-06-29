@@ -108,6 +108,48 @@
             }
             return key;
         }
+        ,findObjectDom:function(options,win,toHide,trgt){ /*Chrome系处理病历控件*/
+            if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
+            if (windowNPAPITotal<0) return ;
+            windowNPAPITotal--;
+            var count = win.frames.length;
+            for (var i=0; i<count; i++){
+                if(!win.frames[i]) continue; //有可能undefined
+                var tmpWin = win.frames[i].window;
+                try{tmpWin.document;/*runqian corss*/}catch(e){ return ;}
+                var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
+                if (tmpObjList.length>0) {
+                    for(var j=0;j<tmpObjList.length; j++){
+                        if ("undefined"==typeof tmpObjList[j].attributes['type']) continue;
+                        if ("application/x-iemrplugin"!=tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
+                        var frm = tmpWin.frameElement; changeId=frm.id;
+                        if (frm) {
+                            if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                            if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
+                            if (!$.data(trgt,"changeIdStr")){$.data(trgt,"changeIdStr",{NPAPIIdStr:""});}
+                            if(toHide){
+                                if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)<0){     //多次open只加一次
+                                    frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
+                                    $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
+                                }
+                                //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
+                                if (frm.style.display!='none'){
+                                    frm.style.display = "none";
+                                }
+                            }else{
+                                frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
+                                $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
+                                //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
+                                if (frm.getAttribute('data-hideTimes')==0){
+                                    frm.style.display = 'block';
+                                }
+                            }
+                        }
+                    }
+                }
+                $.hisui.findObjectDom(options,tmpWin,toHide,trgt);
+            }
+        }
     };
     $.hisui.globalContainerId = 'z-q-container';
     $.hisui.globalContainerSelector = '#'+$.hisui.globalContainerId;

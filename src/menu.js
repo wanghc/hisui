@@ -2,7 +2,7 @@
     function init(target) {
         $(target).appendTo("body");
         $(target).addClass("menu-top");
-	var opts = $.data(target,"menu").options;
+	    var opts = $.data(target,"menu").options;
         if (opts.isTopZindex){
             var ocxFrame = '<iframe style="position:absolute;z-index:-1;width:100%;height:100%;top:0;left:0;scrolling:no;" frameborder="0"></iframe>';
             $(target).prepend(ocxFrame);
@@ -169,14 +169,18 @@
                 state.options.onHide.call(target);
             }
         }
+        if (state.options.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(state.options,window,false,target);}
+        //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
+        $.data(target,"changeIdStr",{NPAPIIdStr:""});
         return false;
     };
     function showMenu(target, param) {
         var left, top;
         param = param || {};
         var menu = $(param.menu || target);
+        var opts = $.data(target, "menu").options;
         if (menu.hasClass("menu-top")) {
-            var opts = $.data(target, "menu").options;
+            
             $.extend(opts, param);
             left = opts.left;
             top = opts.top;
@@ -219,6 +223,7 @@
                 $.data(menu[0], "menu").options.onShow.call(menu[0]);
             }
         });
+        if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,true,target);}
     };
     function hideMenu(menu) {
         if (!menu) {

@@ -232,48 +232,6 @@
             $(this).triggerHandler("_resize", [true]);
         });
     };
-    function findObjectDom(options,win,toHide,trgt){
-        if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
-        if (windowNPAPITotal<0) return ;
-        windowNPAPITotal--;
-        var count = win.frames.length;
-        for (var i=0; i<count; i++){
-            if(!win.frames[i]) continue; //有可能undefined
-            var tmpWin = win.frames[i].window;
-            try{tmpWin.document;/*runqian corss*/}catch(e){ return ;}
-            var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
-            if (tmpObjList.length>0) {
-                for(var j=0;j<tmpObjList.length; j++){
-                    if ("undefined"==typeof tmpObjList[j].attributes['type']) continue;
-                    if ("application/x-iemrplugin"!=tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
-                    var frm = tmpWin.frameElement; changeId=frm.id;
-                    if (frm) {
-                        if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                        if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                        if (!$.data(trgt,"changeIdStr")){$.data(trgt,"changeIdStr",{NPAPIIdStr:""});}
-                        if(toHide){
-                            if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)<0){     //多次open只加一次
-                                frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
-                                $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
-                            }
-                            //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
-                            if (frm.style.display!='none'){
-                                frm.style.display = "none";
-                            }
-                        }else{
-                            frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
-                            $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
-                            //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
-                            if (frm.getAttribute('data-hideTimes')==0){
-                                frm.style.display = 'block';
-                            }
-                        }
-                    }
-                }
-            }
-            findObjectDom(options,tmpWin,toHide,trgt);
-        }
-    }
     function _200(_201, _202) {
         var opts = $.data(_201, "panel").options;
         var _203 = $.data(_201, "panel").panel;
@@ -289,7 +247,7 @@
         if (tool.length) {
             opts.maximized = true;
         }
-        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,true,_201);}
+        if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,true,_201);}
         opts.onOpen.call(_201);
         if (opts.maximized == true) {
             opts.maximized = false;
@@ -314,7 +272,7 @@
         }
         _208._fit(false);
         _208.hide();
-        if (opts.isTopZindex){windowNPAPITotal=200;findObjectDom(opts,window,false,_206);}
+        if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,false,_206);}
         //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
         $.data(_206,"changeIdStr",{NPAPIIdStr:""});
         opts.closed = true;
