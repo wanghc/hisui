@@ -508,6 +508,7 @@ var iconDictionary={
     "icon-miss-img":"没找到图片，默认图片",
     "icon-person-seal":"专家评审",
     "icon-out":"出院",
+    "icon-change":"转科，转院",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",

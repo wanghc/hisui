@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-07-01 ##
+* 增加一个【转】字图标
+
 ## 2020-06-29 ##
 * `menu`在Chrome系浏览器中`isTopZindex`实现
 * `datagrid`的`columns`中对象的`showTip`属性对空值不生成tip
