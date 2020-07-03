@@ -1,0 +1,81 @@
+/*common css*/
+.hstep-container {
+	font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Wenquanyi Micro Hei","Microsoft Yahei",Arial,sans-serif;
+    display: inline-block;
+    position: relative;
+	color: #000;
+	width: 700px;
+	height: 60px;
+	font-size: 18px;
+	ul.hstep-container-steps{
+		list-style: none;
+		position: absolute;
+		top: 2px;
+		z-index: 10;
+		li{
+			font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+			font-size: 14px;
+			font-weight: bold;
+			float: left;
+			width: 100px;
+			height: 85px;
+			.cnode{
+				background-image: url('images/blue/hstep.png');
+				background-repeat: no-repeat;
+				width: 20px;
+				height: 20px;
+				margin: 10px 0px 0px 10px;
+				text-align: center;
+				font-size: 12px;
+				cursor: pointer;
+			}
+			&.done{
+				color:#333333;
+				.cnode{
+					background-position: 0px -60px;
+				}	
+			}
+			&.undone{
+				color: #666666;
+				.cnode{
+					background-position: 0px -80px;
+				}
+			}
+			&.active{
+				color: #000000;
+				.cnode{
+					margin-top: 7px;
+					background-position: 0px -40px;
+				}
+			}
+		}
+	}	
+	.hstep-progress-highlight{
+		background: #18af66;
+	}
+	.hstep-progress {
+		width: 400px;
+		height: 1px;
+		position: absolute;
+		top: 35px;
+		left: 15px;
+		float: left;
+		margin-right: 10px;
+		overflow: hidden;
+		.hstep-progress-bar {
+			width: 400px;
+			height: 20px;
+			background: #e4e4e4;
+			display: inline-block;
+			float: left;
+			.hstep-progress-highlight {
+				height: 20px;
+				display: block;
+			}
+		}
+	}
+}
+.hstep-container ul,.hstep-container li,.hstep-container p {
+	margin: 0;
+	padding: 0;
+}
