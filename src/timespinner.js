@@ -76,19 +76,20 @@
         var arr = [];
         if (tm){
             tm = tm.replace(/\s/g,"");
-            var reg = /^([0-2][0-9])([0-6][0-9])([0-9]*)$/;
-            var reg1 = /^([3-9])([0-6][0-9])([0-6]*)$/;
-            var reg2 = /^([0-2][0-9])$/  /*hour*/
+            var reg = /^([0-2][0-9]|[1-9])([0-6][0-9]|[1-9])([0-9]*)$/;
+            //var reg1 = /^([3-9])([0-6][0-9])([0-6]*)$/;
+            var reg2 = /^([0-2][0-9]|[1-9])$/  /*hour*/ // 2020-07-089-->09:00
             if(reg2.test(tm)){
                 arr = tm.match(reg2);
                 arr.splice(0,1);
             }else if(reg.test(tm)){
                 arr = tm.match(reg);
                 arr.splice(0,1);
-            }else if(reg1.test(tm)){
+            }
+            /*else if(reg1.test(tm)){
                 arr = tm.match(reg1);
                 arr.splice(0,1);
-            }
+            }*/
         }
         return arr;
     }
