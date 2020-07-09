@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-07-09 ##
+* `popover`的title高度样式还原，不固定15px
+
 ## 2020-07-08 ##
 * `timespinner`支持输入9转成09:00
 
