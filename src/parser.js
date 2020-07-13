@@ -108,9 +108,18 @@
             }
             return key;
         }
-        ,findObjectDom:function(options,win,toHide,trgt){ /*Chrome系处理病历控件*/
+        /***
+         * @param {Object} options HISUI-CMP的配置项
+         * @param {HTMLDomWindow} win 当前要查询的窗口对象。会查询这个win下所有iframe下包含的object
+         * @param {Boolean} toHide 是否隐藏插件
+         * @param {HTMLDomcument} trgt  事件源对象 如panel,window,dialog ,menu 对象，以便记录他隐藏了哪几个OBJECT
+         * @param {String} hisuiCmpName  源对象组件名称。如panel,menu
+         */
+        ,findObjectDom:function(options,win,toHide,trgt,hisuiCmpName){ /*Chrome系处理病历控件*/
+            
             if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
             if (windowNPAPITotal<0) return ;
+            hisuiCmpName = hisuiCmpName||"panel";
             windowNPAPITotal--;
             var count = win.frames.length;
             for (var i=0; i<count; i++){
@@ -132,14 +141,17 @@
                                     frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
                                     $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
                                 }
-                                //console.log(options.changeIdStr+"panel open => "+frm.getAttribute('data-hideTimes'));
+                                //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").NPAPIIdStr+" ,"+hisuiCmpName+" open NPAPI-hide=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.display);
                                 if (frm.style.display!='none'){
                                     frm.style.display = "none";
                                 }
                             }else{
-                                frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
+                                if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)>-1){     //多次close只加一次
+                                    frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
+                                }
+                                if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
                                 $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
-                                //console.log(options.changeIdStr+" panel close => "+frm.getAttribute('data-hideTimes'));
+                                //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").changeIdStr+" ,"+hisuiCmpName+" close NPAPI-show=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.display);
                                 if (frm.getAttribute('data-hideTimes')==0){
                                     frm.style.display = 'block';
                                 }
@@ -147,7 +159,7 @@
                         }
                     }
                 }
-                $.hisui.findObjectDom(options,tmpWin,toHide,trgt);
+                $.hisui.findObjectDom(options,tmpWin,toHide,trgt,hisuiCmpName);
             }
         }
     };

@@ -169,7 +169,7 @@
                 state.options.onHide.call(target);
             }
         }
-        if (state.options.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(state.options,window,false,target);}
+        if (state.options.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(state.options,window,false,target,"menu");}
         //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
         $.data(target,"changeIdStr",{NPAPIIdStr:""});
         return false;
@@ -223,7 +223,7 @@
                 $.data(menu[0], "menu").options.onShow.call(menu[0]);
             }
         });
-        if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,true,target);}
+        if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,true,target,"menu");}
     };
     function hideMenu(menu) {
         if (!menu) {

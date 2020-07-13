@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2020-07-13 ##
+* 解决`menu`点击弹出`window`时，isTopZindex属性无效问题 
+
 ## 2020-07-09 ##
 * `popover`的title高度样式还原，不固定15px
 
