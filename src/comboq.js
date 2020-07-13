@@ -123,6 +123,7 @@
                     opts.keyHandler.up.call(target, e);
                     break;
                 case 40:
+                    if (!$($.hisui.globalContainerSelector).is(":visible")) showPanel(this);  //下拉按钮时
                     opts.keyHandler.down.call(target, e);
                     break;
                 case 37:

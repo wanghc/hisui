@@ -124,6 +124,7 @@
                         opts.keyHandler.up.call(_857, e);
                         break;
                     case 40:
+                        if (_859.panel("options").closed) _85c.trigger("click.combo");
                         opts.keyHandler.down.call(_857, e);
                         break;
                     case 37:

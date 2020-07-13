@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2020-07-13 ##
 * 解决`menu`点击弹出`window`时，isTopZindex属性无效问题 
+* `combo`系组件与`lookup`支持Down按键展开面板
 
 ## 2020-07-09 ##
 * `popover`的title高度样式还原，不固定15px
