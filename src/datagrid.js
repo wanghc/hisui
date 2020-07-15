@@ -1902,9 +1902,19 @@
                 $(_658)._outerWidth(_659)._outerHeight(30);   //cryze 2018-4-13 height 22-30
             }
         }, textarea: {
-            init: function (_65a, _65b) {
-                var _65c = $("<textarea class=\"datagrid-editable-input\"></textarea>").appendTo(_65a);
+            init: function (_65a, options) {
+                var h = '<textarea class="textbox datagrid-editable-input" style="';
+                if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
+                    if (options.height) h +='height:'+options.height+";";
+                    if (options.width) h +='width:'+options.width+";";
+                }
+                var _65c = $(h+'"></textarea>').appendTo(_65a);
+                if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
+                    _65c.validatebox(options);
+                }
                 return _65c;
+            }, destroy: function (jObjTarget) {
+                if (jObjTarget.length>0 && jObjTarget.hasClass('validatebox-text')) jObjTarget.validatebox("destroy");
             }, getValue: function (_65d) {
                 return $(_65d).val();
             }, setValue: function (_65e, _65f) {
@@ -2008,6 +2018,20 @@
                 $(i_680).datetimebox("setValue", i_681);
             }, resize: function (i_682, i_683) {
                 $(i_682).datetimebox("resize", i_683);
+            }
+        }, dateboxq: {
+            init: function (_67b, _67c) {
+                var _67d = $("<input type=\"text\">").appendTo(_67b);
+                _67d.dateboxq(_67c);
+                return _67d;
+            }, destroy: function (_67e) {
+                $(_67e).dateboxq("destroy");
+            }, getValue: function (_67f) {
+                return $(_67f).dateboxq("getValue");
+            }, setValue: function (_680, _681) {
+                $(_680).dateboxq("setValue", _681);
+            }, resize: function (_682, _683) {
+                $(_682).dateboxq("resize", _683);
             }
         }, combobox: {
             init: function (_684, _685) {

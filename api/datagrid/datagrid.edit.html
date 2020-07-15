@@ -41,12 +41,14 @@
 					}">费用类型combobox</th>
 			<th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)</th>
 			<th data-options="field:'feetotal',width:80,align:'right',editor:'numberbox'">数量numberbox</th>
-			<th data-options="field:'note',width:250,editor:'text'">说明(text)</th>
+			<th data-options="field:'note',width:250,editor:{type:'textarea',options:{required:true,height:'60px'}}">说明(text)</th>
 			<th data-options="field:'active',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">激活checkbox</th>
 			<th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox</th>
 			<th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox</th>
 			<th data-options="field:'op',width:140,align:'center',editor:{type:'linkbutton',options:{iconCls:'icon-save',handler:function(){endEditing();}}}">按钮linkbutton</th>
+			<th data-options="field:'dbq',width:100,align:'center',editor:{type:'dateboxq'}">日期</th>
 			<th data-options="field:'timesp',width:100,align:'center',editor:{type:'timespinner'}">时间</th>
+
 		</tr>
 		</thead>
 		</table>
@@ -105,6 +107,7 @@
 			"active1":/[YN]/,
 			"active2":/禁用|启用/,
 			"op":"结束编辑",
+			"dbq":'2020-07-15',
 			"timesp":"8:30"
 		}],
 		"total":10
