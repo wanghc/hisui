@@ -35,8 +35,8 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2020-07-15 ##
-* 表格中`textarea`类型支持`required`属性
-
+* 编辑表格中`textarea`类型支持`required`属性
+* 编辑表格中`dateboxq`不能自适应宽度问题
 
 ## 2020-07-13 ##
 * 解决`menu`点击弹出`window`时，isTopZindex属性无效问题 

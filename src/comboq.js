@@ -15,8 +15,8 @@
 		}
 		return false;
     }
-    function doResize(target,offset){
-
+    function doResize(target,width){
+        $(target)._outerWidth(width);
     }
 	function _hide(target){
         var panel = $($.hisui.globalContainerSelector);
