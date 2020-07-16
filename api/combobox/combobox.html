@@ -124,6 +124,10 @@ $(function(){
 		//cbox.setValues([]);
 		//cbox.loadData([{id:'m',text:'m语言'}]);
 	});
+	/*回车事件测试*/
+	$('#stateBox').combobox('textbox').bind('keydown',function(event){ if (event.keyCode == 13) {
+		$('#iconokBox').combobox('textbox').focus();
+    }})
 	$("#cboxbtn1").click(function(){
 		console.log($("#stateBox").combobox("getValue"));
 	});
