@@ -1373,6 +1373,7 @@
         var opts = _5ea.options;
         /*add onBeforeCheck event by wanghc 2018-05-23*/
         var row = opts.finder.getRow(_5e7, _5e8);
+        if ('undefined' == typeof row) return ; //没有行也去checkRow时会报错
         if (false === opts.onBeforeCheck.call(_5e7, _5e8, row)){ 
             //点击checkbox时，checkbox在触发onBeforeCheck事件前 就变成了选中 在此要变回去 add 2020-01-13 cryze
             var tr = opts.finder.getTr(_5e7, _5e8);
