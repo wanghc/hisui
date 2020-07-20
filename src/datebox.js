@@ -203,8 +203,9 @@
 	function doEnter(target){
 		var state = $.data(target, 'datebox');
 		var opts = state.options;
+		var val = $(target).datebox('getText'); //取当前文本框中值，然后对比日历值是不是一致
 		var current ;
-		if (state.calendar && state.calendar.is(":visible")){  //日历可见时,回车才默认日期
+		if (state.calendar && val!=""){ //state.calendar.is(":visible")){  //日历可见时,回车才默认日期
 			current = state.calendar.calendar('options').current;
 		}
 		if (current){
