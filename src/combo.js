@@ -134,9 +134,10 @@
                         opts.keyHandler.right.call(_857, e);
                         break;
                     case 13:
-                        e.preventDefault();
+                        //e.preventDefault();   // $(window).keydown(function (e) {console.log(e.keyCode);}); 方式监听到回车
                         opts.keyHandler.enter.call(_857, e);
-                        return false;
+                        //return false;
+                        break;
                     case 9:
                     case 27:
                         _85e(_857);

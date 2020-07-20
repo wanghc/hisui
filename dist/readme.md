@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-07-20 ##
+* `combo`系回车事件冒泡给外层
+
 ## 2020-07-16 ##
 * `datagrid`数据为空时，使用checkrow勾选行时不报错
 
