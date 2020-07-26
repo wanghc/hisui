@@ -92,6 +92,7 @@ $(function(){
         var jobj = $("<div class='toggle-prettyprint' style='padding-left:"+(width/2)+"px;width:120px;'>"+_desc_+"</div>").insertBefore($(this));
         jobj.click(function(){
             var _t = $(this);
+            if (window.onResizePretty){onResizePretty();}
             if(_t.text().indexOf("+显示")>-1){
                 prettyPrint();
                 _t.find("+pre.prettyprint").show();
