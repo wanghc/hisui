@@ -5,88 +5,76 @@
     <title>单选框</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
-    <link rel="stylesheet" type="text/css" href="../demo.css">
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
 </head>
 <body>
     <h2>单选框, 通过图片得到蓝色系勾选框</h2>
     <h3>说明:</h3>
     <span>用于多选一的业务场情。</span>
     <h3>一、单选框示例</h3>
-   <div class="demo-exp-code entry-content"> 
-        <table cellpadding="5">
-            <tr>
-                <td>
-                    想吃什么
-                </td>
-                <td id="eatlist">
-                    <input class='hisui-radio' type="radio" label='苹果' name='wantEat' value="apple">
-                    <input class='hisui-radio' type="radio" label='桔子' name='wantEat' value="orange">
-                    <input class='hisui-radio' type="radio" label='香蕉' name='wantEat' value="banana" id="ba">
-                </td>
-                <td>
-                    <a id="selectba" class="hisui-linkbutton" href="#">选中香蕉</a>
-                    <a id="insertRadio" class="hisui-linkbutton" href="#">插入梨</a>
-                    <a id="getValue" class="hisui-linkbutton" href="#">获得选中值</a>
-                </td>
-            </tr>
-        </table><pre class="prettyprint lang-html hide"><code>&lt;table cellpadding="5">
-    &lt;tr>
-        &lt;td&gt;想吃什么&lt;/td &gt;
-        &lt;td id="eatlist" &gt;
-            &lt;input class='hisui-radio' type="radio" label='苹果' name='wantEat' value='apple'&gt;
-            &lt;input class='hisui-radio' type="radio" label='桔子' name='wantEat' value='orange'&gt;
-            &lt;input class='hisui-radio' type="radio" label='香蕉' name='wantEat' value='banana' id="ba"&gt;
-        &lt;/td&gt;
-        &lt;td&gt;
-            &lt;a id="selectba" class="hisui-linkbutton" href="#"&gt;选中香蕉&lt;/a&gt;
-            &lt;a id="insertRadio" class="hisui-linkbutton" href="#"&gt;插入梨&lt;/a&gt;
-            &lt;a id="getValue" class="hisui-linkbutton" href="#"&gt;获得选中值&lt;/a&gt;
-        &lt;/td>
-    &lt;/tr>
-&lt;/table&gt;
-&lt;script&gt;
-    $(function(){
-        $HUI.radio("[name='wantEat']",{
-            onChecked:function(e,value){
-                logger.info($(e.target).attr("label"));  //输出当前选中的label值
-            }
-        });
-        $("#selectba").click(function(){
-            $HUI.radio("#ba").setValue(true);
-        });
-        $("#insertRadio").click(function(){
-            // 插入选项
-            $("#eatlist").append("&lt;input class='hisui-radio' type='radio' label='黄金梨' value='pear1' name='wantEat'&gt;");
-            $("#eatlist").append("&lt;input class='hisui-radio' type='radio' label='秋月梨' value='pear2' name='wantEat'&gt;");
-            $("#eatlist").append("&lt;input class='hisui-radio' type='radio' label='黄梨' value='pear3' name='wantEat'&gt;");
-            $("#eatlist").append("&lt;input class='hisui-radio' type='radio' label='鸭梨' value='pear4' name='wantEat'&gt;");
-            $HUI.radio("#eatlist input.hisui-radio",{});
-        });
-        $("#getValue").click(function(){
-            // 获得选中的水果
-            var checkedRadioJObj = $("input[name='wantEat']:checked");
-            $.messager.alert("提示","value="+checkedRadioJObj.val()+" , label="+checkedRadioJObj.attr("label"));
-        })
+   <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+<table cellpadding="5">
+    <tr>
+        <td>
+            想吃什么
+        </td>
+        <td id="eatlist">
+            <input class='hisui-radio' type="radio" label='苹果' name='wantEat' value="apple">
+            <input class='hisui-radio' type="radio" label='桔子' name='wantEat' value="orange">
+            <input class='hisui-radio' type="radio" label='香蕉' name='wantEat' value="banana" id="ba">
+        </td>
+        <td>
+            <a id="selectba" class="hisui-linkbutton" href="#">选中香蕉</a>
+            <a id="insertRadio" class="hisui-linkbutton" href="#">插入梨</a>
+            <a id="getValue" class="hisui-linkbutton" href="#">获得选中值</a>
+        </td>
+    </tr>
+</table>
+        </div>
+<script class="use-prettyprint lang-js">
+$(function(){
+    logger.level=1;
+    $HUI.radio("[name='wantEat']",{
+        onChecked:function(e,value){
+            logger.info($(e.target).attr("label"));  //输出当前选中的label值
+        }
     });
-&lt;/script&gt;</code></pre></div>
-    <h3>二、样式为复选框的单选框</h3>
-    <div class="demo-exp-code entry-content"> 
-        <table cellpadding="5">
-            <tr>
-                <td>
-                    <input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue'">
-                    <input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue'">
-                    <input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue'">
-                </td>
-            </tr>
-        </table>
-        <pre class="prettyprint lang-html hide"><code>&lt;input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue'"&gt;
-&lt;input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue'"&gt;
-&lt;input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue'"&gt;</code></pre>
+    $("#selectba").click(function(){
+        $HUI.radio("#ba").setValue(true);
+    });
+    $("#insertRadio").click(function(){
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='黄金梨' value='pear1' name='wantEat'>");
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='秋月梨' value='pear2' name='wantEat'>");
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='黄梨' value='pear3' name='wantEat'>");
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='鸭梨' value='pear4' name='wantEat'>");
+        $HUI.radio("#eatlist input.hisui-radio",{});
+    });
+    $("#getValue").click(function(){
+        var checkedRadioJObj = $("input[name='wantEat']:checked");
+        $.messager.alert("提示","value="+checkedRadioJObj.val()+" , label="+checkedRadioJObj.attr("label"));
+    })
+});
+</script>
     </div>
-
+    <h3>二、样式为复选框的单选框</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+<input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+<input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue',required:true">
+<input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+        </div>
+    </div>
+    <h3>三、必选功能</h3>
+    <div class="demo-exp-code entry-content"> 
+        <div class="use-prettyprint lang-html">
+<input class='hisui-radio' type="radio" label='男' name='sex' value="1" data-options="required:true">
+<input class='hisui-radio' type="radio" label='女' name='sex' value="2" data-options="required:true">
+        </div>
+    </div>
     <div>
         <h3>单选组件的相关配置、事件、方法</h3>
         <table class="table">
@@ -127,10 +115,16 @@
                 <td>可选'right'<code>20191104</code></td>
             </tr>
             <tr>
-                <td>required</td>
-                <td>必选框</td>
+                <td>requiredSel</td>
+                <td>是否可取消选中</td>
                 <td>false</td>
-                <td>默认false,可以取消选中<code>20191125</code></td>
+                <td>默认false,可以取消选中<code>20191126</code></td>
+            </tr>
+            <tr>
+                <td>required</td>
+                <td>同name中必选一项</td>
+                <td>false</td>
+                <td>默认false,不必选<code>20200726</code></td>
             </tr>
             <tr class="evttitle">
                 <th>事件名</th>
@@ -234,32 +228,19 @@
                 <td></td>
                 <td>jquery对象</td>
             </tr>
+            <tr>
+                <td>isValid</td>
+                <td>验证必状态<code>20200726</code></td>
+                <td></td>
+                <td>Boolean</td>
+            </tr>
         </table>
     </div>
-    <script>
-        $(function(){
-            logger.level=1;
-            $HUI.radio("[name='wantEat']",{
-                onChecked:function(e,value){
-                    logger.info($(e.target).attr("label"));  //输出当前选中的label值
-                }
-            });
-            $("#selectba").click(function(){
-                $HUI.radio("#ba").setValue(true);
-            });
-            $("#insertRadio").click(function(){
-                $("#eatlist").append("<input class='hisui-radio' type='radio' label='黄金梨' value='pear1' name='wantEat'>");
-                $("#eatlist").append("<input class='hisui-radio' type='radio' label='秋月梨' value='pear2' name='wantEat'>");
-                $("#eatlist").append("<input class='hisui-radio' type='radio' label='黄梨' value='pear3' name='wantEat'>");
-                $("#eatlist").append("<input class='hisui-radio' type='radio' label='鸭梨' value='pear4' name='wantEat'>");
-                $HUI.radio("#eatlist input.hisui-radio",{});
-            });
-            $("#getValue").click(function(){
-                var checkedRadioJObj = $("input[name='wantEat']:checked");
-                $.messager.alert("提示","value="+checkedRadioJObj.val()+" , label="+checkedRadioJObj.attr("label"));
-            })
-        });
-    </script>
     <prettyprint/>
+    <script>
+        function onResizePretty(){
+            $('.hisui-radio').radio('isValid');
+        }
+    </script>
 </body>
 </html>

@@ -2,6 +2,45 @@
  * 兼容IE6,IE8 
  */
 (function($){
+    function hideTip(target){
+        var status = $.data(target, "radio");
+        if(status){ /*渲染第一个radio时，第二个，第三个radio还未渲染*/
+            var box = status.proxy;
+            $(box).tooltip('hide');
+        }
+    }
+    function showTip(target) {
+        var status = $.data(target, "radio");
+        if(status){ /*渲染第一个radio时，第二个，第三个radio还未渲染*/
+            var opts = status.options;
+            var box = status.proxy;
+            $(box).tooltip($.extend({}, opts.tipOptions, { content: status.message, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
+            status.tip = true;
+        }
+    };
+    function isValid(target){
+        var status = $.data(target,'radio');
+        var opts = status.options;
+        if (opts.name){
+            status.message="";
+            var box = $(target).next();
+            if (opts.novalidate || box.is(":disabled")) {
+                return true;
+            }
+            var nameList = $("input[name='"+opts.name+"']");
+            nameList.next().removeClass('invalid');
+            hideTip(nameList.last()[0]);
+            var checkedList = nameList.filter(":checked");
+            console.log("isValid "+checkedList.length);
+            if (checkedList.length==0 && opts.required) {
+                nameList.next().addClass('invalid');
+                status.message = opts.missingMessage;
+                showTip(nameList.last()[0]);
+                return false;
+            }
+        }
+        return true;
+    }
 	function createRadio(target){
         var t = $(target).empty();
         var state=$.data(target, 'radio');
@@ -16,7 +55,7 @@
         
         opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
         if (!t.hasClass('radio-f')){
-            var optRequired = opts.required;
+            var optRequiredSel = opts.requiredSel;
             t.addClass('radio-f');                //在原dom增加类radio-f
             var labelHtml = '<label class="radio';
             if (opts.boxPosition=="right"){labelHtml +=' right';}
@@ -28,8 +67,10 @@
             /**事件转到input上*/
             objlabel.unbind('click').bind('click.radio',function(e){
                 var _t = $(this); 
-                if (!_t.hasClass('disabled')){ // disabled时不能点击 
-                    setValue(target,!_t.hasClass('checked'),!optRequired);
+                if (!_t.hasClass('disabled')){ // disabled时不能点击
+                    
+                    setValue(target,!_t.hasClass('checked'),!optRequiredSel);
+                    
                 }
             });
             t.unbind('click').bind('click.radio',function(e){
@@ -71,7 +112,7 @@
                       if ($(event.target).is('a')) {
                         return;
                       }
-                      setValue(target,!objlabel.hasClass('checked'),!optRequired); //此处也和objlabel 点击取值一致
+                      setValue(target,!objlabel.hasClass('checked'),!optRequiredSel); //此处也和objlabel 点击取值一致
                     } else {
                       // mouseout|touchend
                       if (/ut|nd/.test(type)) {
@@ -99,6 +140,7 @@
         // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
         $.data(target, 'radio',lastState);
         t.hide();
+        status.validating = true;
     }
     /*通过直接改变radio的值，或者用form.reset()  会出现样式和选中状态不一致的现象  
     *如radio未选中 样式选中  这时想调用取消选中方法发现无效果 
@@ -111,6 +153,7 @@
         if (objlabel){
             if ($(target).prop('checked') && !objlabel.hasClass('checked')) objlabel.addClass('checked');
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
+            isValid(target);
         }
     }
 	$.fn.radio = function(options, param){
@@ -127,7 +170,8 @@
 					options: $.extend({}, $.fn.radio.defaults, $.fn.radio.parseOptions(this), options)
                 });
 			}
-			createRadio(this);
+            createRadio(this);
+            isValid(this);
 		});
     };
     /**
@@ -162,7 +206,7 @@
                 }
             }
         }
-        fixCls(target); 
+        fixCls(target);
     }
     function getValue(target){
         return $(target).is(':checked');
@@ -246,12 +290,16 @@
                 var originalValue=$(this).radio('options').originalValue||false;
                 setValue(this,originalValue,true);
             });
+        },isValid:function(jq){
+            return jq.each(function(){
+                isValid(this);
+            });
         }
     };
     
 	$.fn.radio.parseOptions = function(target){
 		var t = $(target);
-		return $.extend({}, $.parser.parseOptions(target,['label','id','name','checked']), {
+		return $.extend({}, $.parser.parseOptions(target,['label','id','name','checked','required']), {
 			disabled: (t.attr('disabled') ? true : undefined)
 		});
 	};
@@ -266,7 +314,19 @@
         checked:false,
         onCheckChange:null,
         onChecked:null,
-        required:false /*20191125--默认可以取消选中*/
+        required:false,  /*是否必选*/
+        novalidate:false,
+        missingMessage: "This field is required.",
+        validating:false,
+        tipPosition:'right',deltaX:0,
+        tipOptions: {
+            position:"right",showEvent: "none", hideEvent: "none", showDelay: 0, hideDelay: 0, zIndex: "", onShow: function () {
+                //$(this).tooltip("tip").css({ color: "#000", borderColor: "#CC9933", backgroundColor: "#FFFFCC" });
+            }, onHide: function () {
+                $(this).tooltip("destroy");
+            }
+        },
+        requiredSel:false /*20191125--默认可以取消选中*/
 	};
 	
 })(jQuery);

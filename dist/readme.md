@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-07-26 ##
+* `radio`增加required必选一项,且把以前的required修改成requiredSel属性
+
 ## 2020-07-20 ##
 * `combo`系回车事件冒泡给外层
 * `datebox`框中有值时才去setValue, 解决2020-02-17处理required问题产生的Bug

@@ -159,3 +159,6 @@ if ($.fn.switchbox){
 	$.fn.switchbox.defaults.onText = '开';
 	$.fn.switchbox.defaults.offText = '关';
 }
+if ($.fn.radio){
+	$.fn.radio.defaults.missingMessage = '该项为必选项';
+}
