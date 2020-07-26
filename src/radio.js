@@ -20,6 +20,7 @@
     };
     function isValid(target){
         var status = $.data(target,'radio');
+        if (!status) return false;
         var opts = status.options;
         if (opts.name){
             status.message="";
