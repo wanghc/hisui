@@ -32,7 +32,6 @@
             nameList.next().removeClass('invalid');
             hideTip(nameList.last()[0]);
             var checkedList = nameList.filter(":checked");
-            console.log("isValid "+checkedList.length);
             if (checkedList.length==0 && opts.required) {
                 nameList.next().addClass('invalid');
                 status.message = opts.missingMessage;
