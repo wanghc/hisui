@@ -159,3 +159,9 @@ if ($.fn.switchbox){
 	$.fn.switchbox.defaults.onText = 'OFF';
 	$.fn.switchbox.defaults.offText = 'ON';
 }
+if ($.fn.radio){
+	$.fn.radio.defaults.missingMessage = 'This field is required.';
+}
+if ($.fn.checkbox){
+	$.fn.checkbox.defaults.missingMessage = 'This field is required.';
+}

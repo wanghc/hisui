@@ -162,3 +162,6 @@ if ($.fn.switchbox){
 if ($.fn.radio){
 	$.fn.radio.defaults.missingMessage = '该项为必选项';
 }
+if ($.fn.checkbox){
+	$.fn.checkbox.defaults.missingMessage = '该项为必选项';
+}

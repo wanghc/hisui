@@ -6,7 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
 	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
 	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
-	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 </head>
 <body>
@@ -35,7 +36,14 @@
 			<input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" data-options="boxPosition:'right'" id="cb15"/>
 		</div>
    </div>
-   
+   <h3>三、必选功能</h3>
+   <div class="demo-exp-code entry-content"> 
+	   <div class="use-prettyprint lang-html">
+<input class='hisui-checkbox' type="checkbox" label=头痛 name='sex' value="1" data-options="required:true">
+<input class='hisui-checkbox' type="checkbox" label='盗汗' name='sex' value="2" data-options="required:true">
+<input class='hisui-checkbox' type="checkbox" label='耳鸣' name='sex' value="3" data-options="required:true">
+	   </div>
+   </div>
 	<div>
 		<h3>复选框组件的相关配置、事件、方法</h3>
 		<table class="table">
@@ -74,6 +82,12 @@
 				<td>勾选框位置</td>
 				<td>'left'</td>
 				<td>可选'right'<code>20191104</code></td>
+			</tr>
+			<tr>
+				<td>required</td>
+				<td>name相同判断为一组，且是否必选一项</td>
+				<td>false</td>
+				<td>true时为必选一项,不选会变红提示<code>20200726</code></td>
 			</tr>
 			<tr class="evttitle">
 				<th>事件名</th>
@@ -183,6 +197,12 @@
 				<td></td>
 				<td>jquery对象</td>
 			</tr>
+			<tr>
+				<td>isValid</td>
+				<td>必选一项验证<code>20200726</code></td>
+				<td></td>
+				<td>Boolean</td>
+			</tr>
 		</table>
 	</div>
 	<script>
@@ -193,5 +213,10 @@
 		});
 	</script>
 	<prettyprint/>
+	<script>
+        function onResizePretty(){
+            $('.hisui-checkbox').checkbox('isValid');
+        }
+    </script>
 </body>
 </html>
