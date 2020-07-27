@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-07-27 ##
+* `combobox`与`combogrid`在面板隐藏时，回车选行与取消选行无效
+
 ## 2020-07-26 ##
 * `radio`增加required必选一项,且把以前的required修改成requiredSel属性
 * `checkbox`增加required必选一项属性

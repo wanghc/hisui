@@ -177,6 +177,8 @@
         var _91f = $.data(_91e, "combogrid");
         var opts = _91f.options;
         var grid = _91f.grid;
+        var panel = $(_91e).combogrid("panel");
+        if (!panel.is(':visible')) return ; /*2020-07-27 面板隐藏时，回车选行或取消选行无效*/
         var tr = opts.finder.getTr(grid[0], null, "highlight");
         _91f.remainText = false;
         if (tr.length) {

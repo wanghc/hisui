@@ -316,6 +316,7 @@
         var t = $(target);
         var opts = t.combobox("options");
         var panel = t.combobox("panel");
+        if (!panel.is(':visible')) return ; /*2020-07-27 面板隐藏时，回车选行或取消选行无效*/
         var item = panel.children("div.combobox-item-hover");
         if (item.length) {
             var row = opts.finder.getRow(target, item);
