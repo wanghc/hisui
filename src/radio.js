@@ -291,9 +291,11 @@
                 setValue(this,originalValue,true);
             });
         },isValid:function(jq){
-            return jq.each(function(){
-                isValid(this);
+            var rtn = false;
+            jq.each(function(){
+                rtn = isValid(this);
             });
+            return rtn;
         }
     };
     
