@@ -14,7 +14,7 @@
         if(status){ /*渲染第一个时，第二个，第三个还未渲染*/
             var opts = status.options;
             var box = status.proxy;
-            $(box).tooltip($.extend({}, opts.tipOptions, { content: status.message, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
+            $(box).tooltip($.extend({}, opts.tipOptions, { content: opts.missingMessage, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
             status.tip = true;
         }
     };
@@ -23,7 +23,7 @@
         if (!status) return false;
         var opts = status.options;
         if (opts.name){
-            status.message="";
+            //status.message="";
             var box = $(target).next();
             if (opts.novalidate || box.is(":disabled")) {
                 return true;
@@ -34,7 +34,7 @@
             var checkedList = nameList.filter(":checked");
             if (checkedList.length==0 && opts.required) {
                 nameList.next().addClass('invalid');
-                status.message = opts.missingMessage;
+                //status.message = opts.missingMessage;
                 showTip(nameList.last()[0]);
                 return false;
             }
