@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-07-27 ##
 * `combobox`与`combogrid`在面板隐藏时，回车选行与取消选行无效
+* `comboq`类组件Enter事件冒泡给外层
 
 ## 2020-07-26 ##
 * `radio`增加required必选一项,且把以前的required修改成requiredSel属性

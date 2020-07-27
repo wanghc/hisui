@@ -139,9 +139,9 @@
                     opts.keyHandler.pageDown.call(target, e);
                     break;
                 case 13:
-                    e.preventDefault();
+                    //e.preventDefault();
                     opts.keyHandler.enter.call(target, e);
-                    return false;
+                    //return false;
                 case 9:
                 case 27:  //Esc
                     _hide();
