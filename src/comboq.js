@@ -141,6 +141,7 @@
                 case 13:
                     //e.preventDefault();
                     opts.keyHandler.enter.call(target, e);
+                    break;
                     //return false;
                 case 9:
                 case 27:  //Esc
