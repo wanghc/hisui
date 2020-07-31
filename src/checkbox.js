@@ -119,6 +119,9 @@
             if (opts.label!=objlabel.text()) objlabel.text(opts.label);
             
         }
+        if (opts.name && !t.attr('name')){ //如果options有name,元素属性上没name
+            t.attr('name',opts.name);
+        }
         var lastState=$.data(target, 'checkbox'); //cryze 2019-4-15
         // cryze 2019-4-15 第二次初始化时 调用iCheck 通过$.data(ele,name,data) 缓存的数据会丢失 再存回去
         $.data(target, 'checkbox',lastState);

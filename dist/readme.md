@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-07-31 ##
+* `checkbox`和`radio`如果options中包含name而元素属性没有name,则将元素属性name置为opts.name
+
 ## 2020-07-27 ##
 * `combobox`与`combogrid`在面板隐藏时，回车选行与取消选行无效
 * `comboq`类组件Enter事件冒泡给外层
