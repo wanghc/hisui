@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2020-08-03 ##
+* `datagrid`的title自动换行
+
 ## 2020-07-31 ##
 * `checkbox`和`radio`如果options中包含name而元素属性没有name,则将元素属性name置为opts.name
 

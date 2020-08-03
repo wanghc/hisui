@@ -7,9 +7,14 @@
   font-size: @datagrid-cell-font-size;
 }
 
-.datagrid-header .datagrid-cell span {
-  font-size: @datagrid-cell-font-size  ;
-}
+.datagrid-header .datagrid-cell{
+  white-space: pre-wrap;
+  word-break: break-all;
+  span {
+    font-size: @datagrid-cell-font-size  ;
+  
+  }
+} 
 
 /*---*/
 .datagrid-header-row, .datagrid-row{
