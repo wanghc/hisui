@@ -2,20 +2,30 @@
  * 兼容IE6,IE8
  */
 (function($){
-    function hideTip(target){
-        var status = $.data(target, "checkbox");
-        if(status){ /*渲染第一个时，第二个，第三个还未渲染*/
-            var box = status.proxy;
-            $(box).tooltip('hide');
+    function hideTip(name){
+        var nameList = $("input[name='"+name+"']");
+        if (nameList.length>0){
+            var target = nameList.last()[0];
+            var status = $.data(target, "checkbox");
+            if(status){         /*渲染第一个时，第二个，第三个还未渲染*/
+                var box = status.proxy;
+                $(box).tooltip('hide');
+            }
         }
     }
-    function showTip(target) {
-        var status = $.data(target, "checkbox");
-        if(status){ /*渲染第一个时，第二个，第三个还未渲染*/
-            var opts = status.options;
-            var box = status.proxy;
-            $(box).tooltip($.extend({}, opts.tipOptions, { content: opts.missingMessage, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
-            status.tip = true;
+    function showTip(name) {
+        var nameList = $("input[name='"+name+"']");
+        if (nameList.length>0){
+            if (nameList.last().next().hasClass('invalid')){
+                var target = nameList.last()[0];
+                var status = $.data(target, "checkbox");
+                if(status){ /*渲染第一个时，第二个，第三个还未渲染*/
+                    var opts = status.options;
+                    var box = status.proxy;
+                    $(box).tooltip($.extend({}, opts.tipOptions, { content: opts.missingMessage, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
+                    status.tip = true;
+                }
+            }
         }
     };
     function isValid(target){
@@ -30,12 +40,12 @@
             }
             var nameList = $("input[name='"+opts.name+"']");
             nameList.next().removeClass('invalid');
-            if (opts.showErrorTip) hideTip(nameList.last()[0]);
+            //if (opts.showErrorTip) hideTip(nameList.last()[0]);
             var checkedList = nameList.filter(":checked");
             if (checkedList.length==0 && opts.required) {
                 nameList.next().addClass('invalid');
                 //status.message = opts.missingMessage;
-                if (opts.showErrorTip) showTip(nameList.last()[0]);
+                //if (opts.showErrorTip) showTip(nameList.last()[0]);
                 return false;
             }
         }
@@ -66,6 +76,19 @@
             objlabel.unbind('click').bind('click.checkbox',function(e){
                 if($(target).prop("disabled")==false) setValue(target,!$(this).hasClass('checked'));  
             });
+            if (opts.required){
+                objlabel.unbind('mouseenter').bind('mouseenter.checkbox',function(e){
+                    var _t = $(this);
+                    if (!_t.hasClass('disabled')){
+                        showTip(opts.name);
+                    }
+                }).unbind('mouseleave').bind('mouseleave.checkbox',function(e){
+                    var _t = $(this);
+                    if (!_t.hasClass('disabled')){
+                        hideTip(opts.name);
+                    }              
+                });
+            }
             t.unbind('click').bind('click.checkbox',function(e){ 
                 //如果原生checkbox是disabled时,不会进入
                 //if ($(this).prop("disabled")==false){
@@ -294,7 +317,6 @@
         missingMessage: "This field is required.",
         validating:false,
         tipPosition:'right',deltaX:0,
-        showErrorTip:false, /*是否显示必填提示*/
         tipOptions: {
             position:"right",showEvent: "none", hideEvent: "none", showDelay: 0, hideDelay: 0, zIndex: "", onShow: function () {
                 //$(this).tooltip("tip").css({ color: "#000", borderColor: "#CC9933", backgroundColor: "#FFFFCC" });

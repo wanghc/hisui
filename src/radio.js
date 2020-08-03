@@ -2,20 +2,33 @@
  * 兼容IE6,IE8 
  */
 (function($){
-    function hideTip(target){
-        var status = $.data(target, "radio");
-        if(status){ /*渲染第一个radio时，第二个，第三个radio还未渲染*/
-            var box = status.proxy;
-            $(box).tooltip('hide');
+    function hideTip(name){
+        var nameList = $("input[name='"+name+"']");
+        if (nameList.length>0){
+            //if (nameList.last().next().hasClass('invalid')){
+                var target = nameList.last()[0];
+                var status = $.data(target, "radio");
+                if(status){ /*渲染第一个radio时，第二个，第三个radio还未渲染*/
+                    var box = status.proxy;
+                    $(box).tooltip('hide');
+                }
+            //}
         }
     }
-    function showTip(target) {
-        var status = $.data(target, "radio");
-        if(status){ /*渲染第一个radio时，第二个，第三个radio还未渲染*/
-            var opts = status.options;
-            var box = status.proxy;
-            $(box).tooltip($.extend({}, opts.tipOptions, { content: opts.missingMessage, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
-            status.tip = true;
+    // 提示放到最后一个radio -> label上
+    function showTip(name) {
+        var nameList = $("input[name='"+name+"']");
+        if (nameList.length>0){
+            if (nameList.last().next().hasClass('invalid')){
+                var target = nameList.last()[0];
+                var status = $.data(target, "radio");
+                if(status){ /*渲染第一个radio时，第二个，第三个radio还未渲染*/
+                    var opts = status.options;
+                    var box = status.proxy;
+                    $(box).tooltip($.extend({}, opts.tipOptions, { content: opts.missingMessage, position: opts.tipPosition, deltaX: opts.deltaX })).tooltip("show");
+                    status.tip = true;
+                }
+            }
         }
     };
     function isValid(target){
@@ -29,13 +42,13 @@
                 return true;
             }
             var nameList = $("input[name='"+opts.name+"']");
-            nameList.next().removeClass('invalid');
-            if (opts.showErrorTip) hideTip(nameList.last()[0]);
+            nameList.next('label').removeClass('invalid');
+            hideTip(opts.name);
             var checkedList = nameList.filter(":checked");
             if (checkedList.length==0 && opts.required) {
-                nameList.next().addClass('invalid');
+                nameList.next('label').addClass('invalid');
                 //status.message = opts.missingMessage;
-                if (opts.showErrorTip) showTip(nameList.last()[0]);
+                //showTip(opts.name);
                 return false;
             }
         }
@@ -72,7 +85,20 @@
                     setValue(target,!_t.hasClass('checked'),!optRequiredSel);
                     
                 }
-            });
+            })
+            if (opts.required){
+                objlabel.unbind('mouseenter').bind('mouseenter.radio',function(e){
+                    var _t = $(this);
+                    if (!_t.hasClass('disabled')){
+                        showTip(opts.name);
+                    }
+                }).unbind('mouseleave').bind('mouseleave.radio',function(e){
+                    var _t = $(this);
+                    if (!_t.hasClass('disabled')){
+                        hideTip(opts.name);
+                    }              
+                });
+            }
             t.unbind('click').bind('click.radio',function(e){
                 if ($(this).prop("disabled")==false){
                     //setValue(this,!$(this).is(':checked'));
@@ -325,7 +351,6 @@
         missingMessage: "This field is required.",
         validating:false,
         tipPosition:'right',deltaX:0,
-        showErrorTip:false, /*是否显示必填提示*/
         tipOptions: {
             position:"right",showEvent: "none", hideEvent: "none", showDelay: 0, hideDelay: 0, zIndex: "", onShow: function () {
                 //$(this).tooltip("tip").css({ color: "#000", borderColor: "#CC9933", backgroundColor: "#FFFFCC" });
