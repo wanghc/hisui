@@ -30,12 +30,12 @@
             }
             var nameList = $("input[name='"+opts.name+"']");
             nameList.next().removeClass('invalid');
-            hideTip(nameList.last()[0]);
+            if (opts.showErrorTip) hideTip(nameList.last()[0]);
             var checkedList = nameList.filter(":checked");
             if (checkedList.length==0 && opts.required) {
                 nameList.next().addClass('invalid');
                 //status.message = opts.missingMessage;
-                showTip(nameList.last()[0]);
+                if (opts.showErrorTip) showTip(nameList.last()[0]);
                 return false;
             }
         }
@@ -325,6 +325,7 @@
         missingMessage: "This field is required.",
         validating:false,
         tipPosition:'right',deltaX:0,
+        showErrorTip:false, /*是否显示必填提示*/
         tipOptions: {
             position:"right",showEvent: "none", hideEvent: "none", showDelay: 0, hideDelay: 0, zIndex: "", onShow: function () {
                 //$(this).tooltip("tip").css({ color: "#000", borderColor: "#CC9933", backgroundColor: "#FFFFCC" });
