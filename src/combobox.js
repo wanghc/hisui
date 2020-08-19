@@ -392,8 +392,9 @@
                     unselect(target, value);
                 }else{
                     select(target, value);
-                    $(target).combo("hidePanel");
                 }
+                // 2020-08-19 无论是选中与取消选中 都隐藏
+                $(target).combo("hidePanel");
             }
             e.stopPropagation();
         });
