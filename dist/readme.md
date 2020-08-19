@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-08-19
 * `combobox`在allowNull为true时，取消选中也隐藏面板
+* `datagrid`的列中增加wordBreak配置项
 
 ## 2020-08-03 ##
 * `datagrid`的title自动换行

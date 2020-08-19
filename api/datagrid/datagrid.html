@@ -224,7 +224,7 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 		</div>
 		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,
 			toolbar:'#custtb',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
-			onDblClickRow:function(){console.log(arguments)},">   
+			onDblClickRow:function(){console.log(arguments)}">   
 			<thead>   
 				<tr>   
 					<th data-options="field:'code'">编码</th>   
@@ -337,9 +337,7 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 					singleSelect:false,
 					width:650,
 					height:200,
-					title:'水果单价表',
-					headerCls:'panel-header-gray',
-					iconCls:'icon-paper'
+					title:'水果单价表'
 				})
 			})		
 		</script>
@@ -498,6 +496,39 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			]});
 		</script>
 	</div>
+	<h3>七、nowrap为false示例 (false时影响性能)</h3>
+	<div class="demo-exp-code entry-content"> 
+		<table id="mytable7"></table>
+		<script type="text/javascript" class="use-prettyprint">
+			$(function(){
+				$HUI.datagrid('#mytable7',{
+					autoSizeColumn:false,
+					fitColumns:true,idField:'id',
+					headerCls:'panel-header-gray',iconCls:'icon-paper',
+					rownumbers:true,width:650,height:200,
+					title:'水果单价表',
+					nowrap:false,  /*此处为false*/
+					columns:[[
+						{field:'ck',title:'sel',checkbox:true},
+						{field:'code',title:'工号',width:100},
+						{field:'name',title:'属性名',width:100,wordBreak:"break-all"},
+						{field:'type',title:'类型',width:100,align:'right'},
+						{field:'desc',title:'说明',width:200,wordBreak:"break-all"} /*说明内容任意换行*/
+					]],
+					data:{
+						rows:[
+						{id:'1',code:'10',name:'checkOnSelect',type:'boolean',desc:'If true, the checkbox is checked/unchecked when the user clicks on a row. If false, the checkbox is only checked/unchecked when the user clicks exactly on the checkbox.This property is available since version 1.3.'},
+						{id:'2',code:'11',name:'nowrap',type:'boolean',desc:'True to display data in one line. Set to true can improve loading performance.'},
+						{id:'3',code:'12',name:'fitColumns',type:'boolean',desc:'True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.'},
+						{id:'4',code:'13',name:'resizeHandle',type:'boolean',desc:'Resizing column position, Available value are: "left","right","both". When "right", users can resize columns by dragging the right edge of column headers, etc.This property is available since version 1.3.2.'}
+						],
+						footer:[{price:'33元'}],
+						total:10
+					}
+				})
+			})		
+		</script>
+	</div>
 	<script type="text/javascript">
 	function loadData(){
 		var rows = [];
@@ -652,6 +683,18 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>获得columns后触发事件</td>
 			<td>cm</td>
 			<td>配置className与queryName后有效<code>2019-09-31</code></td>
+		</tr>
+		<tr class="protitle">
+			<th>列配置项</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th>描述</th>
+		</tr>
+		<tr>
+			<td>wordBreak</td>
+			<td>在nowrap为false时，列内容换行规则</td>
+			<td>null</td>
+			<td>任意截断：'break-all',完整单词截断：'break-word'<code>2020-08-19</code></td>
 		</tr>
 	</table>
 	<prettyprint />	

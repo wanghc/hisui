@@ -2588,6 +2588,9 @@
                         if (col.align) {
                             _6e9 += "text-align:" + col.align + ";";
                         }
+                        if (undefined != typeof col.wordBreak){
+                            _6e9 += "word-break: "+col.wordBreak+";";
+                        }
                         if (!opts.nowrap) {
                             _6e9 += "white-space:normal;height:auto;";
                         } else {
