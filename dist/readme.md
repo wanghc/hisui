@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-08-24
 * 表格与列支持`fontSize`属性
+* 增加表头文字是否折行`titleNoWrap`属性
 
 ## 2020-08-19
 * `combobox`在allowNull为true时，取消选中也隐藏面板

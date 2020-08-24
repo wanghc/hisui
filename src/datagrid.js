@@ -394,6 +394,7 @@
             for (var i = 0; i < _551.length; i++) {
                 // 2020-05-14 列头高度     -- nurse - yucz 2019-9-26
                 var temptr = "<tr class=\"datagrid-header-row ";
+                if (!opts.titleNoWrap) temptr += "datagrid-header-autowrap ";
                 if (opts.id) temptr += opts.id + "-header-row" + i ; //第i行
                 temptr += "\"></tr>";
                 var tr = $(temptr).appendTo($("tbody", t));
@@ -452,7 +453,10 @@
             if (_552 && opts.rownumbers) {
                 var td = $("<td rowspan=\"" + opts.frozenColumns.length + "\"><div class=\"datagrid-header-rownumber\"></div></td>");
                 if ($("tr", t).length == 0) {
-                    td.wrap("<tr class=\"datagrid-header-row\"></tr>").parent().appendTo($("tbody", t));
+                    var myFrozenColumnsTr = '<tr class="datagrid-header-row';
+                    if (!opts.titleNoWrap) myFrozenColumnsTr += ' datagrid-header-autowrap';
+                    myFrozenColumnsTr +='"></tr>';
+                    td.wrap(myFrozenColumnsTr).parent().appendTo($("tbody", t));
                 } else {
                     td.prependTo($("tr:first", t));
                 }
@@ -2764,6 +2768,8 @@
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        fontSize:"",/*表格内容字体大小 fontSize:9 20200824*/
+        titleNoWrap:true, /*表头不折行 20200824*/
         className:"",
         queryName:"",
         compContext:"",
