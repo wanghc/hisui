@@ -496,7 +496,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			]});
 		</script>
 	</div>
-	<h3>七、nowrap为false示例 (false时影响性能)</h3>
+	<h3>七、行高适应示例(nowrap为false实现, false时性能下降)</h3>
 	<div class="demo-exp-code entry-content"> 
 		<table id="mytable7"></table>
 		<script type="text/javascript" class="use-prettyprint">
@@ -506,14 +506,14 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 					fitColumns:true,idField:'id',
 					headerCls:'panel-header-gray',iconCls:'icon-paper',
 					rownumbers:true,width:650,height:200,
-					title:'水果单价表',
+					title:'属性列表',
 					nowrap:false,  /*此处为false*/
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
 						{field:'code',title:'工号',width:100},
 						{field:'name',title:'属性名',width:100,wordBreak:"break-all"},
 						{field:'type',title:'类型',width:100,align:'right'},
-						{field:'desc',title:'说明',width:200,wordBreak:"break-all"} /*说明内容任意换行*/
+						{field:'desc',title:'说明',width:200,wordBreak:"break-all"}  /*break-all 说明内容任意换行*/
 					]],
 					data:{
 						rows:[
@@ -522,7 +522,40 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 						{id:'3',code:'12',name:'fitColumns',type:'boolean',desc:'True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.'},
 						{id:'4',code:'13',name:'resizeHandle',type:'boolean',desc:'Resizing column position, Available value are: "left","right","both". When "right", users can resize columns by dragging the right edge of column headers, etc.This property is available since version 1.3.2.'}
 						],
-						footer:[{price:'33元'}],
+						total:10
+					}
+				})
+			})		
+		</script>
+	</div>
+	<h3>八、表格与列的fontSize属性演示</h3>
+	<!-- 字体变小后，行高是从行数列view1与内容view2高度取最大值 , 即最小高度34px。即在nowrap:false时字体设置后行高才会变化-->
+	<div class="demo-exp-code entry-content"> 
+		<table id="mytable8"></table>
+		<script type="text/javascript" class="use-prettyprint">
+			$(function(){
+				$HUI.datagrid('#mytable8',{
+					autoSizeColumn:false,
+					fitColumns:true,idField:'id',
+					headerCls:'panel-header-gray',iconCls:'icon-paper',
+					rownumbers:true,width:650,height:200,
+					title:'属性列表',
+					nowrap:false,
+					fontSize:12, /*表格上设置字体大小*/
+					columns:[[
+						{field:'ck',title:'sel',checkbox:true},
+						{field:'code',title:'工号',width:100},
+						{field:'name',title:'属性名',width:100},
+						{field:'type',title:'类型',width:100,align:'right'},
+						{field:'desc',title:'说明',width:200,fontSize:10}  /*列上设置字体大小*/
+					]],
+					data:{
+						rows:[
+						{id:'1',code:'10',name:'checkOnSelect',type:'boolean',desc:'If true, the checkbox is checked/unchecked when the user clicks on a row. If false, the checkbox is only checked/unchecked when the user clicks exactly on the checkbox.This property is available since version 1.3.'},
+						{id:'2',code:'11',name:'nowrap',type:'boolean',desc:'True to display data in one line. Set to true can improve loading performance.'},
+						{id:'3',code:'12',name:'fitColumns',type:'boolean',desc:'True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.'},
+						{id:'4',code:'13',name:'resizeHandle',type:'boolean',desc:'Resizing column position, Available value are: "left","right","both". When "right", users can resize columns by dragging the right edge of column headers, etc.This property is available since version 1.3.2.'}
+						],
 						total:10
 					}
 				})
@@ -623,6 +656,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>m中query名</td>
 			<td>""</td>
 			<td>默认为空。非常规属性。通过className与queryName生成columns，且能自定义列属性。<code>(20190829)</code></td>
+		</tr>
+		<tr>
+			<td>fontSize</td>
+			<td>设计表格内容字体大小</td>
+			<td>""</td>
+			<td>默认为空。如fontSize:10则表格内容字段大小为10px。在nowrap:false时字体设置后表格行高会变化<code>(20200824)</code></td>
 		</tr>	
 		<tr class="mthtitle">
 			<th>方法名</th>
@@ -696,6 +735,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>null</td>
 			<td>任意截断：'break-all',完整单词截断：'break-word'<code>2020-08-19</code></td>
 		</tr>
+		<tr>
+			<td>fontSize</td>
+			<td>当前列内容字体大小</td>
+			<td>""</td>
+			<td>默认为空。如fontSize:10则表格内容字段大小为10px。在nowrap:false时字体设置后表格行高会变化<code>(20200824)</code></td>
+		</tr>	
 	</table>
 	<prettyprint />	
 </body>

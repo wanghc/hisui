@@ -55,13 +55,13 @@
             add: function (_50b) {
                 var ss = ["<style type=\"text/css\" hisui=\"true\">"];
                 for (var i = 0; i < _50b.length; i++) {
-                    _50a.cache[_50b[i][0]] = { width: _50b[i][1] };
+                    _50a.cache[_50b[i][0]] = { width: _50b[i][1] ,fontSize:_50b[i][2]};
                 }
                 var _50c = 0;
                 for (var s in _50a.cache) {
                     var item = _50a.cache[s];
                     item.index = _50c++;
-                    ss.push(s + "{width:" + item.width + "}");
+                    ss.push(s + "{width:" + item.width + (item.fontSize!=""?";font-size:"+item.fontSize+";line-height:"+item.fontSize+";":"") +"}");
                 }
                 ss.push("</style>");
                 $(ss.join("\n")).appendTo(cc);
@@ -463,9 +463,9 @@
             var _555 = [];
             var _556 = _557(_546, true).concat(_557(_546));
             for (var i = 0; i < _556.length; i++) {
-                var col = _558(_546, _556[i]);
+                var col = _getColumnOption(_546, _556[i]);
                 if (col && !col.checkbox) {
-                    _555.push(["." + col.cellClass, col.boxWidth ? col.boxWidth + "px" : "auto"]);
+                    _555.push(["." + col.cellClass, col.boxWidth ? col.boxWidth + "px" : "auto",(col.fontSize?col.fontSize+"px":(opts.fontSize?opts.fontSize+"px":""))]);
                 }
             }
             _547.ss.add(_555);
@@ -549,7 +549,7 @@
             var cond = opts.resizeHandle == "right" ? (e.pageX > p2) : (opts.resizeHandle == "left" ? (e.pageX < p1) : (e.pageX < p1 || e.pageX > p2));
             if (cond) {
                 var _560 = $(this).parent().attr("field");
-                var col = _558(_55a, _560);
+                var col = _getColumnOption(_55a, _560);
                 if (col.resizable == false) {
                     return;
                 }
@@ -580,7 +580,7 @@
                     $(this).css("height", "");
                     $(this)._outerWidth($(this)._outerWidth());
                     var _562 = $(this).parent().attr("field");
-                    var col = _558(_55a, _562);
+                    var col = _getColumnOption(_55a, _562);
                     col.width = $(this)._outerWidth();
                     col.boxWidth = parseInt(this.style.width);
                     col.auto = undefined;
@@ -775,7 +775,7 @@
         }
         if (typeof _56e == "string") {
             var _573 = _56e;
-            var col = _558(_56d, _573);
+            var col = _getColumnOption(_56d, _573);
             if (!col.sortable || _56f.resizing) {
                 return;
             }
@@ -809,7 +809,7 @@
         var _576 = dc.header1.add(dc.header2);
         _576.find("div.datagrid-cell").removeClass("datagrid-sort-asc datagrid-sort-desc");
         for (var i = 0; i < _571.length; i++) {
-            var col = _558(_56d, _571[i]);
+            var col = _getColumnOption(_56d, _571[i]);
             _576.find("div." + col.cellClass).addClass("datagrid-sort-" + _572[i]);
         }
         if (opts.remoteSort) {
@@ -835,7 +835,7 @@
         var _57e;
         var _57f = _557(_57a, false);
         for (var i = 0; i < _57f.length; i++) {
-            var col = _558(_57a, _57f[i]);
+            var col = _getColumnOption(_57a, _57f[i]);
             if (_580(col)) {
                 _57d += col.width;
                 _57e = col;
@@ -854,7 +854,7 @@
             _582.hide();
         }
         for (var i = 0; i < _57f.length; i++) {
-            var col = _558(_57a, _57f[i]);
+            var col = _getColumnOption(_57a, _57f[i]);
             if (_580(col)) {
                 var _584 = parseInt(col.width * rate);
                 _581(col, _584);
@@ -898,7 +898,7 @@
                 var _58b = _557(_587, true).concat(_557(_587, false));
                 for (var i = 0; i < _58b.length; i++) {
                     var _588 = _58b[i];
-                    var col = _558(_587, _588);
+                    var col = _getColumnOption(_587, _588);
                     if (!col.hidden && col.auto) {  //by wanghc 增加col.hidden判断,隐藏列不用计算 2018-5-3
                         _515(_588);
                         _58a = true;
@@ -966,7 +966,7 @@
             _59b(_592);
         }, 0);
         function fix(_597) {
-            var col = _558(_592, _597);
+            var col = _getColumnOption(_592, _597);
             if (!col.checkbox) {
                 _594.ss.set("." + col.cellClass, col.boxWidth ? col.boxWidth + "px" : "auto");
             }
@@ -977,10 +977,10 @@
         dc.body1.add(dc.body2).find("td.datagrid-td-merged").each(function () {
             var td = $(this);
             var _599 = td.attr("colspan") || 1;
-            var _59a = _558(_598, td.attr("field")).width;
+            var _59a = _getColumnOption(_598, td.attr("field")).width;
             for (var i = 1; i < _599; i++) {
                 td = td.next();
-                _59a += _558(_598, td.attr("field")).width + 1;
+                _59a += _getColumnOption(_598, td.attr("field")).width + 1;
             }
             $(this).children("div.datagrid-cell")._outerWidth(_59a);
         });
@@ -998,14 +998,14 @@
             }
         });
     };
-    function _558(_59e, _59f) {
+    function _getColumnOption(target, fieldName) {
         function find(_5a0) {
             if (_5a0) {
                 for (var i = 0; i < _5a0.length; i++) {
                     var cc = _5a0[i];
                     for (var j = 0; j < cc.length; j++) {
                         var c = cc[j];
-                        if (c.field == _59f) {
+                        if (c.field == fieldName) {
                             return c;
                         }
                     }
@@ -1013,7 +1013,7 @@
             }
             return null;
         };
-        var opts = $.data(_59e, "datagrid").options;
+        var opts = $.data(target, "datagrid").options;
         var col = find(opts.columns);
         if (!col) {
             col = find(opts.frozenColumns);
@@ -1098,7 +1098,7 @@
                 for (var i = 0; i < _5aa.length; i++) {
                     var sn = _5aa[i];
                     var so = _5ab[i];
-                    var col = _558(_5a8, sn);
+                    var col = _getColumnOption(_5a8, sn);
                     var _5ac = col.sorter || function (a, b) {
                         return a == b ? 0 : (a > b ? 1 : -1);
                     };
@@ -1564,7 +1564,7 @@
         tr.children("td").each(function () {
             var cell = $(this).find("div.datagrid-cell");
             var _612 = $(this).attr("field");
-            var col = _558(_610, _612);
+            var col = _getColumnOption(_610, _612);
             if (col && col.editor) {
                 var _613, _614;
                 if (typeof col.editor == "string") {
@@ -2208,7 +2208,7 @@
         }, getColumnFields: function (jq, _6a1) {
             return _557(jq[0], _6a1);
         }, getColumnOption: function (jq, _6a2) {
-            return _558(jq[0], _6a2);
+            return _getColumnOption(jq[0], _6a2);
         }, resize: function (jq, _6a3) {
             return jq.each(function () {
                 _515(this, _6a3);
@@ -2588,7 +2588,7 @@
                         if (col.align) {
                             _6e9 += "text-align:" + col.align + ";";
                         }
-                        if (undefined != typeof col.wordBreak){
+                        if ("undefined" != typeof col.wordBreak){
                             _6e9 += "word-break: "+col.wordBreak+";";
                         }
                         if (!opts.nowrap) {
