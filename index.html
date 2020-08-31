@@ -128,11 +128,18 @@
 			padding: 0px;
 		}
 		.x-newtip{font-size: 10px;position:  absolute;color:red;z-index:1000;}
+		.footer{
+			margin: 0 auto;
+    		width: 500px;
+		}
 	</style>
 </head>
 <body>
 	<div class="all">
-		<div class="title">
+		<table>
+		<tr>
+			<td>
+			<div class="title">
 			<a href="javascript:void(0);" class="hisui-linkbutton companybtn" data-options="plain:true">
 				MediWay
 			</a>
@@ -146,9 +153,12 @@
 			<a href="javascript:void(0);" class="hisui-linkbutton downloadbtn" data-options="iconCls:'icon-arrow-bottom',plain:true">下载HISUI文件</a>
 			<span class="downloadNum"></span>
 			
-		</div>
-
-		<div class="cardlist">
+			</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="cardlist">
 			<!--<div class="card">
 				<a href="http://hisui.cn/api" target="_blank">
 					<div class="linear1 header">HISUI<div>编码文档</div></div>
@@ -205,8 +215,19 @@
 					Bootstrap 是全球最受欢迎的前端组件库，用于开发响应式布局、移动设备优先的 WEB 项目
 				</div>
 			</div>
-		</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div class="footer">
+					© 2018-2021 hisui.cn 版本所有 备案号：赣ICP备18000971号-1
+				</div>
+			</td>
+		</tr>
+		</table>
 	</div>
+
 	<script type="text/javascript" src="api/newtip.js"></script>
 	<script type="text/javascript">
 	$(function(){
