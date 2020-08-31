@@ -37,6 +37,7 @@ if ($.fn.numberbox){
 	$.fn.numberbox.defaults.rules.max.message = 'This field is less than {0}';
 }
 if ($.fn.combobox){
+	$.fn.combobox.defaults.selectAllBtnDesc = 'select/unselect';
 	$.fn.combobox.defaults.missingMessage = 'This field is required.';
 }
 if ($.fn.combotree){

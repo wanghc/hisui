@@ -37,6 +37,7 @@ if ($.fn.numberbox){
 	$.fn.numberbox.defaults.rules.max.message = '输入的值必须小于{0}';
 }
 if ($.fn.combobox){
+	$.fn.combobox.defaults.selectAllBtnDesc = '全选/取消全选';
 	$.fn.combobox.defaults.missingMessage = '该输入项为必输项';
 }
 if ($.fn.combotree){

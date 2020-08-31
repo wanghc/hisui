@@ -200,7 +200,7 @@
                 var myPanelJObj = $(target).combo("panel");
                 myPanelJObj.closest('.combo-p').children('._hisui_combobox-selectall').remove();
                 var myPanelWidth = myPanelJObj.width() - 5; //5是padding-left
-                var myallselJObj = $('<div style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>全选/取消全选</div>')
+                var myallselJObj = $('<div style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>'+opts.selectAllBtnDesc+'</div>')
                 .bind('mouseenter',function(e){
                     $(e.target).closest("div._hisui_combobox-selectall").addClass("combobox-selectall-hover");
                     e.stopPropagation();
@@ -535,7 +535,7 @@
         };
     };
     $.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
-        forceValidValue:false,allowNull:false,
+        forceValidValue:false,allowNull:false,selectAllBtnDesc:'select/unselect',
         allSelectButtonPosition:'top',rowStyle:'',valueField: "value", textField: "text", groupField: null, groupFormatter: function (group) {
             return group;
         }, mode: "local", method: "post", url: null, data: null, keyHandler: {
