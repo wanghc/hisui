@@ -1525,7 +1525,7 @@
                 var ed = $.data(this, "datagrid.editor");
                 var _606 = ed.actions.getValue(ed.target); //护理会扩展
                 if ('object'==typeof _606){ //Array---object
-                    if (JSON.stringify(row[_605])==JSON.stringify(_606)){
+                    if (JSON.stringify(row[_605])!=JSON.stringify(_606)){
                         row[_605] = _606;
                         _603 = true;
                         _604[_605] = _606;
