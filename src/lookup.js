@@ -52,7 +52,7 @@
         var _915 = $.data(_912, "lookup");
         var opts = _915.options;
         var grid = _915.grid;
-        var rows = grid.datagrid("getRows");
+        //var rows = grid.datagrid("getRows");
         var ss = [];
         //var _916 = $(_912).combo("getValues");
 		//var _917 = $(_912).combo("options");
@@ -62,13 +62,17 @@
         };
         grid.datagrid("clearSelections");
         for (var i = 0; i < _913.length; i++) {
-            var _919 = grid.datagrid("getRowIndex", _913[i]);
+            // 如果输入的是数字,且此时idField是表中整型ID时,getRowIndex会返回索引值,实际不需要选中
+            // 如医嘱录入界面的频次,用法,用量等
+            // 不是数字时才去通过idField查询
+            // 在当前放大镜列表中去过滤idField没意义
+            /*var _919 = grid.datagrid("getRowIndex", _913[i]);
             if (_919 >= 0) {
                 grid.datagrid("selectRow", _919);
                 ss.push(rows[_919][opts.textField]);
-            } else {
+            } else {*/
                 ss.push(_913[i]);
-            }
+            //}
         }
         //$(_912).combo("setValues", _916);
         _917.onChange = _918;
@@ -192,8 +196,10 @@
                 }, onSelect: function(index,rows){
                     var fn = opts.onChange;
                     opts.onChange = function () {};
-                    $(target).comboq("setText",rows[opts.textField]);
-                    $(target).comboq("setValue",rows[opts.idField]);
+                    if (rows){
+                        $(target).comboq("setText",rows[opts.textField]);
+                        $(target).comboq("setValue",rows[opts.idField]);
+                    }
                     opts.onChange = fn ;
                     if (false !== opts.onSelect.call(this, index, rows)){  //返回false不隐藏
                         $(target).comboq("hidePanel");
