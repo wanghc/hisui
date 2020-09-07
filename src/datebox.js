@@ -199,13 +199,17 @@
     }
 	/**
 	 * called when user press enter key
+	 * param force  true强制设置值 2020-09-07增加,在输入框内值为空时,点击today按钮不赋值问题
 	 */
-	function doEnter(target){
+	function doEnter(target,force){
 		var state = $.data(target, 'datebox');
 		var opts = state.options;
 		var val = $(target).datebox('getText'); //取当前文本框中值，然后对比日历值是不是一致
 		var current ;
 		if (state.calendar && val!=""){ //state.calendar.is(":visible")){  //日历可见时,回车才默认日期
+			current = state.calendar.calendar('options').current;
+		}
+		if (force===true){  //20200907, 为不影响以前逻辑，扩展入参
 			current = state.calendar.calendar('options').current;
 		}
 		if (current){
@@ -320,7 +324,7 @@
 					month:new Date().getMonth()+1,
 					current:new Date()
 				});
-				doEnter(target);
+				doEnter(target,true);
 			}
 		},{
 			text: function(target){return $(target).datebox('options').closeText;},
