@@ -669,6 +669,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>true</td>
 			<td>默认不折行。值为false时自动折行<code>20200824</code></td>
 		</tr>
+		<td>
+			<td>clicksToEdit</td>
+			<td>编辑开始动作配置</td>
+			<td>0</td>
+			<td>0表示不默认编辑动作，1单击编辑，2双击编辑<code>20200907</code></td>
+		</td>
 		<tr class="mthtitle">
 			<th>方法名</th>
 			<th>说明</th>
@@ -680,6 +686,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>重设置列头标题</td>
 			<td>colOpt</td>
 			<td>如:{'datatime':'时间列标题','code':'代码列标题'}<code>(20181009)</code></td>
+		</tr>
+		<tr>
+			<td>getEditingIndex</td>
+			<td>获得表格当前编辑行索引</td>
+			<td>undefined</td>
+			<td>返回编辑行，从0开始<code>(20200907)</code></td>
 		</tr>
 		<tr class="evttitle">
 			<th>事件名</th>

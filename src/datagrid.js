@@ -652,6 +652,17 @@
                         }
                     }
                 }
+                if (opts.clicksToEdit==1){
+                    var oldEditRowInd = undefined;
+                    var editTr = opts.finder.getTr(_55a, "", "editing", 2);
+                    if (editTr) oldEditRowInd = editTr.attr('datagrid-row-index');
+                    if (oldEditRowInd!=_567) { //点击切换
+                        if(_567>-1 && ('undefined'==typeof oldEditRowInd || $(_55a).datagrid('validateRow',oldEditRowInd))){ //验证通过
+                            if ('undefined'!=typeof oldEditRowInd) _5fd(_55a,parseInt(oldEditRowInd), false); //-endedit
+                            _5f7(_55a,_567); //开始编辑
+                        }
+                    }
+                }
                 opts.onClickRow.call(_55a, _567, row);
             }
         }
@@ -724,6 +735,9 @@
             if (td.length) {
                 var _56a = td.attr("field");
                 opts.onDblClickCell.call(_55a, _569, _56a, row[_56a]);
+            }
+            if (opts.clicksToEdit==2){
+                _5f7(_55a,_567);
             }
             opts.onDblClickRow.call(_55a, _569, row);
             e.stopPropagation();
@@ -1539,9 +1553,12 @@
         if (!_600) {
             // datagrid by wanghc 2018-6-21
             if (opts.showChangedStyle){
-                for(var i in _604){
-                    tr.children('td[field="'+i+'"]').addClass('datagrid-value-changed');
+                if (_601.length>0 || _602.length>0){ //updatedRrows/insertedRows中存的是当前修改/插入的数据，accept后会清空不要显示红色
+                    for(var i in _604){
+                        tr.children('td[field="'+i+'"]').addClass('datagrid-value-changed');
+                    }
                 }
+                
             }
             opts.onAfterEdit.call(_5fe, _5ff, row, _604);
         } else {
@@ -2493,6 +2510,13 @@
                     _69f.find('.datagrid-header-row td[field="'+f+'"] .datagrid-cell span').first().html( $.hisui.getTrans(colOpt[f])  ); //add trans
                 }
             });
+        },getEditingIndex: function (jq) {
+            var opts = $.data(jq[0], "datagrid").options;
+            if(opts) {
+                var tr = opts.finder.getTr(jq[0], "", "editing", 2);
+                if (tr) return tr.attr("datagrid-row-index");
+            }
+            return undefined;
         }
     };
     $.fn.datagrid.parseOptions = function (_6cc) {
@@ -2844,6 +2868,10 @@
                                             } else {
                                                 if (type == "allfooter") {
                                                     return (_711 == 1 ? dc.footer1 : dc.footer2).find(">table>tbody>tr[datagrid-row-index]");
+                                                }else{
+                                                    if (type=="editing"){
+                                                        return (_711 == 1 ? dc.body1 : dc.body2).find(">table>tbody>tr.datagrid-row-editing");
+                                                    }
                                                 }
                                             }
                                         }
@@ -2888,10 +2916,11 @@
         }, onCancelEdit: function (_737, _738) {
         }, onHeaderContextMenu: function (e, _739) {
         }, onRowContextMenu: function (e, _73a, _73b) {
-        },onDblClickHeader:function(e,_739){    //cryze 双击表格头事件，默认
+        }, onDblClickHeader:function(e,_739){    //cryze 双击表格头事件，默认
         },lazy:false    //cryze 2018-3-22 为true初始化不加载列表数据
         ,onHighlightRow:function(index,row){ //cryze datagrid 高亮行(鼠标悬浮和combogrid上下选时)触发事件
         },onColumnsLoad:function(grid,cm){
-        },clickDelay:0  //cryze 2019-09-10 解决lookup 快速点击行问题
+        },clickDelay:0,  //cryze 2019-09-10 解决lookup 快速点击行问题
+        clicksToEdit:0 //1单击编辑，2双击编辑，0无
     });
 })(jQuery);
