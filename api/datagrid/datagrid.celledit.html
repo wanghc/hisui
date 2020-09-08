@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="UTF-8">
+	<title>数据列表示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../jquery-tag-demo.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../dist/plugin/datagrid-cellediting.js"></script>
+</head>
+<body>
+	<h2>单元格编辑表格</h2>
+	<h3>说明:</h3>
+    <span>单元格编辑功能来自于EasyUI的cellediting组件，主要用于单元编辑功能</span>
+	<div class="demo-exp-code entry-content " >
+		<table id="dg" title="甲患者生命体征录入" class='use-prettyprint lang-html' style="width:700px;height:200px">
+			<thead>
+				<tr>
+					<th data-options="field:'opdate',width:100">日期</th>
+					<th data-options="field:'temperature',width:100,editor:{type:'numberbox',options:{precision:1}}">体温</th>
+					<th data-options="field:'pulse',width:100,editor:{type:'numberbox',options:{precision:0,min:60,max:100}}">脉搏</th>
+					<th data-options="field:'heartbeat',width:80,align:'right',editor:{type:'numberbox',options:{precision:0}}">心跳</th>
+					<th data-options="field:'breath',width:80,align:'right',editor:'numberbox'">呼吸</th>
+					<th data-options="field:'bloodpress',width:80,editor:{type:'numberbox',options:{precision:0,min:80,max:120}}">血压</th>
+					<th data-options="field:'status',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">正常</th>
+				</tr>
+			</thead>
+		</table>
+		<script type="text/javascript" class='use-prettyprint lang-js'>
+			var data = {"total":28,"rows":[
+				{"opdate":"2020-09-06","temperature":38.8,"pulse":60,"heartbeat":68,"breath":25,"bloodpress":120,"status":"Y"},
+				{"opdate":"2020-09-07","temperature":37.5,"pulse":66,"heartbeat":78,"breath":24,"bloodpress":110,"status":"Y"},
+				{"opdate":"2020-09-08","temperature":37,"pulse":80,"heartbeat":88,"breath":22,"bloodpress":110,"status":"Y"},
+				{"opdate":"2020-09-09","temperature":37.1,"pulse":83,"heartbeat":98,"breath":22,"bloodpress":112,"status":"Y"},
+				{"opdate":"2020-09-10","temperature":37.2,"pulse":83,"heartbeat":95,"breath":22,"bloodpress":112,"status":"Y"},
+				{"opdate":"2020-09-11","temperature":37.1,"pulse":83,"heartbeat":96,"breath":22,"bloodpress":112,"status":"Y"}
+			]};
+			$(function(){
+				$('#dg').datagrid({
+					data: data
+				}).datagrid('enableCellEditing').datagrid('gotoCell', {
+					index: 0,
+					field: 'temperature'
+				});
+			});
+		</script>
+	</div>
+	<table class="table">
+		<tr class="evttitle">
+			<th>事件名</th>
+			<th>说明</th>
+			<th>入参</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>onCellEnterHandler</td>
+			<td>编辑框中回车事件</td>
+			<td>index,field</td>
+			<td><code>20200908</code></td>
+		</tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>
