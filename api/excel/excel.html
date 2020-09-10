@@ -35,11 +35,13 @@ location.href = rtn;</code></pre>
 	<h4>说明：通过Query与Query入参，把结果集导成xls文件。依赖浏览器设置，如果是IE须允许ActiveX运行，Chrome类须在本机安装Chrome中间件</h4>
 	<pre class="prettyprint linenums lang-js"><code>//依赖 jquery.js , websys.jquery.js
 // 异步导出结果集
+showProgressBar("导出中....");
 $cm({
 	ResultSetType:"ExcelPlugin",  //表示通过DLL生成Excel，可支持IE与Chrome系。Chrome系浏览器请安装中间件
 	//ResultSetTypeDo:"Print",    //默认Export，可以设置为：PRINT , PREVIEW
 	//localDir:"D:\\tmp\\",	      //D:\\tmp\\表示固定文件路径, "Self"表示用户导出时选择保存路径，默认保存到桌面
 	ExcelName:"excelname",		  //默认DHCCExcel，不用包含后缀
+	PageName:"DHCSSUserLog",      //表示是哪个界面的导出，防止同一Query多个界面不同定义, 与配置界面PAGENAME一致
 	ClassName:"web.DHCSSUserLogonLog",
 	QueryName:"FindUserLog",
 	Stdate:Stdate ,
@@ -48,12 +50,13 @@ $cm({
 	StartTime:StartTime,
 	EndTime:EndTime
 },function(){
-	alert('导出成功');
+	hideProgressBar();
 });
 // 同步导出结果集
 $cm({
 	ResultSetType:"ExcelPlugin",
 	ExcelName:"excelname",
+	PageName:"DHCSSUserLog",
 	ClassName:"web.DHCSSUserLogonLog",
 	QueryName:"FindUserLog",
 	Stdate:Stdate ,
@@ -93,6 +96,12 @@ window.open("websys.query.customisecolumn.csp?CONTEXT=Kweb.DHCSSUserLogonLog:Fin
 				<td>{ String }</td>
 				<td>必填项</td>
 				<td>最终要导出的Excel名称,不用带后缀</td>
+			</tr>
+			<tr>
+				<td>PageName</td>
+				<td>{String}</td>
+				<td>选填项</td>
+				<td>ResultSetType为ExcelPlugin时，且要读配置打印内容时必填</td>
 			</tr>
 			<tr>
 				<td>ClassName</td>
