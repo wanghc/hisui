@@ -5,10 +5,10 @@
 	<title>日期示例</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
-	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<style> .demo-exp-code td{padding:5px 10px;}</style>
 </head>
 <body>
@@ -18,11 +18,12 @@
 	<span>支持快捷t方式输入,t+2表示二天后,t-2表示二天前的日期。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint">
 		<table> 
 				<tr>
 					<td class='r-label'>统计月份</td>
 					<td class='r-label'>
-						<input id="samth" class="hisui-dateboxq textbox" data-options='onSelect:onSelect,formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
+						<input id="samth" class="hisui-dateboxq textbox" data-options="onSelect:onSelect,formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'"/>
 					</td>
 					<td class='r-label'>
 						<a class="hisui-linkbutton" id="samthBtn">获取值</a>
@@ -39,40 +40,39 @@
 					</td>
 				</tr>
 		</table>
-		<pre class="prettyprint hide lang-html">
-	</pre>
-
-	</div>
-	<script>
-		function onSelect(date){
-			$('#result').text(date)
-		}
-		$(function(){
-			$('#db').dateboxq('calendar').calendar({
-				validator:function(date){
+		</div>
+		<script class="use-prettyprint">
+			function onSelect(date){
+				$('#result').text(date)
+			}
+			$(function(){
+				$('#db').dateboxq('calendar').calendar({
+					validator:function(date){
+						var now = new Date();
+						return date<=now;
+					}
+				});
+				$("#samthBtn").click(function(){
+					var val = $("#samth").dateboxq('getValue');
+					$.messager.alert( "提示",val);
+				});
+				$("#setDateDisBtn").click(function(){
 					var now = new Date();
-					return date<=now;
-				}
-			});
-			$("#samthBtn").click(function(){
-				var val = $("#samth").dateboxq('getValue');
-				$.messager.alert( "提示",val);
-			});
-			$("#setDateDisBtn").click(function(){
-				var now = new Date();
-				var now6 = new Date();
-				now6.setTime(now.getTime()+(6*24*60*60*1000));
-				var opt = $("#db").dateboxq('options');
-				opt.minDate = opt.formatter(now); //'2019-11-24';
-				opt.maxDate = opt.formatter(now6); //'2019-11-30';
-				$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
-			});
-			$("#dbBtn").click(function(){
-				var val = $("#db").dateboxq('getValue');
-				$.messager.alert( "提示",val);
-			});
-		})
-	</script>
+					var now6 = new Date();
+					now6.setTime(now.getTime()+(6*24*60*60*1000));
+					var opt = $("#db").dateboxq('options');
+					opt.minDate = opt.formatter(now); //'2019-11-24';
+					opt.maxDate = opt.formatter(now6); //'2019-11-30';
+					$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
+				});
+				$("#dbBtn").click(function(){
+					var val = $("#db").dateboxq('getValue');
+					$.messager.alert( "提示",val);
+				});
+			})
+		</script>
+	</div>
+	
 <table class="table">
 	<tr class="protitle">
 		<th>属性</th>
