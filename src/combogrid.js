@@ -299,10 +299,10 @@
     });
 })(jQuery);
 
-//不写API--只护理使用-下拉单选
+/*mutiselect.js文件中下拉单选的部分脚本*/
+//下拉单选
 (function ($) {
-    function getRadioId(comboboxId,val)
-    {
+    function getRadioId(comboboxId, val) {
         return comboboxId + "_" + val;
     }
     function getRadioname(comboboxId) {
@@ -311,60 +311,57 @@
     var methods = {
         init: function (options) {
             var defaults = {
-                required: false,
-               // editable: false,
-                Onchange: null,
-               // multiple: false
+                //required: false,
+                //editable: false,
+                onChange: function () { },
+                //multiple: false
                 //   , valueField: "id"
                 //  , textField: "text"
+
             }
             var endOptions = $.extend(defaults, options);
             this.each(function () {
                 var _this = $(this);
                 var id = _this.attr("id");
-                $(_this).combobox({
-                    valueField: endOptions.valueField,
-                    textField: endOptions.textField,
-                    multiple: false,
-                    allowNull:true,
-                    selectOnNavigation: false,
-                    anelHeight: "auto",
-                    editable: endOptions.editable,
-                    required: endOptions.required,
-                    data: endOptions.data,
-                    formatter: function (row) {
-                        var opts;
-                        var val = row[endOptions.valueField];
-                        var text = row[endOptions.textField];
-                        var RadioId = getRadioId(id, val);
-                        var Radioname = getRadioname(id);
-                        if (row.selected == true) {
-                            opts = "<input style='height:13px' type='radio' checked='checked' id='" + RadioId + "' name='" + Radioname + "' value='" + val + "'>" + text;
-                        } else {
-                            opts = "<input style='height:13px' type='radio' id='" + RadioId + "' name='" + Radioname + "' value='" + val + "'>" + text;
-                        }
-                        return opts;
-                    },
-                    onSelect: function (rec) {
-						if(rec)
-						{ 				
-							  var val = rec[endOptions.valueField];
-                        var RadioId = getRadioId(id, val);                  
-                        $("#" + RadioId).prop('checked', true);
-                        if (endOptions.Onchange) {
-                            endOptions.Onchange(rec);
-                        }
+				
+				
+				endOptions.formatter=function (row) {
+					var opts;
+					var val = row[endOptions.valueField];
+					var text = row[endOptions.textField];
+					var RadioId = getRadioId(id, val);
+					var Radioname = getRadioname(id);
+					if (row.selected == true) {
+						opts = "<input style='height:13px' type='radio' checked='checked' id='" + RadioId + "' name='" + Radioname + "' value='" + val + "'>" + text;
+					} else {
+						opts = "<input style='height:13px' type='radio' id='" + RadioId + "' name='" + Radioname + "' value='" + val + "'>" + text;
+					}
+					return opts;
+				}
+				endOptions.oldonSelect = endOptions.onSelect;
+				endOptions.onSelect=function (rec) {
+					if (rec) {
+						var val = rec[endOptions.valueField];
+						var RadioId = getRadioId(id, val);
+						$("#" + RadioId).prop('checked', true);
+
+						if (endOptions.oldonSelect) {
+							endOptions.oldonSelect(rec);
 						}
-                      
-                    }, onUnselect: function (rec) {
-                        var val = rec[endOptions.valueField];
-                        var RadioId = getRadioId(id, val);                 
-                        $("#" + RadioId).prop('checked', false);
-                      /*  if (endOptions.Onchange) {
-                            endOptions.Onchange(false, rec);
-                        }*/
-                    }
-                });
+					}
+				}
+				endOptions.oldonUnselect = endOptions.onUnselect;
+				endOptions.onUnselect=function (rec) {
+					var val = rec[endOptions.valueField];
+					var RadioId = getRadioId(id, val);
+					$("#" + RadioId).prop('checked', false);
+
+					if (endOptions.oldonUnselect) {
+						endOptions.oldonUnselect(rec);
+					}
+				}
+				
+                $(_this).combobox(endOptions);
             });
         },
         enable: function (isenable) {
@@ -388,22 +385,20 @@
         setValue: function (vals) {
             var _this = $(this);
             var id = _this.attr("id");
-            $(_this).combobox("setValue", vals);        
-            var RadioId = getRadioId(id, vals);        
+            $(_this).combobox("setValue", vals);
+            var RadioId = getRadioId(id, vals);
             $("#" + RadioId).prop('checked', true);
-			 var itemselect=null;
-			 	var valueField=$(_this).combobox('options').valueField;
-                  for (var i = 0; i < datas.length; i++)
-				{
-					if(datas[i][valueField]==vals[0])
-					{
-						itemselect=datas[i];
-						break;
-					}
-				}
-				if(itemselect!=null)
-				 $(_this).combobox('options').onSelect.call($('#' + id)[0], itemselect);
- 
+            var itemselect = null;
+            var valueField = $(_this).combobox('options').valueField;
+            for (var i = 0; i < datas.length; i++) {
+                if (datas[i][valueField] == vals[0]) {
+                    itemselect = datas[i];
+                    break;
+                }
+            }
+            if (itemselect != null)
+                $(_this).combobox('options').onSelect.call($('#' + id)[0], itemselect);
+
         },
         setValues: function (vals) {
             var _this = $(this);
@@ -412,20 +407,18 @@
                 var tempval = vals[0];
                 $(_this).combobox("setValue", tempval);
                 var RadioId = getRadioId(id, tempval);
-                $("#" +RadioId).prop('checked', true);				
-				var datas=$(_this).combobox("getData");
-				var itemselect=null;
-				var valueField=$(_this).combobox('options').valueField;
-                  for (var i = 0; i < datas.length; i++)
-				{
-					if(datas[i][valueField]==vals[0])
-					{
-						itemselect=datas[i];
-						break;
-					}
-				}			
-				if(itemselect!=null)
-				 $(_this).combobox('options').onSelect.call($('#' + id)[0], itemselect);
+                $("#" + RadioId).prop('checked', true);
+                var datas = $(_this).combobox("getData");
+                var itemselect = null;
+                var valueField = $(_this).combobox('options').valueField;
+                for (var i = 0; i < datas.length; i++) {
+                    if (datas[i][valueField] == vals[0]) {
+                        itemselect = datas[i];
+                        break;
+                    }
+                }
+                if (itemselect != null)
+                    $(_this).combobox('options').onSelect.call($('#' + id)[0], itemselect);
             }
              
         },
