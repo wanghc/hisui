@@ -104,14 +104,14 @@
                     if (tb.children(".active").length>0){
                         tb.children(".active").trigger('click');
                     }else{
-                        _282[$.messager.defaults.ok]();
+                        _282[$.messager.defaults.ok](e);
                     }
                     return false;
                 }
                 if(_282[$.messager.defaults.cancel]){ 
                     if(e.which==27){ //Esc
                         e.stopPropagation();
-                        _282[$.messager.defaults.cancel]();
+                        _282[$.messager.defaults.cancel](e);
                         return false;
                     }
                 }
@@ -156,7 +156,8 @@
             }
             _286 += "<div style=\"clear:both;\"/>";
             var _287 = {};
-            _287[$.messager.defaults.ok] = function () {
+            _287[$.messager.defaults.ok] = function (e) {
+                if (e && e.originalEvent && e.originalEvent.constructor==PointerEvent && (e.clientY<0 || e.clientX<0)) return false;
                 win.window("close");
                 if (fn) {
                     fn();
@@ -168,7 +169,12 @@
         }, confirm: function (_288, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
-            _28a[$.messager.defaults.ok] = function () {
+            _28a[$.messager.defaults.ok] = function (e) {
+                // 2020-09-15 于传忠提供bug-demo及解决
+                // 解决IE下输入框值改变时弹出confirm，且回车focus下一输入框情况下，如果回车自动触发ok按钮问题
+                // 回车--光标跳到下一框--触发change--弹出confirm---自动click-ok
+                // if (win.window('panel').is(":visible")) IE下此时panel是visible的
+                if (e && e.originalEvent && e.originalEvent.constructor==PointerEvent && (e.clientY<0 || e.clientX<0)) return false;
                 win.window("close");
                 if (fn) {
                     fn(true);
@@ -187,7 +193,8 @@
         }, prompt: function (_28b, msg, fn) {
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
-            _28d[$.messager.defaults.ok] = function () {
+            _28d[$.messager.defaults.ok] = function (e) {
+                if (e && e.originalEvent && e.originalEvent.constructor==PointerEvent && (e.clientY<0 || e.clientX<0)) return false;
                 win.window("close");
                 if (fn) {
                     fn($(".messager-input", win).val());

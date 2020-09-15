@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-09-15 ##
 * 护士站修改DropDropRadio功能
+* 输入框Enter及Change事件同时触发时,`messager`组件自动确认问题
 
 ## 2020-09-07 ##
 * 表格增加获当前修改行方法
