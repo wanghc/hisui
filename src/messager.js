@@ -157,7 +157,8 @@
             _286 += "<div style=\"clear:both;\"/>";
             var _287 = {};
             _287[$.messager.defaults.ok] = function (e) {
-                if (e && e.originalEvent && e.originalEvent.constructor==PointerEvent && (e.clientY<0 || e.clientX<0)) return false;
+                if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
+                if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
                 if (fn) {
                     fn();
@@ -174,7 +175,8 @@
                 // 解决IE下输入框值改变时弹出confirm，且回车focus下一输入框情况下，如果回车自动触发ok按钮问题
                 // 回车--光标跳到下一框--触发change--弹出confirm---自动click-ok
                 // if (win.window('panel').is(":visible")) IE下此时panel是visible的
-                if (e && e.originalEvent && e.originalEvent.constructor==PointerEvent && (e.clientY<0 || e.clientX<0)) return false;
+                if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
+                if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
                 if (fn) {
                     fn(true);
@@ -194,7 +196,8 @@
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
             _28d[$.messager.defaults.ok] = function (e) {
-                if (e && e.originalEvent && e.originalEvent.constructor==PointerEvent && (e.clientY<0 || e.clientX<0)) return false;
+                if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
+                if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
                 if (fn) {
                     fn($(".messager-input", win).val());
