@@ -86,6 +86,12 @@
 			if (input[0].tagName.toLowerCase() == 'textarea'){
 				return;
 			}
+			/*2020-09-23*/
+			var ed = dg.datagrid('getEditor', cell);
+			if (ed.type == 'combobox' && $(input).combobox('panel').is(":visible")){
+				return;
+			}
+			/*end*/
 			if (endCellEdit(this, true))
 			{
 				var opts = $(this).datagrid('options');
@@ -98,6 +104,18 @@
 	}
 
 	function escHandler(e){
+		/*2020-09-23 esc¼üÍË³ö*/
+		var dg = $(this);
+		var cell = dg.datagrid('cell');
+		if (!cell){return;}
+		var input = dg.datagrid('input', cell);
+		if (input){
+			var ed = dg.datagrid('getEditor', cell);
+			if (ed.type == 'combobox' && $(input).combobox('panel').is(":visible")){
+				return;
+			}
+		}
+		/*end*/
 		endCellEdit(this, false);
 		return false;
 	}
@@ -248,6 +266,13 @@
 			if (input){
 				if (accepted){
 					if (dg.datagrid('validateRow', cell.index)){
+						/*2020-09-23*/
+						var e = $._data(input[0], "events");
+						//var ed = dg.datagrid('getEditor', cell);
+						//if (ed.type == 'validatebox' && e && e["change"])
+						if (e && e["change"])	
+							input.change();
+						/*end*/
 						dg.datagrid('endEdit', cell.index);
 						dg.datagrid('gotoCell', cell);
 					} else {
@@ -426,7 +451,15 @@
 		opts.oldOnDblClickCell = opts.onDblClickCell;
 		opts.onClickCell = function(index, field, value){
 			if (opts.clickToEdit){
-				$(this).datagrid('editCell', {index:index,field:field});
+				/*2020-09-23*/
+				if (endCellEdit(this, true)){
+					$(this).datagrid('gotoCell', {
+						index: index,
+						field: field
+					});
+					/*end*/
+					$(this).datagrid('editCell', {index:index,field:field});
+				}
 			} else {
 				if (endCellEdit(this, true)){
 					$(this).datagrid('gotoCell', {
