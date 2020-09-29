@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-09-29 ##
 * 修改`textarea`警告图片显示位置处理
+* IE下textarea的placeholder样式处理
 
 ## 2020-09-23 ##
 * 编辑单元格需求修改 
