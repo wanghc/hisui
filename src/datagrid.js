@@ -61,7 +61,10 @@
                 for (var s in _50a.cache) {
                     var item = _50a.cache[s];
                     item.index = _50c++;
-                    ss.push(s + "{width:" + item.width + (item.fontSize!=""?";font-size:"+item.fontSize+";line-height:"+item.fontSize+";":"") +"}");
+                    ss.push(s + "{width:" + item.width +"}");
+                    if (item.fontSize!="") { //不影响表格标题头 2020-10-13 wanghc
+                        ss.push('.datagrid-row '+s+"{font-size:"+item.fontSize+";line-height:"+item.fontSize+";}");
+                    }
                 }
                 ss.push("</style>");
                 $(ss.join("\n")).appendTo(cc);

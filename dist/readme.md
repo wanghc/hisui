@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-10-13 ##
+* 表格或列设置字体大小不影响表头字体 
+
 ## 2020-09-29 ##
 * 修改`textarea`警告图片显示位置处理
 * IE下textarea的placeholder样式处理
