@@ -161,13 +161,15 @@ var Level = {
 			superui:'comboq'
 		},comboq:{
 			superui:'validatebox'
+		},timeboxq:{
+			superui:'validatebox'
 		}
 		//,datagrid:{ //$.fn.datagrid.defaults=$.extend({},$.fn.panel.defaults,{...});
 			//superui:'panel' 
 		//}
 	}
 	//cryze 在combobox前增加combo
-    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover','comboq','lookup','keywords','triggerbox','layoutq','dateboxq'];
+    var comps = ["draggable","droppable","resizable","pagination","tooltip","linkbutton","menu","menubutton","splitbutton","progressbar","tree","combo","combobox","combotree","combogrid","numberbox","validatebox","searchbox","numberspinner","timespinner","calendar","datebox","datetimebox","slider","layout","panel","datagrid","propertygrid","treegrid","tabs","accordion","window","dialog","checkbox","radio","switchbox",'filebox','popover','comboq','lookup','keywords','triggerbox','layoutq','dateboxq','timeboxq'];
 	$.each(comps, function (index, comp) {
         //index comp ---let
         HUIObject[comp] = function (selector, options) {

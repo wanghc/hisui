@@ -156,6 +156,13 @@ if ($.fn.datetimeboxq){
 	$.fn.datetimeboxq.defaults.closeText = $.fn.datebox.defaults.closeText;
 	$.fn.datetimeboxq.defaults.okText = $.fn.datebox.defaults.okText;
 }
+if ($.fn.timeboxq){
+	$.fn.timeboxq.defaults.rules.timeboxq.message = "Please enter a valid time. 14:10, 1410, n+15";
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageMax = 'Time must be less than{1}';
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageMin = 'Time must be greater than{0}';
+	$.fn.timeboxq.defaults.rules.minMaxTime.message = 'Please enter a valid time.';
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageDef = 'Please enter a valid time. from {0} to {1}';
+}
 if ($.fn.switchbox){
 	$.fn.switchbox.defaults.onText = 'OFF';
 	$.fn.switchbox.defaults.offText = 'ON';

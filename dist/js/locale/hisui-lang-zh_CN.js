@@ -156,6 +156,13 @@ if ($.fn.datetimeboxq){
 	$.fn.datetimeboxq.defaults.closeText = $.fn.datebox.defaults.closeText;
 	$.fn.datetimeboxq.defaults.okText = $.fn.datebox.defaults.okText;
 }
+if ($.fn.timeboxq){
+	$.fn.timeboxq.defaults.rules.timeboxq.message = "非法时间。正确输入如：14:10，1410 或 n+15表示15分钟后";
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageMax = '时间必须小于{1}';
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageMin = '时间必须大于{0}';
+	$.fn.timeboxq.defaults.rules.minMaxTime.message = '非有效时间范围';
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageDef = '有效时间范围：{0} 至 {1}';
+}
 if ($.fn.switchbox){
 	$.fn.switchbox.defaults.onText = '开';
 	$.fn.switchbox.defaults.offText = '关';
