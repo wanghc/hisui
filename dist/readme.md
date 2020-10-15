@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-10-15 ##
+* `timeboxq`增加`resize`方法
+* 9:30格式认为是合法日期,离开时再转换成09:30
+
 ## 2020-10-14 ##
 * 增加`timeboxq`组件
 

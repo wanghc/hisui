@@ -130,6 +130,9 @@
 		t.setTime(val);
 		return ReWriteTime(t.getHours(),t.getMinutes(),t.getSeconds(),frmt);;
 	}
+	function doResize(target,width){
+		$(target)._outerWidth(width);
+	}
 	$.fn.timeboxq.methods = {
 		options: function(jq){
 			return $.data(jq[0], 'timeboxq').options;
@@ -141,7 +144,12 @@
 		},
 		getValue:function(jq){
 			return getValue(jq[0]);
-		}
+		},
+		resize: function (jq, _894) {
+            return jq.each(function () {
+                doResize(this, _894);
+            });
+        }		
 	};
 	$.fn.timeboxq.parseOptions = function(target){
 		return $.extend({}, $.fn.validatebox.parseOptions(target), $.parser.parseOptions(target));
@@ -162,7 +170,7 @@
 		rules: {
             timeboxq: {
                 validator: function (txt) {
-					return /^(20|21|22|23|[0-1]\d)(:[0-5]\d){1,2}$/i.test(txt) || /^(20|21|22|23|\d|[0-1]\d)([0-5]\d){0,2}$/i.test(txt) || /^[nN][-+]*\d*$/i.test(txt);
+					return /^(20|21|22|23|[0-1]\d|\d)(:[0-5]\d){1,2}$/i.test(txt) || /^(20|21|22|23|\d|[0-1]\d)([0-5]\d){0,2}$/i.test(txt) || /^[nN][-+]*\d*$/i.test(txt);
                 }, message: "Please enter a valid time. 14:10, 1410, n+15"
 			},
 			minMaxTime:{
