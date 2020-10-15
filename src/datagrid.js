@@ -2066,6 +2066,20 @@
             }, resize: function (_682, _683) {
                 $(_682).dateboxq("resize", _683);
             }
+        }, timeboxq: {
+            init: function (_67b, _67c) {
+                var _67d = $("<input type=\"text\">").appendTo(_67b);
+                _67d.timeboxq(_67c);
+                return _67d;
+            }, destroy: function (_67e) {
+                $(_67e).timeboxq("destroy");
+            }, getValue: function (_67f) {
+                return $(_67f).timeboxq("getValue");
+            }, setValue: function (_680, _681) {
+                $(_680).timeboxq("setValue", _681);
+            }, resize: function (_682, _683) {
+                $(_682).timeboxq("resize", _683);
+            }
         }, combobox: {
             init: function (_684, _685) {
                 var _686 = $("<input type=\"text\">").appendTo(_684);

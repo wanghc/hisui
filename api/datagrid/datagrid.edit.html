@@ -15,7 +15,7 @@
 <body>
 	<h2>数据网格-点击修改</h2>
 	<h3>说明:</h3>
-	<span>编辑列表中<code>text</code>,<code>textarea</code>,<code>checkbox</code>,<code>numberbox</code>,<code>validatebox</code>,<code>datebox</code>,<code>datetimebox</code>,<code>combobox</code>,<code>combotree</code>,<code>combogrid</code>,<code>icheckbox</code>,<code>switchbox</code>,<code>linkbutton</code>,<code>lookup</code,<code>timespinner</code>组件的使用示例</span>
+	<span>编辑列表中<code>text</code>,<code>textarea</code>,<code>checkbox</code>,<code>numberbox</code>,<code>validatebox</code>,<code>datebox</code>,<code>datetimebox</code>,<code>combobox</code>,<code>combotree</code>,<code>combogrid</code>,<code>icheckbox</code>,<code>switchbox</code>,<code>linkbutton</code>,<code>lookup</code,<code>timespinner</code>,<code>timeboxq</code>组件的使用示例</span>
 	<h3>一、数据列表编辑-基于已有编辑类型</h3>
 	<div class="use-prettyprint" prettyprintfor="#mydg1codehtml">
 		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:1200px;height:300px"
@@ -46,9 +46,9 @@
 			<th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox</th>
 			<th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox</th>
 			<th data-options="field:'op',width:140,align:'center',editor:{type:'linkbutton',options:{iconCls:'icon-save',handler:function(){endEditing();}}}">按钮linkbutton</th>
-			<th data-options="field:'dbq',width:100,align:'center',editor:{type:'dateboxq'}">日期</th>
+			<th data-options="field:'dbq',width:100,align:'center',editor:{type:'dateboxq'}">日期q</th>
 			<th data-options="field:'timesp',width:100,align:'center',editor:{type:'timespinner'}">时间</th>
-
+			<th data-options="field:'timebq',width:100,align:'center',editor:{type:'timeboxq'}">时间q</th>
 		</tr>
 		</thead>
 		</table>
@@ -108,7 +108,8 @@
 			"active2":/禁用|启用/,
 			"op":"结束编辑",
 			"dbq":'2020-07-15',
-			"timesp":"8:30"
+			"timesp":"8:30",
+			timebq:"9:30"
 		}],
 		"total":10
 	})
