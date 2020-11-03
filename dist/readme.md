@@ -39,6 +39,8 @@ $("#btn").linkbutton("disable");
 * 开始新样式0.4.0
 * 解决`datagrid`中tip左边看不全问题
 * 增加big-book-arrow-ok图标
+* 新起api4目录
+* 新图标说明界面提交
 
 ## 2020-10-15 ##
 * `timeboxq`增加`resize`方法
