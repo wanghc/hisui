@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 * 增加font-awesome字体支持
 * 开始新样式0.4.0
 * 解决`datagrid`中tip左边看不全问题
+* 增加big-book-arrow-ok图标
 
 ## 2020-10-15 ##
 * `timeboxq`增加`resize`方法
