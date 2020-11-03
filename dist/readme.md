@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2020-11-03 ##
 * 增加font-awesome字体支持
 * 开始新样式0.4.0
+* 解决`datagrid`中tip左边看不全问题
 
 ## 2020-10-15 ##
 * `timeboxq`增加`resize`方法

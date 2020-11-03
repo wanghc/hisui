@@ -692,8 +692,11 @@
                                 td.tooltip({
                                     content:td.text(),
                                     onShow:function(e1){
+                                        /*2020-11-03 left不能少于10*/
+                                        var l = e1.pageX-(250/2);
+                                        if (l<10) l=10;
                                         $(this).tooltip("tip").css({
-                                            width:tipWidth,top:e1.pageY+20,left:e1.pageX-(250/2)
+                                            width:tipWidth,top:e1.pageY+20,left:l
                                         });
                                     }
                                 }).tooltip("show",e);
