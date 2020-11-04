@@ -1,0 +1,308 @@
+@main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
+@main-font-size:14px;
+@main-color:#40a2de;
+@main-hover-color:#378ec4; /*好多hover的颜色*/
+//@combo-img: url(images/combo_arrow.png) no-repeat center center;
+//@lookup-img: url(images/lookup_arrow.png) no-repeat center center;
+//@date-img:url(images/datebox_arrow_40a2de.png) no-repeat center center;
+//@date-hover-img:url(images/datebox_arrow_378ec4.png) no-repeat center center;
+//@date-disabled-img:url(images/datebox_arrow_bbbbbb.png) no-repeat center center;
+
+
+@body-bgcolor:#f6f6f6;
+
+
+//== images 
+@images-path:"images/blue";
+//== icon
+@icon-path:"icons/default";
+
+@input-border-color:#CCCCCC;
+@input-bgcolor:#ffffff;
+@input-color:#000000;
+@input-active-border-color:#7DCEFF;
+@input-active-bgcolor:#ffffff;
+@input-active-color:#000000;
+@input-disabled-border-color:#CCCCCC;
+@input-disabled-bgcolor:#F5F5F5;
+@input-disabled-color:#000000;
+@input-placeholder-color:#999999;
+
+@input-arrow-opacity:1; /*0.7;*/
+@input-arrow-opacity-ie:100*@input-arrow-opacity;
+@input-border-radius:2px; /*add 2019-12-23*/
+
+
+//---------arrow-------//
+@input-arrow-hover-bgcolor:@input-hover-bgcolor;
+@input-arrow-hover-opacity:1;
+@input-arrow-hover-opacity-ie:100*@input-arrow-hover-opacity;
+@input-border-hover-color:@input-active-border-color;
+@input-hover-bgcolor:@input-active-bgcolor;
+//----------focus---------//
+@input-focus-bgcolor:@input-hover-bgcolor;
+@input-border-focus-color:#3495d8;
+
+//-------------disabled----------//
+@main-disabled-bgcolor:@input-disabled-bgcolor;
+@main-disabled-border-color:@input-disabled-border-color;
+@linkbutton-disabled-bgcolor:#bbbbbb;
+@linkbutton-disabled-icon-bgcolor:#999999;
+
+//== tooltip
+@tooltipFontColor:#ffffff;
+@tooltipArrowColor:#ffffff;
+@tooltipFontSize:14px;
+@tooltipPadding:8px;
+@tooltipBorderRadius:4px;
+@tooltipDefalutBorderColor:#4f75aa;
+@tooltipDefalutBorderWidth:0;
+@tooltipDefalutBgColor:rgba(0,0,0,0.7);
+
+@tooltipErrorBgColor:#ff5153;
+@tooltipErrorBgColor:#ff9683;
+
+//== validatebox
+@validatebox-border-width:1px;
+@validatebox-border-color:@input-border-color;
+@validatebox-border-type:solid;
+@validatebox-height:28px;
+@validatebox-padding-left:5px;
+@validatebox-font-color:@input-color;
+@validatebox-font-size:@main-font-size;
+@validatebox-focus-bgcolor:@input-active-bgcolor;
+//==searchbox
+@searchbox-border-width:1px;
+@searchbox-border-color:@main-color;
+@searchbox-border-type:solid;
+@searchbox-height:28px;
+@searchbox-width:30px;
+@searchbox-padding-left:5px;
+@searchbox-font-color:@input-color;
+@validatebox-font-size:@main-font-size;
+@searchbox-font-size:@main-font-size;
+@searchbox-bgcolor:@main-color;
+@searchbox-arrow-bgcolor:none;
+@searchbox-hover-bgcolor:#40a2dd;
+@searchbox-button-hover-bgcolor: #378ec4;
+
+//== panel
+@panel-title-height:26px;
+@panel-header-padding:3px 5px;
+@panel-header-bgcolor:#ffffff;
+@panel-header-bdcolor:#E2E2E2;
+@panel-body-font-size:@main-font-size;
+@panel-title-font-size:@main-font-size;
+@panel-title-font-color:#000000;
+@panel-border-color:#cccccc; 
+@panel-border-card-color:#509de1;
+@panel-border-card-color-gray:#E3E3E3;
+@panel-header-blue-bgcolor:#b4dbf5;
+@panel-shadow:0px 3px 6px rgba(0, 0, 0, 0.16);
+
+
+
+//== combo
+@combo-arrow-width:30px;
+@combo-arrow-height:30px;
+@combo-arrow-bgcolor:none; /*main-color*/;
+@combo-arrow-color:#ffffff;
+@combo-arrow-hover-color:none; /*main-hover-color*/;
+@combo-border-color:@main-color;
+@combo-select-row-bgcolor:#dbecf8;
+@combo-font-size:@main-font-size;
+@combo-input-line-height:28px;
+@combo-input-line-height-ie8:26px;
+@combo-row-line-height:24px;
+@combo-bgcolor:#ffffff;
+@combo-padding-left:@validatebox-padding-left;
+@combo-panel-border-color:#9ed2f2;
+
+//== combobox 
+@combobox-item-font-size:@main-font-size;
+@combobox-item-padding:3px;
+@combobox-item-right-padding:0px;
+@combobox-item-left-padding:5px;
+@combobox-item-line-height:24px;
+@combobox-gitem-left-padding:10px;
+@combobox-item-hover-bgcolor:#dbecf8;
+@combobox-item-hover-font-color:#000000;
+@combobox-item-select-bgcolor:#dbecf8;
+@combobox-item-select-font-color:#000000;
+
+//== datebox
+@datebox-button-font-size:12px;
+@datebox-button-bgcolor:#F4F4F4;
+@datebox-button-font-color:#444;
+
+//== accordion
+@accordion-header-bgcolor:#509DE1;
+@accordion-header-bgcolor-green:#21BA45;
+@accordion-header-select-bgcolor:#4E97D7;
+@accordion-border-color:@panel-border-color;
+@accordion-title-font-color:#ffffff;
+@accordion-body-bgcolor:#f2f2f2;
+@accordion-body-color:#7a7875;
+@accordion-body-border:#cccccc;
+//== tabs
+@tabs-header-height:36px;
+@tabs-header-bgcolor:#FFFFFF;
+@tabs-header-hover-bgcolor:#FFFFFF;
+@tabs-header-select-top-color:#31B1FF;
+@tabs-header-font-color:#000000;
+@tabs-header-select-font-color:#31B1FF;
+@tabs-title-font-size:@main-font-size;
+@tabs-header-arrow-hover-bgcolor:@tabs-header-select-top-color;
+@tabs-header-bdcolor:#E2E2E2;
+@tabs-shadow:@panel-shadow;
+
+/*tabs-gray*/
+@tabs-header-gray-bgcolor:#F7F7F7;
+@tabs-header-gray-select-top-color:#017BCE;
+@tabs-header-gray-font-color:#000000;
+@tabs-header-gray-select-bgcolor:#ffffff;
+@tabs-header-gray-select-font-color:#1584D2;
+@tabs-header-gray-border:#CCC;
+@tabs-header-gray-hover-bgcolor:#CCC;
+@tabs-header-gray-arrow-hover-bgcolor:#cccccc;
+@tabs-li-after-border-left-corlor:#2A72B0;
+@tabs-li-after-border-right-corlor:#70B5F1;
+
+//== window
+@window-header-bgcolor:@panel-header-bgcolor;
+@window-body-bgcolor:#ffffff;
+@window-shadow:0px 0px 20px rgba(0, 0, 0, 0.16);
+@window-title-color:#000000;
+
+//== linkbutton
+@linkbutton-font-size:14px;
+@linkbutton-height:30px;
+@linkbutton-bgcolor:#48B9FF;
+@linkbutton-font-color:#ffffff;
+@linkbutton-padding-leftright:8px;
+@linkbutton-min-width:80px;
+@linkbutton-text-width:@linkbutton-min-width - (2 * @linkbutton-padding-leftright);
+@linkbutton-hover-bgcolor:#0F99EF;
+@linkbutton-focus-bordercolor:#0F99EF;
+@linkbutton-left-bgcolor:#0F99EF;
+@linkbutton-border-radius:2px;
+
+@linkbutton-hover-dark-bgcolor:#0063a7;
+@linkbutton-plain-hover-bgcolor: #eaf2ff;
+@linkbutton-border-hover-color:#b7d2ff;
+
+//== link-----<a/>
+@link-color:#40A2DE;
+@link-hover-color:#378ec4;
+
+
+
+//== dialog
+
+//==datagrid
+@datagrid-header-bgcolor:#F8F8F8;
+@datagrid-inner-border-color:#E2E2E2;
+@datagrid-border-color:#E2E2E2;
+@datagrid-row:#ffffff;
+@datagrid-row-color:#000000;
+@datagrid-row-hover:#EFF9FF;
+@datagrid-row-hover-color: #31B1FF;
+@datagrid-row-select:#ffffff;
+@datagrid-row-select-color: #31B1FF;
+@datagrid-cell-font-size:14px;
+@datagrid-toolbar-text-color:#0379d0;
+@datagrid-toolbar-hover:#dbedf9;
+
+
+//== layout
+@layout-split-border:@body-bgcolor;
+
+//== spinner
+@spinner-line-height:28px;
+@spinner-line-height-min:26px;
+@spinner-font-size:14px;
+@spinner-arrow-bgcolor:none; /*main-hover-color*/;
+//== keywords 
+@keywords-bgcolor:#F5F5F5;
+@keywords-color:#000000;
+@keywords-select-bgcolor:#EFF9FF;
+@keywords-select-color:#31B1FF;
+@keywords-select-bdcolor:#48B9FF;
+@keywords-hover-bgcolor:#F5F5F5;
+@keywords-hover-color:#31B1FF;
+@keywords-red-bgcolor: #ffe9db;
+@keywords-red-color:#ff4401;
+@keywords-chapter-color:#017bce;
+@keywords-section-hover-color:#017bce;
+@keywords-section-bgcolor:#40a2de;
+
+//==menubutton
+@menubutton-blue-bgcolor:#40a2de;   
+@menubutton-blue-bgcolor-hover:#378ec4;
+@menubutton-blue-menu-item-bgcolor: #6fc2f4;
+@menubutton-blue-border-bottom-color:#40a2de;
+@menubutton-blue-menu-item-hover: #378ec4;
+@menubutton-btn-hover-bgcolor:#dbedf9;
+@menubutton-btn-plain-active-bgcolor:#dbedf9;
+@menubutton-menu-item-bgcolor:#dbedf9;
+
+//==menu
+@menu-active-border-color:#dbecf8;
+@menu-active-bgcolor:#dbecf8;
+@menu-border-color:#40a2de;
+@menu-shadow:@panel-shadow;
+
+//==filebox
+@filebox-border-color:#40a2de;
+
+//tree
+@tree-border-color:#0e8bdd;
+@tree-node-bgcolor:#0e8bdd;
+@tree-node-hover-bgcolor:#3ea2e4;
+
+//easyui
+@easyui-pagination-num-border-color:#95B8E7;
+//使用textbox样式类后长度,context-box的长度
+@textbox-width:148px;
+
+/*variables-end*/
+body {
+    font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+    padding:10px;
+    font-size:@main-font-size;
+    margin:0;
+}
+body * {
+    font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+    font-size:@main-font-size;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	padding:0 0 12px 0;
+}
+.demo-tip{
+	display:none;
+}
+.r-label{
+    text-align: right;
+    padding-right: 10px;
+}
+a{
+    color:@keywords-chapter-color;
+}
+/*chrome默认了outline*/
+input,textarea {
+    outline-width: 0;
+}
+#z-q-container{
+    position: absolute;
+    overflow: hidden;
+    background-color: #ffffff;
+    border: 1px solid @panel-border-color;
+    z-index: 9000;
+}

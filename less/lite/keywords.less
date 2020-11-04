@@ -1,0 +1,87 @@
+@import "variables.less";
+.kw-chapter{
+    clear: both;
+    // font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    color: @keywords-chapter-color;
+    margin:10px 0;
+    & a{
+        border-right: 5px @keywords-chapter-color solid;
+        width: 0px;
+        height: 30px;
+        padding: 0px;
+        margin-right: 5px;
+    } 
+}
+.kw-line{
+    border-bottom: 1px #eeeeee solid;
+}
+.kw-section{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    clear: both;
+}
+.kw-section-header{
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.keywords li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.kw-section-list{
+    padding: 0px;
+    margin: 0px;
+    &::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+.kw-section-list>li{
+    float: left;
+    margin:5px;
+    & a{
+        border-radius: 2px;
+        display: block;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        background: @keywords-bgcolor;
+        color: @keywords-color;;
+        text-decoration: none;
+        padding: 0 9px;
+        border:1px solid @keywords-bgcolor;
+        &:hover{
+            cursor: pointer;
+            background:@keywords-hover-bgcolor;
+            color: @keywords-hover-color;
+        }
+    }
+    &.selected a{
+        background-color:@keywords-select-bgcolor;
+        background-image: url(images/keywords_arrow.png);
+        background-position: right 0 bottom 0;
+        background-repeat: no-repeat;
+        color: @keywords-select-color;
+        border:1px solid @keywords-select-bdcolor;
+    }
+}
+.keywords-labelred .kw-section-list>li{
+    & a{
+        background: transparent;
+        color: @keywords-red-color;
+        border:1px solid transparent;
+        &:hover{
+            cursor: pointer;
+            background: @keywords-red-bgcolor;
+            border:1px solid @keywords-red-bgcolor;
+        }
+    }
+    &.selected a{
+        background: @keywords-red-bgcolor;
+        border:1px solid @keywords-red-bgcolor;
+    }
+}

@@ -1,0 +1,257 @@
+@import "variables.less";
+.l-btn-text {
+  min-width: 0;/*@linkbutton-text-width;*/
+  line-height: @linkbutton-height;
+  font-size: @linkbutton-font-size;
+  padding: 0 15px;
+  margin: 0px;
+}
+.l-btn-icon {
+  width: @linkbutton-height;
+  height: @linkbutton-height;
+  line-height: @linkbutton-height;
+  position: absolute;
+  background-color: @linkbutton-left-bgcolor;
+  top:0px;
+  margin-top:0;
+  @top-4IE8:-4px;
+  @x9:\9;
+  /*top: @top-4IE8@x9;*/ /*实测ie8不需要*/
+}
+.l-btn-left.l-btn-icon-left{    /*在style加width时，图标偏移*/
+  width: 100%;
+  width: auto\9; /*IE6,7,8*/  /*2018-11-14*/
+}
+.l-btn-icon-left .l-btn-text {
+  margin: 0 0 0 0px;
+}
+.l-btn-icon-left .l-btn-icon{
+  width: 0;
+}
+
+.l-btn-icon-left .l-btn-empty+.l-btn-icon{
+  width: @linkbutton-height;
+}
+
+.l-btn-plain .l-btn-icon-left .l-btn-text {
+  margin: 0 4px 0 18px;
+  min-width: 0px;
+}
+.l-btn-icon-left .l-btn-icon {
+  left: 0px;
+}
+.l-btn-icon-right .l-btn-text {
+  margin: 0 4px 0 0;
+}
+.l-btn-plain .l-btn-icon-left .l-btn-text.l-btn-empty{
+  margin : 0;
+}
+.l-btn-left .l-btn-empty {
+  width: @linkbutton-height;
+  min-width:@linkbutton-height; 
+  margin: 0;
+  padding: 0;
+}
+.l-btn-plain:hover {
+  background: #eaf2ff;
+  color: #000000;
+  border: 1px solid #b7d2ff;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius:0;
+}
+.l-btn-focus {
+  outline: @linkbutton-focus-bordercolor dotted thin;
+}
+.l-btn {
+  color: @linkbutton-font-color;
+  background: @linkbutton-bgcolor;
+  filter: none;
+  border: 0px solid @linkbutton-bgcolor;  //不应有border 有的话32了
+  border-radius: @linkbutton-border-radius;
+  // transition:all ease 0.3s;
+  &.active{
+    background: @linkbutton-hover-bgcolor;
+    color:@linkbutton-font-color;
+    border: 0px solid @linkbutton-hover-bgcolor;
+    filter: none;
+    .l-btn-icon{
+      background-color: @linkbutton-hover-bgcolor;
+    }
+  }
+  &:hover{
+    background: @linkbutton-hover-bgcolor;
+    color:@linkbutton-font-color;
+    border: 0px solid @linkbutton-hover-bgcolor;
+    filter: none;
+    .l-btn-icon{
+      background-color: @linkbutton-hover-bgcolor;
+    }
+  }
+  &.l-btn-plain{
+    border:0;
+    padding: 0;
+  }
+}
+/*特殊情况（按钮在蓝色病人信息条上时）：hover背景色为#0063a7*/
+.l-btn.hover-dark {
+  &:hover{
+    background: @linkbutton-hover-dark-bgcolor;
+    .l-btn-icon{
+      background-color: @linkbutton-hover-dark-bgcolor;
+    }
+  }
+
+}
+.l-btn-plain {
+  color: #000000;
+  background: transparent;
+  border: 0px solid transparent;   //不应有border 有的话32了
+  padding: 0px;
+  filter: none;
+  &:hover {
+    background:@linkbutton-plain-hover-bgcolor;
+    color: #000000;
+    border: 0px solid @linkbutton-border-hover-color;
+    padding:0px;
+  }
+  .l-btn-left{
+    .l-btn-icon{
+      background-color:transparent;
+    }
+  }
+}
+.l-btn-disabled, 
+.l-btn-disabled:hover,
+.l-btn.hover-dark.l-btn-disabled:hover ,
+.l-btn.hover-dark.l-btn-disabled{
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  background:@linkbutton-disabled-bgcolor;
+  color:#ffffff;
+  border-color: @linkbutton-disabled-bgcolor;
+  .l-btn-icon{
+    background-color: @linkbutton-disabled-icon-bgcolor;
+  }
+}
+.l-btn-plain.l-btn-disabled {
+  background-color: transparent;
+  border-color: transparent;
+  .l-btn-left {
+    background-color: transparent;
+    color:#444;
+    border-color: transparent;
+    .l-btn-icon{
+      background-color: transparent;
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+    }
+    .l-btn-text{
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+    }
+  }
+  
+}
+/*
+.l-btn-disabled,
+.l-btn-disabled:hover {
+  background:#ffffff;
+  color: #444;
+}
+.hisui-linkbutton.l-btn-disabled,.hisui-linkbutton.l-btn-disabled:hover {
+    background:@linkbutton-bgcolor;
+    color: #444;    
+}*/
+/*.linkbutton-plain{
+  color: #000000;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 1px;
+  filter: none;
+  .l-btn-left .l-btn-icon {
+    background-color: transparent;
+  }
+}*/
+a.l-btn-link{
+  color:@link-color;
+  &:hover{
+    color:@link-hover-color;
+  }
+}
+/*
+.l-btn.big.l-btn-plain{
+  .l-btn-icon-left {
+    .l-btn-icon{
+      left: 50%;
+      margin-left: -14px;
+    }
+   .l-btn-text{
+      margin:0 4px 0 0;
+      padding:24px 2px 2px 0;
+    }
+  }
+}*/
+/*
+wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选择
+.l-btn.l-btn-plain.big <==> .big
+*/
+.l-btn.l-btn-plain.big{
+  padding: 0;
+  border: 0;
+  .l-btn-icon-left {
+    padding: 4px 10px;
+    width: auto;
+    .l-btn-icon{
+      height: 28px;
+      line-height: 28px;
+      top:4px;
+      position: absolute;
+      width: 100%;
+    }
+   .l-btn-text{
+      padding: 38px 0 0px; /*43--38px 20180929*/
+      line-height: 14px;
+      margin: 0;
+      text-align: center;
+    }
+  }
+  &:hover{
+    border: 0;
+    padding: 0;
+    background:#dcebf9;
+    .l-btn-text{
+      color:@main-hover-color;  /*#21ba45;*/
+    }
+  }
+}
+
+.datagrid-btn-separator.big {
+  float: none;
+  height: 65px;
+  border-left: 1px solid #ccc;
+  margin: 0px 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+/*增加其它色系按钮*/
+.l-btn.l-btn-small{
+    &.green{
+      background-color: #2ab66a;
+    }
+    &.green:hover{
+      background-color: #239e5b;
+    }
+    &.yellow{
+      background-color: #ffb746
+    }
+    &.yellow:hover{
+      background-color: #ff9c00;
+    }
+    &.red{
+      background-color: #f16e57;
+    }
+    &.red:hover{
+      background-color: #d35b46;
+    }
+}

@@ -1,0 +1,149 @@
+@import "variables.less";
+.m-btn {
+  .l-btn-text{
+    color:#000000;
+    min-width:40px;
+  }
+  .l-btn-left{
+    .l-btn-text{
+      margin-right: 32px;
+      margin-left: 18px;
+    }
+    .l-btn-icon{
+      width: @linkbutton-height;
+    }
+    .m-btn-line {
+      width: 30px;
+    }
+  }
+}
+.m-btn-downarrow,
+.s-btn-downarrow {
+  width: @linkbutton-height;
+  height: @linkbutton-height;
+  top: 0;
+  margin-top: 0;
+}
+.m-btn-plain-active,
+.s-btn-plain-active {
+  -moz-border-radius: 0; 
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+/*ie11加了兼容模式后,
+  内核成ie7
+  .menubutton-blue.l-btn.l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+  会选中 .l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+
+*/
+.l-btn.l-btn-plain.menubutton-blue{
+  border: 0;
+  padding: 0;
+  background-color:@menubutton-blue-bgcolor;
+  &:hover{
+    background-color:@menubutton-blue-bgcolor-hover;
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      color: #fff;
+      margin-left: 0;
+      padding-left:15px;
+    }
+    .l-btn-icon{
+      display: none;
+    }
+    .m-btn-downarrow{
+      background: url(images/arrow_down_white.png) center 8px no-repeat;
+    }
+  }
+}
+///不改原本之前的了 设计图上的蓝色的 在顶层有类 menubutton-blue
+  //菜单
+.menu.menubutton-blue{
+  border-radius: 0;
+  .menu-item{
+    background-color:@menubutton-blue-menu-item-bgcolor;
+    height: 30px;
+    border-bottom: 1px solid @menubutton-blue-border-bottom-color;
+    &:hover{
+      background-color:@menubutton-blue-menu-item-hover;
+    }
+    .menu-text{
+      color: #fff;
+      padding-left: 15px;
+      line-height: 30px;
+    }
+    .menu-icon{
+      display: none;
+    }
+  }
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    display: none;
+  }
+}
+//按钮
+.l-btn.l-btn-plain.menubutton-toolbar{
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  &:hover{
+    background-color:@menubutton-btn-hover-bgcolor;
+  }
+  &.m-btn-plain-active{
+    background-color:@menubutton-btn-plain-active-bgcolor;
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      line-height: 22px;
+      padding: 0 36px 0 31px;
+      margin: 0 0 0 ;
+      color: #666666;
+    }
+    .l-btn-icon{
+      left:10px;
+      height: 22px;
+      width: 16px;
+    }
+    .m-btn-downarrow{
+      height: 16px;
+      width:  16px;
+      background: url('@{images-path}/panel_tools_1.png') -32px -16px no-repeat;
+      top:3px;
+      right: 10px;
+    }
+  }
+}
+//toolbar 
+  //菜单
+.menu.menubutton-toolbar{
+  .menu-item{
+    background-color: #fff;
+    height: 35px; /*26px*/
+    border: 0px; 
+    &:hover{
+      background-color:@menubutton-menu-item-bgcolor;
+    }
+    .menu-text{
+      color: #000;
+      padding-left: 15px; /*10px*/
+      line-height: 35px; /*26px*/
+    }
+    .menu-icon{
+      display: none;
+    }
+  }
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    margin-left: 10px;
+  }
+}
+

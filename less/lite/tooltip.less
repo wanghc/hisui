@@ -1,0 +1,49 @@
+@import "variables.less";
+.tooltip {
+  
+  padding: 5px @tooltipPadding 5px;
+  
+}
+.tooltip-content {
+  font-size: @tooltipFontSize;
+}
+.tooltip-arrow-outer,
+.tooltip-arrow {
+  
+  _border-color: @tooltipDefalutBorderColor;
+  _filter: chroma(color=@tooltipDefalutBorderColor);
+}
+.tooltip {
+  background-color: @tooltipDefalutBgColor;
+  border-color: @tooltipDefalutBorderColor;
+  border-width: @tooltipDefalutBorderWidth;
+  color: @tooltipFontColor;
+}
+.tooltip-right .tooltip-arrow-outer {
+  border-right-color: @tooltipDefalutBorderColor;
+  border-width: 0;
+}
+.tooltip-right .tooltip-arrow {
+  border-right-color: @tooltipArrowColor;
+}
+.tooltip-left .tooltip-arrow-outer {
+  border-left-color: @tooltipDefalutBorderColor;
+  border-width: 0;
+}
+.tooltip-left .tooltip-arrow {
+  border-left-color: @tooltipArrowColor;
+}
+.tooltip-top .tooltip-arrow-outer {
+  border-top-color: @tooltipDefalutBorderColor;
+  border-width: 0;
+}
+.tooltip-top .tooltip-arrow {
+  border-top-color: @tooltipArrowColor;
+}
+.tooltip-bottom .tooltip-arrow-outer {
+  border-bottom-color: @tooltipDefalutBorderColor;
+  border-width: 0;
+}
+.tooltip-bottom .tooltip-arrow {
+  border-bottom-color: @tooltipArrowColor;
+}

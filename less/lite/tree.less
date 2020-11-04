@@ -1,0 +1,157 @@
+
+.tree-node{
+  //height: 28px;
+  height: auto;
+}
+.tree-title {
+  font-size: 14px;
+  //height: 28px;
+  height: auto;
+  line-height: 28px;
+}
+/*增加.tree>li>ul解决 大节点也变色背景问题 */
+.tree>li>ul .tree-node-selected .tree-title{
+  background: #ffe48d;
+}
+.tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
+  margin-top:5px;
+}
+/*线条*/
+.tree-lines{
+  .tree-collapsed,.tree-expanded,.tree-indent {
+    margin-top: 0;
+    height: auto;
+    height: 28px;
+  }
+  .tree-line {
+    background: url('@{images-path}/tree_lines.png') no-repeat -113px center;
+  }
+  .tree-join {
+    background: url('@{images-path}/tree_lines.png') no-repeat -129px center;
+  }
+  .tree-expanded{
+    background: url('@{images-path}/tree_lines.png') no-repeat -81px center;
+  }
+  .tree-collapsed {
+    background: url('@{images-path}/tree_lines.png') no-repeat -65px center;
+  }
+  .tree-root-first{
+    .tree-expanded{
+      background: url('@{images-path}/tree_lines.png') no-repeat -200px center;
+    }
+    .tree-collapsed {
+      background: url('@{images-path}/tree_lines.png') no-repeat -184px center;
+    }
+  }
+  .tree-node-last,.tree-root-one{
+    .tree-expanded{
+      background: url('@{images-path}/tree_lines.png') no-repeat -17px center;
+    }
+    .tree-collapsed {
+      background: url('@{images-path}/tree_lines.png') no-repeat -1px center;
+    }
+  }
+  .tree-joinbottom {
+    background: url('@{images-path}/tree_lines.png') no-repeat -97px center;
+  }
+
+  /*高度不固定时  tree-folder tree-file tree-folder-open   都加了一个类 tree-icon-lines*/
+  .tree-folder.tree-folder-open.tree-icon-lines{
+    margin: 0;
+    background: url('@{images-path}/tree_lines.png') no-repeat -151px center;
+  }
+  .tree-folder.tree-icon-lines,
+  .tree-file.tree-icon-lines{
+    margin: 0;
+    background: url('@{images-path}/tree_lines.png') no-repeat -167px center;
+  }
+
+}
+
+
+/*将树的样式整成手风琴 加个类accordiontree 尝试下*/
+.accordiontree.tree{
+  border: 1px solid @tree-border-color;
+  
+  &>li{
+    &>.tree-node{
+      height: 36px;
+      line-height: 36px;
+      background-color:@tree-node-bgcolor;
+      position: relative;
+      .tree-hit{
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        top:50%;
+        margin-top:-7px;
+        right: 10px;
+        &.tree-collapsed{
+          background: url(images/accordion_arrows2.png) -19px center no-repeat;
+        }
+        &.tree-expanded{
+          background: url(images/accordion_arrows2.png) -2px center no-repeat;
+        }
+        &:hover{
+          background-color: rgba(255, 255, 255, 0.3);
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          border-radius: 2px;
+        }
+      }
+      .tree-icon{
+        display: none;
+      }
+      .tree-title{
+        height: 36px;
+        line-height: 36px;
+        color: #fff;
+        padding: 0 34px 0 15px;
+      }
+      &.tree-node-hover{
+        background-color:@tree-node-hover-bgcolor;
+      }
+    }
+    &>ul{
+      background-color: #f9f9f9;
+      .tree-node{
+        padding-left: 5px;
+        height: 36px;
+        line-height: 36px;
+        position: relative;
+        &.tree-node-hover{
+          background-color: #e3e3e3;
+        }
+        &.tree-node-selected{
+          background-color: #e3e3e3;
+          .tree-title{ /*2019-12-12 解决选中行变黄底色问题 */
+            background: #e3e3e3;
+          }
+        }
+        .tree-hit{
+          width: 15px;
+          height: 18px;
+          margin-top: 9px;
+        }
+        .tree-indent{
+          width: 15px;
+        }
+        &>span.tree-indent:first-child{   //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+          width: 0px;
+        }
+        .tree-icon{
+          display: none;
+        }
+        .tree-title{
+          height: 36px;
+          line-height: 36px;
+          color: #000;
+          padding: 0 10px 0 0;
+        }
+      }
+    }
+  }
+}
+.treegrid-tr-tree-div-hidden{
+  display:none;
+}

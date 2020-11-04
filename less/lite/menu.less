@@ -1,0 +1,73 @@
+.menu {
+  padding:0;
+  background-color: #fff;
+  border-color:@menu-border-color;
+  color: #000;
+  border: none;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.menu-item {
+  height: 36px;
+  border:none;
+}
+.menu-text {
+  height: 35px;
+  line-height: 35px;
+  float: left;
+  padding-left: 41px ; /*28px;*/
+}
+.menu-icon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 15px;
+  top: 50%;
+  margin-top: -8px;
+}
+.menu-line {
+  display: none;
+}
+.menu-active {
+  border-radius:0;
+}
+.menu-text,
+.menu-text span {
+  font-size: 14px;
+}
+/*.menu-shadow {
+  position: absolute;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  background: #ccc;
+  -moz-box-shadow: 2px 2px 3px #cccccc;
+  -webkit-box-shadow: 2px 2px 3px #cccccc;
+  box-shadow: 2px 2px 3px #cccccc;
+  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2, MakeShadow=false, ShadowOpacity=0.2); 
+}*/
+.menu-shadow {
+  -moz-box-shadow: @menu-shadow;
+  -webkit-box-shadow: @menu-shadow;
+  box-shadow: @menu-shadow;
+}
+
+
+
+.menu-active {
+  border-color:@menu-active-border-color;
+  color: #000000;
+  background:@menu-active-bgcolor;
+}
+.menu-rightarrow {
+  background: url(images/calendar_arrows.png) no-repeat -32px center;
+}
+.menu-rightarrow {
+  right: 15px;
+}
+.menu-no-icon{
+  .menu-text {
+    padding-left: 15px;
+  }
+}

@@ -1,0 +1,120 @@
+@import "variables.less";
+.layout-expand-body-title>div{
+  text-align: center;
+  font-weight: bold;
+  color:#000000;
+}
+/*改为只控制其子级panel-header 的panel-tool  不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel>.panel-header,.layout-expand>.panel-header{ 
+  .panel-tool a:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+  }
+} 
+
+.panel.layout-panel,
+.panel.layout-expand{
+  box-shadow: none;
+  &.layout-split-north {
+    border-bottom: 5px solid @layout-split-border;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  }
+  &.layout-split-south {
+    border-top: 5px solid @layout-split-border;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  }
+  &.layout-split-east {
+    border-left: 5px solid @layout-split-border;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  }
+  &.layout-split-west {
+    border-right: 5px solid @layout-split-border;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  }
+
+  /**/
+  .layout-button-up {
+    background: url(images/layout_arrows_black.png) -16px -16px no-repeat;
+  }
+  .layout-button-left {
+    background: url(images/layout_arrows_black.png) no-repeat;
+  }
+  .layout-button-right {
+    background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
+  }
+  .layout-button-down {
+    background: url(images/layout_arrows_black.png) -16px 0px no-repeat;
+  }
+}
+
+
+
+
+
+//默认的layout expand
+.layout-expand {
+  background-color:@panel-header-bgcolor;
+}
+.layout-expand-over {
+  background-color: @panel-header-bgcolor;
+}
+/*改为只控制其子级panel-header 的panel-tool 不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel>.panel-header.panel-header-gray,
+.layout-expand>.panel-header.panel-header-gray{  
+  .layout-button-up {
+    background: url(images/layout_arrows_black.png) -16px -16px no-repeat;
+  }
+  .layout-button-left {
+    background: url(images/layout_arrows_black.png) no-repeat;
+  }
+  .layout-button-right {
+    background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
+  }
+  .layout-button-down {
+    background: url(images/layout_arrows_black.png) -16px 0px no-repeat;
+  }
+  .panel-tool a:hover{
+    background-color: #e5e5e5;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+  }
+}
+.layout-expand{
+  .panel-header.panel-header-gray{
+    background-color: #f9f9fa;
+
+  }
+  .panel-header-gray+.panel-body{
+    background-color: #f9f9fa;
+    .layout-expand-body-title>div{
+      text-align: center;
+      font-weight: bold;
+      color:#000;
+    }
+  }
+}
+
+.layout>.panel.layout-panel>.panel-header{
+    padding: 4px 5px;
+}
+
+/*
+.layout-expand {
+  background-color: #F7F7F7;
+}
+.layout-expand-over {
+  background-color: #F9F9FF;
+}
+.layout-expand {
+  .panel-body{
+    border-color:#cccccc;
+  }
+  .panel-header{
+    border-color: #cccccc;
+  }
+}
+
+}*/

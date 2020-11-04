@@ -77,6 +77,28 @@ gulp.task('min-css',function(){
     .pipe(gulp.dest("dist/css"));
 })
 
+
+gulp.task('min-css-lite2def',function(){
+    var lessPath = "less/lite/";
+    var arr =[].concat(lessArr,['beautyscroll']) ;
+    arr.forEach(function(value,index){
+        arr[index]=lessPath+value+".less";
+    })
+    return gulp.src(arr)
+    .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
+    .pipe(gulp.dest("less/lite"))            //保存到less目录
+    .pipe(less())                       //less编译
+    .pipe(rename('hisui.css'))
+    .pipe(gulp.dest("dist/css"))
+    .pipe(minifycss())                  //压缩css
+    .pipe(rename('hisui.min.css'))      //命名
+    .pipe(gulp.dest("dist/css"));
+})
+
+
+gulp.task('lite2def',['min-js','min-css-lite2def']);
+
+
 //dist -> default
 // dist目录下的js全修改成min, 不留源代码
 gulp.task('default',['min-js','min-css']);

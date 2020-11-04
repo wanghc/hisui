@@ -1,0 +1,73 @@
+@import "variables.less";
+.window,
+.window-shadow {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.window {
+  
+  padding: 0px;
+  border-bottom: 0px;
+  
+  background-color:@window-body-bgcolor;
+  .window-header{
+    border-color: @window-header-bgcolor;
+    background:  @window-header-bgcolor; /*transparent;*/
+    padding: 6px 1px 6px 1px;
+    .panel-icon {
+      left: 20px; /*1px*/
+      display: none;
+    }
+    .panel-tool {
+      right: 12px; /*1px*/
+      .panel-tool-close,.panel-tool-max,.panel-tool-restore,.panel-tool-min,.panel-tool-collapse,.panel-tool-expand {
+        background-image: url(images/panel_tools_1.png);
+      }
+      .panel-tool-close{
+        background-image: url(images/panel_tools_1.png);
+        &:hover{
+          background-image: url(images/panel_tools_2.png);
+        }
+      }
+    }
+    .panel-with-icon {
+      padding-left: 10px; /*18px*/
+    }
+  }
+  .window-body{
+    border-width: 1px;
+    border-style: solid;
+    border-top-width: 0px;
+  }
+  .window-body-noheader{
+    border-top-width: 1px;
+  }
+
+}
+
+.window-shadow {
+  background: #666666;
+  /// 2 2 3 #ccc
+  -moz-box-shadow: @window-shadow;
+  -webkit-box-shadow: @window-shadow;
+  box-shadow: @window-shadow;
+  
+}
+.window,.window .window-body {
+  border:none;
+}
+.window-proxy {
+  border: 1px dashed #cccccc;
+}
+.window-proxy-mask,.window-mask {
+  background: #000000;
+}
+.window .window-header .panel-icon, .window .window-header .panel-tool {
+  top: 50%;
+  margin-top: -8px;
+}
+.window.panel>.panel-header>.panel-title{
+  color: @window-title-color;
+  font-weight: bold;
+}

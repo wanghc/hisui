@@ -1,0 +1,58 @@
+@import "variables.less";
+input[type=text],textarea{
+  border-color: @input-border-color;
+  width:@textbox-width;/*websys.css-width:130px;*/
+}
+input.textbox,textarea.textbox,select.textbox,.textareabox-text {
+  width:@textbox-width; /*--2018-11-22*/
+  margin:0;
+  padding:0 0 0 @validatebox-padding-left;
+  box-sizing:content-box;
+  border-radius: 2px;
+  border: @validatebox-border-width @validatebox-border-type @input-border-color;
+  color:@validatebox-font-color;
+  font-size:@validatebox-font-size;
+  &:active{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  &:hover{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  &:focus{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+}
+input.textbox{
+  line-height:@validatebox-height;
+  height:@validatebox-height;
+}
+.textbox:disabled,
+.textareabox-text:disabled,
+.validatebox-text:disabled,
+.searchbox-text:disabled,
+textarea:disabled, input:not([type]):disabled, input[type="text"]:disabled {
+  background-color: @input-disabled-bgcolor;
+  border-color: @input-disabled-border-color;
+  color: @input-disabled-color;
+}
+.spinner .textbox{
+  width:151px;
+}
+.triggerbox .textbox{
+  width:151px;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color:@input-placeholder-color;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color:@input-placeholder-color;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color:@input-placeholder-color;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color:@input-placeholder-color;
+}
