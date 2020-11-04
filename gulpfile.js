@@ -60,7 +60,8 @@ gulp.task('min-js',function(){
     .pipe(rename(prefix+'.min.js'))
     .pipe(gulp.dest('dist/js'));
 });
-gulp.task('min-css',function(){
+// 20201104 min-css前生成lite样式css
+gulp.task('min-css',['min-css-lite2def'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -88,15 +89,15 @@ gulp.task('min-css-lite2def',function(){
     .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
     .pipe(gulp.dest("less/lite"))            //保存到less目录
     .pipe(less())                       //less编译
-    .pipe(rename('hisui.css'))
+    .pipe(rename('hisui.lite.css'))
     .pipe(gulp.dest("dist/css"))
     .pipe(minifycss())                  //压缩css
-    .pipe(rename('hisui.min.css'))      //命名
+    .pipe(rename('hisui.lite.min.css'))      //命名
     .pipe(gulp.dest("dist/css"));
 })
 
 
-gulp.task('lite2def',['min-js','min-css-lite2def']);
+// gulp.task('lite2def',['min-js','min-css-lite2def']);
 
 
 //dist -> default
