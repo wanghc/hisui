@@ -551,7 +551,55 @@
     border-color: @tabs-header-gray-border;
   }
 }
+.tabs-header-left {
+  .tabs {
+    //background-color: @body-bgcolor;
+    li {
+      //border-top: 4px @body-bgcolor solid;
+      //height: 36px;
+      height: auto;
+      //border-top-left-radius: 10px;
+      //border-bottom-left-radius: 10px;
+      /*&.tabs-selected{
+        overflow: hidden;
+        a.tabs-inner{
+          background-color: @tabs-header-select-top-color;
+          color:#ffffff;
+        }
+      }*/
+      a.tabs-inner{
+        white-space: normal;
+        line-height: 20px!important;
+      }
+      
+    }
+  }
+}
 
+.tabs-header-right {
+  .tabs {
+    //background-color: @body-bgcolor;
+    li {
+      //border-top: 4px @body-bgcolor solid;
+      //height: 36px;
+      height: auto;
+      //border-top-left-radius: 10px;
+      //border-bottom-left-radius: 10px;
+      /*&.tabs-selected{
+        overflow: hidden;
+        a.tabs-inner{
+          background-color: @tabs-header-select-top-color;
+          color:#ffffff;
+        }
+      }*/
+      a.tabs-inner{
+        white-space: normal;
+        line-height: 20px!important;
+      }
+      
+    }
+  }
+}
 /*--tabs-gray--*/
 .tabs-container.tabs-gray {
   .tabs-header-bottom {
@@ -620,7 +668,7 @@
       }
     }
   }
-
+/*
   .tabs-header-left {
 
     //灰色 左侧
@@ -664,7 +712,7 @@
       }
     }
   }
-
+*/
   .tabs-header-right {
 
     //灰色 右侧
