@@ -9,7 +9,6 @@
 .l-btn-icon {
   width: @linkbutton-height;
   height: @linkbutton-height;
-  line-height: @linkbutton-height;
   position: absolute;
   background-color: @linkbutton-left-bgcolor;
   top:0px;
@@ -17,6 +16,16 @@
   @top-4IE8:-4px;
   @x9:\9;
   /*top: @top-4IE8@x9;*/ /*实测ie8不需要*/
+	font-family: "Font Awesome 5 Free";
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+	font-weight: 900;
+	font-size: 16px;
+	line-height: normal;
 }
 .l-btn-left.l-btn-icon-left{    /*在style加width时，图标偏移*/
   width: 100%;

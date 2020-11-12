@@ -4,11 +4,11 @@
 	<meta charset="UTF-8">
     <title>HIS UI</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/font-awesome.all.min.css">
-    <link rel="stylesheet" type="text/css" href="../demo.css">
-    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <link rel="stylesheet" type="text/css" href="../../api/demo.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script src="../../api/jquery-tag-demo.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
-    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
     <style>
         h3{
             margin-top: 30px;
@@ -118,6 +118,58 @@
             </span>
         </div>
     </div>
+    <h3>七.HISUI表格工具栏图标</h3>
+    <span>使用时请使用fa-样式名。为兼容一些常用图标名称,以icon-开头重写了以下图标名,<code>这仅仅是语法糖少用</code></span>
+    <div>
+        <div class="use-prettyprint lang-html"> 
+            <div id="custtb" >
+                <!--在此处使用 fa-search 与 icon-search 效果一样-->
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'fa-search',plain:true">fa-search</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">icon-search</a>
+                <!-- icon-*都能从fa-*中找到对应图标，为了兼容老HISUI中常用图标增加以下icon-* -->
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-back',plain:true">icon-back</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-redo',plain:true">icon-redo</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-add',plain:true">icon-add</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-edit',plain:true">icon-edit</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-save',plain:true">icon-save</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-reload',plain:true">icon-reload</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-remove',plain:true">icon-remove</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-print',plain:true">icon-print</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cut',plain:true">icon-cut</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-copy',plain:true">icon-copy</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-paste',plain:true">icon-paste</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-back',plain:true">icon-back撤销</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-redo',plain:true">icon-redo</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-font',plain:true">icon-font</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-bold',plain:true">icon-bold</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-incline',plain:true">icon-incline</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-underline',plain:true">icon-underline</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-strikethrough',plain:true">icon-strikethrough</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-subscript',plain:true">icon-subscript</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-superscript',plain:true">icon-superscript</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-center',plain:true">icon-align-center</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-justify',plain:true">icon-align-justify</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-left',plain:true">icon-align-left</a>        
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-right',plain:true">icon-align-right</a>
+                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-paper',plain:true">icon-paper</a>
+            </div>
+            <table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:230px" 
+            data-options="iconCls:'icon-paper',toolbar:'#custtb'">   
+                <thead>   
+                    <tr>   
+                        <th data-options="field:'code'">编码</th>   
+                        <th data-options="field:'name'">名称</th>   
+                        <th data-options="field:'price'">价格</th>
+                        <th data-options="field:'num'">数量</th>
+                        <th data-options="field:'note'">描述</th>
+                        <th data-options="field:'re',editor:{type:'datebox'}">日期</th>
+                    </tr>   
+                </thead>   
+                <tbody>    
+                </tbody>   
+            </table>
+        </div>
+    </div>
     <h3>常用图标(fas,far)</h3>
     <ul id="fasiconsList" class="iconsList"></ul>
     <h3>商标图标(fab)</h3>
@@ -128,7 +180,7 @@
         ,"baby","baby-carriage","backspace","backward","bacon","bacteria","bacterium","bahai","balance-scale","balance-scale-left","balance-scale-right","ban","band-aid","barcode","bars","baseball-ball","basketball-ball","bath","battery-empty","battery-full","battery-half","battery-quarter","battery-three-quarters","bed","beer","bell","bell","bell-slash","bell-slash","bezier-curve","bible","bicycle","biking","binoculars","biohazard","birthday-cake","blender","blender-phone","blind","blog","bold","bolt","bomb","bone","bong","book","book-dead","book-medical","book-open","book-reader","bookmark","bookmark","border-all","border-none","border-style","bowling-ball","box","box-open","box-tissue","boxes","braille","brain","bread-slice","briefcase","briefcase-medical","broadcast-tower","broom","brush","bug","building","building","bullhorn","bullseye","burn","bus","bus-alt","business-time"
         ,"calculator","calendar","calendar","calendar-alt","calendar-alt","calendar-check","calendar-check","calendar-day","calendar-minus","calendar-minus","calendar-plus","calendar-plus","calendar-times","calendar-times","calendar-week","camera","camera-retro","campground","canadian-maple-leaf","candy-cane","cannabis","capsules","car","car-alt","car-battery","car-crash","car-side","caravan","caret-down","caret-left","caret-right","caret-square-down","caret-square-down","caret-square-left","caret-square-left","caret-square-right","caret-square-right","caret-square-up","caret-square-up","caret-up","carrot","cart-arrow-down","cart-plus","cash-register","cat","certificate","chair","chalkboard","chalkboard-teacher","charging-station","chart-area","chart-bar","chart-bar","chart-line","chart-pie","check","check-circle","check-circle","check-double","check-square","check-square","cheese","chess","chess-bishop","chess-board","chess-king","chess-knight","chess-pawn","chess-queen","chess-rook","chevron-circle-down","chevron-circle-left","chevron-circle-right","chevron-circle-up","chevron-down","chevron-left","chevron-right","chevron-up","child","church","circle","circle","circle-notch","city","clinic-medical","clipboard","clipboard","clipboard-check","clipboard-list","clock","clock","clone","clone","closed-captioning","closed-captioning","cloud","cloud-download-alt","cloud-meatball","cloud-moon","cloud-moon-rain","cloud-rain","cloud-showers-heavy","cloud-sun","cloud-sun-rain","cloud-upload-alt","cocktail","code","code-branch","coffee","cog","cogs","coins","columns","comment","comment","comment-alt","comment-alt","comment-dollar","comment-dots","comment-dots","comment-medical","comment-slash","comments","comments","comments-dollar","compact-disc","compass","compass","compress","compress-alt","compress-arrows-alt","concierge-bell","cookie","cookie-bite","copy","copyright","couch","credit-card","crop","crop-alt","cross","crosshairs","crow","crown","crutch","cube","cubes","cut"
         ,"database","deaf","democrat","desktop","dharmachakra","diagnoses","dice","dice-d20","dice-d6","dice-five","dice-four","dice-one","dice-six","dice-three","dice-two","digital-tachograph","directions","disease","divide","dizzy","dizzy","dna","dog","dollar-sign","dolly","dolly-flatbed","donate","door-closed","door-open","dot-circle","dot-circle","dove","download","drafting-compass","dragon","draw-polygon","drum","drum-steelpan","drumstick-bite","dumbbell","dumpster","dumpster-fire","dungeon"
-        ,"edit","egg","eject","ellipsis-h","ellipsis-v","envelope","envelope-open","envelope-open-text","envelope-square","equals","eraser","ethernet","euro-sign","exchange-alt","exclamation","exclamation-circle","exclamation-triangle","expand","expand-alt","expand-arrows-alt","external-link-alt","external-link-square-alt","eye","eye","eye-dropper","eye-slash","eye-slash"
+        ,"edit","egg","eject","ellipsis-h","ellipsis-v","envelope","envelope-open","envelope-open-text","envelope-square","equals","eraser","ethernet","euro-sign","exchange-alt","exclamation","exclamation-circle","exclamation-triangle","expand","expand-alt","expand-arrows-alt","external-link-alt","external-link-square-alt","eye","eye-dropper","eye-slash",
         ,"fan","fast-backward","fast-forward","faucet","fax","feather","feather-alt","female","fighter-jet","file","file","file-alt","file-alt","file-archive","file-archive","file-audio","file-audio","file-code","file-code","file-contract","file-csv","file-download","file-excel","file-excel","file-export","file-image","file-image","file-import","file-invoice","file-invoice-dollar","file-medical","file-medical-alt","file-pdf","file-pdf","file-powerpoint","file-powerpoint","file-prescription","file-signature","file-upload","file-video","file-video","file-word","file-word","fill","fill-drip","film","filter","fingerprint","fire","fire-alt","fire-extinguisher","first-aid","fish","fist-raised","flag","flag-checkered","flag-usa","flask","flushed","flushed","folder","folder-minus","folder-open","folder-plus","font","football-ball","forward","frog","frown","frown","frown-open","frown-open","funnel-dollar","futbol","futbol"
         ,"gamepad","gas-pump","gavel","gem","gem","genderless","ghost","gift","gifts","glass-cheers","glass-martini","glass-martini-alt","glass-whiskey","glasses","globe","globe-africa","globe-americas","globe-asia","globe-europe","golf-ball","gopuram","graduation-cap","greater-than","greater-than-equal","grimace","grin","grin-alt","grin-beam","grin-beam-sweat","grin-hearts","grin-squint","grin-squint-tears","grin-stars","grin-tears","grin-tongue","grin-tongue-squint","grin-tongue-wink","grin-wink","grip-horizontal","grip-lines","grip-lines-vertical","grip-vertical","guitar","h-square","hamburger","hammer","hamsa","hand-holding","hand-holding-heart","hand-holding-medical","hand-holding-usd","hand-holding-water","hand-lizard","hand-middle-finger"
         ,"hand-paper","hand-peace","hand-point-down","hand-point-left","hand-point-right"
