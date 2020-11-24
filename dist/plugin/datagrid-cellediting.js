@@ -92,6 +92,11 @@
 				return;
 			}
 			/*end*/
+			/*20201124 yhz*/
+			if (ed.type == 'combobox' && (!e.name || e.name != "droplistEnter")) {
+			    return;
+			}
+			/*end*/
 			if (endCellEdit(this, true))
 			{
 				var opts = $(this).datagrid('options');
@@ -104,7 +109,7 @@
 	}
 
 	function escHandler(e){
-		/*2020-09-23 esc¼üÍË³ö*/
+		/*2020-09-23 escï¿½ï¿½ï¿½Ë³ï¿½*/
 		var dg = $(this);
 		var cell = dg.datagrid('cell');
 		if (!cell){return;}
