@@ -33,8 +33,8 @@ if ($.fn.timespinner){
 }
 if ($.fn.numberbox){
 	$.fn.numberbox.defaults.missingMessage = '该输入项为必输项';
-	$.fn.numberbox.defaults.rules.min.message = '输入的值必须大于{0}';
-	$.fn.numberbox.defaults.rules.max.message = '输入的值必须小于{0}';
+	$.fn.numberbox.defaults.rules.min.message = '输入的值必须大于或等于{0}';
+	$.fn.numberbox.defaults.rules.max.message = '输入的值必须小于或等于{0}';
 }
 if ($.fn.combobox){
 	$.fn.combobox.defaults.selectAllBtnDesc = '全选/取消全选';
@@ -56,8 +56,8 @@ if ($.fn.datebox){
 	$.fn.datebox.defaults.okText = '确定';
 	$.fn.datebox.defaults.missingMessage = '该输入项为必输项';
 	$.fn.datebox.defaults.rules.datebox.message = '非法日期,正确格式:2019-01-06';
-	$.fn.datebox.defaults.rules.minMaxDate.messageMax = '日期必须小于{1}';
-	$.fn.datebox.defaults.rules.minMaxDate.messageMin = '日期必须大于{0}';
+	$.fn.datebox.defaults.rules.minMaxDate.messageMax = '日期必须小于或等于{1}';
+	$.fn.datebox.defaults.rules.minMaxDate.messageMin = '日期必须大于或等于{0}';
 	$.fn.datebox.defaults.rules.minMaxDate.message = '非有效日期范围';
 	$.fn.datebox.defaults.rules.minMaxDate.messageDef = '有效日期范围：{0} 至 {1}';
 	$.fn.datebox.defaults.formatter = function(date){
@@ -158,8 +158,8 @@ if ($.fn.datetimeboxq){
 }
 if ($.fn.timeboxq){
 	$.fn.timeboxq.defaults.rules.timeboxq.message = "非法时间。正确输入如：14:10，1410 或 n+15表示15分钟后";
-	$.fn.timeboxq.defaults.rules.minMaxTime.messageMax = '时间必须小于{1}';
-	$.fn.timeboxq.defaults.rules.minMaxTime.messageMin = '时间必须大于{0}';
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageMax = '时间必须小于或等于{1}';
+	$.fn.timeboxq.defaults.rules.minMaxTime.messageMin = '时间必须大于或等于{0}';
 	$.fn.timeboxq.defaults.rules.minMaxTime.message = '非有效时间范围';
 	$.fn.timeboxq.defaults.rules.minMaxTime.messageDef = '有效时间范围：{0} 至 {1}';
 }
