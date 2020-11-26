@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-11-26 ##
+* 表格及列增加lineHeight属性 :sparkles:
+
 ## 2020-11-25 ##
 * 修改验证框提示小于->小于或等于,大于->大于或等于
 * 表格fontSize功能导致列头对不齐问题修复 :bug:

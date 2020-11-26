@@ -55,7 +55,7 @@
             add: function (_50b) {
                 var ss = ["<style type=\"text/css\" hisui=\"true\">"];
                 for (var i = 0; i < _50b.length; i++) {
-                    _50a.cache[_50b[i][0]] = { width: _50b[i][1] ,fontSize:_50b[i][2]};
+                    _50a.cache[_50b[i][0]] = { width: _50b[i][1] ,fontSize:_50b[i][2],lineHeight:_50b[i][3]};
                 }
                 var _50c = 0;
                 for (var s in _50a.cache) {
@@ -66,9 +66,14 @@
                 // 分开做二次循环,把与width无关的放到后面,不然会影响getRule(index)方法获得的样式类，set重写Width不正确，导致列头对不齐 2020-11-25
                 for (var s in _50a.cache) {
                     var item = _50a.cache[s];
+                    var mycls = "";
                     if (item.fontSize) { //不影响表格标题头 2020-11-13 wanghc
-                        ss.push('.datagrid-row '+s+"{font-size:"+item.fontSize+";line-height:"+item.fontSize+";}");
+                        mycls += "font-size:"+item.fontSize+";";
                     }
+                    if (item.lineHeight){
+                        mycls += 'line-height:'+item.lineHeight+";";   
+                    }
+                    if (mycls!="") ss.push('.datagrid-row '+s+"{"+mycls+"}");    
                 }
                 ss.push("</style>");
                 $(ss.join("\n")).appendTo(cc);
@@ -476,7 +481,7 @@
             for (var i = 0; i < _556.length; i++) {
                 var col = _getColumnOption(_546, _556[i]);
                 if (col && !col.checkbox) {
-                    _555.push(["." + col.cellClass, col.boxWidth ? col.boxWidth + "px" : "auto",(col.fontSize?col.fontSize+"px":(opts.fontSize?opts.fontSize+"px":""))]);
+                    _555.push(["." + col.cellClass, col.boxWidth ? col.boxWidth + "px" : "auto",(col.fontSize?col.fontSize+"px":(opts.fontSize?opts.fontSize+"px":"")),(col.lineHeight?col.lineHeight+"px":(opts.lineHeight?opts.lineHeight+"px":""))]);
                 }
             }
             _547.ss.add(_555);
@@ -2825,6 +2830,7 @@
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
         fontSize:"",/*表格内容字体大小 fontSize:9 20200824*/
+        lineHeight:"",/*列的行高 20201126*/
         titleNoWrap:true, /*表头不折行 20200824*/
         className:"",
         queryName:"",
