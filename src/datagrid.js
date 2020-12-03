@@ -1967,6 +1967,89 @@
             }, resize: function (_660, _661) {
                 $(_660)._outerWidth(_661);
             }
+        },  celltextarea: {
+            init: function (_65a, options) {
+                var h = '<textarea class="celltextarea textbox datagrid-editable-input" style="position:absolute;';
+                if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
+                    if (options.height) h +='height:'+options.height+";";
+                    if (options.width) h +='width:'+options.width+";";
+                }
+                var _65c = $(h+'"></textarea></div>').appendTo(_65a);
+                if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
+                    _65c.validatebox(options);
+                }
+                return _65c;
+            }, destroy: function (jObjTarget) {
+                jObjTarget.off(".celltextarea");
+                jObjTarget.closest('.datagrid-body').off('.celltextarea')
+                if (jObjTarget.length>0 && jObjTarget.hasClass('validatebox-text')) jObjTarget.validatebox("destroy");
+            }, getValue: function (_65d) {
+                return $(_65d).val();
+            }, setValue: function (_65e, _65f) {
+                $(_65e).val(_65f);
+            }, resize: function (_660, _661) {
+                $(_660)._outerWidth(_661);
+                /**
+                 * 文本框根据输入内容自适应高度
+                 * @param   {HTMLElement}   输入框元素
+                 * @param   {Number}    设置光标与输入框保持的距离(默认0)
+                 * @param   {Number}    设置最大高度(可选)
+                 */
+                var autoTextarea = function(elem, extra, maxHeight) {
+                    extra = extra || 0;
+                    var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
+                    isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera'),
+                    getStyle = elem.currentStyle ? function(name) {
+                        var val = elem.currentStyle[name];
+                        if (name === 'height' && val.search(/px/i) !== 1) {
+                            var rect = elem.getBoundingClientRect();
+                            return rect.bottom - rect.top -
+                                parseFloat(getStyle('paddingTop')) -
+                                parseFloat(getStyle('paddingBottom')) + 'px';
+                        };
+                        return val;
+                    } : function(name) {
+                        return getComputedStyle(elem, null)[name];
+                    },
+                    minHeight = parseFloat(getStyle('height'));
+                    elem.style.resize = 'none';
+                    var change = function() {
+                        var height,
+                            padding = 0,
+                            style = elem.style;
+                        if (elem._length === elem.value.length) return;
+                        elem._length = elem.value.length;
+                        if (!isFirefox && !isOpera) {
+                            padding = parseInt(getStyle('paddingTop')) + parseInt(getStyle('paddingBottom'));
+                        };
+                        elem.style.height = minHeight + 'px';
+                        if (elem.scrollHeight > minHeight) {
+                            if (maxHeight && elem.scrollHeight > maxHeight) {
+                                height = maxHeight - padding;
+                                style.overflowY = 'auto';
+                            } else {
+                                height = elem.scrollHeight - padding;
+                                style.overflowY = 'hidden';
+                            };
+                            style.height = height + extra + 'px';
+                            elem.currHeight = parseInt(style.height);
+                        };
+                        autoLeftTop($(elem));
+                    };
+                    $(elem).on('propertychange.celltextarea', change);
+                    $(elem).on('input.celltextarea', change);
+                    $(elem).on('focus.celltextarea', change);
+                    change();
+                };
+                var autoLeftTop = function(textinputJobj){
+                    var os = textinputJobj.parent().offset();/*16px是行高一半*/
+                    if (os){os.top -=16;textinputJobj.offset(os);}
+                }
+                _660.closest('.datagrid-body').on('scroll.celltextarea',function(){
+                    autoLeftTop(_660);
+                })
+                autoTextarea(_660[0]);
+            }
         }, icheckbox:{ /*新的icheckbox*/
             init: function (_662, _663) { 
                 var opt = $.extend({on:'on',off:'off'},_663);

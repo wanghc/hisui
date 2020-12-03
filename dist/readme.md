@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-12-03
 * 增加图标icon-eye-deepgrade
+* 单元格编辑增加celltextarea类型 :sparkles:
 
 ## 2020-11-26 ##
 * 表格及列增加lineHeight属性 :sparkles:

@@ -109,7 +109,7 @@
 	}
 
 	function escHandler(e){
-		/*2020-09-23 esc���˳�*/
+		/*2020-09-23 esc*/
 		var dg = $(this);
 		var cell = dg.datagrid('cell');
 		if (!cell){return;}

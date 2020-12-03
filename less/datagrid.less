@@ -138,6 +138,14 @@
     background-color: #f4faff;
   }
 }
+/*celltextarea覆盖datagrid-header问题*/
+.datagrid-body{
+  position: relative;
+}
+/*celltextarea编辑时背景*/
+.datagrid-body .datagrid-editable-input.celltextarea{
+  background-color: #ffe48d;
+}
 td.datagrid-value-changed {
   background: url('images/dirty.gif') no-repeat 0 0;
 }
