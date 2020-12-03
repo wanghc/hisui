@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-12-03
+* 增加图标icon-eye-deepgrade
+
 ## 2020-11-26 ##
 * 表格及列增加lineHeight属性 :sparkles:
 

@@ -509,6 +509,7 @@ var iconDictionary={
     "icon-person-seal":"专家评审",
     "icon-out":"出院",
     "icon-change":"转科，转院",
+    "icon-eye-deepgrade":"眼房深度公式",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
@@ -622,5 +623,6 @@ var iconDictionary={
     "icon-big-blue-white-circle":"单选",
     "icon-big-three-blue-bar":"段落",
     "icon-big-blue-frame-ok":"多选",
-    "icon-big-white-p-red":"输入中，编写中，操作中，辅助输入"
+    "icon-big-white-p-red":"输入中，编写中，操作中，辅助输入",
+    "icon-big-eye-deepgrade":"眼房深度公式"
 };
