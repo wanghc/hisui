@@ -16,12 +16,53 @@
     <span>基础查询框（searchbox）用于查询。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div class="hisui-panel" title="查询" style="width:400px;padding:10px" data-options="headerCls:'panel-header-gray',iconCls:'icon-search'">
+		<div class="hisui-panel" title="查询" style="width:600px;padding:10px" data-options="headerCls:'panel-header-gray',iconCls:'icon-search'">
 			<table cellpadding="5">
 				<tr>
 					<td>查询框</td>
 					<td>
 						<input id="ss" class="hisui-searchbox"/>
+					</td>
+					<td>
+						<!--修复combo影响searchbox点击问题 2020-12-04,点击document影响combo下拉层,导致input-focus多次出现.需求号：1649597 1649581-->
+						<select id="cbox" style="width:200px;">
+						</select>
+						<script type="text/javascript">
+						$(function(){
+	var cbox = $HUI.combobox("#cbox",{
+		valueField:'id',
+		textField:'text',
+		multiple:true,
+		rowStyle:'checkbox',
+		selectOnNavigation:false,
+		allSelectButtonPosition:'top',
+		onAllSelectClick:function(e){
+			var arr = $(this).combobox("getValues");
+			console.log(arr);
+		},
+		data:[
+			{id:'css',text:'CSS语言'}
+			,{id:'html',text:'HTML语言'}
+			,{id:'c',text:'C语言'}
+			,{id:'cplus',text:'C++语言'}
+			,{id:'java',text:'JAVA语言'}
+			,{id:'cache',text:'M语言'}
+			,{id:'sql',text:'结构化查询语言'}
+		],
+		editable:false,
+		panelHeight:"200" //"auto"
+		//onChange:function(newval,oldval){
+			/*$(this).combobox("panel").find('input').prop('checked',false);
+			for (var i=0;i<newval.length;i++){
+				$(this).combobox("panel").find('#r'+newval[i]).prop('checked',true);
+			}*/
+		//}
+	});
+	cbox.setValue("");
+	return ;
+  });
+  </script>
+						</script>
 					</td>
 				</tr>	
 			</table>

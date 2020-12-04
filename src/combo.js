@@ -98,12 +98,14 @@
                 _854(p);
                 return;
             }
-            $("body>div.combo-p>div.combo-panel:visible").panel("close");
             /*2020-04-14 
             解决在IE下，多选下拉框中选择元素后，再点击到普通INPUT框中，不能回删除值的问题，发现Backspace时，target为body而不是Input
             需求号：1228151
             */
-            $(e.target).focus();
+            if ($("body>div.combo-p>div.combo-panel:visible").length>0){   //增加判断条件,不然会导致：连续点击input框会多次进入focus事件，影响searchbox的赋值
+                $(e.target).focus();
+                $("body>div.combo-p>div.combo-panel:visible").panel("close");
+            }
         });
         _85b.unbind(".combo");
         _85c.unbind(".combo");
