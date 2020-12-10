@@ -217,7 +217,11 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		opts.emptyMsg = '';	// erase it to prevent from displaying it
 		state.data.firstRows = state.data.rows;
 		state.data.rows = [];
-
+		/* 
+		修改悬浮celledit功能时,datagrid-body的position:relative,导致计算位置有误,重新设置回initial
+		当datagrid.scroll一条数据时会重显问题
+		*/
+		dc.body2.css('position','initial');
 		dc.body1.add(dc.body2).empty();
 		this.rows = [];	// the rows to be rendered
 		this.r1 = this.r2 = [];	// the first part and last part of rows
@@ -689,9 +693,9 @@ $.extend($.fn.datagrid.methods, {
 		if (opts.view.type == 'scrollview'){
 			var data = jq.datagrid('getData');
 			if (typeof row == 'object'){
-				var index = $.easyui.indexOfArray(data.firstRows, row);
+				var index = $.hisui.indexOfArray(data.firstRows, row);
 			} else {
-				var index = $.easyui.indexOfArray(data.firstRows, opts.idField, row);
+				var index = $.hisui.indexOfArray(data.firstRows, opts.idField, row);
 			}
 			if (index >= 0){
 				return index;
@@ -861,7 +865,7 @@ $.extend($.fn.datagrid.methods, {
 	}
 });
 
-$.easyui =$.extend($.easyui||{}, {
+$.hisuiui =$.extend($.hisui||{}, {
     indexOfArray: function(a, o, id) {
         for (var i = 0,
         _1 = a.length; i < _1; i++) {

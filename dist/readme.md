@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-12-10
+* 修改gridcelledit导致gridscroll一行记录时一直重绘问题 :bug:
+
 ## 2020-12-04
 * 解决searchbox输入值后再次点击会清空问题 :bug:
 
