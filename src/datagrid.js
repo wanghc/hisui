@@ -1974,7 +1974,7 @@
                     if (options.height) h +='height:'+options.height+";";
                     if (options.width) h +='width:'+options.width+";";
                 }
-                var _65c = $(h+'"></textarea></div>').appendTo(_65a);
+                var _65c = $(h+'"></textarea>').appendTo(_65a);
                 if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
                     _65c.validatebox(options);
                 }
