@@ -38,16 +38,18 @@
 $(function(){
     /**实现通过源HTML生成示例。用法：class="use-prettyprint" prettyprintfor="#mypp"  by wanghc 2020-1-21*/
     $(".use-prettyprint").each(function(i,item){
-        let h = item.innerHTML ;
+        var h = item.innerHTML ;
         h = h.replace(/^(\n+)|(\n+)$|(\t+)$/g,'');
-        let arr = h.split('\n');
-        let tabNum = arr[0].search(/[^\t]/);
+        var arr = h.split('\n');
+        var tabNum = arr[0].search(/[^\t]/);
         if (tabNum<1) tabNum=1;
-        let reg = new RegExp("^\t{1,"+tabNum+"}")
-        h = arr.map(function(x){
-            return x.replace(reg,"")
+        var reg = new RegExp("^\t{1,"+tabNum+"}")
+        var newArr = [];
+        $.each(arr,function(i,x){
+            return newArr[i] = x.replace(reg,"")
         })
-        .join('\n')
+        
+        h = newArr.join('\n')
         .replace(/<|>/g,function(w){
             return (w=="<")?"&lt;":(w==">"?"&gt;":'');
         });
@@ -90,23 +92,25 @@ $(function(){
         
         var width = _pp_.parent().width();
         var jobj = $("<div class='toggle-prettyprint' style='padding-left:"+(width/2)+"px;width:120px;'>"+_desc_+"</div>").insertBefore($(this));
-        jobj.click(function(){
-            var _t = $(this);
-            if (window.onResizePretty){onResizePretty();}
-            if(_t.text().indexOf("+显示")>-1){
-                prettyPrint();
-                _t.find("+pre.prettyprint").show();
-                _t.text("-隐藏"+_t.text().slice(3));
-            }else{
-                _t.find("+pre.prettyprint").hide();
-                _t.text("+显示"+_t.text().slice(3))
-            }
-        });
+        
     });
+    $("body").on("click",".toggle-prettyprint",function(){
+        var _t = $(this);
+        if (window.onResizePretty){onResizePretty();}
+        if(_t.text().indexOf("+显示")>-1){
+            prettyPrint();
+            _t.find("+pre.prettyprint").show();
+            _t.text("-隐藏"+_t.text().slice(3));
+        }else{
+            _t.find("+pre.prettyprint").hide();
+            _t.text("+显示"+_t.text().slice(3))
+        }
+    });
+    
     try{
-        $("prettyprint").html('<link rel="stylesheet" type="text/css" href="../../api/prettify.css">\
-        <script type="text/javascript" src="../../api/prettify.js"></script>\
-        ');
+        if ($("prettyprint").length>0){
+            $('body').append('<link rel="stylesheet" type="text/css" href="../../api/prettify.css"><script type="text/javascript" src="../../api/prettify.js"></script>');
+        }
     }catch(e){}
     $(".plain-anchor").linkbutton({
         plain:true
