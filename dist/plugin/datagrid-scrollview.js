@@ -221,7 +221,7 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		修改悬浮celledit功能时,datagrid-body的position:relative,导致计算位置有误,重新设置回initial
 		当datagrid.scroll一条数据时会重显问题
 		*/
-		dc.body2.css('position','initial');
+		dc.body2.css('position','static'); //'initial');
 		dc.body1.add(dc.body2).empty();
 		this.rows = [];	// the rows to be rendered
 		this.r1 = this.r2 = [];	// the first part and last part of rows
