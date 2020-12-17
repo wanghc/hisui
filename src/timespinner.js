@@ -16,10 +16,19 @@
                     _4e9 = s.text.length;
                 }
             }
+            delete this.selectionStartPersistent;
             opts.highlight = calHighlightTypeByPosi(_4e9);
             _4ec(_4e8);
         }).bind("blur.timespinner", function () {
+            /*
+            2020-12-17 医为浏览器下，当触发输入框blur后会把selectionStart设置为文本最后，但IE，chrome会记录当前光标所在位置。
+            导致选中时间，点击up图标时，会跳到秒上，选中秒。
+            在selectionStart值变化前记录值到selectStartPersistent中，点击文本框或在文本框中按键时再删除selectStartPersistent（即还原selectStartPersistent）。
+            */
+            this.selectionStartPersistent = this.selectionStart;
             _4eb(_4e8);
+        }).bind('keydown.timespinner',function(){
+            delete this.selectionStartPersistent;
         });
     };
     /** 通过光标位置计算出,应该高亮的类型0,1,2*/
@@ -43,7 +52,7 @@
         var _4ee = 0, end = 0;
         if (_4ed.selectionStart!=null){
             // 光标在哪,哪就高亮
-            opts.highlight = calHighlightTypeByPosi(_4ed.selectionStart);
+            opts.highlight = calHighlightTypeByPosi(_4ed.selectionStartPersistent!==undefined?_4ed.selectionStartPersistent:_4ed.selectionStart);
         }
         if (opts.highlight == 0) {
             _4ee = 0;
@@ -159,7 +168,8 @@
             vv[opts.highlight] += opts.increment;
         }
         //赋值前记录光标位置
-        var orgStart = _4fa.selectionStart;
+        var orgStart = _4fa.selectionStartPersistent!==undefined?_4fa.selectionStartPersistent:_4fa.selectionStart
+        
         //val方法赋值会修改selectionStart为最右边
         $(_4fa).val(vv.join(opts.separator));
         _4eb(_4fa);

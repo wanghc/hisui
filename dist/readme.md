@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-12-17 
+* 医为浏览器下`timespinner`组件按钮调整小时问题:bug:
+
 ## 2020-12-16
 * 修改IE下gridcelledit导致gridscroll一行记录时一直重绘问题 :bug:
 
