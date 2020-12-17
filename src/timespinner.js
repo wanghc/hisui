@@ -5,20 +5,20 @@
         $(_4e8).spinner(opts);
         $(_4e8).unbind(".timespinner");
         $(_4e8).bind("click.timespinner", function () {
-            var _4e9 = 0;
+            var sstart = 0;
             if (this.selectionStart != null) {
-                _4e9 = this.selectionStart;
+                sstart = this.selectionStart;
             } else {
                 if (this.createTextRange) {
                     var _4ea = _4e8.createTextRange();
                     var s = document.selection.createRange();
                     s.setEndPoint("StartToStart", _4ea);
-                    _4e9 = s.text.length;
+                    sstart = s.text.length;
                 }
             }
             delete this.selectionStartPersistent;
-            opts.highlight = calHighlightTypeByPosi(_4e9);
-            _4ec(_4e8);
+            opts.highlight = calHighlightTypeByPosi(sstart);
+            _highlight(_4e8);
         }).bind("blur.timespinner", function () {
             /*
             2020-12-17 医为浏览器下，当触发输入框blur后会把selectionStart设置为文本最后，但IE，chrome会记录当前光标所在位置。
@@ -26,7 +26,7 @@
             在selectionStart值变化前记录值到selectStartPersistent中，点击文本框或在文本框中按键时再删除selectStartPersistent（即还原selectStartPersistent）。
             */
             this.selectionStartPersistent = this.selectionStart;
-            _4eb(_4e8);
+            _enter(_4e8);
         }).bind('keydown.timespinner',function(){
             delete this.selectionStartPersistent;
         });
@@ -47,35 +47,35 @@
         return 0;
     }
     //highlight光标所在区
-    function _4ec(_4ed) {
+    function _highlight(_4ed) {
         var opts = $.data(_4ed, "timespinner").options;
-        var _4ee = 0, end = 0;
+        var st = 0, end = 0;
         if (_4ed.selectionStart!=null){
             // 光标在哪,哪就高亮
             opts.highlight = calHighlightTypeByPosi(_4ed.selectionStartPersistent!==undefined?_4ed.selectionStartPersistent:_4ed.selectionStart);
         }
         if (opts.highlight == 0) {
-            _4ee = 0;
+            st = 0;
             end = 2;
         } else {
             if (opts.highlight == 1) {
-                _4ee = 3;
+                st = 3;
                 end = 5;
             } else {
                 if (opts.highlight == 2) {
-                    _4ee = 6;
+                    st = 6;
                     end = 8;
                 }
             }
         }
         if (_4ed.selectionStart != null) {
-            _4ed.setSelectionRange(_4ee, end);
+            _4ed.setSelectionRange(st, end);
         } else {
             if (_4ed.createTextRange) {
                 var _4ef = _4ed.createTextRange();
                 _4ef.collapse();
                 _4ef.moveEnd("character", end);
-                _4ef.moveStart("character", _4ee);
+                _4ef.moveStart("character", st);
                 _4ef.select();
             }
         }
@@ -124,7 +124,7 @@
         }
         return new Date(1900, 0, 0, vv[0], vv[1], vv[2]);
     };
-    function _4eb(_4f3) {
+    function _enter(_4f3) {
         var opts = $.data(_4f3, "timespinner").options;
         var _4f4 = $(_4f3).val();
         var time = _4f0(_4f3, _4f4);
@@ -152,7 +152,8 @@
             return (_4f8 < 10 ? "0" : "") + _4f8;
         };
     };
-    function _4f9(_4fa, down) {
+    /*拨动时针，分针，秒针*/
+    function _spin(_4fa, down) {
         var opts = $.data(_4fa, "timespinner").options;
         var val = $(_4fa).val();
         if (val == "") {
@@ -172,10 +173,10 @@
         
         //val方法赋值会修改selectionStart为最右边
         $(_4fa).val(vv.join(opts.separator));
-        _4eb(_4fa);
+        _enter(_4fa);
         // 赋值结束后,重置光标位置
         _4fa.selectionStart = orgStart;
-        _4ec(_4fa);
+        _highlight(_4fa);
     };
     $.fn.timespinner = function (_4fb, _4fc) {
         if (typeof _4fb == "string") {
@@ -204,7 +205,7 @@
         }, setValue: function (jq, _4ff) {
             return jq.each(function () {
                 $(this).val(_4ff);
-                _4eb(this);
+                _enter(this);
             });
         }, getHours: function (jq) {
             var opts = $.data(jq[0], "timespinner").options;
@@ -225,20 +226,20 @@
     };
     $.fn.timespinner.defaults = $.extend({}, $.fn.spinner.defaults, {
         separator: ":", showSeconds: false, highlight: 0, spin: function (down) {
-            _4f9(this, down);
+            _spin(this, down);
         },keyHandler: {
             up: function (e) {
                 e.preventDefault();
-                _4ec(this);  //highlight光标所在区
-                _4f9(this, false);
+                _highlight(this);  //highlight光标所在区
+                _spin(this, false);
                 return false;
             }, down: function (e) {
                 e.preventDefault();
-                _4ec(this); //highlight光标所在区
-                _4f9(this, true);
+                _highlight(this); //highlight光标所在区
+                _spin(this, true);
                 return false;
             }, enter: function (e) {
-                _4eb(this);
+                _enter(this);
             }
         }
     });
