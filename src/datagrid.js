@@ -2046,6 +2046,10 @@
                 };
                 var autoLeftTop = function(textinputJobj){
                     var os = textinputJobj.parent().offset();/*16px是行高一半*/
+                    var gcell = textinputJobj.closest('div.datagrid-cell');
+                    if (gcell.length>0 && gcell[0].style.whiteSpace==""){
+                        os.top-=7;  /*强制一行显示内容，nowrap:true时td有padding，但js又取不到。向上移8像素*/
+                    }
                     if (os){textinputJobj.offset(os);}
                 }
                 _660.closest('.datagrid-body').on('scroll.celltextarea',function(){
