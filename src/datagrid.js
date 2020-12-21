@@ -1969,16 +1969,18 @@
             }
         },  celltextarea: {
             init: function (_65a, options) {
+                $('<div></div>').appendTo(_65a);
                 var h = '<textarea class="celltextarea textbox datagrid-editable-input" style="position:absolute;';
                 if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
                     if (options.height) h +='height:'+options.height+";";
                     if (options.width) h +='width:'+options.width+";";
                 }
-                var _65c = $(h+'"></textarea>').appendTo(_65a);
+                var editor = $(h+'"></textarea>').appendTo(_65a);
                 if ("undefined"!=typeof options){  // 如果有配置项调用validatebox，处理required:true。需求见1339214
-                    _65c.validatebox(options);
+                    editor.validatebox(options);
                 }
-                return _65c;
+                /*getValue与setValue的入参是这个返回值*/
+                return editor;
             }, destroy: function (jObjTarget) {
                 jObjTarget.off(".celltextarea");
                 jObjTarget.closest('.datagrid-body').off('.celltextarea')
@@ -1987,6 +1989,7 @@
                 return $(_65d).val();
             }, setValue: function (_65e, _65f) {
                 $(_65e).val(_65f);
+                $(_65e).prev().text(_65f); //填充内容，保持nowarp:true时，行高不变
             }, resize: function (_660, _661) {
                 $(_660)._outerWidth(_661);
                 /**
@@ -2043,7 +2046,7 @@
                 };
                 var autoLeftTop = function(textinputJobj){
                     var os = textinputJobj.parent().offset();/*16px是行高一半*/
-                    if (os){os.top -=16;textinputJobj.offset(os);}
+                    if (os){textinputJobj.offset(os);}
                 }
                 _660.closest('.datagrid-body').on('scroll.celltextarea',function(){
                     autoLeftTop(_660);
