@@ -36,6 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2020-12-21
 * 单元格编辑celltextarea类型，编辑时不影响原行高度 :bug:
+* 单元格选行时，选中checkbox列。checkbox列不允许点击
+* 编辑单元格getChecked与getSelected方法实现
 
 ## 2020-12-17 
 * 医为浏览器下`timespinner`组件按钮调整小时问题:bug:

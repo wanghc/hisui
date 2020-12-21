@@ -318,7 +318,7 @@
 		});
 
 		var col = dg.datagrid('getColumnOption', param.field);
-		if (col.editor){
+		if (col && col.editor){
 			dg.datagrid('beginEdit', param.index);
 			var input = dg.datagrid('input', param);
 			if (input){
@@ -362,6 +362,16 @@
 		dc.body1.add(dc.body2).unbind('.cellediting').bind('click.cellediting', function(e){
 			var tr = $(e.target).closest('.datagrid-row');
 			if (tr.length && tr.parent().length){
+				var divcheck = $(e.target).closest('div.datagrid-cell-check', tr);
+				if (divcheck.length>0){ //编辑时只能单选，且不能点击checkbox,导致很多编辑问题				
+					dg.datagrid('uncheckAll')
+					var row = dg.datagrid('getSelected');
+					if (row.length>0){
+						var selInd = dg.datagrid('getRowIndex',row[0]);
+						dg.datagrid('checkRow',selInd);
+					}					
+					return ;
+				}
 				var td = $(e.target).closest('td[field]', tr);
 				if (td.length){
 					var index = parseInt(tr.attr('datagrid-row-index'));
@@ -407,6 +417,15 @@
 
 		opts.isRtl = dg.datagrid('getPanel').css('direction').toLowerCase()=='rtl';
 		opts.OldOnBeforeSelect = opts.onBeforeSelect;
+		$.fn.datagrid.methods.oldGetSelected = $.fn.datagrid.methods.getSelected;
+		$.fn.datagrid.methods.getSelected = function(targetJObj){
+			var rows = [];
+			var panel = targetJObj.datagrid('getPanel');
+			panel.find('td.datagrid-row-selected').closest('tr.datagrid-row').each(function(){
+				rows.push(opts.finder.getRow(targetJObj[0], $(this)));
+			});
+			return rows;
+		}
 		opts.onBeforeSelect = function(){
 			return false;
 		};
@@ -419,6 +438,7 @@
 		var panel = dg.datagrid('getPanel');
 		var opts = state.options;
 		opts.onBeforeSelect = opts.OldOnBeforeSelect || opts.onBeforeSelect;
+		$.fn.datagrid.methods.getSelected = $.fn.datagrid.methods.oldGetSelected;
 		panel.unbind('.cellediting').find('td.datagrid-row-selected').removeClass('datagrid-row-selected');
 		var dc = state.dc;
 		dc.body1.add(dc.body2).unbind('.cellediting');
@@ -428,6 +448,23 @@
 		var dg = $(target);
 		var opts = dg.datagrid('options');
 		var panel = dg.datagrid('getPanel');
+		var state = dg.data('datagrid');
+		var dc = state.dc;
+		dc.body1.add(dc.body2).unbind('.cellediting2').bind('click.cellediting2', function(e){
+			var tr = $(e.target).closest('.datagrid-row');
+			if (tr.length && tr.parent().length){
+				var divcheck = $(e.target).closest('div.datagrid-cell-check', tr);
+				if (divcheck.length>0){ //编辑时只能单选，且不能点击checkbox,导致很多编辑问题				
+					dg.datagrid('uncheckAll')
+					var row = dg.datagrid('getSelected');
+					if (row.length>0){
+						var selInd = dg.datagrid('getRowIndex',row[0]);
+						dg.datagrid('checkRow',selInd);
+					}					
+					return ;
+				}
+			}
+		});
 		panel.attr('tabindex',1).css('outline-style','none').unbind('.cellediting').bind('keydown.cellediting', function(e){
 			var h = opts.navHandler[e.keyCode];
 			if (h){
@@ -455,6 +492,10 @@
 		opts.oldOnClickCell = opts.onClickCell;
 		opts.oldOnDblClickCell = opts.onDblClickCell;
 		opts.onClickCell = function(index, field, value){
+			if(opts.singleSelect){
+				$(this).datagrid('uncheckAll')
+			}
+			$(this).datagrid('checkRow',index);
 			if (opts.clickToEdit){
 				/*2020-09-23*/
 				if (endCellEdit(this, true)){
@@ -485,6 +526,19 @@
 		opts.onBeforeSelect = function(){
 			return false;
 		};
+		opts.onCheck = function(index,row){
+			return false;
+		}
+		$.fn.datagrid.methods.oldGetSelected = $.fn.datagrid.methods.getSelected;
+		$.fn.datagrid.methods.getSelected = function(targetJObj){
+			var rows = [];
+			var panel = targetJObj.datagrid('getPanel');
+			panel.find('td.datagrid-row-selected').closest('tr.datagrid-row').each(function(){
+				rows.push(opts.finder.getRow(targetJObj[0], $(this)));
+			});
+			return rows;
+		}
+		
 		dg.datagrid('clearSelections')
 	}
 
@@ -495,6 +549,7 @@
 		opts.onClickCell = opts.oldOnClickCell || opts.onClickCell;
 		opts.onDblClickCell = opts.oldOnDblClickCell || opts.onDblClickCell;
 		opts.onBeforeSelect = opts.OldOnBeforeSelect || opts.onBeforeSelect;
+		$.fn.datagrid.methods.getSelected = $.fn.datagrid.methods.oldGetSelected;
 		panel.unbind('.cellediting').find('td.datagrid-row-selected').removeClass('datagrid-row-selected');
 		panel.panel('panel').unbind('.cellediting');
 	}
