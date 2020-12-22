@@ -455,13 +455,15 @@
 			if (tr.length && tr.parent().length){
 				var divcheck = $(e.target).closest('div.datagrid-cell-check', tr);
 				if (divcheck.length>0){ //编辑时只能单选，且不能点击checkbox,导致很多编辑问题				
-					dg.datagrid('uncheckAll')
-					var row = dg.datagrid('getSelected');
-					if (row.length>0){
-						var selInd = dg.datagrid('getRowIndex',row[0]);
-						dg.datagrid('checkRow',selInd);
-					}					
-					return ;
+					if (opts.singleSelect ) {
+						dg.datagrid('uncheckAll');
+						var row = dg.datagrid('getSelected');
+						if (row.length>0){
+							var selInd = dg.datagrid('getRowIndex',row[0]);
+							dg.datagrid('checkRow',selInd);
+						}					
+						return ;
+					}
 				}
 			}
 		});
