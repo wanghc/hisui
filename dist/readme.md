@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-12-28
+* 增加药品类图标
+
 ## 2020-12-21
 * 单元格编辑celltextarea类型，编辑时不影响原行高度 :bug:
 * 单元格选行时，选中checkbox列。checkbox列不允许点击
