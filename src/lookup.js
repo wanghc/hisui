@@ -91,15 +91,24 @@
         var _91c = $.data(target, "lookup");
         var opts = _91c.options;
         var grid = _91c.grid;
+        var panel = $(target).comboq("panel"); //state.panel;
         if (opts.isCombo && opts.enableNumberEvent){
             var key = e.keyCode;
-            if (key<=57 && key >=49){ // 1=49
-                //  第二个入参0表示第一行
-                grid.datagrid("selectRow", key-49);
-                return false;
-            }else if (key<=105 && key>=97) {  // 小键盘1=97
-                grid.datagrid("selectRow", key-97);
-                return false;
+            if (isSelfGrid(_91c)&& panel.is(":visible")){  //只有显示状态下才是选行,否则为查询
+                var curtotals = grid.datagrid('getRows');
+                if (curtotals && curtotals.length>0){
+                    var selRowNo = -1;
+                    if (key<=57 && key >=49){ // 1=49 中文输入法下key=229 ime-mode:disabled
+                        selRowNo = key-49;                        
+                    }else if (key<=105 && key>=97) {  // 小键盘1=97
+                        selRowNo = key-97;
+                    }
+                    if (selRowNo>-1 && curtotals.length>selRowNo){ 
+                        //  第二个入参0表示第一行
+                        grid.datagrid("selectRow", selRowNo);
+                        return false;
+                    }
+                }
             }
         }
         _91c.remainText = true;
