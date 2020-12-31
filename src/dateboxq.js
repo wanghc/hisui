@@ -3,6 +3,14 @@
 		var state = $.data(target, 'dateboxq');
 		var opts = state.options;
 		var _t = $(target);
+		if (opts.format){
+			opts.formatter = function(date){
+				var y = date.getFullYear();
+				var m = date.getMonth()+1;
+				var d = date.getDate();
+				return opts.format.replace('yyyy',y).replace('MM',m).replace("dd",d);
+			}
+		}
 		_t.comboq($.extend({},opts,{
 			onShowPanel:function(){
 				state.panel = $(target).comboq('panel');
@@ -183,6 +191,7 @@
 		onChange:function(newValue,oldValue){},
 		validType:{"datebox":(typeof dtformat=="undefined"?"":dtformat),"minMaxDate":[null,null]},
 		minDate:(typeof dtformat=="undefined"?null:(dtformat=="YMD"?'1841-01-01':null)),
-		maxDate:null
+		maxDate:null,
+		format:''  // yyyy-MM-dd dd/MM/yyyy yyyy年MM月dd日
 	});
 })(jQuery);

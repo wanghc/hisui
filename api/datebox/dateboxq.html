@@ -30,13 +30,41 @@
 					</td>
 				</tr>
 				<tr>
-					<td class='r-label'>生日</td>
+					<td class='r-label'>限定一周</td>
 					<td>
 						<input id="db" class="hisui-dateboxq textbox" data-options='onSelect:onSelect'/>
 					</td>
 					<td class='r-label'>
 						<a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期</a>
 						<a class="hisui-linkbutton" id="dbBtn">获取值</a>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>年月日中文格式</td>
+					<td>
+						<input id="self1db" class="hisui-dateboxq textbox" data-options='format:"yyyy年MM月dd日"'/>
+					</td>
+					<td class='r-label'>
+						<a class="hisui-linkbutton" id="self1dbBtn">获取值</a>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>年-月-日格式</td>
+					<td>
+						<input id="self3db" class="hisui-dateboxq textbox" data-options='format:"yyyy-MM-dd"'/>
+					</td>
+					<td class='r-label'>
+						<a class="hisui-linkbutton" id="self3dbSetBtn">设置值</a>
+						<a class="hisui-linkbutton" id="self3dbBtn">获取值</a>
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>日/月/年格式</td>
+					<td>
+						<input id="self4db" class="hisui-dateboxq textbox" data-options='format:"dd/MM/yyyy"'/>
+					</td>
+					<td class='r-label'>
+						<a class="hisui-linkbutton" id="self4dbBtn">获取值</a>
 					</td>
 				</tr>
 		</table>
@@ -69,6 +97,30 @@
 					var val = $("#db").dateboxq('getValue');
 					$.messager.alert( "提示",val);
 				});
+				$("#self1dbBtn").click(function(){
+					var val = $("#self1db").dateboxq('getValue');
+					$.messager.alert( "提示",val);
+				});
+				$("#self3dbBtn").click(function(){
+					var val = $("#self3db").dateboxq('getValue');
+					if (val){
+						//取到Date日期对象
+						var valDateObj = $("#self3db").dateboxq('options').parser(val);
+						console.log(valDateObj.getTime());
+					}
+					$.messager.alert( "提示",val);
+				});
+				$("#self3dbSetBtn").click(function(){
+					var date = new Date();
+					date.setDate(1);
+					var jobj = $("#self3db");
+					var dateText = jobj.dateboxq('options').formatter(date);
+					jobj.dateboxq('setValue',dateText);
+				});
+				$("#self4dbBtn").click(function(){
+					var val = $("#self4db").dateboxq('getValue');
+					$.messager.alert( "提示",val);
+				});
 			})
 		</script>
 	</div>
@@ -97,6 +149,12 @@
 		<td>可选最大日期。如:2019-11-25</td>
 		<td>默认null</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>format</td>
+		<td>日期格式(yyyy-MM-dd,dd/MM/yyyy,yyyy年MM月dd日)</td>
+		<td>''</td>
+		<td>默认空时走formatter,不为空时强制覆盖formatter方法，实现对应格式<code>2020-12-31</code></td>
 	</tr>
 	<tr>
 		<td>options</td>

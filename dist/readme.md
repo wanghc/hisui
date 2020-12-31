@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-12-31
+* `dateboxq`支持format属性配置日期格式
+
 ## 2020-12-30
 * 解决`lookup`数字查询与数字选行功能冲突问题
 
