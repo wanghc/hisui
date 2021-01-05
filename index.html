@@ -130,7 +130,8 @@
 		.x-newtip{font-size: 10px;position:  absolute;color:red;z-index:1000;}
 		.footer{
 			margin: 0 auto;
-    		width: 500px;
+    		width: 600px;
+			position: relative;
 		}
 	</style>
 </head>
@@ -238,8 +239,28 @@
 		</tr>
 		<tr>
 			<td>
+				<style>
+					.footer a.icon:before {
+						position: absolute;
+						left: 0;
+						top: 0;
+						content: '';
+						display: inline-block;
+						width: 20px;
+						height: 23px;
+						background: url(https://static.ws.126.net/163/f2e/www/index20170701/images/sprite_img20191120.png) no-repeat -459px -662px;
+					}
+					.footer .icon {
+						padding-left:20px;
+					}
+					.footer a{
+						display: block;
+						margin-top: 10px;
+					}
+				</style>
 				<div class="footer">
-					© 2018-2021 hisui.cn 版本所有 备案号：赣ICP备18000971号-1
+					<!-- target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602006299">赣公网安备号-->
+					<a target="_blank" href="http://beian.miit.gov.cn/">工业和信息化部备案管理系统网站 赣ICP备18000971号-1 © 2018-2021 hisui.cn 版本所有</a>
 				</div>
 			</td>
 		</tr>
