@@ -77,6 +77,7 @@
             _1cf.tip = tip;
             _1d0(_1ce);
         }
+        if (opts.tipWidth) tip.css('width',opts.tipWidth);
         tip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right").addClass("tooltip-" + opts.position);
         _1c8(_1ce);
         _1cf.showTimer = setTimeout(function () {
@@ -178,7 +179,7 @@
     };
     $.fn.tooltip.parseOptions = function (_1e0) {
         var t = $(_1e0);
-        var opts = $.extend({}, $.parser.parseOptions(_1e0, ["position", "showEvent", "hideEvent", "content", { deltaX: "number", deltaY: "number", showDelay: "number", hideDelay: "number" }]), { _title: t.attr("title") });
+        var opts = $.extend({}, $.parser.parseOptions(_1e0, ["position", "showEvent", "hideEvent", "content","tipWidth", { deltaX: "number", deltaY: "number", showDelay: "number", hideDelay: "number" }]), { _title: t.attr("title") });
         t.attr("title", "");
         if (!opts.content) {
             opts.content = opts._title;
@@ -186,6 +187,7 @@
         return opts;
     };
     $.fn.tooltip.defaults = {
+        tipWidth:undefined,
         position: "bottom", content: null, trackMouse: false, deltaX: 0, deltaY: 0, showEvent: "mouseenter", hideEvent: "mouseleave", showDelay: 200, hideDelay: 100, onShow: function (e) {
         }, onHide: function (e) {
         }, onUpdate: function (_1e1) {

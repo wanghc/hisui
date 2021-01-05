@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-01-05
+* `tooltip`支持tipWidth宽度配置 :sparkles:
+
 ## 2020-12-31
 * `dateboxq`支持format属性配置日期格式
 
