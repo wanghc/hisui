@@ -692,27 +692,35 @@
            colname = td.attr('field');
            if (colname && $.trim(td.text())!=""){
                var tmpdg = $.data(_55a, "datagrid");
-               var cm = tmpdg.options.columns;
+               var mycm = tmpdg.options.columns||[];
+               cm = mycm.concat(tmpdg.options.frozenColumns);
                for (var i=0;i<cm.length; i++){
                    for(var j=0;j<cm[i].length;j++){
                         if (cm[i][j].field==colname){
                             if (cm[i][j].showTip){
                                 var tipWidth = cm[i][j].tipWidth||350;
+                                var tipPosition = cm[i][j].tipPosition||"bottom";
+                                var tipTrackMouse = cm[i][j].tipTrackMouse||false;
                                 td.tooltip({
                                     content:td.text(),
-                                    onShow:function(e1){
-                                        /*2020-11-03 left不能少于10*/
+                                    position:tipPosition,
+                                    trackMouse:tipTrackMouse,
+                                    tipWidth:tipWidth
+                                    /*onShow:function(e1){
+                                        //2020-11-03 left不能少于10
                                         var l = e1.pageX-(250/2);
                                         if (l<10) l=10;
                                         $(this).tooltip("tip").css({
                                             width:tipWidth,top:e1.pageY+20,left:l
                                         });
-                                    }
+                                    }*/
                                 }).tooltip("show",e);
                             }
                         }
                    }
                }
+               
+
            }
            /** end */
             var tr = $(e.target).closest("tr.datagrid-row");
