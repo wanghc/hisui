@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-01-06
+* `datagrid-body`定义还原成默认
+
 ## 2020-01-05
 * `tooltip`支持tipWidth宽度配置 :sparkles:
 * `datagrid`列定义增加`tipPosition`,`tipTrackMouse` :sparkles:
