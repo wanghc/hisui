@@ -1,4 +1,4 @@
-[HISUI]: https://hisui.cn/tool/gen/hisui/download "下载最新的HISUI库"
+[HISUI]: http://bbs.hisui.cn/hisui.zip.php "下载最新的HISUI库"
 # 介绍
 `HISUI`是一款前端组件类库。
 提供`linkbutton`,`linkmenu`,`combo`,`datagrid`,`treegrid`,`popover`,`window`,`lookup`,`panel`,`layout`,`accordion`,`tab`等组件功能。
