@@ -25,41 +25,7 @@
 	<h2>数据网格</h2>
 	<h3>说明:</h3>
     <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
-	<h3>如：默认表格(hisui-datagrid)</h3>
-	<!--<table id="dg11" class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" 
-	data-options="rownumbers:true,headerCls:'panel-header-gray',pagination:true">
-		<thead>   
-			<tr>   
-				<th data-options="field:'code',width:20">编码</th>   
-				<th data-options="field:'name',width:20">姓名</th>   
-				<th data-options="field:'price',width:20">科室</th>
-				<th data-options="field:'num',width:20">诊断</th>
-				<th data-options="field:'note',width:20">代码</th>
-				<th data-options="field:'re'">原因</th>   
-				<th data-options="field:'code1',width:20">编码</th>   
-				<th data-options="field:'name1',width:20">姓名</th>   
-				<th data-options="field:'price1',width:20">科室</th>
-				<th data-options="field:'num1',width:20">诊断</th>
-				<th data-options="field:'note1',width:20">代码</th>
-				<th data-options="field:'re1'">原因</th> 
-				<th data-options="field:'code2',width:20">编码</th>   
-				<th data-options="field:'name2',width:20">姓名</th>   
-				<th data-options="field:'price2',width:20">科室</th>
-				<th data-options="field:'num2',width:20">诊断</th>
-				<th data-options="field:'note2',width:20">代码</th>
-				<th data-options="field:'re2'">原因</th> 
-				<th data-options="field:'code3',width:20">编码</th>   
-				<th data-options="field:'name3',width:20">姓名</th>   
-				<th data-options="field:'price3',width:20">科室</th>
-				<th data-options="field:'num3',width:20">诊断</th>
-				<th data-options="field:'note3',width:20">代码</th>
-				<th data-options="field:'re3'">原因</th> 
-			</tr>   
-		</thead>
-	</table>
-	<a class="hisui-linkbutton" href="#" onclick="loadData();">load</a>
-	<a class="hisui-linkbutton" href="#" onclick="clearData();">clear</a>
-	-->
+	<h3>如：默认表格(hisui-datagrid)</h3>	
 	<div class="demo-exp-code entry-content">
 		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fixRowNumber:true,rownumbers:true,headerCls:'panel-header-gray',iconCls:'icon-paper',toolbar: [],fitColumns:true,singleSelect:true,pagination:true">
 			<thead>   
@@ -567,22 +533,72 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			})		
 		</script>
 	</div>
+	
+	<!--测试加载本地数据,翻页条显示问题，需求号：1715492
+		<h3>九、表格加载本地数据</h3>
+	<table id="dg11" class="hisui-datagrid" title="科室列表" style="width:600px;height:300px" 
+	data-options="rownumbers:true,headerCls:'panel-header-gray',pagination:true">
+		<thead>   
+			<tr>   
+				<th data-options="field:'no',width:120">编码</th>   
+				<th data-options="field:'code',width:120">代码</th>   
+				<th data-options="field:'desc',width:120">科室</th>
+			</tr>   
+		</thead>
+	</table>
+	<a class="hisui-linkbutton" href="#" onclick="loadData();">load</a>
+	<a class="hisui-linkbutton" href="#" onclick="clearData();">clear</a>
 	<script type="text/javascript">
 	function loadData(){
 		var rows = [];
-			for(var i=1; i<=2; i++){
-				var amount = Math.floor(Math.random()*1000);
-				var price = Math.floor(Math.random()*1000);
+			for(var i=1; i<=45; i++){
 				rows.push({
-					code: 'NO '+i
+					no:'No'+i,
+					code: 'Code '+i,
+					desc:'内科'+i
 				});
 			}
-			$("#dg11").datagrid('loadData', rows);
+			$("#dg11").datagrid({loadFilter:function(data){
+				if (typeof data.length == 'number' && typeof data.splice == 'function') {
+					data = {
+						total: data.length,
+						rows: data
+					}
+				}
+				var dg = $(this);
+				var opts = dg.datagrid('options');
+				var pager = dg.datagrid('getPager');				
+				if (!data.originalRows) {
+					data.originalRows = data.rows;
+				}				
+				if (!opts.pagination)
+					return data;
+				pager.pagination({
+					onSelectPage: function (pageNum, pageSize) {
+						opts.pageNumber = pageNum;
+						opts.pageSize = pageSize;
+						pager.pagination('refresh', {
+							pageNumber: pageNum,
+							pageSize: pageSize
+						});
+						dg.datagrid('loadData', data);
+					}
+				});				
+				if (data.originalRows.length<=opts.pageSize) opts.pageNumber=1;  
+				if ((data.originalRows.length>opts.pageSize)&&(data.originalRows.length<=((opts.pageNumber-1)*opts.pageSize))) {
+					opts.pageNumber = Math.ceil(data.originalRows.length/opts.pageSize);
+				}
+				var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+				var end = start + parseInt(opts.pageSize);
+				data.rows = (data.originalRows.slice(start, end));
+				return data;
+				}
+			}).datagrid('loadData', rows);
 	}
 	function clearData(){
 		$("#dg11").datagrid('loadData',[]);
 	}
-	</script>
+	</script>-->
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>
