@@ -368,7 +368,10 @@
                 }
             }
             _54d.pagination({
-                total:0 ,// (opts.pageNumber * opts.pageSize),  //cryze 2020-05-22 分页条初始total改为0 在datagrid为lazy或者其它情况一开始没加载数据时显示不正确
+                // 翻页到第2页然后再运行$('#id').datagrid({loadFilter:pagerFilter}).datagrid('loadData', rs)
+                // 会进入初始化方法,此时opts.pageNumber=2,如果total:0与真实total不一致
+                //  total:0,
+                total:opts.pageNumber==1?0:(opts.pageNumber * opts.pageSize),  //cryze 2020-05-22 分页条初始total改为0 在datagrid为lazy或者其它情况一开始没加载数据时显示不正确
                 pageNumber: opts.pageNumber, 
                 showRefresh: opts.showRefresh,  // wanghc 2018-1-29
                 showPageList:opts.showPageList, // wanghc 2018-1-29

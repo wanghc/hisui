@@ -1,4 +1,4 @@
-[HISUI]: http://bbs.hisui.cn/hisui.zip.php "下载最新的HISUI库"
+[HISUI]: http://bbs.hisui.cn "下载最新的HISUI库"
 # 介绍
 `HISUI`是一款前端组件类库。
 提供`linkbutton`,`linkmenu`,`combo`,`datagrid`,`treegrid`,`popover`,`window`,`lookup`,`panel`,`layout`,`accordion`,`tab`等组件功能。
@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2020-01-12
+* 解决`datagrid`多次调用datagrid({})方法导致翻页条显示页码错误问题 :bug:
 ## 2020-01-06
 * `datagrid-body`定义还原成默认 :bug:
 
