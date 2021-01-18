@@ -34,8 +34,12 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-01-18
+* 合并护理修改判断:bug:
+
 ## 2020-01-12
 * 解决`datagrid`多次调用datagrid({})方法导致翻页条显示页码错误问题 :bug:
+
 ## 2020-01-06
 * `datagrid-body`定义还原成默认 :bug:
 

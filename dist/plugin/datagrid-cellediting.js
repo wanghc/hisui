@@ -92,8 +92,8 @@
 				return;
 			}
 			/*end*/
-			/*20201124 yhz*/
-			if (ed.type == 'combobox' && (!e.name || e.name != "droplistEnter")) {
+			/*20201124 yhz*//*2021-01-18 yzz*/
+			if (!e.target.id) {
 			    return;
 			}
 			/*end*/
@@ -116,7 +116,7 @@
 		var input = dg.datagrid('input', cell);
 		if (input){
 			var ed = dg.datagrid('getEditor', cell);
-			if (ed.type == 'combobox' && $(input).combobox('panel').is(":visible")){
+			if (ed.type == 'combobox'){  /*2021-01-18 yzz*/
 				return;
 			}
 		}
