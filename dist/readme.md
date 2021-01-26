@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2021-01-26
+* `combobox`某行数据超长后，鼠标悬浮时背景色不完整问题修复 :sparkles:
+
 ## 2021-01-18
 * 合并护理修改判断:bug:
 

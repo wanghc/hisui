@@ -167,6 +167,41 @@
         var selected = $(target).combobox("getValues");
         var dd = [];
         var group = undefined;
+        var maxLengthTextFiled = "01234567890123456789",textMaxLength=0;
+        function fucCheckLength(strTemp){
+            var i,sum;
+            sum=0;
+            for(i=0;i<strTemp.length;i++)
+            {
+                if ((strTemp.charCodeAt(i)>=0) && (strTemp.charCodeAt(i)<=255))
+                sum=sum+1;
+                else
+                sum=sum+2;
+            }
+            return sum;
+        }
+        strFontWidth = function(str,font) {
+            var f = font || '14px Microsoft Yahei',
+            o = $('<div>' + str + '</div>')
+                .css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': f})
+                .appendTo($('body')),
+            w = o.width();
+            o.remove();
+            return w;
+        }
+        for(var i = 0; i < data.length; i++){
+            var row = data[i];
+            var s = row[opts.textField];
+            //超过10个字时宽度才可能超过panel
+            if (fucCheckLength(maxLengthTextFiled)<fucCheckLength(s)) {
+                maxLengthTextFiled = s;
+                textMaxLength = strFontWidth(maxLengthTextFiled);
+            }
+        }
+        var myItemStyle="";
+        if (textMaxLength>$(target).combo("textbox").width()){
+            myItemStyle = 'style="width:'+(parseInt(textMaxLength)+1)+'px;"';
+        }
         for (var i = 0; i < data.length; i++) {
             var row = data[i];
             var v = row[opts.valueField] + "";
@@ -184,7 +219,7 @@
                 group = undefined;
             }
             var cls = "combobox-item" + (row.disabled ? " combobox-item-disabled" : "") + (g ? " combobox-gitem" : "");
-            dd.push("<div id=\"" + (state.itemIdPrefix + "_" + i) + "\" class=\"" + cls + "\">");
+            dd.push("<div id=\"" + (state.itemIdPrefix + "_" + i) + "\" "+myItemStyle+" class=\"" + cls + "\">");
             dd.push(opts.formatter ? opts.formatter.call(target, row) : s);
             dd.push("</div>");
             if (row["selected"] && $.inArray(v, selected) == -1) {

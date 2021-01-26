@@ -71,6 +71,7 @@ $(function(){
 			,{id:'cplus',text:'C++语言'},{id:'java',text:'JAVA语言'},{id:'cache',text:'M语言'},{id:'sql',text:'结构化查询语言'}
 		]
 	});
+	cbox.setValues([]);
 	$("#cboxbtn").click(function(){
 		console.log(cbox.getValues());
 		//cbox.setValues([]);
@@ -119,7 +120,7 @@ $(function(){
 			}*/
 		//}
 	});
-	cbox.setValue("");
+	cbox.setValues([]);
 	$("#cboxbtn").click(function(){
 		console.log(cbox.getValues());
 		//cbox.setValues([]);
