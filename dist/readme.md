@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-01-28
+* `dateboxq`配置format后,月/日小于10时前面补0 :bug:
+
 ## 2021-01-27
 * `dateboxq`取支持标签`format`属性定义 :bug:
 
