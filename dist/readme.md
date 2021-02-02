@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-02-02
+* 当form中包含`hisui-checkbox`时,调用`form('reset')`报错处理 :bug:
 ## 2021-01-28
 * `dateboxq`配置format后,月/日小于10时前面补0 :bug:
 * `messager.prompt`界面输入框样式修改 :lipstick:
