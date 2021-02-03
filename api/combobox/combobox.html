@@ -84,6 +84,7 @@ $(function(){
 });</pre>
 	</div>
 	<script type="text/javascript">
+	var $URL = "rtcb";
 	function selectHandler(rec){
 
 		console.log({onSelect:rec});
@@ -293,32 +294,34 @@ $(function(){
 </script>
 <h3>五、远程数据</h3>
 <div class="demo-exp-code entry-content">
-  <select id="rtCB" style="width:200px;"></select>
-  <pre class="prettyprint lang-js hide"><code></code></pre>
+	<select id="rtCB" style="width:200px;"></select>
+	<script type="text/javascript" class="use-prettyprint">
+	$(function(){
+		$("#rtCB").combobox({
+			valueField:'id', textField:'text',panelHeight:"auto",
+			mode:'remote',
+			url:$URL+"?ClassName=ClassName&QueryName=QueryName&ResultSetType=array"
+		});
+	});
+	</script>
 </div>
-<script type="text/javascript">
-$(function(){
-	Mock.mock("rtcb",function(param){
-		if (param.body){
-			var b = param.body;
-			if (b=="q=w"){
-				return [{id:"w1",text:"wang1"},{id:"w2",text:"wang2"}];
-			}
-			else if (b=="q=h"){
-				return [{id:"h1",text:"hang1"},{id:"h2",text:"hang2"}];
-			}
-			else if (b=="q=z"){
-				return [{id:"1",text:"z1"},{id:"2",text:"z2"}];
+<script type="text/javascript" >
+	Mock.mock(/rtcb.+/,function(param){
+			if (param.body){
+				var b = param.body;
+				if (b=="q=w"){
+					return [{id:"w1",text:"wang1"},{id:"w2",text:"wang2"}];
+				}
+				else if (b=="q=h"){
+					return [{id:"h1",text:"hang1"},{id:"h2",text:"hang2"}];
+				}
+				else if (b=="q=z"){
+					return [{id:"1",text:"z1"},{id:"2",text:"z2"}];
+				}
+				
 			}
 			return [{id:1,text:"hang1"},{id:2,text:"hang2"},{id:"w1",text:"wang1"},{id:"w2",text:"wang2"},{id:"1",text:"z1"},{id:"2",text:"z2"}];
-		}
-		return [];
-	});
-	var cbox = $HUI.combobox("#rtCB",{
-		valueField:'id', textField:'text',panelHeight:"auto",
-		mode:'remote',url:'rtcb'
-	});
-});
+		});
 </script>
 <h3>六、单选且不可编辑</h3>
 <div class="demo-exp-code entry-content">
