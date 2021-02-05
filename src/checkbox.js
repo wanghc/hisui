@@ -61,8 +61,8 @@
         }
         t.prop("disabled",opts.disabled);
         t.prop("checked",opts.checked);
-        opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
         if (!t.hasClass('checkbox-f')){
+            opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
             t.addClass('checkbox-f');                //在原dom增加类checkbox-f
             var inputCls = target.className.replace('hisui-checkbox','').replace('checkbox-f','') ;
             var labelHtml = '<label class="checkbox '+inputCls;
@@ -76,19 +76,6 @@
             objlabel.unbind('click').bind('click.checkbox',function(e){
                 if($(target).prop("disabled")==false) setValue(target,!$(this).hasClass('checked'));  
             });
-            if (opts.required){
-                objlabel.unbind('mouseenter').bind('mouseenter.checkbox',function(e){
-                    var _t = $(this);
-                    if (!_t.hasClass('disabled')){
-                        showTip(opts.name);
-                    }
-                }).unbind('mouseleave').bind('mouseleave.checkbox',function(e){
-                    var _t = $(this);
-                    if (!_t.hasClass('disabled')){
-                        hideTip(opts.name);
-                    }              
-                });
-            }
             t.unbind('click').bind('click.checkbox',function(e){ 
                 //如果原生checkbox是disabled时,不会进入
                 //if ($(this).prop("disabled")==false){
@@ -135,12 +122,25 @@
             var objlabel=state.proxy; //取到对应label
             if (opts.disabled && !objlabel.hasClass('disabled')) objlabel.addClass('disabled');
             if (!opts.disabled && objlabel.hasClass('disabled')) objlabel.removeClass('disabled');
-
+            // 解决$(id).checkbox({checked:false}); 
             if (opts.checked && !objlabel.hasClass('checked')) objlabel.addClass('checked');
             if (!opts.checked && objlabel.hasClass('checked')) objlabel.removeClass('checked');
 
             if (opts.label!=objlabel.text()) objlabel.text(opts.label);
             
+        }
+        if (opts.required){
+            objlabel.unbind('mouseenter').bind('mouseenter.checkbox',function(e){
+                var _t = $(this);
+                if (!_t.hasClass('disabled')){
+                    showTip(opts.name);
+                }
+            }).unbind('mouseleave').bind('mouseleave.checkbox',function(e){
+                var _t = $(this);
+                if (!_t.hasClass('disabled')){
+                    hideTip(opts.name);
+                }              
+            });
         }
         if (opts.name && !t.attr('name')){ //如果options有name,元素属性上没name
             t.attr('name',opts.name);
@@ -159,6 +159,8 @@
         //新版如果直接改原生组件值 同样有问题
         var objlabel= ($.data(target, 'checkbox')||$.data(target, 'radio')||{})['proxy'];
         if (objlabel){
+            var state= $.data(target, 'checkbox');
+            if (state) state.options.checked = $(target).prop('checked');
             if ($(target).prop('checked') && !objlabel.hasClass('checked')) objlabel.addClass('checked');
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
             isValid(target);
@@ -214,7 +216,9 @@
             state.options.disabled=value;
         }
     }
-
+    function setRequired(target,flag){
+        $(target).checkbox({required:flag});
+    }
 	$.fn.checkbox.methods = {
 		options: function(jq){
 			return $.data(jq[0], 'checkbox').options;
@@ -289,6 +293,11 @@
                 rtn = isValid(this);
             });
             return rtn;
+        },
+        setRequired:function(jq,value){
+            return jq.each(function(){
+                setRequired(this,value);
+            });
         }
     };
     

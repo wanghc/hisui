@@ -66,8 +66,8 @@
         t.prop("disabled",opts.disabled);
         t.prop("checked",opts.checked);
         
-        opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
         if (!t.hasClass('radio-f')){
+            opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
             var optRequiredSel = opts.requiredSel;
             t.addClass('radio-f');                //在原dom增加类radio-f
             var labelHtml = '<label class="radio';
@@ -86,19 +86,7 @@
                     
                 }
             })
-            if (opts.required){
-                objlabel.unbind('mouseenter').bind('mouseenter.radio',function(e){
-                    var _t = $(this);
-                    if (!_t.hasClass('disabled')){
-                        showTip(opts.name);
-                    }
-                }).unbind('mouseleave').bind('mouseleave.radio',function(e){
-                    var _t = $(this);
-                    if (!_t.hasClass('disabled')){
-                        hideTip(opts.name);
-                    }              
-                });
-            }
+            
             t.unbind('click').bind('click.radio',function(e){
                 if ($(this).prop("disabled")==false){
                     //setValue(this,!$(this).is(':checked'));
@@ -162,6 +150,19 @@
 
             if ($.hisui.getTrans(opts.label)!=objlabel.text()) objlabel.text($.hisui.getTrans(opts.label));
         }
+        if (opts.required){
+            objlabel.unbind('mouseenter').bind('mouseenter.radio',function(e){
+                var _t = $(this);
+                if (!_t.hasClass('disabled')){
+                    showTip(opts.name);
+                }
+            }).unbind('mouseleave').bind('mouseleave.radio',function(e){
+                var _t = $(this);
+                if (!_t.hasClass('disabled')){
+                    hideTip(opts.name);
+                }              
+            });
+        }
         if (opts.name && !t.attr('name')){ //如果options有name,元素属性上没name
             t.attr('name',opts.name);
         }
@@ -181,6 +182,8 @@
         //新版如果直接改原生组件值 同样有问题
         var objlabel= ($.data(target, 'radio')||$.data(target, 'checkbox')||{})['proxy'];
         if (objlabel){
+            var state = $.data(target, 'radio');
+            if (state) state.options.checked = $(target).prop('checked');
             if ($(target).prop('checked') && !objlabel.hasClass('checked')) objlabel.addClass('checked');
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
             isValid(target);
@@ -251,6 +254,9 @@
             else objlabel.removeClass('disabled');
             state.options.disabled=value;
         }
+    }
+    function setRequired(target,flag){
+        $(target).radio({required:flag});
     }
 	$.fn.radio.methods = {
 		options: function(jq){
@@ -326,6 +332,11 @@
                 rtn = isValid(this);
             });
             return rtn;
+        },
+        setRequired:function(jq,value){
+            return jq.each(function(){
+                setRequired(this,value);
+            });
         }
     };
     

@@ -74,6 +74,14 @@ $(function(){
 <input class='hisui-radio' type="radio" label='男' name='sex' value="1" data-options="required:true">
 <input class='hisui-radio' type="radio" label='女' name='sex' value="2" data-options="required:true">
         </div>
+        <a href="#" onclick="setSexRequired();" class="hisui-linkbutton" style="margin-top: 10px;">切换必选功能</a>
+	   <span id="requiredMsg" style="line-height: 30px;vertical-align: bottom;"></span>
+	   <script type="text/javascript" class="use-prettyprint">
+		var flag = true;
+		function setSexRequired(){
+			$("#requiredMsg").html('当前'+(flag?"非必选":"必选"));
+			$('[name="sex"]').radio('setRequired',flag=!flag);
+		};</script>
     </div>
     <div>
         <h3>单选组件的相关配置、事件、方法</h3>
@@ -234,6 +242,12 @@ $(function(){
                 <td></td>
                 <td>Boolean</td>
             </tr>
+            <tr>
+				<td>setRequired</td>
+				<td>调置或取消必项状态<code>20210205</code></td>
+				<td>true|false</td>
+				<td>jquery对象</td>
+			</tr>
         </table>
     </div>
     <prettyprint/>
