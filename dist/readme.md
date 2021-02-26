@@ -34,8 +34,12 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-02-26
+* `hstep`done样式修改:sparkles:
+* `hstep`点击空白地报错处理 :bug:
+
 ## 2021-02-05
-* `checkbox`与`radio`支持动态设置/取消必选
+* `checkbox`与`radio`支持动态设置/取消必选 :sparkles:
 
 ## 2021-02-02
 * 当form中包含`hisui-checkbox`时,调用`form('reset')`报错处理 :bug:

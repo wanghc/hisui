@@ -96,7 +96,7 @@
 	_setStep(target,opts.currentInd);
 	$(target).unbind('.hstep').bind('click.hstep',function(e){
 		var $li = $(e.target).closest('li');
-		if(opts.onSelect){
+		if($li.length>0 && opts.onSelect){
 			var _item = opts.items[$li.attr('ind')-1];
 			_item.state = $li.hasClass('done')?"done":($li.hasClass('active')?"active":'undone');
 			opts.onSelect.call(this,$li.attr('ind'),_item);
