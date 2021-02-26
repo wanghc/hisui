@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2021-02-26
 * `hstep`done样式修改:sparkles:
 * `hstep`点击空白地报错处理 :bug:
+* 编写`vstep`纵向导航组件 :sparkles:
 
 ## 2021-02-05
 * `checkbox`与`radio`支持动态设置/取消必选 :sparkles:
