@@ -52,9 +52,6 @@
   -webkit-border-radius: 0;
   border-radius:0;
 }
-.l-btn-focus {
-  outline: @linkbutton-focus-bordercolor dotted thin;
-}
 .l-btn {
   color: @linkbutton-font-color;
   background: @linkbutton-bgcolor;
@@ -83,6 +80,16 @@
   &.l-btn-plain{
     border:0;
     padding: 0;
+  }
+}
+.l-btn.l-btn-focus {
+  outline: @linkbutton-focus-bordercolor dotted thin;
+  background: @linkbutton-hover-bgcolor;
+  color:@linkbutton-font-color;
+  border: 0px solid @linkbutton-hover-bgcolor;
+  filter: none;
+  .l-btn-icon{
+    background-color: @linkbutton-hover-bgcolor;
   }
 }
 /*特殊情况（按钮在蓝色病人信息条上时）：hover背景色为#0063a7*/

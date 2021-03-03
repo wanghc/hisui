@@ -93,13 +93,13 @@
                 if (tb.children().length>1){ //多个按钮可用 <- 与 -> 左右按钮切换
                     if (e.which==37){ //left
                         e.stopPropagation();
-                        tb.children().removeClass('active').eq(0).addClass('active');
+                        $(tb.children().eq(0)).trigger('focus');
                     }
                     if (e.which==39){ //right
-                        tb.children().removeClass('active').eq(1).addClass('active');
+                        $(tb.children().eq(1)).trigger('focus');
                     }
                 }
-                if(e.which==32 || e.which==13){
+                /*if(e.which==32 || e.which==13){
                     e.stopPropagation();
                     if (tb.children(".active").length>0){
                         tb.children(".active").trigger('click');
@@ -107,7 +107,7 @@
                         _282[$.messager.defaults.ok](e);
                     }
                     return false;
-                }
+                }*/
                 if(_282[$.messager.defaults.cancel]){ 
                     if(e.which==27){ //Esc
                         e.stopPropagation();

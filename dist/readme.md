@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-03-03
+* `linkbutton`鼠标悬浮及聚焦时样式修改 :sparkles:
+
 ## 2021-02-26
 * `hstep`done样式修改:sparkles:
 * `hstep`点击空白地报错处理 :bug:
