@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2021-03-03
 * `linkbutton`鼠标悬浮及聚焦时样式修改 :sparkles:
+* 输入框聚集时样式修改 :lipstick:
 
 ## 2021-02-26
 * `hstep`done样式修改:sparkles:
