@@ -2062,6 +2062,10 @@
                         os.top-=7;  /*强制一行显示内容，nowrap:true时td有padding，但js又取不到。向上移8像素*/
                     }
                     if (os){textinputJobj.offset(os);}
+                    var vi2 = textinputJobj.closest('.datagrid-view2')[0];
+                    if (vi2){
+                        vi2.scrollTop = vi2.scrollHeight - vi2.offsetHeight;
+                    }
                 }
                 _660.closest('.datagrid-body').on('scroll.celltextarea',function(){
                     autoLeftTop(_660);
