@@ -77,19 +77,20 @@
       background-color: @linkbutton-hover-bgcolor;
     }
   }
-  &.l-btn-plain{
+  &.l-btn-focus{
+    outline: @linkbutton-focus-bordercolor dotted thin;
+    background: @linkbutton-hover-bgcolor;
+    color:@linkbutton-font-color;
+    border: 0px solid @linkbutton-hover-bgcolor;
+    filter: none;
+    .l-btn-icon{
+      background-color: @linkbutton-hover-bgcolor;
+    }
+  }
+  &.l-btn-plain.l-btn-focus{
     border:0;
     padding: 0;
-  }
-}
-.l-btn.l-btn-focus {
-  outline: @linkbutton-focus-bordercolor dotted thin;
-  background: @linkbutton-hover-bgcolor;
-  color:@linkbutton-font-color;
-  border: 0px solid @linkbutton-hover-bgcolor;
-  filter: none;
-  .l-btn-icon{
-    background-color: @linkbutton-hover-bgcolor;
+    background-color: @linkbutton-plain-hover-bgcolor;
   }
 }
 /*特殊情况（按钮在蓝色病人信息条上时）：hover背景色为#0063a7*/
@@ -238,19 +239,19 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     &.green{
       background-color: #2ab66a;
     }
-    &.green:hover{
+    &.green:hover,&.green.l-btn-focus{
       background-color: #239e5b;
     }
     &.yellow{
       background-color: #ffb746
     }
-    &.yellow:hover{
+    &.yellow:hover,&.yellow.l-btn-focus{
       background-color: #ff9c00;
     }
     &.red{
       background-color: #f16e57;
     }
-    &.red:hover{
+    &.red:hover,&.red.l-btn-focus{
       background-color: #d35b46;
     }
 }

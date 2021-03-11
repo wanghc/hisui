@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-03-11
+* 修改透明按钮/菜单按钮聚焦时样式修改:lipstick:
+
 ## 2021-03-07
 * 在IE11下最后一行`celltextarea`编辑框内一直加车闪烁问题修复 :bug:
 
