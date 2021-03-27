@@ -151,6 +151,7 @@
 				HISUI是一款前端组件类库，让web开发更迅速、简单。
 			</div>
 			<a href="javascript:void(0);" class="hisui-linkbutton viewbtn" data-options="iconCls:'icon-arrow-right'">查看HISUI文档</a>
+			<a href="javascript:void(0);" class="hisui-linkbutton viewlitebtn" data-options="iconCls:'icon-arrow-right'">HISUI-lite文档</a>
 			<a href="javascript:void(0);" class="hisui-linkbutton downloadbtn" data-options="iconCls:'icon-arrow-bottom',plain:true">下载HISUI文件</a>
 			<span class="downloadNum"></span>
 			
@@ -272,6 +273,10 @@
 	$(function(){
 		$(".viewbtn").click(function(){
 			window.open('api','_blank');
+			return false;
+		})
+		$(".viewlitebtn").click(function(){
+			window.open('lite','_blank');
 			return false;
 		})
 		$(".downloadbtn").click(function(){
