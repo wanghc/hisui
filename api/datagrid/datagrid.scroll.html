@@ -8,12 +8,12 @@
 	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="../../dist/plugin/datagrid-scrollview.js"></script>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script src="../mock-min.js" type="text/javascript"></script>
 </head>
 <body>
+	<script type="text/javascript" src="../../dist/plugin/datagrid-scrollview.js"></script>
 	<h2>数据网格-滚动加载</h2>
 	<h3>说明:</h3>
 	<span>当用户不希望使用翻页条时,且加载数据记录大量条数时，可以使用些插件</span>
@@ -65,7 +65,7 @@
 </code></pre>
 	</div>
 	<script type="text/javascript">
-		$(function(){
+		$.parser.onComplete = function(){
 			
 			var rows = [];
 			for(var i=1; i<=8002; i++){
@@ -95,7 +95,7 @@
 				}	
 			})*/
 			$("#dg").datagrid('loadData', rows);
-		});
+		};
 	</script>
 	<h3>远程数据。拉动时一次加载一页数据，渲染要显示的行数据</h3>
 	<div class="demo-exp-code entry-content"> <!--,view:scrollview-->

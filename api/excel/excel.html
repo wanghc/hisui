@@ -7,8 +7,7 @@
     <script type="text/javascript" src="../../dist/js/jquery-1.8.0.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
-	<link rel="stylesheet" type="text/css" href="../../api/prettify.css">
-    <script type="text/javascript" src="../../api/prettify.js"></script>
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 <body>
 	<h2>后台Query查询结果导出Excel</h2>
@@ -16,11 +15,11 @@
 	<span>通过公共方法调用Query生成Excel</span>
 	<h2>一.通过Query与Query参数把结果集导成CVS文件示例：</h2>
 	<h4>说明：cvs格式文件导出为后台导出,无需前台插件支持,但0开头内容会变忽略0</h4>
-	<pre class="prettyprint linenums lang-js"><code>// js文件中代码 ，导出rowid为1的安全组所有菜单
+	<pre class="prettyprint linenums lang-js hide"><code>// js文件中代码 ，导出rowid为1的安全组所有菜单
 // excelname不用包含后缀
 var rtn = tkMakeServerCall("websys.Query","ToExcel","excelname","web.Util.Menu","SelectGroupMenu",1);
 location.href = rtn;</code></pre>
-<pre class="prettyprint linenums lang-js"><code>//引用hisui库后,js文件中代码，
+<pre class="prettyprint linenums lang-js hide"><code>//引用hisui库后,js文件中代码，
 var rtn = $cm({
 	dataType:'text',
 	ResultSetType:"Excel",
@@ -33,7 +32,7 @@ location.href = rtn;</code></pre>
 
 	<h2>二.导出标准Excel文件示例：</h2>
 	<h4>说明：通过Query与Query入参，把结果集导成xls文件。依赖浏览器设置，如果是IE须允许ActiveX运行，Chrome类须在本机安装Chrome中间件</h4>
-	<pre class="prettyprint linenums lang-js"><code>//依赖 jquery.js , websys.jquery.js
+	<pre class="prettyprint linenums lang-js hide"><code>//依赖 jquery.js , websys.jquery.js
 // 异步导出结果集
 showProgressBar("导出中....");
 $cm({
@@ -68,14 +67,11 @@ $cm({
 	<h2>三.导出Excel文件配置功能说明</h2>
 	<h4>使用ExcelPlugin导出Excel时，可以使用配置界面配置导出Query的哪些列，及列属性配置，及标题内容，落款内容，排序定义</h4>
 	<div class="demo-exp-code entry-content">
-	<pre class="prettyprint linenums lang-js"><code>//使用以下代码定义导出或打印功能
+	<pre class="prettyprint linenums lang-js hide"><code>//使用以下代码定义导出或打印功能
 // CONTEXT=K类名:Query名&PAGENAME=界面代码&PREFID=0
 window.open("websys.query.customisecolumn.csp?CONTEXT=Kweb.DHCSSUserLogonLog:FindUserLog&PAGENAME=DHCSSUserLog&PREFID=0");</code></pre>
 	<a href="excelcolumncfg.png" target="_blank">查看配置图片</a>
 	</div>
-	<script type="text/javascript">
-		prettyPrint();
-	</script>
 	<div class="demo-exp-code entry-content"> 
 		<h2>websys.Query类中ToExcel类方法</h2>
 		<table class="table">
@@ -141,5 +137,6 @@ window.open("websys.query.customisecolumn.csp?CONTEXT=Kweb.DHCSSUserLogonLog:Fin
 			</tr>
 		</table>	
 	</div>
+	<prettyprint></prettyprint>
 </body>
 </html>

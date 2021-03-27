@@ -67,7 +67,7 @@
 					$('#logspan').append(JSON.stringify(arguments[i],null,4));
 				}
 			}
-			$(function(){
+			var tree1OnComplete = function(){
 				var treegridObj = $HUI.treegrid("#treegrid2",{
 					onCheckNode:function(row,checked){
 						log(row,"checked="+checked);
@@ -92,7 +92,7 @@
 					{"id":18,"menuName":"病人列表","menuLink":"patlist.csp","menuCode":"patlistManager","menuSort":5,"menuEx":"&name=1","_parentId":2},
 					{"id":19,"menuName":"历次就诊","menuLink":"admlist.csp","menuCode":"admlistManager","menuSort":6,"menuEx":"&name=1","_parentId":2}
 				]});
-			});
+			};
 		</script>
 	<pre class="prettyprint hide lang-html"><code>&lt;table title="菜单管理" class='hisui-treegrid' id="treegrid2"
 	data-options="fit:true,idField:'id',headerCls:'panel-header-gray',iconCls:'icon-paper',treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,toolbar:[{
@@ -193,7 +193,7 @@ $(function(){
 			</thead>
 		</table>
 		<script type="text/javascript">
-			$(function(){
+			var tree2OnComplete = function(){
 				var treegridObj = $HUI.treegrid("#treegrid1",{});
 				treegridObj.loadData({"total":9,
 					"rows":[
@@ -211,7 +211,7 @@ $(function(){
 						{"region":"Total","f1":14000,"f2":12600,"f3":13321,"f4":15281,"f5":14931,"f6":13461,"f7":14126,"f8":12866}
 					]
 				});
-			});
+			};
 			
 		</script>
 		<pre class="prettyprint hide lang-html"><code>&lt;table title="报表" class="hisui-treegrid" id="treegrid1" style="width:880px;height:400px"
@@ -392,6 +392,10 @@ data-options="method: 'get',
                 $(this).text('一二三四五六七八九十'.charAt(ind)+'、'+ $(this).text());
             })
         })
+		$.parser.onComplete = function(){
+			tree1OnComplete();
+			tree2OnComplete();
+		}
     </script>
 </body>
 

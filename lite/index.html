@@ -117,101 +117,83 @@
     </style>
 </head>
 <body class="hisui-layout">
-    <!--<div id="themediv">
-        <span></span> <span></span> <span></span>
-    </div>
-    <div region="north" border="false"   style="height:43px;padding:0px;"> 
-        <div id="navbar" >
-            <span style="font-size:30px">
-                HISUI API
-            </span>
-            <div class="nav-right" >
-                <div class="nav-btn" id="themebtn">
-                    <span class="nav-icon icon-person">皮肤</span>
-                </div>
-                <div class="nav-btn">
-                    <span class="nav-icon icon-tip">其它</span>
-                </div>
-            </div>
-         </div>   
-    </div>-->
     <div region="west" border="true" split="true" title="HISUI组件"  style="width:200px;padding:0px;">                
         <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
             <div title="基础" style="background-color:#F9F9F9;">
                 <ul>
                     <!--<li><a href="javascript:void(0);" src="use/use.html" class="api-navi-tab">起步(use)</a></li>-->
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/ajax/ajax" class="api-navi-tab">数据访问（ajax）</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/excel/excel" class="api-navi-tab">导出Excel（excel）</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/json/json" class="api-navi-tab">JSON(json)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/common/function" class="api-navi-tab">公共方法(commfun)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/icon/icon" class="api-navi-tab">图标(icon)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/tooltip/tooltip" class="api-navi-tab">提示（tooltip）</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/popover/popover" class="api-navi-tab">泡芙提示（popover）</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=ajax/ajax" class="api-navi-tab">数据访问（ajax）</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=excel/excel" class="api-navi-tab">导出Excel（excel）</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=json/json" class="api-navi-tab">JSON(json)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=common/function" class="api-navi-tab">公共方法(commfun)</a></li>
+                    <li><a href="javascript:void(0);" src="icon/icon.html" class="api-navi-tab">图标(icon)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=tooltip/tooltip" class="api-navi-tab">提示（tooltip）</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=popover/popover" class="api-navi-tab">泡芙提示（popover）</a></li>
                 </ul>
             </div>
             <div title="布局" style="background-color:#F9F9F9;">   
                 <ul>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/panel/panel" class="api-navi-tab">面板(panel)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/tab/tab" class="api-navi-tab">页签(tab)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/accordion/accordion" class="api-navi-tab">手风琴(accordion)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/layout/layout" class="api-navi-tab">五方布局(layout)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/hstep/hstep" class="api-navi-tab">水平步骤(hstep)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/vstep/vstep" class="api-navi-tab">纵向步骤(vstep)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=panel/panel" class="api-navi-tab">面板(panel)</a></li>
+                    <li><a href="javascript:void(0);" src="tab/tab.html" class="api-navi-tab">页签(tab)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=accordion/accordion" class="api-navi-tab">手风琴(accordion)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=layout/layout" class="api-navi-tab">五方布局(layout)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=hstep/hstep" class="api-navi-tab">水平步骤(hstep)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=vstep/vstep" class="api-navi-tab">纵向步骤(vstep)</a></li>
                 </ul>   
             </div>
             <div title="表单" style="background-color:#F9F9F9;">
                 <ul>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/linkbutton/linkbutton" class="api-navi-tab">按钮(linkbutton)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/menubutton/menubutton" class="api-navi-tab">菜单按钮(menubutton)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/splitbutton/splitbutton" class="api-navi-tab">分割按钮(splitbutton)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/validatebox/validatebox" class="api-navi-tab">验证框(validatebox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/searchbox/searchbox" class="api-navi-tab">查询框(searchbox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/numberbox/numberbox" class="api-navi-tab">数字框(numberbox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/triggerbox/triggerbox" class="api-navi-tab">触发框(triggerbox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/datebox/datebox" class="api-navi-tab">日期框(datebox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/timespinner/timespinner" class="api-navi-tab">时间框(timespinner)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/combo/combo" class="api-navi-tab">组合(combo)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/combobox/combobox" class="api-navi-tab">下拉框(combobox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/switchbox/switchbox" class="api-navi-tab">开关(switchbox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/checkbox/checkbox" class="api-navi-tab">复选框(checkbox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/radio/radio" class="api-navi-tab">单选框(radio)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/filebox/filebox" class="api-navi-tab">文件框(filebox)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/keywords/keywords" class="api-navi-tab">关键字列表(keywords)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/inputstyleset/inputstyleset" class="api-navi-tab">输入框样式集合</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=linkbutton/linkbutton" class="api-navi-tab">按钮(linkbutton)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=menubutton/menubutton" class="api-navi-tab">菜单按钮(menubutton)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=splitbutton/splitbutton" class="api-navi-tab">分割按钮(splitbutton)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=validatebox/validatebox" class="api-navi-tab">验证框(validatebox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=searchbox/searchbox" class="api-navi-tab">查询框(searchbox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=numberbox/numberbox" class="api-navi-tab">数字框(numberbox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=triggerbox/triggerbox" class="api-navi-tab">触发框(triggerbox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=datebox/datebox" class="api-navi-tab">日期框(datebox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=timespinner/timespinner" class="api-navi-tab">时间框(timespinner)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=combo/combo" class="api-navi-tab">组合(combo)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=combobox/combobox" class="api-navi-tab">下拉框(combobox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=switchbox/switchbox" class="api-navi-tab">开关(switchbox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=checkbox/checkbox" class="api-navi-tab">复选框(checkbox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=radio/radio" class="api-navi-tab">单选框(radio)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=filebox/filebox" class="api-navi-tab">文件框(filebox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=keywords/keywords" class="api-navi-tab">关键字列表(keywords)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=inputstyleset/inputstyleset" class="api-navi-tab">输入框样式集合</a></li>
                 </ul>
             </div>
             <div title="表格及树" style="background-color:#F9F9F9;">
                 <ul>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/datagrid/datagrid" class="api-navi-tab">表格(datagrid)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/datagrid/datagrid.scroll" class="api-navi-tab">表格滚动加载(scroll)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/datagrid/datagrid.edit" class="api-navi-tab">表格编辑(edit)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/datagrid/datagrid.celledit" class="api-navi-tab">单元编辑(celledit)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/treegrid/treegrid" class="api-navi-tab">树形表格(treegrid)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/tree/tree" class="api-navi-tab">树(tree)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/combogrid/combogrid" class="api-navi-tab">下拉表格(combogrid)</a></li>
-                    <li><a href="javascript:void(0);" src="lite.html?name=../api/combotree/combotree" class="api-navi-tab">下拉树(combotree)</a></li>                    
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=datagrid/datagrid" class="api-navi-tab">表格(datagrid)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=datagrid/datagrid.scroll" class="api-navi-tab">表格滚动加载(scroll)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=datagrid/datagrid.edit" class="api-navi-tab">表格编辑(edit)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=datagrid/datagrid.celledit" class="api-navi-tab">单元编辑(celledit)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=treegrid/treegrid" class="api-navi-tab">树形表格(treegrid)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=tree/tree" class="api-navi-tab">树(tree)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=combogrid/combogrid" class="api-navi-tab">下拉表格(combogrid)</a></li>
+                    <li><a href="javascript:void(0);" src="tpl/lite.html?name=combotree/combotree" class="api-navi-tab">下拉树(combotree)</a></li>                    
                 </ul>
             </div>
             <div title="窗口" style="background-color:#F9F9F9;"> 
                  <ul>       
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/window/window" class="api-navi-tab">窗口(window)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/dialog/dialog" class="api-navi-tab">模态窗(dialog)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/messager/messager" class="api-navi-tab">消息框(messager)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=window/window" class="api-navi-tab">窗口(window)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=dialog/dialog" class="api-navi-tab">模态窗(dialog)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=messager/messager" class="api-navi-tab">消息框(messager)</a></li>
                 </ul>
             </div>
             <div title="极速系列" style="background-color:#F9F9F9;"> 
                 <ul>
-                   <li><a href="javascript:void(0);"  src="lite.html?name=../api/lookup/lookup" class="api-navi-tab">放大镜(lookup)</a></li>
-                   <li><a href="javascript:void(0);"  src="lite.html?name=../api/datebox/dateboxq" class="api-navi-tab">日期框(dateboxq)</a></li>
-                   <li><a href="javascript:void(0);"  src="lite.html?name=../api/timespinner/timeboxq" class="api-navi-tab">时间框(timeboxq)</a></li>
-                   <li><a href="javascript:void(0);"  src="lite.html?name=../api/datebox/datetimeboxq" class="api-navi-tab">日期时间(datetimeboxq)</a></li>
+                   <li><a href="javascript:void(0);"  src="tpl/lite.html?name=lookup/lookup" class="api-navi-tab">放大镜(lookup)</a></li>
+                   <li><a href="javascript:void(0);"  src="tpl/lite.html?name=datebox/dateboxq" class="api-navi-tab">日期框(dateboxq)</a></li>
+                   <li><a href="javascript:void(0);"  src="tpl/lite.html?name=timespinner/timeboxq" class="api-navi-tab">时间框(timeboxq)</a></li>
+                   <li><a href="javascript:void(0);"  src="tpl/lite.html?name=datebox/datetimeboxq" class="api-navi-tab">日期时间(datetimeboxq)</a></li>
                </ul>
            </div>
             <div title="测试" style="background-color:#F9F9F9;"> 
                 <ul>   
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/treegrid/treegrid.dnd" class="api-navi-tab">拖拽树形表格(treegrid.dnd)</a></li>    
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/test/formtest" class="api-navi-tab">表单们(formtest)</a></li>
-                    <li><a href="javascript:void(0);"  src="lite.html?name=../api/test/textbox" class="api-navi-tab">文本框(textbox)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=treegrid/treegrid.dnd" class="api-navi-tab">拖拽树形表格(treegrid.dnd)</a></li>    
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=test/formtest" class="api-navi-tab">表单们(formtest)</a></li>
+                    <li><a href="javascript:void(0);"  src="tpl/lite.html?name=test/textbox" class="api-navi-tab">文本框(textbox)</a></li>
                     
                 </ul>
             </div>

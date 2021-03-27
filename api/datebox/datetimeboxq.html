@@ -41,7 +41,7 @@
 			function onSelect(date){
 				$('#result').text(date)
 			}
-			$(function(){
+			$.parser.onComplete = function(){
 				$('#dtbq1').datetimeboxq('calendar').calendar({
 					validator:function(date){
 						var now = new Date();
@@ -56,7 +56,7 @@
 					minDate:min,
 					maxDate:max
 				});
-			})
+			};
 		</script>
 	</div>
 	

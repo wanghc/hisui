@@ -3,9 +3,10 @@
  *  对外一个方法changeTheme(themecss) 给top层调用
  */
  function runPrettyPrint(){
+    var baseUrl = "https://hisui.cn/api";
     try{
         if ($("prettyprint").length>0){
-            $('body').append('<link rel="stylesheet" type="text/css" href="../api/prettify.css"><script type="text/javascript" src="../api/prettify.js"><\/script>');
+            $('body').append('<link rel="stylesheet" type="text/css" href="'+baseUrl+'/prettify.css"><script type="text/javascript" src="'+baseUrl+'/prettify.js"><\/script>');
         }
     }catch(e){}
     $(".use-prettyprint").each(function(i,item){

@@ -73,7 +73,7 @@
 			function onSelect(date){
 				$('#result').text(date)
 			}
-			$(function(){
+			$.parser.onComplete = function(){
 				$('#db').dateboxq('calendar').calendar({
 					validator:function(date){
 						var now = new Date();
@@ -121,7 +121,7 @@
 					var val = $("#self4db").dateboxq('getValue');
 					$.messager.alert( "提示",val);
 				});
-			})
+			};
 		</script>
 	</div>
 	

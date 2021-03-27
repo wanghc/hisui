@@ -64,7 +64,7 @@
         <br><br>
         <a href="#" id="event2" class="hisui-linkbutton " data-options="stopAllEventOnDisabled:true">下一步</a>  属性<code>stopAllEventOnDisabled</code>为true时，事件不会触发
         <script type="text/javascript"> 
-            $(function () {
+            $.parser.onComplete = function(context){
                 $("#event1").click(function () {
                    alert("jquery为按钮【上一步】点击事件");
                 });
@@ -74,7 +74,7 @@
                 $("#event1").linkbutton('disable');
                 $("#event2").linkbutton('disable');
 
-            });
+            };
         </script> 
         <pre class="prettyprint hide lang-html"><code></code>&lt;a href="#" id="event1" class="hisui-linkbutton " &gt;上一步&lt;/a&gt;  原本的事件会触发
 &lt;br&gt;&lt;br&gt;

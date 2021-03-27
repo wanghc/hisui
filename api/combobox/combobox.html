@@ -91,7 +91,8 @@ $(function(){
 		console.log($("#stateBox").combobox('getValue'));
 		//$.messager.popover({msg: rec.text,type:'info',timeout: 2000,showType: 'show'});
 	}
-$(function(){
+
+function onComplete2(){
 	var cbox = $HUI.combobox("#cbox",{
 		valueField:'id',
 		textField:'text',
@@ -151,7 +152,7 @@ $(function(){
 	// 		}
 	// 	});
 	// });
-  });
+};
   </script>
   <!--icon-ok 效果 -->
   <h3>三、通过<code>formatter</code>生成带勾选状态的多选下拉框（icon-ok）</h3>
@@ -195,7 +196,7 @@ $(function(){
   });</code></pre>
   </div>
   <script type="text/javascript">
-$(function(){
+var onComplete3 = function(){
   var cbox = $HUI.combobox("#iconokBox",{
 	  	valueField:'id', textField:'text', multiple:true, selectOnNavigation:false,panelHeight:"auto",
 	  	data:[
@@ -225,7 +226,7 @@ $(function(){
 	  	}
   });
   return ;
-});
+};
 </script>
 
 <h3>四、通过<code>defaultFilter</code>配置默认过滤规则</h3>
@@ -250,7 +251,7 @@ $(function(){
   </code></pre>
 </div>
 <script type="text/javascript">
-$(function(){
+var onComplete4 = function(){
 	var div=$('<div style="padding:10px;display:inline"></div>').insertAfter('#dfCB');
 	var cbox = $HUI.combobox("#dfCB",{
 		valueField:'id', textField:'text',panelHeight:"auto",
@@ -290,19 +291,19 @@ $(function(){
 	$('#dfCB-spellField-empty').radio('check');
 
 
-});
+};
 </script>
 <h3>五、远程数据</h3>
 <div class="demo-exp-code entry-content">
 	<select id="rtCB" style="width:200px;"></select>
 	<script type="text/javascript" class="use-prettyprint">
-	$(function(){
+	var onComplete5 = function(){
 		$("#rtCB").combobox({
 			valueField:'id', textField:'text',panelHeight:"auto",
 			mode:'remote',
 			url:$URL+"?ClassName=ClassName&QueryName=QueryName&ResultSetType=array"
 		});
-	});
+	};
 	</script>
 </div>
 <script type="text/javascript" >
@@ -331,12 +332,12 @@ $(function(){
 });	</code></pre>
   </div>
   <script type="text/javascript">
-	$(function(){
+	var onComplete6 = function(){
 		var cbox = $HUI.combobox("#editCB",{
 			valueField:'id', textField:'text',panelHeight:"auto",editable:false,allowNull:true,
 			mode:'local',data:[{id:1,text:'张三'},{id:2,text:'李四'},{id:3,text:'王二'},{id:4,text:'麻子'}]
 		});
-	});
+	};
   </script>
 <h3>七、数据延迟</h3>
 <div class="demo-exp-code entry-content">
@@ -362,7 +363,7 @@ $(function(){
 });</code></pre>
   </div>
   <script type="text/javascript">
-$(function(){
+var onComplete7 = function(){
 	Mock.mock("FindNation",function(param){
 		return [{id:1,text:"美国"},{id:19,text:"英国"},{id:20,text:"中国"},{id:21,text:"德国"},{id:22,text:"法国"}];
 		
@@ -389,7 +390,15 @@ $(function(){
 		}
 	}); 
 	//$("#loaddataCB").combobox("setValue","20").combobox("setText","中国");
-});
+};
+$.parser.onComplete = function(){
+	onComplete2();
+	onComplete3();
+	onComplete4();
+	onComplete5();
+	onComplete6();
+	onComplete7();
+}
   </script>
   <table class="table">
 		<tr class="protitle">
