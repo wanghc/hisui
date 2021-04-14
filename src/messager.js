@@ -99,15 +99,15 @@
                         $(tb.children().eq(1)).trigger('focus');
                     }
                 }
-                /*if(e.which==32 || e.which==13){
+                if(e.which==32 || e.which==13){
                     e.stopPropagation();
-                    if (tb.children(".active").length>0){
-                        tb.children(".active").trigger('click');
+                    if (tb.children(".l-btn-focus").length>0){
+                        tb.children(".l-btn-focus").trigger('click');
                     }else{
                         _282[$.messager.defaults.ok](e);
                     }
                     return false;
-                }*/
+                }
                 if(_282[$.messager.defaults.cancel]){ 
                     if(e.which==27){ //Esc
                         e.stopPropagation();
