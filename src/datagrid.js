@@ -1110,7 +1110,12 @@
 		//2020-05-21 护理 add yucz 2019-12-9 返回正确顺序的列字段 
 		if (!!$.data(_5a1, "amendDataDisplay") && !!$.data(_5a1, "filelds"))
 		{
-			_newRe = _newRe.concat($.data(_5a1, "filelds"));
+            // 考虑冻结列情况
+            if (_5a2){
+                _newRe = _newRe.concat($.data(_5a1, "filelds")[0]);
+            }else{
+                _newRe = _newRe.concat($.data(_5a1, "filelds")[1]);
+            }			
 			for (var i = 0;i< _5a4.length; i++)
 			{
 				var testReg = /^ID/;
