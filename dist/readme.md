@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2021-04-15
+* 编辑表格增加自动聚焦配置项`autoFocus` :lipstick:
+
 ## 2021-04-14
 * 返回正确顺序的列字段,考虑冻结列-ycz :bug:
 * 弹出提示窗口`messager`回车不能触发<确定>按钮问题 :bug:

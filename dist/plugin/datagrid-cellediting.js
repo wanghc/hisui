@@ -2,6 +2,7 @@
 	$.extend($.fn.datagrid.defaults, {
 		clickToEdit: true,
 		dblclickToEdit: false,
+		autoFocus: true,
 		navHandler: {
 			'37': function(e){
 				var opts = $(this).datagrid('options');
@@ -190,8 +191,11 @@
 	function gotoCell(target, p){
 		var dg = $(target);
 		var opts = dg.datagrid('options');
-		var panel = dg.datagrid('getPanel').focus();
-
+		var panel = null;
+		if (opts.autoFocus)
+		    panel = dg.datagrid('getPanel').focus();
+		else
+		    panel = dg.datagrid('getPanel');
 		var cparam = dg.datagrid('cell');
 		if (cparam){
 			var input = dg.datagrid('input', cparam);
@@ -253,8 +257,9 @@
 			if (td.length){
 				var body2 = dg.data('datagrid').dc.body2;
 				var left = td.position().left;
-				if (left < 0){
-					body2._scrollLeft(body2._scrollLeft() + left*(opts.isRtl?-1:1));
+				if (left < 0) {
+					if (opts.autoFocus)
+					    body2._scrollLeft(body2._scrollLeft() + left*(opts.isRtl?-1:1));
 				} else if (left+td._outerWidth()>body2.width()){
 					body2._scrollLeft(body2._scrollLeft() + (left+td._outerWidth()-body2.width())*(opts.isRtl?-1:1));
 				}
