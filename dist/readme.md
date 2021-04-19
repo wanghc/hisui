@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2021-04-19
+- `娩`字默认首拼为`M` :sparkles:
+
 ## 2021-04-15
 * 编辑表格增加自动聚焦配置项`autoFocus` :lipstick:
 
