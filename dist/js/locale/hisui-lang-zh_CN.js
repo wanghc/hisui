@@ -169,6 +169,7 @@ if ($.fn.datetimeboxq){
 	$.fn.datetimeboxq.defaults.okText = $.fn.datebox.defaults.okText;
 }
 if ($.fn.timeboxq){
+	$.fn.timeboxq.defaults.missingMessage = $.fn.validatebox.defaults.missingMessage;
 	$.fn.timeboxq.defaults.rules.timeboxq.message = "非法时间。正确输入如：14:10，1410 或 n+15表示15分钟后";
 	$.fn.timeboxq.defaults.rules.minMaxTime.messageMax = '时间必须小于或等于{1}';
 	$.fn.timeboxq.defaults.rules.minMaxTime.messageMin = '时间必须大于或等于{0}';

@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-04-21
+- `timeboxq`支持自定validType,与回车事件:sparkles:
+- `timeboxq`必填提示翻译 :sparkles:
 
 ## 2021-04-19
 - `娩`字默认首拼为`M` :sparkles:

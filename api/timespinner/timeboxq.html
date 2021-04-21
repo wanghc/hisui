@@ -39,6 +39,15 @@
 			</tr>
 		</table>
 		<script type="text/javascript" class="use-prettyprint">
+			$.extend($.fn.validatebox.defaults.rules, {
+				TimeG:{
+					validator:function(value,param){
+						console.log(value);
+						console.log(param);
+						return true;
+					}
+				}
+			});
 			$("#setTimeDisBtn").click(function(){
 				var opt = $("#tb2").timeboxq('options');
 				var target = document.getElementById('tb2');
@@ -54,6 +63,10 @@
 			var target = document.getElementById('exeTime');
 			$("#af15").html(opt.formatter.call(target,opt.parser.call(target,"n+15")));
 			$("#bf15").html(opt.formatter.call(target,opt.parser.call(target,"n-15")));
+			$("#exeTime").timeboxq({
+				validType:["TimeG['endtb']"]
+			});
+
 		};
 	</script>
 <table class="table">

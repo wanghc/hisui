@@ -36,28 +36,54 @@
 				return this.validatebox(options, param);
 			}
 		}
+		
 		options = options || {};
+		// $("#sttb").timeboxq({ timeFormat:"HM", validType:["TimeG['endtb']"] });
+		// 用户自定义验证也要先验证timeboxq
+		if ("object"==typeof options.validType ){
+			if ($.isArray(options.validType)){
+				options.validType.push('timeboxq');
+			}
+		}
 		return this.each(function(){
 			var state = $.data(this, 'timeboxq');
+			var opts;
+			var _t = this;
 			if (state){
 				$.extend(state.options, options);
+				opts = state.options;
 			} else {
-				var _t = this;
+				
 				$.data(this, 'timeboxq', {
 					options: $.extend({}, $.fn.timeboxq.defaults, $.fn.timeboxq.parseOptions(this), options)
 				});
-				var opts = $.data(this, 'timeboxq').options;
+				opts = $.data(this, 'timeboxq').options;
 				if(opts.minTime!=null){
 					opts.validType.minMaxTime[0] = opts.formatter.call(this,opts.parser.call(this,opts.minTime));
 				}
 				if(opts.maxTime!=null) {
 					opts.validType.minMaxTime[1] = opts.formatter.call(this,opts.parser.call(this,opts.maxTime));
 				}
-				$(_t).validatebox($.extend({},opts));
-				$(_t).css({ imeMode: "disabled" }).addClass('timeboxq').on('blur.timeboxq',function(){
-					if(opts.onBlur) opts.onBlur.call(this,_t);
-				});
 			}
+			$(_t).validatebox(opts);
+			$(_t).css({ imeMode: "disabled" }).addClass('timeboxq').off('blur.timeboxq').on('blur.timeboxq',function(){
+				if(opts.onBlur) opts.onBlur.call(this,_t);
+			}).unbind("keydown.timboxq").bind("keydown.timboxq", function (e) {
+				if ("undefined" ==typeof e.keyCode){return ;}
+				switch (e.keyCode) {
+					case 38:
+						opts.keyHandler.up.call(_t, e);
+						break;
+					case 40:
+						opts.keyHandler.down.call(_t, e);
+						break;
+					case 13:
+						e.preventDefault();
+						opts.keyHandler.enter.call(_t, e);
+						return false;
+					default:;
+				}
+			});
 		});
 	};
 	// 把时间转成 1970 年 1 月 1 日至今的毫秒数。
@@ -135,7 +161,8 @@
 	}
 	$.fn.timeboxq.methods = {
 		options: function(jq){
-			return $.data(jq[0], 'timeboxq').options;
+			if (jq.length>0) return $.data(jq[0], 'timeboxq').options;
+			return null;
 		},
 		setValue: function(jq, value){
 			return jq.each(function(){
@@ -163,49 +190,54 @@
 		},
 		onSelect:function(val){},
 		onChange:function(newValue,oldValue){},
+		keyHandler: {
+            enter: function (e) {
+                doEnter(this);
+            }
+        },
 		validType:{"timeboxq":"","minMaxTime":[null,null]},
 		timeFormat:"HMS",
 		minTime:'00:00:00',
-		maxTime:'23:59:59', 
-		rules: {
-            timeboxq: {
-                validator: function (txt) {
-					return /^(20|21|22|23|[0-1]\d|\d)(:[0-5]\d){1,2}$/i.test(txt) || /^(20|21|22|23|\d|[0-1]\d)([0-5]\d){0,2}$/i.test(txt) || /^[nN][-+]*\d*$/i.test(txt);
-                }, message: "Please enter a valid time. 14:10, 1410, n+15"
-			},
-			minMaxTime:{
-				validator: function (_442,params) {
-					var target = this;
-					var _t = $(this);
-					var state = $.data(target, 'timeboxq');
-					if(state){
-						var tmpOpt = state.options;
-						var v = tmpOpt.parser.call(target, _442);
-						tmpOpt.validType.minMaxTime = [null,null];
-						if (tmpOpt.minTime!=null || tmpOpt.maxTime!=null){
-							if(tmpOpt.minTime==null&&tmpOpt.rules.minMaxTime.messageMax){
-								tmpOpt.rules.minMaxTime.message = tmpOpt.rules.minMaxTime.messageMax;
-							}else if(tmpOpt.maxTime==null&&tmpOpt.rules.minMaxTime.messageMin){
-								tmpOpt.rules.minMaxTime.message = tmpOpt.rules.minMaxTime.messageMin;
-							}else{
-								tmpOpt.rules.minMaxTime.message = tmpOpt.rules.minMaxTime.messageDef;
-							}
-							if(tmpOpt.minTime!=null){
-								tmpOpt.validType.minMaxTime[0] = tmpOpt.formatter.call(target,tmpOpt.parser.call(target,tmpOpt.minTime));
-							}
-							if(tmpOpt.maxTime!=null) {
-								tmpOpt.validType.minMaxTime[1] = tmpOpt.formatter.call(target,tmpOpt.parser.call(target,tmpOpt.maxTime));
-							}
+		maxTime:'23:59:59'
+	});
+	$.extend($.fn.timeboxq.defaults.rules,{
+		timeboxq : {
+			validator: function (txt) {
+				return /^(20|21|22|23|[0-1]\d|\d)(:[0-5]\d){1,2}$/i.test(txt) || /^(20|21|22|23|\d|[0-1]\d)([0-5]\d){0,2}$/i.test(txt) || /^[nN][-+]*\d*$/i.test(txt);
+			}, message: "Please enter a valid time. 14:10, 1410, n+15"
+		},
+		minMaxTime : {
+			validator: function (_442,params) {
+				var target = this;
+				var _t = $(this);
+				var state = $.data(target, 'timeboxq');
+				if(state){
+					var tmpOpt = state.options;
+					var v = tmpOpt.parser.call(target, _442);
+					tmpOpt.validType.minMaxTime = [null,null];
+					if (tmpOpt.minTime!=null || tmpOpt.maxTime!=null){
+						if(tmpOpt.minTime==null&&tmpOpt.rules.minMaxTime.messageMax){
+							tmpOpt.rules.minMaxTime.message = tmpOpt.rules.minMaxTime.messageMax;
+						}else if(tmpOpt.maxTime==null&&tmpOpt.rules.minMaxTime.messageMin){
+							tmpOpt.rules.minMaxTime.message = tmpOpt.rules.minMaxTime.messageMin;
 						}else{
-							tmpOpt.rules.minMaxTime.message = tmpOpt.rules.timeboxq.message;
+							tmpOpt.rules.minMaxTime.message = tmpOpt.rules.minMaxTime.messageDef;
 						}
-						var minv = tmpOpt.parser.call(target, tmpOpt.validType.minMaxTime[0]);
-						var maxv = tmpOpt.parser.call(target, tmpOpt.validType.minMaxTime[1]);
-						if (v>maxv || v<minv) return false;
+						if(tmpOpt.minTime!=null){
+							tmpOpt.validType.minMaxTime[0] = tmpOpt.formatter.call(target,tmpOpt.parser.call(target,tmpOpt.minTime));
+						}
+						if(tmpOpt.maxTime!=null) {
+							tmpOpt.validType.minMaxTime[1] = tmpOpt.formatter.call(target,tmpOpt.parser.call(target,tmpOpt.maxTime));
+						}
+					}else{
+						tmpOpt.rules.minMaxTime.message = tmpOpt.rules.timeboxq.message;
 					}
-					return true;
-				}, message:"Please enter a valid time.", messageDef:"Please enter a valid time : from {0} to {1}'"
-			}
+					var minv = tmpOpt.parser.call(target, tmpOpt.validType.minMaxTime[0]);
+					var maxv = tmpOpt.parser.call(target, tmpOpt.validType.minMaxTime[1]);
+					if (v>maxv || v<minv) return false;
+				}
+				return true;
+			}, message:"Please enter a valid time.", messageDef:"Please enter a valid time : from {0} to {1}'"
 		}
 	});
 })(jQuery);
