@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-05-12 
+- `celltextarea`编辑单元格回车高度增加,但不能超出`datagrid`的表头或底部:sparkles:
+- `celltextarea`编辑单元格显示位置优化, 根据空间自动显示到上方或下方:sparkles:
+- `celltextarea`编辑单元格增加maxHeight配置:sparkles:
+
 ## 2021-04-21
 - `timeboxq`支持自定validType,与回车事件:sparkles:
 - `timeboxq`必填提示翻译 :sparkles:

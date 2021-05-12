@@ -2061,21 +2061,41 @@
                     change();
                 };
                 var autoLeftTop = function(textinputJobj){
-                    var os = textinputJobj.parent().offset();/*16px是行高一半*/
+                    var os = textinputJobj.parent().offset();   /*16px是行高一半*/
                     var gcell = textinputJobj.closest('div.datagrid-cell');
                     if (gcell.length>0 && gcell[0].style.whiteSpace==""){
-                        os.top-=7;  /*强制一行显示内容，nowrap:true时td有padding，但js又取不到。向上移8像素*/
+                        os.top-=7;      /*强制一行显示内容，nowrap:true时td有padding，但js又取不到。向上移8像素*/
                     }
-                    if (os){textinputJobj.offset(os);}
                     var vi2 = textinputJobj.closest('.datagrid-view2')[0];
-                    if (vi2){
+                    if (vi2) {
+                        if (os) {
+                            var datagridTop = textinputJobj.closest(".datagrid").offset().top;
+                            if (downShow){ //(os.top-datagridTop > vi2.scrollHeight / 2) {
+                                textinputJobj.offset(os);
+                            } else {
+                                var rowHeight = gcell.closest('td').height() ;/* td[field='note1']  */
+                                textinputJobj.offset({ top:os.top + rowHeight  - textinputJobj.height(), left:os.left });
+                            }
+                        }
                         vi2.scrollTop = vi2.scrollHeight - vi2.offsetHeight;
                     }
                 }
-                _660.closest('.datagrid-body').on('scroll.celltextarea',function(){
+                _660.closest('.datagrid-body').on('scroll.celltextarea', function () {
                     autoLeftTop(_660);
-                })
-                autoTextarea(_660[0]);
+                });
+                var rowHeight = _660.closest('div.datagrid-cell').closest('td').height() ;/* td[field='note1']  */
+                var datagridHeight = _660.closest('.datagrid-view2')[0].scrollHeight;
+                var cellTop = _660.parent().offset().top;   /*16px是行高一半*/;
+                var bodyTop = _660.closest('.datagrid-body').offset().top;
+                var cellInBodyTop = cellTop - bodyTop;
+                var downShow = true;  // 默认下方显示
+                if (cellInBodyTop + rowHeight > datagridHeight - cellInBodyTop) {
+                    downShow = false;  // 上方显示
+                }
+                var mh = Math.max(cellInBodyTop + rowHeight , datagridHeight - cellInBodyTop );  // 上方显示 与 下方显示 取最大高度
+                var vb = $.data(_660[0], "validatebox");
+                if (vb && vb.options) mh = vb.options.maxHeight;
+                autoTextarea(_660[0],0,mh - 32);
             }
         }, icheckbox:{ /*新的icheckbox*/
             init: function (_662, _663) { 
