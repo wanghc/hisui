@@ -2094,7 +2094,7 @@
                 }
                 var mh = Math.max(cellInBodyTop + rowHeight , datagridHeight - cellInBodyTop );  // 上方显示 与 下方显示 取最大高度
                 var vb = $.data(_660[0], "validatebox");
-                if (vb && vb.options) mh = vb.options.maxHeight;
+                if (vb && vb.options && vb.options.maxHeight) mh = vb.options.maxHeight;
                 autoTextarea(_660[0],0,mh - 32);
             }
         }, icheckbox:{ /*新的icheckbox*/
