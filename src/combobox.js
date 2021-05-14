@@ -189,6 +189,11 @@
             o.remove();
             return w;
         }
+        var myItemStyle="";
+        /*
+        2021-01-26 `combobox`某行数据超长后，鼠标悬浮时背景色不完整问题修复 :sparkles:
+        下拉框内容超过面板时应该折行
+        不要指定宽度
         for(var i = 0; i < data.length; i++){
             var row = data[i];
             var s = row[opts.textField];
@@ -198,10 +203,10 @@
                 textMaxLength = strFontWidth(maxLengthTextFiled);
             }
         }
-        var myItemStyle="";
-        if (textMaxLength>$(target).combo("textbox").width()){
+        
+        if (textMaxLength > $(target).combo("textbox").width()) {
             myItemStyle = 'style="width:'+(parseInt(textMaxLength)+1)+'px;"';
-        }
+        }*/
         for (var i = 0; i < data.length; i++) {
             var row = data[i];
             var v = row[opts.valueField] + "";

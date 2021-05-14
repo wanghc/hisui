@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2021-05-14
+- `combobox`下拉框内容超长时自动换行
+
+## 2021-05-14
 - `celltextarea`配置options后,最大高度没受限问题 :bug:
 
 ## 2021-05-12 
