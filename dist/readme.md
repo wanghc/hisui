@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-05-27
+- 增加`icon-date`,`icon-no-dot`图标
+
 ## 2021-05-14
 - `combobox`下拉框内容超长时自动换行
 
