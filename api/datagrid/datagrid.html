@@ -307,7 +307,8 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 					singleSelect:false,
 					width:650,
 					height:300,
-					title:'水果单价表'
+					title:'水果单价表',
+					toolbar:[]
 				})
 			})		
 		</script>
@@ -477,6 +478,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 					headerCls:'panel-header-gray',iconCls:'icon-paper',
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',
+					toolbar:[],
 					nowrap:false,  /*此处为false*/
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
@@ -510,6 +512,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 					headerCls:'panel-header-gray',iconCls:'icon-paper',
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',titleNoWrap:false,/*表头自动折行*/
+					toolbar:[],
 					nowrap:false,
 					fontSize:12, /*表格上设置字体大小*/
 					lineHeight:12,

@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2021-06-18
 - 增加`required-label`样式，修改示例界面
 - textarea为验证必填框且校验失败时,图片位置显示右下角
+- 修改datagrid相关示例,表头上增加2px空距
 ## 2021-05-27
 - 增加`icon-date`,`icon-no-dot`图标
 
