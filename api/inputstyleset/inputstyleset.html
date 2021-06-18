@@ -32,39 +32,39 @@
 			data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',closable:false,collapsible:false,minimizable:false,maximizable:false">
 			<table cellpadding="0">
                 <tr>
-					<td class="r-label">序号验证框</td>
+					<td class="r-label required-label">序号验证框</td>
 					<td>
 						<input id="vapatno" class="textbox">
 						<a id="vabtn1" href="#" class="hisui-linkbutton">赋值</a><a id="vabtn" href="#" class="hisui-linkbutton" style="margin-left: 5px;">验证序号</a>
 					</td>
 				<!--</tr>
                 <tr>-->
-					<td class="r-label">患者姓名验证框</td>
+					<td class="r-label required-label">患者姓名验证框</td>
 					<td>
 						<input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
 					</td>
 				</tr>
 				<tr>
-					<td class="r-label">邮箱验证框</td>
+					<td class="r-label required-label">邮箱验证框</td>
 					<td>
 						<input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
 					</td>
 				<!--</tr>
                 <tr>-->
-					<td class="r-label">URL验证框</td>
+					<td class="r-label required-label">URL验证框</td>
 					<td>
 						<input id="vaurlVx" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 						<a id="vabtn2" href="#" class="hisui-linkbutton">禁用URL</a>
 					</td>
 				</tr>
 				<tr>
-					<td class="r-label">身份证验证框</td>
+					<td class="r-label required-label">身份证验证框</td>
 					<td>
 						<input class="hisui-validatebox textbox" data-options="required:true,validType:'idcard'">
 					</td>
 				<!--</tr>
                 <tr>-->
-					<td class="r-label">手机号验证框</td>
+					<td class="r-label required-label">手机号验证框</td>
 					<td>
                         <input class="hisui-validatebox textbox" data-options="required:true,validType:'mobilephone'">
                         <span style="margin-left: -1px;">12位手机号时，会自动去除首位的0</span>
@@ -136,9 +136,7 @@
                     </td>
                 <!--</tr>
                 <tr>-->
-                    <td class='r-label'>
-						<span style="color: red;vertical-align: bottom;line-height: 100%;">*</span>停止日期日期框
-					</td>
+                    <td class='r-label required-label'>停止日期日期框</td>
                     <td>
                         <input class="hisui-datebox textbox" value="2020-02-17" data-options='required:true'/>
                         <span style="color: red;margin-left: -1px;">必填项</span>
