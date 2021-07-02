@@ -34,6 +34,7 @@ location.href = rtn;</code></pre>
 	<h4>说明：通过Query与Query入参，把结果集导成xls文件。依赖浏览器设置，如果是IE须允许ActiveX运行，Chrome类须在本机安装Chrome中间件</h4>
 	<pre class="prettyprint linenums lang-js hide"><code>//依赖 jquery.js , websys.jquery.js
 // 异步导出结果集
+// 非IE浏览器记得界面写入：&lt;ADDINS require="CmdShell"&gt;&lt;/ADDINS&gt;
 showProgressBar("导出中....");
 $cm({
 	ResultSetType:"ExcelPlugin",  //表示通过DLL生成Excel，可支持IE与Chrome系。Chrome系浏览器请安装中间件
