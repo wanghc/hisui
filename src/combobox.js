@@ -168,7 +168,8 @@
         var dd = [];
         var group = undefined;
         var maxLengthTextFiled = "01234567890123456789",textMaxLength=0;
-        function fucCheckLength(strTemp){
+        function fucCheckLength(strTemp) {
+            if ("undefined" == typeof strTemp) { return 1}
             var i,sum;
             sum=0;
             for(i=0;i<strTemp.length;i++)
@@ -386,6 +387,32 @@
             t.combobox("hidePanel");
         }
     };
+    /*验证不成功时,清除下拉框的值*/
+    function clearInvalidValue(target) {
+        $(target).combobox("textbox").val("");
+        var comboStatus = $.data(target, "combo");
+        comboStatus.previousValue = "";
+        doQuery(target, "");
+    }
+    /** 默认的面板隐藏事件方法，验证值是否正确 */
+    var onHidePanelDefaultHandler = function (target) {
+        var val = $(target).combobox("getValue");
+        if (val == undefined || val == "" || val == null) {
+            clearInvalidValue(target);
+        } else {
+            var opts = $(target).combobox('options');
+            var isContain = 0;
+            var _d = $(target).combobox('getData');
+            for (var i = 0; i < _d.length; i++) {
+                if (_d[i][opts.valueField] == val) {
+                    isContain = 1;
+                }
+            }
+            if (0 == isContain) {
+                clearInvalidValue(target);
+            }
+        }
+    };
     function create(target) {
         var state = $.data(target, "combobox");
         var opts = state.options;
@@ -393,12 +420,25 @@
         state.itemIdPrefix = "_hisui_combobox_i" + COMBOBOX_SERNO;
         state.groupIdPrefix = "_hisui_combobox_g" + COMBOBOX_SERNO;
         $(target).addClass("combobox-f");
+        var onHidePanelHandler = opts.onHidePanel;
+        if (opts && opts.blurValidValue){
+            opts.forceValidValue = true; //这时强制设置值检查
+            if (opts.onHidePanel) {
+                var _oldOnHidePanel = opts.onHidePanel;
+            }
+            onHidePanelHandler = function () {
+                var _myt = this;
+                if ("function"==typeof _oldOnHidePanel) _oldOnHidePanel.call(_myt);
+                onHidePanelDefaultHandler(_myt);
+            }
+        }
         $(target).combo($.extend({}, opts, {
             onShowPanel: function () {
                 $(target).combo("panel").find("div.combobox-item,div.combobox-group").show();
                 scrollTo(target, $(target).combobox("getValue"));
                 opts.onShowPanel.call(target);
-            }
+            },
+            onHidePanel:onHidePanelHandler
         }));
         $(target).combo("panel").unbind().bind("mouseover", function (e) {
             $(this).children("div.combobox-item-hover").removeClass("combobox-item-hover");
@@ -466,33 +506,6 @@
                 loadData(this, state.options.data);
             }
             request(this);
-            if (state.options.blurValidValue){
-                state.options.forceValidValue = true; //这时强制设置值检查
-                var _t = this;
-                $(_t).combo('textbox').bind("blur.combo-text", function (e) {
-                    // mouse在全选上时也不触发blur
-                    if ($(_t).combo('panel').closest('.panel').find(".combobox-selectall-hover").length==0 
-                    && $(_t).combo('panel').find(".combobox-item-hover").length==0){ //click---combo-p
-                        var val = $(_t).combobox("getValue");
-                        if (val==undefined || val=="" || val==null){
-                            $(e.target).val("");
-                            doQuery(_t, "");
-                        }
-                        var isContain = 0;
-                        var _d = $(_t).combobox('getData');
-                        var opts = $(_t).combobox('options');
-                        for (var i=0;i<_d.length;i++){
-                            if (_d[i][opts.valueField]==val){
-                                isContain = 1;
-                            }
-                        }
-                        if (0==isContain){
-                            $(e.target).val("");
-                            doQuery(_t, "");
-                        }
-                    }
-                });
-            }
         });
     };
     $.fn.combobox.methods = {

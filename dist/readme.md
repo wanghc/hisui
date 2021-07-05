@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-07-05
+- `combobox`的blurValidValue属性配置成true时,点击下拉层的滚动条会清空列表行记录问题. :bug: 需求号:1800688
 
 ## 2021-06-18
 - 增加`required-label`样式，修改示例界面
