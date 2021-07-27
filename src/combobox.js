@@ -362,6 +362,7 @@
         if (item.length) {
             var row = opts.finder.getRow(target, item);
             var value = row[opts.valueField];
+            opts.doEnterFlag = 1; //表示选中值
             if (opts.multiple) {
                 if (item.hasClass("combobox-item-selected")) {
                     t.combobox("unselect", value);
@@ -396,11 +397,16 @@
     }
     /** 默认的面板隐藏事件方法，验证值是否正确 */
     var onHidePanelDefaultHandler = function (target) {
+        if (event && event.target.className.indexOf("combobox-item") > -1) { // 如果是手动选行，不去校验值。会诊表格中下拉框使用了setValue(text)赋值
+            return;
+        }
+        var opts = $(target).combobox('options');
+        if (opts.doEnterFlag == 1) {/*回车选中行*/ opts.doEnterFlag == 0; return;}
         var val = $(target).combobox("getValue");
         if (val == undefined || val == "" || val == null) {
             clearInvalidValue(target);
         } else {
-            var opts = $(target).combobox('options');
+            
             var isContain = 0;
             var _d = $(target).combobox('getData');
             for (var i = 0; i < _d.length; i++) {

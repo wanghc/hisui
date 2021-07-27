@@ -46,6 +46,13 @@ if (_5ae.total != data.total || opts.pageNumber<1)
 - `celltextarea`在IE下最底一行数据，编辑时导致vi2有scrollTop，返原body的scrollTop,可解决vi2的scrollTop
 ## 2021-07-13
 - `combobox`的blurValidValue属性配置成true时，回车选中行，点击行不验证值.:bug: ​需求号:2042875
+```js
+/// 会诊申请表格中选中科室下拉框行记录时，使用setText赋值,校验值的话会导致选不中。
+/// 逻辑修改成：如果是点击行或回车选中行时不去校验value, 否则老项目没办法兼容,其实现这是一个错误写法。
+if (event && event.target.className.indexOf("combobox-item") > -1) {
+    return;
+}
+```
 
 ## 2021-07-05
 - `combobox`的blurValidValue属性配置成true时,点击下拉层的滚动条会清空列表行记录问题. :bug: 需求号:1800688
