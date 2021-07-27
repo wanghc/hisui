@@ -1179,7 +1179,8 @@
         var _5ad = $(_5a8).datagrid("getPager");
         if (_5ad.length) {
             var _5ae = _5ad.pagination("options");
-            if (_5ae.total != data.total) {
+            if (_5ae.total != data.total || opts.pageNumber<1) {
+                // 20210727 默认total为0后，第一次进入datagrid且数据为空时，不会重置pageNumber,医生站治疗执行弹出界面，有bug把pageNumber设置成了0,导致有数据时也查询不出来
                 _5ad.pagination("refresh", { total: data.total });
                 if (opts.pageNumber != _5ae.pageNumber) {
                     opts.pageNumber = _5ae.pageNumber;

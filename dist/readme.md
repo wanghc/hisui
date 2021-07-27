@@ -34,6 +34,18 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-07-27
+- `datagrid`在loadData时，发现pageNumber小于1时，重校正值
+- - 治疗执行记录列表界面查询不出记录问题
+```js
+// 老版_5ae.total默认为pageNumber*pageSize(如：10),后修改bug修改成0。如果第一次Load空数据时,loadData({total:0,rows:[]})不去校正值,opts.pageNumber值一错再错
+// 见bug/datagrid.2.html
+// 增加opts.pageNumber<1条件
+if (_5ae.total != data.total || opts.pageNumber<1) 
+```
+## 2021-07-13
+- `combobox`的blurValidValue属性配置成true时，回车选中行，点击行不验证值.:bug: ​需求号:2042875
+
 ## 2021-07-05
 - `combobox`的blurValidValue属性配置成true时,点击下拉层的滚动条会清空列表行记录问题. :bug: 需求号:1800688
 
