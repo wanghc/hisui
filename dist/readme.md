@@ -43,6 +43,7 @@ $("#btn").linkbutton("disable");
 // 增加opts.pageNumber<1条件
 if (_5ae.total != data.total || opts.pageNumber<1) 
 ```
+- `celltextarea`在IE下最底一行数据，编辑时导致vi2有scrollTop，返原body的scrollTop,可解决vi2的scrollTop
 ## 2021-07-13
 - `combobox`的blurValidValue属性配置成true时，回车选中行，点击行不验证值.:bug: ​需求号:2042875
 

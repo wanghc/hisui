@@ -2015,7 +2015,31 @@
                  * @param   {Number}    设置光标与输入框保持的距离(默认0)
                  * @param   {Number}    设置最大高度(可选)
                  */
-                var autoTextarea = function(elem, extra, maxHeight) {
+                var getMaxHeight = function (elem) {
+                    var inputObj = $(elem);
+                    var rowHeight = inputObj.closest('div.datagrid-cell').closest('td').height() ;/* td[field='note1']  */
+                    var datagridHeight = inputObj.closest('.datagrid-view2')[0].offsetHeight //.scrollHeight;
+                    var cellTop = inputObj.parent().offset().top ;   /*16px是行高一半*/;
+                    var bodyTop = inputObj.closest('.datagrid-body').offset().top;
+                    var cellInBodyTop = cellTop - bodyTop;
+                    var downShow = true;  // 默认下方显示
+                    if (cellInBodyTop + rowHeight > datagridHeight - cellInBodyTop) {
+                        downShow = false;  // 上方显示
+                    }
+                    var maxHeight = Math.max(cellInBodyTop + rowHeight, datagridHeight - cellInBodyTop);  // 上方显示 与 下方显示 取最大高度
+                    maxHeight = Math.min(maxHeight, datagridHeight - 32);
+                    if (rowHeight > datagridHeight-32 ) { //单元格高度超grid高
+                        maxHeight = datagridHeight - 32;
+                        if (cellInBodyTop<0) {
+                            downShow = false;
+                        } else {
+                            downShow = true;
+                        }
+                    }
+                    //console.log({ rowHeight:rowHeight,datagridHeight:datagridHeight,cellTop:cellTop,bodyTop:bodyTop,cellInBodyTop:cellInBodyTop,maxHeight:maxHeight, downShow:downShow });
+                    return { maxHeight: maxHeight-32, downShow: downShow };
+                }
+                var autoTextarea = function (elem, extra, maxHeight,forceCalc) {
                     extra = extra || 0;
                     var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
                     isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera'),
@@ -2033,16 +2057,18 @@
                     },
                     minHeight = parseFloat(getStyle('height'));
                     elem.style.resize = 'none';
-                    var change = function() {
+                    var change = function(forceCalc) {
                         var height,
                             padding = 0,
                             style = elem.style;
-                        if (elem._length === elem.value.length) return;
+                        if (forceCalc!=true && elem._length === elem.value.length) return;
                         elem._length = elem.value.length;
                         if (!isFirefox && !isOpera) {
                             padding = parseInt(getStyle('paddingTop')) + parseInt(getStyle('paddingBottom'));
                         };
                         elem.style.height = minHeight + 'px';
+                        var maxHeightOpt = getMaxHeight(elem);
+                        var maxHeight = maxHeightOpt.maxHeight;
                         if (elem.scrollHeight > minHeight) {
                             if (maxHeight && elem.scrollHeight > maxHeight) {
                                 height = maxHeight - padding;
@@ -2054,14 +2080,14 @@
                             style.height = height + extra + 'px';
                             elem.currHeight = parseInt(style.height);
                         };
-                        autoLeftTop($(elem));
+                        autoLeftTop($(elem),maxHeightOpt.downShow);
                     };
-                    $(elem).on('propertychange.celltextarea', change);
-                    $(elem).on('input.celltextarea', change);
-                    $(elem).on('focus.celltextarea', change);
-                    change();
+                    $(elem).off('propertychange.celltextarea').on('propertychange.celltextarea', change);
+                    $(elem).off('input.celltextarea').on('input.celltextarea', change);
+                    $(elem).off('focus.celltextarea').on('focus.celltextarea', change);
+                    change(forceCalc);
                 };
-                var autoLeftTop = function(textinputJobj){
+                var autoLeftTop = function(textinputJobj,downShow){
                     var os = textinputJobj.parent().offset();   /*16px是行高一半*/
                     var gcell = textinputJobj.closest('div.datagrid-cell');
                     if (gcell.length>0 && gcell[0].style.whiteSpace==""){
@@ -2071,6 +2097,7 @@
                     if (vi2) {
                         if (os) {
                             var datagridTop = textinputJobj.closest(".datagrid").offset().top;
+                            if ( "undefined" == typeof downShow) downShow = getMaxHeight(textinputJobj[0]).downShow;
                             if (downShow){ //(os.top-datagridTop > vi2.scrollHeight / 2) {
                                 textinputJobj.offset(os);
                             } else {
@@ -2078,25 +2105,23 @@
                                 textinputJobj.offset({ top:os.top + rowHeight  - textinputJobj.height(), left:os.left });
                             }
                         }
-                        vi2.scrollTop = vi2.scrollHeight - vi2.offsetHeight;
+                        //IE下最底一行数据，编辑时导致vi2有scrollTop，返原body的scrollTop,可解决vi2的scrollTop
+                        if (false == downShow) {
+                            if (vi2.scrollTop > 0) {
+                                setTimeout(function () {
+                                    textinputJobj.closest('.datagrid-body')[0].scrollTop = 100000;
+                                },0);
+                            }
+                        }
                     }
                 }
                 _660.closest('.datagrid-body').on('scroll.celltextarea', function () {
                     autoLeftTop(_660);
+                    //autoTextarea(_660[0], 0,undefined,true); //mh - 32);
                 });
-                var rowHeight = _660.closest('div.datagrid-cell').closest('td').height() ;/* td[field='note1']  */
-                var datagridHeight = _660.closest('.datagrid-view2')[0].scrollHeight;
-                var cellTop = _660.parent().offset().top;   /*16px是行高一半*/;
-                var bodyTop = _660.closest('.datagrid-body').offset().top;
-                var cellInBodyTop = cellTop - bodyTop;
-                var downShow = true;  // 默认下方显示
-                if (cellInBodyTop + rowHeight > datagridHeight - cellInBodyTop) {
-                    downShow = false;  // 上方显示
-                }
-                var mh = Math.max(cellInBodyTop + rowHeight , datagridHeight - cellInBodyTop );  // 上方显示 与 下方显示 取最大高度
-                var vb = $.data(_660[0], "validatebox");
-                if (vb && vb.options && vb.options.maxHeight) mh = vb.options.maxHeight;
-                autoTextarea(_660[0],0,mh - 32);
+                //var vb = $.data(_660[0], "validatebox");
+                //if (vb && vb.options && vb.options.maxHeight) mh = vb.options.maxHeight;
+                autoTextarea(_660[0], 0, undefined); //mh - 32);
             }
         }, icheckbox:{ /*新的icheckbox*/
             init: function (_662, _663) { 
