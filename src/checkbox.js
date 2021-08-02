@@ -89,6 +89,7 @@
                     }
                     if (opts.onCheckChange) opts.onCheckChange.call(this,e,val);
                     if (opts.ifToggled) opts.ifToggled.call(this,e,val);
+                    t.trigger("ifChanged");
                 //}
                 //e.stopPropagation();
                 //return false;
@@ -214,6 +215,7 @@
             if (value) objlabel.addClass('disabled');
             else objlabel.removeClass('disabled');
             state.options.disabled=value;
+            $(target).trigger("ifChanged");
         }
     }
     function setRequired(target,flag){

@@ -1,4 +1,4 @@
-[HISUI]: http://bbs.hisui.cn "下载最新的HISUI库"
+[HISUI]: http://hisui.cn "下载最新的HISUI库"
 # 介绍
 `HISUI`是一款前端组件类库。
 提供`linkbutton`,`linkmenu`,`combo`,`datagrid`,`treegrid`,`popover`,`window`,`lookup`,`panel`,`layout`,`accordion`,`tab`等组件功能。
@@ -34,6 +34,15 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-08-02
+- `checkbox`在checked及disable变化时,触发ifChanged事件，兼容老版icheck组件
+- - 抗菌药物申请单界面【是否越级】勾选后仍然不能填写【越级原因】问题修改
+```js
+/// click.checkbox
+t.trigger("ifChanged");
+/// setDisable
+$(target).trigger("ifChanged");
+```
 ## 2021-07-27
 - `datagrid`在loadData时，发现pageNumber小于1时，重校正值
 - - 治疗执行记录列表界面查询不出记录问题
