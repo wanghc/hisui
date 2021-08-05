@@ -15,14 +15,21 @@
 	function getValue(target){
 		return $(target).val();
 	}
+	/**
+	 * 
+	 * @param {HTMLDomcument} target 
+	 * @param {String} value 格式化后的串,输入框中12时得到value=12:00:00
+	 * @param {Boolean} remainText 
+	 */
 	function setValue(target, value, remainText){
 		var state = $.data(target,'timeboxq');
 		var opts = state.options;
 		var oldVal = $(target).val();
-		if (oldVal != value){
+		if ((oldVal != value) ||(opts.valueDirty)){
 			opts.onChange.call(target,value,oldVal);
 		}
 		$(target).val(value);
+		opts.valueDirty = 0;
 		if ($(target).validatebox('isValid')){
 			opts.onSelect.call(target,value);
 		}
@@ -68,7 +75,7 @@
 			$(_t).validatebox(opts);
 			$(_t).css({ imeMode: "disabled" }).addClass('timeboxq').off('blur.timeboxq').on('blur.timeboxq',function(){
 				if(opts.onBlur) opts.onBlur.call(this,_t);
-			}).unbind("keydown.timboxq").bind("keydown.timboxq", function (e) {
+			}).unbind("keydown.timeboxq").bind("keydown.timeboxq", function (e) {
 				if ("undefined" ==typeof e.keyCode){return ;}
 				switch (e.keyCode) {
 					case 38:
@@ -83,6 +90,8 @@
 						return false;
 					default:;
 				}
+			}).unbind("input.timeboxq").bind("change.timeboxq", function (e) {
+				opts.valueDirty = 1;
 			});
 		});
 	};
@@ -198,7 +207,8 @@
 		validType:{"timeboxq":"","minMaxTime":[null,null]},
 		timeFormat:"HMS",
 		minTime:'00:00:00',
-		maxTime:'23:59:59'
+		maxTime: '23:59:59',
+		valueDirty:1
 	});
 	$.extend($.fn.timeboxq.defaults.rules,{
 		timeboxq : {

@@ -56,19 +56,23 @@
 				$.messager.popover({msg: '设置可选范围成功',type:'success',timeout: 1000});
 			});
 		</script>
-	</div>
-	<script type="text/javascript">			
-		$.parser.onComplete = function(ctx){
-			var opt = $('#exeTime').timeboxq('options'); 
-			var target = document.getElementById('exeTime');
-			$("#af15").html(opt.formatter.call(target,opt.parser.call(target,"n+15")));
-			$("#bf15").html(opt.formatter.call(target,opt.parser.call(target,"n-15")));
-			$("#exeTime").timeboxq({
-				validType:["TimeG['endtb']"]
-			});
+		
+		<script type="text/javascript" class="use-prettyprint">			
+			$.parser.onComplete = function(ctx){
+				var opt = $('#exeTime').timeboxq('options'); 
+				var target = document.getElementById('exeTime');
+				$("#af15").html(opt.formatter.call(target,opt.parser.call(target,"n+15")));
+				$("#bf15").html(opt.formatter.call(target,opt.parser.call(target,"n-15")));
+				$("#exeTime").timeboxq({
+					onChange:function(newValue,oldValue){
+						console.log("newValue="+newValue+", oldValue="+oldValue);
+					},
+					validType:["TimeG['endtb']"]
+				});
 
-		};
-	</script>
+			};
+		</script>
+	</div>
 <table class="table">
 	<tr class="protitle">
 		<th>属性</th>

@@ -34,6 +34,21 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2021-08-05
+- `timeboxq`的onChange优化 :bug:
+- - 护理ycz发现在中途修改timeboxq框的值离开或回车后，不触发onChange事件
+```js
+// 记录修改
+.bind("change.timeboxq", function (e) {
+	opts.valueDirty = 1;
+})
+// 判断修改
+if ((oldVal != value) ||(opts.valueDirty)){
+	opts.onChange.call(target,value,oldVal);
+}
+```
+
 ## 2021-08-02
 - `checkbox`在checked及disable变化时,触发ifChanged事件，兼容老版icheck组件
 - - 抗菌药物申请单界面【是否越级】勾选后仍然不能填写【越级原因】问题修改
