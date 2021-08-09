@@ -65,6 +65,7 @@ if ((vv.length == 0 && !opts.enterNullValueClear) || (opts.multiple && !opts.ent
     }
   }
 ```
+- 增加核验`icon-verify`图标
 
 ## 2021-08-06
 - 医为浏览器处理病历编辑器覆盖问题逻辑优化
