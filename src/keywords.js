@@ -125,13 +125,17 @@
 	}
 	$.fn.keywords.methods = {
 		options: function(jq){
-			if (jq.length>0) return $.data(jq[0], 'keywords').options;
+			if (jq.length > 0) return $.data(jq[0], 'keywords').options;
+			return {};
 		},
 		getSelected:function(jq){
-			if (jq.length>0) return getAllSelected(jq[0]);
+			if (jq.length > 0) return getAllSelected(jq[0]);
+			/*兼容老版, 护士补录界面,没有危重,病危keywords,但使用了*/
+			return [];
 		},
 		select:function(jq,id){
-			if (jq.length>0) return selectById(jq[0],id);
+			if (jq.length > 0) return selectById(jq[0], id);
+			
 		},
 		switchById:function(jq,id){
 			if (jq.length>0) return selectById(jq[0],id);

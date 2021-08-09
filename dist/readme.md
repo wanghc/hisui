@@ -34,6 +34,16 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-08-09
+- `keywords`的getSelected在jq.length==0时返回[],兼容老版. 需求号：2091806
+- - 河南信阳中心,发现“护士批量补录医嘱”界面存在问题，左侧患者列表界面无法正常加载
+```js
+getSelected:function(jq){
+	if (jq.length > 0) return getAllSelected(jq[0]);
+	/*兼容老版, 护士补录界面,没有危重,病危keywords,但使用了。增加返回值*/
+	return [];
+},
+```
 
 ## 2021-08-09
 - combobox的`enterNullValueClear`配置在多选时不生效问题. 需求号:1521235
