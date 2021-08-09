@@ -35,6 +35,17 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2021-08-06
+- 医为浏览器处理病历编辑器覆盖问题逻辑优化
+- - 港大[科室模板维护]界面弹出$.messager.prompt窗口被病历覆盖问题。编辑吅与界面都在同一iframe中，老的隐藏编辑器父iframe方式不生效，修改成把窗口显示时编辑器宽高修改成0,窗口消失时编辑器宽高恢复
+```js
+// 增加方法
+switchObjectSize(options,win,toHide,trgt,hisuiCmpName)
+// 设置宽高
+frm.style.width = "0px";
+frm.style.height = "0px";
+```
+
 ## 2021-08-05
 - `timeboxq`的onChange优化 :bug:
 - - 护理ycz发现在中途修改timeboxq框的值离开或回车后，不触发onChange事件

@@ -7,7 +7,7 @@
  * To use it on other terms please contact us at info@jeasyui.com
  *
  */
-(function ($) {
+ (function ($) {
     /*-----1.5.js--jquery.parser.js--method-----start---*/
     $.hisui = {
 		/**
@@ -108,6 +108,51 @@
             }
             return key;
         }
+        
+        ,
+        /**
+         * 
+         * @param {Object} options 
+         * @param {Window} win 
+         * @param {Boolean} toHide 
+         * @param {HTMLElement} trgt 
+         * @param {String} hisuiCmpName 
+         */
+        switchObjectSize: function (options, win, toHide, trgt, hisuiCmpName) {
+            var tmpObjList = win.document.querySelectorAll('OBJECT');
+            if (tmpObjList.length > 0) {
+                for (var j = 0; j < tmpObjList.length; j++) {
+                    if ("undefined" == typeof tmpObjList[j].attributes['type']) continue;
+                    if ("application/x-iemrplugin" != tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
+                    var frm = tmpObjList[j]; changeId = frm.id;
+                    if (frm) {
+                        if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
+                        if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
+                        if (!$.data(trgt, "changeIdStr")) { $.data(trgt, "changeIdStr", { NPAPIIdStr: "" }); }
+                        if (toHide) {
+                            if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(changeId) < 0) {     //多次open只加一次
+                                frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) + 1);
+                                $.data(trgt, "changeIdStr").NPAPIIdStr += changeId;
+                            }
+                            //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").NPAPIIdStr+" ,"+hisuiCmpName+" open NPAPI-hide=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.width);
+                            frm.style.width = "0px";
+                            frm.style.height = "0px";
+                        } else {
+                            if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(changeId) > -1) {     //多次close只加一次
+                                frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) - 1);
+                            }
+                            if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
+                            $.data(trgt, "changeIdStr").NPAPIIdStr = $.data(trgt, "changeIdStr").NPAPIIdStr.replace(changeId, "");
+                            //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").changeIdStr+" ,"+hisuiCmpName+" close NPAPI-show=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.width);
+                            if (frm.getAttribute('data-hideTimes') == 0) {
+                                frm.style.width = "100%";
+                                frm.style.height = "100%";
+                            }
+                        }
+                    }
+                }
+            }
+        }
         /***
          * @param {Object} options HISUI-CMP的配置项
          * @param {HTMLDomWindow} win 当前要查询的窗口对象。会查询这个win下所有iframe下包含的object
@@ -122,45 +167,50 @@
             hisuiCmpName = hisuiCmpName||"panel";
             windowNPAPITotal--;
             var count = win.frames.length;
-            for (var i=0; i<count; i++){
-                if(!win.frames[i]) continue; //有可能undefined
+            for (var i = 0; i < count; i++) {
+                if (!win.frames[i]) continue; //有可能undefined
                 var tmpWin = win.frames[i].window;
-                try{tmpWin.document;/*runqian corss*/}catch(e){ return ;}
+                try { tmpWin.document;/*runqian corss*/ } catch (e) { return; }
+                $.hisui.findObjectDom(options, tmpWin, toHide, trgt, hisuiCmpName);
+                /*
                 var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
-                if (tmpObjList.length>0) {
-                    for(var j=0;j<tmpObjList.length; j++){
-                        if ("undefined"==typeof tmpObjList[j].attributes['type']) continue;
-                        if ("application/x-iemrplugin"!=tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
-                        var frm = tmpWin.frameElement; changeId=frm.id;
+                if (tmpObjList.length > 0) {
+                    for (var j = 0; j < tmpObjList.length; j++) {
+                        if ("undefined" == typeof tmpObjList[j].attributes['type']) continue;
+                        if ("application/x-iemrplugin" != tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
+                        var frm = tmpWin.frameElement; changeId = frm.id;
                         if (frm) {
-                            if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                            if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                            if (!$.data(trgt,"changeIdStr")){$.data(trgt,"changeIdStr",{NPAPIIdStr:""});}
-                            if(toHide){
-                                if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)<0){     //多次open只加一次
-                                    frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))+1);
-                                    $.data(trgt,"changeIdStr").NPAPIIdStr += changeId;
+                            if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
+                            if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
+                            if (!$.data(trgt, "changeIdStr")) { $.data(trgt, "changeIdStr", { NPAPIIdStr: "" }); }
+                            if (toHide) {
+                                if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(changeId) < 0) {     //多次open只加一次
+                                    frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) + 1);
+                                    $.data(trgt, "changeIdStr").NPAPIIdStr += changeId;
                                 }
                                 //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").NPAPIIdStr+" ,"+hisuiCmpName+" open NPAPI-hide=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.display);
-                                if (frm.style.display!='none'){
+                                if (frm.style.display != 'none') {
                                     frm.style.display = "none";
                                 }
-                            }else{
-                                if ($.data(trgt,"changeIdStr").NPAPIIdStr.indexOf(changeId)>-1){     //多次close只加一次
-                                    frm.setAttribute('data-hideTimes',parseInt(frm.getAttribute('data-hideTimes'))-1);
+                            } else {
+                                if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(changeId) > -1) {     //多次close只加一次
+                                    frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) - 1);
                                 }
-                                if (0>frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes',0);
-                                $.data(trgt,"changeIdStr").NPAPIIdStr = $.data(trgt,"changeIdStr").NPAPIIdStr.replace(changeId,"") ;
+                                if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
+                                $.data(trgt, "changeIdStr").NPAPIIdStr = $.data(trgt, "changeIdStr").NPAPIIdStr.replace(changeId, "");
                                 //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").changeIdStr+" ,"+hisuiCmpName+" close NPAPI-show=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.display);
-                                if (frm.getAttribute('data-hideTimes')==0){
+                                if (frm.getAttribute('data-hideTimes') == 0) {
                                     frm.style.display = 'block';
                                 }
                             }
                         }
                     }
                 }
-                $.hisui.findObjectDom(options,tmpWin,toHide,trgt,hisuiCmpName);
+                $.hisui.findObjectDom(options, tmpWin, toHide, trgt, hisuiCmpName);
+                */
             }
+            // 当前界面有application/x-iemrplugin
+            $.hisui.switchObjectSize(options,win,toHide,trgt,hisuiCmpName);
         }
     };
     $.hisui.globalContainerId = 'z-q-container';
