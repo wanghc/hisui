@@ -34,6 +34,7 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
 ## 2021-08-09
 - `keywords`的getSelected在jq.length==0时返回[],兼容老版. 需求号：2091806
 - - 河南信阳中心,发现“护士批量补录医嘱”界面存在问题，左侧患者列表界面无法正常加载
@@ -45,13 +46,24 @@ getSelected:function(jq){
 },
 ```
 
-## 2021-08-09
 - combobox的`enterNullValueClear`配置在多选时不生效问题. 需求号:1521235
 - - 护理ycz发现下拉多选在editable:ture,enterNullValueClear:false情况下,选中某些项后,继续编辑文本框,新增一些额外的字符,回车时,新增的额外字符丢失。
 ```js
 /// 增加多选判断
 if ((vv.length == 0 && !opts.enterNullValueClear) || (opts.multiple && !opts.enterNullValueClear)){
 }
+```
+
+- `tree`只有一个根节点时,会多出向上虚线 :bug:  需求号：1948502
+```css
+  .tree-root-one {
+    .tree-expanded{
+      background: url('@{images-path}/tree_lines.png') no-repeat -49px center;
+    }
+    .tree-collapsed {
+      background: url('@{images-path}/tree_lines.png') no-repeat -33px center;
+    }
+  }
 ```
 
 ## 2021-08-06
