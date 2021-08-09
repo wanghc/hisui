@@ -380,7 +380,8 @@
             }
         });
         /*当配匹值为空且enterNullValueClear为flase时不清空输入框。add wanghc 2018-5-22*/
-        if(vv.length==0 && !opts.enterNullValueClear){
+        if ((vv.length == 0 && !opts.enterNullValueClear) || (opts.multiple && !opts.enterNullValueClear)) {
+            
         }else{
             t.combobox("setValues", vv);
         }

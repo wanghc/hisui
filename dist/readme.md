@@ -35,6 +35,15 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2021-08-09
+- combobox的`enterNullValueClear`配置在多选时不生效问题. 需求号:1521235
+- - 护理ycz发现下拉多选在editable:ture,enterNullValueClear:false情况下,选中某些项后,继续编辑文本框,新增一些额外的字符,回车时,新增的额外字符丢失。
+```js
+/// 增加多选判断
+if ((vv.length == 0 && !opts.enterNullValueClear) || (opts.multiple && !opts.enterNullValueClear)){
+}
+```
+
 ## 2021-08-06
 - 医为浏览器处理病历编辑器覆盖问题逻辑优化
 - - 港大[科室模板维护]界面弹出$.messager.prompt窗口被病历覆盖问题。编辑吅与界面都在同一iframe中，老的隐藏编辑器父iframe方式不生效，修改成把窗口显示时编辑器宽高修改成0,窗口消失时编辑器宽高恢复
