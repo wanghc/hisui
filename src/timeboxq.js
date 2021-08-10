@@ -87,7 +87,8 @@
 					case 13:
 						e.preventDefault();
 						opts.keyHandler.enter.call(_t, e);
-						return false;
+						//return false;  2021-08-10 这句会导致回车事件不冒泡
+						break;
 					default:;
 				}
 			}).unbind("input.timeboxq").bind("change.timeboxq", function (e) {

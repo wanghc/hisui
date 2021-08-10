@@ -34,6 +34,18 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-08-10
+- `timeboxq`回车事件不冒泡处理 :bug:
+```js
+switch (e.keyCode) {
+  //...
+  case 13:
+    e.preventDefault();
+    opts.keyHandler.enter.call(_t, e);
+    //return false ; 修改成 break;
+    break;
+}
+```
 
 ## 2021-08-09
 - `keywords`的getSelected在jq.length==0时返回[],兼容老版. 需求号：2091806
