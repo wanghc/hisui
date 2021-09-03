@@ -34,6 +34,15 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-09-03
+- 解决多个NP插件同时出现在同一window下且其中一个id包含另一个id时，显示错误问题 :bug:
+```js
+if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(','+changeId+',') < 0) {     //多次open只加一次
+  frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) + 1);
+  $.data(trgt, "changeIdStr").NPAPIIdStr += ','+changeId+',';
+}
+```
+
 ## 2021-08-10
 - `timeboxq`回车事件不冒泡处理 :bug:
 ```js

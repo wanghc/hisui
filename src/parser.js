@@ -129,20 +129,21 @@
                         if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
                         if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
                         if (!$.data(trgt, "changeIdStr")) { $.data(trgt, "changeIdStr", { NPAPIIdStr: "" }); }
+                        /*20210903 changeId二边加逗号，解决多个病历插件也其中一个id包含另一个id。如id="plugin",另一id="pluginWord",导致不显示*/
                         if (toHide) {
-                            if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(changeId) < 0) {     //多次open只加一次
+                            if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(','+changeId+',') < 0) {     //多次open只加一次
                                 frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) + 1);
-                                $.data(trgt, "changeIdStr").NPAPIIdStr += changeId;
+                                $.data(trgt, "changeIdStr").NPAPIIdStr += ','+changeId+',';
                             }
                             //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").NPAPIIdStr+" ,"+hisuiCmpName+" open NPAPI-hide=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.width);
                             frm.style.width = "0px";
                             frm.style.height = "0px";
                         } else {
-                            if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(changeId) > -1) {     //多次close只加一次
+                            if ($.data(trgt, "changeIdStr").NPAPIIdStr.indexOf(','+changeId+',') > -1) {     //多次close只加一次
                                 frm.setAttribute('data-hideTimes', parseInt(frm.getAttribute('data-hideTimes')) - 1);
                             }
                             if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
-                            $.data(trgt, "changeIdStr").NPAPIIdStr = $.data(trgt, "changeIdStr").NPAPIIdStr.replace(changeId, "");
+                            $.data(trgt, "changeIdStr").NPAPIIdStr = $.data(trgt, "changeIdStr").NPAPIIdStr.replace(','+changeId+',', "");
                             //console.log("npapiIdStr="+$.data(trgt,"changeIdStr").changeIdStr+" ,"+hisuiCmpName+" close NPAPI-show=> "+frm.getAttribute('data-hideTimes')+",frm.style.display="+frm.style.width);
                             if (frm.getAttribute('data-hideTimes') == 0) {
                                 frm.style.width = "100%";
