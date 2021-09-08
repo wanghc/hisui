@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-09-08
+- `timespinner`增加双击全选功能 :sparkles:
+
 ## 2021-09-03
 - 解决多个NP插件同时出现在同一window下且其中一个id包含另一个id时，显示错误问题 :bug:
 ```js

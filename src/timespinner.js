@@ -29,7 +29,22 @@
             _enter(_4e8);
         }).bind('keydown.timespinner',function(){
             delete this.selectionStartPersistent;
-        });
+        }).bind("dblclick.timespinner", function () {
+            // yzc提交
+            var n=0,r=10;
+            if (_4e8.selectionStart != null) {
+                _4e8.setSelectionRange(n, r);
+            } else {
+                if (_4e8.createTextRange) {
+                    var o = _4e8.createTextRange();
+                    o.collapse();
+                    o.moveEnd("character", r);
+                    o.moveStart("character", n);
+                    o.select();
+                }
+            }
+            $(_4e8).focus();
+        });	
     };
     /** 通过光标位置计算出,应该高亮的类型0,1,2*/
     function calHighlightTypeByPosi(posi){
