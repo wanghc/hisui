@@ -624,46 +624,54 @@
             if (!_563(tr)) {
                 return;
             }
-            var _567 = _565(tr);
+            var rowIndex = _565(tr);
             if (tt.parent().hasClass("datagrid-cell-check")) {
                 if (opts.singleSelect && opts.selectOnCheck) {
                     if (!opts.checkOnSelect) {
                         _5e5(_55a, true);
                     }
-                    _5d2(_55a, _567);
+                    _5d2(_55a, rowIndex);
                 } else {
                     if (tt.is(":checked")) {
-                        _5d2(_55a, _567);
+                        if (opts.shiftCheck && e.shiftKey) {
+                            shiftCheckRow(rowIndex, tr, _55a);
+                        }
+                        _5d2(_55a, rowIndex);
                     } else {
-                        _5d9(_55a, _567);
+                        if (opts.shiftCheck && e.shiftKey) {
+                            shiftUncheckRow(rowIndex, tr, _55a);
+                            _5d2(_55a, rowIndex);
+                        } else {
+                            _5d9(_55a, rowIndex);  /**/
+                        }
                     }
                 }
             } else {
-                var row = opts.finder.getRow(_55a, _567);
+                var row = opts.finder.getRow(_55a, rowIndex);
                 var td = tt.closest("td[field]", tr);
                 if (td.length) {
                     var _568 = td.attr("field");
-                    opts.onClickCell.call(_55a, _567, _568, row[_568]);
+                    opts.onClickCell.call(_55a, rowIndex, _568, row[_568]);
                 }
                 if (opts.singleSelect == true) {
-                    _5cb(_55a, _567);
+                    _5cb(_55a, rowIndex);
                 } else {
                     if (opts.ctrlSelect) {
                         if (e.ctrlKey) {
                             if (tr.hasClass("datagrid-row-selected")) {
-                                _5d3(_55a, _567);
+                                _5d3(_55a, rowIndex);
                             } else {
-                                _5cb(_55a, _567);
+                                _5cb(_55a, rowIndex);
                             }
                         } else {
                             $(_55a).datagrid("clearSelections");
-                            _5cb(_55a, _567);
+                            _5cb(_55a, rowIndex);
                         }
-                    } else {
+                    }else {
                         if (tr.hasClass("datagrid-row-selected")) {
-                            _5d3(_55a, _567);
+                            _5d3(_55a, rowIndex);
                         } else {
-                            _5cb(_55a, _567);
+                            _5cb(_55a, rowIndex);
                         }
                     }
                 }
@@ -671,14 +679,14 @@
                     var oldEditRowInd = undefined;
                     var editTr = opts.finder.getTr(_55a, "", "editing", 2);
                     if (editTr) oldEditRowInd = editTr.attr('datagrid-row-index');
-                    if (oldEditRowInd!=_567) { //点击切换
-                        if(_567>-1 && ('undefined'==typeof oldEditRowInd || $(_55a).datagrid('validateRow',oldEditRowInd))){ //验证通过
+                    if (oldEditRowInd!=rowIndex) { //点击切换
+                        if(rowIndex>-1 && ('undefined'==typeof oldEditRowInd || $(_55a).datagrid('validateRow',oldEditRowInd))){ //验证通过
                             if ('undefined'!=typeof oldEditRowInd) _5fd(_55a,parseInt(oldEditRowInd), false); //-endedit
-                            _5f7(_55a,_567); //开始编辑
+                            _5f7(_55a,rowIndex); //开始编辑
                         }
                     }
                 }
-                opts.onClickRow.call(_55a, _567, row);
+                opts.onClickRow.call(_55a, rowIndex, row);
             }
         }
         var debouncedDgBodyClickFun=($.hisui.debounce && parseInt(opts.clickDelay)>0)?$.hisui.debounce(dgBodyClickFun,parseInt(opts.clickDelay)):dgBodyClickFun;
@@ -763,7 +771,7 @@
                 opts.onDblClickCell.call(_55a, _569, _56a, row[_56a]);
             }
             if (opts.clicksToEdit==2){
-                _5f7(_55a,_567);
+                _5f7(_55a,rowIndex);
             }
             opts.onDblClickRow.call(_55a, _569, row);
             e.stopPropagation();
@@ -1417,16 +1425,74 @@
         }
         opts.onUnselectAll.call(_5e1, rows);
     };
+    /**
+     * 
+     * @param {Int} rowIndex 
+     * @param {Object} opts 
+     * @param {Event} e 
+     * @param {jQuery} tr 
+     * @param {jQuery} tbl 
+     */
+    function shiftUncheckRow(rowIndex,tr,tbl) {
+            var trId = tr[0].id;
+            var preTrId = trId.slice(0, trId.lastIndexOf('-')+1);
+            /* 向下查找已勾选 */
+            var currTrId = parseInt(rowIndex) + 1;
+            while (currTrId>rowIndex) {
+                if (document.getElementById(preTrId + currTrId)) {
+                    if(document.getElementById(preTrId + currTrId).className.indexOf('datagrid-row-selected') > -1) {
+                        _5d9(tbl, currTrId);
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+                currTrId++;
+            }
+        
+    }
+    /**
+     * 单选时无效
+     * @param {*} rowIndex 
+     * @param {*} opts 
+     * @param {*} e 
+     * @param {*} tr 
+     * @param {*} tbl 
+     */
+    // shift+左键连选
+    function shiftCheckRow(rowIndex, tr, tbl) {
+        var trId = tr[0].id;
+        var preTrId = trId.slice(0, trId.lastIndexOf('-')+1);
+        /* 向上查找到最近的勾选行 */
+        var currTrId = parseInt(rowIndex) - 1;
+        var myTopSelectRow = -1;
+        while (currTrId>-1) {
+            if (document.getElementById(preTrId + currTrId).className.indexOf('datagrid-row-selected')>-1) {
+                myTopSelectRow = currTrId;
+                break;
+            }
+            currTrId--;
+        }
+        if (myTopSelectRow>-1) {
+            currTrId = myTopSelectRow+1; //myTopSelectRow已选中
+            while (currTrId < rowIndex) {
+                _5d2(tbl, currTrId);
+                currTrId++;
+            }
+        }
+    }
+
     // checked row(target,index,true|false)
-    function _5d2(_5e7, _5e8, _5e9) {
+    function _5d2(_5e7, rowIndex, _5e9) {
         var _5ea = $.data(_5e7, "datagrid");
         var opts = _5ea.options;
         /*add onBeforeCheck event by wanghc 2018-05-23*/
-        var row = opts.finder.getRow(_5e7, _5e8);
+        var row = opts.finder.getRow(_5e7, rowIndex);
         if ('undefined' == typeof row) return ; //没有行也去checkRow时会报错
-        if (false === opts.onBeforeCheck.call(_5e7, _5e8, row)){ 
+        if (false === opts.onBeforeCheck.call(_5e7, rowIndex, row)){ 
             //点击checkbox时，checkbox在触发onBeforeCheck事件前 就变成了选中 在此要变回去 add 2020-01-13 cryze
-            var tr = opts.finder.getTr(_5e7, _5e8);
+            var tr = opts.finder.getTr(_5e7, rowIndex);
             if (!tr.hasClass("datagrid-row-checked")){  // 是原本是未选中状态 才能改
                 var ck = tr.find("div.datagrid-cell-check input[type=checkbox]");
                 ck._propAttr("checked", false);
@@ -1434,9 +1500,9 @@
             return ;
         }
         if (!_5e9 && opts.selectOnCheck) {
-            _5cb(_5e7, _5e8, true);
+            _5cb(_5e7, rowIndex, true);
         }
-        var tr = opts.finder.getTr(_5e7, _5e8).addClass("datagrid-row-checked");
+        var tr = opts.finder.getTr(_5e7, rowIndex).addClass("datagrid-row-checked");
         var ck = tr.find("div.datagrid-cell-check input[type=checkbox]");
         ck._propAttr("checked", true);
         tr = opts.finder.getTr(_5e7, "", "checked", 2);
@@ -1449,7 +1515,7 @@
         if (opts.idField) {
             _505(_5ea.checkedRows, opts.idField, row);
         }
-        opts.onCheck.call(_5e7, _5e8, row);
+        opts.onCheck.call(_5e7, rowIndex, row);
     };
     function _5d9(_5ec, _5ed, _5ee) {
         var _5ef = $.data(_5ec, "datagrid");
@@ -1515,26 +1581,26 @@
         }
         opts.onUncheckAll.call(_5f4, rows);
     };
-    function _5f7(_5f8, _5f9) {
+    function _5f7(_5f8, rowIndex) {
         var opts = $.data(_5f8, "datagrid").options;
-        var tr = opts.finder.getTr(_5f8, _5f9);
-        var row = opts.finder.getRow(_5f8, _5f9);
+        var tr = opts.finder.getTr(_5f8, rowIndex);
+        var row = opts.finder.getRow(_5f8, rowIndex);
         if (tr.hasClass("datagrid-row-editing")) {
             return;
         }
-        if (opts.onBeforeEdit.call(_5f8, _5f9, row) == false) {
+        if (opts.onBeforeEdit.call(_5f8, rowIndex, row) == false) {
             return;
         }
         tr.addClass("datagrid-row-editing");
-        _5fa(_5f8, _5f9);
+        _5fa(_5f8, rowIndex);
         _59b(_5f8);
         tr.find("div.datagrid-editable").each(function () {
             var _5fb = $(this).parent().attr("field");
             var ed = $.data(this, "datagrid.editor");
             ed.actions.setValue(ed.target, row[_5fb]);
         });
-        _5fc(_5f8, _5f9);
-        opts.onBeginEdit.call(_5f8, _5f9, row);
+        _5fc(_5f8, rowIndex);
+        opts.onBeginEdit.call(_5f8, rowIndex, row);
     };
     /// endEdit(t,rowIndex=0,flag)
     function _5fd(_5fe, _5ff, _600) {
@@ -2985,6 +3051,7 @@
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        shiftCheck:false,
         fontSize:"",/*表格内容字体大小 fontSize:9 20200824*/
         lineHeight:"",/*列的行高 20201126*/
         titleNoWrap:true, /*表头不折行 20200824*/

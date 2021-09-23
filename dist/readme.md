@@ -35,8 +35,11 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2021-09-23
+- 为`checkbox:true`的`datagrid`增加Shift连选功能
+
 ## 2021-09-22
-- 增加`icon-w-skip-no`跳号样式
+- 增加`icon-w-skip-no`跳号样式 需求号:2150849
 - 修改`icon-stamp-cancel`图片
 ## 2021-09-08
 - `timespinner`增加双击全选功能 :sparkles:
