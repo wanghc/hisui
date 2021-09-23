@@ -25,6 +25,18 @@
 	<h2>数据网格</h2>
 	<h3>说明:</h3>
     <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
+	<h4>查看表格数据格式：
+	<pre class="prettyprint hide lang-js"><code>// 表格数据格式
+{
+	{
+  rows:[
+    {col1:value,col2:value,...},
+    {col1:value,col2:value,...},
+    ...  // 一页显示的数据
+  ],
+  footer:[{col1:value,col2:value,...}],       // 脚行数据，一般用于总计,footer为可选值
+  total:10					// 总行数
+}</code></pre></h4>
 	<h3>如：默认表格(hisui-datagrid)</h3>	
 	<div class="demo-exp-code entry-content">
 		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fixRowNumber:true,rownumbers:true,headerCls:'panel-header-gray',iconCls:'icon-paper',toolbar: [],fitColumns:true,singleSelect:true,pagination:true">
