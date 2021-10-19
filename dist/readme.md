@@ -34,7 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-
+## 2021-09-26
+- `datagrid`在护理病历界面只显示一列问题 :bug:
+- - 升级HISUI为最新时，护理病历还是旧版本，记录单显示问题,做了兼容性处理。
 ## 2021-09-23
 - 为`checkbox:true`的`datagrid`增加Shift连选功能
 

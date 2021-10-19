@@ -1119,11 +1119,15 @@
 		if (!!$.data(_5a1, "amendDataDisplay") && !!$.data(_5a1, "filelds"))
 		{
             // 考虑冻结列情况
-            if (_5a2){
-                _newRe = _newRe.concat($.data(_5a1, "filelds")[0]);
-            }else{
-                _newRe = _newRe.concat($.data(_5a1, "filelds")[1]);
-            }			
+            if ($.isArray($.data(_5a1, "filelds")[0])) {
+                if (_5a2) { //是冻结列 [["冻结列",""],["非冻结列",""]]
+                    _newRe = _newRe.concat($.data(_5a1, "filelds")[0]);
+                } else {
+                    _newRe = _newRe.concat($.data(_5a1, "filelds")[1]);
+                }
+            } else {
+                _newRe = _newRe.concat($.data(_5a1, "filelds"));
+            }
 			for (var i = 0;i< _5a4.length; i++)
 			{
 				var testReg = /^ID/;
