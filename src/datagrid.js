@@ -3073,7 +3073,10 @@
             if (!opts.url) {
                 return false;
             }
-            $.ajax({
+            /*医嘱录入界面输入as查询，a查询需要3秒，as查询需要1秒，则会先出来as结果，过2秒后显示a的结果，导致放大镜结果与查询条件不符*/
+            /*2021-11-03 发出当前请求时,把上一请求取消掉canceled*/
+            if(opts.currentAjax) opts.currentAjax.abort();
+            opts.currentAjax = $.ajax({
                 type: opts.method, url: opts.url, data: _70c, dataType: "json", success: function (data) {
                     if ('undefined' !== typeof data.code) {
                         var rowData = data.data || { total: 0, rows: [] };
