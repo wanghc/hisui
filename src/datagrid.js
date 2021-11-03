@@ -3075,7 +3075,14 @@
             }
             $.ajax({
                 type: opts.method, url: opts.url, data: _70c, dataType: "json", success: function (data) {
-                    _70d(data);
+                    if ('undefined' !== typeof data.code) {
+                        var rowData = data.data || { total: 0, rows: [] };
+                        /*扩展功能,支持{code:200,message:'success',data:{total:100,rows:[]}}*/
+                        if (data.code!=200) $.messager.alert(data.code, data.message, 'error');
+                        _70d(rowData);
+                    } else {
+                        _70d(data);
+                    }
                 }, error: function () {
                     _70e.apply(this, arguments);
                 }
