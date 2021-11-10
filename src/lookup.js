@@ -297,6 +297,7 @@
         return $.extend({}, $.fn.comboq.parseOptions(target),$.fn.datagrid.parseOptions(target), $.parser.parseOptions(target, ["idField", "textField", "mode",{isCombo:"boolean",minQueryLen:'number'}]));
     };
     $.fn.lookup.defaults = $.extend({}, $.fn.comboq.defaults, $.fn.datagrid.defaults, {
+        singleRequest:true,
         forceFocus:true, /*是否强制光标到放大镜输入框*/
         fixRowNumber:true,
         loadMsg: null, idField: null, textField: null, mode: "local", keyHandler: {

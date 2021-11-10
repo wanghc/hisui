@@ -3055,6 +3055,7 @@
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        singleRequest:false, /* 发送下一请求前,abort前一请求, 20211110*/
         shiftCheck:false,
         fontSize:"",/*表格内容字体大小 fontSize:9 20200824*/
         lineHeight:"",/*列的行高 20201126*/
@@ -3075,11 +3076,12 @@
             }
             /*医嘱录入界面输入as查询，a查询需要3秒，as查询需要1秒，则会先出来as结果，过2秒后显示a的结果，导致放大镜结果与查询条件不符*/
             /*2021-11-03 发出当前请求时,把上一请求取消掉canceled*/
-            if(opts.currentAjax) opts.currentAjax.abort();
+            if(opts.singleRequest && opts.currentAjax) opts.currentAjax.abort();
             opts.currentAjax = $.ajax({
                 type: opts.method, url: opts.url, data: _70c, dataType: "json", success: function (data) {
                     if ('undefined' !== typeof data.code) {
                         var rowData = data.data || { total: 0, rows: [] };
+                        data.message = data.message || data.msg;
                         /*扩展功能,支持{code:200,message:'success',data:{total:100,rows:[]}}*/
                         if (data.code!=200) $.messager.alert(data.code, data.message, 'error');
                         _70d(rowData);

@@ -34,6 +34,14 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2021-11-10
+- `datagrid`增加`singleRequest`配置项
+- `lookup`增加singleRequest:true,默认只保留最后一次请求 :sparkles:
+
+## 2021-11-08
+- `datagrid`支持code|message或code|msg判断提示
+
 ## 2021-11-03
 - `datagrid`支持多种数据格式
 ```js
