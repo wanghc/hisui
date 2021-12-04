@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-12-04
+- 增加2个ca图标及8个消毒供应室图标
 
 ## 2021-11-10
 - `datagrid`增加`singleRequest`配置项
