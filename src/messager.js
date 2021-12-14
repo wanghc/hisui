@@ -270,7 +270,7 @@
             var o = $.extend({},defopt,opt);
             var html = '<div class="messager-popover '+o.type+'" style="display:none;">'
             +'<span class="messager-popover-icon '+o.type+'"/><span class="content">'+$.hisui.getTrans(o.msg)+'</span>' //add trans
-            +'<span class="close"></span>'
+            if (o.timeout>5000) +'<span class="close"></span>'
             +'</div>';  
             
             var t = $(html).appendTo("body");

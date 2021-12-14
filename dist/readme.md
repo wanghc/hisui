@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2021-12-14
 - 增加2个图标,'icon-w-scan-code','icon-big-paper-box'
+- `popover`提示超5秒时,提供x号显示
 
 ## 2021-12-04
 - 增加2个ca图标及8个消毒供应室图标
