@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-12-14
+- 增加2个图标,'icon-w-scan-code','icon-big-paper-box'
+
 ## 2021-12-04
 - 增加2个ca图标及8个消毒供应室图标
 

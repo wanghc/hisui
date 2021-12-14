@@ -250,7 +250,8 @@ var iconDictionary={
     "icon-w-pen-paper":"申请类",
     "icon-w-volume-up":"通知",
     "icon-w-download":"下载",
-    "icon-w-reset":"重置",
+    "icon-w-reset": "重置",
+    "icon-w-scan-code":"扫码",
     "icon-remove": "删除",
     "icon-cut": "剪切",
     "icon-ok": "通行",
@@ -638,5 +639,6 @@ var iconDictionary={
     "icon-big-three-blue-bar":"段落",
     "icon-big-blue-frame-ok":"多选",
     "icon-big-white-p-red":"输入中，编写中，操作中，辅助输入",
-    "icon-big-eye-deepgrade":"眼房深度公式"
+    "icon-big-eye-deepgrade": "眼房深度公式",
+    "icon-big-paper-box":"药房配送信息"
 };
