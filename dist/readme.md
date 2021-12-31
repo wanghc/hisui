@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-12-31
+- 增加`imedisabled`插件。点击时输入框时,输入法切换成英文
+
 ## 2021-12-14
 - 增加2个图标,'icon-w-scan-code','icon-big-paper-box'
 - `popover`提示超5秒时,提供x号显示
