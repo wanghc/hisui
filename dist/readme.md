@@ -35,7 +35,8 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2021-12-31
-- 增加`imedisabled`插件。点击时输入框时,输入法切换成英文
+- 增加`imedisabled`插件。点击时输入框时,输入法切换成英文 :sparkles:
+- 增加切换成英文输入法示例
 
 ## 2021-12-14
 - 增加2个图标,'icon-w-scan-code','icon-big-paper-box'

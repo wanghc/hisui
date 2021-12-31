@@ -11,14 +11,19 @@
 			$(target).css({ imeMode: 'disabled'});  
 		}else  {
 			var $pwdInput = $("#imedisabled_password_input");
-			if ($pwdInput.length == 0) { $(target).after(baseHtml); }
-			var disabledIME = function (event) {
-				//event.stopPropagation();
-				document.getElementById('imedisabled_password_input').focus();
-				$(this).focus();
-				$(this).one('focus', disabledIME);
-			};
-			$(target).one(opts.imeEventType, disabledIME);
+				if ($pwdInput.length == 0) {
+					$(target).after(baseHtml);
+				}
+				var disabledIME = function (event) {
+					var _t = this;
+					//event.stopPropagation();
+					$('#imedisabled_password_input').focus();
+					setTimeout(function () {
+						_t.focus();
+						$(_t).one('focus', disabledIME);
+					},50);
+				};
+			$(target).one('focus', disabledIME);
 		}
   };
   
