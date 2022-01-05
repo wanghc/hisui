@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2021-01-05
+- 修改`imedisabled`功能,增加中间件处理输入法
+
 ## 2021-12-31
 - 增加`imedisabled`插件。点击时输入框时,输入法切换成英文 :sparkles:
 - 增加切换成英文输入法示例

@@ -3,13 +3,19 @@
  * $("#mytest").imedisabled({});
 */
 (function ($) {
-  var baseHtml = '<input id="imedisabled_password_input" type="password" style="width: 1px; height: 1px; position: absolute; border: 0px; padding: 0px;">';
-  function init (target){
+	var baseHtml = '<input id="imedisabled_password_input" type="password" style="width: 1px; height: 1px; position: absolute; border: 0px; padding: 0px;">';
+	function init (target){
       	var status = $.data(target, 'imedisabled');
 	  	var opts = status.options;
 	  	if (!!window.ActiveXObject || "ActiveXObject" in window) {
 			$(target).css({ imeMode: 'disabled'});  
-		}else  {
+		} else if('object' === typeof WebsysTool){			
+				$(target).unbind(".imedisabled").bind('focus.imedisabled', function () {
+					WebsysTool.SwitchToLanguageMode("en-US");
+				}).bind("blur.imedisabled", function () {
+					WebsysTool.SwitchToLanguageMode("zh-CN");
+				});
+		}else {
 			var $pwdInput = $("#imedisabled_password_input");
 				if ($pwdInput.length == 0) {
 					$(target).after(baseHtml);
@@ -25,7 +31,7 @@
 				};
 			$(target).one('focus', disabledIME);
 		}
-  };
+	};
   
   $.fn.imedisabled = function (opts, params) {
 		if (typeof opts == "string") {
