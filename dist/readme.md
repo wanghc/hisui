@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-01-10
+- `tooltip`提示层位置left小于0时优化显示效果 :sparkles:
+
 ## 2021-01-05
 - 修改`imedisabled`功能,增加中间件处理输入法
 
