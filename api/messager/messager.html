@@ -49,9 +49,10 @@
 							} else {
 								$.messager.popover({ msg: "点击了取消" });
 							}
+							/*要写在回调方法内,否则在旧版下可能不能回调方法*/
+							$.messager.defaults.ok = oldOk;
+							$.messager.defaults.cancel = oldCancel;
 						});
-						$.messager.defaults.ok = oldOk;
-						$.messager.defaults.cancel = oldCancel;
 					})
 					$('#prompt1').click(function () {
 						$.messager.prompt("提示", "修改前请签名：", function (r) {

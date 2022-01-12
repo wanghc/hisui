@@ -80,16 +80,21 @@
         win.window("open");
         return win;
     };
-    function _27f(_280, _281, _282) {
+    function _27f(_280, _281, bbuttons) {
         var win = $("<div class=\"messager-body\"></div>").appendTo("body");
         win.append(_281);
-        if (_282) {
+        if (bbuttons) {
             var tb = $("<div class=\"messager-button\"></div>").appendTo(win);
-            for (var _283 in _282) {
-                $("<a></a>").attr("href", "javascript:void(0)").text(_283).css("margin-left", 10).bind("click", eval(_282[_283])).appendTo(tb).linkbutton();
+            // $.messager.defaults.ok/cancel会取翻译或从中修改
+            // 会导致事件不运行
+            for (var _283 in bbuttons) {
+                $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left", 10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
             }
             //add space and esc key event handler add by wanghc  2018-10-09
-            win.on('keydown',function(e){
+            win.on('keydown', function (e) {
+                if (e.target && e.target.nodeName.toUpperCase()=='INPUT') {
+                    return;
+                }
                 if (tb.children().length>1){ //多个按钮可用 <- 与 -> 左右按钮切换
                     if (e.which==37){ //left
                         e.stopPropagation();
@@ -104,14 +109,14 @@
                     if (tb.children(".l-btn-focus").length>0){
                         tb.children(".l-btn-focus").trigger('click');
                     }else{
-                        _282[$.messager.defaults.ok](e);
+                        bbuttons['ok'](e);
                     }
                     return false;
                 }
-                if(_282[$.messager.defaults.cancel]){ 
+                if(bbuttons['cancel']){ 
                     if(e.which==27){ //Esc
                         e.stopPropagation();
-                        _282[$.messager.defaults.cancel](e);
+                        bbuttons['cancel'](e);
                         return false;
                     }
                 }
@@ -156,7 +161,7 @@
             }
             _286 += "<div style=\"clear:both;\"/>";
             var _287 = {};
-            _287[$.messager.defaults.ok] = function (e) {
+            _287['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
@@ -170,7 +175,7 @@
         }, confirm: function (_288, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
-            _28a[$.messager.defaults.ok] = function (e) {
+            _28a['ok'] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
                 // 解决IE下输入框值改变时弹出confirm，且回车focus下一输入框情况下，如果回车自动触发ok按钮问题
                 // 回车--光标跳到下一框--触发change--弹出confirm---自动click-ok
@@ -183,7 +188,7 @@
                     return false;
                 }
             };
-            _28a[$.messager.defaults.cancel] = function () {
+            _28a['cancel'] = function () {
                 win.window("close");
                 if (fn) {
                     fn(false);
@@ -195,7 +200,7 @@
         }, prompt: function (_28b, msg, fn) {
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
-            _28d[$.messager.defaults.ok] = function (e) {
+            _28d['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
@@ -204,7 +209,7 @@
                     return false;
                 }
             };
-            _28d[$.messager.defaults.cancel] = function () {
+            _28d['cancel'] = function () {
                 win.window("close");
                 if (fn) {
                     fn();
@@ -212,7 +217,7 @@
                 }
             };
             var win = _27f(_28b, _28c, _28d);
-            win.children("input.messager-input").focus();
+            win.find("input.messager-input").eq(0).focus();
             return win;
         }, progress: function (_28e) {
             var _28f = {
