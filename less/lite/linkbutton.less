@@ -16,7 +16,7 @@
   @top-4IE8:-4px;
   @x9:\9;
   /*top: @top-4IE8@x9;*/ /*实测ie8不需要*/
-	font-family: "Font Awesome 5 Free";
+	font-family: "Mw_mifonts";
 	-moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -32,10 +32,7 @@
   width: auto\9; /*IE6,7,8*/  /*2018-11-14*/
 }
 .l-btn-icon-left .l-btn-text {
-  margin: 0 0 0 0px;
-}
-.l-btn-icon-left .l-btn-icon{
-  width: 0;
+  margin: 0 0 0 30px;
 }
 
 .l-btn-icon-left .l-btn-empty+.l-btn-icon{
@@ -47,8 +44,12 @@
   min-width: 0px;
 }
 .l-btn-icon-left .l-btn-icon {
-  left: 0px;
+  width: 16px;
+  height: 16px;
+  line-height: 30px;
+  left: 7px;
 }
+
 .l-btn-icon-right .l-btn-text {
   margin: 0 4px 0 0;
 }
@@ -217,6 +218,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       top:4px;
       position: absolute;
       width: 100%;
+      left:0px;
     }
    .l-btn-text{
       padding: 38px 0 0px; /*43--38px 20180929*/

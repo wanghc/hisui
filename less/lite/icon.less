@@ -1,57 +1,1594 @@
-@import "variables.less";
-.icon-search:before{
+@charset "utf-8";
+@font-face {
+	font-family: 'Mw_mifonts';
+	src: url('../fonts/Mw_mifonts.eot'); /* IE9 Compat Modes*/
+	src: url('../fonts/Mw_mifonts.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		 url('../fonts/Mw_mifonts.woff') format('woff'), /* Modern Browsers */
+		 url('../fonts/Mw_mifonts.woff2') format('woff2'),
+	  	 url('../fonts/Mw_mifonts.ttf') format('truetype'); /* Safari, Android, iOS */
+}
+.icon{
+	font: normal normal normal 16px/1 Mw_mifonts;
+}
+.icon::before {
+	display: inline-block;
+	font-size: 16px;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+/* 白色图标颜色定义 */
+.icon-w-add , .icon-w-edit , .icon-w-add , .icon-w-new , .icon-w-plus , .icon-w-close , .icon-w-cancel , .icon-w-copy , .icon-w-save , .icon-w-print , .icon-w-arrow-up , .icon-w-arrow-down ,
+ .icon-w-arrow-left , .icon-w-arrow-right , .icon-w-reset ,.icon-w-epr ,.icon-w-clean ,.icon-w-find ,.icon-w-other ,.icon-w-back ,.icon-w-card ,.icon-w-list , .icon-w-switch , .icon-w-cal ,
+ .icon-w-config ,.icon-w-home , .icon-w-export , .icon-w-import , .icon-w-update , .icon-w-file , .icon-w-file-open ,.icon-w-star , .icon-w-paper,.icon-w-msg,.icon-w-batch-cfg,.icon-w-stamp,
+ .icon-w-inv,.icon-w-batch-add,.icon-w-eye,.icon-w-calc,.icon-w-submit,.icon-w-clock,.icon-w-rent,.icon-w-run,.icon-w-line-key,.icon-w-takes,.icon-w-key,.icon-w-img,.icon-w-setting,.icon-w-ok,
+ .icon-w-filter,.icon-w-predrug,.icon-w-trigger-box,.icon-w-paid,.icon-w-zoom,.icon-w-book,.icon-w-upload,.icon-w-pen-paper,.icon-w-volume-up,.icon-w-download,.icon-w-pause-circle
+  {
+	color:#fff;
+	font-size: 13px;
+}
+/* 28px图标尺寸定义 */
+.icon-big-save , .icon-big-print , .icon-big-del , .icon-big-omega , .icon-big-home , .icon-big-favorite,.icon-big-stamp,.icon-big-open-eye,.icon-big-img,.icon-big-tip,
+.icon-big-doctor-adm,.icon-big-clear,.icon-big-card-reader,.icon-big-read-card,.icon-big-fee-arrow ,.icon-big-alert ,.icon-big-slide-return ,
+.icon-big-stop , .icon-big-maint ,.icon-big-print-box ,.icon-big-idcard ,.icon-big-position ,.icon-big-paper-arrow ,.icon-big-med-equi ,
+.icon-big-blue-frame-ok,.icon-big-unlock,.icon-big-tooth,.icon-big-paid,.icon-big-skip-no,.icon-big-alert-yellow,.icon-big-msg,.icon-big-next
+,.icon-big-pre,.icon-big-paper-pen,.icon-big-erfresh,.icon-big-start,.icon-big-eye-deepgrade,.icon-big-book-eye,
+
+.icon-big-doctor-green,.icon-big-favorite-add,.icon-big-book-arrow,.icon-big-book-ref,.icon-big-book-arrow-rt,.icon-big-book-arrow-ok,.icon-big-book-to-book,.icon-big-ring-blue,.icon-big-ring,.icon-big-paper-search,.icon-big-close-eye,.icon-big-return,.icon-big-meterage,.icon-big-inspect,.icon-big-disuse,.icon-big-change-account,.icon-big-card,.icon-big-bar,.icon-big-lt-rt-37,.icon-big-lt-rt-55,.icon-big-lt-rt-73,.icon-big-lt-rt-19,.icon-big-delete-col,.icon-big-delete-row,.icon-big-delete-table,.icon-big-insert-col,.icon-big-insert-row,.icon-big-insert-table,.icon-big-split-cells,.icon-big-help,.icon-big-paper,.icon-big-question,.icon-big-rad,.icon-big-balance,.icon-big-open-file,.icon-big-waxblock-return,.icon-big-cells-smear,.icon-big-slide-filed,.icon-big-slide-send,.icon-big-dyeing,.icon-big-slide-add,.icon-big-embed,.icon-big-slide-made,.icon-big-book-yellow,.icon-big-med-bag,.icon-big-save-add,.icon-big-save-next,.icon-big-print-run,.icon-big-cardiogram,.icon-big-conical-bottle,.icon-big-patient-mach,.icon-big-movie-mach,.icon-big-chopsticks-bowl,.icon-big-rectangle-tree,.icon-big-message-clock,.icon-big-message-cate,.icon-big-message-colum,.icon-big-message-pen,.icon-big-paper-time,.icon-big-pre-audit,.icon-big-paper-gray,.icon-big-equi-cfg,.icon-big-pat-list,.icon-big-search-pat,.icon-big-paper-yellow,.icon-big-mach-blue-red,.icon-big-first-second,.icon-big-clock-back-blue,.icon-big-clock-back-gree,.icon-big-person-green,.icon-big-report-yel-pen,.icon-big-two-pill-gray,.icon-big-paper-orange,.icon-big-blue-white-circle,.icon-big-three-blue-bar,.icon-big-blue-frame-ok,.icon-big-white-p-red
+ {
+	font-size:28px;
+}
+.icon-right-arrow , .icon-arrow-blue ,.icon-run-red {
+	font-size: 14px;
+}
+/* 其他颜色图标定义 */
+.icon-gray-edit , .icon-home-gray , .icon-gear-gray, .icon-miss-img, .icon-refresh-gray, .icon-print-arr-bo-gray, .icon-triangle-gray-right, .icon-triangle-gray-left, 
+.icon-paper-pay-gray, .icon-compu-torus-gray, .icon-two-recta-gear-gray, .icon-compu-run-gray, .icon-paper-blue-add-gray, .icon-trian-recta-right-gray, .icon-box-red-add-gray, 
+.icon-gray-chart, .icon-report-eye-gray, .icon-trian-recta-left-gray, .icon-clock-pen-gray, .icon-drug-eye-gray,.icon-arrow-le-bo-gray
+{
+	color:#C7C7CC;
+}
+.icon-blue-edit,.icon-tip-blue,.icon-help,.icon-date {
+	color:#339EFF;
+}
+.icon-star-yellow ,.icon-star-light-yellow {
+	color:#FFB300;
+}
+.icon-star-orange-body {
+	color:#F68300;
+}
+.icon-star , .icon-star-half ,.icon-star-empty {
+	color:#FF3D3D;
+}
+.icon-alert-red,.icon-dustbin-red  {
+	color: #FF6356;
+}
+
+/* 图标content内容定义 */
+.icon-add:before , .icon-w-add:before , .icon-w-new:before , .icon-w-plus:before {
+	content: "\f001";
+}
+.icon-edit:before , .icon-write-order:before , .icon-w-edit:before , .icon-blue-edit:before , .icon-gray-edit:before , .icon-paper-pen-blue:before {
 	content: "\f002";
 }
-.icon-cancel:before{
-	content: "\f00d";
+.icon-cancel:before , .icon-w-cancel:before , .icon-w-close:before, .icon-dustbin-red:before{
+	content: "\f003";
 }
-.icon-add:before{
+.icon-cut:before , .icon-cut-blue:before {
+	content: "\f004";
+}
+.icon-copy:before , .icon-w-copy:before {
+	content: "\f005";
+}
+.icon-paste:before {
+	content: "\f006";
+}
+.icon-save:before , .icon-w-save:before , .icon-big-save:before {
+	content: "\f007";
+}
+.icon-print:before , .icon-w-print:before , .icon-big-print:before {
+	content: "\f008";
+}
+.icon-arrow-top:before , .icon-w-arrow-up:before , .icon-top-green:before , .icon-up:before {
+	content: "\f009";
+}
+.icon-arrow-bottom:before , .icon-w-arrow-down:before , .icon-down-blue:before , .icon-down:before {
+	content: "\f010";
+}
+.icon-arrow-left:before , .icon-w-arrow-left:before {
+	content: "\f011";
+}
+.icon-arrow-right:before , .icon-w-arrow-right:before {
+	content: "\f012";
+}
+.icon-remove:before , .icon-big-del:before {
+	content: "\f013";
+}
+.icon-reset:before , .icon-w-reset:before {
+	content: "\f014";
+}
+.icon-omega:before , .icon-big-omega:before {
+	content: "\f015";
+}
+.icon-w-epr:before {
+	content: "\f016";
+}
+.icon-w-clean:before {
+	content: "\f017";
+}
+.icon-w-find:before ,.icon-find:before {
+	content: "\f018";
+}
+.icon-w-other:before {
+	content: "\f019";
+}
+.icon-w-back:before {
+	content: "\f020";
+}
+.icon-w-card:before {
+	content: "\f021";
+}
+.icon-w-list:before {
+	content: "\f022";
+}
+.icon-w-switch:before , .icon-big-switch:before , .icon-transfer:before {
+	content: "\f023";
+}
+.icon-w-cal:before,.icon-date:before {
+	content: "\f024";
+}
+.icon-w-config:before , .icon-gear-gray:before {
+	content: "\f025";
+}
+.icon-w-home:before , .icon-big-home:before , .icon-home-black:before , .icon-home-gray:before {
+	content: "\f026";
+}
+.icon-w-export:before , .icon-export:before {
+	content: "\f027";
+}
+.icon-w-import:before ,.icon-import:before {
+	content: "\f028";
+}
+.icon-w-update:before,.icon-refresh-gray:before,.icon-reload:before,.icon-big-erfresh:before {
+	content: "\f029";
+}
+.icon-w-file:before {
+	content: "\f030";
+}
+.icon-w-file-open:before {
+	content: "\f031";
+}
+.icon-w-star:before , .icon-star-orange-border:before, .icon-star-empty:before, .icon-star-light-yellow:before , .icon-big-favorite:before {
+	content: "\f032";
+}
+.icon-w-paper:before , .icon-paper-info:before {
+	content: "\f033";
+}
+.icon-star-yellow:before , .icon-star:before , .icon-star-orange-body:before{
+	content: "\f034";
+}
+.icon-star-half:before {
+	content: "\f035";
+}
+.icon-w-msg:before {
+	content: "\f036";
+}
+.icon-w-stamp:before,.icon-stamp:before,.icon-big-stamp:before {
+	content: "\f037";
+}
+.icon-w-batch-cfg:before,.icon-batch-cfg:before {
+	content: "\f038";
+}
+.icon-w-inv:before {
+	content: "\f039";
+}
+.icon-w-batch-add:before,.icon-batch-add:before {
+	content: "\f040";
+}
+.icon-w-eye:before,.icon-eye:before,.icon-green-line-eye:before,.icon-big-open-eye:before {
+	content: "\f041";
+}
+.icon-w-calc:before {
+	content: "\f042";
+}
+.icon-w-submit:before,.icon-submit:before {
+	content: "\f043";
+}
+.icon-w-clock:before,.icon-clock:before,.icon-clock-blod:before,.icon-clock-black:before,.icon-w-clock-ora:before {
+	content: "\f044";
+}
+.icon-w-rent:before {
+	content: "\f045";
+}
+.icon-w-run:before,.icon-run:before,.icon-big-start:before,.icon-arrow-right-top:before {
+	content: "\f046";
+}
+.icon-w-line-key:before {
+	content: "\f047";
+}
+.icon-w-takes:before {
+	content: "\f048";
+}
+.icon-w-key:before,.icon-key:before {
+	content: "\f049";
+}
+.icon-w-img:before,.icon-img:before,.icon-miss-img:before,.icon-big-img:before,.icon-big-miss-img:before {
+	content: "\f050";
+}
+.icon-w-setting:before {
+	content: "\f051";
+}
+.icon-w-ok:before,.icon-ok:before,.icon-done:before,.icon-accept:before{
+	content: "\f052";
+}
+.icon-w-filter:before,.icon-filter:before {
+	content: "\f053";
+}
+.icon-w-predrug:before,.icon-drug:before {
+	content: "\f054";
+}
+.icon-w-trigger-box:before {
+	content: "\f055";
+}
+.icon-w-paid:before,.icon-fee:before {
+	content: "\f056";
+}
+.icon-w-zoom:before,.icon-arrow-zoom:before {
+	content: "\f057";
+}
+.icon-w-book:before {
+	content: "\f058";
+}
+.icon-w-upload:before,.icon-upload:before  {
+	content: "\f059";
+}
+.icon-w-pen-paper:before {
+	content: "\f060";
+}
+.icon-w-volume-up:before {
+	content: "\f061";
+}
+.icon-w-download:before,.icon-download:before {
+	content: "\f062";
+}
+.icon-w-pause-circle:before,.icon-pause:before {
+	content: "\f063";
+}
+
+.icon-add-item:before {
+	content: "\f064";
+}
+.icon-help:before {
+	content: "\f065";
+}
+.icon-sum:before {
+	content: "\f066";
+}
+.icon-tip:before,.icon-tip-blue:before,.icon-big-tip:before {
 	content: "\f067";
 }
-.icon-edit:before{
+.icon-bed:before {
+	content: "\f068";
+}
+.icon-house-maint:before {
+	content: "\f069";
+}
+.icon-house-posi-maint:before {
+	content: "\f070";
+}
+.icon-person:before,.icon-user:before {
+	content: "\f071";
+}
+.icon-person-key-yel:before {
+	content: "\f072";
+}
+.icon-key-switch:before {
+	content: "\f073";
+}
+.icon-report-switch:before {
+	content: "\f074";
+}
+.icon-report-blue-shie-key:before {
+	content: "\f075";
+}
+.icon-patient:before,.icon-outhosp-patient:before {
+	content: "\f076";
+}
+.icon-stethoscope:before , .icon-big-med-equi:before {
+	content: "\f077";
+}
+.icon-uncheckin:before {
+	content: "\f078";
+}
+.icon-checkin:before,.icon-finish-report:before {
+	content: "\f079";
+}
+.icon-end-adm:before  {
+	content: "\f080";
+}
+.icon-change-loc:before {
+	content: "\f081";
+}
+.icon-doctor:before,.icon-big-doctor-adm:before {
+	content: "\f082";
+}
+.icon-clear-screen:before,.icon-big-clear:before  {
+	content: "\f083";
+}
+.icon-read-card:before,.icon-big-card-reader:before,.icon-big-read-card:before {
+	content: "\f084";
+}
+.icon-update:before {
+	content: "\f085";
+}
+.icon-upload-cloud:before {
+	content: "\f086";
+}
+.icon-unload-cloud:before {
+	content: "\f087";
+}
+.icon-other:before,.icon-other-yellow:before {
+	content: "\f088";
+}
+.icon-patient-info:before,.icon-pat-info:before{
+	content: "\f089";
+}
+.icon-del-diag:before {
+	content: "\f090";
+}
+.icon-add-diag:before,.icon-adm-add:before {
+	content: "\f091";
+}
+.icon-emr-cri:before,.icon-book:before {
+	content: "\f092";
+}
+.icon-funnel-eye:before {
+	content: "\f093";
+}
+.icon-funnel-half:before {
+	content: "\f094";
+}
+.icon-funnel-empty:before {
+	content: "\f095";
+}
+.icon-funnel-on:before {
+	content: "\f096";
+}
+.icon-omega_1:before {
+	content: "\f097";
+}
+.icon-eye-deepgrade:before,.icon-big-eye-deepgrade:before {
+	content: "\f098";
+}
+.icon-fee-arrow:before,.icon-big-fee-arrow:before {
+	content: "\f099";
+}
+.icon-all-select:before {
+	content: "\f100";
+}
+.icon-all-unselect:before {
+	content: "\f101";
+}
+.icon-select-grant:before {
+	content: "\f102";
+}
+.icon-cancel-select-grant:before {
+	content: "\f103";
+}
+.icon-refuse-select-grant:before {
+	content: "\f104";
+}
+.icon-double-quotes:before {
+	content: "\f105";
+}
+.icon-import-xls:before {
+	content: "\f106";
+}
+.icon-init:before {
+	content: "\f107";
+}
+.icon-inv-search:before {
+	content: "\f108";
+}
+.icon-chart-sum:before {
+	content: "\f109";
+}
+.icon-chart-year:before {
+	content: "\f110";
+}
+.icon-attachment:before {
+	content: "\f111";
+}
+.icon-import-reset:before {
+	content: "\f112";
+}
+.icon-mnypaper-cfg:before {
+	content: "\f113";
+}
+.icon-mnypaper-run:before {
+	content: "\f114";
+}
+.icon-mnypaper-ok:before {
+	content: "\f115";
+}
+.icon-mnypaper-no:before {
+	content: "\f116";
+}
+.icon-mnypaper-down:before ,.icon-mnypaper-down2:before {
+	content: "\f117";
+}
+.icon-stamp-cancel:before {
+	content: "\f118";
+}
+.icon-stamp-pass:before {
+	content: "\f119";
+}
+.icon-line-paid:before {
+	content: "\f120";
+}
+.icon-split:before {
+	content: "\f121";
+}
+.icon-alert:before ,.icon-alert-red:before ,.icon-big-alert:before {
+	content: "\f122";
+}
+.icon-money-down:before {
+	content: "\f123";
+}
+
+
+.icon-max-no:before {
+	content: "\f124";
+}
+.icon-excel:before {
+	content: "\f125";
+}
+.icon-save-to:before {
+	content: "\f126";
+}
+.icon-save-sure:before {
+	content: "\f127";
+}
+.icon-export-all:before {
+	content: "\f128";
+}
+.icon-set-col:before {
+	content: "\f129";
+}
+.icon-template:before {
+	content: "\f130";
+}
+.icon-adjust-inventory:before {
+	content: "\f131";
+}
+.icon-cancel-money:before {
+	content: "\f132";
+}
+.icon-set-zero:before {
+	content: "\f133";
+}
+.icon-accept-money:before {
+	content: "\f134";
+}
+.icon-show-set:before {
+	content: "\f135";
+}
+.icon-camera:before {
+	content: "\f136";
+}
+.icon-pat-write:before {
+	content: "\f137";
+}
+.icon-fx:before {
+	content: "\f138";
+}
+.icon-muti-key:before {
+	content: "\f139";
+}
+.icon-forbid:before,.icon-no:before {
+	content: "\f140";
+}
+.icon-ignore:before {
+	content: "\f141";
+}
+.icon-export-data:before ,.icon-export-paper:before {
+	content: "\f142";
+}
+
+.icon-re-ignore:before {
+	content: "\f143";
+}
+.icon-unuse:before , .icon-big-stop:before {
+	content: "\f144";
+}
+.icon-arrow-up:before {
+	content: "\f145";
+}
+.icon-person-seal:before {
+	content: "\f146";
+}
+.icon-scanning:before {
+	content: "\f147";
+}
+.icon-return:before , .icon-big-slide-return:before {
+	content: "\f148";
+}
+.icon-doc-caseload:before {
+	content: "\f149";
+}
+.icon-snowflake-blue:before {
+	content: "\f150";
+}
+.icon-speci-mt:before {
+	content: "\f151";
+}
+.icon-print-box:before , .icon-big-print-box:before {
+	content: "\f152";
+}
+.icon-tube-add:before {
+	content: "\f153";
+}
+.icon-tube-del:before {
+	content: "\f154";
+}
+.icon-wrench-blue:before , .icon-big-maint:before {
+	content: "\f155";
+}
+.icon-gen:before {
+	content: "\f156";
+}
+.icon-paper-submit:before {
+	content: "\f157";
+}
+.icon-open-book:before {
+	content: "\f158";
+}
+.icon-track:before {
+	content: "\f159";
+}
+.icon-paper-eye:before,.icon-big-book-eye:before  {
+	content: "\f160";
+}
+.icon-run-red:before , .icon-arrow-blue:before {
+	content: "\f161";
+}
+.icon-compare-no:before {
+	content: "\f162";
+}
+.icon-compare-yes:before {
+	content: "\f163";
+}
+.icon-compare:before {
+	content: "\f164";
+}
+.icon-paper-arrow:before , .icon-big-paper-arrow:before {
+	content: "\f165";
+}
+.icon-adm-same:before {
+	content: "\f166";
+}
+.icon-all-screen:before {
+	content: "\f167";
+}
+.icon-analysis:before {
+	content: "\f168";
+}
+.icon-audit-x:before {
+	content: "\f169";
+}
+.icon-base-info:before , .icon-big-idcard:before {
+	content: "\f170";
+}
+.icon-blue-drug-ok:before {
+	content: "\f171";
+}
+.icon-blue-move:before {
+	content: "\f172";
+}
+.icon-book-green:before {
+	content: "\f173";
+}
+.icon-bottle-drug:before {
+	content: "\f174";
+}
+.icon-cal-pen:before {
+	content: "\f175";
+}
+.icon-cancel-ref:before {
+	content: "\f176";
+}
+.icon-cancel-top:before {
+	content: "\f177";
+}
+.icon-check:before , .icon-checkbox:before , .icon-big-blue-frame-ok:before {
+	content: "\f178";
+}
+.icon-chg-doctor-grant:before {
+	content: "\f179";
+}
+.icon-clock-record:before {
+	content: "\f180";
+}
+.icon-barbell:before {
+	content: "\f181";
+}
+.icon-target-arrow:before {
+	content: "\f182";
+}
+.icon-contain:before {
+	content: "\f183";
+}
+.icon-doctor-green-no:before {
+	content: "\f184";
+}
+.icon-down-arrow-box:before {
+	content: "\f185";
+}
+.icon-drug-arrow-red:before {
+	content: "\f186";
+}
+.icon-drug-audit:before {
+	content: "\f187";
+}
+.icon-drug-clock:before {
+	content: "\f188";
+}
+.icon-drug-link:before , .icon-durg-ref:before {
+	content: "\f189";
+}
+.icon-dsh-water:before {
+	content: "\f190";
+}
+.icon-durg-freq:before {
+	content: "\f191";
+}
+.icon-face-red:before {
+	content: "\f192";
+}
+.icon-find-adm:before {
+	content: "\f193";
+}
+.icon-fire:before {
+	content: "\f194";
+}
+.icon-format-line:before {
+	content: "\f195";
+}
+.icon-format-line-dott:before {
+	content: "\f196";
+}
+.icon-format-line-num:before {
+	content: "\f197";
+}
+.icon-gen-barcode:before {
+	content: "\f198";
+}
+.icon-icd:before {
+	content: "\f199";
+}
+.icon-injector:before {
+	content: "\f200";
+}
+.icon-knw-submit:before {
+	content: "\f201";
+}
+.icon-location:before , .icon-big-position:before {
+	content: "\f202";
+}
+.icon-lock:before {
+	content: "\f203";
+}
+.icon-move-left-most:before {
+	content: "\f204";
+}
+.icon-move-up-most:before {
+	content: "\f205";
+}
+.icon-mtpaper-add:before {
+	content: "\f206";
+}
+.icon-mtpaper-arrw-lftp:before {
+	content: "\f207";
+}
+.icon-mtpaper-redo:before {
+	content: "\f208";
+}
+.icon-mtpaper-undo:before {
+	content: "\f209";
+}
+.icon-mttext:before {
+	content: "\f210";
+}
+.icon-mutpaper-tri:before {
+	content: "\f211";
+}
+.icon-mutpaper-x:before {
+	content: "\f212";
+}
+.icon-nail:before {
+	content: "\f213";
+}
+.icon-no-conatin:before {
+	content: "\f214";
+}
+.icon-paper-bed:before {
+	content: "\f215";
+}
+.icon-paper-blue-line:before , .icon-paper-table:before {
+	content: "\f216";
+}
+.icon-paper-chart:before {
+	content: "\f217";
+}
+.icon-paper-drug:before {
+	content: "\f218";
+}
+.icon-paper-link-pen:before {
+	content: "\f219";
+}
+.icon-paper-new:before {
+	content: "\f220";
+}
+.icon-paper-no:before {
+	content: "\f221";
+}
+.icon-paper-ok:before {
+	content: "\f222";
+}
+.icon-paper-opr-record:before {
+	content: "\f223";
+}
+.icon-paper-save:before {
+	content: "\f224";
+}
+.icon-paper-upgrade:before , .icon-paper-upgrade-add:before {
+	content: "\f225";
+}
+.icon-paper-x:before {
+	content: "\f226";
+}
+.icon-pat-add-red:before {
+	content: "\f227";
+}
+.icon-pat-alert-red:before , .icon-pat-alert-yellow:before {
+	content: "\f228";
+}
+.icon-pat-house:before {
+	content: "\f229";
+}
+.icon-pat-house-switch:before {
+	content: "\f230";
+}
+.icon-pat-opr:before {
+	content: "\f231";
+}
+.icon-radio:before ,.icon-big-blue-white-circle:before {
+	content: "\f232";
+}
+.icon-ref:before {
+	content: "\f233";
+}
+.icon-repeat-drug:before {
+	content: "\f234";
+}
+.icon-right-arrow:before {
+	content: "\f235";
+}
+.icon-switch:before {
+	content: "\f236";
+}
+.icon-tel:before {
+	content: "\f237";
+}
+.icon-text:before {
+	content: "\f238";
+}
+.icon-trans-pat:before {
+	content: "\f239";
+}
+.icon-tube:before {
+	content: "\f240";
+}
+
+.icon-unlock:before,.icon-big-unlock:before {
+	content: "\f241";
+}
+.icon-virus:before {
+	content: "\f242";
+}
+.icon-virus-drug:before {
+	content: "\f243";
+}
+.icon-water-drop:before {
+	content: "\f244";
+}
+.icon-yellow-qa:before {
+	content: "\f245";
+}
+.icon-export-report:before {
+	content: "\f246";
+}
+.icon-add-report:before {
+	content: "\f247";
+}
+.icon-take-report:before {
+	content: "\f248";
+}
+.icon-paper-plane:before {
+	content: "\f249";
+}
+.icon-undo-paper-plane:before {
+	content: "\f250";
+}
+.icon-h24-stat:before {
+	content: "\f251";
+}
+.icon-stat:before {
+	content: "\f252";
+}
+.icon-wax-stat:before {
+	content: "\f253";
+}
+.icon-wax-tat-stat:before {
+	content: "\f254";
+}
+.icon-paper-stat:before {
+	content: "\f255";
+}
+
+.icon-slice-stat:before {
+	content: "\f256";
+}
+.icon-slice-tat-stat:before {
+	content: "\f257";
+}
+.icon-slice-only:before {
+	content: "\f258";
+}
+.icon-sample-stat:before {
+	content: "\f259";
+}
+.icon-paper-pen:before {
+	content: "\f260";
+}
+.icon-wating:before {
+	content: "\f261";
+}
+.icon-user-black:before {
+	content: "\f262";
+}
+.icon-report-check-black:before {
+	content: "\f263";
+}
+.icon-up-gray:before {
+	content: "\f264";
+}
+.icon-down-gray:before {
+	content: "\f265";
+}
+.icon-tooth:before,.icon-big-tooth:before {
+	content: "\f266";
+}
+.icon-paid:before,.icon-big-paid:before {
+	content: "\f267";
+}
+.icon-return-paid:before {
+	content: "\f268";
+}
+.icon-int-bill:before {
+	content: "\f269";
+}
+.icon-cancel-int-bill:before {
+	content: "\f270";
+}
+.icon-reprint-inv:before {
+	content: "\f271";
+}
+.icon-print-inv:before {
+	content: "\f272";
+}
+.icon-rebill:before {
+	content: "\f273";
+}
+.icon-pat-fee-det:before {
+	content: "\f274";
+}
+.icon-find-paid-det:before {
+	content: "\f275";
+}
+.icon-find-ord-det:before {
+	content: "\f276";}
+.icon-find-fee-itm:before {
+	content: "\f277";
+}
+.icon-skip-no:before,.icon-big-skip-no:before {
+	content: "\f278";
+}
+.icon-injector-water:before {
+	content: "\f279";
+}
+.icon-alert-pen:before {
+	content: "\f280";
+}
+.icon-board-alert:before {
+	content: "\f281";
+}
+.icon-minus:before {
+	content: "\f282";
+}
+.icon-alarm:before,.icon-big-alert-yellow:before {
+	content: "\f283";
+}
+.icon-ip-cfg:before {
+	content: "\f284";
+}
+.icon-have-son-node:before {
+	content: "\f285";
+}
+.icon-mater-info:before {
+	content: "\f286";
+}
+.icon-send-msg:before {
+	content: "\f287";
+}
+.icon-price-maint:before {
+	content: "\f288";
+}
+.icon-ga-maint:before {
+	content: "\f289";
+}
+.icon-qua-pro-sort:before {
+	content: "\f290";
+}
+.icon-change-pay-way:before {
+	content: "\f291";
+}
+.icon-qua-pro-dis:before {
+	content: "\f292";
+}
+.icon-qua-pro-dis:before {
+	content: "\f293";
+}
+.icon-rectangle-flow:before {
+	content: "\f294";
+}
+.icon-paper-switch:before {
+	content: "\f295";
+}
+.icon-bell-blue-no:before {
+	content: "\f296";
+}
+.icon-bell-blue:before,.icon-bell-yellow:before,.icon-big-msg:before {
+	content: "\f297";
+}
+.icon-have-message:before {
+	content: "\f298";
+}
+.icon-three-cuboid-green:before {
+	content: "\f299";
+}
+.icon-print-arr-bo:before,.icon-print-arr-bo-gray:before {
+	content: "\f300";
+}
+.icon-triangle-right:before,.icon-triangle-gray-right:before {
+	content: "\f301";
+}
+.icon-triangle-green-left:before,.icon-triangle-gray-left:before {
+	content: "\f302";}
+.icon-paper-pay:before,.icon-paper-pay-gray:before {
 	content: "\f303";
 }
-.icon-save:before{
-    content: "\f0c7"
+.icon-compu-torus:before,.icon-compu-torus-gray:before {
+	content: "\f304";
 }
-.icon-reload::before{
-	content: "\f2f1";
+.icon-two-recta-gear:before,.icon-two-recta-gear-gray:before {
+	content: "\f305";
 }
-.icon-remove::before{
-	content: "\f2ed";
+.icon-compu-run:before,.icon-compu-run-gray:before {
+	content: "\f306";
 }
-.icon-print::before{
-	content: "\f02f";
+.icon-paper-blue-add:before,.icon-paper-blue-add-gray:before {
+	content: "\f307";
 }
-.icon-cut::before{
-	content: "\f0c4";
+.icon-trian-recta-right:before,.icon-big-next:before,.icon-trian-recta-right-gray:before {
+	content: "\f308";
 }
-.icon-copy::before{
-	content: "\f0c5";
+.icon-box-red-add:before,.icon-box-red-add-gray:before {
+	content: "\f309";
 }
-.icon-paste::before{
-	content: "\f0ea";
+.icon-green-chart:before,.icon-gray-chart:before {
+	content: "\f310";
 }
-.icon-back::before{
-	content: "\f2ea";
+.icon-report-eye:before,.icon-report-eye-gray:before {
+	content: "\f311";
 }
-.icon-redo::before{
-	content:"\f2f9";
+.icon-trian-recta-left:before,.icon-big-pre:before,.icon-trian-recta-left-gray:before {
+	content: "\f312";
 }
-.icon-font:before{content:"\f031"}
-.icon-bold::before{content: "\f032"}
-.icon-incline:before{content:"\f033"}
-.icon-underline::before{content: "\f0cd"}
-.icon-strikethrough:before{content:"\f0cc"}
-.icon-subscript:before{content:"\f12c"}
-.icon-subscript:before{content:"\f12c"}
-.icon-superscript:before{content:"\f12b"}
-.icon-align-center:before{content:"\f037"}
-.icon-align-justify:before{content:"\f039"}
-.icon-align-left:before{content:"\f036"}
-.icon-align-right:before{content:"\f038"}
-//clipboard
-.icon-paper::before{
+.icon-clock-pen:before,.icon-clock-pen-gray:before {
+	content: "\f313";
+}
+.icon-drug-eye:before,.icon-drug-eye-gray:before {
+	content: "\f314";
+}
+.icon-herb-back:before {
+	content: "\f315";
+}
+.icon-herb-pre:before {
+	content: "\f316";
+}
+.icon-herb-next:before {
+	content: "\f317";
+}
+.icon-herb-no:before {
+	content: "\f318";
+}
+.icon-herb-ok:before {
+	content: "\f319";
+}
+.icon-decoct-herb:before {
+	content: "\f320";
+}
+.icon-decoct-change:before {
+	content: "\f321";
+}
+.icon-paper-eye-r:before {
+	content: "\f322";
+}
+.icon-paper-pre:before {
+	content: "\f323";
+}
+.icon-no-dot:before {
+	content: "\f324";
+}
+.icon-abort-order:before {
+	content: "\f325";
+}
+.icon-cancel-order:before {
+	content: "\f326";
+}
+.icon-copy-drug:before {
+	content: "\f327";
+}
+.icon-copy-prn:before {
 	content: "\f328";
 }
-// pager
+.icon-copy-sos:before {
+	content: "\f329";
+}
+.icon-exe-order:before {
+	content: "\f330";
+}
+.icon-replace-order:before {
+	content: "\f331";
+}
+.icon-stop-order:before {
+	content: "\f332";
+}
+.icon-write-order:before,.icon-big-paper-pen:before {
+	content: "\f333";
+}
+.icon-add-note:before {
+	content: "\f334";
+}
+.icon-apply-adm:before {
+	content: "\f335";
+}
+.icon-apply-check:before {
+	content: "\f336";
+}
+.icon-apply-opr:before {
+	content: "\f337";
+}
+.icon-check-reg:before {
+	content: "\f338";
+}
+.icon-paper-cfg:before {
+	content: "\f339";
+}
+.icon-paper-tri:before {
+	content: "\f340";
+}
+.icon-resort:before {
+	content: "\f341";
+}
+.icon-save-tmpl:before {
+	content: "\f342";
+}
+.icon-paper-stamp:before {
+	content: "\f343";
+}
+.icon-paper-money:before {
+	content: "\f344";
+}
+.icon-paper-arrow-down:before {
+	content: "\f345";
+}
+.icon-paper-arrow-up:before {
+	content: "\f346";
+}
+.icon-paper-link:before {
+	content: "\f347";
+}
+.icon-set-paper:before {
+	content: "\f348";
+}
+.icon-red-cancel-paper:before {
+	content: "\f349";
+}
+.icon-paper-ques:before {
+	content: "\f350";
+}
+.icon-paper-key:before {
+	content: "\f351";
+}
+.icon-paper-group:before {
+	content: "\f352";
+}
+.icon-paper-clock-bue:before {
+	content: "\f353";
+}
+.icon-big-paper-orange:before {
+	content: "\f354";
+}
+.icon-big-person-green:before {
+	content: "\f355";
+}
+.icon-big-report-yel-pen:before {
+	content: "\f356";
+}
+.icon-big-two-pill-gray:before {
+	content: "\f357";
+}
+.icon-bold:before {
+	content: "\f358";
+}
+.icon-font:before {
+	content: "\f359";
+}
+.icon-strikethrough:before {
+	content: "\f360";
+}
+.icon-underline:before {
+	content: "\f361";
+}
+.icon-incline:before {
+	content: "\f362";
+}
+.icon-subscript:before {
+	content: "\f363";
+}
+.icon-superscript:before {
+	content: "\f364";
+}
+.icon-indentation:before {
+	content: "\f365";
+}
+.icon-unindent:before {
+	content: "\f366";
+}
+.icon-align-justify:before {
+	content: "\f367";
+}
+.icon-align-left:before {
+	content: "\f368";
+}
+.icon-align-center:before {
+	content: "\f369";
+}
+.icon-align-right:before {
+	content: "\f370";
+}
+.icon-paste-board:before {
+	content: "\f371";
+}
+
+
+.icon-arrow-left-top:before,.icon-arrow-le-bo-gray:before {
+	content: "\f372";
+}
+.icon-big-white-p-red:before {
+	content: "\f373";
+}
+.icon-undo:before {
+	content: "\f374";
+}
+.icon-redo:before {
+	content: "\f375";
+}
+.icon-back:before {
+	content: "\f376";
+}
+.icon-big-three-blue-bar:before {
+	content: "\f377";
+}
+.icon-big-doctor-green:before {
+	content: "\f378";
+}
+.icon-big-favorite-add:before {
+	content: "\f379";
+}
+.icon-big-book-arrow:before {
+	content: "\f380";
+}
+.icon-big-book-ref:before {
+	content: "\f381";
+}
+.icon-big-book-arrow-rt:before {
+	content: "\f382";
+}
+.icon-big-book-arrow-ok:before {
+	content: "\f383";
+}
+.icon-big-book-to-book:before {
+	content: "\f384";
+}
+.icon-big-ring-blue:before {
+	content: "\f385";
+}
+.icon-big-ring:before {
+	content: "\f386";
+}
+.icon-big-paper-search:before {
+	content: "\f387";
+}
+.icon-big-close-eye:before {
+	content: "\f388";
+}
+.icon-big-return:before {
+	content: "\f389";
+}
+.icon-big-meterage:before {
+	content: "\f390";
+}
+.icon-big-inspect:before {
+	content: "\f391";
+}
+.icon-big-disuse:before {
+	content: "\f392";
+}
+.icon-big-change-account:before {
+	content: "\f393";
+}
+.icon-big-card:before {
+	content: "\f394";
+}
+.icon-big-bar:before {
+	content: "\f395";
+}
+.icon-big-lt-rt-37:before,.icon-lt-rt-37:before {
+	content: "\f396";
+}
+.icon-big-lt-rt-55:before,.icon-lt-rt-55:before  {
+	content: "\f397";
+}
+.icon-big-lt-rt-73:before,.icon-lt-rt-73:before  {
+	content: "\f398";
+}
+.icon-big-lt-rt-19:before,.icon-lt-rt-19:before  {
+	content: "\f399";
+}
+.icon-big-delete-col:before {
+	content: "\f400";
+}
+.icon-big-delete-row:before {
+	content: "\f401";
+}
+.icon-big-delete-table:before {
+	content: "\f402";
+}
+.icon-big-insert-col:before {
+	content: "\f403";
+}
+.icon-big-insert-row:before {
+	content: "\f404";
+}
+.icon-big-insert-table:before {
+	content: "\f405";
+}
+.icon-big-split-cells:before {
+	content: "\f406";
+}
+.icon-big-help:before {
+	content: "\f407";
+}
+.icon-big-paper:before {
+	content: "\f408";
+}
+.icon-big-question:before {
+	content: "\f409";
+}
+.icon-big-rad:before {
+	content: "\f410";
+}
+.icon-big-balance:before {
+	content: "\f411";
+}
+.icon-big-open-file:before {
+	content: "\f412";
+}
+.icon-big-waxblock-return:before {
+	content: "\f413";
+}
+.icon-big-cells-smear:before {
+	content: "\f414";
+}
+.icon-big-slide-filed:before {
+	content: "\f415";
+}
+.icon-big-slide-send:before {
+	content: "\f416";
+}
+.icon-big-dyeing:before {
+	content: "\f417";
+}
+.icon-big-slide-add:before {
+	content: "\f418";
+}
+.icon-big-embed:before {
+	content: "\f419";
+}
+.icon-big-slide-made:before {
+	content: "\f420";
+}
+.icon-big-book-yellow:before {
+	content: "\f421";
+}
+.icon-big-med-bag:before {
+	content: "\f422";
+}
+.icon-big-save-add:before {
+	content: "\f423";
+}
+.icon-big-save-next:before {
+	content: "\f424";
+}
+.icon-big-print-run:before {
+	content: "\f425";
+}
+.icon-big-cardiogram:before {
+	content: "\f426";
+}
+.icon-big-conical-bottle:before {
+	content: "\f427";
+}
+.icon-big-patient-mach:before {
+	content: "\f428";
+}
+.icon-big-movie-mach:before {
+	content: "\f429";
+}
+.icon-big-chopsticks-bowl:before {
+	content: "\f430";
+}
+.icon-big-rectangle-tree:before {
+	content: "\f431";
+}
+.icon-big-message-clock:before {
+	content: "\f432";
+}
+.icon-big-message-cate:before {
+	content: "\f433";
+}
+.icon-big-message-colum:before {
+	content: "\f434";
+}
+.icon-big-message-pen:before {
+	content: "\f435";
+}
+.icon-big-paper-time:before {
+	content: "\f436";
+}
+.icon-big-pre-audit:before {
+	content: "\f437";
+}
+.icon-big-paper-gray:before {
+	content: "\f438";
+}
+.icon-big-equi-cfg:before {
+	content: "\f439";
+}
+.icon-big-pat-list:before {
+	content: "\f440";
+}
+.icon-big-search-pat:before {
+	content: "\f441";
+}
+.icon-big-paper-yellow:before {
+	content: "\f442";
+}
+.icon-big-mach-blue-red:before {
+	content: "\f443";
+}
+.icon-big-first-second:before {
+	content: "\f444";
+}
+.icon-big-clock-back-blue:before {
+	content: "\f445";
+}
+.icon-big-clock-back-gree:before {
+	content: "\f446";
+}
+
+
+
+
+/* CQ:汉字图标通用规格定义 */
+.icon-inpatient:before,.icon-outpatient:before,.icon-emergency:before,.icon-disabler:before,.icon-produce:before,.icon-children:before,.icon-lung:before  ,.icon-high:before,.icon-spirit:before,.icon-old:before,.icon-poor:before,.icon-sugar:before,.icon-free:before,.icon-out-poverty:before,.icon-pregnant-woman:before,.icon-make-oppointment:before,.icon-allergy-word:before,.icon-base-word:before,.icon-close-word:before,.icon-complex-word:before,.icon-list-word:before,.icon-private-word:before,.icon-public-word:before,.icon-text-word:before,.icon-translate-word:before,.icon-sort:before,.icon-out:before,.icon-change:before {
+	font-size: 12px;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 15px;
+	border-radius: 2px;
+	text-align: center;
+}
+/* CQ:汉字图标内容定义 */
+.icon-inpatient:before  {
+	content: "住";
+	background: #FFEDDF;
+	border: 1px solid #FFB300;
+	color: #FB7D00;
+}
+.icon-outpatient:before  {
+	content: "门";
+	background: #F8FFF3;
+	border: 1px solid #47CE27;
+	color: #229A06;
+}
+.icon-emergency:before  {
+	content: "急";
+	background: #FFE6E3;
+	border: 1px solid #FF5B45;
+	color: #DB1B00;
+}
+.icon-disabler:before  {
+	content: "残";
+	background: #FFF3E1;
+	border: 1px solid #CF8A3B;
+	color: #AC5919;
+}
+.icon-produce:before  {
+	content: "产";
+	background: #FFE9FE;
+	border: 1px solid #F17AE9;
+	color: #F340E7;
+}
+.icon-children:before  {
+	content: "童";
+	background: #E9FFE3;
+	border: 1px solid #58CF00;
+	color: #12AA2C;
+}
+.icon-lung:before  {
+	content: "肺";
+	background: #E6FFFB;
+	border: 1px solid #3BCFB6;
+	color: #05A489;
+}
+.icon-high:before  {
+	content: "高";
+	background: #FFE9E9;
+	border: 1px solid #FFA4A4;
+	color: #FF3D3D;
+}
+.icon-spirit:before  {
+	content: "精";
+	background: #F4E5F9;
+	border: 1px solid #A346C4;
+	color: #8C07BB;
+}
+.icon-old:before  {
+	content: "老";
+	background: #FFE1CE;
+	border: 1px solid #F59700;
+	color: #E65800;
+}
+.icon-poor:before  {
+	content: "困";
+	background: #FFE9E9;
+	border: 1px solid #FFA4A4;
+	color: #FF3D3D;
+}
+.icon-sugar:before  {
+	content: "糖";
+	background: #FFECDD;
+	border: 1px solid #FFB47C;
+	color: #DE881C;
+}
+.icon-free:before  {
+	content: "免";
+	background: #F0E3FF;
+	border: 1px solid #B475FD;
+	color: #8A24FF;
+}
+.icon-out-poverty:before  {
+	content: "脱";
+	background: #D6F7F3;
+	border: 1px solid #3BD2C8;
+	color: #269A92;
+}
+.icon-pregnant-woman:before  {
+	content: "孕";
+	background: #FFE2EE;
+	border: 1px solid #FC9DCD;
+	color: #F340A0;
+}
+.icon-make-oppointment:before  {
+	content: "约";
+	background: #EFFFEB;
+	border: 1px solid #A8E59A;
+	color: #229A06;
+}
+.icon-allergy-word:before  {
+	content: "敏";
+	background: #FFE9E9;
+	border: 1px solid #FFA4A4;
+	color: #FF3D3D;
+}
+.icon-base-word:before  {
+	content: "基";
+	background: #E9EEFF;
+	border: 1px solid #859EFF;
+	color: #2753FF;
+}
+.icon-close-word:before  {
+	content: "闭";
+	background: #ECECEC;
+	border: 1px solid #A7A7A7;
+	color: #6E6E6E;
+}
+.icon-complex-word:before  {
+	content: "复";
+	background: #FFDBEB;
+	border: 1px solid #F788BB;
+	color: #D61E72;
+}
+.icon-list-word:before  {
+	content: "列";
+	background: #C8F4AD;
+	border: 1px solid #64B254;
+	color: #307921;
+}
+.icon-private-word:before  {
+	content: "私";
+	background: #FFDB98;
+	border: 1px solid #FF9831;
+	color: #CC4F00;
+}
+.icon-public-word:before  {
+	content: "公";
+	background: #E3FFFA;
+	border: 1px solid #64C8BC;
+	color: #249587;
+}
+.icon-text-word:before  {
+	content: "文";
+	background: #EFF9FF;
+	border: 1px solid #339EFF;
+	color: #0086FF;
+}
+.icon-translate-word:before  {
+	content: "译";
+	background: #D3F7FF;
+	border: 1px solid #76D5E9;
+	color: #1093A7;
+}
+.icon-sort:before  {
+	content: "序";
+	background: #E8F3FF;
+	border: 1px solid #0863C2;
+	color: #0052A7;
+}
+.icon-out:before  {
+	content: "出";
+	background: #E3FFEE;
+	border: 1px solid #00C75C;
+	color: #12AA64;
+}
+.icon-change:before  {
+	content: "转";
+	background: #FFFBCE;
+	border: 1px solid #EAD803;
+	color: #EBA300;
+}

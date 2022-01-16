@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-01-16
+- 字体图标实现淡版 :sparkles:
+
 ## 2022-01-12
 - `messager.prompt`在输入框中按左右箭头导致光标切换到按钮上 [2162656] :sparkles:
 - IE下重设`confirm`按钮描述，confirm窗口弹出后，让焦点*不*在按钮上，此时回车导致报错问题处理 :bug:
