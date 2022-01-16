@@ -63,7 +63,7 @@
                     case 13:
                         e.preventDefault();
                         opts.keyHandler.enter.call(_4c9, e);
-                        return false;
+                        break; //return false;  //timespinner回车时，外部要监听到事件
                     default:;
                 }
             });
