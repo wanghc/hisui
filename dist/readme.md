@@ -34,8 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+
 ## 2022-01-16
 - 字体图标实现淡版 :sparkles:
+- `timespinner`回车事件优化 :sparkles:
 
 ## 2022-01-12
 - `messager.prompt`在输入框中按左右箭头导致光标切换到按钮上 [2162656] :sparkles:
