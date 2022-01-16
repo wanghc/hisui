@@ -3,233 +3,354 @@
 <head>
 	<meta charset="UTF-8">
     <title>HIS UI</title>
-    <link rel="stylesheet" type="text/css" href="../../dist/css/font-awesome.all.min.css">
-    <link rel="stylesheet" type="text/css" href="../../api/demo.css">
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.min.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
-    <script src="../../api/jquery-tag-demo.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+    <script src="icondic.js" type="text/javascript"></script>
     <style>
-        h3{
-            margin-top: 30px;
-        }
-        ul.iconsList li {
-            /* float: left; */
-            display:inline-block;
+        ul {
             list-style: none;
-            width: 120px;
+            margin: 0;
+            padding: 0;
+            clear: both;
         }
-        div.mycont{
-            border-radius: 5px;
-            height: 142px;
+        ul>li {
+            line-height: 30px;
+            height: 30px;
+            width:180px;
+            padding: 0 5px 0 15px;
+            float: left;
         }
-        a.myicon{
-            padding: 10px;
+        ul.whitelist>li{
+            padding-top:5px;
+        }
+        ul.whitelist>li .l-btn-text{
+            font-size: 12px;
+        }
+        ul>li>a {
             text-decoration: none;
-            color:inherit;
-            align-items: center;
-            display: flex;
-            flex-direction: column;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
+            color:#000000;
         }
-        div.myiconlabel{
-            text-align:center;
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-            padding: 10px;
-            word-break: break-all;
+        ul.iconlist>li:hover,ul.fontlist>li:hover,ul.arrowlist>li:hover,.bigiconlist li:hover {
+            background-color: #E3E3E3;
         }
-        .mycont:focus,.mycont:hover{
-            background-color: #cccccc;
+        .icon{
+            background-position: left 0px center;
+            display: inline-block;
+            font-size: 12px;
         }
-        .myicon:focus, .myicon:hover {
-            background-color: #4dabf7;
-            color: #fff;
+        ul>li span{
+            height: 30px;
+            display: inline-block;
+        }
+        .iconlist, .fontlist, .arrowlist, .bigiconlist, chinCharlist{
+            display: inline-block;
+        }
+        .bigicon{
+            height: 40px;
+            line-height: 40px;
+        }
+        .bigicon .icon::before{
+            font-size: 26px;
+        }
+        .line{
+            margin: 5px;
+            border-bottom: 1px dashed #e5e5e5;
+        }
+        .panel-header, .panel-body {
+            border-color: #ffffff;
+        }
+        .panel-header-card + .panel-body {
+            border-top: 1px dashed #e5e5e5;
+        }
+        .bigicon-tr td{
+            line-height: 30px;
+        }
+        .bigicon-tr .icon{
+            padding-left:30px;
+        }
+        .wicon-tr .icon{
+            background-color: #378ec4;
+            background-position: left 3px center;
+        }
+        span.iconpopover {
+            display: block;
+            padding-left: 10px;
         }
     </style>
 </head>
 <body>
-    <h2>新版图标</h2>
-    <!--font 5.15.9-->
-    <span>为方便系统中引用图标，以及变化图标大小，颜色，使用图标旋转，动画，组合，反色等功能，使用图标字体，可点击<a href="https://fontawesome.com/icons?d=gallery&m=free">这里</a>查看官网</span>
-    <h3>一.图标使用。<code>fas</code>,<code>far</code></h3>
-    <div><i>fas实心图标，far空心图标</i></div>
-    &lt;i class="<code>fas fa-address-card</code>"&gt;&lt;/i&gt;得到效果<i class="fas fa-address-card"></i>，把<code>fas</code>修改成<code>far</code>效果为<i class="far fa-address-card"></i>
-    <h3>二.图标大小。<code>fa-xs</code>,<code>fa-sm</code>,<code>fa-lg</code>,<code>fa-2x</code></h3>
-    <div>
-        <div style="font-size: 24px;" class='use-prettyprint lang-html'>
-            <i class="fas fa-camera fa-xs"></i>
-            <i class="fas fa-camera fa-sm"></i>
-            <i class="fas fa-camera fa-lg"></i>
-            <i class="fas fa-camera fa-2x"></i>
-            <i class="fas fa-camera fa-3x"></i>
-            <i class="fas fa-camera fa-5x"></i>
-            <i class="fas fa-camera fa-7x"></i>
-            <!-- <i class="fas fa-camera fa-10x"></i> -->
-        </div>
+    <h2>图标列表</h2>
+    <h3>所有图标：</h3>
+    <div class="hisui-panel" title="白色(16*16)" data-options="headerCls:'panel-header-card',titleWidth:80" style="padding:10px;margin-bottom:10px;">    
+        <ul class="whitelist"></ul>
+    </div>    
+    <div class="hisui-panel" title="图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:80" style="padding:10px;margin-bottom:10px;">    
+        <ul class="iconlist"></ul>
     </div>
-    <h3>三.列表对齐<code>fa-ul,fa-li</code></h3>
-    <div>
-        <div class="use-prettyprint lang-html">
-        <ul class="fa-ul">
-            <li><span class="fa-li"><i class="fas fa-check-square"></i></span>List icons can</li>
-            <li><span class="fa-li"><i class="fas fa-check-square"></i></span>be used to</li>
-            <li><span class="fa-li"><i class="fas fa-spinner"></i></span>replace bullets</li>
-            <li><span class="fa-li"><i class="far fa-square"></i></span>in lists</li>
-        </ul>
-        </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="文字处理图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
+        <ul class="fontlist"></ul>
     </div>
-    <h3>四.图标旋转<code>fa-rotate-*</code>与镜像<code>fa-flip-*</code></h3>
-    <div>
-        <div class="use-prettyprint lang-html">
-            <i class="fas fa-camera"></i>
-            <i class="fas fa-camera fa-rotate-90"></i>
-            <i class="fas fa-camera fa-rotate-180"></i>
-            <i class="fas fa-camera fa-rotate-270"></i>
-            <i class="fas fa-camera fa-flip-horizontal"></i>
-            <i class="fas fa-camera fa-flip-vertical"></i>
-            <i class="fas fa-camera fa-flip-both"></i>
-        </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="汉字图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
+        <ul class="chinCharlist"></ul>
     </div>
-    <h3>五.图标动画<code>fa-spin,fa-pulse</code></h3>
-    <div>
-        <div class="use-prettyprint lang-html">
-            <i class="fas fa-spinner fa-spin"></i>
-            <i class="fas fa-circle-notch fa-spin"></i>
-            <i class="fas fa-sync fa-spin"></i>
-            <i class="fas fa-cog fa-spin"></i>
-            <i class="fas fa-stroopwafel fa-spin"></i>
-            <i class="fas fa-spinner fa-pulse"></i> <!--fa-pulse表示八方向旋转-->
-        </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="箭头图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="arrowlist"></ul>
     </div>
-    <h3>六.图标堆叠<code>fa-stack,fa-stack-1x,fa-stack-2x</code></h3>
-    <div>
-        <div class="use-prettyprint lang-html">
-            <i class="far fa-circle fa-2x"></i>
-            <i class="far fa-flag fa-2x"></i>
-            <span class="fa-stack" style="vertical-align: top;">
-                  <i class="far fa-circle fa-stack-2x"></i>
-                  <i class="fas fa-flag fa-stack-1x"></i>
-            </span>
-            <span class="fa-stack" style="vertical-align: top;">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fas fa-flag fa-stack-1x fa-inverse"></i> <!-- fa-inverse剔除效果-->
-            </span>
-        </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
+        <div class="bigiconlist"></div>
     </div>
-    <h3>七.HISUI表格工具栏图标</h3>
-    <span>使用时请使用fa-样式名。为兼容一些常用图标名称,以icon-开头重写了以下图标名,<code>这仅仅是语法糖少用</code></span>
-    <div>
-        <div class="use-prettyprint lang-html"> 
-            <div id="custtb" >
-                <!--在此处使用 fa-search 与 icon-search 效果一样-->
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'fa-search',plain:true">fa-search</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">icon-search</a>
-                <!-- icon-*都能从fa-*中找到对应图标，为了兼容老HISUI中常用图标增加以下icon-* -->
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-back',plain:true">icon-back</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-redo',plain:true">icon-redo</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-add',plain:true">icon-add</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-edit',plain:true">icon-edit</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-save',plain:true">icon-save</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-reload',plain:true">icon-reload</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-remove',plain:true">icon-remove</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-print',plain:true">icon-print</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cut',plain:true">icon-cut</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-copy',plain:true">icon-copy</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-paste',plain:true">icon-paste</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-back',plain:true">icon-back撤销</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-redo',plain:true">icon-redo</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-font',plain:true">icon-font</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-bold',plain:true">icon-bold</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-incline',plain:true">icon-incline</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-underline',plain:true">icon-underline</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-strikethrough',plain:true">icon-strikethrough</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-subscript',plain:true">icon-subscript</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-superscript',plain:true">icon-superscript</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-center',plain:true">icon-align-center</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-justify',plain:true">icon-align-justify</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-left',plain:true">icon-align-left</a>        
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-align-right',plain:true">icon-align-right</a>
-                <a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-paper',plain:true">icon-paper</a>
-            </div>
-            <table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:230px" 
-            data-options="iconCls:'icon-paper',toolbar:'#custtb'">   
-                <thead>   
-                    <tr>   
-                        <th data-options="field:'code'">编码</th>   
-                        <th data-options="field:'name'">名称</th>   
-                        <th data-options="field:'price'">价格</th>
-                        <th data-options="field:'num'">数量</th>
-                        <th data-options="field:'note'">描述</th>
-                        <th data-options="field:'re',editor:{type:'datebox'}">日期</th>
-                    </tr>   
-                </thead>   
-                <tbody>    
-                </tbody>   
+    
+    <h3>说明:</h3>
+    <span>各种小图标，可用到按钮(linkbutton),菜单(menu),工具栏(toolbar)</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+        <a href="#" class="hisui-linkbutton" iconCls="icon-w-clean">清屏</a>
+        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton" iconCls="icon-w-clear"&gt;清屏&lt;/a&gt;</code></pre>
+    </div>
+    <div class="demo-exp-code entry-content"> 
+        <a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note">操作</a>
+        <div id="mm">
+            <div data-options="iconCls:'icon-undo'">撤销</div>
+            <div data-options="iconCls:'icon-redo'">恢复</div>
+        </div>
+<pre class="prettyprint hide lang-html">
+&lt;a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note"&gt;操作&lt;/a&gt;
+&lt;div id="mm"&gt;
+    &lt;div data-options="iconCls:'icon-undo'"&gt;撤销&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-redo'"&gt;恢复&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+    </div>
+    <div class="demo-exp-code entry-content"> 
+            <table class="hisui-datagrid" title="医嘱列表" style="width:400px;height:150px" 
+            data-options="rownumbers:true,singleSelect:true,pagination:false,toolbar:[{
+                    iconCls: 'icon-stop-order',
+                    text:'停止医嘱',
+                    handler: function(){alert('停止医嘱')}
+                },{
+                    iconCls: 'icon-cancel-order',
+                    text:'撤销医嘱'
+                },{
+                    iconCls: 'icon-abort-order',
+                    text:'作废医嘱'
+                },'-',{
+                    iconCls: 'icon-tip'
+                }]"> 
             </table>
-        </div>
+            <pre class="prettyprint hide lang-js">
+        toolbar: [{
+            iconCls: 'icon-edit',
+            text:'停止医嘱',
+            handler: function(){alert('停止医嘱')}
+        },{
+            iconCls: 'icon-save',
+            text:'撤销医嘱'
+        },{
+            iconCls: 'icon-remove',
+            text:'作废医嘱'
+        },'-',{
+            iconCls: 'icon-tip'
+        }]</pre>
     </div>
-    <h3>常用图标(fas,far)</h3>
-    <ul id="fasiconsList" class="iconsList"></ul>
-    <h3>商标图标(fab)</h3>
-    <ul id="fabiconsList" class="iconsList"></ul>
+    <div>
+        <h3>常用图标说明</h3>
+        <table class="table" id="iconnotelist">
+            <tr class="protitle">
+                <th width=44px>图标</th>
+                <th width=190px>类</th>
+                <th>说明</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+    <div class="mytooltip"></div>
     <script type="text/javascript">
-        //fab=["500px","accessible-icon","accusoft","acquisitions-incorporated","adn","adversal","affiliatetheme","airbnb","algolia","alipay","amazon","amazon-pay","amilia","android","angellist",]
-        var arr = ["ad","address-book","address-book","address-card","address-card","adjust","air-freshener","align-center","align-justify","align-left","align-right","allergies","ambulance","american-sign-language-interpreting","anchor","angle-double-down","angle-double-left","angle-double-right","angle-double-up","angle-down","angle-left","angle-right","angle-up","angry","angry","ankh","apple-alt","archive","archway","arrow-alt-circle-down","arrow-alt-circle-down","arrow-alt-circle-left","arrow-alt-circle-left","arrow-alt-circle-right","arrow-alt-circle-right","arrow-alt-circle-up","arrow-alt-circle-up","arrow-circle-down","arrow-circle-left","arrow-circle-right","arrow-circle-up","arrow-down","arrow-left","arrow-right","arrow-up","arrows-alt","arrows-alt-h","arrows-alt-v","assistive-listening-systems","asterisk","at","atlas","atom","audio-description","award"
-        ,"baby","baby-carriage","backspace","backward","bacon","bacteria","bacterium","bahai","balance-scale","balance-scale-left","balance-scale-right","ban","band-aid","barcode","bars","baseball-ball","basketball-ball","bath","battery-empty","battery-full","battery-half","battery-quarter","battery-three-quarters","bed","beer","bell","bell","bell-slash","bell-slash","bezier-curve","bible","bicycle","biking","binoculars","biohazard","birthday-cake","blender","blender-phone","blind","blog","bold","bolt","bomb","bone","bong","book","book-dead","book-medical","book-open","book-reader","bookmark","bookmark","border-all","border-none","border-style","bowling-ball","box","box-open","box-tissue","boxes","braille","brain","bread-slice","briefcase","briefcase-medical","broadcast-tower","broom","brush","bug","building","building","bullhorn","bullseye","burn","bus","bus-alt","business-time"
-        ,"calculator","calendar","calendar","calendar-alt","calendar-alt","calendar-check","calendar-check","calendar-day","calendar-minus","calendar-minus","calendar-plus","calendar-plus","calendar-times","calendar-times","calendar-week","camera","camera-retro","campground","canadian-maple-leaf","candy-cane","cannabis","capsules","car","car-alt","car-battery","car-crash","car-side","caravan","caret-down","caret-left","caret-right","caret-square-down","caret-square-down","caret-square-left","caret-square-left","caret-square-right","caret-square-right","caret-square-up","caret-square-up","caret-up","carrot","cart-arrow-down","cart-plus","cash-register","cat","certificate","chair","chalkboard","chalkboard-teacher","charging-station","chart-area","chart-bar","chart-bar","chart-line","chart-pie","check","check-circle","check-circle","check-double","check-square","check-square","cheese","chess","chess-bishop","chess-board","chess-king","chess-knight","chess-pawn","chess-queen","chess-rook","chevron-circle-down","chevron-circle-left","chevron-circle-right","chevron-circle-up","chevron-down","chevron-left","chevron-right","chevron-up","child","church","circle","circle","circle-notch","city","clinic-medical","clipboard","clipboard","clipboard-check","clipboard-list","clock","clock","clone","clone","closed-captioning","closed-captioning","cloud","cloud-download-alt","cloud-meatball","cloud-moon","cloud-moon-rain","cloud-rain","cloud-showers-heavy","cloud-sun","cloud-sun-rain","cloud-upload-alt","cocktail","code","code-branch","coffee","cog","cogs","coins","columns","comment","comment","comment-alt","comment-alt","comment-dollar","comment-dots","comment-dots","comment-medical","comment-slash","comments","comments","comments-dollar","compact-disc","compass","compass","compress","compress-alt","compress-arrows-alt","concierge-bell","cookie","cookie-bite","copy","copyright","couch","credit-card","crop","crop-alt","cross","crosshairs","crow","crown","crutch","cube","cubes","cut"
-        ,"database","deaf","democrat","desktop","dharmachakra","diagnoses","dice","dice-d20","dice-d6","dice-five","dice-four","dice-one","dice-six","dice-three","dice-two","digital-tachograph","directions","disease","divide","dizzy","dizzy","dna","dog","dollar-sign","dolly","dolly-flatbed","donate","door-closed","door-open","dot-circle","dot-circle","dove","download","drafting-compass","dragon","draw-polygon","drum","drum-steelpan","drumstick-bite","dumbbell","dumpster","dumpster-fire","dungeon"
-        ,"edit","egg","eject","ellipsis-h","ellipsis-v","envelope","envelope-open","envelope-open-text","envelope-square","equals","eraser","ethernet","euro-sign","exchange-alt","exclamation","exclamation-circle","exclamation-triangle","expand","expand-alt","expand-arrows-alt","external-link-alt","external-link-square-alt","eye","eye-dropper","eye-slash",
-        ,"fan","fast-backward","fast-forward","faucet","fax","feather","feather-alt","female","fighter-jet","file","file","file-alt","file-alt","file-archive","file-archive","file-audio","file-audio","file-code","file-code","file-contract","file-csv","file-download","file-excel","file-excel","file-export","file-image","file-image","file-import","file-invoice","file-invoice-dollar","file-medical","file-medical-alt","file-pdf","file-pdf","file-powerpoint","file-powerpoint","file-prescription","file-signature","file-upload","file-video","file-video","file-word","file-word","fill","fill-drip","film","filter","fingerprint","fire","fire-alt","fire-extinguisher","first-aid","fish","fist-raised","flag","flag-checkered","flag-usa","flask","flushed","flushed","folder","folder-minus","folder-open","folder-plus","font","football-ball","forward","frog","frown","frown","frown-open","frown-open","funnel-dollar","futbol","futbol"
-        ,"gamepad","gas-pump","gavel","gem","gem","genderless","ghost","gift","gifts","glass-cheers","glass-martini","glass-martini-alt","glass-whiskey","glasses","globe","globe-africa","globe-americas","globe-asia","globe-europe","golf-ball","gopuram","graduation-cap","greater-than","greater-than-equal","grimace","grin","grin-alt","grin-beam","grin-beam-sweat","grin-hearts","grin-squint","grin-squint-tears","grin-stars","grin-tears","grin-tongue","grin-tongue-squint","grin-tongue-wink","grin-wink","grip-horizontal","grip-lines","grip-lines-vertical","grip-vertical","guitar","h-square","hamburger","hammer","hamsa","hand-holding","hand-holding-heart","hand-holding-medical","hand-holding-usd","hand-holding-water","hand-lizard","hand-middle-finger"
-        ,"hand-paper","hand-peace","hand-point-down","hand-point-left","hand-point-right"
-        ,"hand-point-up","hand-pointer","hand-rock","hand-scissors","hand-sparkles","hand-spock","hands","hands-helping","hands-wash","handshake","handshake-alt-slash","handshake-slash","hanukiah","hard-hat","hashtag","hat-cowboy","hat-cowboy-side","hat-wizard","hdd","hdd","head-side-cough","head-side-cough-slash","head-side-mask","head-side-virus","heading","headphones","headphones-alt","headset","heart","heart","heart-broken","heartbeat","helicopter","highlighter","hiking","hippo","history","hockey-puck","holly-berry","home","horse","horse-head","hospital","hospital","hospital-alt","hospital-symbol"
-        ,"hospital-user","hot-tub","hotdog","hotel","hourglass","hourglass","hourglass-end","hourglass-half","hourglass-start","house-damage","house-user","hryvnia","i-cursor","ice-cream","icicles","icons","id-badge","id-badge","id-card","id-card","id-card-alt","igloo","image","image","images","images","inbox","indent","industry","infinity","info","info-circle","italic","jedi","joint","journal-whills","kaaba","key","keyboard","keyboard","khanda","kiss","kiss","kiss-beam","kiss-beam","kiss-wink-heart","kiss-wink-heart","kiwi-bird"
-        ,"landmark","language","laptop","laptop-code","laptop-house","laptop-medical","laugh","laugh","laugh-beam","laugh-beam","laugh-squint","laugh-squint","laugh-wink","laugh-wink","layer-group","leaf","lemon","lemon","less-than","less-than-equal","level-down-alt","level-up-alt","life-ring","life-ring","lightbulb","lightbulb","link","lira-sign","list","list-alt","list-ol","list-ul","location-arrow","lock","lock-open","long-arrow-alt-down","long-arrow-alt-left","long-arrow-alt-right","long-arrow-alt-up","low-vision","luggage-cart","lungs","lungs-virus"
-        ,"magic","magnet","mail-bulk","male","map","map","map-marked","map-marked-alt","map-marker","map-marker-alt","map-pin","map-signs","marker","mars","mars-double","mars-stroke","mars-stroke-h","mars-stroke-v","mask","medal","medkit","meh","meh","meh-blank","meh-blank","meh-rolling-eyes","meh-rolling-eyes","memory","menorah","mercury","meteor","microchip","microphone","microphone-alt","microphone-alt-slash","microphone-slash","microscope","minus","minus-circle","minus-square","minus-square","mitten","mobile","mobile-alt","money-bill","money-bill-alt","money-bill-alt","money-bill-wave","money-bill-wave-alt","money-check","money-check-alt","monument","moon","moon","mortar-pestle","mosque","motorcycle","mountain","mouse","mouse-pointer","mug-hot","music"
-        ,"network-wired","neuter","newspaper","newspaper","not-equal","notes-medical","object-group","object-group","object-ungroup","object-ungroup","oil-can","om","otter","outdent"
-        ,"pager","paint-brush","paint-roller","palette","pallet","paper-plane","paper-plane","paperclip","parachute-box","paragraph","parking","passport","pastafarianism","paste","pause","pause-circle","pause-circle","paw","peace","pen","pen-alt","pen-fancy","pen-nib","pen-square","pencil-alt","pencil-ruler","people-arrows","people-carry","pepper-hot","percent","percentage","person-booth","phone","phone-alt","phone-slash","phone-square","phone-square-alt","phone-volume","photo-video","piggy-bank","pills","pizza-slice","place-of-worship","plane","plane-arrival","plane-departure","plane-slash","play","play-circle","play-circle","plug","plus","plus-circle","plus-square","plus-square","podcast","poll","poll-h","poo","poo-storm","poop","portrait","pound-sign","power-off","pray","praying-hands","prescription","prescription-bottle","prescription-bottle-alt","print","procedures","project-diagram","pump-medical","pump-soap","puzzle-piece"
-        ,"qrcode","question","question-circle","question-circle","quidditch","quote-left","quote-right","quran"
-        ,"radiation","radiation-alt","rainbow","random","receipt","record-vinyl","recycle","redo","redo-alt","registered","registered","remove-format","renren","reply","reply-all","replyd","republican","researchgate","resolving","restroom","retweet","rev","ribbon","ring","road","robot","rocket","rocketchat","rockrms","route","rss","rss-square","ruble-sign","ruler","ruler-combined","ruler-horizontal","ruler-vertical","running","rupee-sign","rust"
-        ,"sad-cry","sad-tear","safari","salesforce","sass","satellite","satellite-dish","save","save","schlix","school","screwdriver","scribd","scroll","sd-card","search","search-dollar","search-location","search-minus","search-plus","searchengin","seedling","sellcast","sellsy","server","servicestack","shapes","share","share-alt","share-alt-square","share-square","share-square","shekel-sign","shield-alt","shield-virus","ship","shipping-fast","shirtsinbulk","shoe-prints","shopify","shopping-bag","shopping-basket","shopping-cart","shopware","shower","shuttle-van","sign","sign-in-alt","sign-language","sign-out-alt","signal","signature","sim-card","simplybuilt","sink","sistrix","sitemap","sith","skating","sketch","skiing","skiing-nordic","skull","skull-crossbones","skyatlas","skype","slack","slack-hash","slash","sleigh","sliders-h","slideshare","smile","smile","smile-beam","smile-beam","smile-wink","smile-wink","smog","smoking","smoking-ban","sms","snapchat","snapchat-ghost","snapchat-square","snowboarding","snowflake","snowflake","snowman","snowplow","soap","socks","solar-panel","sort","sort-alpha-down","sort-alpha-down-alt","sort-alpha-up","sort-alpha-up-alt","sort-amount-down","sort-amount-down-alt","sort-amount-up","sort-amount-up-alt","sort-down","sort-numeric-down","sort-numeric-down-alt","sort-numeric-up","sort-numeric-up-alt","sort-up","soundcloud","sourcetree","spa","space-shuttle","speakap","speaker-deck","spell-check","spider","spinner","splotch","spotify","spray-can","square","square","square-full","square-root-alt","squarespace","stack-exchange","stack-overflow","stackpath","stamp","star","star","star-and-crescent","star-half","star-half","star-half-alt","star-of-david","star-of-life","staylinked","steam","steam-square","steam-symbol","step-backward","step-forward","stethoscope","sticker-mule","sticky-note","sticky-note","stop","stop-circle","stop-circle","stopwatch","stopwatch-20","store","store-alt","store-alt-slash","store-slash","strava","stream","street-view","strikethrough","stripe","stripe-s","stroopwafel","studiovinari","stumbleupon","stumbleupon-circle","subscript","subway","suitcase","suitcase-rolling","sun","sun","superpowers","superscript","supple","surprise","surprise","suse","swatchbook","swift","swimmer","swimming-pool","symfony","synagogue","sync","sync-alt","syringe"
-        ,"table","table-tennis","tablet","tablet-alt","tablets","tachometer-alt","tag","tags","tape","tasks","taxi","teamspeak","teeth","teeth-open","telegram","telegram-plane","temperature-high","temperature-low","tencent-weibo","tenge","terminal","text-height","text-width","th","th-large","th-list","the-red-yeti","theater-masks","themeco","themeisle","thermometer","thermometer-empty","thermometer-full","thermometer-half","thermometer-quarter","thermometer-three-quarters","think-peaks","thumbs-down","thumbs-down","thumbs-up","thumbs-up","thumbtack","ticket-alt","tiktok","times","times-circle","times-circle","tint","tint-slash","tired","tired","toggle-off","toggle-on","toilet","toilet-paper","toilet-paper-slash","toolbox","tools","tooth","torah","torii-gate","tractor","trade-federation","trademark","traffic-light","trailer","train","tram","transgender","transgender-alt","trash","trash-alt","trash-alt","trash-restore","trash-restore-alt","tree","trello","tripadvisor","trophy","truck","truck-loading","truck-monster","truck-moving","truck-pickup","tshirt","tty","tumblr","tumblr-square","tv","twitch","twitter","twitter-square","typo3","uber","ubuntu","uikit","umbraco","umbrella","umbrella-beach","uncharted","underline","undo","undo-alt","uniregistry","unity","universal-access","university","unlink","unlock","unlock-alt","unsplash","untappd","upload","ups","usb","user","user","user-alt","user-alt-slash","user-astronaut","user-check","user-circle","user-circle","user-clock","user-cog","user-edit","user-friends","user-graduate","user-injured","user-lock","user-md","user-minus","user-ninja","user-nurse","user-plus","user-secret","user-shield","user-slash","user-tag","user-tie","user-times","users","users-cog","users-slash","usps","ussunnah","utensil-spoon","utensils"
-        ,"vaadin","vector-square","venus","venus-double","venus-mars","vest","vest-patches","viacoin","viadeo","viadeo-square","vial","vials","viber","video","video-slash","vihara","vimeo","vimeo-square","vimeo-v","vine","virus","virus-slash","viruses","vk","vnv","voicemail","volleyball-ball","volume-down","volume-mute","volume-off","volume-up","vote-yea","vr-cardboard","vuejs","walking","wallet","warehouse","watchman-monitoring","water","wave-square","waze","weebly","weibo","weight","weight-hanging","weixin","whatsapp","whatsapp-square","wheelchair","whmcs","wifi","wikipedia-w","wind","window-close","window-close","window-maximize","window-maximize","window-minimize","window-minimize","window-restore","window-restore","windows","wine-bottle","wine-glass","wine-glass-alt","won-sign","wrench"
-        ,"x-ray","yen-sign","yin-yang"];
-        
-        var brandsArr = ["angrycreative","angular","app-store","app-store-ios","apper","apple","apple-pay","artstation","asymmetrik","atlassian","audible","autoprefixer","avianex","aviato","aws","bandcamp","battle-net","behance","behance-square","bimobject","bitbucket","bitcoin","bity","black-tie","blackberry","blogger","blogger-b","bluetooth","bluetooth-b","bootstrap","btc","buffer","buy-n-large","buysellads","buromobelexperte","canadian-maple-leaf","cc-amazon-pay","cc-amex","cc-apple-pay","cc-diners-club","cc-discover","cc-jcb","cc-mastercard","cc-paypal","cc-stripe","cc-visa","centercode","centos","chrome","chromecast","cloudflare","cloudscale","cloudsmith","cloudversify","codepen","codiepie","confluence","connectdevelop","contao","cotton-bureau","cpanel","creative-commons","creative-commons-by","creative-commons-nc","creative-commons-nc-eu","creative-commons-nc-jp","creative-commons-nd","creative-commons-pd","creative-commons-pd-alt","creative-commons-remix","creative-commons-sa","creative-commons-sampling","creative-commons-sampling-plus","creative-commons-share","creative-commons-zero","critical-role","css3","css3-alt","cuttlefish","d-and-d","d-and-d-beyond","dailymotion","dashcube","deezer","delicious","deploydog","deskpro","dev","deviantart","dhl","discord","discourse","diaspora","digg","digital-ocean","dochub","docker","draft2digital","dribbble","dribbble-square","dropbox","drupal","dyalog","earlybirds","ebay","edge","edge-legacy","elementor","ello","ember","empire","envira","erlang","ethereum","etsy","evernote","expeditedssl","facebook","facebook-f","facebook-messenger","facebook-square","fantasy-flight-games","fedex","fedora","figma","firefox","firefox-browser","first-order","first-order-alt","firstdraft","flickr","flipboard","fly","font-awesome","font-awesome-alt","font-awesome-flag","fonticons","fonticons-fi","fort-awesome","fort-awesome-alt","forumbee","foursquare","free-code-camp","freebsd","fulcrum","galactic-republic","galactic-senate","get-pocket","gg","gg-circle","git","git-alt","git-square","github","github-alt","github-square","gitkraken","gitlab","gitter","glide","glide-g","gofore","goodreads","goodreads-g","google","google-drive","google-pay","google-play","google-plus","google-plus-g","google-plus-square","google-wallet","gratipay","grav","gripfire","grunt","guilded","gulp","hacker-news","hacker-news-square","hackerrank","hips","hire-a-helper","hive","hooli","hornbill","hotjar","houzz","html5","hubspot","ideal","imdb","innosoft","instagram","instagram-square","instalod","intercom","internet-explorer","invision","ioxhost","itch-io","itunes","itunes-note","java","jedi-order","jenkins","jira","joget","joomla","js","js-square","jsfiddle","kaggle","keybase","keycdn","kickstarter","kickstarter-k","korvue","laravel","lastfm","lastfm-square","leanpub","less","line","linkedin","linkedin-in","linode","linux","lyft","magento","mailchimp","mandalorian","mastodon","maxcdn","mdb","medapps","medium","medium-m","medrt","meetup","megaport","mendeley","microblog","markdown","microsoft","mix","mixcloud","mixer","mizuni","modx","monero","napster","neos","nimblr","node","node-js","npm","ns8","nutritionix","octopus-deploy","odnoklassniki","odnoklassniki-square","old-republic","opencart","openid","opera","optin-monster","orcid","osi","page4","pagelines","palfed","patreon","paypal","penny-arcade","perbyte","periscope","phabricator","phoenix-framework","phoenix-squadron","php","pied-piper","pied-piper-alt","pied-piper-hat","pied-piper-pp","pied-piper-square","pinterest","pinterest-p","pinterest-square","playstation","product-hunt","pushed","python","qq","quinscape","quora","r-project","raspberry-pi","ravelry","react","reacteurope","readme","rebel","red-river","reddit","reddit-alien","reddit-square","redhat",
-        "speakap", "spotify",'sketch', "stack-exchange", "squarespace", "stack-overflow", "staylinked", "steam", "steam-square", "sticker-mule", "strava", "stripe", "studiovinari", "stripe-s", "stumbleupon", "stumbleupon-circle", "supple", "suse", "swift", "symfony", "teamspeak", "telegram", "telegram-plane", "tencent-weibo", "the-red-yeti", "themeco", "themeisle", "think-peaks", "tiktok", "trade-federation", "tumblr", "twitch", "twitter-square", "typo3", "uikit", "ubuntu", "uber", "umbraco", "uncharted", "uniregistry", "unity", "untappd", "unsplash", "ups", "usb", "usps", "ussunnah", "vaadin", "viadeo", "viacoin", "viadeo-square", "viber", "vimeo", "vimeo-v", "vine", "vnv", "vuejs", "watchman-monitoring", "waze", "weibo", "weebly", "weixin", "whatsapp", "whmcs", "whatsapp-square", "wikipedia-w", "windows","renren", "replyd", "researchgate", "resolving", "rev", "rocketchat", "rockrms", "safari", "salesforce", "sass", "schlix", "rust", "scribd", "searchengin", "sellcast", "sellsy", "servicestack", "shirtsinbulk", "shopify", "shopware", "simplybuilt", "sistrix", "sith", "skyatlas", "skype", "slack", "slack-hash", "slideshare", "snapchat", "snapchat-ghost", "snapchat-square", "soundcloud", "sourcetree", "speaker-deck", "stackpath", "steam-symbol", "superpowers", "trello", "tripadvisor", "tumblr-square", "twitter", "vimeo-square", "vk"
-        ,"wix","wizards-of-the-coast","wodu","wolf-pack-battalion","wordpress","wordpress-simple","wpbeginner","wpexplorer","wpforms","wpressr","xbox","xing","xing-square","y-combinator","yahoo","yammer","yandex","yandex-international","yarn","yelp","yoast","youtube","youtube-square","zhihu"];
-		
-        var sArr = [];
-        var ha = [];
-        for(var i=0;i<arr.length;i++){
-            //ha.push('<li><div class="mycont"><a class="myicon"><i class="fas fa-'+arr[i]+'" style="font-size:48px;"></i></a><div class="myiconlabel">'+arr[i]+'</div></div></li>');
-            if(brandsArr.indexOf(arr[i])==-1){
-                sArr.push(arr[i]);
+        $(function(){
+            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','arrow-left','arrow-right','back','cal','cancel','card','clean','config',
+            'epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy',
+            'stamp','batch-cfg','inv','batch-add','eye','calc','submit','clock','rent','run','line-key','takes','key','img','setting','ok','filter','predrug',"trigger-box",
+            "paid","zoom","book","upload","pen-paper","volume-up","download","reset","pause-circle","skip-no","ca",'ster-bd','ster-leak','scan-code'
+        ];
+            for(var i=0;i<wicons.length;i++){
+                //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
+                $(
+                    '<li>\
+                    <a href="#" iconCls="icon-w-'+wicons[i]+'" style="width:180px;text-align:left;font-size:10px">icon-w-'+wicons[i]+'</a>\
+                    </li>'
+                ).appendTo(".whitelist").find("a").linkbutton();
             }
-        }
-        for(var i=0;i<sArr.length;i++){
-            ha.push('<li><div class="mycont"><a class="myicon"><i class="fas fa-'+sArr[i]+'" style="font-size:48px;"></i></a><div class="myiconlabel">'+sArr[i]+'</div></div></li>');
-            if (i>200) {
-                //break;
+            /*--------------------------------*/
+            var icons = ['add','add-item','write-order','cancel','edit','remove','save','cut','ok','no','reload','search','print','help','sum','tip','filter'
+            //,'mini-add','mini-edit','mini-refresh' /*2018-06-28 去除mini图标*/
+            //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'
+            ,'bed','house','house-maint','house-posi-maint','person','person-key-yel','key-switch','big-switch','report-switch','report-blue-shie-key','patient','outhosp-patient','stethoscope'
+            ,'uncheckin','checkin','end-adm','change-loc','doctor','clear-screen','read-card','update','upload-cloud','unload-cloud','reset'
+            ,'other','patient-info','del-diag','add-diag','emr-cri'
+            ,'funnel-eye','funnel-half','funnel-empty','funnel-on','eye','green-line-eye','export','import','download','omega','eye-deepgrade'
+            ,'fee-arrow','fee'
+            ,'star-yellow','star-light-yellow','star','star-half','star-empty','star-orange-border','star-orange-body','book','all-select','all-unselect'
+            ,'select-grant','cancel-select-grant','refuse-select-grant','double-quotes','transfer'
+            ,'batch-cfg','batch-add','import-xls','init','inv-search','submit','chart-sum','chart-year'
+            ,'attachment','import-reset','mnypaper-cfg','mnypaper-run','mnypaper-ok','mnypaper-no','mnypaper-down','mnypaper-down2'
+            ,'stamp','stamp-cancel','stamp-pass','line-paid','split','alert','user','money-down'
+            ,'max-no','excel','img','save-to','save-sure','export-data','export-all','set-col','template','adjust-inventory','cancel-money'
+            ,'set-zero','accept-money','accept','show-set','camera','blue-edit','gray-edit','pat-write','up','down','fx','key','run','muti-key'
+            ,'pause','forbid','ignore','re-ignore','unuse','arrow-up','person-seal'
+            ,'scanning','return','doc-caseload','snowflake-blue','speci-mt','print-box','tube-add','tube-del','wrench-blue','gen'
+            ,'paper-submit','open-book','export-paper','track','paper-eye','run-red',"compare-no","compare-yes","compare","paper-arrow"
+            ,'adm-add','adm-same','alert-red','all-screen','analysis','arrow-blue','arrow-zoom','audit-x','base-info','blue-drug-ok','blue-move','book-green','bottle-drug','cal-pen','cancel-ref','cancel-top','check','checkbox','chg-doctor-grant','clock','clock-blod','clock-record','clock-black','clock-orange','barbell','target-arrow','contain','doctor-green-no','down-arrow-box','drug','drug-arrow-red','drug-audit','drug-clock','drug-link','dsh-water','durg-freq','durg-ref','face-red','find-adm','fire','format-line','format-line-dott','format-line-num','gen-barcode','home-black','home-gray','icd','injector','knw-submit','location','lock','move-left-most','move-up-most','mtpaper-add','mtpaper-arrw-lftp','mtpaper-redo','mtpaper-undo','mttext','mutpaper-tri','mutpaper-x','nail','no-conatin','other-yellow','paper-bed','paper-blue-line','paper-chart','paper-drug','paper-link-pen','paper-new','paper-no','paper-ok','paper-opr-record','paper-save','paper-table','paper-upgrade','paper-upgrade-add','paper-x','pat-add-red','pat-alert-red','pat-alert-yellow','pat-house','pat-house-switch','pat-opr','radio','ref','repeat-drug','right-arrow','switch','tel','text','tip-blue','top-green','trans-pat','tube','unlock','upload','virus','virus-drug','water-drop','yellow-qa'
+            ,'down-blue','export-report','add-report','finish-report','take-report','paper-plane','undo-paper-plane','h24-stat','stat','wax-stat','wax-tat-stat','paper-stat','slice-stat','slice-tat-stat','slice-only','sample-stat','paper-pen','paper-pen-blue','wating','done','user-black','report-check-black','up-gray','down-gray','pat-info','tooth',
+            'paid','return-paid','int-bill','cancel-int-bill','reprint-inv','print-inv','rebill','pat-fee-det','find-paid-det','find-ord-det',
+            'find-fee-itm','skip-no','injector-water','alert-pen','board-alert','doctor-green-pen','minus','alarm','ip-cfg','have-son-node','mater-info','send-msg','price-maint','ga-maint','qua-pro-sort','change-pay-way','qua-pro-dis','qua-pro-blue','rectangle-flow','paper-switch'
+            ,'bell-blue-no','bell-blue','bell-yellow','have-message','three-cuboid-green','dustbin-red'
+            ,'print-arr-bo','print-arr-bo-gray','gear-gray','triangle-green-right','triangle-gray-right','triangle-green-left','triangle-gray-left','paper-pay','paper-pay-gray','compu-torus','compu-torus-gray','two-recta-gear','two-recta-gear-gray','compu-run','compu-run-gray','paper-blue-add','paper-blue-add-gray','trian-recta-right','trian-recta-right-gray','box-red-add','box-red-add-gray','green-chart','gray-chart','report-eye','report-eye-gray','trian-recta-left','trian-recta-left-gray','refresh-gray','clock-pen','clock-pen-gray','drug-eye','drug-eye-gray','miss-img'
+            ,"herb-back","herb-pre","herb-next","herb-no","herb-ok","decoct-herb","decoct-change","paper-eye-r","paper-pre","no-dot","date",'verify','ca-green','ster-again','ster-bat','ster-bio','ster-cancel','ster-finish','ster-ok'];
+            //icons.sort();
+            for(var i=0;i<icons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+icons[i]+'">icon-'+icons[i]+'</span>\
+                    </li>'
+                ).appendTo(".iconlist");
             }
-        }
-        $("#fasiconsList").html(ha.join(''));   
-        ha.length=0;
-        for(var i=0;i<brandsArr.length;i++){
-            ha.push('<li><div class="mycont"><a class="myicon"><i class="fab fa-'+brandsArr[i]+'" style="font-size:48px;"></i></a><div class="myiconlabel">'+brandsArr[i]+'</div></div></li>');
-        }
-        $("#fabiconsList").html(ha.join(''));
-        //var clickArr = [];
-        // $(function(){
-        //     $(".fas").on('click',function(){
-        //         var _t = this;
-        //         clickArr.push(_t.classList[1].slice(3));
-        //         console.log(clickArr[clickArr.length-1]);
-        //     });
-        // });
+            var papericons = [
+                'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
+                ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'
+                ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up','paper-link','paper-info','set-paper','red-cancel-paper'
+                ,'paper-ques','paper-key','paper-group','paper-clock-bue'
+            ];
+            //icons.sort();
+            for(var i=0;i<papericons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+papericons[i]+'">icon-'+papericons[i]+'</span>\
+                    </li>'
+                ).appendTo(".iconlist");
+            }
+            //-----
+            var fonticons=['lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19'
+            ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation','unindent','align-justify'
+            ,'align-left','align-center','align-right','cut-blue','paste','paste-board','copy'];
+            for(var i=0;i<fonticons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+fonticons[i]+'">icon-'+fonticons[i]+'</span>\
+                    </li>'
+                ).appendTo(".fontlist");
+            }
+            //-----
+            var chinCharicons=['inpatient','outpatient','emergency','disabler','produce','children','lung','high','spirit','old'
+            ,'poor','sugar','free','out-poverty',"pregnant-woman",'make-oppointment','allergy-word','base-word','close-word'
+            ,'complex-word','list-word','private-word','public-word','text-word','translate-word','sort','out','change'];
+            for(var i=0;i<chinCharicons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+chinCharicons[i]+'">icon-'+chinCharicons[i]+'</span>\
+                    </li>'
+                ).appendTo(".chinCharlist");
+            }
+            //----
+            var arrowicons=['arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back','arrow-le-bo-gray'];
+            for(var i=0;i<arrowicons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+arrowicons[i]+'">icon-'+arrowicons[i]+'</span>\
+                    </li>'
+                ).appendTo(".arrowlist");
+            }
+            //----
+            var bigicons = [
+            ['doctor-green','doctor-adm','favorite','favorite-add','img','omega','position','print','refresh','unlock'
+            ,'book-arrow','book-eye','book-ref','book-arrow-rt','book-arrow-ok','book-to-book','del','save','clear',
+            'ring-blue','ring','skip-no','paper-search','paper-pen','paper-arrow','fee-arrow','card-reader','home','stamp','tooth','open-eye','close-eye',
+            'stop','start','return','meterage','maint','inspect','disuse','change-account','card','bar','eye-deepgrade'
+            ],
+            ['lt-rt-37','lt-rt-55','lt-rt-73','lt-rt-19'],
+            ['delete-col','delete-row','delete-table','insert-col','insert-row','insert-table','split-cells'],
+            ['help','paper','question','tip','rad','balance','open-file','waxblock-return','cells-smear','slide-filed',
+            'slide-send','dyeing','slide-add','embed','slide-made',
+            'slide-return','book-yellow','med-bag','next','pre','print-box','save-add','save-next','print-run'],
+            ['cardiogram','conical-bottle','patient-mach','movie-mach','chopsticks-bowl','rectangle-tree','message-clock','message-cate','message-colum','message-pen'],
+            ['paper-time','alert-yellow','pre-audit','paper-gray','msg','equi-cfg','med-equi','alert',"idcard","paid","pat-list","read-card",'search-pat','miss-img',
+            'paper-yellow','mach-blue-red','first-second','clock-back-blue','clock-back-gree','person-green','report-yel-pen','two-pill-gray','paper-orange','blue-white-circle','three-blue-bar','blue-frame-ok','white-p-red','paper-box']];
+            //bigicons.sort();
+            for(var j=0;j<bigicons.length;j++){
+                var ulObj = $("<ul></ul>").appendTo(".bigiconlist");
+                for(var i=0;i<bigicons[j].length;i++){
+                    $(
+                    '<li class="bigicon">\
+                    <span class="icon icon-big-'+bigicons[j][i]+'">icon-big-'+bigicons[j][i]+'</span>\
+                    </li>'
+                    ).appendTo(ulObj);
+                }
+            }
+            /*-------------------------------------------------*/
+            var allicondesclist={};
+            var alliconlist=[].concat(icons,papericons,fonticons,arrowicons,chinCharicons);
+            
+            for(var i=0;i<wicons.length;i++){
+                $('<tr class="wicon-tr"><td><span class="icon icon-w-'+wicons[i]+'">&nbsp</span></td><td>icon-w-'+
+                    wicons[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-w-'+wicons[i]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+                
+            }
+            for(var i=0;i<alliconlist.length;i++){
+                $('<tr><td><span class="icon icon-'+alliconlist[i]+'">&nbsp</span></td><td>icon-'+
+                    alliconlist[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-'+alliconlist[i]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+            }
+            for(var i=0;i<bigicons.length;i++){
+                for(var j=0;j<bigicons[i].length;j++){
+                $('<tr class="bigicon-tr"><td><span class="icon icon-big-'+bigicons[i][j]+'">&nbsp</span></td><td>icon-big-'+
+                    bigicons[i][j]+'</td><td contenteditable="true">'+(iconDictionary['icon-big-'+bigicons[i][j]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+                }
+            }
+
+        });
+        $("body").on('mouseenter','ul li',function(){
+            var _t =$(this);
+            var cls = _t.text().trim();
+            var txt = '无';
+            $.each(iconDictionary,function(k){
+                if(cls==k) txt = iconDictionary[cls];
+                if (txt!='无') {
+                    txt = txt.split('，').join('</span><span class="iconpopover">');
+                    txt = '<span class="iconpopover">'+txt+'</span>';
+                    return false;
+                }
+            });
+            _t.popover({
+                style:'inverse',
+                trigger:'hover',
+                placement:'bottom',
+                title:'该图标一般用途',
+                content:txt,
+                cache:true
+            }).popover('show');
+        })
+        function genallicondesclist(){
+                var myallicondesclist={};
+                $('#iconnotelist tr').each(function(){
+                    var cls=$(this).find('td').eq(1).text();
+                    var desc=$(this).find('td').eq(2).text();
+                    if(cls) myallicondesclist[cls]=desc;
+                    
+                })
+                console.log("var iconDictionary="+JSON.stringify(myallicondesclist,null,4)+";");
+            }
+        console.log("点击说明可以进行编辑\n在控制台调用 genallicondesclist(); \n将输出的信息拷贝至icondic.js");
     </script>
-    <prettyprint></prettyprint>
+    <prettyprint/>
 </body>
 </html>
