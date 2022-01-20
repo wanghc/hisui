@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     //babel = require('gulp-babel'),
     uglify = require('gulp-uglify'),
-    notify=require('gulp-notify');   //提示
+    notify = require('gulp-notify');   //提示
+    chinese2unicode = require('gulp-chinese2unicode')
     //foal = require('gulp-foal');    //传参
     //livereload-半自动,connect-全自动
 var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagination','tree','progressbar','tooltip','panel','window','dialog','messager',
@@ -43,6 +44,11 @@ gulp.task('auto', function () {
     // 监听文件修改，当文件被修改则执行 less 任务
     //gulp.watch('less/**.less', ['less'])
 });
+gulp.task('zh-CH',function(){
+    return gulp.src('src/hisui-lang-zh_CN.js')
+    .pipe(chinese2unicode())
+    .pipe(gulp.dest('dist/js/locale'));
+});
 gulp.task('min-js',function(){
     var arr = jsArr;
     var prefix = "jquery.hisui" ;
@@ -53,6 +59,7 @@ gulp.task('min-js',function(){
     //preserveComments: 'all' //all-保留所有注释,license保存/*@license
     //compress: false, //类型：Boolean 默认：true 是否完全压缩
     //混淆变量名,但不混淆结构
+    .pipe(chinese2unicode())    
     .pipe(uglify({compress:false,output:{beautify:true},ie8:true}))
     .pipe(rename(prefix+'.js'))
     .pipe(gulp.dest('dist/js'))
@@ -102,4 +109,4 @@ gulp.task('min-css-lite2def',function(){
 
 //dist -> default
 // dist目录下的js全修改成min, 不留源代码
-gulp.task('default',['min-js','min-css']);
+gulp.task('default',['min-js','min-css','zh-CH']);

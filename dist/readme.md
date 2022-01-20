@@ -34,7 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-
+## 2021-01-20
+- hisui中包含中文转成unicode编写
 
 ## 2022-01-16
 - 字体图标实现淡版 :sparkles:

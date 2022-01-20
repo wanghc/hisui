@@ -16,5 +16,8 @@
     "gulp-ruby-sass": "^2.1.1",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8"
+  },
+  "dependencies": {
+    "gulp-chinese2unicode": "^1.0.1"
   }
 }
