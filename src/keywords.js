@@ -104,16 +104,17 @@
 		_t.toggleClass('selected');
 		var item = getLabelItem(t, _t.attr("rowid"));
 		opts.onClick.call(this, item);
-		if (!opts.singleSelect){ //单选不进入select与unselect事件
-			if(_t.hasClass('selected')){
-				opts.onSelect.call(this,item);
-			}else{
+		if(_t.hasClass('selected')){
+			opts.onSelect.call(this,item);
+		}
+		if (!opts.singleSelect) { //单选不进入select与unselect事件
+			// 单选时可进入select 20220114, onSelect内容提出
+			if (!_t.hasClass('selected')) {
 				opts.onUnselect.call(this,item);
 			}
 		}
 	}
 	function clearSelected(target){
-		console.log(target);
 		$(target).find('li.selected').removeClass('selected');
 	}
 	function getAllSelected(target){

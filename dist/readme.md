@@ -34,12 +34,14 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-01-24
+- `keywords`单选时也触发onSelect事件 :sparkles:
 
-## 2021-01-20
-- 列表一页显示多少行增加100与200选项
+## 2022-01-20
+- 列表一页显示多少行增加100与200选项 :sparkles:
 
-## 2021-01-20
-- hisui中包含中文转成unicode编写
+## 2022-01-20
+- hisui中包含中文转成unicode编写 :sparkles:
 
 ## 2022-01-16
 - 字体图标实现淡版 :sparkles:
@@ -52,7 +54,7 @@ $("#btn").linkbutton("disable");
 ## 2022-01-10
 - `tooltip`提示层位置left小于0时优化显示效果 :sparkles:
 
-## 2021-01-05
+## 2022-01-05
 - 修改`imedisabled`功能,增加中间件处理输入法
 
 ## 2021-12-31
