@@ -1316,6 +1316,9 @@
             var _5c4 = dc.view2.children("div.datagrid-header")._outerHeight();
             var _5c5 = dc.body2;
             var _5c6 = _5c5.outerHeight(true) - _5c5.outerHeight();
+            // 需求号：2144042 新版本Chrome.92, datagrid groupview，存在选中一行后，自动跳转滚条问题
+            // 多个tr时，取第二个tr
+            if (tr.length > 1) tr = tr.eq(1);
             var top = tr.position().top - _5c4 - _5c6;
             if (top < 0) {
                 _5c5.scrollTop(_5c5.scrollTop() + top);

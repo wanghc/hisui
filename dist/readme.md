@@ -35,7 +35,8 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2022-01-25
-- 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题
+- 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题 :bug:
+- 新版本Chrome.92上`datagrid-groupview`存在选中一行后，自动跳转滚条问题 2144042 :bug: 
 
 ## 2022-01-24
 - `keywords`单选时也触发onSelect事件 :sparkles:
