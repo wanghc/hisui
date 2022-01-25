@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-01-25
+- 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题
+
 ## 2022-01-24
 - `keywords`单选时也触发onSelect事件 :sparkles:
 

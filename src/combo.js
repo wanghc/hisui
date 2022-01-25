@@ -103,7 +103,12 @@
             需求号：1228151
             */
             if ($("body>div.combo-p>div.combo-panel:visible").length>0){   //增加判断条件,不然会导致：连续点击input框会多次进入focus事件，影响searchbox的赋值
-                $(e.target).focus();
+                /**2022-01-25
+                 * 需求号：2144035
+                 * 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题
+                 * 增加判断 if (e.target.type && e.target.type.toLowerCase() == "text")
+                 */
+                if (e.target.type && e.target.type.toLowerCase() == "text") $(e.target).focus();
                 $("body>div.combo-p>div.combo-panel:visible").panel("close");
             }
         });
