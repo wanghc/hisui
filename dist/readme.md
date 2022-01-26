@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-01-26
 - datagird增加loadBeforeClearSelect配置项 :sparkles:
+- datagrid列上定义成showTip后，刷新数据前应销毁tooltip :bug:
 
 ## 2022-01-25
 - 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题 :bug:

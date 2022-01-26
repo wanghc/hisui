@@ -711,7 +711,7 @@
                             if (cm[i][j].showTip){
                                 var tipWidth = cm[i][j].tipWidth||350;
                                 var tipPosition = cm[i][j].tipPosition||"bottom";
-                                var tipTrackMouse = cm[i][j].tipTrackMouse||false;
+                                var tipTrackMouse = cm[i][j].tipTrackMouse || false;
                                 td.tooltip({
                                     content:td.text(),
                                     position:tipPosition,
@@ -730,8 +730,6 @@
                         }
                    }
                }
-               
-
            }
            /** end */
             var tr = $(e.target).closest("tr.datagrid-row");
@@ -2829,6 +2827,13 @@
                     _6d5.push("</tr>");
                 }
                 _6d5.push("</tbody></table>");
+                /**
+                 * wanghc 2022-01-26
+                 * 在加载新数据前把前一表格数据中tooltip清除，
+                 * 需求号：1998566 对部分消毒包名称较长的，需要增加showTip属性进行提示，如下方式会一直存在提示效果，只有关闭对应界面才能去掉 
+                 * 当mouse在数据行上有提示时,load表格数据,以前td的tooltip不会hide，导致一直显示
+                 */
+                $(_6d1).find("td").tooltip('destroy');
                 //$(_6d1).html(_6d5.join("")); // IE中提升速度
                 $(_6d1)[0].innerHTML =_6d5.join(""); 
             }else{
