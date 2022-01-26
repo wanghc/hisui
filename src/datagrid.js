@@ -3058,6 +3058,7 @@
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        loadBeforeClearSelect:false, /* 加载数据前清空全选 2022-01-25 */
         singleRequest:false, /* 发送下一请求前,abort前一请求, 20211110*/
         shiftCheck:false,
         fontSize:"",/*表格内容字体大小 fontSize:9 20200824*/
@@ -3077,6 +3078,9 @@
             if (!opts.url) {
                 return false;
             }
+            /*需求号：2286826 hisui的datagrid的全选勾在刷新datagrid的时候不能清空勾选状态,增加配置. 为true时清空选中状态 */
+            if (opts.loadBeforeClearSelect) $(this).datagrid('unselectAll').datagrid('uncheckAll');
+
             /*医嘱录入界面输入as查询，a查询需要3秒，as查询需要1秒，则会先出来as结果，过2秒后显示a的结果，导致放大镜结果与查询条件不符*/
             /*2021-11-03 发出当前请求时,把上一请求取消掉canceled*/
             if(opts.singleRequest && opts.currentAjax) opts.currentAjax.abort();

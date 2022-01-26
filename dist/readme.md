@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-01-26
+- datagird增加loadBeforeClearSelect配置项 :sparkles:
+
 ## 2022-01-25
 - 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题 :bug:
 - 新版本Chrome.92上`datagrid-groupview`存在选中一行后，自动跳转滚条问题 2144042 :bug: 
