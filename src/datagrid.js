@@ -1014,6 +1014,7 @@
         setTimeout(function () {
             _526(_592);
             _59b(_592);
+            resizeTHGroup(_592);
         }, 0);
         function fix(_597) {
             var col = _getColumnOption(_592, _597);
@@ -1021,6 +1022,47 @@
                 _594.ss.set("." + col.cellClass, col.boxWidth ? col.boxWidth + "px" : "auto");
             }
         };
+    };
+    /**
+     * wanghc 2022-01-27
+     * 多层列头时，父列头文本内容长过子列头宽度导致列头与内容对不齐问题处理
+     * 需求号：2011212
+     * 测试界面：datagrid-mutiColHeader.debug
+    */
+    function resizeTHGroup(target) {
+        var opts = $.data(target, "datagrid").options;
+        var dc = $.data(target, "datagrid").dc;
+        var groupIndex = 0;
+        var cols = opts.columns;
+        var COLROWSPAN = 2;
+        if (cols.length == COLROWSPAN) { // 二行头
+            var row2ind = 0;
+            for (var row1ind = 0; row1ind<cols[0].length;row1ind++){
+                if ("undefined"==typeof cols[0][row1ind].rowspan || cols[0][row1ind].rowspan < COLROWSPAN) {
+                    // 分二层列头且当前列占多列
+                    if (cols[0][row1ind].colspan > 0) {
+                        var w = _calColSpanWidth(1,row2ind, row2ind + cols[0][row1ind].colspan) - 16
+                        dc.header1.add(dc.header2).find(".datagrid-cell-group:eq("+groupIndex+")").width(w); //减去padding
+                        groupIndex++;
+                        row2ind += cols[0][row1ind].colspan; 
+                    }
+                }
+            }
+        }
+        /***
+         * _calColSpanWidth(1,0,2)表示取第二行,前二列的总宽度
+         * _calColSpanWidth(2,0,2)表示取第三行列头,前二列的总宽度
+         * 
+         * */
+        function _calColSpanWidth(rowInd,st, end){
+            var w = 0;
+            $(".middleSet-header-row" + rowInd).find(".datagrid-cell").each(function(ind){
+                if (ind >= st && ind<end) {
+                    w += parseInt($(this).width()) + 16;  //16为padding-left+padding-right
+                } 
+            });
+            return w;
+        }
     };
     function _596(_598) {
         var dc = $.data(_598, "datagrid").dc;

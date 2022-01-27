@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-01-27
+- `datagrid`多层列头,父列头文本内容长过子列头总宽度,会导致列头与内容错位问题处理 2011212 :bug:
+
 ## 2022-01-26
 - datagird增加loadBeforeClearSelect配置项 :sparkles:
 - datagrid列上定义成showTip后，刷新数据前应销毁tooltip :bug:
