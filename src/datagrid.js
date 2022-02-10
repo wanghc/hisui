@@ -1041,7 +1041,8 @@
                 if ("undefined"==typeof cols[0][row1ind].rowspan || cols[0][row1ind].rowspan < COLROWSPAN) {
                     // 分二层列头且当前列占多列
                     if (cols[0][row1ind].colspan > 0) {
-                        var w = _calColSpanWidth(1,row2ind, row2ind + cols[0][row1ind].colspan) - 16
+                        // 1表示第二行列头
+                        var w = _calColSpanWidth(dc,1,row2ind, row2ind + cols[0][row1ind].colspan) - 16
                         dc.header1.add(dc.header2).find(".datagrid-cell-group:eq("+groupIndex+")").width(w); //减去padding
                         groupIndex++;
                         row2ind += cols[0][row1ind].colspan; 
@@ -1050,14 +1051,15 @@
             }
         }
         /***
-         * _calColSpanWidth(1,0,2)表示取第二行,前二列的总宽度
-         * _calColSpanWidth(2,0,2)表示取第三行列头,前二列的总宽度
+         * _calColSpanWidth(dc,1,0,2)表示取第二行,前二列的总宽度
+         * _calColSpanWidth(dc,2,0,2)表示取第三行列头,前二列的总宽度
          * 
          * */
-        function _calColSpanWidth(rowInd,st, end){
+        function _calColSpanWidth(dc,rowInd,st, end){
             var w = 0;
-            $(".middleSet-header-row" + rowInd).find(".datagrid-cell").each(function(ind){
-                if (ind >= st && ind<end) {
+            dc.header1.add(dc.header2).find(".datagrid-header-row:eq(" + rowInd+")").find(".datagrid-cell").each(function(ind){
+                if (ind >= st && ind < end) {
+                    // 16 = $(this).css('paddingLeft')+$(this).css('paddingRight')
                     w += parseInt($(this).width()) + 16;  //16为padding-left+padding-right
                 } 
             });
