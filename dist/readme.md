@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-02-15
 - `datagird`多层列头宽算法重写
+- 增加二个icon-pause-red,icon-alarm-key图标样式
 
 ## 2022-02-10
 - `datagrid`多层列头,父列头文本内容长过子列头总宽度,会导致列头与内容错位问题处理 2011212 :bug:
