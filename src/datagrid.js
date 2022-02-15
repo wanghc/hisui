@@ -1032,6 +1032,16 @@
     function resizeTHGroup(target) {
         var opts = $.data(target, "datagrid").options;
         var dc = $.data(target, "datagrid").dc;
+        dc.header1.add(dc.header2).find(".datagrid-cell-group").each(function(){
+            $(this).width(1);  //设置为1px, 这样才能得到真实的子列总宽度
+            var w = Math.floor($(this).parent().width()) - 16; // 去除padding
+            $(this).width(w);
+        });
+        return false;
+        //
+
+        var opts = $.data(target, "datagrid").options;
+        var dc = $.data(target, "datagrid").dc;
         var groupIndex = 0;
         var cols = opts.columns;
         var COLROWSPAN = 2;
@@ -1040,7 +1050,8 @@
             for (var row1ind = 0; row1ind<cols[0].length;row1ind++){
                 if ("undefined"==typeof cols[0][row1ind].rowspan || cols[0][row1ind].rowspan < COLROWSPAN) {
                     // 分二层列头且当前列占多列
-                    if (cols[0][row1ind].colspan > 0) {
+                    if (cols[0].field) { //cols[0][row1ind].colspan > 0) {
+                    }else{
                         // 1表示第二行列头
                         var w = _calColSpanWidth(dc,1,row2ind, row2ind + cols[0][row1ind].colspan) - 16
                         dc.header1.add(dc.header2).find(".datagrid-cell-group:eq("+groupIndex+")").width(w); //减去padding
