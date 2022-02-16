@@ -24,6 +24,8 @@
 			<a class="hisui-linkbutton" iconCls="icon-w-cancel" id="alert2">失败error</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-ok" id="alert3">成功success</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
+			<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm2">confirm默认取消</a>
+			
 			<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
 			<!--<a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a>-->
@@ -53,7 +55,17 @@
 							$.messager.defaults.ok = oldOk;
 							$.messager.defaults.cancel = oldCancel;
 						});
-					})
+					});
+					$('#confirm2').click(function () {
+						$.messager.confirm("保存", "确定提交并保存?", function (r) {
+							if (r) {
+								$.messager.popover({ msg: "点击了确定", type: 'info' });
+							} else {
+								$.messager.popover({ msg: "点击了取消" });
+							}
+						}).children("div.messager-button").children("a:eq(1)").focus();
+					});
+
 					$('#prompt1').click(function () {
 						$.messager.prompt("提示", "修改前请签名：", function (r) {
 							if (r) {
