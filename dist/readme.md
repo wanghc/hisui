@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-02-21
+- 解决`menubutton`在firefox下不能选中问题 :bug:
+
 ## 2022-02-15
 - `datagird`多层列头宽算法重写
 - 增加二个icon-pause-red,icon-alarm-key图标样式

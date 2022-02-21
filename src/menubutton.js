@@ -66,7 +66,9 @@
                     clearTimeout(_3ea);
                 }
                 //cryze 鼠标放到button上，menu显示，离开button(且不是放到menu上)应该隐藏munu
-                if ($(opts.menu).length>0 && $(opts.menu).find(e.toElement).length==0 && !$(opts.menu).is($(e.toElement))){
+                // wanghc 2022-02-21 以下判断导致firefox下无法点击下拉菜单 知识点：IE->toElement W3C -> relatedTarget
+                var myToElement = e.toElement || e.relatedTarget;
+                if ($(opts.menu).length>0 && $(opts.menu).find(myToElement).length==0 && !$(opts.menu).is($(myToElement))){
                     $(opts.menu).menu('hide');
                 }
             });
