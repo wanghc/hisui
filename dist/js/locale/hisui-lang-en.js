@@ -11,6 +11,8 @@ if ($.fn.treegrid && $.fn.datagrid){
 }
 if ($.messager){
 	$.messager.defaults.ok = 'Ok';
+	$.messager.defaults.yes = 'Yes';
+	$.messager.defaults.no = 'No';
 	$.messager.defaults.cancel = 'Cancel';
 }
 if ($.fn.validatebox){
