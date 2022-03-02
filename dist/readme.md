@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-03-02
+- `datetimebox`的按钮颜色优化 :sparkles:
 
 ## 2022-02-23
 - 提供三选确认窗口功能`confirm3` :sparkles:

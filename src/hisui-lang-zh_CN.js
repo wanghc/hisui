@@ -53,9 +53,9 @@ if ($.fn.calendar){
 	$.fn.calendar.defaults.months = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
 }
 if ($.fn.datebox){
-	$.fn.datebox.defaults.currentText = '今天';
+	$.fn.datebox.defaults.currentText = '<span style="color:#449edd;font-size:12px;">今天</span>';
 	$.fn.datebox.defaults.closeText = '关闭';
-	$.fn.datebox.defaults.okText = '确定';
+	$.fn.datebox.defaults.okText = '<span style="color:#ff2600;font-size:12px;">确定</span>';
 	$.fn.datebox.defaults.missingMessage = '该输入项为必输项';
 	$.fn.datebox.defaults.rules.datebox.message = '非法日期,正确格式:2019-01-06';
 	$.fn.datebox.defaults.rules.minMaxDate.messageMax = '日期必须小于或等于{1}';

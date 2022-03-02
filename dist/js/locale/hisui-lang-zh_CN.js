@@ -53,9 +53,9 @@ if ($.fn.calendar){
 	$.fn.calendar.defaults.months = ['\u4e00\u6708','\u4e8c\u6708','\u4e09\u6708','\u56db\u6708','\u4e94\u6708','\u516d\u6708','\u4e03\u6708','\u516b\u6708','\u4e5d\u6708','\u5341\u6708','\u5341\u4e00\u6708','\u5341\u4e8c\u6708'];
 }
 if ($.fn.datebox){
-	$.fn.datebox.defaults.currentText = '\u4eca\u5929';
+	$.fn.datebox.defaults.currentText = '<span style="color:#449edd;font-size:12px;">\u4eca\u5929</span>';
 	$.fn.datebox.defaults.closeText = '\u5173\u95ed';
-	$.fn.datebox.defaults.okText = '\u786e\u5b9a';
+	$.fn.datebox.defaults.okText = '<span style="color:#ff2600;font-size:12px;">\u786e\u5b9a</span>';
 	$.fn.datebox.defaults.missingMessage = '\u8be5\u8f93\u5165\u9879\u4e3a\u5fc5\u8f93\u9879';
 	$.fn.datebox.defaults.rules.datebox.message = '\u975e\u6cd5\u65e5\u671f,\u6b63\u786e\u683c\u5f0f:2019-01-06';
 	$.fn.datebox.defaults.rules.minMaxDate.messageMax = '\u65e5\u671f\u5fc5\u987b\u5c0f\u4e8e\u6216\u7b49\u4e8e{1}';
