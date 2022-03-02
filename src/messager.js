@@ -95,13 +95,23 @@
                 if (e.target && e.target.nodeName.toUpperCase()=='INPUT') {
                     return;
                 }
-                if (tb.children().length>1){ //多个按钮可用 <- 与 -> 左右按钮切换
-                    if (e.which==37){ //left
-                        e.stopPropagation();
-                        $(tb.children().eq(0)).trigger('focus');
-                    }
-                    if (e.which==39){ //right
-                        $(tb.children().eq(1)).trigger('focus');
+                if (tb.children().length > 1) { //多个按钮可用 <- 与 -> 左右按钮切换
+                    var $cur = tb.children(".l-btn-focus");
+                    if ($cur.length > 0) {  //当前有focus
+                        if (e.which==37){ //left
+                            e.stopPropagation();
+                            if ($cur.prev().length > 0) {
+                                $cur.trigger('blur');
+                                $cur.prev().trigger('focus');
+                            }
+                        }
+                        if (e.which == 39) { //right
+                            e.stopPropagation();
+                            if ($cur.next().length > 0) {
+                                $cur.trigger('blur');
+                                $cur.next().trigger('focus');
+                            }
+                        }
                     }
                 }
                 if(e.which==32 || e.which==13){
@@ -196,6 +206,34 @@
                 }
             };
             var win = _27f(_288, _289, _28a);
+            return win;
+        }, confirm3: function (title, msg, fn) {
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+            var _28a = {};
+            _28a['ok'] = function (e) {
+                if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
+                if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
+                win.window("close");
+                if (fn) {
+                    fn(true);
+                    return false;
+                }
+            };
+            _28a['no'] = function () {
+                win.window("close");
+                if (fn) {
+                    fn(false);
+                    return false;
+                }
+            };
+            _28a['cancel'] = function () {
+                win.window("close");
+                if (fn) {
+                    fn(undefined);
+                    return false;
+                }
+            };
+            var win = _27f(title, _289, _28a);
             return win;
         }, prompt: function (_28b, msg, fn) {
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans

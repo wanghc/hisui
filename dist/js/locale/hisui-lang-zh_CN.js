@@ -11,6 +11,8 @@ if ($.fn.treegrid && $.fn.datagrid){
 }
 if ($.messager){
 	$.messager.defaults.ok = '\u786e\u5b9a';
+	$.messager.defaults.yes = '\u662f';
+	$.messager.defaults.no = '\u5426';
 	$.messager.defaults.cancel = '\u53d6\u6d88';
 }
 if ($.fn.validatebox){

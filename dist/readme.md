@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2022-02-23
+- 提供三选确认窗口功能`confirm3` :sparkles:
+
 ## 2022-02-21
 - 解决`menubutton`在firefox下不能选中问题 :bug:
 

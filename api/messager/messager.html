@@ -10,7 +10,11 @@
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
-
+	<style>
+		.messager-button .l-btn{
+			width: 80px;
+		}
+	</style>
 </head>
 
 <body>
@@ -25,10 +29,11 @@
 			<a class="hisui-linkbutton" iconCls="icon-w-ok" id="alert3">成功success</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm2">confirm默认取消</a>
-			
+			<!-- 2022-02-23 增加三选 -->
+			<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm3">confirm三选</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
-			<!--<a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a>-->
+			<!-- <a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a> -->
 			<script>
 				$(function () {
 					$('#alert1').click(function () {
@@ -65,7 +70,24 @@
 							}
 						}).children("div.messager-button").children("a:eq(1)").focus();
 					});
-
+					$('#confirm3').click(function () {
+						var oldOk = $.messager.defaults.ok;
+						var oldNo = $.messager.defaults.no;
+						$.messager.defaults.ok = "保存";
+						$.messager.defaults.no = "不保存";
+						$.messager.confirm3("提示", "病历内容有修改,你确定保存吗?", function (r) {
+							if (true===r) {
+								$.messager.popover({ msg: "保存病历", type: 'info' });
+							} else if (false === r){
+								$.messager.popover({ msg: "不保存病历", type: 'info' });
+							} else {
+								$.messager.popover({ msg: "取消" });
+							}
+							/*要写在回调方法内,否则在旧版下可能不能回调方法*/
+							$.messager.defaults.ok = oldOk;
+							$.messager.defaults.no = oldNo;
+						}).children("div.messager-button").children("a:eq(2)").focus();
+					});
 					$('#prompt1').click(function () {
 						$.messager.prompt("提示", "修改前请签名：", function (r) {
 							if (r) {
@@ -149,7 +171,38 @@
 	</div>
 	<table class="table">
 		<tr class="protitle">
-			<th>$.messager.popover属性</th>
+			<th>$.messager.confirm3</th>
+			<th>三选提示说明</th>
+			<th><code>2022-02-23</code>增加</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>第一个入参：提示标题</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>msg</td>
+			<td>第二个入参：提示内容</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>fun</td>
+			<td>第三个入参：用户点击按钮后的回调函数</td>
+			<td>
+<pre><code>function(r){
+	// 第一个按钮：ok,返回true,
+	// 第二个按钮：no,返回false,
+	// 第三个按钮：cancel,返回undefined
+	// 示例见[confirm三选]
+}</code></pre>
+			</td>
+			<td></td>
+		</tr>
+		<tr class="protitle">
+			<th>$.messager.popover</th>
 			<th>说明</th>
 			<th>默认值</th>
 			<th></th>

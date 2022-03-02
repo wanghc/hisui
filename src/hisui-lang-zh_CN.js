@@ -11,6 +11,8 @@ if ($.fn.treegrid && $.fn.datagrid){
 }
 if ($.messager){
 	$.messager.defaults.ok = '确定';
+	$.messager.defaults.yes = '是';
+	$.messager.defaults.no = '否';
 	$.messager.defaults.cancel = '取消';
 }
 if ($.fn.validatebox){
