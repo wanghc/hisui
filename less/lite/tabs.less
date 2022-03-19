@@ -1,4 +1,20 @@
 @import "variables.less";
+/*2018-6-28 增大图标与左边间距*/
+.tabs-icon {
+  left: 10px;
+  width: 16px;
+  font-family: "Mw_mifonts";
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: normal;
+  color: #000;
+}
 
 .tabs-scroller-left,
 .tabs-scroller-right {
@@ -10,20 +26,24 @@
   font-size: 1px;
   display: none;
   cursor: pointer;
-  border: none;
+  border-width: 1px ;
   /*去边框---下面定义*/
 }
 
 .tabs-header {
   padding-top: 0px;
-  border-top-width: 0;
+  border-radius: 4px 4px 0 0;
+  border-width: 1px;
+  border-bottom-width: 0px;
 }
-
+.tabs-panels{
+  border-radius: 0 0 4px 4px;
+}
 .tabs {
   height: @tabs-header-height;
   padding-left: 0px;
   border-width: 0 0 0px 0;
-  border-bottom: 2px solid @tabs-header-bdcolor;
+  border-bottom: 1px solid @tabs-header-bdcolor;
   overflow: visible;
 
   li {
@@ -85,7 +105,7 @@
       }
 
       .tabs-icon {
-        margin-top: -6px;
+        margin-top: -8px;
       }
 
       .tabs-title.tabs-with-icon {
@@ -193,7 +213,7 @@
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  border-color: @tabs-header-bgcolor;
+  border-color: @tabs-header-bdcolor;
 }
 
 .tabs-p-tool {
@@ -394,15 +414,6 @@
   }
 }
 
-.tabs-container {
-  box-shadow: @tabs-shadow;
-
-  &.noshadow {
-    box-shadow: none;
-  }
-}
-
-
 /*--tabs-gray--*/
 .tabs-container.tabs-gray {
 
@@ -547,8 +558,8 @@
     }
   }
 
-  .tabs-panels-left,tabs-panels-right,tabs-panels-bottom {
-    border-color: @tabs-header-gray-border;
+  .tabs-panels-left,.tabs-panels-right,.tabs-panels-bottom {
+    border-color: @panel-header-bdcolor;
   }
 }
 .tabs-header-left {
@@ -668,51 +679,7 @@
       }
     }
   }
-/*
-  .tabs-header-left {
 
-    //灰色 左侧
-    &.tabs-header {
-      border: 1px solid @tabs-header-gray-border;
-      border-right: 0;
-
-      .tabs {
-        border: 0;
-        border-right: 1px solid @tabs-header-gray-border;
-        height: 100%;
-      }
-    }
-
-    padding:0;
-
-    .tabs {
-      height: @tabs-header-height;
-      padding: 0px;
-
-      li {
-        height: 36px;
-        float: left;
-        margin: 0px;
-        border: 0;
-        border-bottom: 1px solid @tabs-header-gray-border;
-        border-right: 1px solid @tabs-header-gray-border;
-
-        &::after {
-          content: none;
-        }
-      }
-
-      li.tabs-selected {
-        border-right: 1px solid #fff;
-
-        a.tabs-inner {
-          border: 0 solid;
-          border-left-width: 3px;
-        }
-      }
-    }
-  }
-*/
   .tabs-header-right {
 
     //灰色 右侧
@@ -899,54 +866,11 @@
     }
   }
 }
-
-/*gray 且选中蓝条在下方*/
-.tabs-gray-btm {
-
-  .tabs-header,
-  .tabs-tool {
-    background-color: @tabs-header-gray-bgcolor;
-    border-color: @tabs-header-gray-bgcolor;
+.tabs-gray-btm{
+  .tabs li a.tabs-close{
+    margin-top:-14px;
   }
-
-  .tabs-panels {
-    border-color: #ffffff;
-  }
-
-  .tabs {
-    border-bottom: 1px solid #cccccc;
-  }
-
-  .tabs li a.tabs-inner {
-    background-color: @tabs-header-gray-bgcolor;
-    border-top: 0px solid @tabs-header-gray-bgcolor;
-    border-bottom: 3px solid @tabs-header-gray-bgcolor;
-    color: #000000;
-
-    &:hover {
-      background: @tabs-header-gray-select-bgcolor;
-      color: #000000;
-      filter: none;
-      border-bottom: 3px solid @tabs-header-gray-select-top-color;
-    }
-  }
-
-  .tabs li.tabs-selected a.tabs-inner {
-    border-top: 0px solid @tabs-header-gray-bgcolor;
-    border-bottom: 3px solid @tabs-header-gray-select-top-color;
-    background: @tabs-header-gray-select-bgcolor;
-  }
-
-  .tabs li:not(:last-child)::after {
-    content: none;
-  }
-
-  .tabs li a.tabs-close {
-    background-position-x: 0;
-    margin-top: -13px;
-
-    &:hover {
-      background: url(images/tabs_icons_2.png) no-repeat -36px 0;
-    }
+  .tabs a.tabs-inner{
+    border-bottom: 1px solid @panel-header-bdcolor;
   }
 }

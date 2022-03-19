@@ -3,13 +3,6 @@
 body{
   background-color: @body-bgcolor;
 }
-.panel {
-  box-shadow: @panel-shadow;
-  &.noshadow{
-    box-shadow: none;
-  }
-}
-
 /*2018-6-28 增大图标与左边间距*/
 .panel-icon {
   left: 10px;
@@ -21,17 +14,11 @@ body{
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
-	font-weight: 900;
+	font-weight: 500;
 	font-size: 16px;
 	line-height: normal;
 }
 
-.panel-header {
-  padding: @panel-header-padding;
-  border-width:0 0 2px 0;
-  border-style: solid;
-  border-color: @panel-header-bdcolor;
-}
 .panel-title {
   background-image: none;
 }
@@ -41,18 +28,18 @@ body{
 .panel-header,
 .panel-body {
   border-color: @panel-border-color;
+  border-width: 1px;
 }
 .panel-header {
   background:@panel-header-bgcolor;
   filter: none;
+  padding: @panel-header-padding;
+  border-radius: 4px 4px 0 0;
 }
 .panel-body {
   font-size: @panel-body-font-size;
-  -moz-border-radius: 0 0 4px 4px;
-  -webkit-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
-  border: 0;
-  background-color: #ffffff;
+  border-top-color: @panel-header-bgcolor;
 }
 .panel-body.panel-body-noheader {
   -moz-border-radius: 4px;
@@ -69,111 +56,6 @@ body{
 }
 .panel-title.panel-with-icon {
   padding-left: 32px;
-}
-.panel-header.panel-header-big{
-  padding: 8px 5px 8px 5px;
-  .panel-title {
-    padding-left: 0px;
-    font-size: 16px;
-  }
-  .panel-title.panel-with-icon{
-    padding-left: 32px;
-  }
-  .panel-icon{
-    left: 10px;
-  }
-}
-
-.panel-header-gray{
-  background:@panel-header-bgcolor;
-  border-color: @panel-header-bdcolor;
-}
-.panel-header-gray+.panel-body{
-  border-color:#ffffff;
-}
-.panel-header-gray .panel-title{
-  color: @panel-title-font-color;
-}
-.panel-header-white{
-  background:#ffffff;
-  border-color: #cccccc;
-}
-.panel-header-white+.panel-body{
-  border-color:#cccccc; 
-}
-.panel-header-white .panel-title{
-  color: #000000;
-}
-.panel-header-blue{
-  border-color:@panel-border-card-color;
-  background:@panel-header-blue-bgcolor;
-}
-.panel-header-blue+.panel-body{
-  border-color:@panel-border-card-color;
-}
-.panel-header-blue .panel-title{
-  color: #000000;
-}
-.panel-header-acc{
-  border-color:@panel-border-card-color;
-  background:#40a2de;
-}
-.panel-header-acc+.panel-body{
-  border-color:@panel-border-card-color;
-}
-.panel-header-card{
-  width: 80px;
-  border: none;
-  top: 11px;
-  left: 25px;
-  z-index: 1;
-  padding: 0;
-  margin-top: -14px;
-  border-bottom: 1px solid @panel-border-card-color;
-  background-color: #ffffff;
-  -moz-border-radius: 0 0 8px 8px;
-  -webkit-border-radius: 0 0 8px 8px;
-  border-radius: 0 0 8px 8px;
-
-}
-.panel-header-card .panel-title {
-  color: #000000;
-  text-align: center;
- 
-  padding-left: 0px;
-  font-weight:normal;
-}
-.panel-header-card+.panel-body{
-  border:1px solid @panel-border-card-color; 
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-}
-.panel-header-card-gray{
-  width: 80px;
-  border: none;
-  top: 11px;
-  left: 25px;
-  z-index: 1;
-  padding: 0;
-  margin-top: -14px;
-  border-bottom: 1px solid @panel-border-card-color-gray;
-  background-color: #ffffff;
-  -moz-border-radius: 0 0 8px 8px;
-  -webkit-border-radius: 0 0 8px 8px;
-  border-radius: 0 0 8px 8px;
-}
-.panel-header-card-gray .panel-title {
-  color: #000000;
-  text-align: center;
-  padding-left: 0px;
-  font-weight:normal;
-}
-.panel-header-card-gray+.panel-body{
-  border:1px solid @panel-border-card-color-gray; 
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
 }
 
 .panel-tool a{
@@ -224,19 +106,12 @@ body{
     -webkit-border-radius: 0;
     border-radius: 0;
     padding: 5px 5px;
+    border-color:@panel-header-bdcolor;
   }
   &>.panel-body{
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
     border-radius: 0;
+    border-color:@panel-header-bdcolor;
   }
-}
-.panel-header-gray.panel-body.panel-body-noheader{
-  background: @panel-header-bgcolor;
-  border-color: @panel-header-bdcolor;
-}
-/*bodyCls:'panel-body-gray'*/
-.panel-body-gray{
-  background: @panel-header-bgcolor;
-  border-color: @panel-header-bdcolor;
 }

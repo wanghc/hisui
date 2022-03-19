@@ -74,7 +74,7 @@
 						var oldOk = $.messager.defaults.ok;
 						var oldNo = $.messager.defaults.no;
 						$.messager.defaults.ok = "保存";
-						$.messager.defaults.no = "不保存";
+						$.messager.defaults.no = "不存";
 						$.messager.confirm3("提示", "病历内容有修改,你确定保存吗?", function (r) {
 							if (true===r) {
 								$.messager.popover({ msg: "保存病历", type: 'info' });

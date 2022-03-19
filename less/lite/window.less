@@ -5,7 +5,7 @@
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
-.window {
+.panel.window {
   
   padding: 0px;
   border-bottom: 0px;
@@ -13,8 +13,9 @@
   background-color:@window-body-bgcolor;
   .window-header{
     border-color: @window-header-bgcolor;
+    border-bottom: 1px solid @panel-header-bdcolor;
     background:  @window-header-bgcolor; /*transparent;*/
-    padding: 6px 1px 6px 1px;
+    
     .panel-icon {
       left: 20px; /*1px*/
       display: none;

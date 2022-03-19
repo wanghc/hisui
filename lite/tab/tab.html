@@ -23,23 +23,13 @@
 			<div title="电子病历" style="padding:20px;">   
 				tab1    
 			</div>   
-			<div title="诊断录入" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">   
+			<div title="诊断录入" data-options="closable:true" style="overflow:auto;padding:20px;">   
 				tab2    
 			</div>   
-			<div title="医嘱录入" data-options="closable:true" style="padding:20px;display:none;">   
+			<div title="医嘱录入" data-options="closable:true" style="padding:20px;">   
 				tab3    
 			</div> 
-		</div><pre class="prettyprint hide lang-html"><code>&lt;div id="tt" class="hisui-tabs" style="width:500px;height:250px;">   
-	&lt;div title="电子病历" style="padding:20px;">   
-		tab1    
-	&lt;/div>   
-	&lt;div title="诊断录入" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">   
-		tab2    
-	&lt;/div>   
-	&lt;div title="医嘱录入" data-options="closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div&gt;
-&lt;/div&gt;</code></pre>  
+		</div>
 	</div>
 	<!-- gray tabs-->
 	<h3>一.灰色页签(<code>tabs-gray</code>)及点击监听</h3>
@@ -54,47 +44,15 @@
 			<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
 				tab2    
 			</div>   
-			<div title="医嘱录入" data-options="closable:false" style="padding:20px;display:none;">   
+			<div title="医嘱录入" data-options="closable:false" style="padding:20px;">   
 				tab3    
 			</div>  
-			<div title="检查列表" data-options="closable:false" style="padding:20px;display:none;">   
+			<div title="检查列表" data-options="closable:false" style="padding:20px;">   
 				tab3    
 			</div>
 		</div> 
-	<pre class="prettyprint hide lang-html"><code>&lt;div id="tab-tools">
-	&lt;a id="btQuotation" title="引用" href="#" class="hisui-linkbutton">引用&lt;/a>
-&lt;/div>
-&lt;div id="tt2" class="hisui-tabs tabs-gray" data-options="tools:'#tab-tools'" style="width:500px;height:250px;">   
-	&lt;div title="电子病历" style="padding:20px;">   
-		此tab的class="hisui-tabs  tabs-gray"，所以为灰色的。 如果页签太多则自动隐藏，可滚动显示 
-	&lt;/div>   
-	&lt;div title="诊断录入" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">   
-		tab2    
-	&lt;/div>   
-	&lt;div title="医嘱录入" data-options="closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div>  
-	&lt;div title="检查列表" data-options="closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div> 
-	&lt;div title="检验列表" data-options="closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div> 
-	&lt;div title="危急值列表" data-options="closable:true" style="padding:20px;display:none;">   
-		tab3    
-	&lt;/div> 
-&lt;/div&gt;</code></pre>
-<pre class="prettyprint hide lang-js">
-&lt;script type="text/javascript"&gt;
-$(function(){
-	$HUI.tabs("#tt2",{
-		onSelect:function(title){
-			$.messager.popover({type:'info',msg:'切换到【'+title+'】'}); 					
-		}
-	});
-});	
-&lt;/script&gt;	
-	</pre>
+	
+
 	</div>	
 	<script type="text/javascript">
 		$(function(){
@@ -170,24 +128,13 @@ $(function(){
 					<div>垆边人似月，皓腕凝霜雪。未老莫还乡，还乡须断肠。</div>
 					<div>如今却忆江南乐，当时年少春衫薄。骑马倚斜桥，满楼红袖招。</div>
 			</div>
-			<div title="功能" data-options="closable:true" style="padding:20px;display:none;">
+			<div title="功能" data-options="closable:true" style="padding:20px;">
 			</div>  
-			<div title="收藏" data-options="closable:true" style="padding:20px;display:none;">
+			<div title="收藏" data-options="closable:true" style="padding:20px;">
 			</div>
-			<div title="表格" data-options="closable:true" style="padding:20px;display:none;">
+			<div title="表格" data-options="closable:true" style="padding:20px;">
 			我是否被隐藏了？</div>
 		</div>
-		<pre class="prettyprint hide lang-html"><code>&lt;div class="hisui-tabs tabs-gray-btm" style="width:500px;height:120px" tabHeight="26px">
-	&lt;div title="常用" style="padding:20px">增加属性tabHeight可以让页签变小 tabHeight="26px"&lt;/div>
-	&lt;div title="编辑" data-options="closable:false" style="padding:20px;overflow:auto;">
-		&lt;div>人人尽说江南好，游人只合江南老。春水碧于天，画船听雨眠。&lt;/div>
-		&lt;div>垆边人似月，皓腕凝霜雪。未老莫还乡，还乡须断肠。&lt;/div>
-		&lt;div>如今却忆江南乐，当时年少春衫薄。骑马倚斜桥，满楼红袖招。&lt;/div>
-	&lt;/div>
-	&lt;div title="功能" data-options="closable:false" style="padding:20px;display:none;">&lt;/div>
-	&lt;div title="收藏" data-options="closable:false" style="padding:20px;display:none;">&lt;/div>
-	&lt;div title="表格" data-options="closable:false" style="padding:20px;display:none;">我是否被隐藏了？&lt;/div>
-&lt;div></code></pre>
 	</div>
 	<h3>四.页签过多滚动效果</h3>
 	<div class="demo-exp-code entry-content">
@@ -237,9 +184,9 @@ $(function(){
 		<div id="tt-brand-gray" class="hisui-tabs tabs-gray" style="width:500px;height:150px;" data-options="isBrandTabs:true">   
 			<div title="医嘱浏览" data-options="iconCls:'icon-add-note'" style="padding:20px;"></div>   
 			<div title="全部" data-options="closable:false" style="padding:20px;"></div>
-			<div title="药品" data-options="closable:false" style="padding:20px;display:none;"></div>  
-			<div title="检查" data-options="closable:false" style="padding:20px;display:none;"></div>
-			<div title="检验" data-options="closable:false" style="padding:20px;display:none;"></div>  
+			<div title="药品" data-options="closable:false" style="padding:20px;"></div>  
+			<div title="检查" data-options="closable:false" style="padding:20px;"></div>
+			<div title="检验" data-options="closable:false" style="padding:20px;"></div>  
 		</div>
 		<pre class="prettyprint hide lang-html"><code>&lt;div id="tt-brand-gray" class="hisui-tabs tabs-gray" style="width:500px;height:150px;" data-options="isBrandTabs:true>
 	&lt;div title="医嘱浏览" data-options="iconCls:'icon-add-note'" style="padding:20px;">&lt;/div>   

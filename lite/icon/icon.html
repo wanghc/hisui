@@ -17,8 +17,8 @@
             clear: both;
         }
         ul>li {
-            line-height: 30px;
-            height: 30px;
+            line-height: 28px;
+            height: 28px;
             width:180px;
             padding: 0 5px 0 15px;
             float: left;
@@ -41,8 +41,11 @@
             display: inline-block;
             font-size: 12px;
         }
+        .icon::before{
+            margin: 6px;
+        }
         ul>li span{
-            height: 30px;
+            height: 28px;
             display: inline-block;
         }
         .iconlist, .fontlist, .arrowlist, .bigiconlist, chinCharlist{
@@ -66,7 +69,7 @@
             border-top: 1px dashed #e5e5e5;
         }
         .bigicon-tr td{
-            line-height: 30px;
+            line-height: 28px;
         }
         .bigicon-tr .icon{
             padding-left:30px;
@@ -182,7 +185,7 @@
                 //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
                 $(
                     '<li>\
-                    <a href="#" iconCls="icon-w-'+wicons[i]+'" style="width:180px;text-align:left;font-size:10px">icon-w-'+wicons[i]+'</a>\
+                    <a href="#" iconCls="icon-w-'+wicons[i]+'" style="width:180px;">icon-w-'+wicons[i]+'</a>\
                     </li>'
                 ).appendTo(".whitelist").find("a").linkbutton();
             }

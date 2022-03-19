@@ -20,12 +20,12 @@
 @input-border-color:#CCCCCC;
 @input-bgcolor:#ffffff;
 @input-color:#000000;
-@input-active-border-color:#7DCEFF;
-@input-active-bgcolor:#ffffff;
+@input-active-border-color:#339EFF;
+@input-active-bgcolor:#EFF9FF;
 @input-active-color:#000000;
 @input-disabled-border-color:#CCCCCC;
 @input-disabled-bgcolor:#F5F5F5;
-@input-disabled-color:#000000;
+@input-disabled-color:#999999;
 @input-placeholder-color:#999999;
 
 @input-arrow-opacity:1; /*0.7;*/
@@ -41,13 +41,13 @@
 @input-hover-bgcolor:@input-active-bgcolor;
 //----------focus---------//
 @input-focus-bgcolor:@input-hover-bgcolor;
-@input-border-focus-color:#3495d8;
+@input-border-focus-color:#339EFF;
 
 //-------------disabled----------//
 @main-disabled-bgcolor:@input-disabled-bgcolor;
 @main-disabled-border-color:@input-disabled-border-color;
-@linkbutton-disabled-bgcolor:#bbbbbb;
-@linkbutton-disabled-icon-bgcolor:transparent;
+@linkbutton-disabled-bgcolor:#E5E5E5;
+@linkbutton-disabled-icon-bgcolor:#D1D1D1;
 @linkbutton-disabled-icon-color:#999999;
 
 //== tooltip
@@ -149,9 +149,9 @@
 @tabs-header-height:36px;
 @tabs-header-bgcolor:#FFFFFF;
 @tabs-header-hover-bgcolor:#FFFFFF;
-@tabs-header-select-top-color:#31B1FF;
+@tabs-header-select-top-color:#339EFF;
 @tabs-header-font-color:#000000;
-@tabs-header-select-font-color:#31B1FF;
+@tabs-header-select-font-color:#339EFF;
 @tabs-title-font-size:@main-font-size;
 @tabs-header-arrow-hover-bgcolor:@tabs-header-select-top-color;
 @tabs-header-bdcolor:#E2E2E2;
@@ -177,15 +177,15 @@
 
 //== linkbutton
 @linkbutton-font-size:14px;
-@linkbutton-height:30px;
-@linkbutton-bgcolor:#48B9FF;
+@linkbutton-height:28px;
+@linkbutton-bgcolor:#339EFF;
 @linkbutton-font-color:#ffffff;
 @linkbutton-padding-leftright:8px;
 @linkbutton-min-width:80px;
 @linkbutton-text-width:@linkbutton-min-width - (2 * @linkbutton-padding-leftright);
-@linkbutton-hover-bgcolor:#0F99EF;
-@linkbutton-focus-bordercolor:#0F99EF;
-@linkbutton-left-bgcolor:transparent;
+@linkbutton-hover-bgcolor:#006FD2;
+@linkbutton-focus-bordercolor:#006FD2;
+@linkbutton-left-bgcolor:#006FD2;
 @linkbutton-border-radius:2px;
 
 @linkbutton-hover-dark-bgcolor:#0063a7;
@@ -206,10 +206,10 @@
 @datagrid-border-color:#E2E2E2;
 @datagrid-row:#ffffff;
 @datagrid-row-color:#000000;
-@datagrid-row-hover:#EFF9FF;
-@datagrid-row-hover-color: #31B1FF;
-@datagrid-row-select:#ffffff;
-@datagrid-row-select-color: #31B1FF;
+@datagrid-row-hover:#E5F3FF;
+@datagrid-row-hover-color: #000000;
+@datagrid-row-select:#FFEDCE;
+@datagrid-row-select-color: #C88003;
 @datagrid-cell-font-size:14px;
 @datagrid-toolbar-text-color:#0379d0;
 @datagrid-toolbar-hover:#dbedf9;
@@ -238,14 +238,15 @@
 @keywords-section-bgcolor:#40a2de;
 
 //==menubutton
-@menubutton-blue-bgcolor:#40a2de;   
-@menubutton-blue-bgcolor-hover:#378ec4;
-@menubutton-blue-menu-item-bgcolor: #6fc2f4;
-@menubutton-blue-border-bottom-color:#40a2de;
-@menubutton-blue-menu-item-hover: #378ec4;
-@menubutton-btn-hover-bgcolor:#dbedf9;
-@menubutton-btn-plain-active-bgcolor:#dbedf9;
-@menubutton-menu-item-bgcolor:#dbedf9;
+@menubutton-blue-bgcolor: @linkbutton-bgcolor;   
+@menubutton-blue-bgcolor-hover:@linkbutton-hover-bgcolor;
+@menubutton-blue-menu-item-bgcolor: @linkbutton-bgcolor;
+@menubutton-blue-border-bottom-color:@linkbutton-bgcolor;
+@menubutton-blue-menu-item-hover: @linkbutton-hover-bgcolor;
+@menubutton-btn-hover-bgcolor:#EFF9FF;
+@menubutton-btn-plain-active-bgcolor:#E5E5E5;
+@menubutton-menu-item-bgcolor:@linkbutton-hover-bgcolor;
+@menubutton-menu-item-hover-bgcolor:#E5E5E5;
 
 //==menu
 @menu-active-border-color:#dbecf8;
