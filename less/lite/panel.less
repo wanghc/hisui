@@ -22,13 +22,10 @@ body{
 .panel-title {
   background-image: none;
 }
-.panel-tool a:hover { 
-  background-color: #cccccc;
-}
+
 .panel-header,
 .panel-body {
   border-color: @panel-border-color;
-  border-width: 1px;
 }
 .panel-header {
   background:@panel-header-bgcolor;
@@ -59,9 +56,21 @@ body{
 }
 
 .panel-tool a{
-  opacity: 1.0;
+  opacity: 1;
   filter: alpha(opacity=100);
+  font-family: "Mw_mifonts";
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: normal;
+  color:#000000;
 }
+
 .panel-tool-close {
   background: url('images/panel_tools_1.png') no-repeat -16px 0px;
 }
@@ -82,10 +91,7 @@ body{
 }
 
 .panel-tool a:hover {
-  background-color: #e5e5e5;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  color:@main-hover-color;
 }
 .panel-tool a.panel-tool-close:hover {
   background-color: #ff0000;
@@ -102,16 +108,21 @@ body{
 .tabs-panels>.panel
 {
   &>.panel-header{
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
     padding: 5px 5px;
-    border-color:@panel-header-bdcolor;
+    border-color:@panel-header-bgcolor;
   }
   &>.panel-body{
-    -moz-border-radius: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    border-color:@panel-header-bdcolor;
+    border-color:@panel-header-bgcolor;
   }
+}
+.layout>.panel{
+  &>.panel-header{
+    border-color:@panel-border-color;
+  }
+  &>.panel-body{
+    border-color:@panel-border-color;
+  }
+}
+.panel .panel-body.panel-body-noborder{
+  border-color:@panel-header-bgcolor;
 }

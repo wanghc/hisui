@@ -39,7 +39,7 @@
 
   .panel-title{
     padding-left: 5px;
-    color: #ffffff;
+    color: @accordion-title-font-color;
   }
   .panel-with-icon{
     padding-left: 31px;
@@ -54,16 +54,8 @@
       display: inline-block;
       width: 22px;
       height: 22px;
-      opacity: 1.0;
-      filter: alpha(opacity=100);
       vertical-align: top;
       margin: 0;
-      &:hover{
-        background-color: rgba(255,255,255,0.3);
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px;
-      }
     }
     .accordion-collapse {
       background: url(images/accordion_arrows.png) no-repeat -22px 0;

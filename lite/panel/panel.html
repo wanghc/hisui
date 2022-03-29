@@ -16,12 +16,40 @@
 	<h3>说明:</h3>
 	<span>面板是其他组件或元素的容器</span>
 	<h3>一、面板</h3>
-	<div class="demo-exp-code entry-content">
-		<div class="hisui-panel" title="病人信息" style="width:400px;padding:20px;" 
-		data-options="iconCls:'icon-paper-blue-line',closable:true,collapsible:true,minimizable:true,maximizable:true,border:false">
-            面板
+	<div>
+		<div class="use-prettyprint">
+			<div class="hisui-panel" title="病人信息" style="width:400px;padding:20px;" 
+			data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
+				面板
+			</div>
 		</div>
-	</div>	
+	</div>
+	<h3>二、多面板布局</h3>
+	<div>
+		<div class="use-prettyprint">
+			<div style="padding: 10px;background-color: #F5F5F5;">
+				<div>
+					<div class="hisui-panel" title="病人信息" style="height:200px;padding:20px;" 
+					data-options="closable:false,collapsible:true,minimizable:false,maximizable:false">
+						面板
+					</div>
+				</div>
+				<div style="margin: 10px 0;">
+					<div class="hisui-panel" title="诊断列表" style="height:200px;padding:20px;" 
+					data-options="closable:false,collapsible:true,minimizable:false,maximizable:false">
+						医嘱列表信息
+					</div>
+				</div>
+				<div>
+					<div class="hisui-panel" title="医嘱列表" style="height:200px;padding:20px;" 
+					data-options="closable:false,collapsible:true,minimizable:false,maximizable:false">
+						医嘱列表信息
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>

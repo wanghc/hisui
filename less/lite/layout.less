@@ -35,6 +35,9 @@
 .layout-expand-over {
   background-color: @panel-header-bgcolor;
 }
+.layout-button-right::before{
+  content: "\f235";
+}
 /*改为只控制其子级panel-header 的panel-tool 不让其影响放在layout区域下面的panel cryze 2018-10-20*/
 .layout-panel>.panel-header.panel-header-gray,
 .layout-expand>.panel-header.panel-header-gray{  
@@ -45,7 +48,8 @@
     background: url(images/layout_arrows_black.png) no-repeat;
   }
   .layout-button-right {
-    background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
+    //background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
+    color:red;
   }
   .layout-button-down {
     background: url(images/layout_arrows_black.png) -16px 0px no-repeat;
