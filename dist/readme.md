@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-03-30
+- 极简与蓝色版都增加12个对齐功能图标
+
 ## 2022-03-02
 - `datetimebox`的按钮颜色优化 :sparkles:
 
