@@ -1,21 +1,21 @@
 (function ($) {
-    function _949(_94a) {
-        var _94b = $.data(_94a, "datetimebox");
+    function _949(target) {
+        var _94b = $.data(target, "datetimebox");
         var opts = _94b.options;
-        $(_94a).datebox($.extend({}, opts, {
+        $(target).datebox($.extend({}, opts, {
             onShowPanel: function () {
-                var _94c = $(_94a).datetimebox("getValue");
-                _94e(_94a, _94c, true);
-                opts.onShowPanel.call(_94a);
+                var _94c = $(target).datetimebox("getValue");
+                _94e(target, _94c, true);
+                opts.onShowPanel.call(target);
             }, formatter: $.fn.datebox.defaults.formatter, parser: $.fn.datebox.defaults.parser
         }));
-        $(_94a).removeClass("datebox-f").addClass("datetimebox-f");
-        $(_94a).datebox("calendar").calendar({
+        $(target).removeClass("datebox-f").addClass("datetimebox-f");
+        $(target).datebox("calendar").calendar({
             onSelect: function (date) {
-                opts.onSelect.call(_94a, date);
+                opts.onSelect.call(target, date);
             }
         });
-        var _94d = $(_94a).datebox("panel");
+        var _94d = $(target).datebox("panel");
         if (!_94b.spinner) {
             //cryze datetimebox de timespinner with 80px->100px  height->24px; height强行指定 24px
             var p = $("<div style=\"padding:2px\"><input style=\"width:100px;height:24px\"></div>").insertAfter(_94d.children("div.datebox-calendar-inner"));
@@ -24,8 +24,53 @@
         _94b.spinner.timespinner({ showSeconds: opts.showSeconds, separator: opts.timeSeparator }).unbind(".datetimebox").bind("mousedown.datetimebox", function (e) {
             e.stopPropagation();
         });
-        _94e(_94a, opts.value);
+        _94e(target, opts.value);
+        $(target).combo('textbox').unbind('.datetimebox').bind("dblclick.datetimebox", function (e) { 
+            var ind1 = 0, ind2 = 0, t = this, myselectVal = "";
+            var val = $(t).val();
+            if (t.selectionStart != null) {
+                ind1 = t.selectionStart;
+                ind2 = t.selectionEnd;
+                myselectVal = val.substring(ind1, ind2);
+            } else {
+                if (t.createTextRange) {
+                    var r = t.createTextRange();
+                    var o = document.selection.createRange();
+                    myselectVal = o.text; 
+                    o.setEndPoint("StartToStart", r);
+                    ind2 = o.text.length;
+                    if (myselectVal.indexOf(' ')>-1) {
+                        ind1 = ind2 - myselectVal.length;
+                    }
+                }
+            }
+            if (ind1>0) {
+                if (myselectVal.indexOf(' ')>-1) {  //包含空格则不选中空格
+                    setSelectionRange($(t), { start: ind1, end: ind2-1 });  
+                }                
+            }
+        });
     };
+    /***
+     * {start:10,end:12}
+     */
+    function setSelectionRange(jq, range) {
+        return jq.each(function() {
+            var _5bb = this;
+            var st = range.start;
+            var end = range.end;
+            if (_5bb.createTextRange) {
+                var _5bd = _5bb.createTextRange();
+                _5bd.collapse();
+                _5bd.moveEnd("character", end);
+                _5bd.moveStart("character", st);
+                _5bd.select();
+            } else {
+                _5bb.setSelectionRange(st, end);
+            }
+            $(this).focus();
+        });
+    }
     function _94f(_950) {
         var c = $(_950).datetimebox("calendar");
         var t = $(_950).datetimebox("spinner");
@@ -168,7 +213,8 @@
             return new Date(d.getFullYear(), d.getMonth(), d.getDate(), hour, _96c, _96d);
         }, onHidePanel:function(){ //因为修改t快捷键,datebox中增加了这个方法,datetimebox中不用
         }, rules: { //重写datebox方法
-        },onBlur:function(target){ //重写datebox方法
+        }, onBlur: function (target) { //重写datebox方法
+            _953(target);
 		}
     });
 })(jQuery);
