@@ -80,10 +80,13 @@
     function _951(_952, q) {
         _94e(_952, q, true);
     };
+    function formatterValue(target) {
+        var opts = $.data(target, "datetimebox").options;
+        var d = _94f(target);
+        _94e(target, opts.formatter.call(target, d));        
+    }
     function _953(_954) {
-        var opts = $.data(_954, "datetimebox").options;
-        var date = _94f(_954);
-        _94e(_954, opts.formatter.call(_954, date));
+        formatterValue(_954);        
         $(_954).combo("hidePanel");
     };
     function _94e(_955, _956, _957) {
@@ -214,7 +217,7 @@
         }, onHidePanel:function(){ //因为修改t快捷键,datebox中增加了这个方法,datetimebox中不用
         }, rules: { //重写datebox方法
         }, onBlur: function (target) { //重写datebox方法
-            _953(target);
+            formatterValue(target);
 		}
     });
 })(jQuery);
