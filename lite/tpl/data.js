@@ -22,7 +22,7 @@ function parseQueryString(str){
     return o;
 }
 function getData(options,data){
-    var t=parseQueryString(options.body);
+    var t=parseQueryString(options.body||'');
     var page=t.page,rows=t.rows,q=t.q.replace(/\++/g,'').toLowerCase()  ;
     ;
 
