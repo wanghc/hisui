@@ -36,24 +36,20 @@
   background-color: @panel-header-bgcolor;
 }
 .layout-button-right::before{
-  content: "\f235";
+  content: "\f012";
+}
+.layout-button-left::before{
+  content: "\f011";
+}
+.layout-button-up::before{
+  content: "\f009";
+}
+.layout-button-down::before{
+  content: "\f010";
 }
 /*改为只控制其子级panel-header 的panel-tool 不让其影响放在layout区域下面的panel cryze 2018-10-20*/
 .layout-panel>.panel-header.panel-header-gray,
-.layout-expand>.panel-header.panel-header-gray{  
-  .layout-button-up {
-    background: url(images/layout_arrows_black.png) -16px -16px no-repeat;
-  }
-  .layout-button-left {
-    background: url(images/layout_arrows_black.png) no-repeat;
-  }
-  .layout-button-right {
-    //background: url(images/layout_arrows_black.png) 0px -16px no-repeat;
-    color:red;
-  }
-  .layout-button-down {
-    background: url(images/layout_arrows_black.png) -16px 0px no-repeat;
-  }
+.layout-expand>.panel-header.panel-header-gray{
   .panel-tool a:hover{
     background-color: #e5e5e5;
     -moz-border-radius: 2px;

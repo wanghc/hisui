@@ -24,7 +24,7 @@
   font-variant: normal;
   text-rendering: auto;
 	font-weight: 500;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: normal;
   text-align:center;
 }
@@ -73,6 +73,7 @@
 }
 .l-btn-focus {
   outline: @linkbutton-focus-bordercolor dotted thin;
+  background-color: @linkbutton-hover-bgcolor;
 }
 .l-btn {
   color: @linkbutton-font-color;
@@ -80,7 +81,7 @@
   filter: none;
   border: 0px solid @linkbutton-bgcolor;  //不应有border 有的话32了
   border-radius: @linkbutton-border-radius;
-  text-align: left;
+  text-align: center;
   // transition:all ease 0.3s;
   &.active{
     background: @linkbutton-hover-bgcolor;
@@ -224,7 +225,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       font-size: 28px;
     }
    .l-btn-text{
-      padding: 38px 0 0px; /*43--38px 20180929*/
+      padding: 44px 0 0px; /*43--38px 20180929*/
       line-height: 14px;
       margin: 0;
       text-align: center;
@@ -234,8 +235,9 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     border: 0;
     padding: 0;
     background:#dcebf9;
+    color:@input-border-focus-color;
     .l-btn-text{
-      color:@main-hover-color;  /*#21ba45;*/
+      color:@input-border-focus-color;  /*#21ba45;*/
     }
   }
 }
@@ -250,6 +252,10 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
 }
 /*增加其它色系按钮*/
 .l-btn.l-btn-small{
+    &.l-btn-focus {
+      background-color: @linkbutton-hover-bgcolor;
+      outline: @linkbutton-hover-bgcolor dotted thin;
+    }
     &.green{
       background-color: #28BA05;
     }

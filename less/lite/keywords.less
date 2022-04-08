@@ -71,17 +71,17 @@ ul.kw-section-list{
 }
 .keywords-labelred .kw-section-list>li{
     & a{
-        background: transparent;
+        background: @keywords-red-bgcolor;
         color: @keywords-red-color;
         border:1px solid transparent;
         &:hover{
             cursor: pointer;
-            background: @keywords-red-bgcolor;
-            border:1px solid @keywords-red-bgcolor;
+            background: @keywords-red-hover-bgcolor;
+            color:@keywords-red-hover-color
         }
     }
     &.selected a{
-        background: @keywords-red-bgcolor;
-        border:1px solid @keywords-red-bgcolor;
+        background: @keywords-red-select-bgcolor;
+        color:@keywords-red-select-color;
     }
 }

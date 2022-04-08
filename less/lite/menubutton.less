@@ -43,13 +43,16 @@
   &:hover{
     background-color:@menubutton-blue-bgcolor-hover;
   }
+  &.m-btn-plain-active{ /*展开时一直保持底色*/
+    background-color:@menubutton-blue-bgcolor-hover;
+  }
   .l-btn-left{
     width: 100%;
     text-align: left;
     .l-btn-text{
       color: #fff;
       margin-left: 0;
-      padding-left:15px;
+      padding-left:10px;
     }
     .l-btn-icon{
       display: none;
@@ -72,7 +75,7 @@
     }
     .menu-text{
       color: #fff;
-      padding-left: 15px;
+      padding-left: 10px;
       line-height: 30px;
     }
     .menu-icon{
@@ -132,7 +135,7 @@
     }
     .menu-text{
       color: #000;
-      padding-left: 15px; /*10px*/
+      padding-left: 10px; /*10px*/
       line-height: 35px; /*26px*/
     }
     .menu-icon{
@@ -144,6 +147,9 @@
   }
   .menu-sep{
     margin-left: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom:0px;
   }
 }
 

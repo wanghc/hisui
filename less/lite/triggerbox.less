@@ -15,7 +15,7 @@
     border-color: @main-disabled-border-color;
     background-color: @main-disabled-bgcolor;
     .triggerbox-button{
-      background-color: @main-disabled-border-color;
+      background-color: transparent;
     }
   }
   /*hover bgcolor*/
@@ -35,8 +35,8 @@
   font-size: @searchbox-font-size;
   border: 0;
   margin: 0;
-  padding: 0 2px;
-  *margin-top: -1px;
+  padding: 0 0 0 5px;
+  margin-top: -1px;
   vertical-align: top;
   /*focus bgcolor*/
   &:active,&:focus{
@@ -70,6 +70,7 @@
   opacity: 1.0;
   filter: alpha(opacity=100);
   background-color:@input-arrow-hover-bgcolor;
+  color:#339EFF;
 }
 .triggerbox .l-btn-plain {
   border: 0;
@@ -102,7 +103,8 @@
     background-color: #ffffff;
     &.disabled{
       background-color: @main-disabled-bgcolor;
-      .triggerbox-button {
+      color:@input-iconbtn-disabled-color;
+      /*.triggerbox-button {
         &.icon-trigger-box{
           background: url(icons/trigger_box_disabled.png) center center no-repeat;
         }
@@ -114,16 +116,27 @@
         }
         &.icon-img-blue{
           background: url(icons/img_blue_disabled.png) center center no-repeat;
+
         }
-      }
+      }*/
     }
     .triggerbox-button {
+      font: normal normal normal 16px/1 Mw_mifonts;
+      display: inline-block;
+      font-size: 14px;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       opacity: 1; /*0.7;*/
+      text-align: center;
+      line-height: 28px;
+      color:@input-iconbtn-color;
       filter: alpha(opacity=70);
       &.triggerbox-button-hover {
         opacity: 1.0;
         filter: alpha(opacity=100);
         background-color:@input-arrow-hover-bgcolor;
+        color:@input-iconbtn-hover-color;
       }
     }
   }

@@ -153,6 +153,12 @@ td.datagrid-value-changed {
   border-left:1px solid transparent;
   border-right:1px solid transparent;
 }
+.table-splitline {
+  .datagrid-header-row td, .datagrid-row td{
+    border-left:1px solid @datagrid-border-color;
+    border-right:1px solid @datagrid-border-color;
+  }
+}
 .datagrid-view1 td:last-child,.datagrid-view1 td:first-child{
   border-right-color: @panel-header-bdcolor;
 }

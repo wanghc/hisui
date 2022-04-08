@@ -9,7 +9,8 @@
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
-	
+</head>
+<body>
 	<style>
 		td{
 			padding: 5px 0;
@@ -23,15 +24,13 @@
 			return y+"-"+m+'-'+d;
 		}
 	</script>
-</head>
-<body>
 	<h2>基础验证框</h2>
 	<h3>说明:</h3>
     <span>基础验证框（validatebox）用来验证表单，在输入框上加入简单的验证 。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint lang-html"> 
-		<div class="hisui-panel" title="登记" style="width:500px;padding:10px;" data-options="headerCls:'panel-header-gray',iconCls:'icon-paper',closable:true,collapsible:true,minimizable:true,maximizable:true">
+		<div class="hisui-panel" title="登记" style="width:500px;padding:10px;" data-options="headerCls:'panel-header-gray',iconCls:'icon-paper',closable:false,collapsible:true,minimizable:false,maximizable:true">
 			<table>					
 				<tr>
 					<td class="r-label required-label">序号</td>

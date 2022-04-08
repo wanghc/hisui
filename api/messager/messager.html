@@ -10,14 +10,14 @@
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
+</head>
+
+<body>
 	<style>
 		.messager-button .l-btn{
 			width: 80px;
 		}
 	</style>
-</head>
-
-<body>
 	<h2>消息框</h2>
 	<h3>说明:</h3>
 	<span>消息框（messager）提供不同样式的消息框，包括警示（alert）、确认（confirm）、提示（prompt）、进展（progress）等等。所有的消息框都是异步的。用户可以在与消息框交互后使用回调函数来完成一些动作。</span>
@@ -75,7 +75,7 @@
 						var oldNo = $.messager.defaults.no;
 						$.messager.defaults.ok = "保存";
 						$.messager.defaults.no = "不存";
-						$.messager.confirm3("提示", "病历内容有修改,你确定保存吗?", function (r) {
+						var btns = $.messager.confirm3("提示", "病历内容有修改,你确定保存吗?", function (r) {
 							if (true===r) {
 								$.messager.popover({ msg: "保存病历", type: 'info' });
 							} else if (false === r){
@@ -86,7 +86,10 @@
 							/*要写在回调方法内,否则在旧版下可能不能回调方法*/
 							$.messager.defaults.ok = oldOk;
 							$.messager.defaults.no = oldNo;
-						}).children("div.messager-button").children("a:eq(2)").focus();
+						}).children("div.messager-button");
+						btns.children("a:eq(0)").addClass('green');
+						btns.children("a:eq(2)").focus();
+						
 					});
 					$('#prompt1').click(function () {
 						$.messager.prompt("提示", "修改前请签名：", function (r) {

@@ -1,4 +1,4 @@
-
+@import "variables.less";
 .tree-node{
   //height: 28px;
   height: auto;
@@ -9,9 +9,15 @@
   height: auto;
   line-height: 28px;
 }
+.tree-node-selected{
+  background: @tree-node-hover-bgcolor;
+}
+.tree-node-hover{
+  background: @tree-node-hover-bgcolor;
+}
 /*增加.tree>li>ul解决 大节点也变色背景问题 */
 .tree>li>ul .tree-node-selected .tree-title{
-  background: #ffe48d;
+  background: @tree-node-hover-bgcolor;
 }
 .tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
   margin-top:5px;
@@ -77,7 +83,7 @@
     &>.tree-node{
       height: 36px;
       line-height: 36px;
-      background-color:@tree-node-bgcolor;
+      background-color:@accordion-tree-header-bgcolor;
       position: relative;
       .tree-hit{
         position: absolute;
@@ -105,7 +111,7 @@
       .tree-title{
         height: 36px;
         line-height: 36px;
-        color: #fff;
+        color: #000;
         padding: 0 34px 0 15px;
       }
       &.tree-node-hover{
@@ -113,19 +119,19 @@
       }
     }
     &>ul{
-      background-color: #f9f9f9;
+      background-color: @accordion-tree-bgcolor;
       .tree-node{
         padding-left: 5px;
         height: 36px;
         line-height: 36px;
         position: relative;
         &.tree-node-hover{
-          background-color: #e3e3e3;
+          background-color: @accordion-tree-hover-bgcolor;
         }
         &.tree-node-selected{
-          background-color: #e3e3e3;
+          background-color: @accordion-tree-select-bgcolor;
           .tree-title{ /*2019-12-12 解决选中行变黄底色问题 */
-            background: #e3e3e3;
+            background: @accordion-tree-select-bgcolor;
           }
         }
         .tree-hit{

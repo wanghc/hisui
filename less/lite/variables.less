@@ -43,6 +43,11 @@
 @input-focus-bgcolor:@input-hover-bgcolor;
 @input-border-focus-color:#339EFF;
 
+// 输入框小图标几种状态颜色//
+@input-iconbtn-color:#7E7E7E;
+@input-iconbtn-hover-color:#339EFF;
+@input-iconbtn-disabled-color:#CCCCCC;
+
 //-------------disabled----------//
 @main-disabled-bgcolor:@input-disabled-bgcolor;
 @main-disabled-border-color:@input-disabled-border-color;
@@ -95,7 +100,7 @@
 @panel-body-font-size:@main-font-size;
 @panel-title-font-size:@main-font-size;
 @panel-title-font-color:#000000;
-@panel-border-color:#cccccc; 
+@panel-border-color:#E2E2E2; 
 @panel-border-card-color:#509de1;
 @panel-border-card-color-gray:#E3E3E3;
 @panel-header-blue-bgcolor:#b4dbf5;
@@ -117,7 +122,7 @@
 @combo-row-line-height:24px;
 @combo-bgcolor:#ffffff;
 @combo-padding-left:@validatebox-padding-left;
-@combo-panel-border-color:#9ed2f2;
+@combo-panel-border-color:#339EFF;
 
 //== combobox 
 @combobox-item-font-size:@main-font-size;
@@ -126,9 +131,9 @@
 @combobox-item-left-padding:5px;
 @combobox-item-line-height:24px;
 @combobox-gitem-left-padding:10px;
-@combobox-item-hover-bgcolor:#dbecf8;
+@combobox-item-hover-bgcolor:#E2E2E2;
 @combobox-item-hover-font-color:#000000;
-@combobox-item-select-bgcolor:#dbecf8;
+@combobox-item-select-bgcolor:#E5E5E5;
 @combobox-item-select-font-color:#000000;
 
 //== datebox
@@ -137,14 +142,19 @@
 @datebox-button-font-color:#444;
 
 //== accordion
-@accordion-header-bgcolor:#509DE1;
+@accordion-header-bgcolor:#F8F8F8;
 @accordion-header-bgcolor-green:#21BA45;
 @accordion-header-select-bgcolor:#4E97D7;
-@accordion-border-color:@panel-border-color;
+@accordion-border-color:#E2E2E2;
 @accordion-title-font-color:#000000;
-@accordion-body-bgcolor:#f2f2f2;
+@accordion-body-bgcolor:#ffffff;
 @accordion-body-color:#7a7875;
-@accordion-body-border:#cccccc;
+@accordion-body-border:#E2E2E2;
+//==
+@accordion-tree-header-bgcolor:#F8F8F8;
+@accordion-tree-bgcolor:#ffffff;
+@accordion-tree-select-bgcolor:#E5F3FF;
+@accordion-tree-hover-bgcolor:#E5F3FF;
 //== tabs
 @tabs-header-height:36px;
 @tabs-header-bgcolor:#FFFFFF;
@@ -183,8 +193,8 @@
 @linkbutton-padding-leftright:8px;
 @linkbutton-min-width:80px;
 @linkbutton-text-width:@linkbutton-min-width - (2 * @linkbutton-padding-leftright);
-@linkbutton-hover-bgcolor:#007BE9;
-@linkbutton-focus-bordercolor:#007BE9;
+@linkbutton-hover-bgcolor:#006FD2;
+@linkbutton-focus-bordercolor:transparent;
 @linkbutton-left-bgcolor:#007BE9;
 @linkbutton-border-radius:2px;
 
@@ -224,15 +234,19 @@
 @spinner-font-size:14px;
 @spinner-arrow-bgcolor:none; /*main-hover-color*/;
 //== keywords 
-@keywords-bgcolor:#F5F5F5;
+@keywords-bgcolor:#E5E5E5;
 @keywords-color:#000000;
 @keywords-select-bgcolor:#EFF9FF;
-@keywords-select-color:#31B1FF;
+@keywords-select-color:#339EFF;
 @keywords-select-bdcolor:#48B9FF;
-@keywords-hover-bgcolor:#F5F5F5;
-@keywords-hover-color:#31B1FF;
-@keywords-red-bgcolor: #ffe9db;
-@keywords-red-color:#ff4401;
+@keywords-hover-bgcolor:#EFF9FF;
+@keywords-hover-color:#339EFF;
+@keywords-red-color:#000000;
+@keywords-red-bgcolor:#E5E5E5;
+@keywords-red-select-bgcolor: #FFE9DB;
+@keywords-red-select-color:#FF4401;
+@keywords-red-hover-bgcolor:#F1F1F1;
+@keywords-red-hover-color:#FF4401;
 @keywords-chapter-color:#017bce;
 @keywords-section-hover-color:#017bce;
 @keywords-section-bgcolor:#40a2de;
@@ -258,9 +272,9 @@
 @filebox-border-color:#40a2de;
 
 //tree
-@tree-border-color:#0e8bdd;
-@tree-node-bgcolor:#0e8bdd;
-@tree-node-hover-bgcolor:#3ea2e4;
+@tree-border-color:#E5E5E5;
+@tree-node-bgcolor:#E5E5E5;
+@tree-node-hover-bgcolor:#E5E5E5;
 
 //easyui
 @easyui-pagination-num-border-color:#95B8E7;
@@ -311,6 +325,8 @@ input,textarea {
     position: absolute;
     overflow: hidden;
     background-color: #ffffff;
-    border: 1px solid @panel-border-color;
+    border: 1px solid @combo-panel-border-color;
     z-index: 9000;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+    border-radius: 0 0 4px 4px;
 }

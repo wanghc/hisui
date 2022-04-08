@@ -15,6 +15,12 @@
 <h3>说明：</h3>
 <span>可用于步骤图，流程图，闭环图等，可自定义节点后描述内容及格式。<code>2021-02-26</code>。</span>
 <h3>一.步骤图</h3>
+<style>
+    .cntt{
+        color:#000;
+        font-weight: 500;
+    }
+</style>
 <div class="demo-exp-code entry-content">
     <div class="use-prettyprint lang-html">
         <div id="vstp" style='height: 200px;width:400px'></div>
@@ -36,13 +42,13 @@ $(function(){
         //titlePostion:'top',
         items:[{
                 title:'挂号',
-                context:"<div>操作人：王二</div><div>2020-07-03 09:10</div>"
+                context:"<div class='cntt'><div>操作人：王二</div><div>2020-07-03 09:10</div></div>"
             },{
                 title:'就诊',
-                context:"<div>操作人：张三</div><span>2020-07-03 10:10</span>"
+                context:"<div class='cntt'><div>操作人：张三</div><span>2020-07-03 10:10</span></div>"
             },{
                 title:"收费", 
-                context:"<div>操作人：李四</div><span>2020-07-03 11:10</span>"
+                context:"<div class='cntt'><div>操作人：李四</div><span>2020-07-03 11:10</span></div>"
             },{
                 title:"取药"
             },{
