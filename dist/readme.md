@@ -38,6 +38,8 @@ $("#btn").linkbutton("disable");
 ## 2022-04-08
 - 修改HISUI-Lite版风格 :sparkles:
 - 去除`checkbox`与`radio`的图标左边距(6px) :sparkles:
+- `accordion`上下圆角实现 :lipstick:
+
 
 ## 2022-04-04
 - 优化`datetimebox`双击选中日数时,会选中空格问题，且光标离开时自动计算成有效日期时间 :bug:
