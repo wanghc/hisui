@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-04-10
+- 修改HISUI-Lite版风格,组件图标默认为灰色 :lipstick:
 
 ## 2022-04-08
 - 修改HISUI-Lite版风格 :sparkles:
