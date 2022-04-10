@@ -10,9 +10,11 @@
   color:@datebox-button-font-color;
 }
 .datebox .combo-arrow {
-  background-image:url('images/datebox_arrow.png'); // no-repeat center center;
+  background:none;
 }
-.combo.disabled.datebox .combo-arrow {
-  background-image: url('images/datebox_arrow_disable.png'); // no-repeat center center;
-  background-color: @main-disabled-bgcolor;
+.datetimebox-f + .datebox .combo-arrow::before{
+  content: "\f044";
+}
+.datebox .combo-arrow::before{
+  content: "\f024";
 }

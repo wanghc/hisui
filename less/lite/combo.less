@@ -11,14 +11,11 @@
   _line-height: @combo-input-line-height-ie8;
   
 }
-.combo-arrow {
-  width: @combo-arrow-width;
-  height: @combo-arrow-height;
-  opacity: @input-arrow-opacity;
-  filter: alpha(opacity=@input-arrow-opacity-ie);
+.combo .combo-arrow::before{
+  content: "\f476";
 }
-.combo-arrow {
-    background: url(images/combo_arrow.png) no-repeat center center;
+.combotree-f + .combo .combo-arrow::before {
+  content: "\f475";
 }
 .combo,
 .combo-panel {
@@ -45,13 +42,14 @@
   opacity: @input-arrow-hover-opacity;
   filter: alpha(opacity=@input-arrow-hover-opacity-ie);
   background-color: @input-arrow-hover-bgcolor;
+  color: @input-active-border-color;
 }
 
 .combo.disabled{
   border-color: @main-disabled-border-color;
   .combo-arrow{
     background-color: @main-disabled-bgcolor;
-    background-image: url(images/combo_arrow_disable.png);
+    color: #f5f5f5;
   }
 }
 

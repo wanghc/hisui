@@ -11,16 +11,32 @@
   -moz-border-radius: @input-border-radius;
   -webkit-border-radius: @input-border-radius;
   border-radius: @input-border-radius;
+  .spinner-arrow {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff;
+    .spinner-arrow-hover {
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      color:@input-active-border-color;
+      background-color: #d5eefe;
+    }
+  }
   &.disabled{
     background-color: @input-disabled-bgcolor;
     border-color: @input-disabled-border-color;
     .spinner-arrow {
       background-color: @main-disabled-bgcolor;
       .spinner-arrow-up {
-        background-image: url(images/spinner_arrows_disable.png);
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-disabled-border-color;
       }
       .spinner-arrow-down {
-        background-image: url(images/spinner_arrows_disable.png);
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-disabled-border-color;
       }
     }
   }
@@ -44,33 +60,13 @@
   _line-height: @spinner-line-height-min;
   vertical-align: baseline;
 }
-.spinner-arrow {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  margin: 0;
-  padding: 0;
-  background-color:#ffffff;
-  .spinner-arrow-hover {
-    opacity: @input-arrow-hover-opacity;
-    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-    background-color:@input-arrow-hover-bgcolor;
-  }
+
+
+.spinner-arrow-up::before{
+  content: "\f477";
 }
-.spinner-arrow-up,
-.spinner-arrow-down {
-  opacity: @input-arrow-opacity;
-  filter: alpha(opacity=@input-arrow-opacity-ie);
-  display: block;
-  font-size: 1px;
-  width: 22px;
-  height: 14px;
-}
-.spinner-arrow-up {
-  background: url(images/spinner_arrows.png) -21px center no-repeat;
-}
-.spinner-arrow-down {
-  background: url(images/spinner_arrows.png) 0px center no-repeat;
+.spinner-arrow-down::before{
+  content: "\f476";
 }
 .spinner {
   border-color: @input-border-color;

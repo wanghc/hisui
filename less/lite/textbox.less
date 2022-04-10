@@ -56,3 +56,34 @@ input::-moz-placeholder, textarea::-moz-placeholder {
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color:@input-placeholder-color;
 }
+.searchbox-button,.combo-arrow,.triggerbox.triggerbox-plain .triggerbox-button{
+  background: none;
+  width: @combo-arrow-width;
+  height: @combo-arrow-height;
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
+  font: normal normal normal 14px/1 Mw_mifonts;
+  display: inline-block;
+  font-size: 14px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 28px;
+  color:@input-iconbtn-color;
+}
+.spinner-arrow .spinner-arrow-down, .spinner-arrow .spinner-arrow-up{
+  background: none;
+  width: @combo-arrow-width;
+  height: 15px;
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
+  font: normal normal normal 13px/1 Mw_mifonts;
+  font-size: 13px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 15px;
+  color:@input-iconbtn-color;
+}
