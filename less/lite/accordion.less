@@ -52,11 +52,13 @@
         vertical-align: top;
         margin: 0;
       }
-      .accordion-collapse {
-        background: url(images/accordion_arrows-black.png) no-repeat -22px 0;
+      .accordion-collapse::before {
+        content: @content-up;
+        //background: url(images/accordion_arrows-black.png) no-repeat -22px 0;
       }
-      .accordion-expand {
-        background: url(images/accordion_arrows-black.png) no-repeat 0 0;
+      .accordion-expand::before {
+        content: @content-down;
+        //background: url(images/accordion_arrows-black.png) no-repeat 0 0;
       }
     }
   }

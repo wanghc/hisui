@@ -28,12 +28,29 @@
 	line-height: normal;
   text-align:center;
 }
+.showicon.l-btn.l-btn-small{
+  .l-btn-icon-left{
+    .l-btn-icon{
+      left: 0px;
+    }
+    .l-btn-text{
+      margin: 0 0 0 30px;
+    }
+  }  
+}
+.l-btn-plain.l-btn.l-btn-small{
+  .l-btn-icon-left{
+    .l-btn-icon{
+      left: 0px;
+    }
+  }  
+}
 .l-btn-left.l-btn-icon-left{    /*在style加width时，图标偏移*/
   width: 100%;
   width: auto\9; /*IE6,7,8*/  /*2018-11-14*/
 }
 .l-btn-icon-left .l-btn-text {
-  margin: 0 0 0 30px;
+  margin: 0 0 0 0px;
 }
 
 .l-btn-icon-left .l-btn-empty+.l-btn-icon{
@@ -48,7 +65,7 @@
   width: @linkbutton-height;
   height: @linkbutton-height;
   line-height: @linkbutton-height;
-  left: 0px;
+  left: -30px;  /*默认不显示图标*/
 }
 
 .l-btn-icon-right .l-btn-text {
@@ -249,6 +266,10 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   margin: 0px 4px;
   display: inline-block;
   vertical-align: middle;
+}
+.l-btn-plain.l-btn.l-btn-small.l-btn-focus{
+  background-color: @menu-active-bgcolor;
+  outline: transparent dotted thin;
 }
 /*增加其它色系按钮*/
 .l-btn.l-btn-small{

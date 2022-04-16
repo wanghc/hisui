@@ -3,50 +3,34 @@
 .tabs-icon {
   left: 10px;
   width: 16px;
-  font-family: "Mw_mifonts";
-	-moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: normal;
-  color: #000;
 }
 
-.tabs-scroller-left,
-.tabs-scroller-right {
-  font-family: Mw_mifonts;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-variant: normal;
-  text-rendering: auto;
-  cursor: pointer;
-  border-width: 1px ;
-  opacity: 0.5;
-  font-size: 14px;
-}
 .tabs-scroller-left::before{
-  content: "\f302";
+  content: @content-left2;
   display: block;
   margin-top: 8px;
   margin-left: 3px;
 }
 .tabs-scroller-right::before{
-  content: "\f301";
+  content: @content-right2;
   display: block;
   margin-top: 8px;
   margin-left: 3px;
 }
-.tabs-scroller-over{
-  &.tabs-scroller-right,&.tabs-scroller-left{
+
+.tabs-scroller-right,.tabs-scroller-left{
+  &.tabs-scroller-over{
     opacity: 1;
     background-color: #ffffff;
     color:#339EFF;
   }
+  width: 20px;
+  font-size: 12px;
 }
+
 
 .tabs-header {
   padding-top: 0px;
@@ -96,8 +80,8 @@
         content: none;
       }
 
-      a.tabs-close {
-        background: url(images/tabs_icons_2.png) no-repeat 0 0;
+      a.tabs-close::before {
+        content: @content-close;
       }
     }
 
@@ -132,17 +116,16 @@
     }
 
     a.tabs-close {
-      background: url(images/tabs_icons_2.png) no-repeat 0 0;
-      margin-top: -9px;
+      background-image: none;
       right: 10px;
-      height: 18px;
-      width: 18px;
-      opacity: 1.0;
-      filter: alpha(opacity=100);
-
+      height: 16px;
+      width: 16px;
       //background-color: @tabs-header-bgcolor;
+      &::before{
+        content: @content-close;
+      }
       &:hover {
-        background: url(images/tabs_icons_2.png) no-repeat -36px 0;
+        color:red;
       }
     }
   }
@@ -533,12 +516,12 @@
 
         }
 
-        a.tabs-close {
-          background: url(images/tabs_icons_2.png) no-repeat 0 0;
+        a.tabs-close::before {
+          content: @content-close;
         }
 
         .tabs-close:hover {
-          background: url(images/tabs_icons_2.png) no-repeat -36px 0;
+          color:red;
         }
       }
 
@@ -558,12 +541,12 @@
           }
         }
 
-        a.tabs-close {
-          background: url(images/tabs_icons_2.png) no-repeat 0 0;
+        a.tabs-close::before {
+          content: @content-close;
         }
 
         .tabs-close:hover {
-          background: url(images/tabs_icons_2.png) no-repeat -36px 0;
+          color:red;
         }
       }
 

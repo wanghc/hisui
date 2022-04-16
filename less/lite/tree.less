@@ -92,17 +92,22 @@
         top:50%;
         margin-top:-7px;
         right: 10px;
-        &.tree-collapsed{
-          background: url(images/accordion_arrows2.png) -19px center no-repeat;
+        &.tree-collapsed::before{
+          content: @content-down;
+          //background: url(images/accordion_arrows2.png) -19px center no-repeat;
         }
-        &.tree-expanded{
-          background: url(images/accordion_arrows2.png) -2px center no-repeat;
+        &.tree-expanded::before{
+          content: @content-up;
+          //background: url(images/accordion_arrows2.png) -2px center no-repeat;
         }
         &:hover{
-          background-color: rgba(255, 255, 255, 0.3);
+          color:@main-hover-color;
+          background-color: @linkbutton-plain-hover-bgcolor;
           -moz-border-radius: 2px;
           -webkit-border-radius: 2px;
           border-radius: 2px;
+          opacity: 1.0;
+          filter: opacity(100);
         }
       }
       .tree-icon{

@@ -7,13 +7,25 @@
 .pagination span.l-btn-icon {
   width: 16px;
   height: 16px;
-  top: 50%;
-  top: 8px\9;
-  margin-top: -8px;
-  left: 4px;
+  background-image: none;
+  &.pagination-first::before{
+    content: @content-pagination-first;
+  }
+  &.pagination-prev::before{
+    content: @content-pagination-prev;
+  }
+  &.pagination-next::before{
+    content: @content-pagination-next;
+  }
+  &.pagination-last::before{
+    content: @content-pagination-last;
+  }
+  &.pagination-load::before{
+    content: @content-pagination-load;
+  }  
 }
 .pagination .l-btn-plain .l-btn-icon-left .l-btn-text.l-btn-empty {
   margin:0 0 0 6px ;
 }
-  
+
 
