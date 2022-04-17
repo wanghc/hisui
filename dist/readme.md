@@ -16,7 +16,7 @@
 ```
 或
 ```html
-<HISUI debugger=1/>
+<HISUI debugger=1 version="lite" css="myself.css"/>
 ```
 ### 按钮对应代码
 ```html
