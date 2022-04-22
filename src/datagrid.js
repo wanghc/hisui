@@ -550,7 +550,7 @@
             if (opts.queryName!=""){
                 e.preventDefault();
                 var flag = $cm({ClassName:"BSP.SYS.SRV.SSGroup",MethodName:"CurrAllowColumnMgr"},false);
-                if(flag==1) websys_lu('../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K'+opts.className+":"+opts.queryName,false,'hisui=true');
+                if(flag==1) window.open('../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K'+opts.className+":"+opts.queryName,"_blank","top=50,left=100,width=1000,height=800,titlebar=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
                 return false;
             }else{
                 opts.onDblClickHeader.call(_55a, e, _55f);
