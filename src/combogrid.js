@@ -444,6 +444,22 @@
             var _this = $(this);
             var re = $(_this).combobox("getData");
             return re == undefined ? [] : re;
+        },
+        // BOS No 2500978 yzc
+        clear: function () {
+            var _this = $(this);
+            var opts = $(_this).combobox("options");
+            var data = $(_this).combobox("getData");
+            if(!!data){
+              var id = _this.attr("id");
+              for (var p = 0; p < data.length; p++) {
+                var v = data[p];
+                var tempval = v[opts.valueField];
+                var RadioId = getRadioId(id, tempval);
+                $("#" + RadioId).prop("checked", false);               
+              }
+            }
+            $(i).combobox("clear");
         }
     };
 

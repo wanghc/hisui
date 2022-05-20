@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-05-20
+- 单选控件`DropDropRadio`增加clear :sparkles: 需求号[2500978]
+
 ## 2022-04-22
 - 双击列头弹出列定义界面修改成window.open,防止与combo下拉相互覆盖 :bug: 需求号[2607164]
 
