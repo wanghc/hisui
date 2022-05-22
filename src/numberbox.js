@@ -171,6 +171,7 @@
         return $.extend({}, $.fn.validatebox.parseOptions(_48e), $.parser.parseOptions(_48e, ["width", "height", "decimalSeparator", "groupSeparator", "suffix", { min: "number", max: "number", precision: "number" }]), { prefix: (t.attr("prefix") ? t.attr("prefix") : undefined), disabled: (t.attr("disabled") ? true : undefined), value: (t.val() || undefined) });
     };
     $.fn.numberbox.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        forcePrecisionZoer:true, /*在precision>0时, 是否强制加0*/
         fix:true, /*原始功能是强制值在min~max之间, false时只提示 by wanghc 2020-1-21*/
         isKeyupChange:false, /*是否在按键时就同步组件的值。默认是blur时同步值 */
         /**wanghc height:22修改成30*/
@@ -238,16 +239,16 @@
                 }
                 s = s.replace(/\s/g, "");
             }
-            var val = parseFloat(s).toFixed(opts.precision);
+            var val = forceToFixed(parseFloat(s), opts.precision, opts.forcePrecisionZoer);
             if (isNaN(val)) {
                 val = "";
             } else {
                 if (opts.fix){
                     if (typeof (opts.min) == "number" && val < opts.min) {
-                        val = opts.min.toFixed(opts.precision);
+                        val = forceToFixed(opts.min, opts.precision, opts.forcePrecisionZoer); //opts.min.toFixed(opts.precision);
                     } else {
                         if (typeof (opts.max) == "number" && val > opts.max) {
-                            val = opts.max.toFixed(opts.precision);
+                            val = forceToFixed(opts.max, opts.precision, opts.forcePrecisionZoer); //opts.max.toFixed(opts.precision);
                         }
                     }
                 }else{
@@ -259,6 +260,12 @@
                     if (typeof (opts.max) == "number") myvt.push('max['+opts.max+']');
                     $(this).validatebox("validate");
                 }
+            }
+            function forceToFixed(num,precsn,forcePrecisionZoer) {
+                if (!forcePrecisionZoer && (""+num).indexOf('.')==-1 ) { // 不包含.时 不补0
+                    return num;
+                }
+                return num.toFixed(precsn);
             }
             return val;
         }, onChange: function (_490, _491) {
