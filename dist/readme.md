@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-05-22
 - `numberbox`增加`forcePrecisionZoer`配置,可配置成不强制补0
+- 增加11个小图标
 
 ## 2022-05-20
 - 单选控件`DropDropRadio`增加clear :sparkles: 需求号[2500978]
