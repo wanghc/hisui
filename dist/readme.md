@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2022-05-24
+- `lookup`增加自适应高度功能 :sparkles: 需求号[2447863]
+
 ## 2022-05-22
 - `numberbox`增加`forcePrecisionZoer`配置,可配置成不强制补0
 - 增加11个小图标

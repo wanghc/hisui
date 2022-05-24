@@ -176,12 +176,63 @@
         }
         return ;
     };
-    function renderRowSummary(target,html){
+    /**
+     * 设置弹出面板与列表高度
+     * @param {JQueryObject} cont 
+     * @param {JQueryObject} grd 
+     * @param {Number} contHeight 
+     * @param {Number} grdHeight 
+     */
+    function resizeGridAndCont(cont, grd, contHeight, grdHeight) {
+        cont._outerHeight(contHeight);
+        var grdWidth = cont._outerWidth();
+        grd.datagrid('resize', {height:grdHeight,width:grdWidth});
+    }
+    /**
+     * 计算上下空白区域计算出显示层高度
+     * @param {Document} target            放大镜输入框元素
+     * @param {JQueryObject} grd               表格对象
+     * @param {Number} rowSummaryHeight  最后一行与翻页条留白高度
+     * @returns 
+     */
+    function getFixContHeight(target, grd, rowSummaryHeight) {
+        var t = $(target);
+        var state = $.data(target, "lookup");
+        var opts = state.options;
+        var cont = $($.hisui.globalContainerSelector);
+        if (!cont.is(":visible")) return;
+        var panelHeight = cont._outerHeight();
+        if (opts.panelHeightFix) {
+            var ch = document.documentElement.clientHeight; /*可见高度*/
+            var _tOffset = t.offset();
+            var topBlankHeight = _tOffset.top - document.documentElement.scrollTop;
+            var downBlankHeight = ch - topBlankHeight - t._outerHeight();
+            if ( topBlankHeight > downBlankHeight) { //上面空间大于下面
+                panelHeight = topBlankHeight;
+            } else {
+                panelHeight = downBlankHeight;
+            }
+            if (grd.datagrid('getPanel').find('.datagrid-view2 .datagrid-btable').eq(0).length>0) {
+                var rowTotalHeight = grd.datagrid('getPanel').find('.datagrid-view2 .datagrid-btable').eq(0)[0].scrollHeight + rowSummaryHeight;
+                // 面板不用太高, 只要能显示全列表中所有数据即可
+                // 74=header+pagingbar ，补上后面减的18
+                if (panelHeight > (rowTotalHeight + 74 + 22)) { panelHeight = rowTotalHeight + 74 + 22 }
+            }
+            if (panelHeight > opts.panelMaxHeight) { panelHeight = opts.panelMaxHeight; }
+            if (panelHeight < opts.panelMinHeight) { panelHeight = opts.panelMinHeight; }
+            panelHeight = panelHeight - 18; //与边留18空隙
+        }
+        return panelHeight;
+    }
+    function renderRowSummary(target,html,grd){
         var cont = $($.hisui.globalContainerSelector);
         if (cont.is(":visible")){
             cont.find('.lookup-rowSummary').remove();
-            var rowSummaryHeight = $('<div class="lookup-rowSummary">'+html+'</div>').appendTo(cont)._outerHeight();
-            cont._outerHeight(cont.children('.datagrid')._outerHeight()+rowSummaryHeight);
+            var rowSummaryHeight = $('<div class="lookup-rowSummary">' + html + '</div>').appendTo(cont)._outerHeight();
+            var fixHeight = getFixContHeight(target, grd, rowSummaryHeight);
+            var grdHeight = fixHeight - rowSummaryHeight;
+            resizeGridAndCont(cont,grd,fixHeight,grdHeight);
+            //cont._outerHeight(cont.children('.datagrid')._outerHeight()+rowSummaryHeight);
             $.hisui.fixPanelTLWH();
         }
         return;
@@ -189,17 +240,24 @@
     function initGrid (target){
         var state = $.data(target, "lookup");
         var opts = state.options;
+        if ('function' == typeof opts.selectRowRender) {
+            opts.fit = false; // grid的高度要实时变化 
+            opts.panelHeightFix = true;
+        } else { opts.fit = true; }
         if (!isSelfGrid(state)){
             var grid = $(target).comboq('createPanelBody');
             if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target);
             grid.datagrid($.extend({}, opts, {
                 title:opts.gridTitle||"",
+                width:400,height:300,
                 rownumbers:true,lazy:true,
-                border: false, fit: true, singleSelect: (!opts.multiple), 
+                border: false, singleSelect: (!opts.multiple), 
                 onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){
                         if (opts.forceFocus) {$(target).focus();}
                         grid.datagrid("highlightRow", 0);
+                        var fixHeight = getFixContHeight(target, grid, 0);
+                        resizeGridAndCont($($.hisui.globalContainerSelector),grid,fixHeight,fixHeight);
                     }
                     opts.onLoadSuccess.apply(target, arguments);
                 }, onSelect: function(index,rows){
@@ -218,7 +276,7 @@
                     if ('function'==typeof opts.selectRowRender){
                         var html = opts.selectRowRender.call(this,row);
                         if (typeof html!='string') html='';
-                        renderRowSummary(target,html);
+                        renderRowSummary(target,html,grid);
                     }
                 },
                 clickDelay:200  // datagrid 的点击支持防抖 
@@ -297,6 +355,9 @@
         return $.extend({}, $.fn.comboq.parseOptions(target),$.fn.datagrid.parseOptions(target), $.parser.parseOptions(target, ["idField", "textField", "mode",{isCombo:"boolean",minQueryLen:'number'}]));
     };
     $.fn.lookup.defaults = $.extend({}, $.fn.comboq.defaults, $.fn.datagrid.defaults, {
+        panelHeightFix: false, /*通过界面的可见高度来自适应放大镜的高度*/
+        panelMaxHeight:500,
+        panelMinHeight:160,
         singleRequest:true,
         forceFocus:true, /*是否强制光标到放大镜输入框*/
         fixRowNumber:true,
