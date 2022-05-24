@@ -13,13 +13,13 @@
 	<h2>后台Query查询结果导出Excel</h2>
 	<h3>说明:</h3>
 	<span>通过公共方法调用Query生成Excel</span>
-	<h2>一.通过Query与Query参数把结果集导成CVS文件示例：</h2>
-	<h4>说明：cvs格式文件导出为后台导出,无需前台插件支持,但0开头内容会变忽略0</h4>
+	<h2>一.通过Query与Query参数把结果集导成CSV文件示例：</h2>
+	<h4>说明：csv格式文件导出为后台导出,无需前台插件支持,但0开头内容会变忽略0，长数字变成科学计算法时,可以数字后加特殊不可见字符处理(\t)</h4>
 	<pre class="prettyprint linenums lang-js hide"><code>// js文件中代码 ，导出rowid为1的安全组所有菜单
 // excelname不用包含后缀
 var rtn = tkMakeServerCall("websys.Query","ToExcel","excelname","web.Util.Menu","SelectGroupMenu",1);
 location.href = rtn;</code></pre>
-<pre class="prettyprint linenums lang-js hide"><code>//引用hisui库后,js文件中代码，
+<pre class="prettyprint linenums lang-js hide"><code>//引用websys.jquery.js后，导出文件中代码，
 var rtn = $cm({
 	dataType:'text',
 	ResultSetType:"Excel",
@@ -86,7 +86,7 @@ window.open("websys.query.customisecolumn.csp?CONTEXT=Kweb.DHCSSUserLogonLog:Fin
 				<td>ResultSetType</td>
 				<td>{String}</td>
 				<td>必填项</td>
-				<td>Excel表示导出cvs，ExcelPlugin表示导出标准Excel</td>
+				<td>Excel表示导出csv，ExcelPlugin表示导出标准Excel</td>
 			</tr>
 			<tr>
 				<td>ExcelName</td>
