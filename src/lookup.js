@@ -184,7 +184,14 @@
      * @param {Number} grdHeight 
      */
     function resizeGridAndCont(cont, grd, contHeight, grdHeight) {
-        cont._outerHeight(contHeight);
+        if (!!contHeight) {
+            cont._outerHeight(contHeight);
+        } else {
+            contHeight = cont._outerHeight();
+        }
+        if (!grdHeight) {
+            grdHeight = contHeight;
+        }
         var grdWidth = cont._outerWidth();
         grd.datagrid('resize', {height:grdHeight,width:grdWidth});
     }
@@ -246,12 +253,17 @@
         } else { opts.fit = true; }
         if (!isSelfGrid(state)){
             var grid = $(target).comboq('createPanelBody');
-            if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target);
+            if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target); 
             grid.datagrid($.extend({}, opts, {
                 title:opts.gridTitle||"",
                 width:400,height:300,
                 rownumbers:true,lazy:true,
                 border: false, singleSelect: (!opts.multiple), 
+                onBeforeLoad: function (param) {
+                    var cont = $($.hisui.globalContainerSelector);
+                    resizeGridAndCont(cont, grid);
+                    opts.onBeforeLoad.apply(target, arguments);
+                },
                 onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){
                         if (opts.forceFocus) {$(target).focus();}
