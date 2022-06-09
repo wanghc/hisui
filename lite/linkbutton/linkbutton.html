@@ -5,9 +5,9 @@
     <title>HIS UI</title>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
-    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
 </head>
 <body>
     <h2>链接按钮</h2>
@@ -17,43 +17,33 @@
         <!--<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true">查询</a>
         <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true" disabled>禁用</a>
         -->
-        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
-        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
-        <a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
-        <a href="#" class="hisui-linkbutton" id="btn1">点我提示</a>
-        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用&lt;/a>            
-&lt;a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px">自定义宽度按钮&lt;/a>
-&lt;a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮&lt;/a>
-&lt;a href="#" class="hisui-linkbutton" id="btn1">点我提示&lt;/a&gt;
-&lt;script type="text/javascript"&gt;
-    $(function () {
-        $("#btn1").click(function (argument) {
-            alert("你确定？");
-        });
-    });
-&lt;/script&gt;</code></pre>
+<div class='use-prettyprint lang-html'>
+<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
+<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
+<a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
+<a href="#" class="hisui-linkbutton" id="btn1">点我提示</a></div>
+    </div>
+    <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html'>
+<a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
+<a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
+<a href="#" class="showicon hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
+<a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-edit'"></a></div>
     </div>
     <h3>深色可用类</h3>
     <span>如果需要鼠标悬浮时按钮变色更深，在class中加入<code>hover-dark</code>.如病人信息条.</span>
-    <div class="demo-exp-code entry-content">
-        <a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-w-find'">时间线查看</a>
-        <a href="#" class="hisui-linkbutton hover-dark" >确诊</a>
-        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-w-find'">时间线查看&lt;/a>
-&lt;a href="#" class="hisui-linkbutton hover-dark">确诊&lt;/a></code></pre>
+    <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html'>
+<a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-w-find'">时间线查看</a>
+<a href="#" class="hisui-linkbutton hover-dark" >确诊</a></div>
     </div>
 
     <h3>不同色系按钮</h3>
     <span>按钮默认是蓝色，如果需要使用其它色系的按钮，在class中加入<code>green</code>、<code>yellow</code>、或者<code>red</code>，按钮就会改变色系</span>
     <br><span>其中<code>green</code>表示通过，<code>yellow</code>表示警示，<code>red</code>表示拒绝</span>
-    <div class="demo-exp-code entry-content">
-        <a href="#" class="hisui-linkbutton">蓝色按钮</a>
-        <a href="#" class="hisui-linkbutton green">绿色按钮</a>
-        <a href="#" class="hisui-linkbutton yellow">黄色按钮</a>
-        <a href="#" class="hisui-linkbutton red">红色按钮</a>
-        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton">蓝色按钮&lt;/a>
-&lt;a href="#" class="hisui-linkbutton green">绿色按钮&lt;/a>
-&lt;a href="#" class="hisui-linkbutton yellow">黄色按钮&lt;/a>
-&lt;a href="#" class="hisui-linkbutton red">红色按钮&lt;/a></code></pre>
+    <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html'>
+<a href="#" class="hisui-linkbutton">蓝色按钮</a>
+<a href="#" class="hisui-linkbutton green">绿色按钮</a>
+<a href="#" class="hisui-linkbutton yellow">黄色按钮</a>
+<a href="#" class="hisui-linkbutton red">红色按钮</a></div>
     </div>
 
     <h3>禁用 事件处理</h3>
