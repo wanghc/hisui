@@ -234,6 +234,15 @@
             var opts = $.data(jq[0], "timespinner").options;
             var vv = jq.val().split(opts.separator);
             return parseInt(vv[2], 10) || 0;
+        }, setSpinStart :function (jq,index) { /*设置微调位置*/
+            return jq.each(function () {
+                if (index > -1) {
+                    var opts = $.data(this, "timespinner").options;
+                    opts.highlight = calHighlightTypeByPosi(index);
+                    this.selectionStart = index;
+                    this.selectionStartPersistent = index;
+                }
+            });
         }
     };
     $.fn.timespinner.parseOptions = function (_500) {

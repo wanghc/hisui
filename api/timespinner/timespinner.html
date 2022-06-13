@@ -18,17 +18,48 @@
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint lang-html">
 			<div class="hisui-panel" title="登记" style="width:400px;padding:10px" 
-				data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
-			<table>
-				<tr>
-					<td class="r-label">时间</td>
-					<td>
-						<input class="hisui-timespinner" data-options="showSeconds:true" style="border-radius: 2px;">
-					</td>
-				</tr>
-			</table>
+					data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
+				<table>
+					<tr>
+						<td class="r-label">时间</td>
+						<td>
+							<input class="hisui-timespinner" data-options="showSeconds:true" style="border-radius: 2px;">
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
-	<prettyprint></prettyprint>	
+	<div class="demo-exp-code entry-content">
+		<div>
+			<div class="hisui-panel use-prettyprint lang-html" title="执行记录时间" style="width:400px;padding:10px" 
+				data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
+				<span style="margin-right: 10px;">执行时间</span>
+				<input id="tsp" class="hisui-timespinner" data-options="showSeconds:true" style="border-radius: 2px;">
+				<span style="margin-left: 10px;">默认微调分钟</span>
+				<script>
+					$(function(){
+						$("#tsp").timespinner("setValue","101010");
+						$("#tsp").timespinner("setSpinStart",4);
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+	<prettyprint></prettyprint>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>setSpinStart</td>
+			<td>设置当前微调位置。如:4。则默认光标在第4个字符位置，即分钟区域<code>20220613</code></td>
+			<td>当入参值小于0或大于内容总长度时无效</td>
+			<td>正整数</td>
+		</tr>
+	</table>
 </body>
 </html>

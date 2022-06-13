@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2022-06-13
+-  `timespinner`增加`setSpinStart`方法指定微调位置
+
 ## 2022-06-09
 - `linkbutton`lite版风格中无描述按钮长度显示不正确处理
 
