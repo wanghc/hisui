@@ -187,13 +187,50 @@
 			<tr>
 				<td class="r-label">安全组</td>
 				<td><input id="group3" class="textbox" /> </td>
+				<!-- <td><input id="group9" class="textbox" /> </td> 测试医嘱录入放大镜闪烁问题2538239-->
 				<td style="padding-left: 10px;">安全组名字长度大于10 提示出来</td>
 			</tr>
 			</tbody>
 		</table>
 		<script type='text/javascript' class='use-prettyprint'>
 			$(function(){
+				$("#group3").keydown(function(e){
+					if (e.keyCode ==13){
+						setTimeout(function(){$("#group9").focus();},1200);
+					}
+				});
 				$("#group3").lookup({
+					width:200,panelWidth:460,
+					url:'getGroup',
+					mode:'remote',
+					idField:'HIDDEN',
+					textField:'Description',
+					columns:[[  
+						{field:'Description',title:'安全组名称',width:200},  
+						{field:'HIDDEN',title:'安全组ID',width:50}  
+					]],
+					pagination:true,
+					onSelect:function(index,rowData){
+						console.log("index="+index+",rowData=",rowData);
+					},
+					selectRowRender:function(row){
+						console.log('selectRowRender',row);
+						if (!row) return;
+						if (row.Description.length>12){ //安全组名字长于10 显示提示信息
+							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。</span>';
+						}if (row.Description.length==5){ //安全组名字长于10 显示提示信息
+							return '<p style="margin:0;padding:10px;display:block;height:40px;overflow:auto;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符为5字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符为5字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过为5字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。</span>';
+						}else if (row.Description.length>10){ //安全组名字长于10 显示提示信息
+							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符超过10字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题</span>';
+						}else if(row.Description.length>8){
+							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+'</span>';
+						}else{
+							return ''
+						}
+						
+					}
+				});
+				$("#group9").lookup({
 					width:200,panelWidth:460,
 					url:'getGroup',
 					mode:'remote',

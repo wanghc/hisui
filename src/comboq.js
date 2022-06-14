@@ -20,10 +20,14 @@
     }
 	function _hide(target){
         var panel = $($.hisui.globalContainerSelector);
-        if ("undefined" == typeof target) {
-            if ($.data(panel[0], "data")){
-                var qState = $.data(panel[0], "data").qState ;
-                target = $.data(panel[0], "data").srcTargetDom ;
+        if (panel.length > 0 && $.data(panel[0], "data")) {
+            var dataState = $.data(panel[0], "data");
+            var qState = dataState.qState;
+            /**隐藏时,要把定时器清空*/
+            clearTimeout(dataState.offsettimer);
+            dataState.offsettimer = null;
+            if ("undefined" == typeof target) {
+                target = dataState.srcTargetDom ;
             }
         }
         if (panel.is(":visible")) {
@@ -202,7 +206,6 @@
             srcTargetDom : target,
             qState : state     // 医嘱录入界页，先删除行后，再隐藏放大镜，那时就拿不到放大镜上的options
         }); /*下拉层上记录住当前对应的target*/
-
         opts.onShowPanel.call(target);
         $.hisui.fixPanelTLWH();
     }

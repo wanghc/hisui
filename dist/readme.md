@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-06-14
+- `lookup`在多个输入框中来回闪烁问题 :bug: 需求号[2538239]
 
 ## 2022-06-13
 -  `timespinner`增加`setSpinStart`方法指定微调位置

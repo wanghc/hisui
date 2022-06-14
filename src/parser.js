@@ -227,8 +227,13 @@
         var panel = $($.hisui.globalContainerSelector);
         var offset = _t.offset();
         panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
+        /**清除上一次定时器,当调用renderRowSummary方法时,会多次触发fixPanelTLWH,不用多个定时器来计算位置 */
+        if (state.offsettimer) {
+            clearTimeout(state.offsettimer);
+            state.offsettimer = null;
+        }
         /*60ms, 重计算位置*/
-		(function () {
+        (function () {
             if (panel.is(":visible")) {
                 var myTop = getTop();
                 var myLeft = getLeft();
@@ -237,7 +242,7 @@
                     clearTimeout(state.offsettimer);
                     state.offsettimer = null;
                 }
-				state.offsettimer = setTimeout(arguments.callee, 60);
+                state.offsettimer = setTimeout(arguments.callee, 60);
             }
         })();
         function getLeft() {
