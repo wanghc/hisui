@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2022-06-22
+- 接近datagrid-toolbar上的图标与文字的距离
+
 ## 2022-06-20
 - `panel`的头部内边距从4px修改成3px，保持与炫彩版一致, 不然有些界面会多出多余的滚动条 :sparkles:
 
