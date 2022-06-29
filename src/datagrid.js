@@ -2051,7 +2051,10 @@
                     if(opts.onColumnsLoad) opts.onColumnsLoad.call(_64f,json.cm);
                     opts.columns = [json.cm];
                     opts.pageSize = json.pageSize;
-                    if(opts.pageList) opts.pageList.push(opts.pageSize);
+                    if (opts.pageList && $.isArray(opts.pageList) && $.inArray(opts.pageSize, opts.pageList)==-1) {
+                        opts.pageList.push(opts.pageSize);
+                        opts.pageList.sort(function(a,b){return a-b});
+                    }
                 }
                 opts.columns = $.extend(true, [], opts.columns);
                 opts.frozenColumns = $.extend(true, [], opts.frozenColumns);
