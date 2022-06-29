@@ -269,9 +269,11 @@
                 onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){
                         if (opts.forceFocus) {$(target).focus();}
-                        grid.datagrid("highlightRow", 0);
                         var fixHeight = getFixContHeight(target, grid, 0);
-                        resizeGridAndCont($($.hisui.globalContainerSelector),grid,fixHeight,fixHeight);
+                        resizeGridAndCont($($.hisui.globalContainerSelector), grid, fixHeight, fixHeight);
+                        // HISUI lookup插件当加载数据成功后高亮第一行时，需触发selectRowRender 事件 
+                        // 需求号：2723790 调整顺序
+                        grid.datagrid("highlightRow", 0);
                     }
                     opts.onLoadSuccess.apply(target, arguments);
                 }, onSelect: function(index,rows){
@@ -286,7 +288,8 @@
                         $(target).comboq("hidePanel");
                     }
                 },
-                onHighlightRow:function(index,row){
+                onHighlightRow: function (index, row) {
+                    debugger
                     if ('function'==typeof opts.selectRowRender){
                         var html = opts.selectRowRender.call(this,row);
                         if (typeof html!='string') html='';

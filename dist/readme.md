@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2022-06-29
 - `列表`-`下拉框`-`放大镜`的pageList内数字显示顺序不对问题处理 :sparkles: 需求号[2728500]
+- `lookup`当加载数据成功后高亮第一行时需触发selectRowRender事件 需求号：[2723790]
 
 ## 2022-06-22
 - 接近datagrid-toolbar上的图标与文字的距离
