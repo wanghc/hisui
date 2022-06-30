@@ -438,6 +438,10 @@
                             if (pos >= 0) {
                                 cell.addClass("datagrid-sort-" + _554[pos]);
                             }
+                            // 2022-06-30 区分能排序列 , 查看http://www.jeasyui.com/tutorial/datagrid/datagrid8_demo.html实现
+                            if(col.sortable){
+                                cell.addClass("datagrid-sort");
+                            }
                             if (col.resizable == false) {
                                 cell.attr("resizable", "false");
                             }
