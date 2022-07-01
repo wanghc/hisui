@@ -36,13 +36,14 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-06-30
 - 列表可排序列的列头显示小图标 :sparkles: 需求号：[2750459]
-
+- lite版滚动条样式修改 :lipstick:
+- lite版按钮样式修改,hover色, disabel色，内间距 :lipstick:
 ## 2022-06-29
 - `列表`-`下拉框`-`放大镜`的pageList内数字显示顺序不对问题处理 :sparkles: 需求号[2728500]
 - `lookup`当加载数据成功后高亮第一行时需触发selectRowRender事件 需求号：[2723790]
 
 ## 2022-06-22
-- 接近datagrid-toolbar上的图标与文字的距离
+- 拉近datagrid-toolbar上的图标与文字的距离
 
 ## 2022-06-20
 - `panel`的头部内边距从4px修改成3px，保持与炫彩版一致, 不然有些界面会多出多余的滚动条 :sparkles:
