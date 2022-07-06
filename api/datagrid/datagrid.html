@@ -290,7 +290,11 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 					]],
 					columns:[[
 						
-						{field:'name',title:'描述',width:60,showTip:true,tipWidth:100,tipPosition:"right"},
+						{field:'name',title:'描述',width:60,tipWidth:150,tipPosition:"right",showTipFormatter:function(row,rowIndex){
+							return "<span style='display:block;'>代码："+row['code']+"</span>"
+							+"<span style='display:block;'>描述："+row['name']+"</span>"
+							+"<span style='display:block;'>价格："+row['price']+"</span>";
+						}},
 						{field:'price',title:'价格',width:60,align:'right'},
 						{field:'desc',title:'说明',width:300,showTip:true,tipWidth:450,tipTrackMouse:true} /*,formatter:function(value,row,index){
 							if (value) return '<span class="mytooltip" title="'+value+'">'+value+'</span>'
@@ -369,10 +373,13 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 				return data;
 			},
 			columns:[[
-				{field:'code',title:'代码',width:100},
-				{field:'name',title:'描述',width:100},
-				{field:'price',title:'价格',width:100,align:'right'},
-				{field:'desc',title:'说明',width:200,showTip:true,tipWidth:450}
+				{field:'name',title:'描述',width:60,tipWidth:150,tipPosition:"right",showTipFormatter:function(row,rowIndex){
+					return "&lt;span style='display:block;'&gt;代码："+row['code']+"&lt;/span&gt;"
+					+"&lt;span style='display:block;'&gt;描述："+row['name']+"&lt;/span&gt;"
+					+"&lt;span style='display:block;'&gt;价格："+row['price']+"&lt;/span&gt;";
+				}},
+				{field:'price',title:'价格',width:60,align:'right'},
+				{field:'desc',title:'说明',width:300,showTip:true,tipWidth:450,tipTrackMouse:true}
 			]],
 			data:{
 				rows:[
@@ -665,30 +672,6 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>值为true时，行号列自适应宽度。<code>(20180822)</code></td>
 		</tr>
 		<tr>
-			<td>showTip</td>
-			<td>列属性，当为true时,鼠标移入时弹出提示层，见例3</td>
-			<td>false</td>
-			<td>默认为false</td>
-		</tr>
-		<tr>
-			<td>tipWidth</td>
-			<td>列属性，定义鼠标移入时弹出提示层的宽度，见例3</td>
-			<td>300</td>
-			<td>默认为300px</td>
-		</tr>
-		<tr>
-			<td>tipPosition</td>
-			<td>列属性，定义鼠标移入时弹出提示层的位置，见例3</td>
-			<td>'bottom'</td>
-			<td>'top','bottom','left','right'<code>(20210105)</code></td>
-		</tr>
-		<tr>
-			<td>tipTrackMouse</td>
-			<td>列属性，定义鼠标移入时弹出的提示层是否跟随鼠标，见例3</td>
-			<td>false</td>
-			<td>true或false,默认为false<code>(20210105)</code></td>
-		</tr>
-		<tr>
 			<td>btoolbar</td>
 			<td>底部工具栏。与toolbar对应,只是位置变到列表的底部</td>
 			<td>null</td>
@@ -837,6 +820,36 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>当前列内容字体行高</td>
 			<td>""</td>
 			<td>默认为空。如lineHeight:10则表格内容行高为10px<code>(20201126)</code></td>
+		</tr>
+		<tr>
+			<td>showTip</td>
+			<td>列属性,当为true时,鼠标移入某单元格时,弹出提示层,内容为当前单元格内容。见例3-说明列</td>
+			<td>false</td>
+			<td>默认为false</td>
+		</tr>
+		<tr>
+			<td>showTipFormatter</td>
+			<td>列属性,当配置为函数时,会在鼠标移入单元格时,弹出提示层, 提示层内容为当前函数的返回值。见例3-描述列<code>20220706</code></td>
+			<td>null</td>
+			<td>函数入参function(row,rowIndex){},返回文本或html片段</td>
+		</tr>
+		<tr>
+			<td>tipWidth</td>
+			<td>列属性，定义鼠标移入时弹出提示层的宽度，见例3</td>
+			<td>300</td>
+			<td>默认为300px</td>
+		</tr>
+		<tr>
+			<td>tipPosition</td>
+			<td>列属性，定义鼠标移入时弹出提示层的位置，见例3</td>
+			<td>'bottom'</td>
+			<td>'top','bottom','left','right'<code>(20210105)</code></td>
+		</tr>
+		<tr>
+			<td>tipTrackMouse</td>
+			<td>列属性，定义鼠标移入时弹出的提示层是否跟随鼠标，见例3</td>
+			<td>false</td>
+			<td>true或false,默认为false<code>(20210105)</code></td>
 		</tr>	
 	</table>
 	<prettyprint />	

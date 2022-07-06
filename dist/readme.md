@@ -34,10 +34,14 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-07-06
+- `datagrid`的列定义中增加`showTipFormatter`函数接口, 自定义提示内容 :sparkles:  需求号：[2491977]
+
 ## 2022-06-30
 - 列表可排序列的列头显示小图标 :sparkles: 需求号：[2750459]
 - lite版滚动条样式修改 :lipstick:
 - lite版按钮样式修改,hover色, disabel色，内间距 :lipstick:
+
 ## 2022-06-29
 - `列表`-`下拉框`-`放大镜`的pageList内数字显示顺序不对问题处理 :sparkles: 需求号[2728500]
 - `lookup`当加载数据成功后高亮第一行时需触发selectRowRender事件 需求号：[2723790]

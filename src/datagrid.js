@@ -626,10 +626,10 @@
         function dgBodyClickFun(e){  //原click事件
             var tt = $(e.target);
             var tr = tt.closest("tr.datagrid-row");
-            if (!_563(tr)) {
+            if (!isValidTr(tr)) {
                 return;
             }
-            var rowIndex = _565(tr);
+            var rowIndex = getRowIndexByTr(tr);
             if (tt.parent().hasClass("datagrid-cell-check")) {
                 if (opts.singleSelect && opts.selectOnCheck) {
                     if (!opts.checkOnSelect) {
@@ -705,7 +705,12 @@
            if ("undefined" == typeof td.attr('field')){
                 td = td.closest('td');
            }
-           colname = td.attr('field');
+            colname = td.attr('field');
+            var tr = $(e.target).closest("tr.datagrid-row");
+            if (!isValidTr(tr)) {
+                return;
+            }
+            var rowIndex = getRowIndexByTr(tr);
            if (colname && $.trim(td.text())!=""){
                var tmpdg = $.data(_55a, "datagrid");
                var mycm = tmpdg.options.columns||[];
@@ -713,12 +718,17 @@
                for (var i=0;i<cm.length; i++){
                    for(var j=0;j<cm[i].length;j++){
                         if (cm[i][j].field==colname){
-                            if (cm[i][j].showTip){
+                            if (cm[i][j].showTip || 'function' == typeof cm[i][j].showTipFormatter) {
+                                var tipCtt = td.text();
+                                if ('function' == typeof cm[i][j].showTipFormatter) {
+                                    var row = opts.finder.getRow(_55a, rowIndex);
+                                    tipCtt = cm[i][j].showTipFormatter.call(this, row, rowIndex);
+                                }
                                 var tipWidth = cm[i][j].tipWidth||350;
                                 var tipPosition = cm[i][j].tipPosition||"bottom";
                                 var tipTrackMouse = cm[i][j].tipTrackMouse || false;
                                 td.tooltip({
-                                    content:td.text(),
+                                    content:tipCtt,
                                     position:tipPosition,
                                     trackMouse:tipTrackMouse,
                                     tipWidth:tipWidth
@@ -732,25 +742,20 @@
                                     }*/
                                 }).tooltip("show",e);
                             }
+                            
                         }
                    }
                }
            }
            /** end */
-            var tr = $(e.target).closest("tr.datagrid-row");
-            if (!_563(tr)) {
-                return;
-            }
-            var _564 = _565(tr);
-            _5c7(_55a, _564,true);  //高亮显示 增加isMouse 2019-5-24
-
+            _5c7(_55a, rowIndex,true);  //高亮显示 增加isMouse 2019-5-24
             e.stopPropagation();
         }).bind("mouseout", function (e) {
             var tr = $(e.target).closest("tr.datagrid-row");
-            if (!_563(tr)) {
+            if (!isValidTr(tr)) {
                 return;
             }
-            var _566 = _565(tr);
+            var _566 = getRowIndexByTr(tr);
             opts.finder.getTr(_55a, _566).removeClass("datagrid-row-over");
             e.stopPropagation();
         }).bind("click", function (e) {
@@ -763,10 +768,10 @@
         }).bind("dblclick", function (e) {
             var tt = $(e.target);
             var tr = tt.closest("tr.datagrid-row");
-            if (!_563(tr)) {
+            if (!isValidTr(tr)) {
                 return;
             }
-            var _569 = _565(tr);
+            var _569 = getRowIndexByTr(tr);
             var row = opts.finder.getRow(_55a, _569);
             var td = tt.closest("td[field]", tr);
             if (td.length) {
@@ -780,10 +785,10 @@
             e.stopPropagation();
         }).bind("contextmenu", function (e) {
             var tr = $(e.target).closest("tr.datagrid-row");
-            if (!_563(tr)) {
+            if (!isValidTr(tr)) {
                 return;
             }
-            var _56b = _565(tr);
+            var _56b = getRowIndexByTr(tr);
             var row = opts.finder.getRow(_55a, _56b);
             opts.onRowContextMenu.call(_55a, e, _56b, row);
             e.stopPropagation();
@@ -803,14 +808,14 @@
             dc.view2.children("div.datagrid-header,div.datagrid-footer")._scrollLeft($(this)._scrollLeft());
             dc.body2.children("table.datagrid-btable-frozen").css("left", -$(this)._scrollLeft());
         });
-        function _565(tr) {
+        function getRowIndexByTr(tr) {
             if (tr.attr("datagrid-row-index")) {
                 return parseInt(tr.attr("datagrid-row-index"));
             } else {
                 return tr.attr("node-id");
             }
         };
-        function _563(tr) {
+        function isValidTr(tr) {
             return tr.length && tr.parent().length;
         };
     };
