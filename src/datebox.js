@@ -94,19 +94,22 @@
 					$(this.target).combo('hidePanel');
 					opts.onSelect.call(target, date);
 				},
-				validator: function(date,validParams){
+				validator: function (date, validParams) {
+					// date为当前时间2022-07-15 14:43:00
+					// maxDate日期的转换时间:2022-07-15 00:0:00, 虽然是同一天, 当前时间不在maxDate内，有bug， 增加onlyDate处理
+					var onlyDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 					var tmpState = $.data(target, 'datebox');
 					var tmpOpt = tmpState.options;
 					var rtn = true;
 					if (null != tmpOpt.minDate){
 						if (validParams) validParams[0]=tmpOpt.minDate;
 						var d1 = tmpOpt.parser.call(target, tmpOpt.minDate);
-						if (d1>date) rtn= false;
+						if (d1>onlyDate) rtn= false;
 					}
 					if (null != tmpOpt.maxDate){
 						if (validParams) validParams[1]=tmpOpt.maxDate;
 						var d2 = tmpOpt.parser.call(target, tmpOpt.maxDate);
-						if (d2<date) rtn = false;
+						if (d2<onlyDate) rtn = false;
 					}
 					return rtn;
 				}

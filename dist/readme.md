@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2022-07-15
+- `datebox`的maxDate设置为今天，但不能通过点击今天按钮选中日期 :bug: 需求号：[2734045]
+
 ## 2022-07-06
 - `datagrid`的列定义中增加`showTipFormatter`函数接口, 自定义提示内容 :sparkles:  需求号：[2491977]
 
