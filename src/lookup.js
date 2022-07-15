@@ -289,7 +289,6 @@
                     }
                 },
                 onHighlightRow: function (index, row) {
-                    debugger
                     if ('function'==typeof opts.selectRowRender){
                         var html = opts.selectRowRender.call(this,row);
                         if (typeof html!='string') html='';

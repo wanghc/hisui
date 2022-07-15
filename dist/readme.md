@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 - `datebox`的maxDate设置为今天，但不能通过点击今天按钮选中日期 :bug: 需求号：[2734045]
 - `window`面板标题左侧间距应为10px 需求号：[2767193]
 - `layout`区域间分割线背景色修改成FFF 需求号：[2767193]
+- `window`的body的边框宽度修改成0, 兼容炫彩版, 1个像素可能造成文字折行 [2791752]
 
 ## 2022-07-06
 - `datagrid`的列定义中增加`showTipFormatter`函数接口, 自定义提示内容 :sparkles:  需求号：[2491977]
