@@ -38,10 +38,11 @@
 				<input id="tsp" class="hisui-timespinner" data-options="showSeconds:true" style="border-radius: 2px;">
 				<span style="margin-left: 10px;">默认微调分钟</span>
 				<script>
-					$(function(){
+					$.parser.onComplete= function(ctn){
+						if (ctn){return ;}
 						$("#tsp").timespinner("setValue","101010");
 						$("#tsp").timespinner("setSpinStart",4);
-					});
+					};
 				</script>
 			</div>
 		</div>
