@@ -33,10 +33,14 @@ input.textbox{
 .textareabox-text:disabled,
 .validatebox-text:disabled,
 .searchbox-text:disabled,
-textarea:disabled, input:not([type]):disabled, input[type="text"]:disabled {
+textarea:disabled, input:not([type]):disabled, input[type="text"]:disabled{
   background-color: @input-disabled-bgcolor;
   border-color: @input-disabled-border-color;
   color: @input-disabled-color;
+  cursor: not-allowed;
+}
+.checkbox.disabled ,.radio.disabled{
+  cursor: not-allowed;
 }
 .spinner .textbox{
   width:151px;
