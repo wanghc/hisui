@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 - `panel`无title时，lite风格上边框增加边框 [2773693]
 - 图标缺少icon-star-light-yellow [2777168]
 - lite风格下所有禁用示例加入鼠标小手禁用样式 [2777705]
+- lite风格页签关闭按钮与前面文字前间距为8px [2777513]
 
 ## 2022-07-15
 - `datebox`的maxDate设置为今天，但不能通过点击今天按钮选中日期 :bug: 需求号：[2734045]
