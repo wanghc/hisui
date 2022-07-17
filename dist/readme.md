@@ -41,6 +41,7 @@ $("#btn").linkbutton("disable");
 - lite风格页签关闭按钮与前面文字前间距为8px [2777513]
 - lite风格下icon-qua-pro-dis,icon-qua-pro-blue二图标修正 [2777799]
 - HISUI两个版本`tree`选中行时背景颜色断开问题处理 [2779159]
+- 二个版本都增加`icon-sure-readed`,`icon-read-details`二个图标 [2786156]
 
 ## 2022-07-15
 - `datebox`的maxDate设置为今天，但不能通过点击今天按钮选中日期 :bug: 需求号：[2734045]
