@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-07-17
+- `panel`无title时，lite风格上边框增加边框 [2773693]
+- 
 
 ## 2022-07-15
 - `datebox`的maxDate设置为今天，但不能通过点击今天按钮选中日期 :bug: 需求号：[2734045]
