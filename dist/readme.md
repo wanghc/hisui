@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-07-18
+- tabs内区域不要圆角,导致内部iframe也带圆角 [2790963]
+
 ## 2022-07-17
 - `panel`无title时，lite风格上边框增加边框 [2773693]
 - 图标缺少icon-star-light-yellow [2777168]

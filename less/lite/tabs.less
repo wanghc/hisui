@@ -40,6 +40,9 @@
 }
 .tabs-panels{
   border-radius: 0 0 4px 4px;
+  &>.panel>.panel-body.panel-body-noheader{  //20220718 tabs内区域不要圆角,导致内部iframe也带圆角 [2790963]
+    border-radius: 0px;
+  }
 }
 .tabs {
   height: @tabs-header-height;
