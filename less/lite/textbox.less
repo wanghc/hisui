@@ -93,7 +93,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color:@input-iconbtn-color;
   text-decoration: none;
 }
-.tree-hit{ /*宽应该为16px，如果为30px会导致树父节点后移[2791549]*/
+/*宽应该为16px，如果为30px会导致树父节点后移[2791549]*/
+/*只影响accordiontree，其它tree还是用图片 [2791392]*/
+.accordiontree .tree-hit{
   background: none;
   width: 16px;
   height: 16px;
