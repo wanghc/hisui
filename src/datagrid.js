@@ -1100,9 +1100,15 @@
             $(this).children("div.datagrid-cell")._outerWidth(_59a);
         });
     };
-    function _59b(_59c) {
+    /**
+     * 
+     * @param {Node} _59c target
+     * @param {HTMLElement} tr  在此范围下查找可编辑数据
+     * 编辑一行时，不要去处理所有行数据，指定行就成 
+     */
+    function _59b(_59c,tr) {
         var dc = $.data(_59c, "datagrid").dc;
-        dc.view.find("div.datagrid-editable").each(function () {
+        (tr||dc.view).find("div.datagrid-editable").each(function () {
             var cell = $(this);
             var _59d = cell.parent().attr("field");
             var col = $(_59c).datagrid("getColumnOption", _59d);
@@ -1663,7 +1669,7 @@
         }
         tr.addClass("datagrid-row-editing");
         _5fa(_5f8, rowIndex);
-        _59b(_5f8);
+        _59b(_5f8,tr); /* 2022-07-18 把当前行传给编辑方法 wangqinyong */
         tr.find("div.datagrid-editable").each(function () {
             var _5fb = $(this).parent().attr("field");
             var ed = $.data(this, "datagrid.editor");

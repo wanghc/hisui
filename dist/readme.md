@@ -41,6 +41,7 @@ $("#btn").linkbutton("disable");
 - `tree`在lite风格下父节点图标显示异常问题处理 [2791549]
 - `tree`在lite风格下无线条父树节点前无对应图标 [2791392]
 - `linkbutton`按钮增加selected样式处理
+- `datagrid`优化editbegin方法的速度 :sparkles: [2801083] by wqy
 
 ## 2022-07-17
 - `panel`无title时，lite风格上边框增加边框 [2773693]
