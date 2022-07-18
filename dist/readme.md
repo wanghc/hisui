@@ -40,6 +40,7 @@ $("#btn").linkbutton("disable");
 - 两个版本表头筛选图标替换 [2779164]
 - `tree`在lite风格下父节点图标显示异常问题处理 [2791549]
 - `tree`在lite风格下无线条父树节点前无对应图标 [2791392]
+- `linkbutton`按钮增加selected样式处理
 
 ## 2022-07-17
 - `panel`无title时，lite风格上边框增加边框 [2773693]

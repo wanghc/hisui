@@ -92,6 +92,10 @@
     padding: 0;
     background-color: @linkbutton-plain-hover-bgcolor;
   }
+  &.l-btn-selected{
+    background: @linkbutton-hover-bgcolor;
+    color:@linkbutton-font-color;
+  }
 }
 /*特殊情况（按钮在蓝色病人信息条上时）：hover背景色为#0063a7*/
 .l-btn.hover-dark {
@@ -119,6 +123,10 @@
     .l-btn-icon{
       background-color:transparent;
     }
+  }
+  &.l-btn-plain-selected{
+    background:@linkbutton-plain-hover-bgcolor;
+    color: #000000;
   }
 }
 .l-btn-disabled, 
