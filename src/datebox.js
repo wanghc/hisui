@@ -321,12 +321,16 @@
 		
 		buttons:[{
 			text: function(target){return $(target).datebox('options').currentText;},
-			handler: function(target){
+			handler: function (target) {
+				var opts = $(target).datebox("options");
+				var now = new Date();
+				var nowDay = new Date(now.getFullYear(),now.getMonth(),now.getDate());
 				$(target).datebox('calendar').calendar({
-					year:new Date().getFullYear(),
-					month:new Date().getMonth()+1,
-					current:new Date()
+					year:nowDay.getFullYear(),
+					month:nowDay.getMonth()+1,
+					current:nowDay
 				});
+				opts.onSelect.call(target, nowDay);
 				doEnter(target,true);
 			}
 		},{
