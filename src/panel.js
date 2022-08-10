@@ -12,6 +12,13 @@
     function _1e2(node) {
         node._remove();
     };
+    function GetCurrentStrWidth(text, font) {
+        var currentObj = $('<span></span>').hide().appendTo(document.body);
+        $(currentObj).html(text).css('font', font);
+        var width = currentObj.width();
+        currentObj.remove();
+        return width;
+    }
     // panel.resize
     function _1e3(_1e4, _1e5) {
         //$(this).lookup('panel').panel('resize',{width:1000});
@@ -45,8 +52,8 @@
                 var headText = _1e7.find(".panel-title").text();
                 if (headText.length<=4){
                     _1e7.width(80);
-                }else{
-                    _1e7.width(headText.length*20);
+                } else {
+                    _1e7.width(40 + parseInt(GetCurrentStrWidth(headText,'normal 14px "Microsoft Yahei", verdana, helvetica, arial, sans-serif')));
                 }
             }
         }

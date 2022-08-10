@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-08-10
 - `datebox`点击今天按钮时不触发onSelect事件问题 [2533036]
-
+- `panel`的card类型title宽度计算优化 [2668172]
 ## 2022-08-09
 - 强制使用按钮的disabled背景色 [2821159]
 
