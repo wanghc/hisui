@@ -36,6 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-08-12
 - 修改`triggerbox`在disable状态下边框颜色 [2777705]
+- 增加icon-tabel-col图标 [2786493]
+
 
 ## 2022-08-10
 - `datebox`点击今天按钮时不触发onSelect事件问题 [2533036]
