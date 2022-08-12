@@ -655,5 +655,6 @@ var iconDictionary={
     "icon-big-blue-frame-ok":"多选",
     "icon-big-white-p-red":"输入中，编写中，操作中，辅助输入",
     "icon-big-eye-deepgrade": "眼房深度公式",
-    "icon-big-paper-box":"药房配送信息"
+    "icon-big-paper-box": "药房配送信息",
+    "icon-big-ca-green":"CA认证图标,签名图标"
 };
