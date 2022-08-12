@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-08-12
+- 修改`triggerbox`在disable状态下边框颜色 [2777705]
+
 ## 2022-08-10
 - `datebox`点击今天按钮时不触发onSelect事件问题 [2533036]
 - `panel`的card类型title宽度计算优化 [2668172]
