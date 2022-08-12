@@ -171,12 +171,12 @@
 .l-btn.hover-dark.l-btn-disabled{
   opacity: 1.0;
   filter: alpha(opacity=100);
-  background:@linkbutton-disabled-bgcolor !important;
+  background:@linkbutton-disabled-bgcolor;
   color:#999999;
   border-color: @linkbutton-disabled-bgcolor;
   cursor:no-drop;
   .l-btn-icon{
-    background-color: @linkbutton-disabled-icon-bgcolor !important;
+    background-color: @linkbutton-disabled-icon-bgcolor;
   }
 }
 .l-btn-plain.l-btn-disabled {
@@ -309,5 +309,11 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     }
     &.red:hover,&.red.l-btn-focus{
       background-color: #C80000;
+    }
+    &.l-btn-disabled{
+      background-color: @linkbutton-disabled-bgcolor;
+    }
+    &.l-btn-disabled:hover{
+      background-color: @linkbutton-disabled-bgcolor;
     }
 }
