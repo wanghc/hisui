@@ -38,6 +38,8 @@ $("#btn").linkbutton("disable");
 - 修改`triggerbox`在disable状态下边框颜色 [2777705]
 - 增加`icon-tabel-col`图标 [2786493]
 - 增加`icon-big-ca-green`图标 [2843404]
+- 【极简HISUI】自定义表格工具栏中下拉表格行操作样式问题 [2812214]
+- 【极简HISUI】修改表格操作行的两个高度 [2812190]
 
 ## 2022-08-10
 - `datebox`点击今天按钮时不触发onSelect事件问题 [2533036]

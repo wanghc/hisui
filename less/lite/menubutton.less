@@ -104,25 +104,31 @@
   }
   &.m-btn-plain-active{
     background-color:@menubutton-btn-plain-active-bgcolor;
+    .l-btn-left .l-btn-text,.l-btn-icon{
+      color:@linkbutton-plain-hover-color;
+    }
+    .m-btn-downarrow{
+      color:@linkbutton-plain-hover-color;
+    }
   }
   .l-btn-left{
     width: 100%;
     text-align: left;
     .l-btn-text{
-      line-height: 22px;
-      padding: 0 36px 0 31px;
+      line-height: 26px;
+      padding: 0 26px 0 31px;
       margin: 0 0 0 ;
       color: #666666;
     }
     .l-btn-icon{
-      left:10px;
-      height: 22px;
+      left:4px;
+      height: 16px;
       width: 16px;
-      line-height:24px;
+      line-height:16px;
     }
     .m-btn-downarrow{
-      height: 22px;
-      width:  22px;
+      height: 16px;
+      width:  16px;
       right: 10px;
       &::before{
         content: @content-downfill;

@@ -53,24 +53,26 @@
   .l-btn-plain {
     padding: 0 0 0 ;
     border: 0;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     .l-btn-icon-left{
       .l-btn-text{
-        line-height: 22px;
-        padding: 0 10px 0 25px;
+        line-height: 26px;
+        padding: 0 8px 0 29px;
         margin: 0 0 0 ;
       }
       
       .l-btn-empty{
-        margin: 0;width: 22px;padding: 0 5px 0 0;
+        margin: 0;
+        width: 22px;
+        padding: 0 12px 0 0;
       }
       .l-btn-icon {
-        left:5px;
-        height: 22px;
-        width: 26px;
-        line-height: 22px;
-        padding: 0px;
+        // left:5px;
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+        padding: 5px 5px 5px 8px;
       }
       .l-btn-empty+.l-btn-icon{
         left: 0;
@@ -81,7 +83,13 @@
       border: 0;
     }
   }
-
+  .l-btn-plain-disabled{
+    .l-btn-left{
+      .l-btn-icon{
+        color:#bbbbbb;
+      }
+    }
+  }
 }
 
 /*toolbar 一点改动*/

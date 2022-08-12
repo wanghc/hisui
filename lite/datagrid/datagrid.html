@@ -94,7 +94,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 		},{
 			iconCls: 'icon-cancel',
 			text:'删除',
-			disabled:false,
+			disabled:true,
 			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('deleteRow',curInd)}
 		},{
 			iconCls:'icon-set-col',
@@ -104,10 +104,11 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 			iconCls: 'icon-help',
 			text:'帮助',
 			handler: function(){alert('你点击了帮助按钮')}
-		}/*,'-',{
-			iconCls: 'icon-ok',
-			handler: function(){alert('你点击了ok图标')}
-		}*/,{
+		},'-',{
+			//iconCls: 'icon-ok',
+			text:'查询',
+			handler: function(){alert('你点击了查询')}
+		},{
 			iconCls: 'icon-search',
 			handler: function(){alert('你点击了查询图标')}
 		}],onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},onDblClickRow:function(){console.log(arguments)}
