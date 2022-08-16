@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-08-16
+- 修改按钮样式（边距与选中色）
 ## 2022-08-12
 - 修改`triggerbox`在disable状态下边框颜色 [2777705]
 - 增加`icon-tabel-col`图标 [2786493]
