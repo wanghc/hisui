@@ -6,11 +6,8 @@
   }
   .l-btn-left{
     .l-btn-text{
-      margin-right: 32px;
-      margin-left: 18px;
-    }
-    .l-btn-icon{
-      width: @linkbutton-height;
+      margin-right: 16px;
+      margin-left: 24px;
     }
     .m-btn-line {
       width: 30px;
@@ -31,6 +28,16 @@
   -webkit-border-radius: 0;
   border-radius: 0;
 }
+.m-btn-plain-active{
+  background-color:@menubutton-btn-hover-bgcolor;
+  .l-btn-left .l-btn-text,.l-btn-icon{
+    color:@linkbutton-plain-hover-color;
+  }
+  .m-btn-downarrow{
+    color:@linkbutton-plain-hover-color;
+  }
+}
+
 /*ie11加了兼容模式后,
   内核成ie7
   .menubutton-blue.l-btn.l-btn-plain .l-btn-left .l-btn-icon{display:none;}
@@ -103,7 +110,7 @@
     background-color:@menubutton-btn-hover-bgcolor;
   }
   &.m-btn-plain-active{
-    background-color:@menubutton-btn-plain-active-bgcolor;
+    background-color:@menubutton-btn-hover-bgcolor;
     .l-btn-left .l-btn-text,.l-btn-icon{
       color:@linkbutton-plain-hover-color;
     }
@@ -121,10 +128,11 @@
       color: #666666;
     }
     .l-btn-icon{
-      left:4px;
+      // left:4px;
       height: 16px;
       width: 16px;
       line-height:16px;
+      padding:5px 5px 5px 8px
     }
     .m-btn-downarrow{
       height: 16px;
@@ -165,4 +173,3 @@
     border-bottom:0px;
   }
 }
-

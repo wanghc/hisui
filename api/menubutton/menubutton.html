@@ -163,6 +163,35 @@
 &lt;/div&gt;</code></pre>
 
     </div>
+    <h3>表格中使用按钮 </h3>
+	<div class="demo-exp-code entry-content"> 
+		<div id="custtb2" >
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</a>
+			<a href="javascript:void(0)" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar2',iconCls:'icon-add-note'">其他</a>
+			<div id="mm-toolbar2" style="width:100px;">   
+				<div onclick="console.log('停止');">停止</div>   
+				<div onclick="console.log('作废');">作废</div>     
+			</div>
+		</div>
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,
+			toolbar:'#custtb2',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
+			onDblClickRow:function(){console.log(arguments)}">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'code'">编码</th>   
+					<th data-options="field:'name'">名称</th>   
+					<th data-options="field:'price'">价格</th>
+					<th data-options="field:'num'">数量</th>
+					<th data-options="field:'note'">描述</th>
+					<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
+					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
+				</tr>   
+			</thead>   
+			<tbody>    
+			</tbody>   
+		</table> 
+    </div>
     <table class="table">
 		<tr class="protitle">
 			<th>属性</th>
