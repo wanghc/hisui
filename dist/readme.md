@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-08-16
+- `window`当标题移动到深色上时，边角出会出现一丝白边，将window背景色改为透明。
+
 ## 2022-08-10
 - `datebox`点击今天按钮时不触发onSelect事件问题 [2533036]
 - `panel`的card类型title宽度计算优化 [2668172]
