@@ -5,6 +5,11 @@ if ($.fn.pagination){
 }
 if ($.fn.datagrid){
 	$.fn.datagrid.defaults.loadMsg = 'Processing, please wait ...';
+	$.fn.datagrid.defaults.findBtn = "Find";
+	$.fn.datagrid.defaults.clearBtn = "Clear";
+	$.fn.datagrid.defaults.advancedBtn = "Advance";
+	$.fn.datagrid.defaults.advanced2Btn = "Collapse";
+	$.fn.datagrid.defaults.like = "like";
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;

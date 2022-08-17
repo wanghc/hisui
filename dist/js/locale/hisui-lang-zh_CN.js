@@ -5,6 +5,11 @@ if ($.fn.pagination){
 }
 if ($.fn.datagrid){
 	$.fn.datagrid.defaults.loadMsg = '\u6b63\u5728\u5904\u7406\uff0c\u8bf7\u7a0d\u5f85。。。';
+	$.fn.datagrid.defaults.findBtn = "\u67e5\u8be2";
+	$.fn.datagrid.defaults.clearBtn = "\u6e05\u7a7a";
+	$.fn.datagrid.defaults.advancedBtn = "\u9ad8\u7ea7";
+	$.fn.datagrid.defaults.advanced2Btn = "\u6536\u8d77";
+	$.fn.datagrid.defaults.like = "\u6a21\u7cca\u67e5\u8be2";
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;

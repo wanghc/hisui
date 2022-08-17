@@ -5,6 +5,11 @@ if ($.fn.pagination){
 }
 if ($.fn.datagrid){
 	$.fn.datagrid.defaults.loadMsg = '正在处理，请稍待。。。';
+	$.fn.datagrid.defaults.findBtn = "查询";
+	$.fn.datagrid.defaults.clearBtn = "清空";
+	$.fn.datagrid.defaults.advancedBtn = "高级";
+	$.fn.datagrid.defaults.advanced2Btn = "收起";
+	$.fn.datagrid.defaults.like = "模糊查询";
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;

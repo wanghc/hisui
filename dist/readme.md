@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-08-17
+- `datagrid`增加`showFilterToolbar`配置项，显示过滤工具条 [2778466] :sparkles:
+
 ## 2022-08-16
 - 修改按钮样式（边距与选中色）
 - `window`当标题移动到深色上时，边角出会出现一丝白边，将window背景色改为透明。

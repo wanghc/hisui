@@ -338,6 +338,11 @@
                     var btn = opts.toolbar[i];
                     if (btn == "-") {
                         $("<td><div class=\"datagrid-btn-separator\"></div></td>").appendTo(tr);
+                    } else if ('undefined' != typeof btn.type) { /*20220817 增加input类型处理*/
+                        if (btn.type == 'input') {
+                            var _myinput = $('<td><input class="' + btn.class + '" placeholder="' + btn.placeholder + '"/></td>').appendTo(tr);
+                            _myinput.on('keydown',eval(btn.handler || function () {}));
+                        }
                     } else {
                         var td = $("<td></td>").appendTo(tr);
                         var tool = $("<a href=\"javascript:void(0)\"></a>").appendTo(td);
@@ -1947,6 +1952,72 @@
         _63f(_643, "c");
         _630(_637);
     };
+    /*对本地数据重新加载并触发loadfilter*/
+    /*发现老的reload在加载本地数据时并不触发loadfilter方法*/
+    function _reload2(target) {
+        var status = $.data(target, "datagrid");
+        var opts = status.options;
+        // console.dir(opts.originalRows);     // combogird与datagrid时 - 为undefined
+        // getData,getRows //和当前显示相关
+        if (opts.toolBarOriginalData == null) {
+            opts.toolBarOriginalData = $(target).datagrid('getData');
+        }
+        if (opts.toolBarOriginalData) {  // combogrid时有值
+            $(target).datagrid('loadData', opts.toolBarOriginalData);
+        } 
+    }
+    /**
+     * 增加过滤方法,以便过滤工具条使用
+     * @param {*} target 
+     */
+    function addToolLoadFilter(target) {
+        var opts = $.data(target, "datagrid").options;
+        opts.oldLoadFilter = opts.loadFilter;
+        opts.loadFilter = function (data) {
+            data = opts.oldLoadFilter.call(this, data);
+            var tbar = $(target).closest('.datagrid-wrap').find('.datagrid-toolbar');
+            // 模糊查询条件值
+            var inputAllFieldCond = tbar.find('.datagrid-toolbar-findbox').val().trim().toUpperCase();
+            // 每列查询条件值
+            var inputConditions = {};
+            tbar.find('.datagrid-filter-htable').find("td").each(function () {
+                var _f = $(this).attr('field');
+                var fbox = $(this).find('input[type="text"]');
+                if (_f && fbox.length>0 && fbox.val()!="") inputConditions[_f] = fbox.val().trim().toUpperCase();
+            });
+            if (typeof data.length == 'number' && typeof data.splice == 'function') {	// is array
+                data = { total: data.length, rows: data }
+            }
+            if (inputAllFieldCond=="" && inputConditions=="") return data;
+            var currentDataRows = [];
+            for (var i = 0; i < data.rows.length; i++) {
+                var item = data.rows[i];
+                var filterSuccess = true;
+                var rowArr = [];
+                for (var myField in item){
+                    if (item.hasOwnProperty(myField)) {
+                        //非字符类型--通过
+                        if ("string" !== typeof item[myField] && "number" !== typeof item[myField]) {break;}
+                        if (inputConditions.hasOwnProperty(myField) && inputConditions[myField]!="") {
+                            /*对应字段没有匹配 - 不通过*/
+                            if (item[myField].toString().toUpperCase().indexOf(inputConditions[myField])==-1 && $.hisui.toChineseSpell(item[myField].toString()).toUpperCase().indexOf(inputConditions[myField])==-1) {
+                                filterSuccess = false;
+                                break;
+                            }
+                        }
+                        rowArr.push(item[myField]);
+                    }
+                }
+                /*不包含 - 不通过*/
+                if (filterSuccess && (rowArr.join(',').toUpperCase().indexOf(inputAllFieldCond)==-1 && $.hisui.toChineseSpell(rowArr.join(',')).toUpperCase().indexOf(inputAllFieldCond)==-1)) {
+                    filterSuccess = false;
+                }
+                if (filterSuccess) currentDataRows.push(data.rows[i]);
+            }
+            var obj = { 'total': currentDataRows.total, 'rows': currentDataRows };
+            return obj;
+        };
+    }
     function _577(_644, _645) {
         var opts = $.data(_644, "datagrid").options;
         if (_645) {
@@ -2076,6 +2147,56 @@
                 opts.view = $.extend({}, opts.view);
                 $.data(this, "datagrid", { options: opts, panel: _650.panel, dc: _650.dc, ss: null, selectedRows: [], checkedRows: [], data: { total: 0, rows: [] }, originalRows: [], updatedRows: [], insertedRows: [], deletedRows: [] });
             }
+            var _t = this;
+            if (opts.showFilterToolbar && (opts.toolbar == null || opts.toolbar == "")) {
+                addToolLoadFilter(_t);
+                opts.toolbar = [{
+                    type: 'input', class: 'textbox datagrid-toolbar-findbox', placeholder: opts.like, handler: function (ev) {
+                        if (ev.keyCode == 13) {
+                            $(_t).datagrid('reload2');
+                        }
+                    } 
+                }, {
+                    text: opts.findBtn, iconCls: 'icon-search', handler: function () {$(_t).datagrid('reload2'); }
+                },{
+                    text: opts.clearBtn, iconCls: 'icon-clear-screen', handler: function () {
+                        var tbar = $(_t).closest('.datagrid-wrap').find('.datagrid-toolbar');
+                        tbar.find('.datagrid-toolbar-findbox').val('');
+                        tbar.find('.datagrid-filter-htable').find('td input[type="text"]').val('');
+                        $(_t).datagrid('reload2');
+                        opts.toolBarOriginalData = null;
+                    }
+                }, {
+                    text: opts.advancedBtn, iconCls: 'icon-find-fee-itm', handler: function () {
+                        var tbl = $(this).closest('table');
+                        if (tbl.next().length == 0) {
+                            /*从列头上复制列信息*/
+                            $(this).find('.l-btn-text').text(opts.advanced2Btn);
+                            var htbl1 = $(this).closest('.datagrid-wrap').find('.datagrid-view1 .datagrid-header .datagrid-header-row');
+                            var htbl2 = $(this).closest('.datagrid-wrap').find('.datagrid-view2 .datagrid-header .datagrid-header-row');
+                            var h = "";
+                            if (htbl1.length > 0) { h += htbl1.html(); }
+                            if (htbl2.length > 0) { h += htbl2.html(); }
+                            var filterBoxBar = $('<table class="datagrid-filter-htable" border="0" cellspacing="0" cellpadding="0" style="height: 35px;"><tr>'+h+'</tr></table>').insertAfter(tbl);
+                            /*在对应列上插入查询输入框*/
+                            filterBoxBar.find('.datagrid-cell').each(function () {
+                                var pl = $(this).text();
+                                $(this).css({ padding: "0 8px" }).removeClass('datagrid-cell');
+                                $(this).html('<input type="text" placeholder="' + pl + '" class="datagrid-cell-filter">');
+                            });
+                            /*过滤事件*/
+                            filterBoxBar.on('keydown', function (evt) {
+                                if (evt.keyCode==13) {
+                                    $(_t).datagrid('reload2');
+                                }
+                            });
+                        } else {
+                            $(this).find('.l-btn-text').text(opts.advancedBtn);
+                            if (tbl.next().css('display')!=="none") tbl.next().hide();
+                            else  tbl.next().show();
+                        }
+                 } }];
+            };
             _545(this);
             _559(this);
             _515(this);
@@ -2583,6 +2704,10 @@
         }, reload: function (jq, _6a6) {
             return jq.each(function () {
                 _577(this, _6a6);
+            });
+        }, reload2: function (jq) {
+            return jq.each(function () {
+                _reload2(this);
             });
         }, reloadFooter: function (jq, _6a7) {
             return jq.each(function () {
@@ -3276,6 +3401,13 @@
         ,onHighlightRow:function(index,row){ //cryze datagrid 高亮行(鼠标悬浮和combogrid上下选时)触发事件
         },onColumnsLoad:function(grid,cm){
         },clickDelay:0,  //cryze 2019-09-10 解决lookup 快速点击行问题
-        clicksToEdit:0 //1单击编辑，2双击编辑，0无
+        clicksToEdit: 0, //1单击编辑，2双击编辑，0无
+        showFilterToolbar: false, // 显示过滤工具栏
+        toolBarOriginalData: null, /*缓存工具条查询初始数据*/
+        findBtn:"Find",
+        clearBtn:"Clear",
+        advancedBtn: "Advance",
+        advanced2Btn: "Collapse",
+        like:"like"
     });
 })(jQuery);
