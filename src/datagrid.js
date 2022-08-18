@@ -2134,7 +2134,28 @@
                 }
                 if(opts.queryName){ //从query中取cm
                     var json = getColumns(opts);
-                    if(opts.onColumnsLoad) opts.onColumnsLoad.call(_64f,json.cm);
+                    /*config中出现了, 但object中不存在的属性，将从config对象中复制到object中*/
+                    var applyIf = function (object, config) {
+                        var property;
+                        if (object) {
+                            for (property in config) {
+                                if (config.hasOwnProperty(property) && object[property] === undefined) {
+                                    object[property] = config[property];
+                                }
+                            }
+                        }
+                        return object;
+                    };
+                    var defaultCm = opts.defaultsColumns; /*把默认的定义合并到后台的列定义中*/
+                    if (opts.defaultsColumns) {
+                        for (var i = 0; i < json.cm.length; i++) {
+                            var defaultObj = $.hisui.getArrayItem(defaultCm, 'field', json.cm[i].field)
+                            if (defaultObj) {
+                                applyIf(json.cm[i], defaultObj);
+                            }
+                        }
+                    }
+                    if (opts.onColumnsLoad) opts.onColumnsLoad.call(_64f, json.cm);
                     opts.columns = [json.cm];
                     opts.pageSize = json.pageSize;
                     if (opts.pageList && $.isArray(opts.pageList) && $.inArray(opts.pageSize, opts.pageList)==-1) {
@@ -3408,6 +3429,7 @@
         clearBtn:"Clear",
         advancedBtn: "Advance",
         advanced2Btn: "Collapse",
-        like:"like"
+        like: "like",
+        defaultsColumns: null
     });
 })(jQuery);

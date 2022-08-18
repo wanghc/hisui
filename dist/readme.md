@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-08-18
+- `datagrid`增加`defaultsColumns`配置, 提供默认列定义 :sparkles:
+
 ## 2022-08-17
 - `datagrid`增加`showFilterToolbar`配置项，显示过滤工具条 [2778466] :sparkles:
 

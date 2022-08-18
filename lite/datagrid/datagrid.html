@@ -420,6 +420,23 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 	className:"web.Test",
 	queryName:"LookUp", 
 	url:$URL+"?ClassName=web.Test&QueryName=LookUp&...",
+	// 20220818 增加 方便实现默认定义列宽, 定义编辑功能
+	// 如果有【界面列定义】,定义列信息会部分覆盖默认信息, 如果顺序,列宽。
+	// 为可选项
+	defaultsColumns:[
+		{field:"TID",hidden:true},
+		{field:'TIPAddr',width:150,editor:{type:'text'}},
+		{field:'TMacAddr',width:150,editor:{type:'text'}},
+		{field:'TCompName',width:150,editor:{type:'text'}},
+		{field:'TNote',width:150,editor:{type:'text'}},
+		{field:'TDisableLogon',width:60,formatter:function(val,row,index){
+					if (val==1) return "禁用";
+					else {return "可用"}
+				},editor:{type:'checkbox',options:{on:1,off:0}}
+		},
+		{field:'TDisableLogonDate',width:150,editor:{type:'dateboxq'}},
+		{field:'TDisableLogonTime',width:150,editor:{type:'timeboxq'}}
+	],
 	...
 });</code></pre>
 		如要对columns加工处理，可使用<code>onColumnsLoad(cm)</code>来加工columns
@@ -713,6 +730,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>m中query名</td>
 			<td>""</td>
 			<td>默认为空。非常规属性。通过className与queryName生成columns，且能自定义列属性。<code>(20190829)</code></td>
+		</tr>
+		<tr>
+			<td>defaultsColumns</td>
+			<td>默认列定义。可选项</td>
+			<td>null</td>
+			<td>非常规属性。与通过className与queryName生成`cm`合并成新的columns。<code>(20220818)</code></td>
 		</tr>
 		<tr>
 			<td>fontSize</td>
