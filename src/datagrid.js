@@ -798,6 +798,18 @@
             opts.onRowContextMenu.call(_55a, e, _56b, row);
             e.stopPropagation();
         });
+        /* 固定列后,在固定列内容上滚动也应该带动表格滚动 需求号：2902579 */
+        dc.body1.bind("mousewheel DOMMouseScroll", function (e) {
+            e.preventDefault();
+            var e1 = e.originalEvent || window.event;
+            var _80 = e1.wheelDelta || e1.detail * (-1);
+            if ("deltaY" in e1) {
+                _80 = e1.deltaY * -1;
+            }
+            var dg = $(e.target).closest("div.datagrid-view").children(".datagrid-f");
+            var dc = dg.data("datagrid").dc;
+            dc.body2.scrollTop(dc.body2.scrollTop() - _80);
+        });
         dc.body2.bind("scroll", function () {
             var b1 = dc.view1.children("div.datagrid-body");
             b1.scrollTop($(this).scrollTop());
