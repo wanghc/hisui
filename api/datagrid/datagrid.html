@@ -9,6 +9,7 @@
 	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+	<!-- <script src="../../src/datagrid.js"></script> -->
 	 <link rel="stylesheet" type="text/css" href="../demo.css">
 	<style>
 		/*某列自适应高度*/
@@ -233,7 +234,7 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 	&lt;/div&gt;
 &lt;/div&gt;</code></pre>
 	</div>
-	<h3>三、通过JS代码定义表格(表格中tip实现<code>20180827</code>)</h3>
+	<h3>三、通过JS代码定义表格(表格中tip实现<code>20180827</code>)及Shift进行连勾选</h3>
 	<div class="demo-exp-code entry-content"> 
 		<table id="mytable3"></table>
 		<script type="text/javascript">
@@ -427,6 +428,23 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 	className:"web.Test",
 	queryName:"LookUp", 
 	url:$URL+"?ClassName=web.Test&QueryName=LookUp&...",
+	// 20220818 增加 方便实现默认定义列宽, 定义编辑功能
+	// 如果有【界面列定义】,定义列信息会部分覆盖默认信息, 如果顺序,列宽。
+	// 为可选项
+	defaultsColumns:[
+		{field:"TID",hidden:true},
+		{field:'TIPAddr',width:150,editor:{type:'text'}},
+		{field:'TMacAddr',width:150,editor:{type:'text'}},
+		{field:'TCompName',width:150,editor:{type:'text'}},
+		{field:'TNote',width:150,editor:{type:'text'}},
+		{field:'TDisableLogon',width:60,formatter:function(val,row,index){
+					if (val==1) return "禁用";
+					else {return "可用"}
+				},editor:{type:'checkbox',options:{on:1,off:0}}
+		},
+		{field:'TDisableLogonDate',width:150,editor:{type:'dateboxq'}},
+		{field:'TDisableLogonTime',width:150,editor:{type:'timeboxq'}}
+	],
 	...
 });</code></pre>
 		如要对columns加工处理，可使用<code>onColumnsLoad(cm)</code>来加工columns
@@ -556,7 +574,77 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			})		
 		</script>
 	</div>
-	
+	<h3>九、生成查询工具条(showFilterToolbar<code>20220817</code>)</h3>
+	<div class="demo-exp-code entry-content"> 
+		<table id="mytable9"></table>
+		<script type="text/javascript">
+			$(function(){
+				// $HUI.datagrid('#mytable9',{
+				// 	autoSizeColumn:false,
+				// 	fitColumns:true,idField:'id',
+				// 	headerCls:'panel-header-gray',iconCls:'icon-paper',
+				// 	rownumbers:true,width:650,height:200,
+				// 	title:'属性列表',titleNoWrap:false,/*表头自动折行*/
+				// 	toolbar:[],
+				// 	nowrap:false,
+				// 	fontSize:12, /*表格上设置字体大小*/
+				// 	lineHeight:12,
+				// 	showFilterToolbar:true, /*显示过滤工具栏*/
+				// 	columns:[[
+				// 		{field:'ck',title:'sel',checkbox:true},
+				// 		{field:'code',title:'属性序号',width:40},
+				// 		{field:'name',title:'属性名',width:100},
+				// 		{field:'type',title:'类型',width:100,align:'right'},
+				// 		{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
+				// 	]],
+				// 	data:{
+				// 		rows:[
+				// 		{id:'1',code:'10',name:'checkOnSelect',type:'boolean',desc:'If true, the checkbox is checked/unchecked when the user clicks on a row. If false, the checkbox is only checked/unchecked when the user clicks exactly on the checkbox.This property is available since version 1.3.'},
+				// 		{id:'2',code:'11',name:'nowrap',type:'boolean',desc:'True to display data in one line. Set to true can improve loading performance.'},
+				// 		{id:'3',code:'12',name:'fitColumns',type:'boolean',desc:'True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.'},
+				// 		{id:'4',code:'13',name:'resizeHandle',type:'boolean',desc:'Resizing column position, Available value are: "left","right","both". When "right", users can resize columns by dragging the right edge of column headers, etc.This property is available since version 1.3.2.'}
+				// 		],
+				// 		total:10
+				// 	}
+				// });
+				$HUI.datagrid('#mytable9',{
+					columns:[[
+						// {field:'ck',title:'ckbox',checkbox:true},
+						{field:'id',title:'ID',width:40},
+						{field:'code',title:'代码',width:80,showTip:true,tipWidth:100,tipPosition:"top"},
+						{field:'name',title:'描述',width:60},
+						{field:'price',title:'价格',width:60,align:'right'}
+					]],
+					data:{
+						rows:[
+						{id:'1',code:'Banana',name:'香蕉',price:'2.50'},
+						{id:'2',code:'Apple',name:'苹果',price:'2.50'},
+						{id:'3',code:'Bear',name:'梨',price:'5.50'},
+						{id:'4',code:'orange',name:'橙子',price:'3.50'},
+						{id:'5',code:'tangerine',name:'橘子',price:'4.50'},
+						{id:'6',code:'Mango',name:'芒果',price:'4.60'},
+						{id:'7',code:'Watermelon',name:'西瓜',price:'2.40'},
+						{id:'8',code:'litchi',name:'荔枝',price:'2.50'},
+						{id:'9',code:'Pineapple',name:'凤梨',price:'2.50'},
+						{id:'10',code:'Coconut',name:'椰子',price:'2.50'}
+						],
+						total:10
+					},
+					idField:'id',
+					autoSizeColumn:false,
+					headerCls:'panel-header-gray',
+					iconCls:'icon-paper',
+					rownumbers:true,
+					singleSelect:false,
+					width:650,
+					height:300,
+					title:'水果单价表',
+					toolbar:[],fitColumns:true,
+					showFilterToolbar:true /*显示过滤工具栏*/
+				})
+			})		
+		</script>
+	</div>	
 	<!--测试加载本地数据,翻页条显示问题，需求号：1715492
 		<h3>九、表格加载本地数据</h3>
 	<table id="dg11" class="hisui-datagrid" title="科室列表" style="width:600px;height:300px" 
@@ -688,6 +776,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>m中query名</td>
 			<td>""</td>
 			<td>默认为空。非常规属性。通过className与queryName生成columns，且能自定义列属性。<code>(20190829)</code></td>
+		</tr>
+		<tr>
+			<td>defaultsColumns</td>
+			<td>默认列定义。可选项</td>
+			<td>null</td>
+			<td>非常规属性。与通过className与queryName生成`cm`合并成新的columns。<code>(20220818)</code></td>
 		</tr>
 		<tr>
 			<td>fontSize</td>
