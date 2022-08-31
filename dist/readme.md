@@ -34,8 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
 ## 2022-08-31
 - `datagrid`鼠标滚轮在固定列内容区域无法滚动表格问题处理 [2902579] :sparkles:
+- `numberbox`的forcePrecisionZoer配置项对非有效0去除 :sparkles:
 ## 2022-08-18
 - `datagrid`增加`defaultsColumns`配置, 提供默认列定义 :sparkles:
 

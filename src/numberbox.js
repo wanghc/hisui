@@ -265,6 +265,9 @@
                 if (!forcePrecisionZoer && (""+num).indexOf('.')==-1 ) { // 不包含.时 不补0
                     return num;
                 }
+                if (!forcePrecisionZoer && (""+num).indexOf('.')>-1 ) { // 不要补0
+                    return num.toFixed(precsn).replace(/(0*$)/g,'');
+                }
                 return num.toFixed(precsn);
             }
             return val;
