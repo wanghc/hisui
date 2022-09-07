@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-09-07
+- 调用`DropDropRadio`组件的clear方法报错问题处理 :bug:
 
 ## 2022-08-31
 - `datagrid`鼠标滚轮在固定列内容区域无法滚动表格问题处理 [2902579] :sparkles:

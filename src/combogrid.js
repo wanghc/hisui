@@ -459,7 +459,7 @@
                 $("#" + RadioId).prop("checked", false);               
               }
             }
-            $(i).combobox("clear");
+            $(this).combobox("clear");
         }
     };
 
