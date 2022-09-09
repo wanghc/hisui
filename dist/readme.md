@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-09-09
+- `linkbutton`的大图标选中背景色修改 [2850808]
 ## 2022-09-07
 - 调用`DropDropRadio`组件的clear方法报错问题处理 :bug:
 
