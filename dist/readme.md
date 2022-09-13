@@ -35,7 +35,7 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2022-09-13
-- `splitbutton`在plain:false下显示样式修改
+- `splitbutton`在plain:false下字体，背景，hover效果修改 [2899260]
 
 ## 2022-09-09
 - `linkbutton`的大图标选中背景色修改 [2850808]
