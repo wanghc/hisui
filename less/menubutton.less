@@ -1,7 +1,16 @@
 @import "variables.less";
+.l-btn-plain.m-btn .l-btn-text{
+  color:#000000;
+}
+.m-btn-downarrow, .s-btn-downarrow {
+  background: url(images/arrow_down_white.png) center 8px no-repeat;
+}
+.l-btn-plain .m-btn-downarrow,.l-btn-plain .s-btn-downarrow {
+  background: url(images/blue/menu_arrows.png) 0 center no-repeat;
+}
 .m-btn {
   .l-btn-text{
-    color:#000000;
+    // color:#000000;  //splitbutton在plain:false时，字体冲突，应为白色
     min-width:40px;
   }
   .l-btn-left{
