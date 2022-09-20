@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-09-19
 - `switchbox`炫彩版文字去掉投影,修改字体 [2937866]
-- 
+- `switchbox`极简版文字去掉投影,修改字体 [2937961]
+
 ## 2022-09-13
 - `splitbutton`在plain:false下字体，背景，hover效果修改 [2899260]
 
