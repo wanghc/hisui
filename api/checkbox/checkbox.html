@@ -11,37 +11,39 @@
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 </head>
 <body>
-	<style>.wd120{width: 120px;}</style>
+	<style>.wd120{width: 120px;}.ml20{margin-right:20px;display: inline-block;}.ml16{margin-right:16px;display: inline-block;}</style>
 	<h2>选择框, 通过图片得到蓝色系勾选框</h2>
 	<h3>说明:</h3>
 	<span>点击勾选，常用于多项选择。</span>
 	<h3>一.各种状态例子</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div style="padding: 5px" class="use-prettyprint">
-			<input class='hisui-checkbox' type="checkbox" data-options="onChecked:function(event,val){console.log('checked='+val);},
+		<div class="use-prettyprint">
+			<div class="ml16">
+				<input class='hisui-checkbox' type="checkbox" data-options="onChecked:function(event,val){console.log('checked='+val);},
 			onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
-			<input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="<span style='color:red'>勾选</span>" id="cb2"/>
-			<input class='hisui-checkbox wd120' type="checkbox" style="width: 100px;" checked label="勾选-宽度样式类功能" id="cb3"/>
-			<input class='hisui-checkbox' type="checkbox" disabled label="禁用" id="cb4"/>
-			<input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" id="cb5"/>
+			</div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="<span style='color:red'>勾选</span>" id="cb2"/></div>
+			<div class="ml16"><input class='hisui-checkbox wd120' type="checkbox" style="width: 100px;" checked label="勾选-宽度样式类功能" id="cb3"/></div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" disabled label="禁用" id="cb4"/></div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" id="cb5"/></div>
 		</div>
    </div>
    <h3>二. 框在文本右边(<code>right</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div style="padding: 5px" class="use-prettyprint">
-			<input class='hisui-checkbox' type="checkbox" data-options="boxPosition:'right',onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="cb11"/>
-			<input class='hisui-checkbox' type="checkbox" data-options="checked:true,boxPosition:'right'" label="勾选" id="cb12"/>
-			<input class='hisui-checkbox' type="checkbox" checked label="勾选" data-options="boxPosition:'right'" id="cb13"/>
-			<input class='hisui-checkbox' type="checkbox" disabled label="禁用" data-options="boxPosition:'right'" id="cb14"/>
-			<input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" data-options="boxPosition:'right'" id="cb15"/>
+		<div class="use-prettyprint">
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" data-options="boxPosition:'right',onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="cb11"/></div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" data-options="checked:true,boxPosition:'right'" label="勾选" id="cb12"/></div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" checked label="勾选" data-options="boxPosition:'right'" id="cb13"/></div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" disabled label="禁用" data-options="boxPosition:'right'" id="cb14"/></div>
+			<div class="ml16"><input class='hisui-checkbox' type="checkbox" disabled checked label="勾选禁用" data-options="boxPosition:'right'" id="cb15"/></div>
 		</div>
    </div>
    <h3>三、必选功能</h3>
    <div class="demo-exp-code entry-content">
-		<a href="#" onclick="setSexRequired();" class="hisui-linkbutton" style="margin-top: 10px;">切换必选功能</a>
+		<a href="#" onclick="setSexRequired();" class="hisui-linkbutton">切换必选功能</a>
 		<span id="requiredMsg" style="line-height: 30px;vertical-align: bottom;"></span> 
-		<div class="use-prettyprint lang-html" style="margin: 10px;">
-			<label id="reqLabel"><span style="color: red;" id="myredstar">*</span>症状表现：</label>
+		<div class="use-prettyprint lang-html" style="margin-top: 10px;">
+			<label id="reqLabel" style='vertical-align:middle;'><span style="color: red;" id="myredstar">*</span>症状表现：</label>
 <input class='hisui-checkbox' type="checkbox" label=头痛 name='sex' value="1" data-options="required:true">
 <input class='hisui-checkbox' type="checkbox" label='盗汗' name='sex' value="2" data-options="required:true">
 <input class='hisui-checkbox' type="checkbox" label='耳鸣' name='sex' value="3" data-options="required:true"></div>  
