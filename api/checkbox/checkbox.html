@@ -43,10 +43,11 @@
 		<a href="#" onclick="setSexRequired();" class="hisui-linkbutton">切换必选功能</a>
 		<span id="requiredMsg" style="line-height: 30px;vertical-align: bottom;"></span> 
 		<div class="use-prettyprint lang-html" style="margin-top: 10px;">
-			<label id="reqLabel" style='vertical-align:middle;'><span style="color: red;" id="myredstar">*</span>症状表现：</label>
-<input class='hisui-checkbox' type="checkbox" label=头痛 name='sex' value="1" data-options="required:true">
-<input class='hisui-checkbox' type="checkbox" label='盗汗' name='sex' value="2" data-options="required:true">
-<input class='hisui-checkbox' type="checkbox" label='耳鸣' name='sex' value="3" data-options="required:true"></div>  
+			<label id="reqLabel" style='vertical-align:middle;margin-right:10px;'><span style="color: red;" id="myredstar">*</span>症状表现</label>
+<div class="ml16"><input class='hisui-checkbox' type="checkbox" label=头痛 name='sex' value="1" data-options="required:true"></div>
+<div class="ml16"><input class='hisui-checkbox' type="checkbox" label='盗汗' name='sex' value="2" data-options="required:true"></div>
+<div class="ml16"><input class='hisui-checkbox' type="checkbox" label='耳鸣' name='sex' value="3" data-options="required:true"></div>  
+		</div>
 	   <script type="text/javascript" class="use-prettyprint">
 		var flag = true;
 		function setSexRequired(){
