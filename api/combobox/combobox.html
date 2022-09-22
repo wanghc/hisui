@@ -33,8 +33,7 @@
 			<option value="ND">North Dakota</option>
 			<option value="OH" selected>Ohio</option>
 			<option value="WY">Wyoming</option>
-		</select>
-		<a href='#' id="cboxbtn1" class="hisui-linkbutton">获取选择的值(getValues)</a>
+		</select><a href='#' id="cboxbtn1" class="hisui-linkbutton" style="margin-left:10px ;">获取选择的值(getValues)</a>
 		<pre class="prettyprint lang-html hide"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler,blurValidValue:true">
 	&lt;option value="AK">Alaska&lt;/option>
 	&lt;option value="CT">Connecticut&lt;/option>
@@ -52,9 +51,7 @@
     <h3>二、通过配置项<code>rowStyle</code>生成带勾选框的多选下拉框</h3>
     <div class="demo-exp-code entry-content">
 	  	<select id="cbox" style="width:200px;">
-		</select>
-		<a href='#' id="cboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
-		<a href='#' id="cboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a>
+		</select><a href='#' id="cboxbtn" class="hisui-linkbutton" style="margin-left:10px ;">获取选择的值(getValues)</a><a href='#' id="cboxselbtn" class="hisui-linkbutton" style="margin-left:10px ;">选中所有(setValues)</a>
 		<pre class="prettyprint lang-html hide"><code><style></style>&lt;select id="cbox" style="width:200px;">&lt;/select></code></pre>
 		<pre class="prettyprint lang-js hide">
 $(function(){
@@ -230,6 +227,7 @@ var onComplete3 = function(){
 </script>
 
 <h3>四、通过<code>defaultFilter</code>配置默认过滤规则</h3>
+<style>label.radio{margin-right: 20px;}</style>
 <div class="demo-exp-code entry-content">
   <select id="dfCB" style="width:200px;"></select>
 
@@ -268,7 +266,7 @@ var onComplete4 = function(){
 	});
 
 
-	$('<span style="padding-left:20px;color:red;font-weight:bold;">defaultFilter:</span>').appendTo(div);
+	$('<span style="padding-left:20px;padding-right:10px;color:red;font-weight:bold;">defaultFilter</span>').appendTo(div);
 	for(var i=1;i<=6;i++){
 		$('<input type="radio" name="dfCB-df" id="dfCB-df-'+i+'" label="值:'+i+'" value="'+i+'"/>').appendTo(div);
 	}
@@ -279,7 +277,7 @@ var onComplete4 = function(){
 		}
 	})
 	$('#dfCB-df-6').radio('check');
-	$('<span style="padding-left:20px;color:red;font-weight:bold;">spellField:</span>').appendTo(div);
+	$('<span style="padding-left:20px;padding-right:10px;color:red;font-weight:bold;">spellField</span>').appendTo(div);
 	$('<input type="radio" id="dfCB-spellField-empty" name="dfCB-spellField" label="值:空" value=""/>').appendTo(div);
 	$('<input type="radio" id="dfCB-spellField-spell" name="dfCB-spellField" label="值:spell" value="spell"/>').appendTo(div);
 	$('input[type=radio][name=dfCB-spellField]').radio({
