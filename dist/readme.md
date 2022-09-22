@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 - comboq系组件增加comboq-arrow-hover样式
 - 修改各种输入框组件样式
 - 极简版`linkbutton`高度调整为28px [2937957]
+- 输入框内阴影去除,无法达到统一表现
 
 ## 2022-09-19
 - `switchbox`炫彩版文字去掉投影,修改字体 [2937866]
