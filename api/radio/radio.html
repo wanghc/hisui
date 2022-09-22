@@ -17,17 +17,17 @@
     <h3>一、单选框示例</h3>
    <div class="demo-exp-code entry-content">
         <div class="use-prettyprint lang-html">
-<table cellpadding="5">
+<table>
     <tr>
-        <td>
+        <td class="r-label">
             想吃什么
         </td>
-        <td id="eatlist">
+        <td id="eatlist" class="fs0">
             <input type="radio" label='苹果' name='wantEat' value="apple">
             <input type="radio" label='桔子' name='wantEat' value="orange">
             <input type="radio" label='香蕉' name='wantEat' value="banana" id="ba">
         </td>
-        <td>
+        <td class="links">
             <a id="selectba" class="hisui-linkbutton" href="#">选中香蕉</a>
             <a id="insertRadio" class="hisui-linkbutton" href="#">插入梨</a>
             <a id="getValue" class="hisui-linkbutton" href="#">获得选中值</a>
@@ -63,18 +63,35 @@ $(function(){
     <h3>二、样式为复选框的单选框</h3>
     <div class="demo-exp-code entry-content">
         <div class="use-prettyprint lang-html">
-<label ><span style="color: red;">*</span>最高学位：</label>
-<input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue',required:true">
-<input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue',required:true">
-<input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+            <table>
+                <tr>
+                    <td class="r-label">
+                        <span style="color: red;">*</span>最高学位
+                    </td>
+                    <td class="fs0">
+                        <input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+                        <input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue',required:true">
+                        <input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+                    </td>
+                </tr>
+            </table>
+
         </div>
     </div>
     <h3>三、必选功能</h3>
     <div class="demo-exp-code entry-content"> 
         <div class="use-prettyprint lang-html">
-<label ><span style="color: red;">*</span>性别：</label>
-<input class='hisui-radio' type="radio" label='男' name='sex' value="1" data-options="required:true">
-<input class='hisui-radio' type="radio" label='女' name='sex' value="2" data-options="required:true">
+            <table>
+                <tr>
+                    <td class="r-label">
+                        <span style="color: red;">*</span>性别
+                    </td>
+                    <td class="fs0">
+                    <input class='hisui-radio' type="radio" label='男' name='sex' value="1" data-options="required:true">
+                    <input class='hisui-radio' type="radio" label='女' name='sex' value="2" data-options="required:true">
+                    </td>
+                </tr>
+            </table>
         </div>
         <a href="#" onclick="setSexRequired();" class="hisui-linkbutton" style="margin-top: 10px;">切换必选功能</a>
 	   <span id="requiredMsg" style="line-height: 30px;vertical-align: bottom;"></span>
@@ -88,9 +105,17 @@ $(function(){
     <h3>四、不能取消选择功能(requiredSel)</h3>
     <div class="demo-exp-code entry-content"> 
         <div class="use-prettyprint lang-html">
-        <label ><span style="color: red;">*</span>是否阳性：</label>
-        <input class='hisui-radio' type="radio" label='是' name='yesno' value="Y" data-options="required:true,requiredSel:true">
-        <input class='hisui-radio' type="radio" label='否' name='yesno' value="N" data-options="required:true,requiredSel:true">
+            <table>
+                <tr>
+                    <td class="r-label">
+                        <span style="color: red;">*</span>是否阳性
+                    </td>
+                    <td class="fs0">
+                        <input class='hisui-radio' type="radio" label='是' name='yesno' value="Y" data-options="required:true,requiredSel:true">
+                        <input class='hisui-radio' type="radio" label='否' name='yesno' value="N" data-options="required:true,requiredSel:true">
+                    </td>
+                </tr>
+            </table>
         </div>
         
     </div>
