@@ -12,9 +12,8 @@
 </head>
 <body>
 	<style>
-		td{
-			padding: 5px 0;
-		}
+		.demo-exp-code td{padding:5px 0;}
+		.demo-exp-code td.r-label{padding-right: 10px;}
 	</style>
 	<script type="text/javascript">
 		$.fn.datebox.defaults.formatter = function(date){
@@ -99,7 +98,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="r-label required-label">备注</td>
+					<td class="r-label required-label" style="vertical-align: top;padding-top: 12px;">
+						<span style="vertical-align: top;line-height:14px;display:inline-block;">备注</span>
+					</td>
 					<td>
 						<textarea id="notett" class="textbox hisui-validatebox" placeholder="必填项" data-options="required:true" size=12 rows="2" style="height:45px;"></textarea>
 					</td>
