@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-09-22
+- comboq系组件增加comboq-arrow-hover样式
+- 修改各种输入框组件样式
+
 ## 2022-09-19
 - `switchbox`炫彩版文字去掉投影,修改字体 [2937866]
 - `switchbox`极简版文字去掉投影,修改字体 [2937961]

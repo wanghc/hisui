@@ -1,0 +1,24 @@
+.combo-text.validatebox-text,.spinner-text.validatebox-text{
+    &:active{
+      box-shadow: none;
+    }
+    &:focus{
+      box-shadow: none;
+    }
+}
+/*2019-07-10 span:hover---输入框与arrow都变色*/
+.searchbox:hover,.lookup:hover,.combo:hover,.spinner:hover,.triggerbox:hover{
+    input,span>span{
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      background-color: @input-hover-bgcolor;
+    }
+  }
+.searchbox span.searchbox-button.searchbox-button-hover,
+.combo  span.combo-arrow.combo-arrow-hover, 
+.triggerbox  span.triggerbox-button.triggerbox-button-hover, 
+.spinner .spinner-arrow span.spinner-arrow-hover {
+    opacity: @input-arrow-hover-opacity;
+    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    background-color:@input-arrow-hover-bgcolor;
+}

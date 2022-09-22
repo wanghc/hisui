@@ -11,9 +11,11 @@
   vertical-align: middle;
   &:active{
     background-color: @validatebox-focus-bgcolor;
+    box-shadow: 0px 0px 1px 1px @input-border-color inset;
   }
   &:focus{
     background-color: @validatebox-focus-bgcolor;
+    box-shadow: 0px 0px 1px 1px @input-border-color inset;
     &+span>span,&+input+span>span{ /*20190710 numberspinner--input+input+span*/
       opacity: @input-arrow-hover-opacity;
       filter: alpha(opacity=@input-arrow-hover-opacity-ie);
@@ -24,19 +26,17 @@
     background-color: @validatebox-focus-bgcolor;
   }
 }
-/*2019-07-10 span:hover---输入框与arrow都变色*/
-.searchbox:hover,.lookup:hover,.combo:hover,.spinner:hover{
-  input,span>span{
-    opacity: @input-arrow-hover-opacity;
-    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-    background-color: @input-hover-bgcolor;
-  }
-}
 .validatebox-text.validatebox-invalid {
   background-position: right 8px center;
   background-position-x: 96%\9;
   background-position-y: 50%\9;
   border-color:red;
+  &:focus{
+    box-shadow: 0px 0px 1px 1px red inset;
+  }
+  &:active{
+    box-shadow: 0px 0px 1px 1px red inset;
+  }
 }
 textarea.validatebox-text.validatebox-invalid{
   background-position: right 10px bottom 10px;

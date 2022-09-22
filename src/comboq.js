@@ -99,13 +99,16 @@
             if ($(this).hasClass('readonly')) return ;
 			//this.style.opacity = 1;
 			if(_mouse2Right(e,this)){
-				this.style.cursor = "pointer";
+                this.style.cursor = "pointer";
+                $(this).addClass('comboq-arrow-hover');
 			}else{
-				this.style.cursor = "auto";
+                this.style.cursor = "auto";
+                $(this).removeClass('comboq-arrow-hover');
 			}
 		}).bind('mouseleave.comboq',function(){
 			//this.style.opacity = 0.7;
-			this.style.cursor = "auto";
+            this.style.cursor = "auto";
+            $(this).removeClass('comboq-arrow-hover');
 		}).bind('click.comboq',function(e){
             // console.log(" comboq click = "+ $.data(this,'comboq').isShow );
             if ($(this).hasClass('disabled')) return ;

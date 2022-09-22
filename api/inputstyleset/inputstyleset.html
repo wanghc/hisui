@@ -13,21 +13,11 @@
 </head>
 
 <body>
-	<style>
-        td {
-            padding: 5px 0;
-        }
-
-        td.label {
-            text-align: right;
-            padding-right: 10px;
-        }
+	<style>	
+		.hisui-panel td{padding:5px 0;}
+		.hisui-panel td.r-label{padding-right: 10px;}
     </style>
     <h2>输入框样式集合</h2>
-	<h3>说明:</h3>
-    <span>用于展示各种输入框</span>
-    <h3>如：</h3>
-    <div class="demo-exp-code entry-content">
 		<div class="hisui-panel" title="输入框样式示例" style="width:1260px;padding:10px;"
 			data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',closable:false,collapsible:false,minimizable:false,maximizable:false">
 			<table cellpadding="0">
@@ -73,7 +63,7 @@
 				<tr>
 					<td class="r-label">查询框</td>
 					<td>
-						<input id="ss" class="hisui-searchbox" data-options="width:155"/>
+						<input id="ss" class="hisui-searchbox textbox" data-options="width:155"/>
 						<span style="margin-left: -1px;">用于左侧菜单搜索或树搜索</span>
 					</td>
                 <!--</tr>
@@ -191,15 +181,25 @@
                         </select>
                         <a href='#' id="cxcboxbtn1" class="hisui-linkbutton">获取选择的值(getValues)</a>
                     </td>
+					<td class="r-label">放大镜</td>
+					<td>
+						<input id="lookup1" class='textbox'/>
+					</td>
                 </tr>
                 <tr>
                     <td class="r-label">rowStyle生成的多选下拉框</td>
                     <td>
                         <select id="cxcbox" style="width:155px;">
 						</select>
-						<a href='#' id="cxcboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
-						<a href='#' id="cxcboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a>
+						<!-- <a href='#' id="cxcboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
+						<a href='#' id="cxcboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a> -->
                     </td>
+					<td class="r-label">
+						快速日期
+					</td>
+					<td>
+						<input class="hisui-dateboxq textbox" data-options="formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'">
+					</td>
                 </tr>
                 <tr>
 					<td class="r-label">formatter生成的多选下拉框</td>
@@ -214,12 +214,20 @@
 							}
 						</style>
 					</td>
+					<td class="r-label">
+						快速时间
+					</td>
+					<td>
+						<input class="hisui-timeboxq textbox" data-options='timeFormat:"HMS"'>
+					</td>
 				</tr>
                 <tr>
 					<td class="r-label">defaultFilter配置的下拉框</td>
 					<td>
 						<select id="cxdfCB" style="width:155px;"></select>
 					</td>
+					<td class="r-label">快速日期时间</td>
+					<td><input data-options="showSeconds:false" class="hisui-datetimeboxq textbox"></td>
 				</tr>
                 <tr>
 					<td class="r-label">文件框</td>
@@ -236,7 +244,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="label">多选文件框</td>
+					<td class="r-label">多选文件框</td>
 					<td>
 						<input class="hisui-filebox" name="file4" style="width:212px;"
 							data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" />
@@ -429,10 +437,22 @@
 					],
 					defaultFilter:4
 				});
-				// 文件框
-
+				$("#lookup1").lookup({
+					width:155,panelWidth:750,
+					url:'getGroup',
+					mode:'remote',
+					idField:'HIDDEN',
+					textField:'Description',
+					columns:[[  
+						{field:'Description',title:'安全组名称',width:200},  
+						{field:'HIDDEN',title:'安全组ID',width:100} ,
+						{field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+							return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
+						}} 
+					]],
+					pagination:true
+				});
             });
         </script>
-    </div>
 </body>
 </html>

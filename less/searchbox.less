@@ -18,13 +18,21 @@
       background-image: url('images/searchbox_button_disable.png');
     }
   }
-
+}
+.searchbox-text{
+  &:focus{
+      &+span>span{ /*20190710*/
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      background-color: @input-focus-bgcolor;
+    }
+  }
 }
 .searchbox .searchbox-text {
   font-size: @searchbox-font-size;
   border: 0;
   margin: 0;
-  padding: 0 2px;
+  padding: 0 0 0 5px;
   *margin-top: -1px;
   vertical-align: top;
   &:active{
@@ -35,11 +43,6 @@
   }
   &:focus{
     background-color: @input-focus-bgcolor;
-    &+span>span{ /*20190710*/
-      opacity: @input-arrow-hover-opacity;
-      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-      background-color: @input-focus-bgcolor;
-    }
   }
 }
 .searchbox .searchbox-prompt {
@@ -55,11 +58,6 @@
   cursor: pointer;
   opacity: @input-arrow-opacity;
   filter: alpha(opacity=@input-arrow-opacity-ie);
-}
-.searchbox-button.searchbox-button-hover {
-  opacity: @input-arrow-hover-opacity;
-  filter: alpha(opacity=@input-arrow-hover-opacity);
-  background-color:@input-arrow-hover-bgcolor;
 }
 .searchbox .l-btn-plain {
   border: 0;
