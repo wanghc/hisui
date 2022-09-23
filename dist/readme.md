@@ -43,7 +43,7 @@ $("#btn").linkbutton("disable");
 - `searchbox`小图标hover样式修改 [2937954]
 - `combo`系下拉面板展开后,增加combo-q-active样式 [2937959]
 - `checkbox`样式修改 [2937963]
-- `keywords`样式修改 [2937948]
+- `keywords`样式修改 [2937948] [2937965]
 
 ## 2022-09-22
 - comboq系组件增加comboq-arrow-hover样式
