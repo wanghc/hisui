@@ -40,12 +40,15 @@
                         p.css("z-index", $.fn.window.defaults.zIndex++);
                     }
                 }
+                /*增加面板展开时标记,以便实现样式*/
+                span.addClass('combo-p-active')
                 $(this).panel("resize");
             }, onBeforeClose: function () {
                 _854(this);
             }, onClose: function () {
                 var _849 = $.data(_847, "combo");
                 if (_849) {
+                    span.removeClass('combo-p-active')
                     _849.options.onHidePanel.call(_847);
                 }
             }
@@ -213,6 +216,7 @@
         }
         (function () {
             if (_863.is(":visible")) {
+                /*20220923增加面板位置样式*/
                 var topVal = _865();
                 if (topVal > _862.offset().top) {
                     _863.parent().removeClass('combo-p-top').addClass('combo-p-bottom');
