@@ -102,3 +102,17 @@ table {
 .plain-anchor.l-btn-plain{
     color:#409eff;
 }
+/*右边空20px*/
+label.radio ,label.checkbox{
+    margin-right: 20px;
+}
+.fs0{
+    font-size: 0px;
+}
+/*用于装多个按钮,让linkbutton间保持10px间距*/
+.links{
+    font-size: 0;
+}
+.links a{
+    margin-right: 10px;
+}
