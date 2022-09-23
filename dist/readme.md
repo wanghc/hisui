@@ -42,6 +42,7 @@ $("#btn").linkbutton("disable");
 - `combo`系下拉面板增加上方与下方区别,及样式修改 [2937960]
 - `searchbox`小图标hover样式修改 [2937954]
 - `combo`系下拉面板展开后,增加combo-q-active样式 [2937959]
+- `checkbox`样式修改 [2937963]
 
 ## 2022-09-22
 - comboq系组件增加comboq-arrow-hover样式
