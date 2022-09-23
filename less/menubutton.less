@@ -3,10 +3,10 @@
   color:#000000;
 }
 .m-btn-downarrow, .s-btn-downarrow {
-  background: url(images/arrow_down_white.png) center 8px no-repeat;
+  background: url(images/arrow_down_white.png) center 0px no-repeat;
 }
 .l-btn-plain .m-btn-downarrow,.l-btn-plain .s-btn-downarrow {
-  background: url(images/blue/menu_arrows.png) 0 center no-repeat;
+  background: url('@{images-path}/panel_tools_1.png') -32px -16px no-repeat;
 }
 .m-btn {
   .l-btn-text{
@@ -30,8 +30,8 @@
 .m-btn-downarrow,
 .s-btn-downarrow {
   width: @linkbutton-height;
-  height: @linkbutton-height;
-  top: 0;
+  height: 16px; //修改成30->16
+  top: 8px;
   margin-top: 0;
 }
 .m-btn-plain-active,
@@ -39,6 +39,7 @@
   -moz-border-radius: 0; 
   -webkit-border-radius: 0;
   border-radius: 0;
+  background-color: @linkbutton-plain-hover-bgcolor;
 }
 /*ie11加了兼容模式后,
   内核成ie7
@@ -50,8 +51,8 @@
   border: 0;
   padding: 0;
   background-color:@menubutton-blue-bgcolor;
-  &:hover{
-    background-color:@menubutton-blue-bgcolor-hover;
+  &:hover,&.m-btn-plain-active{
+    background-color:@linkbutton-hover-bgcolor;
   }
   .l-btn-left{
     width: 100%;
@@ -65,7 +66,7 @@
       display: none;
     }
     .m-btn-downarrow{
-      background: url(images/arrow_down_white.png) center 8px no-repeat;
+      background: url(images/arrow_down_white.png) center 0px no-repeat;
     }
   }
 }
@@ -155,7 +156,7 @@
     border-bottom:0px;
   }
   .menu-sep{
-    margin-left: 10px;
+    margin-left: 0px; /*要求顶二头2937859*/
   }
 }
 

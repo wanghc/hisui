@@ -18,10 +18,11 @@
     <div style="width: 533px;border: 1px solid transparent;padding: 1px">
 		<a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-abort-order',onClick:function(){
             $.messager.popover({msg:'按钮自己',type:'info'});
-        }">作废医嘱</a>   
-        <div id="mm2" style="width:100px;" class="menu-no-icon">   
-            <div onclick="$.messager.popover({msg:'停止',type:'info'});">停止</div>   
-            <div onclick="$.messager.popover({msg:'作废',type:'info'});">作废</div>   
+        }">医嘱处理</a>   
+        <div id="mm2" style="width:140px;" class="menu-no-icon">   
+            <div onclick="$.messager.popover({msg:'停止',type:'info'});">停止</div>
+            <div onclick="$.messager.popover({msg:'作废',type:'info'});">作废</div>
+            <div onclick="$.messager.popover({msg:'撤销',type:'info'});">撤销</div>
         </div>
         <a href="javascript:void(0)" id="sb2" class="hisui-splitbutton" data-options="menu:'#mm3',plain:false,onClick:function(){
             $.messager.popover({msg:'按钮自己',type:'info'});
