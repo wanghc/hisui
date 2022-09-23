@@ -40,6 +40,7 @@ $("#btn").linkbutton("disable");
 - `linkbutton`高度修改成28px
 - `checkbox`小图标位置调整 [2937962]
 - `combo`系下拉面板增加上方与下方区别,及样式修改 [2937960]
+- `searchbox`小图标hover样式修改 [2937954]
 
 ## 2022-09-22
 - comboq系组件增加comboq-arrow-hover样式

@@ -62,8 +62,9 @@
 }
 .searchbox-button.searchbox-button-hover {
   opacity: @input-arrow-hover-opacity;
-  filter: alpha(opacity=@input-arrow-hover-opacity);
-  background-color:@input-arrow-hover-bgcolor;
+  filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+  background-color: @input-arrow-hover-bgcolor;
+  color: @input-active-border-color;
 }
 .searchbox .l-btn-plain {
   border: 0;
