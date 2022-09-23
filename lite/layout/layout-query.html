@@ -24,7 +24,7 @@
     <div class="hisui-panel" data-options="fit:true,title:'菜单标题'">
         <div class="hisui-layout" fit="true">
             <div data-options="region:'north',border:false" style="padding: 5px 10px;border-bottom: 1px dashed #E2E2E2; ">
-                <table cellspacing="0" cellpadding="0" border="0">
+                <table cellspacing="0" cellpadding="0" broder="0">
                     <tr style="height: 40px;">
                         <td class="r-label">条件</td>
                         <td class="l-value"><input type="text" class="textbox" id="arg1" style="width:193px;"></td>
@@ -98,12 +98,15 @@
                 fit:true,
                 fitColumns:true,
                 rownumbers:true,
-                columns:[[
+                frozenColumns:[[
                     {field:'ck',checkbox:true,width:50},
                     {field:'op',title:'操作',formatter:function(val,row,ind){
                         return '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op1" data-ind="'+ind+'" iconCls="icon-copy" title="复制"></a>'+
                         '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op2" data-ind="'+ind+'" iconCls="icon-remove" title="删除"></a>';
-                    },width:100},
+                    },width:100}
+                ]],
+                columns:[[
+                    
                     {field:'name',title:'姓名',width:100},
                     {field:'content',title:'质控消息内容',width:300},
                     {field:'date',title:'质控日期',width:180,formatter:function(val,row,ind){
