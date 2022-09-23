@@ -45,6 +45,7 @@ $("#btn").linkbutton("disable");
 - `checkbox`样式修改 [2937963]
 - `keywords`样式修改 [2937948] [2937965]
 - 默认背景色调整 [2850626]
+- 翻页条上disable按钮不要背景色 [2863284]
 
 ## 2022-09-22
 - comboq系组件增加comboq-arrow-hover样式
