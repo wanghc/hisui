@@ -36,8 +36,9 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-09-23
 - `splitbutton`,`menu`展开时样式,线条,箭头修改 [2937860] [2937859]
-- 极简`validatebox`验证错误时样式调整 2937953
+- 极简`validatebox`验证错误时样式调整 [2937953]
 - `linkbutton`高度修改成28px
+- `checkbox`小图标位置调整 [2937962]
 
 ## 2022-09-22
 - comboq系组件增加comboq-arrow-hover样式
