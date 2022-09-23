@@ -213,7 +213,13 @@
         }
         (function () {
             if (_863.is(":visible")) {
-                _863.panel("move", { left: _864(), top: _865() });
+                var topVal = _865();
+                if (topVal > _862.offset().top) {
+                    _863.parent().removeClass('combo-p-top').addClass('combo-p-bottom');
+                } else {
+                    _863.parent().removeClass('combo-p-bottom').addClass('combo-p-top');
+                }
+                _863.panel("move", { left: _864(), top: topVal });
                 setTimeout(arguments.callee, 200);
             }
         })();

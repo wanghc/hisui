@@ -59,5 +59,16 @@
 
 .panel.combo-p{
   box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
-  border-radius: 0 0 4px 4px;
+  &.combo-p-top{
+    border-radius: 4px 4px 0 0;
+    .combo-panel{
+      border-radius: 4px 4px 0 0;
+    }
+  }
+  &.combo-p-bottom{
+    border-radius: 0 0 4px 4px;
+    .combo-panel{
+      border-radius: 0 0 4px 4px;
+    }
+  }
 }
