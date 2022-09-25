@@ -1,4 +1,3 @@
-@import "variables.less";
 .comboq {
   box-sizing: border-box;
   height: 30px;
@@ -27,4 +26,14 @@ input.comboq.textbox{
 .comboq.bginone{
   background-image: none;
   padding-right: 0px;
+}
+#z-q-container.comboq-p-top{
+  border-radius: 4px 4px 0 0;
+}
+#z-q-container.comboq-p-bottom{
+  border-radius: 0 0 4px 4px;
+}
+input.comboq-active{
+  background-color: @input-active-bgcolor;
+  border-color: @input-active-border-color;
 }

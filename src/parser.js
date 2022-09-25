@@ -226,7 +226,7 @@
         var _t = $(target);
         var panel = $($.hisui.globalContainerSelector);
         var offset = _t.offset();
-        panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
+        //panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
         /**清除上一次定时器,当调用renderRowSummary方法时,会多次触发fixPanelTLWH,不用多个定时器来计算位置 */
         if (state.offsettimer) {
             clearTimeout(state.offsettimer);
@@ -235,7 +235,15 @@
         /*60ms, 重计算位置*/
         (function () {
             if (panel.is(":visible")) {
-                var myTop = getTop();
+                var myTop = parseInt(getTop());
+                /*20220923增加面板位置样式, 且面板覆盖处comboq下边或上边1px边框 2745948 2914190*/
+                if (myTop > _t.offset().top) {
+                    myTop--; 
+                    panel.removeClass('comboq-p-top').addClass('comboq-p-bottom');
+                } else {
+                    myTop++;
+                    panel.removeClass('comboq-p-bottom').addClass('comboq-p-top');
+                }
                 var myLeft = getLeft();
                 if (Math.abs(myTop-panel.offset().top)>2 || Math.abs(myLeft-panel.offset().left)>2){
                     panel.offset({top: myTop, left: myLeft});

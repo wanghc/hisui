@@ -37,6 +37,7 @@
                 state.isShow = false;
                 opts.onHidePanel.call(this,target);
             }
+            $(target).removeClass('comboq-active');
             $($.hisui.globalContainerSelector).hide();
             return $(target);
         }
@@ -210,6 +211,7 @@
             qState : state     // 医嘱录入界页，先删除行后，再隐藏放大镜，那时就拿不到放大镜上的options
         }); /*下拉层上记录住当前对应的target*/
         opts.onShowPanel.call(target);
+        _t.addClass('comboq-active'); /*面板展开时输入框状态就为激活状态,需求号 2914060*/
         $.hisui.fixPanelTLWH();
     }
     $.fn.comboq = function (opts, param) {
