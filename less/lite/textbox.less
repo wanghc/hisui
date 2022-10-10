@@ -4,7 +4,8 @@ input[type=text],textarea{
   width:@textbox-width;/*websys.css-width:130px;*/
 }
 /*不增加type=text，当<input>定义时不带type时选择不到*/
-input.textbox,textarea.textbox,select.textbox,.textareabox-text,input.validatebox-text {
+/*textbox[type=text] 覆盖老的选择器*/
+input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-text,input.validatebox-text {
   width:@textbox-width; /*--2018-11-22*/
   margin:0;
   padding:0 0 0 @validatebox-padding-left;
