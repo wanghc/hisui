@@ -36,6 +36,14 @@
     background-color: @input-hover-bgcolor;
   }
 }
+/*2022-10-10 组件禁用时背景色不变*/
+.searchbox.disabled:hover,.lookup.disabled:hover,.combo.disabled:hover,.spinner.disabled:hover{
+  input,span>span{
+    opacity: @input-arrow-hover-opacity;
+    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    background-color: @input-disabled-bgcolor;
+  }
+}
 .validatebox-text.validatebox-invalid {
   background-position: right 8px center;
   background-position-x: 96%\9;

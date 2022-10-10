@@ -25,6 +25,11 @@
       background-color: #d5eefe;
     }
   }
+  &:hover,&.spinner-hover{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  /*20221010 disabled样式覆盖:hover样式*/
   &.disabled{
     background-color: @input-disabled-bgcolor;
     border-color: @input-disabled-border-color;
@@ -32,17 +37,13 @@
       background-color: @main-disabled-bgcolor;
       .spinner-arrow-up {
         background-image: none; //url(images/spinner_arrows_disable.png);
-        color:@input-disabled-border-color;
+        color:@input-iconbtn-disabled-color;
       }
       .spinner-arrow-down {
         background-image: none; //url(images/spinner_arrows_disable.png);
-        color:@input-disabled-border-color;
+        color:@input-iconbtn-disabled-color;
       }
     }
-  }
-  &:hover,&.spinner-hover{
-    background-color: @input-active-bgcolor;
-    border-color: @input-active-border-color;
   }
 }
 

@@ -1,9 +1,3 @@
-@import "variables.less";
-.dateboxq.disabled {
-  background-image: url('images/datebox_arrow_disable.png'); // no-repeat center center;
-  background-color: @main-disabled-bgcolor;
-  color:#ccc;
-}
 .dateboxq {
   background-image: url('@{images-path}/datebox_arrow_7e7e7e.png');
   background-repeat: no-repeat;
@@ -13,6 +7,12 @@
 }
 .dateboxq:hover,.dateboxq:focus {
   background-image: url(images/datebox_arrow.png);
+}
+/*disabled应该覆盖hover效果,移到:hover后面*/
+.dateboxq.disabled {
+  background-image: url('images/datebox_arrow_disable.png'); // no-repeat center center;
+  background-color: @main-disabled-bgcolor;
+  color:#ccc;
 }
 input.dateboxq::-ms-clear{
   display: none;
