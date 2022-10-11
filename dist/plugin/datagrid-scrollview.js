@@ -1,4 +1,4 @@
-﻿$.extend($.fn.datagrid.defaults, {
+$.extend($.fn.datagrid.defaults, {
 	rowHeight: null,
 	maxDivHeight: 10000000,
 	maxVisibleHeight: 15000000,
@@ -222,6 +222,8 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		当datagrid.scroll一条数据时会重显问题
 		*/
 		dc.body2.css('position','static'); //'initial');
+		//因为body2直接被清空了，所以需要记录当前滚动条的临时位置，后续还原滚动条--tanjishan 2022年10月11日
+		view.scrollTopTmp=parseInt(dc.body2.scrollTop())
 		dc.body1.add(dc.body2).empty();
 		this.rows = [];	// the rows to be rendered
 		this.r1 = this.r2 = [];	// the first part and last part of rows
@@ -271,8 +273,13 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 					}
 					view.scrollTimer = setTimeout(function(){
 						view.scrolling.call(view, target);
+						if ((view.scrollTopTmp)&&(view.scrollTopTmp>0)) {
+							dc.body2.scrollTop(view.scrollTopTmp);
+							view.scrollTopTmp="";
+						}
 					}, 50);
 				});
+				
 				dc.body2.triggerHandler('scroll.datagrid');
 			}, 0);
 		}
@@ -317,6 +324,7 @@ var scrollview = $.extend({}, $.fn.datagrid.defaults.view, {
 		$.fn.datagrid.defaults.view.onAfterRender.call(this, target);
 		var dc = $.data(target, 'datagrid').dc;
 		var footer = dc.footer1.add(dc.footer2);
+		
 		footer.find('span.datagrid-row-expander').css('visibility', 'hidden');
 	},
 
