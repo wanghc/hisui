@@ -38,6 +38,8 @@ location.href = rtn;</code></pre>
 showProgressBar("导出中....");
 $cm({
 	ResultSetType:"ExcelPlugin",  //表示通过DLL生成Excel，可支持IE与Chrome系。Chrome系浏览器请安装中间件
+	//ExcelPlugin时支持参数：
+	//  showLineCfg:"Y", //显示Excel线条
 	//ResultSetTypeDo:"Print",    //默认Export，可以设置为：PRINT , PREVIEW
 	//localDir:"D:\\tmp\\",	      //D:\\tmp\\表示固定文件路径, "Self"表示用户导出时选择保存路径，默认保存到桌面
 	ExcelName:"excelname",		  //默认DHCCExcel，不用包含后缀
