@@ -1291,7 +1291,7 @@
 					if (data.footer) {
 						_112.footer = data.footer;
 					}
-					if (data.total) {
+					if (data.total!=_112.total) { /*前一次查询total=12,后面一次查询total=0时，导致导航条显示的还是12条记录,不正确，因为0 20221021 wangguoying*/
 						_112.total = data.total;
 					}
 					data = this.transfer(_110, _111, data.rows);
