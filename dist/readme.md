@@ -96,7 +96,7 @@ $("#btn").linkbutton("disable");
 - `linkbutton`的大图标选中背景色修改 [2850808]
 
 ## 2022-09-07
-- 调用`DropDropRadio`组件的clear方法报错问题处理 :bug:
+- 调用`DropDropRadio`组件的clear方法报错问题处理 :bug: [2843010]
 
 ## 2022-08-31
 - `datagrid`鼠标滚轮在固定列内容区域无法滚动表格问题处理 [2902579] :sparkles:
