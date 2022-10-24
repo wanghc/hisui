@@ -25,7 +25,14 @@
   border-radius: 2px;
   border-color: @input-border-color;
   background-color: @input-bgcolor;
-  &:hover,&.combo-hover,&.combo-p-active{
+  &.combo-p-active{
+    border-color: @input-active-border-color;
+    background-color: @input-active-bgcolor;
+    .combo-arrow{
+      color:@input-active-border-color;  /*2891835*/
+    }
+  }
+  &:hover,&.combo-hover{
     border-color: @input-active-border-color;
     background-color: @input-active-bgcolor;
   }
