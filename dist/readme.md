@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-10-25
+- 极简风格下`panel`的card风格面板修改成默认面板样式 [2913345]
 
 ## 2022-10-24
 - 修改极简风格下`splitbutton`与`menubutton`的箭头与文字间距 [2855502]
