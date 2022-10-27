@@ -398,7 +398,11 @@
     }
     /** 默认的面板隐藏事件方法，验证值是否正确 */
     var onHidePanelDefaultHandler = function (target) {
-        if (event && event.target.className.indexOf("combobox-item") > -1) { // 如果是手动选行，不去校验值。会诊表格中下拉框使用了setValue(text)赋值
+        var eventEl = null;
+        if (window.event) {
+            eventEl = window.event.target || window.event.srcElement || null;
+        }
+        if (eventEl && (eventEl.className||"").indexOf("combobox-item") > -1) { // 如果是手动选行，不去校验值。会诊表格中下拉框使用了setValue(text)赋值
             return;
         }
         var opts = $(target).combobox('options');

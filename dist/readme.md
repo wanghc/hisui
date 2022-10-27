@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-10-27
+- 在IE8下选中`combobox`某行时js报错处理 协和
+
 ## 2022-10-25
 - 极简风格下`panel`的card风格面板修改成默认面板样式 [2913345]
 
