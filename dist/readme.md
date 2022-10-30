@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-10-30
+- 为解决不存在icon类不显示图标问题，icon-xx样式指定字体 [2911539]
+- icon-xx增加居中样式,解决在列表上显示图标问题 [2911539]
+- 解决非`datagrid-toolbar`下的无背景(plain:true)按钮的图标显示间距异常 [2911539]
+
 ## 2022-10-27
 - 在IE8下选中`combobox`某行时js报错处理 协和
 
