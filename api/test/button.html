@@ -286,6 +286,12 @@
                 <td></td>
                 <td><input class="hisui-filebox" disabled style="width:212px;" data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" /></td>
             </tr>
+            <tr>
+                <td></td>
+                <td><input class="hisui-lookup" disabled ></td>
+                <td></td>
+                <td></td>
+            </tr>
 		</table>
 	</div>
 	<script type="text/javascript">
@@ -622,7 +628,22 @@
 			</table>
 		</div>
 		<br>
+		<div>
+			<a href="javascript:void(0)" class="hisui-linkbutton"
+					data-options="iconCls:'icon-search',plain:true">查询</a>
+				<a href="javascript:void(0)" class="hisui-linkbutton"
+					data-options="iconCls:'icon-cancel',plain:true">删除</a>
+				<a href="javascript:void(0)" class="hisui-menubutton menubutton-toolbar"
+					data-options="menu:'#mm-toolbar22',iconCls:'icon-add-note'">其他</a>
+				<div id="mm-toolbar22" style="width:100px;">
+					<div onclick="console.log('停止');">停止</div>
+					<div onclick="console.log('作废');">作废</div>
+				</div>
+		</div>
+
+
 		<br>
+
 		<div style="width: 533px;border: 1px solid transparent;padding: 1px">
 			<a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-abort-order',onClick:function(){
 		$.messager.popover({msg:'按钮自己',type:'info'});
