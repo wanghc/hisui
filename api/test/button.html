@@ -290,7 +290,7 @@
                 <td></td>
                 <td><input class="hisui-lookup" disabled ></td>
                 <td></td>
-                <td></td>
+                <td><input type="text" id="ImportLic" class="showicon"></td>
             </tr>
 		</table>
 	</div>
@@ -498,6 +498,17 @@
 				]],
 				pagination: true
 			});
+			$("#ImportLic").filebox({
+				width:116,
+				buttonText:"导入许可",
+				buttonIcon:'icon-w-line-key',
+				//accept:"text/plain,text/*",
+				onChange:function(newVal,oldVal){
+					if (newVal!=""){
+						
+					}
+				}
+		});
 		});
 	</script>
 	<div class="hisui-panel" title="按钮样式示例" style="width:1260px;padding:10px;"
