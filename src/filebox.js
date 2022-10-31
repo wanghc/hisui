@@ -19,9 +19,12 @@
         if (opts.plain) span.addClass('filebox-plain');
         if(opts.disabled) span.addClass('disabled');
         if(!opts.buttonText) span.addClass('filebox-no-txet');
-        if(opts.buttonAlign=="left") span.addClass('filebox-left');
-
-        var btn = $("<a href=\"javascript:;\" class=\"filebox-button\"></a>").prependTo(span);
+        if (opts.buttonAlign == "left") span.addClass('filebox-left');
+        var hrefDefaultCls = "filebox-button";
+        if ($(_570).hasClass('showicon')) {
+            hrefDefaultCls += " showicon";
+        }
+        var btn = $("<a href=\"javascript:;\" class=\""+hrefDefaultCls+"\"></a>").prependTo(span);
         btn.addClass("filebox-button-" + opts.buttonAlign).linkbutton({
             text: opts.buttonText,
             iconCls: opts.buttonIcon,
