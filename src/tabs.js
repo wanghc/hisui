@@ -291,6 +291,33 @@
             selectTab(container, tabs.length - 1);
         }
     };
+    /**
+	* wanghc---不能重刷新content-iframe
+	*/
+	function updateTabOpt(container, param){
+		var selectHis = $.data(container, 'tabs').selectHis;
+		var pp = param.tab;	// the tab panel
+		var paramOpts = param.options; 		
+		var opts = pp.panel('options');	// get the tab panel options
+		var oldTitle = opts.title;
+		var tab = opts.tab;		
+		var s_title = tab.find('span.tabs-title');
+		var s_icon = tab.find('span.tabs-icon');
+		if (paramOpts.title) {
+			s_title.html(paramOpts.title);
+			pp.panel("options").title=paramOpts.title;
+		}
+		if (paramOpts.title){
+			 s_title.html(paramOpts.title);
+			if (oldTitle != opts.title){
+				for(var i=0; i<selectHis.length; i++){
+					if (selectHis[i] == oldTitle){
+						selectHis[i] = opts.title;
+					}
+				}
+			}
+		}
+	}
     function updateTab(container, param) {
         var selectHis = $.data(container, "tabs").selectHis;
         var pp = param.tab;
@@ -386,6 +413,21 @@
             }
         }
     };
+	/**
+	* $("#tabsReg").tabs("getTab"{val:"EPR",key:'itarget'});
+	* $("#tabsReg").tabs("getTab",{val:"医嘱录入",key:'title'});
+	* $("#tabsReg").tabs("getTab",{val:"dhcdoc.main.view",key:'id'});
+	*/
+	function getTabByOpt(container, opt){
+		var tabs = $.data(container, 'tabs').tabs;
+		for(var i=0; i<tabs.length; i++){
+			var tab = tabs[i];
+			if (tab.panel('options')[opt['key']] == opt['val']){
+				return tab;
+			}
+		}
+		return null;
+	};
     function getTab(container, which, removeit) {
         var tabs = $.data(container, "tabs").tabs;
         if (typeof which == "number") {
@@ -559,6 +601,8 @@
             return jq.each(function () {
                 closeTab(this, which);
             });
+        }, getTabByOpt:function(jq,opt){
+            return getTabByOpt(jq[0],opt);
         }, getTab: function (jq, which) {
             return getTab(jq[0], which);
         }, getTabIndex: function (jq, tab) {
@@ -578,6 +622,10 @@
         }, update: function (jq, options) {
             return jq.each(function () {
                 updateTab(this, options);
+            });
+	    },updateOpt:function(jq,options){
+	        return jq.each(function(){
+                updateTabOpt(this, options);
             });
         }, enableTab: function (jq, which) {
             return jq.each(function () {
@@ -615,8 +663,9 @@
     $.fn.tabs.parseOptions = function (target) {
         return $.extend({}, $.parser.parseOptions(target, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean" }]));
     };
+    /*单独引入tabs.js时,页签头高度不对,所以tabHeight高度27修改成36。hisui.js中也有写*/
     $.fn.tabs.defaults = {
-        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 27, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, onLoad: function (panel) {
+        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, onLoad: function (panel) {
         }, onSelect: function (title, index) {
         }, onUnselect: function (title, index) {
         }, onBeforeClose: function (title, index) {
