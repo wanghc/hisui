@@ -2125,35 +2125,15 @@
         // throw new Error("Not find $cm function. Please include scripts/websys.jquery.js or Setting configuration columns");
         return "";
     }
-    $.fn.datagrid = function (_64d, _64e) {
-        if (typeof _64d == "string") {
-            return $.fn.datagrid.methods[_64d](this, _64e);
-        }
-        _64d = _64d || {};
-        return this.each(function () {
-            var _64f = $.data(this, "datagrid");
-            var opts;
-            if (_64f) {
-                opts = $.extend(_64f.options, _64d);
-                _64f.options = opts;
-            } else {
-                opts = $.extend({}, $.extend({}, $.fn.datagrid.defaults, { queryParams: {} }), $.fn.datagrid.parseOptions(this), _64d);
-                if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,options,this);
-                $(this).css("width", "").css("height", "");
-                var _650 = _53a(this, opts.rownumbers);
-                if (!opts.columns) {
-                    opts.columns = _650.columns;
-                }
-                if (!opts.frozenColumns) {
-                    opts.frozenColumns = _650.frozenColumns;
-                }
-                if ("" != opts.queryName) {
-                    if (null == opts.editColumnsGrantUrl) opts.editColumnsGrantUrl = $URL + "?ClassName=BSP.SYS.SRV.SSGroup&MethodName=CurrAllowColumnMgr";
-                    if (null == opts.columnsUrl) opts.columnsUrl = $URL + "?ClassName=websys.Query&MethodName=ColumnDefJson&cn=" + opts.className + "&qn=" + opts.queryName;
-                    if (null == opts.editColumnsPage) opts.editColumnsPage = '../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K' + opts.className + ":" + opts.queryName;
-                }
-                if ( opts.columnsUrl != null){ //从query中取cm
-                    var json = getColumns(opts);
+    var _handerColumns = function (opts,cfg,_64f) {
+            if (!!opts.queryName) {
+                if (null == opts.editColumnsGrantUrl) opts.editColumnsGrantUrl = $URL + "?ClassName=BSP.SYS.SRV.SSGroup&MethodName=CurrAllowColumnMgr";
+                if (null == opts.columnsUrl) opts.columnsUrl = $URL + "?ClassName=websys.Query&MethodName=ColumnDefJson&cn=" + opts.className + "&qn=" + opts.queryName;
+                if (null == opts.editColumnsPage) opts.editColumnsPage = '../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K' + opts.className + ":" + opts.queryName;
+            }
+            if (opts.columnsUrl){ //从query中取cm
+                var json = getColumns(opts);
+                if (json) {
                     /*config中出现了, 但object中不存在的属性，将从config对象中复制到object中*/
                     var applyIf = function (object, config) {
                         var property;
@@ -2167,7 +2147,7 @@
                         return object;
                     };
                     var defaultCm = opts.defaultsColumns; /*把默认的定义合并到后台的列定义中*/
-                    if (opts.defaultsColumns) {
+                    if (opts.defaultsColumns && json.cm && json.cm.length>0) {
                         for (var i = 0; i < json.cm.length; i++) {
                             var defaultObj = $.hisui.getArrayItem(defaultCm, 'field', json.cm[i].field)
                             if (defaultObj) {
@@ -2176,13 +2156,46 @@
                         }
                     }
                     if (opts.onColumnsLoad) opts.onColumnsLoad.call(_64f, json.cm);
-                    opts.columns = [json.cm];
-                    opts.pageSize = json.pageSize;
-                    if (opts.pageList && $.isArray(opts.pageList) && $.inArray(opts.pageSize, opts.pageList)==-1) {
-                        opts.pageList.push(opts.pageSize);
-                        opts.pageList.sort(function(a,b){return a-b});
+                    if (json.cm && json.cm.length > 0) {
+                        opts.columns = [json.cm];
+                        cfg.columns = opts.columns;  // 兼容scrollview插件,一定要修改原定义中的columns
+                    }
+                    if ( json.pageSize>0){
+                        opts.pageSize = json.pageSize;
+                        if (opts.pageList && $.isArray(opts.pageList) && $.inArray(opts.pageSize, opts.pageList) == -1) {
+                            opts.pageList.push(opts.pageSize);
+                            opts.pageList.sort(function (a, b) { return a - b });
+                        }
                     }
                 }
+            }
+    }
+    $.fn.datagrid = function (_64d, _64e) {
+        if (typeof _64d == "string") {
+            return $.fn.datagrid.methods[_64d](this, _64e);
+        }
+        _64d = _64d || {};
+        return this.each(function () {
+            var _64f = $.data(this, "datagrid");
+            var opts;
+            if (_64f) {
+                opts = $.extend(_64f.options, _64d);
+                _64f.options = opts;
+                if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
+                _handerColumns(opts,_64d,_64f);
+            } else {
+                opts = $.extend({}, $.extend({}, $.fn.datagrid.defaults, { queryParams: {} }), $.fn.datagrid.parseOptions(this), _64d);
+                if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
+                _handerColumns(opts,_64d,_64f);
+                $(this).css("width", "").css("height", "");
+                var _650 = _53a(this, opts.rownumbers);
+                if (!opts.columns) {
+                    opts.columns = _650.columns;
+                }
+                if (!opts.frozenColumns) {
+                    opts.frozenColumns = _650.frozenColumns;
+                }
+                
                 opts.columns = $.extend(true, [], opts.columns);
                 opts.frozenColumns = $.extend(true, [], opts.frozenColumns);
                 opts.view = $.extend({}, opts.view);
