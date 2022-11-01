@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2022-11-01
 - `datagrid`增加列定义配置路径`columnsUrl`配置项,修改列定义路径界面`editColumnsPage`配置项,修改列定义权力路径`editColumnsGrantUrl`配置项
 - `datagrid`增加事件`onInitBefore(options)`,便于在表格生成前修改上下文
+- 隐藏列头不翻译 [3017058]
 
 ## 2022-10-31
 - `filebox`极简风格下支持显示按钮图标。支持showicon样式 [2911548]

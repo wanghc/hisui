@@ -436,7 +436,9 @@
                         if (col.field) {
                             td.attr("field", col.field);
                             td.append("<div class=\"datagrid-cell\"><span></span><span class=\"datagrid-sort-icon\"></span></div>");
-                            $("span", td).html( $.hisui.getTrans(col.title));  //add trans
+                            var titleTr = col.title;
+                            if (true != col.hidden) titleTr = $.hisui.getTrans(col.title); // 隐藏列头不翻译 需求号:3017058
+                            $("span", td).html( titleTr );  //add trans
                             $("span.datagrid-sort-icon", td).html(""); //html("&nbsp;");-html(""); neer 2019-4-4 当align:'right'时列头与内容没对齐
                            var cell = td.find("div.datagrid-cell");
                             var pos = _502(_553, col.field);
