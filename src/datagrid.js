@@ -556,11 +556,12 @@
             opts.onHeaderContextMenu.call(_55a, e, _55f);
         }).bind("dblclick.datagrid", function (e) {   //cryze 双击列头事件 和表头右键菜单的监听放在一起
             var _55f = $(this).attr("field");
-            if (opts.queryName!=""){
+            if (opts.editColumnsPage != null) {
                 e.preventDefault();
-                var flag = $cm({ ClassName: "BSP.SYS.SRV.SSGroup", MethodName: "CurrAllowColumnMgr" }, false);
+                var flag = 1;
+                if (null != opts.editColumnsGrantUrl) $.ajax({ url: opts.editColumnsGrantUrl, async: false, dataType: 'text', success: function (rtn) { flag = rtn; } });
                 // window的zindex使用了$.fn.window.default.zIndex++, combo使用了$.fn.menu.default.zIndex++, 导致在combo列头上又出弹出的window会被下拉层覆盖，修改成window.open
-                if(flag==1) window.open('../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K'+opts.className+":"+opts.queryName,"_blank","top=50,left=100,width=1000,height=800,titlebar=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
+                if(flag==1) window.open(opts.editColumnsPage,"_blank","top=50,left=100,width=1000,height=800,titlebar=no,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes");
                 return false;
             }else{
                 opts.onDblClickHeader.call(_55a, e, _55f);
@@ -2112,15 +2113,16 @@
         }
         _596(_64a);
     };
-    function getColumns (options){
-        if (options.className!="" && options.queryName!=""){
-            if ("undefined"!=typeof $cm){
-                var json = $cm({ClassName:"websys.Query",MethodName:"ColumnDefJson",cn:options.className,qn:options.queryName},false);
-                return json;
-            }else{
-                throw new Error("Not find $cm function. Please include scripts/websys.jquery.js or Setting configuration columns");
-            }
+    function getColumns(options) {
+        if (options.columnsUrl!=null){
+            var json = "";
+            $.ajax({
+                url: options.columnsUrl, async: false, dataType: 'json', success: function (rtn) {
+                    json = rtn;
+            }});
+            return json;
         }
+        // throw new Error("Not find $cm function. Please include scripts/websys.jquery.js or Setting configuration columns");
         return "";
     }
     $.fn.datagrid = function (_64d, _64e) {
@@ -2136,6 +2138,7 @@
                 _64f.options = opts;
             } else {
                 opts = $.extend({}, $.extend({}, $.fn.datagrid.defaults, { queryParams: {} }), $.fn.datagrid.parseOptions(this), _64d);
+                if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,options,this);
                 $(this).css("width", "").css("height", "");
                 var _650 = _53a(this, opts.rownumbers);
                 if (!opts.columns) {
@@ -2144,7 +2147,12 @@
                 if (!opts.frozenColumns) {
                     opts.frozenColumns = _650.frozenColumns;
                 }
-                if(opts.queryName){ //从query中取cm
+                if ("" != opts.queryName) {
+                    if (null == opts.editColumnsGrantUrl) opts.editColumnsGrantUrl = $URL + "?ClassName=BSP.SYS.SRV.SSGroup&MethodName=CurrAllowColumnMgr";
+                    if (null == opts.columnsUrl) opts.columnsUrl = $URL + "?ClassName=websys.Query&MethodName=ColumnDefJson&cn=" + opts.className + "&qn=" + opts.queryName;
+                    if (null == opts.editColumnsPage) opts.editColumnsPage = '../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K' + opts.className + ":" + opts.queryName;
+                }
+                if ( opts.columnsUrl != null){ //从query中取cm
                     var json = getColumns(opts);
                     /*config中出现了, 但object中不存在的属性，将从config对象中复制到object中*/
                     var applyIf = function (object, config) {
@@ -3295,6 +3303,10 @@
         }
     };
     $.fn.datagrid.defaults = $.extend({}, $.fn.panel.defaults, {
+        columnsUrl: null, /* 获得列定义信息的全路径，返回列定义json 2022-11-01 */
+        editColumnsPage: null, /* 修改列定义的界面全路径 2022-11-01 */
+        editColumnsGrantUrl: null, /*判断当前判状态能不能修改列定义,返回1能修改，0不能修改*/
+        onInitBefore:null, /*在grid初始化前 options,this*/
         loadBeforeClearSelect:false, /* 加载数据前清空全选 2022-01-25 */
         singleRequest:false, /* 发送下一请求前,abort前一请求, 20211110*/
         shiftCheck:false,

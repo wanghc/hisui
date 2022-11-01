@@ -780,6 +780,24 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>false</td>
 			<td>true时,在加载数据前清空所有选中<code>20220126</code></td>
 		</tr>
+		<tr>
+			<td>columnsUrl</td>
+			<td>获得表格列定义数据路径,返回的json格式为:{"cm":[{"field":"Code","title":"代码"},{...}],"pageSize":15,"originPage":"xx.csp"}</td>
+			<td>null</td>
+			<td>可选,优先于columns属性<code>(20221101)</code></td>
+		</tr>
+		<tr>
+			<td>editColumnsPage</td>
+			<td>编辑列定义界面路径</td>
+			<td>null</td>
+			<td>可选,定义后双击列头会弹出此界面<code>(20221101)</code></td>
+		</tr>
+		<tr>
+			<td>editColumnsGrantUrl</td>
+			<td>判断是否有权力编辑列定义路径,返回1表示有权限</td>
+			<td>null</td>
+			<td>可选,定义后在双击列头时,会通过此链接判断是否有权限弹出editColumnsPage界面<code>(20221101)</code></td>
+		</tr>
 		<tr class="mthtitle">
 			<th>方法名</th>
 			<th>说明</th>
@@ -845,6 +863,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>获得columns后触发事件</td>
 			<td>cm</td>
 			<td>配置className与queryName后有效<code>2019-09-31</code></td>
+		</tr>
+		<tr>
+			<td>onInitBefore</td>
+			<td>用于在表格生成前修改上下文</td>
+			<td>options</td>
+			<td>当前this指向datagrid<code>(20221101)</code></td>
 		</tr>
 		<tr class="protitle">
 			<th>列配置项</th>
