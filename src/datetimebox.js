@@ -85,6 +85,13 @@
         var d = _94f(target);
         _94e(target, opts.formatter.call(target, d));        
     }
+    function onBlur(target){
+        if ($(target).combo('textbox').val()=='') {   //如果当前输入框为空 不再进行格式化值 而是直接setValue空 避免点击关闭和删掉输入框值时又变回当前日期  //cryze 2022-11-04
+            _94e(target, ''); 
+        }else{
+            formatterValue(target);
+        }
+    }
     function _953(_954) {
         formatterValue(_954);        
         $(_954).combo("hidePanel");
@@ -217,7 +224,8 @@
         }, onHidePanel:function(){ //因为修改t快捷键,datebox中增加了这个方法,datetimebox中不用
         }, rules: { //重写datebox方法
         }, onBlur: function (target) { //重写datebox方法
-            formatterValue(target);
+            //formatterValue(target);
+            onBlur(target);  //不再直接调用formatterValue cryze 2022-11-04
 		}
     });
 })(jQuery);

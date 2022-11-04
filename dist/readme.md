@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-04
+- `datetimebox`onBlur事件中，当输入框值为空时不再进行格式化，而是进行值清空，用于解决当框为空点击面板的"关闭"或者删光输入框的值还是会重新变成当前时间问题
+
 ## 2022-11-01
 - `datagrid`增加列定义配置路径`columnsUrl`配置项,修改列定义路径界面`editColumnsPage`配置项,修改列定义权力路径`editColumnsGrantUrl`配置项
 - `datagrid`增加事件`onInitBefore(options)`,便于在表格生成前修改上下文
