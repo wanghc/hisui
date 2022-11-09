@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2022-11-09
 - `datagrid`的`columnsUrl`配置项得到的列定义覆盖columns中属性 [3057692] :sparkles:
 - `datagrid`的`defaultColumns`支持`[{},{}]`与`[[{},{}]]`二种结构
+- 菜单组件hover颜色修改成#e5e5e5 [2855502] :lipstick:
 
 ## 2022-11-04
 - `datetimebox`onBlur事件中，当输入框值为空时不再进行格式化，而是进行值清空，用于解决当框为空点击面板的"关闭"或者删光输入框的值还是会重新变成当前时间问题
