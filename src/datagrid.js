@@ -2195,8 +2195,8 @@
             if (_64f) {
                 opts = $.extend(_64f.options, _64d);
                 _64f.options = opts;
-                //if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
-                //_handerColumns(opts,_64d,_64f);
+                if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
+                _handerColumns(opts,_64d,_64f);
             } else {
                 opts = $.extend({}, $.extend({}, $.fn.datagrid.defaults, { queryParams: {} }), $.fn.datagrid.parseOptions(this), _64d);
                 if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
