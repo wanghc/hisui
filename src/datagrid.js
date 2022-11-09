@@ -2148,8 +2148,20 @@
                         }
                         return object;
                     };
-                    var defaultCm = opts.defaultsColumns; /*把默认的定义合并到后台的列定义中*/
-                    if (opts.defaultsColumns && json.cm && json.cm.length>0) {
+                    /*把后台cm配置 重写入 前台cm对象 20221109*/
+                    var originCm = opts.columns; /*把默认的定义合并到后台的列定义中*/
+                    if (originCm && originCm.length>0 && json.cm && json.cm.length>0) {
+                        for (var i = 0; i < json.cm.length; i++) {
+                            var defaultObj = $.hisui.getArrayItem(originCm[0], 'field', json.cm[i].field)
+                            if (defaultObj) {
+                                applyIf(json.cm[i], defaultObj);
+                            }
+                        }
+                    }
+                    /*把默认的定义合并到后台的列定义中 20220818*/
+                    var defaultCm = opts.defaultsColumns;
+                    if (defaultCm && defaultCm.length > 0 && json.cm && json.cm.length > 0) {
+                        if ($.isArray(defaultCm[0])) { defaultCm = defaultCm[0];}
                         for (var i = 0; i < json.cm.length; i++) {
                             var defaultObj = $.hisui.getArrayItem(defaultCm, 'field', json.cm[i].field)
                             if (defaultObj) {
@@ -2183,8 +2195,8 @@
             if (_64f) {
                 opts = $.extend(_64f.options, _64d);
                 _64f.options = opts;
-                if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
-                _handerColumns(opts,_64d,_64f);
+                //if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
+                //_handerColumns(opts,_64d,_64f);
             } else {
                 opts = $.extend({}, $.extend({}, $.fn.datagrid.defaults, { queryParams: {} }), $.fn.datagrid.parseOptions(this), _64d);
                 if('function' == typeof opts.onInitBefore) opts.onInitBefore.call(this,opts);
