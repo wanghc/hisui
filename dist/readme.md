@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-10
+- `splitbutton`鼠标悬浮时样式修改 :lipstick:
+
 ## 2022-11-09
 - `datagrid`的`columnsUrl`配置项得到的列定义覆盖columns中属性 [3057692] :sparkles:
 - `datagrid`的`defaultColumns`支持`[{},{}]`与`[[{},{}]]`二种结构
