@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-11
+- `keywords`子元素最左边不留间距 [2937948] :lipstick:
+
 ## 2022-11-10
 - `splitbutton`鼠标悬浮时样式修改 :lipstick:
 
