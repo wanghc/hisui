@@ -8,10 +8,13 @@
 	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
-    <link rel="stylesheet" type="text/css" href="../demo.css">
-	<style> .demo-exp-code td{padding:5px 10px;}</style>
 </head>
 <body>
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<style>
+		.demo-exp-code td{padding:5px 0;}
+		.demo-exp-code td.r-label{padding-right: 10px;}
+	</style>
 	<h2>时间框(timeboxq)<code>2020-10-14</code></h2>
 	<h3>timeboxq继承自validatebox。简洁时间框,支持数字输入及n输入,当光标离开时自动转换成要求格式。如11转成<code>11:00:00</code>,118转成<code>11:08:00</code>,n+15转成15分钟后<code id="af15"></code>时间,n-15表示15分钟前<code id="bf15"></code>时间</h3>
 	<h3>一.日期格式设置(<code>timeFormat:"HMS"</code>)</h3>
@@ -30,7 +33,7 @@
 		<table class="use-prettyprint">
 			<tr>
 				<td class='r-label'>上班时间</td>
-				<td>
+				<td class='r-label'>
 					<input id="tb2" class="hisui-timeboxq textbox" data-options='minTime:"8:30",maxTime:"17:30"'/>
 				</td>
 				<td class='r-label'>
