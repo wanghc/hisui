@@ -168,7 +168,8 @@
 		return $.extend({}, $.fn.comboq.parseOptions(target), $.parser.parseOptions(target,["format"]));
 	};
 	$.fn.dateboxq.defaults = $.extend({}, $.fn.comboq.defaults, {
-		panelWidth:180,
+		panelWidth: 180,
+		panelHeight:202,
 		parser:$.fn.datebox.defaults.parser,
 		formatter:$.fn.datebox.defaults.formatter,
 		currentText:$.fn.datebox.defaults.currentText,
