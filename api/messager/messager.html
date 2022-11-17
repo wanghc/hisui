@@ -62,13 +62,15 @@
 						});
 					});
 					$('#confirm2').click(function () {
-						$.messager.confirm("保存", "确定提交并保存?", function (r) {
+						var btns = $.messager.confirm("保存", "确定提交并保存?", function (r) {
 							if (r) {
 								$.messager.popover({ msg: "点击了确定", type: 'info' });
 							} else {
 								$.messager.popover({ msg: "点击了取消" });
 							}
-						}).children("div.messager-button").children("a:eq(1)").focus();
+						}).children("div.messager-button");
+						btns.children("a:eq(1)").focus();
+						btns.children("a:eq(0)").addClass('green'); //修改成green2943195
 					});
 					$('#confirm3').click(function () {
 						var oldOk = $.messager.defaults.ok;
