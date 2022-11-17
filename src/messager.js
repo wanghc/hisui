@@ -87,8 +87,10 @@
             var tb = $("<div class=\"messager-button\"></div>").appendTo(win);
             // $.messager.defaults.ok/cancel会取翻译或从中修改
             // 会导致事件不运行
+            var mybuttonIndex = 0; /* 第一个按钮marginleft为0,其它的为10px */
             for (var _283 in bbuttons) {
-                $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left", 10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
+                $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left",mybuttonIndex==0?0:10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
+                mybuttonIndex++;
             }
             //add space and esc key event handler add by wanghc  2018-10-09
             win.on('keydown', function (e) {

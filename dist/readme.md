@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-17
+- `messager`弹出的窗口中按钮居中,第一个按钮marginleft为0 [2943124] :lipstick:
+
 ## 2022-11-11
 - `keywords`子元素最左边不留间距 [2937948] :lipstick:
 - `dateboxq`面板高度增加2px,与datebox效果保持一致 :lipstick:
