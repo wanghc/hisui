@@ -94,13 +94,14 @@
 						
 					});
 					$('#prompt1').click(function () {
-						$.messager.prompt("提示", "修改前请签名：", function (r) {
+						var btns = $.messager.prompt("提示", "修改前请签名：", function (r) {
 							if (r) {
 								$.messager.popover({ msg: "你的签名是：" + r, type: 'info' });
 							} else {
 								$.messager.popover({ msg: "点击了【取消】或输入为空" });
 							}
-						});
+						}).children("div.messager-button");
+						btns.children("a:eq(0)").addClass('green');
 					})
 					$('#progress1').click(function () {
 						$.messager.progress({
