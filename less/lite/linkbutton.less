@@ -61,6 +61,7 @@
 
 .l-btn-icon-left .l-btn-empty+.l-btn-icon{
   width: @icon-width;
+  padding-left: 6px; /*表格中无文字图标居中*/
 }
 
 .l-btn-plain .l-btn-icon-left .l-btn-text {
@@ -293,6 +294,9 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     &.l-btn-focus {
       background-color: @linkbutton-hover-bgcolor;
       outline: @linkbutton-hover-bgcolor dotted thin;
+      .l-btn-icon{
+        color:@linkbutton-plain-hover-color;
+      }
     }
     &.green{
       background-color: #28BA05;

@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2022-11-18
 - `popover`图标与高度修改 [2943309] :lipstick:
 - `pagination`图标样式修改 [2942295] :lipstick:
+- 表格中图标位置与选中时颜色修改 [2942326] :lipstick:
 
 ## 2022-11-17
 - `messager`弹出的窗口中按钮居中,第一个按钮marginleft为0 [2943124] :lipstick:
