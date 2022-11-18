@@ -38,7 +38,8 @@ $("#btn").linkbutton("disable");
 - `popover`图标与高度修改 [2943309] :lipstick:
 - `pagination`图标样式修改 [2942295] :lipstick:
 - 极简表格中图标位置与选中时颜色修改 [2942326] :lipstick:
-- 极简表格及树-表格-行操作选中样式有误，与hover样式保持一致 [2942059]
+- 极简表格及树-表格-行操作选中样式有误，与hover样式保持一致 [2942059] :lipstick:
+- 表格body与footer最后一行不显示下划线 [2942049] :lipstick:
 
 ## 2022-11-17
 - `messager`弹出的窗口中按钮居中,第一个按钮marginleft为0 [2943124] :lipstick:
