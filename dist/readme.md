@@ -43,6 +43,7 @@ $("#btn").linkbutton("disable");
 - `dialog`第一个按钮margin-left值为0,示例修改 [2940796] :lipstick:
 - 炫彩表格body与footer最后一行不显示下划线 [2942040] :lipstick:
 - panel右上角图标修改,间距修改 [2942053] :lipstick:
+- 极简表格树线条树选中灰色背景断开及图标与文字之间的间距问题 [2942057] :lipstick:
 
 ## 2022-11-17
 - `messager`弹出的窗口中按钮居中,第一个按钮marginleft为0 [2943124] :lipstick:
