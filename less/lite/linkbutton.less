@@ -288,15 +288,16 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
 .l-btn-plain.l-btn.l-btn-small.l-btn-focus{
   background-color: @menu-active-bgcolor;
   outline: transparent dotted thin;
+  background-color:#eff9ff;
+  .l-btn-left{
+    color:@linkbutton-plain-hover-color;
+  }
 }
 /*增加其它色系按钮*/
 .l-btn.l-btn-small{
     &.l-btn-focus {
       background-color: @linkbutton-hover-bgcolor;
       outline: @linkbutton-hover-bgcolor dotted thin;
-      .l-btn-icon{
-        color:@linkbutton-plain-hover-color;
-      }
     }
     &.green{
       background-color: #28BA05;
