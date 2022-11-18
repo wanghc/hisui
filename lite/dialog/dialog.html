@@ -17,16 +17,24 @@
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div class="use-prettyprint">
-			<div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;padding:10px;" data-options="resizable:true,modal:true,buttons:[{
-					text:'确定',
-					handler:function(){}
-				},{
-					text:'关闭',
-					handler:function(){$HUI.dialog('#dd2').close();}
-				}]">   
+			<div id="dd2" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;padding:10px;">   
 				这是一个模态操作框<code>hisui-dialog</code>    
 			</div>
 		</div>
+		<script class="use-prettyprint">
+			$(function(){			
+				var btns = $("#dd2").dialog({
+					resizable:true,modal:true,buttons:[{
+						text:'保存',
+						handler:function(){}
+					},{
+						text:'关闭',
+						handler:function(){$HUI.dialog('#dd2').close();}
+					}]
+				});
+				btns.children("div.dialog-button").find("a:eq(0)").addClass('green');
+			});
+		</script>
 	</div>
 	<table class="table">
 		<tr class="protitle">
