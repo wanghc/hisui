@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-21
+- popover箭头颜色修改 [2939739] :lipstick:
+
 ## 2022-11-18
 - `popover`图标与高度修改 [2943309] :lipstick:
 - `pagination`图标样式修改 [2942295] :lipstick:
