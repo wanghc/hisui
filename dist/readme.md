@@ -38,6 +38,8 @@ $("#btn").linkbutton("disable");
 - 炫彩`comboq`面板色值修改
 - `popover`提示图标修改,极简与炫彩显示不同
 - `dialog`第一个按钮marginleft为0
+- `messager`prompt输入框圆角5px修改成2px
+
 
 ## 2022-11-21
 - popover箭头颜色修改 [2939739] :lipstick:
