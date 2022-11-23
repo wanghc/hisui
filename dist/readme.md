@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-23
+- 炫彩`comboq`面板色值修改
+
 ## 2022-11-21
 - popover箭头颜色修改 [2939739] :lipstick:
 
