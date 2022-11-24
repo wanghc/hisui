@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-24
+- `combo`多选时,输入框增加背景色 [2980036] :lipstick:
+
 ## 2022-11-23
 - 炫彩`comboq`面板色值修改
 - `popover`提示图标修改,极简与炫彩显示不同
