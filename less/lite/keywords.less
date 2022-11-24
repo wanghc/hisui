@@ -7,7 +7,7 @@
     color: @keywords-chapter-color;
     padding:15px 0 5px;
     & a{
-        border-right: 5px solid @keywords-chapter-color;
+        border-right: 5px @keywords-chapter-color solid ;
         width: 0px;
         height: 30px;
         padding: 0px;
@@ -43,7 +43,7 @@ ul.kw-section-list{
 }
 .kw-section-list>li{
     float: left;
-    margin:5px;
+    margin:5px 5px 5px 0px;
     & a{
         border-radius: 2px;
         display: block;
@@ -59,6 +59,7 @@ ul.kw-section-list{
             cursor: pointer;
             background:@keywords-hover-bgcolor;
             color: @keywords-hover-color;
+            border: 1px solid #339eff;
         }
     }
     &.selected a{

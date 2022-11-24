@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-11-24
 - `combo`多选时,输入框增加背景色 [2980036] :lipstick:
+- `keywords`元素左对齐(不留5px间隙),hover带边框 [2937948] [2937965] :lipstick:
 
 ## 2022-11-23
 - 炫彩`comboq`面板色值修改
