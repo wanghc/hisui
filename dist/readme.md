@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-25
+- 炫彩`tab`修改左右选中样式 2940150 :lipstick:
+
 ## 2022-11-24
 - `combo`多选时,输入框增加背景色 [2980036] :lipstick:
 - `keywords`元素左对齐(不留5px间隙),hover带边框 [2937948] [2937965] :lipstick:
