@@ -11,14 +11,14 @@
 .tabs-scroller-left::before{
   content: @content-left2;
   display: block;
-  margin-top: 8px;
-  margin-left: 3px;
+  margin-top: 10px;
+  margin-left: 0px;
 }
 .tabs-scroller-right::before{
   content: @content-right2;
   display: block;
-  margin-top: 8px;
-  margin-left: 3px;
+  margin-top: 10px;
+  margin-left: 2px;
 }
 
 .tabs-scroller-right,.tabs-scroller-left{
@@ -219,6 +219,13 @@
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
   border-color: @tabs-header-bdcolor;
 }
+.tabs-scroller-left{
+  border-left-width:0px ;
+}
+.tabs-scroller-right{
+  border-right-width:0px ;
+}
+
 .tabs-tool{
   border-left-width: 0px
 }
