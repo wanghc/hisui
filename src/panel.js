@@ -312,6 +312,7 @@
             return;
         }
         tool.addClass("panel-tool-expand");
+        tool.closest('.panel').addClass("panel-status-collapse");
         if (_20e == true) {
             body.slideUp("normal", function () {
                 opts.collapsed = true;
@@ -336,6 +337,7 @@
             return;
         }
         tool.removeClass("panel-tool-expand");
+        tool.closest('.panel').removeClass("panel-status-collapse");
         if (_212 == true) {
             body.slideDown("normal", function () {
                 opts.collapsed = false;
