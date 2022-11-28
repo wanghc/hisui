@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 - `panel`收起与展开增加样式类, 实现收起时下边框直角变成圆角需求。[2941760] :lipstick:
 - `panel`右上角工具图标hover底色修改 [2941759] :lipstick:
 - `tab`左右滚动图标样式修改 [2941763] :lipstick:
+- `tab`关闭页签按钮hover无需背景色 [2941761] :lipstick:
 
 ## 2022-11-25
 - 炫彩`tab`修改左右选中样式 2940150 :lipstick:
