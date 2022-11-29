@@ -129,13 +129,20 @@
 
 }
 
-.datagrid-body .datagrid-editable .datagrid-editable-input {
-  border: @validatebox-border-width @validatebox-border-type @input-border-color;
-  margin: 0;
-  padding:0 0 0 @validatebox-padding-left;
-  line-height:@validatebox-height;
-  &:active{
-    background-color: #f4faff;
+.datagrid-body .datagrid-editable {
+  padding: 1px; /*2942041*/
+  .validatebox-text{
+    border-radius: 2px;
+  }
+  .datagrid-editable-input {
+    border: @validatebox-border-width @validatebox-border-type @input-border-color;
+    margin: 0;
+    padding:0 0 0 @validatebox-padding-left;
+    line-height:@validatebox-height;
+    border-radius: 2px;
+    &:active{
+      background-color: #f4faff;
+    }
   }
 }
 /*celltextarea覆盖datagrid-header问题*/

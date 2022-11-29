@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-11-29
+- `datagrid`编辑格式样式修改 [2942041] :lipstick:
+
 ## 2022-11-28
 - `panel`收起与展开增加样式类, 实现收起时下边框直角变成圆角需求。[2941760] :lipstick:
 - `panel`右上角工具图标hover底色修改 [2941759] :lipstick:
