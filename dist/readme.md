@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 - `datagrid`线条色修改 [2942042] :lipstick:
 - scrollbar样式修改 [2942055] :lipstick:
 - 极简下dateboxq的图标修改 [2942052] :lipstick:
+- 极简版卡消费图标修改
 
 ## 2022-11-28
 - `panel`收起与展开增加样式类, 实现收起时下边框直角变成圆角需求。[2941760] :lipstick:
