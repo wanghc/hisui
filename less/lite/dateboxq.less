@@ -6,11 +6,11 @@
   background-position-y: 50%\9;
 }
 .dateboxq:hover,.dateboxq:focus {
-  background-image: url(images/datebox_arrow.png);
+  background-image: url('@{images-path}/datebox_arrow.png');
 }
 /*disabled应该覆盖hover效果,移到:hover后面*/
 .dateboxq.disabled {
-  background-image: url('images/datebox_arrow_disable.png'); // no-repeat center center;
+  background-image: url('@{images-path}/datebox_arrow_disable.png'); // no-repeat center center;
   background-color: @main-disabled-bgcolor;
   color:#ccc;
 }
