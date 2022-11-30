@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2022-11-30
+- 极简版`icon`增加icon-ca图标 [3007754]
+
 ## 2022-11-29
 - `datagrid`编辑格式样式修改 [2942041] :lipstick:
 - `datagrid`线条色修改 [2942042] :lipstick:
