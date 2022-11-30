@@ -139,15 +139,18 @@
 
 }
 
-.datagrid-body .datagrid-editable .datagrid-editable-input {
-  border: @validatebox-border-width @validatebox-border-type @input-border-color;
-  background-color: @input-bgcolor;
-  margin: 0;
-  padding:0 0 0 @validatebox-padding-left;
-  line-height:@validatebox-height;
-  &:hover,&:active,&:focus{
-    background-color: @input-active-bgcolor;
-    border-color: @input-active-border-color;
+.datagrid-body .datagrid-editable {
+  padding: 1px; /*2942041*/
+  .datagrid-editable-input {
+    border: @validatebox-border-width @validatebox-border-type @input-border-color;
+    background-color: @input-bgcolor;
+    margin: 0;
+    padding:0 0 0 @validatebox-padding-left;
+    line-height:@validatebox-height;
+    &:hover,&:active,&:focus{
+      background-color: @input-active-bgcolor;
+      border-color: @input-active-border-color;
+    }
   }
 }
 td.datagrid-value-changed {
