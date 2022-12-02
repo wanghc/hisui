@@ -33,13 +33,13 @@
 			data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',closable:false,collapsible:false,minimizable:false,maximizable:false">
 			<table cellpadding="0">
 				<tr>
-					<td class="label">文件1</td>
+					<td class="label">默认选择</td>
 					<td>
 						<input class="hisui-filebox" name="file1" data-options="width:400,plain:true" />
 					</td>
 				</tr>
 				<tr>
-					<td class="label">文件2</td>
+					<td class="label">限定后缀</td>
 					<td>
 						<input class="hisui-filebox" name="file2"
 							data-options="width:400,buttonText:'选择',prompt:'excel文件：*.xls,*.xlsx',plain:true"
@@ -47,21 +47,21 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="label">文件3</td>
+					<td class="label">事件演示</td>
 					<td>
 						<input class="hisui-filebox" name="file3" data-options="width:400,plain:true,buttonText:'选择',onClickButton:function(){alert('按钮点击');},
 						onChange:function(nv,ov){alert('改变:新:'+nv+',旧:'+ov);} " />
 					</td>
 				</tr>
 				<tr>
-					<td class="label">文件4</td>
+					<td class="label">多选文件</td>
 					<td>
 						<input class="hisui-filebox" name="file4" style="width:400px;"
 							data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" />
 					</td>
 				</tr>
 				<tr>
-					<td class="label">文件5</td>
+					<td class="label">清空演示</td>
 					<td>
 						<input id="f5" class="hisui-filebox" name="file5" style="width:400px;"
 							data-options="prompt:'请选择文件',plain:true" />
@@ -69,34 +69,34 @@
 					<td style="padding-left: 10px;"><a href="#" id='btn' onclick="$('#f5').filebox('clear')"
 							class="hisui-linkbutton">清空</a></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td class="label">文件6</td>
 					<td>
 						<input id="f6" name="f6" />
 					</td>
-				</tr>
-				<tr>
+				</tr> -->
+				<!-- <tr>
 					<td class="label">文件7</td>
 					<td>
 						<input id="f7" name="f7" />
 					</td>
-				</tr>
-				<tr>
+				</tr> -->
+				<!-- <tr>
 					<td class="label">文件8</td>
 					<td>
 						<input class="hisui-filebox" name="file8"
 							data-options="width:400,buttonText:'选择',buttonIcon:'icon-folder',plain:true" />
 					</td>
-				</tr>
+				</tr> -->
 				<tr>
-					<td class="label">文件9</td>
+					<td class="label">图标显示</td>
 					<td>
 						<input class="hisui-filebox" name="file9"
 							data-options="width:400,buttonText:'',buttonIcon:'icon-folder',plain:true" />
 					</td>
 				</tr>
 				<tr>
-					<td class="label">文件10</td>
+					<td class="label">默认禁用</td>
 					<td>
 						<input id='f10' class="hisui-filebox" name="file10" disabled='true'
 							data-options="width:400,buttonText:'选择',plain:true" />
@@ -112,13 +112,13 @@
 		</div>
 		<script type="text/javascript">
 			$(function () {
-				$('#f6').filebox({
-					width: 400,
-					prompt: '请选择文件',
-					buttonText: '选择',
-					buttonAlign: 'left',
-					plain: true
-				})
+				// $('#f6').filebox({
+				// 	width: 400,
+				// 	prompt: '请选择文件',
+				// 	buttonText: '选择',
+				// 	buttonAlign: 'left',
+				// 	plain: true
+				// })
 
 				$HUI.filebox('#f7', {
 					width: 400,
