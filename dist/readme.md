@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2022-12-02
 - 极简filebox小图标不显示
 - 炫彩layout布局样式修改 
+- 炫彩`tabs-gray-btm`在指定tabheight后,关闭按钮可以自动居中
 
 ## 2022-11-30
 - 极简版`icon`增加icon-ca图标 [3007754]

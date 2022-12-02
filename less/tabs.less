@@ -662,8 +662,11 @@
   .tabs-panels{
     border-color:#ffffff;
   }  
-  .tabs{
-    border-bottom:1px solid #cccccc;
+  // .tabs{
+  //   border-bottom:1px solid #cccccc;  // 选中下边有线灰线条
+  // }
+  .tabs li {
+    height: auto; /*以便关闭按钮在不同高度的tabheight下居中*/
   }
   .tabs li a.tabs-inner{
     background-color:@tabs-header-gray-bgcolor;
@@ -694,7 +697,7 @@
   }
   .tabs li a.tabs-close {
     background-position-x: 0;
-    margin-top:-13px;
+    margin-top:-9px; /*以便关闭按钮在不同高度的tabheight下居中*/
     &:hover{
       background: url(images/tabs_icons_2.png) no-repeat -36px 0;
     }
