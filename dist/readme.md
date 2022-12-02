@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2022-12-02
 - 极简filebox小图标不显示
+- 炫彩layout布局样式修改 
 
 ## 2022-11-30
 - 极简版`icon`增加icon-ca图标 [3007754]

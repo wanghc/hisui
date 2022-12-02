@@ -412,6 +412,7 @@
             body.addClass("panel-body-noborder");
         }
         _21f.addClass(opts.headerCls);
+        _21f.parent().addClass(opts.headerCls+"-parent");
         body.addClass(opts.bodyCls);
         if (opts.id) {
             $(_21d).attr("id", opts.id);

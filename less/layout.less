@@ -75,7 +75,19 @@
 .layout>.panel.layout-panel>.panel-header{
     padding: 4px 5px;
 }
-
+.panel-header-gray-parent.layout-expand{
+  border-radius: 4px;
+  // background-color: transparent;
+}
+.layout>.panel.layout-panel>.panel-header.panel-header-gray{
+  border-radius: 4px 4px 0 0;
+}
+.layout > .panel > .panel-header-gray+.panel-body{
+  border-radius: 0 0 4px 4px;
+}
+.layout > .panel > .panel-header-gray.panel-body.panel-body-noheader{
+  border-radius: 4px;
+}
 /*
 .layout-expand {
   background-color: #F7F7F7;

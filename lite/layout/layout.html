@@ -18,25 +18,27 @@
 north 区域可以用来显示网站的标语，south 区域可以用来显示版权以及一些说明，west 区域可以用来显示导航菜单，
 east 区域可以用来显示一些推广的项目，center 区域可以用来显示主要的内容。</span>
 	<h3>如：</h3>
-	<div class="demo-exp-code entry-content"> 
-		<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
-			<div data-options="region:'north',title:'North',split:true,showCollapsedTitle:true" style="height:100px;padding:10px;">
-				禁用收起功能：collapsible:false
-				收起显示标题：showCollapsedTitle:true
-				默认收起：data-options="collapsed:true"
-			</div>  
-			<div data-options="region:'south',title:'底部',split:true,showCollapsedTitle:true" style="height:100px;padding:10px;">
-				底部
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint">
+			<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
+				<div data-options="region:'north',title:'北部',split:true,showCollapsedTitle:true" style="height:100px;padding:10px;">
+					禁用收起功能：collapsible:false
+					收起显示标题：showCollapsedTitle:true
+					默认收起：data-options="collapsed:true"
+				</div>  
+				<div data-options="region:'south',title:'底部',split:true,showCollapsedTitle:true" style="height:100px;padding:10px;">
+					底部
+				</div>
+				<div data-options="region:'east',title:'东部',split:true,collapsed:false,showCollapsedTitle:true" 
+					style="width:200px;padding:10px;">
+						
+				</div>   
+				<div data-options="region:'west',title:'西部',split:true,showCollapsedTitle:true" style="width:100px;padding:10px;">菜单</div>   
+				<div data-options="region:'center',title:'中部',split:true,showCollapsedTitle:true" 
+					style="padding:10px;">
+					主要的内容
+				</div>   
 			</div>
-			<div data-options="region:'east',title:'东部区',split:true,collapsed:false,showCollapsedTitle:true" 
-				style="width:200px;padding:10px;">
-					
-			</div>   
-			<div data-options="region:'west',title:'菜单',split:true,showCollapsedTitle:true" style="width:100px;padding:10px;">菜单</div>   
-			<div data-options="region:'center',title:'内容区',split:true,showCollapsedTitle:true" 
-				style="padding:10px;">
-				主要的内容
-			</div>   
 		</div>
 	</div>
 	<h3>布局组件的相关配置</h3>

@@ -18,74 +18,45 @@
 north 区域可以用来显示网站的标语，south 区域可以用来显示版权以及一些说明，west 区域可以用来显示导航菜单，
 east 区域可以用来显示一些推广的项目，center 区域可以用来显示主要的内容。</span>
 	<h3>如：</h3>
-	<div class="demo-exp-code entry-content"> 
-		<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
-			<div data-options="region:'north',title:'North',split:true,showCollapsedTitle:true,iconCls:'icon-w-list'" style="height:100px;padding:10px;">
-				折叠状态显示标题><code>data-options="showCollapsedTitle:true"</code>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint">
+			<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
+				<div data-options="region:'north',title:'North',split:true,showCollapsedTitle:true,iconCls:'icon-w-list'" style="height:100px;padding:10px;">
+					折叠状态显示标题><code>data-options="showCollapsedTitle:true"</code>
+				</div>  
+				<div data-options="region:'south',title:'',showCollapsedTitle:true,split:true" style="height:100px;padding:10px;">
+					底部
+				</div>
+				<div data-options="region:'east',title:'East',showCollapsedTitle:true,iconCls:'icon-w-list',split:true,split:true,collapsed:true" 
+					style="width:200px;padding:10px;">
+						自动收起><code>data-options="collapsed:true"</code>
+				</div>   
+				<div data-options="region:'west',title:'菜单',iconCls:'icon-w-list',split:true,showCollapsedTitle:true" style="width:100px;padding:10px;">菜单</div>   
+				<div data-options="region:'center',title:'',split:true" 
+					style="padding:10px;">
+					主要的内容
+				</div>   
 			</div>  
-			<div data-options="region:'south',title:'',split:true" style="height:100px;padding:10px;">
-				底部
-			</div>
-			<div data-options="region:'east',title:'East',iconCls:'icon-w-list',split:true,split:true,collapsed:true" 
-				style="width:200px;padding:10px;">
-					自动收起><code>data-options="collapsed:true"</code>
-			</div>   
-			<div data-options="region:'west',title:'菜单',iconCls:'icon-w-list',split:true,showCollapsedTitle:true" style="width:100px;padding:10px;">菜单</div>   
-			<div data-options="region:'center',title:'',split:true" 
-				style="padding:10px;">
-				主要的内容
-			</div>   
-		</div>  
-		<pre class="prettyprint hide lang-html"><code>&lt;div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true"&gt;   
-	&lt;div data-options="region:'north',title:'North',split:true,showCollapsedTitle:true,iconCls:'icon-w-list'" style="height:100px;padding:10px;"&gt;
-		折叠状态显示标题&gt;&lt;code&gt;data-options="showCollapsedTitle:true"&lt;/code&gt;
-	&lt;/div&gt;  
-	&lt;div data-options="region:'south',title:'',split:true" style="height:100px;padding:10px;"&gt;
-		底部
-	&lt;/div&gt;
-	&lt;div data-options="region:'east',title:'East',iconCls:'icon-w-list',split:true,split:true,collapsed:true" 
-		style="width:200px;padding:10px;"&gt;
-			自动收起&gt;&lt;code&gt;data-options="collapsed:true"&lt;/code&gt;
-	&lt;/div&gt;   
-	&lt;div data-options="region:'west',title:'菜单',iconCls:'icon-w-list',split:true,showCollapsedTitle:true" style="width:100px;padding:10px;"&gt;菜单&lt;/div&gt;   
-	&lt;div data-options="region:'center',title:'',split:true" 
-		style="padding:10px;"&gt;
-		主要的内容
-	&lt;/div&gt;   
-&lt;/div&gt;  </code></pre>
+		</div>
 	</div>
-
 	<div class="demo-exp-code entry-content"> 
-		<div id="cc2" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
-			<div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray',iconCls:'icon-paper'" style="height:100px;padding:10px;"></div>  
-			<div data-options="region:'south',title:'',split:true,bodyCls:'panel-header-gray'" style="height:100px;padding:10px;">
-				
-			</div>
-			<div data-options="region:'east',title:'East',split:true,split:true,headerCls:'panel-header-gray',collapsed:true,iconCls:'icon-paper'" 
-				style="width:200px;padding:10px;">
-					自动收起><code>data-options="collapsed:true"</code>
-			</div>   
-			<div data-options="region:'west',title:'导航',split:true,headerCls:'panel-header-gray',iconCls:'icon-paper'" style="width:100px;padding:10px;">导航</div>   
-			<div data-options="region:'center',title:'',split:true,bodyCls:'panel-header-gray'" 
-				style="padding:10px;">
-				主要的内容
-			</div>   
-		</div>  
-		<pre class="prettyprint hide lang-html"><code>&lt;div id="cc2" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true"&gt;   
-	&lt;div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray',iconCls:'icon-paper'" style="height:100px;padding:10px;"&gt;&lt;/div&gt;  
-	&lt;div data-options="region:'south',title:'',split:true,bodyCls:'panel-header-gray'" style="height:100px;padding:10px;"&gt;
-		
-	&lt;/div&gt;
-	&lt;div data-options="region:'east',title:'East',split:true,split:true,headerCls:'panel-header-gray',collapsed:true,iconCls:'icon-paper'" 
-		style="width:200px;padding:10px;"&gt;
-			自动收起&gt;&lt;code&gt;data-options="collapsed:true"&lt;/code&gt;
-	&lt;/div&gt;   
-	&lt;div data-options="region:'west',title:'导航',split:true,headerCls:'panel-header-gray',iconCls:'icon-paper'" style="width:100px;padding:10px;"&gt;导航&lt;/div&gt;   
-	&lt;div data-options="region:'center',title:'',split:true,bodyCls:'panel-header-gray'" 
-		style="padding:10px;"&gt;
-		主要的内容
-	&lt;/div&gt;   
-&lt;/div&gt;  </code></pre>
+		<div class="use-prettyprint">
+			<div id="cc2" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true">   
+				<div data-options="region:'north',title:'North',split:true,headerCls:'panel-header-gray',showCollapsedTitle:true,iconCls:'icon-paper'" style="height:100px;padding:10px;"></div>  
+				<div data-options="region:'south',title:'',showCollapsedTitle:true,split:true,bodyCls:'panel-header-gray'" style="height:100px;padding:10px;">
+					
+				</div>
+				<div data-options="region:'east',title:'East',split:true,headerCls:'panel-header-gray',collapsed:true,showCollapsedTitle:true,iconCls:'icon-paper'" 
+					style="width:200px;padding:10px;">
+						自动收起><code>data-options="collapsed:true"</code>
+				</div>   
+				<div data-options="region:'west',title:'导航',split:true,headerCls:'panel-header-gray',showCollapsedTitle:true,iconCls:'icon-paper'" style="width:100px;padding:10px;">导航</div>   
+				<div data-options="region:'center',title:'',split:true,showCollapsedTitle:true,bodyCls:'panel-header-gray'" 
+					style="padding:10px;">
+					主要的内容
+				</div>   
+			</div>  
+		</div>
 	</div>
 	<h3>布局组件的相关配置</h3>
 	<table class="table">
