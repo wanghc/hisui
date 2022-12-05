@@ -40,7 +40,7 @@ $("#btn").linkbutton("disable");
 ## 2022-12-02
 - 极简filebox小图标不显示
 - 炫彩layout布局样式修改 
-- 炫彩`tabs-gray-btm`在指定tabheight后,关闭按钮可以自动居中
+- 炫彩`tabs-gray-btm`在指定tabheight后,关闭按钮可以自动居中 
 - 极简`accordion`的图标居中 [2941765] :lipstick:
 
 ## 2022-11-30
