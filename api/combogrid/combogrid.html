@@ -20,6 +20,7 @@
             blurValidValue:true,
             idField: 'itemid',
             textField: 'productname',
+            //showFilterToolbar:true,
             columns: [[
                 {field:'itemid',title:'Item ID',width:80},
                 {field:'productname',title:'Product',width:120},
@@ -29,10 +30,12 @@
                 {field:'status',title:'Status',width:60,align:'center'}
             ]],
             fitColumns: true
+            //,required:true
         ">
     </select>
     <script type="text/javascript">
-        $.parser.onComplete = function(){
+        $.parser.onComplete = function(cxt){
+            if (cxt) return ;
             var trObj = $HUI.combogrid("#combogrid");
             var grid = trObj.grid();
             grid.datagrid("loadData",{"total":5,"rows":[
