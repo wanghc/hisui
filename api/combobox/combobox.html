@@ -21,7 +21,7 @@
 	<h2>组合框</h2>
     <h3>说明:</h3>
     <span>组合框（combobox）显示一个可编辑的文本框和下拉列表，用户可以从下拉列表中选择一个或多个值。用户可以直接输入文本到列表的顶部，或者从列表中选择一个或多个现成的值。</span>
-	<h3>如：</h3>
+	<h3>如：<a href="https://hisui.cn/lib/jquery-easyui-1.3.2/api/combobox.html" style="float:right" target="_blank">查看EasyUI 1.3.2的combobox说明</a></h3>
 	<h3>一、html生成的单选下拉框</h3>
     <div class="demo-exp-code entry-content">
 		<select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler,blurValidValue:true">
@@ -267,7 +267,7 @@ var onComplete4 = function(){
 
 	$('<span style="padding-left:20px;padding-right:10px;color:red;font-weight:bold;">defaultFilter</span>').appendTo(div);
 	for(var i=1;i<=6;i++){
-		$('<input type="radio" name="dfCB-df" id="dfCB-df-'+i+'" label="值:'+i+'" value="'+i+'"/>').appendTo(div);
+		$('<input type="radio" name="dfCB-df" id="dfCB-df-'+i+'" label="值'+i+'" value="'+i+'"/>').appendTo(div);
 	}
 	$('input[type=radio][name=dfCB-df]').radio({
 		onChecked:function(){
@@ -277,8 +277,8 @@ var onComplete4 = function(){
 	})
 	$('#dfCB-df-6').radio('check');
 	$('<span style="padding-left:20px;padding-right:10px;color:red;font-weight:bold;">spellField</span>').appendTo(div);
-	$('<input type="radio" id="dfCB-spellField-empty" name="dfCB-spellField" label="值:空" value=""/>').appendTo(div);
-	$('<input type="radio" id="dfCB-spellField-spell" name="dfCB-spellField" label="值:spell" value="spell"/>').appendTo(div);
+	$('<input type="radio" id="dfCB-spellField-empty" name="dfCB-spellField" label="值空" value=""/>').appendTo(div);
+	$('<input type="radio" id="dfCB-spellField-spell" name="dfCB-spellField" label="值spell" value="spell"/>').appendTo(div);
 	$('input[type=radio][name=dfCB-spellField]').radio({
 		onChecked:function(){
 			$('#dfCB').combobox('options').spellField=$(this).attr('value');
@@ -402,7 +402,7 @@ $.parser.onComplete = function(){
 			<th>属性</th>
 			<th>说明</th>
 			<th>默认值</th>
-			<th></th>
+			<th><a href="https://hisui.cn/lib/jquery-easyui-1.3.2/api/combobox.html" style="float:right" target="_blank">查看EasyUI 1.3.2的combobox说明</a></th>
 		</tr>
 		<tr>
 			<td>enterNullValueClear</td>
