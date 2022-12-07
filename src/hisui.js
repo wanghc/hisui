@@ -290,8 +290,10 @@ $(function(){
 			if (e.altKey&&keycode==37){ //alt + [<-]
 				e.preventDefault(); return false;	
 			}
-			if (keycode==8) {
+			if (keycode == 8) {
+				if (document.designMode == 'on') return ;  /* 3133203 见backspace.edit.html*/
 				var srcEl = e.target;
+				if ($(srcEl).prop('contenteditable')) return ; /* 3034765 editor编辑器使用了*/
 				var srcElementTag = srcEl.tagName.toUpperCase();
 				if ($(srcEl).prop('readonly')){ e.preventDefault(); return false;}
 				if (srcElementTag=="INPUT"){

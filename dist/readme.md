@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-12-07
+- 解决与富文本编辑器的冲突(在文本编辑器内使用backspace按键不能删除问题处理) [3034765]
+- 开启document.designMode功能后,使用backspace键不能删除问题处理 [3133203]
 
 ## 2022-12-06
 - HISUI极简版tree在定义节点iconCls后依然会显示默认图标,导致图标重叠 [3127716]
