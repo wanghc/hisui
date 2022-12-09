@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2022-12-09
+- 存在多个相关id的病历编辑器时,会覆盖弹出div问题(扩展myid) :bug:
+
 ## 2022-12-07
 - 解决与富文本编辑器的冲突(在文本编辑器内使用backspace按键不能删除问题处理) [3034765]
 - 开启document.designMode功能后,使用backspace键不能删除问题处理 [3133203]

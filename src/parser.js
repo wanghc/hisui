@@ -125,6 +125,9 @@
                     if ("undefined" == typeof tmpObjList[j].attributes['type']) continue;
                     if ("application/x-iemrplugin" != tmpObjList[j].attributes['type'].value.toLowerCase()) continue; //tmpObjList[j].type
                     var frm = tmpObjList[j]; changeId = frm.id;
+                    if ('undefined' != typeof frm.attributes['myid']) {
+                        changeId += frm.attributes['myid'].value;
+                    }
                     if (frm) {
                         if (null == frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
                         if (0 > frm.getAttribute('data-hideTimes')) frm.setAttribute('data-hideTimes', 0);
