@@ -301,22 +301,46 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     }
     &.green{
       background-color: #28BA05;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.green:hover,&.green.l-btn-focus{
       background-color: #1A8700;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.yellow{
-      background-color: #ff9933
+      background-color: #ff9933;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.yellow:hover,&.yellow.l-btn-focus{
       background-color: #DF7000;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.red{
       background-color: #EE0F0F;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.red:hover,&.red.l-btn-focus{
       background-color: #C80000;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
+
+
+
+
+
+
     // &.l-btn-disabled{ /*2863284要求去除*/
     //   background-color: @linkbutton-disabled-bgcolor;
     // }
