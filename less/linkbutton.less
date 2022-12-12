@@ -240,20 +240,38 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
 .l-btn.l-btn-small{
     &.green{
       background-color: #2ab66a;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.green:hover,&.green.l-btn-focus{
       background-color: #239e5b;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.yellow{
-      background-color: #ffb746
+      background-color: #ffb746;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.yellow:hover,&.yellow.l-btn-focus{
       background-color: #ff9c00;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.red{
       background-color: #f16e57;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
     &.red:hover,&.red.l-btn-focus{
       background-color: #d35b46;
+      &.l-btn-disabled {
+        background:@linkbutton-disabled-bgcolor;
+      }
     }
 }
