@@ -220,3 +220,11 @@
   background: #ffffff;
   border-color: @panel-border-color-gray;
 }
+
+ /*自适应layout在医为浏览器会出现横纵滚动条问题，且滚动幅度刚好为滚动条宽度
+* 应该是宽高计算正确了，但是横纵滚动条互相影响就互相出现了，将类panel-scroll禁止滚动
+* 原来设计上panel-noscroll也是禁止滚动，但是莫名的panel-body的优先了
+ */
+.panel-body.panel-noscroll {
+  overflow: hidden;
+}
