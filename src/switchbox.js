@@ -16,6 +16,13 @@
         }*/
         var t = $(target).empty();
         var opts = $.data(target, 'switchbox').options;
+        var rewriteWidth = false;
+        if (opts.onText!="" && opts.offText!="") {
+            var totalLength = parseInt(opts.onText.length) + parseInt(opts.offText.length);
+            if (opts.onText.length != opts.offText.length) { // [3149355] 字数不一样多时,导致switchbox换行显示。发现样式中使用了width:150%与width:33%来实现切换显示
+                rewriteWidth = true;
+            };
+        }
         if (!t.hasClass('has-switch')) {
             var h = '';
             if (opts.disabled){
@@ -39,6 +46,7 @@
         t.attr('data-off-label',opts.offText);
         t.attr('data-animated',opts.animated);
         t.bootstrapSwitch();
+        if (rewriteWidth) t.width(totalLength*20);
         // switch-change
         t.bind('switch-change',function(e,value){
             if (!opts.disabled){
