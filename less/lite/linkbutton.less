@@ -16,7 +16,7 @@
   @top-4IE8:-4px;
   @x9:\9;
   /*top: @top-4IE8@x9;*/ /*实测ie8不需要*/
-	// font-family: "Mw_mifonts";     /*需求号：3169718 去除字体定义,在before上有定义fontfamily。不去除时在医为浏览器下，big图标不能居中 2023-01-03*/
+	font-family: "Mw_mifonts";
 	-moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   display: inline-block;
@@ -347,4 +347,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     // &.l-btn-disabled:hover{
     //   background-color: @linkbutton-disabled-bgcolor;
     // }
+}
+.big .l-btn-icon{
+  font-family: "Microsoft Yahei", verdana, helvetica, arial, sans-serif;/*需求号：3169718 去除字体定义,在before上有定义fontfamily。不去除时在医为浏览器下，big图标不能居中 2023-01-03*/
 }
