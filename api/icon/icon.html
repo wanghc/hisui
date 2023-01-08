@@ -98,6 +98,9 @@
     <div class="hisui-panel" title="文字处理图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
         <ul class="fontlist"></ul>
     </div>
+    <div class="hisui-panel" title="黑色线条图标-常用于侧菜单图标" data-options="headerCls:'panel-header-card',titleWidth:260" style="padding:10px;margin-bottom:10px;">    
+        <ul class="blacklist"></ul>
+    </div>
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="汉字图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
         <ul class="chinCharlist"></ul>
@@ -217,7 +220,7 @@
             ,'print-arr-bo','print-arr-bo-gray','gear-gray','triangle-green-right','triangle-gray-right','triangle-green-left','triangle-gray-left','paper-pay','paper-pay-gray','compu-torus','compu-torus-gray','two-recta-gear','two-recta-gear-gray','compu-run','compu-run-gray','paper-blue-add','paper-blue-add-gray','trian-recta-right','trian-recta-right-gray','box-red-add','box-red-add-gray','green-chart','gray-chart','report-eye','report-eye-gray','trian-recta-left','trian-recta-left-gray','refresh-gray','clock-pen','clock-pen-gray','drug-eye','drug-eye-gray','miss-img'
             ,"herb-back","herb-pre","herb-next","herb-no","herb-ok","decoct-herb","decoct-change","paper-eye-r","paper-pre","no-dot","date",'verify','ca-green','ster-again','ster-bat','ster-bio','ster-cancel','ster-finish','ster-ok','pause-red','alarm-key','align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue','valign-bottom-blue','valign-middle-blue','valign-top-blue','barcode-blue','qrcode-blue','line','move','table-blue','table-col'
             ,'stamp-mess','paper-lightning','cale-3day','stamp-add','stamp-switch','stamp-undo','template-down','paper-minus','paper-lightning','fishbone-diagram','ice-water','circle-down','sure-readed','read-details','ring-blue'
-            ,'bag','bag-x','disp-x','disp-back','outInstc-mgr','book-rep','book-rep-v1','book-pen','paper-settings','book-settings','eye-scan-box','org-frame','alert-pen-gray','paper-set-qus','bk-mgr','msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed','sound'
+            ,'bag','bag-x','disp-x','disp-back','msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed','sound'
         ];
             //icons.sort();
             for(var i=0;i<icons.length;i++){
@@ -251,6 +254,15 @@
                     <span class="icon icon-'+fonticons[i]+'">icon-'+fonticons[i]+'</span>\
                     </li>'
                 ).appendTo(".fontlist");
+            }
+            //-----黑色线条图标,炫彩与极简相同，可以使用在侧菜单
+            var blackIcons=['outInstc-mgr','book-rep','book-rep-v1','book-pen','paper-settings','book-settings','eye-scan-box','org-frame','alert-pen-gray','paper-set-qus','bk-mgr','pc','pc-v1','pc-v2','ecg-adm','key2','data-stat','user-settings'];
+            for(var i=0;i<blackIcons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+blackIcons[i]+'">icon-'+blackIcons[i]+'</span>\
+                    </li>'
+                ).appendTo(".blacklist");
             }
             //-----
             var chinCharicons=['inpatient','outpatient','emergency','disabler','produce','children','lung','high','spirit','old'
