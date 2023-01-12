@@ -225,7 +225,18 @@
                 var rowTotalHeight = grd.datagrid('getPanel').find('.datagrid-view2 .datagrid-btable').eq(0)[0].scrollHeight + rowSummaryHeight;
                 // 面板不用太高, 只要能显示全列表中所有数据即可
                 // 74=header+pagingbar ，补上后面减的18
-                if (panelHeight > (rowTotalHeight + 74 + 22)) { panelHeight = rowTotalHeight + 74 + 22 }
+                // 
+                // pagingbar出现换行 + 30
+                var paddingPanelHeight = 36 + 18; // datagrid-header的高度
+                var v2body = grd.datagrid('getPanel').find('.datagrid-view2 .datagrid-body');
+                if (v2body.length > 0 && v2body[0].scrollWidth != v2body[0].clientWidth) {
+                    paddingPanelHeight += 18;  // 出现横向滚动条+16 
+                }
+                var myPager = grd.datagrid('getPanel').find('.datagrid-pager');
+                if (myPager.length>0) {
+                    paddingPanelHeight += myPager._outerHeight();
+                }
+                if (panelHeight > (rowTotalHeight +paddingPanelHeight)) { panelHeight = rowTotalHeight + paddingPanelHeight }
             }
             if (panelHeight > opts.panelMaxHeight) { panelHeight = opts.panelMaxHeight; }
             if (panelHeight < opts.panelMinHeight) { panelHeight = opts.panelMinHeight; }
