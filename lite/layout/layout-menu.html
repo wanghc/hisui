@@ -155,8 +155,11 @@
                             for (var j=0;j<len;j++){
                                 var spellL=(spellArr[j]||'').toLowerCase();
                                 var spellIndex=spellL.indexOf(search);
-                                item.ok=true;
-                                break;
+                                if(spellIndex>-1) {
+                                    item.ok=true;
+                                    break;
+                                }
+
                             }
                         }
                     }
