@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-01-15
+- 手风琴展开状态底部边框遮盖问题 [2777670] :sparkles:
+
 ## 2023-01-12
 - `lookup`配置项panelWidth小于400，panelHeightFix为true时，会出现纵向滚动条问题修复 [2942812] :sparkles:
 

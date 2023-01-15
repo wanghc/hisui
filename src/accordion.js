@@ -20,6 +20,12 @@
         if (!isNaN(opts.height)) {
             cc._outerHeight(opts.height);
             bodyHeight = cc.height() - headerHeight * headers.length;
+            // 需求号：2777670，手风琴展开状态底部遮盖问题，差一象素
+            var isLiteStyle = false;
+            if ("undefined" != typeof HISUIStyleCode && HISUIStyleCode.toLocaleLowerCase() == 'lite') isLiteStyle = true;
+            if (isLiteStyle) {
+                bodyHeight -= 1;
+            }
         } else {
             cc.css("height", "");
         }
