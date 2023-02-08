@@ -12,7 +12,10 @@
 <body>
 	<h2>数据访问</h2>
 	<h3>说明:</h3>
-	<span>通过ajax调用后台方法或Query</span>
+	<span>通过ajax调用后台方法或Query,且会对特殊敏感关键词进行过过滤insert,select,delete,update,conut,chr,declare,truncate,from,having,base,object,param,script,noscript,alert,
+		confirm,prompt,onmouseleave,onmousewheel,location,eval,function,onabort,onblur,onchange,onclick,ondblclick,onerror,onfocus,onkeydown,onkeypress,onkeyup,onload,
+		onmousemove,onmouseover,onmouseout,onmousedown,onmouseup,onreset,onselect,onsubmit,onunload,当请求的值中包含这些关键词，且关键词前后有特殊字符时，当前请求值会被置换成空		
+	</span>
 	<h3>使用:</h3>
 	<span>先引入jQuery，再引入websys.jquery.js</span>
 	<pre class="prettyprint hide lang-html">
