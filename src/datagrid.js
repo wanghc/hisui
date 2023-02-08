@@ -541,7 +541,7 @@
             if ($(this).is(":checked")) {
                 _5df(_55a);
             } else {
-                _5e5(_55a);
+                _uncheckAll(_55a);
             }
             e.stopPropagation();
         });
@@ -641,7 +641,7 @@
             if (tt.parent().hasClass("datagrid-cell-check")) {
                 if (opts.singleSelect && opts.selectOnCheck) {
                     if (!opts.checkOnSelect) {
-                        _5e5(_55a, true);
+                        _uncheckAll(_55a, true);
                     }
                     _5d2(_55a, rowIndex);
                 } else {
@@ -1450,7 +1450,7 @@
             return ;
         }
         if (opts.singleSelect) {
-            _5d1(_5cc);
+            _unselectAll(_5cc);
             _5d0.splice(0, _5d0.length);
         }
         if (!_5ce && opts.checkOnSelect) {
@@ -1499,14 +1499,20 @@
         }
         opts.onSelectAll.call(_5db, rows);
     };
-    function _5d1(_5e1, _5e2) {
+    /**
+     * 
+     * @param {*} _5e1 
+     * @param {Boolean} _5e2  不再调用uncheckAll吗？ true不调用
+     * @param {Boolean} isAllPage 是否取消所有界面的选择
+     */
+    function _unselectAll(_5e1, _5e2,isAllPage) { // unselectAll
         var _5e3 = $.data(_5e1, "datagrid");
         var opts = _5e3.options;
         var rows = opts.finder.getRows(_5e1);
         var _5e4 = $.data(_5e1, "datagrid").selectedRows;
         var lastSelectedRowIndex = _5b7(_5e1,_5e4[0]);
         if (!_5e2 && opts.checkOnSelect) {
-            _5e5(_5e1, true);
+            _uncheckAll(_5e1, true , isAllPage);
         }
         opts.finder.getTr(_5e1, "", "selected").removeClass("datagrid-row-selected");
 
@@ -1518,6 +1524,7 @@
             for (var _5e6 = 0; _5e6 < rows.length; _5e6++) {
                 _503(_5e4, opts.idField, rows[_5e6][opts.idField]);
             }
+            if (isAllPage) _5e4.length = 0; // 清空所有选中数据
         }
         opts.onUnselectAll.call(_5e1, rows);
     };
@@ -1659,12 +1666,18 @@
         }
         opts.onCheckAll.call(_5f1, rows);
     };
-    function _5e5(_5f4, _5f5) {
+    /**
+     * 
+     * @param {*} _5f4 
+     * @param {boolean} _5f5  不再调用unselectAll吗？ true不调用
+     * @param {boolean} isAllPage 是否取消所有界面的勾选, true取消所有界面勾选
+     */
+    function _uncheckAll(_5f4, _5f5, isAllPage) {  // uncheckAll
         var _5f6 = $.data(_5f4, "datagrid");
         var opts = _5f6.options;
-        var rows = opts.finder.getRows(_5f4);
+        var rows = opts.finder.getRows(_5f4);  // 取当前页json数据
         if (!_5f5 && opts.selectOnCheck) {
-            _5d1(_5f4, true);
+            _unselectAll(_5f4, true, isAllPage);  // 清空
         }
         var dc = _5f6.dc;
         var hck = dc.header1.add(dc.header2).find("input[type=checkbox]");
@@ -1672,8 +1685,11 @@
         hck.add(bck)._propAttr("checked", false);
         if (opts.idField) {
             for (var i = 0; i < rows.length; i++) {
-                _503(_5f6.checkedRows, opts.idField, rows[i][opts.idField]);
+               _503(_5f6.checkedRows, opts.idField, rows[i][opts.idField]);
             }
+            // 3243197 , 使用getChecked方法得到跨页勾选数据，但调用unCheckAll方法缺只能清空当前页勾中, 二个方法不对称，现增加isAllPage入参来清空所有界面的勾选
+            // 如果不增加isAllPage会影响界面上的全选功能，全选与取消全选都是对当前界面有效的
+            if (isAllPage) _5f6.checkedRows.length = 0;
         }
         opts.onUncheckAll.call(_5f4, rows);
     };
@@ -2885,7 +2901,7 @@
                 var _6af = _6ae.selectedRows;
                 var _6b0 = _6ae.checkedRows;
                 _6af.splice(0, _6af.length);
-                _5d1(this);
+                _unselectAll(this);
                 if (_6ae.options.checkOnSelect) {
                     _6b0.splice(0, _6b0.length);
                 }
@@ -2896,7 +2912,7 @@
                 var _6b2 = _6b1.selectedRows;
                 var _6b3 = _6b1.checkedRows;
                 _6b3.splice(0, _6b3.length);
-                _5e5(this);
+                _uncheckAll(this);
                 if (_6b1.options.selectOnCheck) {
                     _6b2.splice(0, _6b2.length);
                 }
@@ -2914,9 +2930,9 @@
             return jq.each(function () {
                 _5da(this);
             });
-        }, unselectAll: function (jq) {
+        }, unselectAll: function (jq,isAllPage) {
             return jq.each(function () {
-                _5d1(this);
+                _unselectAll(this,undefined,isAllPage);
             });
         }, selectRow: function (jq, _6b6) {
             return jq.each(function () {
@@ -2948,9 +2964,9 @@
             return jq.each(function () {
                 _5df(this);
             });
-        }, uncheckAll: function (jq) {
+        }, uncheckAll: function (jq,isAllPage) {  // 取消所有数据的勾选
             return jq.each(function () {
-                _5e5(this);
+                _uncheckAll(this,undefined,isAllPage);
             });
         }, beginEdit: function (jq, _6bb) {
             return jq.each(function () {

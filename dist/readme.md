@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-02-08
+- `datagrid`的`getChecked`方法获得跨页勾中的数据，但`uncheckAll`只处理当前页数据,增加isAllPage入参 [3243197] :bug:
 
 ## 2023-02-03
 - 极简下的`tabs`的brand页签不让显示图标 :lipstick:
