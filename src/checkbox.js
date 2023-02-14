@@ -166,6 +166,23 @@
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
             isValid(target);
         }
+        if ($.browser.msie && navigator.userAgent.indexOf("MSIE 9.0")>-1){ //$.browser.version < 11) {
+			var jqt = objlabel;
+            jqt.css('background-position', "-6px 0px");
+            if (jqt.hasClass('checked') && jqt.hasClass('disabled')){
+                jqt.css('background-position', "-6px -96px");
+                return;
+			}
+			if (jqt.hasClass('checked')){
+				jqt.css('background-position', "-6px -48px");
+			}
+			if (jqt.hasClass('disabled')){
+				jqt.css('background-position', "-6px -72px") ;
+			}			
+			if (jqt.hasClass('invalid')){
+				jqt.css('background-position', "-6px -240px");
+			}
+        }
     }
 	$.fn.checkbox = function(options, param){
 		if (typeof options == 'string'){
@@ -334,6 +351,6 @@
             }, onHide: function () {
                 $(this).tooltip("destroy");
             }
-        },
+        }
 	};
 })(jQuery);

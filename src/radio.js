@@ -188,6 +188,23 @@
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
             isValid(target);
         }
+        if ($.browser.msie && navigator.userAgent.indexOf("MSIE 9.0")>-1){ //$.browser.version < 11) {
+			var jqt = objlabel;
+            jqt.css('background-position', "0px -120px");
+            if (jqt.hasClass('checked') && jqt.hasClass('disabled')){
+                jqt.css('background-position', "0px -216px");
+                return;
+			}
+			if (jqt.hasClass('checked')){
+				jqt.css('background-position', "0px -168px");
+			}
+			if (jqt.hasClass('disabled')){
+				jqt.css('background-position', "0px -192px") ;
+			}			
+			if (jqt.hasClass('invalid')){
+				jqt.css('background-position', "0px -264px");
+			}
+        }     
     }
 	$.fn.radio = function(options, param){
 		if (typeof options == 'string'){

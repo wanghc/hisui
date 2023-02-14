@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2023-02-09
 - 增加图标 [3251140]
-- 
+- `checkbox`与`radio`在IE9下显示异常问题修复 [3249696] [3249706] :bug:
 
 ## 2023-02-08
 - `datagrid`的`getChecked`方法获得跨页勾中的数据，但`uncheckAll`只处理当前页数据,增加isAllPage入参 [3243197] :bug:
