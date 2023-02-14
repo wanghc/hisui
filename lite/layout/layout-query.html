@@ -105,7 +105,7 @@
                     {field:'ck',checkbox:true,width:50},
                     {field:'op',title:'操作',formatter:function(val,row,ind){
                         return '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op1" data-ind="'+ind+'" iconCls="icon-copy" title="复制"></a>'+
-                        '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op2" data-ind="'+ind+'" iconCls="icon-remove" title="删除"></a>';
+                        '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op2" data-ind="'+ind+'" iconCls="icon-cancel" title="删除"></a>';
                     },width:100,align:'center'}
                 ]],
                 columns:[[
@@ -139,7 +139,7 @@
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
                     '-',
-                    {text:'修改',iconCls:'icon-edit',handler:function(){
+                    {text:'修改',iconCls:'icon-write-order',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
@@ -147,7 +147,7 @@
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
-                    {text:'删除',iconCls:'icon-remove',handler:function(){
+                    {text:'删除',iconCls:'icon-cancel',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
