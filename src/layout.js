@@ -294,8 +294,9 @@
             }
             var p_title="&nbsp;",p_content="";
             if (_388.title!="" && _388.showCollapsedTitle){
-                if(dir == "east" || dir == "west"){
-                    p_content=_388.title.split("").join('</div><div>');
+                if (dir == "east" || dir == "west") {
+                    // 2023-02-14 收起后纵向显示增加翻译 [3202370] 。 panel的content内容是不会自动翻译的，所以手动在layout中翻译
+                    p_content=$.hisui.getTrans(_388.title).split("").join('</div><div>');
                     p_content='<div class="layout-expand-body-title"><div>'+p_content+'</div></div>';
                 }else{
                     p_title=_388.title;
