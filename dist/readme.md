@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 - 炫彩版与极简版`datagrid`的页码输入框在选中时增加对应背景 [3241509] [3241479] :lipstick:
 - 更新极简版tree_icons.png图片[3156120] :lipstick:
 - 炫彩版`tabs-gray-btm`增加色值为ccc的下边框 [3173471] [3195938] :lipstick:
+- 极简`vstep`不同状态节点的文字颜色修改 [2941768] :lipstick:
 
 ## 2023-02-14
 - `layout`东西二个方位收起后,显示的标题没有支持国际化问题 [3202370] :bug:
