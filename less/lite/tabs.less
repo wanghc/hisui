@@ -647,3 +647,35 @@
     border-bottom: 1px solid @panel-header-bdcolor;
   }
 }
+.tabs-system{
+  li{
+    a.tabs-inner{
+      &::after{
+        content: ' ';
+        border-right: 1px solid #E2E2E2;
+        right: 0;
+        position: absolute;
+        top: 8px;
+        font-size: 14px;
+        line-height: 14px;
+        width: 1px;
+        height: 20px;
+      }
+      &:hover{
+        background: none;
+        &+.tabs-close{
+          color:@tabs-header-select-font-color;
+        }
+      }
+    }
+    &.tabs-selected{
+      background-color: @tabs-header-select-font-color;
+      a.tabs-inner{
+        font-weight: 700;
+      }
+      .tabs-close{
+        color:@tabs-header-select-font-color;
+      }
+    }
+  }
+}
