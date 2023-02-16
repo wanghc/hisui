@@ -96,6 +96,34 @@
 			</div>
 		</div>
 	</div>
+	<h3>二.页签位置定义(<code>data-options="tabPosition:'left'"</code>)</h3>
+	<div class="demo-exp-code entry-content"> 
+		<div style="margin:20px 0;">
+			<span>tabPosition:</span>
+			<select onchange="$('#tt3').tabs({tabPosition:this.value});$('#tabPosition').html('tabPosition:\''+this.value+'\'');">
+				<!--<option value="top">Top</option>
+				<option value="bottom">Bottom</option>--> 
+				<option value="left" selected>Left</option>
+				<option value="right">Right</option>
+			</select>
+		</div>
+		<div id="tt3" class="hisui-tabs tabs-gray"  data-options="tabPosition:'left',isBrandTabs:true,headerWidth:100,height:200,width:500">   
+			<div title="电子病历" style="padding:20px;">   
+				<code id="tabPosition">tabPosition:'left'</code><br>
+				<code>headerWidth:100</code><br>
+				<code>border:false</code><br>
+			</div>   
+			<div title="诊断录入"  style="overflow:auto;padding:20px;">   
+				tab2    
+			</div>   
+			<div title="医嘱录入"  data-options="closable:true,selected:true" style="padding:20px;">   
+				tab3    
+			</div>
+			<div title="检查列表" style="padding:20px;">   
+				tab4    
+			</div>
+		</div>
+	</div>
 	<prettyprint/>
 </body>
 </html>

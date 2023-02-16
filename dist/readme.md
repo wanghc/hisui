@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-02-16
+- 极简版`tab`实现左右显示页签 [3135923] :sparkles:
+
 ## 2023-02-15
 - 炫彩版与极简版`datagrid`的页码输入框在选中时增加对应背景 [3241509] [3241479] :lipstick:
 - 更新极简版tree_icons.png图片[3156120] :lipstick:
