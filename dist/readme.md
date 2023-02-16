@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 - 极简版`tab`实现左右显示页签 [3135923] :sparkles:
 - 增加二个图标 [3264739] :lipstick:
 - 增加tabs-system样式 [3135923] :lipstick:
+- 修改`accordion`的标题样式 [2940154] :lipstick:
 
 ## 2023-02-15
 - 炫彩版与极简版`datagrid`的页码输入框在选中时增加对应背景 [3241509] [3241479] :lipstick:
