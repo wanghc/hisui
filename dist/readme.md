@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 ## 2023-02-17
 - 修改checkbox与radio兼容IE9后，在其它浏览器下的报错处理
-
+- `timespinner`增加时分秒步调配置项 [3277150]
 
 ## 2023-02-16
 - 极简版`tab`实现左右显示页签 [3135923] :sparkles:

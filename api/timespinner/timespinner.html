@@ -55,6 +55,22 @@
 			</div>
 		</div>
 	</div>
+	<div class="demo-exp-code entry-content">
+		<div>
+			<div class="hisui-panel use-prettyprint lang-html" title="步增示例" style="width:400px;padding:10px" 
+				data-options="closable:false,headerCls:'panel-header-gray'">
+				<table>
+					<tr>
+						<td class="r-label">执行时间</td>
+						<td class="r-label">
+							<input id="stepex" class="hisui-timespinner" data-options="showSeconds:true,minutesStep:10,secondStep:15" style="border-radius: 2px;">
+						</td>
+						<td>步调：10分,15秒</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
 	<prettyprint></prettyprint>
 	<table class="table">
 		<tr class="protitle">
@@ -68,6 +84,25 @@
 			<td>设置当前微调位置。如:4。则默认光标在第4个字符位置，即分钟区域<code>20220613</code></td>
 			<td>当入参值小于0或大于内容总长度时无效</td>
 			<td>正整数</td>
+		</tr>
+		<tr>
+			<td>hourStep</td>
+			<td>调整时钟的增量值<code>20230217</code></td>
+			<td>1小时</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minutesStep</td>
+			<td>调整分钟的增量值<code>20230217</code></td>
+			<td>1分钟</td>
+			<td></td>
+		</tr>
+		
+		<tr>
+			<td>secondStep</td>
+			<td>调整秒钟的增量值<code>20230217</code></td>
+			<td>1秒钟</td>
+			<td></td>
 		</tr>
 	</table>
 </body>

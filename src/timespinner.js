@@ -179,9 +179,33 @@
             vv[i] = parseInt(vv[i], 10);
         }
         if (down == true) {
-            vv[opts.highlight] -= opts.increment;
+            if (opts.minutesStep > 0 || opts.hourStep > 0 || opts.secondStep>0) {
+                if (opts.highlight == 2) {
+                    vv[opts.highlight] -= parseInt(opts.secondStep, 10);
+                }
+                if (opts.highlight == 1) {
+                    vv[opts.highlight] -= parseInt(opts.minutesStep, 10);
+                }
+                if (opts.highlight == 0) {
+                    vv[opts.highlight] -= parseInt(opts.hourStep, 10);
+                }
+            } else { // 兼容老的逻辑
+                vv[opts.highlight] -= opts.increment;
+            }
         } else {
-            vv[opts.highlight] += opts.increment;
+            if (opts.minutesStep > 0 || opts.hourStep > 0 || opts.secondStep > 0) {
+                if (opts.highlight == 2) {
+                    vv[opts.highlight] += parseInt(opts.secondStep, 10);
+                }
+                if (opts.highlight == 1) {
+                    vv[opts.highlight] += parseInt(opts.minutesStep, 10);
+                }
+                if (opts.highlight == 0) {
+                    vv[opts.highlight] += parseInt(opts.hourStep, 10);
+                }
+            } else { // 兼容老的逻辑
+                vv[opts.highlight] += opts.increment;
+            }
         }
         //赋值前记录光标位置
         var orgStart = _4fa.selectionStartPersistent!==undefined?_4fa.selectionStartPersistent:_4fa.selectionStart
@@ -246,10 +270,10 @@
         }
     };
     $.fn.timespinner.parseOptions = function (_500) {
-        return $.extend({}, $.fn.spinner.parseOptions(_500), $.parser.parseOptions(_500, ["separator", { showSeconds: "boolean", highlight: "number" }]));
+        return $.extend({}, $.fn.spinner.parseOptions(_500), $.parser.parseOptions(_500, ["separator", { showSeconds: "boolean", highlight: "number" ,hourStep:'number',minutesStep:'number',secondStep:'number'}]));
     };
     $.fn.timespinner.defaults = $.extend({}, $.fn.spinner.defaults, {
-        separator: ":", showSeconds: false, highlight: 0, spin: function (down) {
+        separator: ":", showSeconds: false, highlight: 0,hourStep:1,minutesStep:1,secondStep:1, spin: function (down) {
             _spin(this, down);
         },keyHandler: {
             up: function (e) {
