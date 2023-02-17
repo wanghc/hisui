@@ -166,7 +166,7 @@
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
             isValid(target);
         }
-        if ($.browser.msie && navigator.userAgent.indexOf("MSIE 9.0")>-1){ //$.browser.version < 11) {
+        if (navigator.userAgent.indexOf("MSIE 9.0")>-1){ //$.browser.version < 11) {
 			var jqt = objlabel;
             jqt.css('background-position', "-6px 0px");
             if (jqt.hasClass('checked') && jqt.hasClass('disabled')){

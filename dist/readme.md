@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-02-17
+- 修改checkbox与radio兼容IE9后，在其它浏览器下的报错处理
+
+
 ## 2023-02-16
 - 极简版`tab`实现左右显示页签 [3135923] :sparkles:
 - 增加二个图标 [3264739] :lipstick:
