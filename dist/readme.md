@@ -42,6 +42,8 @@ $("#btn").linkbutton("disable");
 // 增加兼容的JSON格式,多了一层data
 {code:200,data:{rows:[],curPage:1,total:1}}
 ```
+- 炫彩风格下hstep节点与节点文字居中对齐 :lipstick:
+
 
 ## 2023-02-17
 - 修改checkbox与radio兼容IE9后，在其它浏览器下的报错处理
