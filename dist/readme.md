@@ -34,6 +34,15 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-02-23
+- `treegrid`兼容hos格式的JSON数据 [2958194] :sparkles:
+```js
+// 老的JSON格式
+{rows:[{},{}],curPage:1,total:1}
+// 增加兼容的JSON格式,多了一层data
+{code:200,data:{rows:[],curPage:1,total:1}}
+```
+
 ## 2023-02-17
 - 修改checkbox与radio兼容IE9后，在其它浏览器下的报错处理
 - `timespinner`增加时分秒步调配置项 [3277150]

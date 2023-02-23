@@ -1414,7 +1414,17 @@
 					data : _122,
 					dataType : "json",
 					success : function (data) {
-						_123(data);
+						// _123(data);
+						if ('undefined' !== typeof data.code) {
+							var rowData = data.data || { total: 0, rows: [] };
+							data.message = data.message || data.msg;
+							// 20230223 新产品组 急诊
+							/*扩展功能,支持{code:200,message:'success',data:{total:100,rows:[]}}*/
+							if (data.code!=200) $.messager.alert(data.code, data.message, 'error');
+							_123(rowData);
+						} else {
+							_123(data);
+						}
 					},
 					error : function () {
 						_124.apply(this, arguments);
