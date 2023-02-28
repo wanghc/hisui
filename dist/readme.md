@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2023-02-28
+- 炫彩`linkbutton`plain:true时,图标与间距不够问题 [3172360] :lipstick:
+
 ## 2023-02-23
 - `treegrid`兼容hos格式的JSON数据 [2958194] :sparkles:
 ```js
