@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     //babel = require('gulp-babel'),
     uglify = require('gulp-uglify'),
     notify = require('gulp-notify');   //提示
-    chinese2unicode = require('gulp-chinese2unicode')
+    //chinese2unicode = require('gulp-chinese2unicode')
+    replace = require('gulp-string-replace')
     //foal = require('gulp-foal');    //传参
     //livereload-半自动,connect-全自动
 var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagination','tree','progressbar','tooltip','panel','window','dialog','messager',
@@ -46,7 +47,10 @@ gulp.task('auto', function () {
 });
 gulp.task('zh-CH',function(){
     return gulp.src('src/hisui-lang-zh_CN.js')
-    .pipe(chinese2unicode())
+    //.pipe(chinese2unicode())
+    .pipe(replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ１２３４５６７８９０｀！＠＃＄％＾＆＊（）＿＋｜＼｛｝［］＂＇。《》／？：；￥｛｝，！、])/g, function (s) {
+        return '\\u' + s.charCodeAt(0).toString(16);
+    }))
     .pipe(gulp.dest('dist/js/locale'));
 });
 gulp.task('min-js',function(){
@@ -59,12 +63,15 @@ gulp.task('min-js',function(){
     //preserveComments: 'all' //all-保留所有注释,license保存/*@license
     //compress: false, //类型：Boolean 默认：true 是否完全压缩
     //混淆变量名,但不混淆结构
-    .pipe(chinese2unicode())    
+    //.pipe(chinese2unicode())    
     .pipe(uglify({compress:false,output:{beautify:true},ie8:true}))
     .pipe(rename(prefix+'.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(uglify({compress:false,output:{beautify:false},ie8:true}))   //压缩大小 //compress=true完全混淆
-    .pipe(rename(prefix+'.min.js'))
+    .pipe(rename(prefix + '.min.js'))
+    .pipe(replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ１２３４５６７８９０｀！＠＃＄％＾＆＊（）＿＋｜＼｛｝［］＂＇。《》／？：；￥｛｝，！、])/g, function (s) {
+            return '\\u' + s.charCodeAt(0).toString(16);
+        }))    
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css

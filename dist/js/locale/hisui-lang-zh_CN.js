@@ -4,7 +4,7 @@ if ($.fn.pagination){
 	$.fn.pagination.defaults.displayMsg = '\u663e\u793a{from}\u5230{to},\u5171{total}\u8bb0\u5f55';
 }
 if ($.fn.datagrid){
-	$.fn.datagrid.defaults.loadMsg = '\u6b63\u5728\u5904\u7406\uff0c\u8bf7\u7a0d\u5f85。。。';
+	$.fn.datagrid.defaults.loadMsg = '\u6b63\u5728\u5904\u7406\uff0c\u8bf7\u7a0d\u5f85\u3002\u3002\u3002';
 	$.fn.datagrid.defaults.findBtn = "\u67e5\u8be2";
 	$.fn.datagrid.defaults.clearBtn = "\u6e05\u7a7a";
 	$.fn.datagrid.defaults.advancedBtn = "\u9ad8\u7ea7";
@@ -177,7 +177,7 @@ if ($.fn.datetimeboxq){
 }
 if ($.fn.timeboxq){
 	$.fn.timeboxq.defaults.missingMessage = $.fn.validatebox.defaults.missingMessage;
-	$.fn.timeboxq.defaults.rules.timeboxq.message = "\u975e\u6cd5\u65f6\u95f4。\u6b63\u786e\u8f93\u5165\u5982\uff1a14:10\uff0c1410 \u6216 n+15\u8868\u793a15\u5206\u949f\u540e";
+	$.fn.timeboxq.defaults.rules.timeboxq.message = "\u975e\u6cd5\u65f6\u95f4\u3002\u6b63\u786e\u8f93\u5165\u5982\uff1a14:10\uff0c1410 \u6216 n+15\u8868\u793a15\u5206\u949f\u540e";
 	$.fn.timeboxq.defaults.rules.minMaxTime.messageMax = '\u65f6\u95f4\u5fc5\u987b\u5c0f\u4e8e\u6216\u7b49\u4e8e{1}';
 	$.fn.timeboxq.defaults.rules.minMaxTime.messageMin = '\u65f6\u95f4\u5fc5\u987b\u5927\u4e8e\u6216\u7b49\u4e8e{0}';
 	$.fn.timeboxq.defaults.rules.minMaxTime.message = '\u975e\u6709\u6548\u65f6\u95f4\u8303\u56f4';

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-03-09
+- zh_CN翻译中的中文句号转成unicode
+
 ## 2023-02-28
 - 炫彩`linkbutton`plain:true时,图标与间距不够问题 [3172360] :lipstick:
 
