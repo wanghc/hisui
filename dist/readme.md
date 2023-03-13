@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-03-13
+- 极简tabs样式选中底色修改
 
 ## 2023-03-09
 - zh_CN翻译中的中文句号转成unicode

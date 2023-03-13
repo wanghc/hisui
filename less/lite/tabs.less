@@ -63,16 +63,15 @@
 
     &.tabs-selected {
       overflow: visible;
-
       a.tabs-inner {
-        background: @tabs-header-hover-bgcolor; //@tabs-header-bgcolor;
+        background: @tabs-header-bgcolor;
         border: 0 solid;
         border-bottom: 3px solid @tabs-header-select-top-color;
         color: @tabs-header-select-font-color;
         font-weight: normal;
 
         &:hover {
-          background: @tabs-header-hover-bgcolor;
+          background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
           font-weight: normal;
         }
@@ -100,7 +99,7 @@
 
       &:hover {
         border-top-color: @tabs-header-hover-bgcolor;
-        background: @tabs-header-hover-bgcolor;
+        background: @tabs-header-bgcolor;
         color: @tabs-header-select-font-color;
         filter: none;
       }
@@ -336,7 +335,7 @@
         border: 1px solid @tabs-header-bgcolor;
         border-left: 3px solid @tabs-header-bgcolor;
         &:hover {
-          background: @tabs-header-hover-bgcolor;
+          background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
           border: 1px solid @tabs-header-hover-bgcolor;
           border-left: 3px solid @tabs-header-hover-bgcolor;
@@ -671,6 +670,7 @@
     &.tabs-selected{
       background-color: @tabs-header-select-font-color;
       a.tabs-inner{
+        background: @tabs-header-hover-bgcolor;
         font-weight: 700;
       }
       .tabs-close{
