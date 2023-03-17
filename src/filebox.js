@@ -142,7 +142,17 @@
             return jq;
         },
         files: function (jq) {
-            return jq.next().find(".filebox-value")[0].files;
+            var el = jq.next().find(".filebox-value")[0];
+            if (el.files) {
+                return el.files;
+            } else { // 兼容IE9
+                var files = [];
+                files.push({
+                    lastModified:null,
+                    name: el.value, type: el.accept,size:null
+                });
+                return files;
+            }
         },
         setText:function(jq,text){
             return jq.each(function () {
