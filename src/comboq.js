@@ -131,7 +131,10 @@
                     opts.keyHandler.up.call(target, e);
                     break;
                 case 40:
-                    if (!$($.hisui.globalContainerSelector).is(":visible")) showPanel(this);  //下拉按钮时
+                    if (!$($.hisui.globalContainerSelector).is(":visible")) {
+                        // showPanel返回false时，直接返回不运行查询方法
+                        if (false==showPanel(this)) return ;  //下拉按钮时 
+                    }
                     opts.keyHandler.down.call(target, e);
                     break;
                 case 37:
@@ -168,7 +171,11 @@
                                 var q = _t.val();
                                 if (state.previousValue != q) {
                                     state.previousValue = q;
-                                    if (!state.isShow) $(target).comboq("showPanel");
+                                    // showPanel返回false时，直接返回不运行查询方法
+                                    if (!state.isShow) {
+                                        var rtn = $(target).comboq("showPanel");
+                                        if (rtn == false) return;
+                                    }
                                     opts.keyHandler.query.call(target, _t.val(), e);
                                     $(target).comboq("validate");
                                 }

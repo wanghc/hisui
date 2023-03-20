@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-03-20
+- `comboq`系列组件当面板showPanel返回false时，不进行查询
+
 ## 2023-03-17
 - `filebox`组件方法`files`支持IE9 [3355921]
 
