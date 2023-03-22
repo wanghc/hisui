@@ -303,6 +303,28 @@
 	<h3>四、转成手风琴样式(<code>class="accordiontree"</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<P>为生成树的dom增加类accordiontree 可将树的样式变为下样式</P>
+		<P style="color: red;">2023-03-22新增了<code>menutree组件</code>，建议优先尝试<a id="goto-menutree" href="../menutree/menutree.html" target="_blank">menutree</a></P>
+		<script>
+			$(function(){
+				$('#goto-menutree').click(function(){
+					if(window.parent && window.parent!=window &&window.parent.$) {
+						var p$=window.parent.$;
+						var flag=false;
+						p$('.api-navi-tab').each(function(){
+							if($(this).text().indexOf('menutree')>-1) {
+								p$(this).click();
+								flag=true;
+								return false;
+							}
+						})
+						if(flag) return false;
+					}
+
+
+				})
+			})
+		</script>
+
 		<!--tree 高度在外部限定-->
 		<div class="use-prettyprint">
 			<div style="height:500px;width:208px;overflow:auto">

@@ -353,6 +353,7 @@
                     }else{  //不可折叠情况下 根节点要全展开
                         item.state='open';
                     }
+                    if(!item.iconCls) item.iconCls='icon-book-rep';  //为根节点增加图标
                 }else{  //
                     if(item.state!='closed'){
                         if(flag) {
