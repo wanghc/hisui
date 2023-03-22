@@ -211,6 +211,8 @@
                     <li><a href="javascript:void(0);"  src="treegrid/treegrid.dnd.html" class="api-navi-tab">拖拽树形表格(treegrid.dnd)</a></li>    
                     <li><a href="javascript:void(0);"  src="test/formtest.html" class="api-navi-tab">表单们(formtest)</a></li>
                     <li><a href="javascript:void(0);"  src="test/textbox.html" class="api-navi-tab">文本框(textbox)</a></li>
+                    <li><a href="javascript:void(0);" target="_blank" src="layout/layout-query.html" class="api-navi-tab">标准查询界面</a></li>
+                    <li><a href="javascript:void(0);" target="_blank" src="layout/layout-menu.html" class="api-navi-tab">左侧菜单布局</a></li>
                     
                 </ul>
             </div>
@@ -455,7 +457,13 @@
                 var $this = $(this);
                 var href = $this.attr('src');
                 var title = $this.text();
-                addTab(title, href);
+                var target=$this.attr('target');
+                if (target=='_blank') {
+                    window.open(href,'_blank');
+                    return false;
+                }else{
+                    addTab(title, href);
+                }
             });
             if(location.href.indexOf("dev=1")==-1){
                 $('#accd').accordion('remove','测试');

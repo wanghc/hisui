@@ -73,10 +73,17 @@
         }
         if (opts.fit == true) {
             var p = panel.panel("panel").parent();
-            opts.width = p.width();
+            if(!opts.collapsed) {  //收缩状态不进行宽度计算
+                opts.width = p.width();
+            }
             opts.height = p.height();
         }
-        panel.panel("resize", { width: opts.width, height: opts.height });
+        if (opts.collapsed) {
+            panel.panel("resize", { height: opts.height });  //收缩状态不重新resize宽度
+        }else{
+            panel.panel("resize", { width: opts.width, height: opts.height });
+        }
+        
         
     };
     function resizeItem(ele){
@@ -107,6 +114,7 @@
                     panel.panel('resize',{width:opts.minwidth});
 
                     $(this).addClass('menutree-collapsed');
+                    opts.collapsed=true;
                     opts.onPanelCollapse.call(ele,opts.minwidth) //向左折叠
 
                 }else if($(this).hasClass('menutree-collapsed')){ //当前为折叠状态
@@ -114,6 +122,7 @@
                     panel.panel('panel').removeClass('menutree-min');
                     panel.panel('resize',{width:opts.width});
                     $(this).addClass('menutree-expanded');
+                    opts.collapsed=false;
                     opts.onPanelExpand.call(ele,opts.width) //向右展开
                 }
 
