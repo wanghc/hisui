@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-03-22
+- 增加`menutree`组件
+
 ## 2023-03-20
 - `comboq`系列组件当面板showPanel返回false时，不进行查询
 
