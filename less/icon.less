@@ -47,3 +47,29 @@ outInstc-mgr,outInstc_mgr,book-rep,book_rep,book-rep-v1,book_rep_v1,book-pen,boo
     .wloop(2+@i);
 }
 .wloop(1);
+.c-pic(@name,@img,@dir,@type){
+	.pic-@{dir}-@{name}{
+		background:url('icons/@{type}/@{dir}/@{img}.png') no-repeat center center;
+		background-size: contain;
+		width: 100%;
+		height: 100%;
+	}
+}
+.c-pic-onlyname(@name,@dir,@type){
+	// 把clothing-worker 变成 clothing_worker
+	.c-pic(@name,replace(@name,"-","_"),@dir,@type);
+}
+.picloop(@i,@arr,@pre) when(@i<length(@arr)+1){
+	.c-pic-onlyname(extract(@arr, @i),@pre,blue);
+	.picloop(1+@i,@arr,@pre);
+}
+@picpat:man,woman,unknown-gender;
+.picloop(1,@picpat,pat);
+@picusr:doctor,nurse,surgeon,clothing-worker,medi-worker,dep-director,hosp-director;
+.picloop(1,@picusr,usr);
+@picadm:out,em,in;
+.picloop(1,@picadm,adm);
+@piclogon:cert,default,face,phone,pin,sound,ukey;
+.picloop(1,@piclogon,logon);
+@picabout:dhcc-digitalmed,imedical-logo;
+.picloop(1,@picabout,about);

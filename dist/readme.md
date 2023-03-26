@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 20230316
+- 增加插画样式类与示例界面
 
 ## 2023-03-22
 - 增加`menutree`组件
