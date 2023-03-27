@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-03-27
+- 兼容IE9下radio折行文字重叠
+- 点击带hischeckbox_square-blue的radio后样式变成圆点样式问题
+
 ## 20230316
 - 增加插画样式类与示例界面
 - 侧菜单增加插画链接

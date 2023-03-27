@@ -188,7 +188,8 @@
             if (!$(target).prop('checked') && objlabel.hasClass('checked')) objlabel.removeClass('checked');
             isValid(target);
         }
-        if (navigator.userAgent.indexOf("MSIE 9.0")>-1){ //$.browser.version < 11) {
+        // IE9下非hischeckbox_square-blue时，使用js来定位图片
+        if (navigator.userAgent.indexOf("MSIE 9.0")>-1 && !objlabel.hasClass('hischeckbox_square-blue')){ //$.browser.version < 11) {
 			var jqt = objlabel;
             jqt.css('background-position', "0px -120px");
             if (jqt.hasClass('checked') && jqt.hasClass('disabled')){
