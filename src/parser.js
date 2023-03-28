@@ -377,7 +377,8 @@
     $(function () {
         var d = $("<div style=\"position:absolute;top:-1000px;width:100px;height:100px;padding:5px\"></div>").appendTo("body");
         d.width(100);
-        $._boxModel = parseInt(d.width()) == 100;
+        //$._boxModel = parseInt(d.width()) == 100;
+        $._boxModel = Math.abs(parseInt(d.width())-100)<=2;  //add2023-03-28 浏览器缩放126%时 获取宽度为99 在误差2px范围内都认可
         d.remove();
         if (!window.easyloader && $.parser.auto) {
             $.parser.parse();

@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-03-28
+- `layout`在缩放126%时，如果东西南北区域面板带padding,则相应宽高会不正确多带padding大小的宽高。
+
 ## 2023-03-27
 - 兼容IE9下radio折行文字重叠
 - 兼容IE9下点击带hischeckbox_square-blue的radio后样式变成圆点样式问题
