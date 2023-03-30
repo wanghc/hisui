@@ -3383,7 +3383,10 @@
                         var rowData = data.data || { total: 0, rows: [] };
                         data.message = data.message || data.msg;
                         /*扩展功能,支持{code:200,message:'success',data:{total:100,rows:[]}}*/
-                        if (data.code!=200) $.messager.alert(data.code, data.message, 'error');
+                        if (data.code != 200) {
+                            //$.messager.alert(data.code, data.message, 'error');
+                        }
+
                         _70d(rowData);
                     } else {
                         _70d(data);
