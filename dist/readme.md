@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-03-31
+- `menutree`组件整个大面板背景色改为透明
+
 ## 2023-03-30
 - `datagrid`请求数据出错时不再alert提示. 防止轮询出错一直alert问题 [3377783]
 
