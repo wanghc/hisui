@@ -76,6 +76,8 @@
 								<br/>
 								值为<code>array</code>时返回值格式为:<code>[{},{},{}]</code>
 								<br/>不配置时返回格式为:<code>{"rows":[{},{},{}],"total":3}</code>
+								<br/>值为<code>Excel</code>时返回下载cvs链接，具体参考导出Excel菜单说明</code>
+								<br/>值为<code>ExcelPlugin</code>时会导出Excel到本地，具体参考导出Excel菜单说明</code>
 								
 							</td>
 						</tr>
@@ -114,7 +116,9 @@
 							<td><code>type</code></td>
 							<td>{String}</td>
 							<td>请求类型，默认<code>"POST"</code></td>
-							<td>见$.ajax的<code>type</code><code>20190413</code></td>
+							<td>见$.ajax的<code>type</code><code>20190413</code><br/>
+								当ajax请求发生在界面卸载事件内，应使用type:"BEACON"来处理当前请求，在chrome49后此时情况下没有返回值<code>20230404</code><br/>
+							</td>
 						</tr>
 						<tr>
 							<td>其它</td>
