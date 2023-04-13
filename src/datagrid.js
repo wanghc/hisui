@@ -213,6 +213,9 @@
         }
         dc.body2.triggerHandler("scroll");
         function _52a(trs1, trs2) {
+            // 把数字rownumbers列表与内容列表的高度同步
+            // 比如nowrap:false且内容要折行时,会导致运行慢。500行*7列花费10秒左右, 慢在设置数字rownumbers列与内容列的tr的高度上，保证二边view高度一样
+            // 当nowrap:false时，可以把rownumbers设置成false，这样就不会慢了
             for (var i = 0; i < trs2.length; i++) {
                 var tr1 = $(trs1[i]);
                 var tr2 = $(trs2[i]);
