@@ -30,24 +30,38 @@
 				cursor: pointer;
 			}
 			&.done{
-				color:#666666;
+				color:#000000;
 				.cnode{
 					background-position: 0px -60px;
 				}	
 			}
 			&.undone{
-				color: #666666;
+				color: #999999;
 				.cnode{
 					background-position: 0px -80px;
 				}
 			}
 			&.active{
-				color: #000000;
+				color: #13AE37;
 				background-color: transparent;
 				.cnode{
 					margin-top: 7px;
 					background-position: 0px -40px;
 					margin-bottom: 3px;
+				}
+				.cntt {
+					color: #13AE37;
+				}
+			}
+			&.hover{
+				color:#339EFF;
+				.cnode{
+					margin-top: 6px;
+					background-position: 0px -100px;
+					margin-bottom: 4px;
+				}
+				.cntt{
+					color:#339EFF;
 				}
 			}
 		}
@@ -69,7 +83,6 @@
 			height: 20px;
 			background: #e4e4e4;
 			display: inline-block;
-			//float: left;
 			.hstep-progress-highlight {
 				height: 20px;
 				display: block;
