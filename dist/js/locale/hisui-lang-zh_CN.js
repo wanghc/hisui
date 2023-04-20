@@ -128,9 +128,9 @@ if ($.fn.datebox){
 			var ss =  s.split('/');
 			var d = parseInt(ss[0],10);
 			var m = parseInt(ss[1],10);
-			var y = parseInt(ss[2], 10);
+			var y = parseInt(ss[2],10);
 			
-			if (isNaN(y) && m>1000 && d>0) { //　M/Y\u7684\u683c\u5f0f
+			if (isNaN(y) && m>1000 && d>0) { //　s\u662fMM/YYYY\u7684\u683c\u5f0f [3417378]
 				return new Date(m,d-1,1);
 			}
 		}
