@@ -117,7 +117,9 @@ if ($.fn.datebox){
 			var d = parseInt(ss[0],10);
 			var m = parseInt(ss[1],10);
 			var y = parseInt(ss[2],10);
-			
+			if (isNaN(y) && m>1000 && d>0) { //　s是MM/YYYY的格式 [3417378]
+				return new Date(m,d-1,1);
+			}
 		}
 		if (s.indexOf('-')>-1){
 			var ss =  s.split('-');
