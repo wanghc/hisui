@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-05-09
+- plain显示带图标的按钮时，图标与文字间距调整
+
 ## 2023-04-21 
 - `datebox`在DMY配置下validParams:"YM"月份显示错误问题 [3417378] :bug:
 
