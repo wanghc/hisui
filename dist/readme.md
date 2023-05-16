@@ -35,6 +35,30 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-05-16
+- `datagrid`支持后台返回以下结构的json数据 [支持data.records结构]
+```js
+{
+    "code": "200",
+    "msg": "success",
+    "data": {
+        "records": [
+            {
+                "id": "9e9c735844b841c0a970decdb2b5e182",
+                "name": "张三",
+                "email": "zhangsan@qq.com",
+                "phone": "012345678910"
+            }
+        ],
+        "total": 2,
+        "size": 2,
+        "current": 1,
+        "searchCount": true,
+        "pages": 1
+    },
+    "success": true
+}
+```
 ## 2023-05-12
 - 还原图标与文字间距
 
