@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-05-18
+- 增加PDF使用率图标 [3506007]
 
 ## 2023-05-16
 - `datagrid`支持后台返回以下结构的json数据 [支持data.records结构]
