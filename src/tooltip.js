@@ -12,7 +12,7 @@
             if (opts.trackMouse) {
                 opts.trackMouseX = e.pageX;
                 opts.trackMouseY = e.pageY;
-                _1c7(_1c6);
+                _reposition(_1c6);
             }
         });
     };
@@ -27,7 +27,7 @@
             _1ca.hideTimer = null;
         }
     };
-    function _1c7(_1cb) {
+    function _reposition(_1cb) {
         var _1cc = $.data(_1cb, "tooltip");
         if (!_1cc || !_1cc.tip) {
             return;
@@ -43,6 +43,7 @@
             var left = t.offset().left + opts.deltaX;
             var top = t.offset().top + opts.deltaY;
         }
+        opts.currentPosition = opts.position;
         switch (opts.position) {
             case "right":
                 left += t._outerWidth() + 12 + (opts.trackMouse ? 12 : 0);
@@ -59,13 +60,18 @@
             case "bottom":
                 left -= (tip._outerWidth() - t._outerWidth()) / 2;
                 top += t._outerHeight() + 12 + (opts.trackMouse ? 12 : 0);
+                // 增加自动位置切换, 当下面不能显示全时，显示到上方
+                if ((top+tip._outerHeight()) > (document.documentElement["clientHeight"] + window.scrollY)) {
+                    top -= (tip._outerHeight() + $(_1cb)._outerHeight() + 12 + 12 ); // 多减12px，表示箭头高度
+                    opts.currentPosition = 'top';
+                }
                 break;
         }
         if (!$(_1cb).is(":visible")) {
             left = -100000;
             top = -100000;
         }
-        tip.css({ left: left, top: top, zIndex: (opts.zIndex != undefined ? opts.zIndex : ($.fn.window ? $.fn.window.defaults.zIndex++ : "")) });
+        tip.css({ left: left, top: top, zIndex: (opts.zIndex != undefined ? opts.zIndex : ($.fn.window ? $.fn.window.defaults.zIndex++ : "")) });        
         opts.onPosition.call(_1cb, left, top);
     };
     function _1cd(_1ce, e) {
@@ -81,7 +87,9 @@
         tip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right").addClass("tooltip-" + opts.position);
         _1c8(_1ce);
         _1cf.showTimer = setTimeout(function () {
-            _1c7(_1ce);
+            _reposition(_1ce);
+            // 增加自动位置切换, 当下面不能显示全时，显示到上方
+            tip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right").addClass("tooltip-" + opts.currentPosition);
             tip.show();
             /*处理提示层超出界面问题 2022-01-10*/
             var left1 = tip.offset().left;
@@ -93,7 +101,7 @@
             opts.onShow.call(_1ce, e);
             var _1d1 = tip.children(".tooltip-arrow-outer");
             var _1d2 = tip.children(".tooltip-arrow");
-            var bc = "border-" + opts.position + "-color";
+            var bc = "border-" + opts.currentPosition + "-color";
             _1d1.add(_1d2).css({ borderTopColor: "", borderBottomColor: "", borderLeftColor: "", borderRightColor: "" });
             _1d1.css(bc, tip.css(bc));
             _1d2.css(bc, tip.css("backgroundColor"));
@@ -176,7 +184,7 @@
             });
         }, reposition: function (jq) {
             return jq.each(function () {
-                _1c7(this);
+                _reposition(this);
             });
         }, destroy: function (jq) {
             return jq.each(function () {
