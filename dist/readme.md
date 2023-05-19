@@ -37,6 +37,8 @@ $("#btn").linkbutton("disable");
 
 ## 2023-05-19
 - `tooltip`插件`position`当配置`bottom`显示时,下方不能显示全时,显示到上方 [3458164]
+- `datagrid`请求得到的数据中包含code属性但不包含rows属性时,才进入兼容其它json数据中
+- - 当HIS超时后会返回code与rows，此时要把msg,code等信息返回给onLoadSuccess方法，以便做出超时判断
 
 ## 2023-05-18
 - 增加PDF使用率图标 [3506007]

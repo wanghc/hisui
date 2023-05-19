@@ -3382,7 +3382,7 @@
             if(opts.singleRequest && opts.currentAjax) opts.currentAjax.abort();
             opts.currentAjax = $.ajax({
                 type: opts.method, url: opts.url, data: _70c, dataType: "json", success: function (data) {
-                    if ('undefined' !== typeof data.code) {
+                    if ('undefined' !== typeof data.code && !$.isArray(data.rows)) {
                         var rowData = {total: 0, rows: [] };
                         if ('object' == typeof data.data) {
                             rowData = data.data;
@@ -3390,11 +3390,7 @@
                                 rowData.rows = data.data.records;
                             }
                         }
-                        data.message = data.message || data.msg;
-                        /*扩展功能,支持{code:200,message:'success',data:{total:100,rows:[]}}*/
-                        if (data.code != 200) {
-                            //$.messager.alert(data.code, data.message, 'error');
-                        }
+                        rowData.message = data.message || data.msg;
                         _70d(rowData);
                     } else {
                         _70d(data);
