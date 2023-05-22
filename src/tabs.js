@@ -86,7 +86,11 @@
         }
         if (opts.tabPosition == "left" || opts.tabPosition == "right") {
             header._outerWidth(opts.showHeader ? opts.headerWidth : 0);
-            panels._outerWidth(cc.width() - header.outerWidth());
+            //panels._outerWidth(cc.width() - header.outerWidth());
+            //cc.width(opts.width)设置值与再cc.width()取到值在浏览器缩放时会不一致 甚至cc.width(1305) 出现cc.width()获取到1306
+            var ccWidth=cc.width();
+            if(ccWidth>opts.width) ccWidth=opts.width;
+            panels._outerWidth(ccWidth - header.outerWidth());
             header.add(panels)._outerHeight(opts.height);
             wrap._outerWidth(header.width());
             ul._outerWidth(wrap.width()).css("height", "");
