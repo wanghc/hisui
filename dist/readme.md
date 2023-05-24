@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-05-22
+- 修正`tabs`当`tabPosition`为`left`时，在浏览器缩放时有时会出现页签内容区域空白(被挤下去)现象。[3341612]
+
 ## 2023-05-19
 - `tooltip`插件`position`当配置`bottom`显示时,下方不能显示全时,显示到上方 [3458164]
 - `datagrid`请求得到的数据中包含code属性但不包含rows属性时,才进入兼容其它json数据中
