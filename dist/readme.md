@@ -34,6 +34,17 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-06-01
+- `messager`增加四个方法不自动翻译提示内容 [3505970] :sparkles:
+```js
+$.messager.alertSrcMsg('title',$g('进行了') + 3 + $g('次无效登录'));
+```
+
+```js
+/// 如果希望整个界面HISUI都不自动翻译
+/// 应在引入HISUI相关文件后重写以方法
+$.hisui.getTrans = function(key){return key;}
+```
 
 ## 2023-05-31
 - `datetimebox`与`datetimeboxq`支持双击日期选中 [3557187] :sparkles:

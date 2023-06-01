@@ -151,9 +151,9 @@
     $.messager = {
         show: function (_284) {
             return _27d(_284);
-        }, alert: function (_285, msg, icon, fn) {
+        }, alertSrcMsg: function (_285, msg, icon, fn) {
             /* 对象文字 add margin-left:42px;*/
-            var _286 = "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>";  //add trans
+            var _286 = "<div style=\"margin-left:42px;\">" + msg + "</div>";  //add trans
             switch (icon) {
                 case "error":
                     _286 = "<div class=\"messager-icon messager-error\"></div>" + _286;
@@ -184,8 +184,10 @@
             };
             var win = _27f(_285, _286, _287);
             return win;
-        }, confirm: function (_288, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+        }, alert: function (_285, msg, icon, fn) {
+            return $.messager.alertSrcMsg(_285, $.hisui.getTrans(msg), icon, fn);
+        }, confirmSrcMsg: function (_288, msg, fn) {
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
@@ -209,8 +211,10 @@
             };
             var win = _27f(_288, _289, _28a);
             return win;
-        }, confirm3: function (title, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+        }, confirm: function (title, msg, fn) {
+            return $.messager.confirmSrcMsg(title, $.hisui.getTrans(msg), fn);
+        }, confirm3SrcMsg: function (title, msg, fn) {
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -237,8 +241,10 @@
             };
             var win = _27f(title, _289, _28a);
             return win;
-        }, prompt: function (_28b, msg, fn) {
-            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + $.hisui.getTrans(msg) + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
+        }, confirm3: function (title, msg, fn) {
+            return $.messager.confirm3SrcMsg(title, $.hisui.getTrans(msg), fn);
+        }, promptSrcMsg: function (_28b, msg, fn) {
+            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
             _28d['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -259,7 +265,9 @@
             var win = _27f(_28b, _28c, _28d);
             win.find("input.messager-input").eq(0).focus();
             return win;
-        }, progress: function (_28e) {
+        }, prompt: function(_28b, msg, fn){ 
+            return $.messager.promptSrcMsg(_28b, $.hisui.getTrans(msg), fn);
+        } ,progress: function (_28e) {
             var _28f = {
                 bar: function () {
                     return $("body>div.messager-window").find("div.messager-p-bar");
@@ -307,14 +315,14 @@
                 }, opts.interval);
             }
             return win;
-        },popover: function(opt){
+        },popoverSrcMsg: function(opt){
             //default top center;
             // top:document.body.scrollTop+document.documentElement.scrollTop+10  modify by wanghc on 2018-10-18
             var defopt = {style:{top:'',left:''},
                msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
             var html = '<div class="messager-popover '+o.type+'" style="display:none;">'
-            +'<span class="messager-popover-icon '+o.type+'"/><span class="content">'+$.hisui.getTrans(o.msg)+'</span>' //add trans
+            +'<span class="messager-popover-icon '+o.type+'"/><span class="content">'+ o.msg +'</span>' //add trans
             if (o.timeout>5000) +'<span class="close"></span>'
             +'</div>';  
             
@@ -362,6 +370,9 @@
                     setTimeout(function(){t.remove()},o.timeout);
                 },o.timeout);
             }
+        }, popover: function (opt) {
+            opt.msg = $.hisui.getTrans(opt.msg);
+            $.messager.popoverSrcMsg(opt);
         }
     };
     $.messager.defaults = { ok: "Ok", cancel: "Cancel" };
