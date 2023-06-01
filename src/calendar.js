@@ -309,6 +309,17 @@
             if (!oldValue || oldValue.getTime() != opts.current.getTime()) {
                 opts.onChange.call(target, opts.current, oldValue);
             }
+        }).bind('dblclick.calendar',function () {
+            var oldValue = opts.current;
+            t.find(".calendar-selected").removeClass("calendar-selected");
+            $(this).addClass("calendar-selected");
+            var parts = $(this).attr("abbr").split(",");
+            opts.current = new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
+            opts.onSelect.call(target, opts.current);
+            if (!oldValue || oldValue.getTime() != opts.current.getTime()) {
+                opts.onChange.call(target, opts.current, oldValue);
+            }
+            opts.onDblClick.call(target, opts.current);
         });
     };
     $.fn.calendar = function (options, param) {
@@ -370,6 +381,7 @@
             return true;
         }, onSelect: function (date) {
         }, onChange: function (newDate, oldDate) {
+        }, onDblClick: function (date) {            
         }
     };
 })(jQuery);

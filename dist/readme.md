@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-05-31
+- `datetimebox`与`datetimeboxq`支持双击日期选中 [3557187] :sparkles:
+
 ## 2023-05-22
 - 修正`tabs`当`tabPosition`为`left`时，在浏览器缩放时有时会出现页签内容区域空白(被挤下去)现象。[3341612]
 

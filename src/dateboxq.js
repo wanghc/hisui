@@ -191,7 +191,8 @@
 			doBlur(target);
 		},
 		onSelect:function(date){},
-		onChange:function(newValue,oldValue){},
+		onChange: function (newValue, oldValue) { },
+		onDblClick: function (date) {},
 		validType:{"datebox":(typeof dtformat=="undefined"?"":dtformat),"minMaxDate":[null,null]},
 		minDate:(typeof dtformat=="undefined"?null:(dtformat=="YMD"?'1841-01-01':null)),
 		maxDate:null,

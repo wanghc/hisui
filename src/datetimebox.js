@@ -13,6 +13,12 @@
         $(target).datebox("calendar").calendar({
             onSelect: function (date) {
                 opts.onSelect.call(target, date);
+            },
+            onDblClick: function (date) {
+                // handler
+                var bs = $(target).datetimebox('options').buttons;;
+                if (bs.length>1 && bs[1].handler) bs[1].handler.call(this, target);
+                opts.onDblClick.call(target, date);
             }
         });
         var _94d = $(target).datebox("panel");
