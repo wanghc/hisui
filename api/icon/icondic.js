@@ -597,7 +597,12 @@ var iconDictionary={
     'icon-user-settings': '用户管理，用户设置',
     'icon-needle-sticks': '针刺伤，针刺',
     'icon-contact-with-fluid': '体液接触，洗手，清洗手卫生',
-    'icon-pda-execution-rate':'PDA执行率',
+    'icon-pda-execution-rate': 'PDA执行率',
+    'icon-insert-local-image': "插入本地图片",
+    'icon-edit-picture': "编辑图片",
+    'icon-creating-a-pedigree-map': "创建谱系图",
+    'icon-edit-pedigree-chart': '编辑谱系图',
+    'icon-image-properties':"图片属性",
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
@@ -729,5 +734,10 @@ var iconDictionary={
     "icon-big-drug-all-ok": "发药，全发药",
     "icon-big-drug-back": "退药",
     "icon-big-printer-refresh": "重新打印",
-    "icon-big-medibottle-run":"自动配药"
+    "icon-big-medibottle-run": "自动配药",
+    'icon-big-insert-local-image': "插入本地图片",
+    'icon-big-edit-picture': "编辑图片",
+    'icon-big-creating-a-pedigree-map': "创建谱系图",
+    'icon-big-edit-pedigree-chart': '编辑谱系图',
+    'icon-big-image-properties':"图片属性"
 };
