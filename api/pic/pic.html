@@ -55,6 +55,10 @@
     <div class="demo-exp-code entry-content">
         <div class="conter5"></div>
     </div>
+    <h3>六、系统状态插画</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter6"></div>
+    </div>
     <script type="text/javascript">
         function init(){
             // --患者--
@@ -92,6 +96,13 @@
                 html.push('<div class="conter"><div class="'+pre+aboutArr[i]+'"/><div class="clstext">'+pre+aboutArr[i]+'</div></div>');
             }
             $('.conter5').html(html.join(""));
+            // -- 系统状态 --
+            var arr = ['e403','e404','e500','nodata','nodata-msg','nodata-region','timeout-relogon','welcome'];
+            pre = 'pic-sysst-',html=[];
+            for(var i=0;i<arr.length;i++){
+                html.push('<div class="conter"><div class="'+pre+arr[i]+'"/><div class="clstext">'+pre+arr[i]+'</div></div>');
+            }
+            $('.conter6').html(html.join(""));   
         }
         $(function(){
             init();

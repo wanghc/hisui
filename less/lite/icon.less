@@ -284,21 +284,25 @@ tree-icon tree-file显示默认的文件图标
 	border: 1px solid #00C75C;
 	color: #12AA64;
 }
-.c-pic(@name,@img,@dir,@type){
+.c-pic(@name,@img,@dir,@type,@suffix) {
 	.pic-@{dir}-@{name}{
-		background:url('icons/@{type}/@{dir}/@{img}.png') no-repeat center center;
+		background: url('icons/@{type}/@{dir}/@{img}.@{suffix}') no-repeat center center;
 		background-size: contain;
 		width: 100%;
 		height: 100%;
 	}
 }
-.c-pic-onlyname(@name,@dir,@type){
+.c-pic-onlyname(@name,@dir,@type,@suffix) {
 	// 把clothing-worker 变成 clothing_worker
-	.c-pic(@name,replace(@name,"-","_"),@dir,@type);
+	.c-pic(@name,replace(@name,"-","_",'gi'),@dir,@type,@suffix);
 }
 .picloop(@i,@arr,@pre) when(@i<length(@arr)+1){
-	.c-pic-onlyname(extract(@arr, @i),@pre,lite);
+	.c-pic-onlyname(extract(@arr, @i),@pre,lite,png);
 	.picloop(1+@i,@arr,@pre);
+}
+.picloop2(@i,@arr,@pre) when(@i<length(@arr)+1){
+	.c-pic-onlyname(extract(@arr, @i),@pre,lite,extract(@arr, 1+@i));
+	.picloop2(2+@i,@arr,@pre);
 }
 @picpat:babyboy,babygirl,man,oldman,oldwoman,schoolboy,schoolgirl,woman,unknown-gender;
 .picloop(1,@picpat,pat);
@@ -310,3 +314,5 @@ tree-icon tree-file显示默认的文件图标
 .picloop(1,@piclogon,logon);
 @picabout:dhcc-digitalmed,doc,imedical-logo,vi;
 .picloop(1,@picabout,about);
+@picsysst:e403,gif,e404,gif,e500,gif,nodata,svg,nodata-region,svg,nodata-msg,gif,timeout-relogon,gif,welcome,gif;
+.picloop2(1,@picsysst,sysst);
