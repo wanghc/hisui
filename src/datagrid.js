@@ -2156,6 +2156,10 @@
             if (opts.columnsUrl){ //从query中取cm
                 var json = getColumns(opts);
                 if (json) {
+                    if (!opts.sortName) {
+                        opts.sortName = json.sortColumnDefault;
+                        opts.sortOrder = json.sortOrderDefault;
+                    }
                     /*config中出现了, 但object中不存在的属性，将从config对象中复制到object中*/
                     var applyIf = function (object, config) {
                         var property;

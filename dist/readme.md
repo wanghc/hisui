@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-06-26
+- `datagrid`支持columnsUrl返回默认排序列`sortColumnDefault` [3537778]
+
 ## 2023-06-20
 - `tooltip`内容超过宽度后自动换行 [3591803] 
 
