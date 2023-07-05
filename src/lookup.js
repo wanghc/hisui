@@ -247,10 +247,19 @@
     function renderRowSummary(target,html,grd){
         var cont = $($.hisui.globalContainerSelector);
         if (cont.is(":visible")){
-            cont.find('.lookup-rowSummary').remove();
-            var rowSummaryHeight = $('<div class="lookup-rowSummary">' + html + '</div>').appendTo(cont)._outerHeight();
-            var fixHeight = getFixContHeight(target, grd, rowSummaryHeight);
-            var grdHeight = fixHeight - rowSummaryHeight;
+            var state = $.data(target, "lookup");
+            var opts = state.options;
+            if (cont.find('.lookup-rowSummary').length > 0) { // cont.find('.lookup-rowSummary').remove();
+                cont.find('.lookup-rowSummary').children().remove();
+                $(html).appendTo($('.lookup-rowSummary'));
+            } else {
+                var myRowSummaryObj = $('<div class="lookup-rowSummary">' + html + '</div>').appendTo(cont);
+                if (opts.rowSummaryHeight == 0) opts.rowSummaryHeight = myRowSummaryObj._outerHeight();                
+                $('.lookup-rowSummary').css('height', opts.rowSummaryHeight).css('overflow','auto');
+            }
+            //var rowSummaryHeight = $('<div class="lookup-rowSummary">' + html + '</div>').prependTo(cont)._outerHeight();
+            var fixHeight = getFixContHeight(target, grd, opts.rowSummaryHeight);
+            var grdHeight = fixHeight - opts.rowSummaryHeight;
             resizeGridAndCont(cont,grd,fixHeight,grdHeight);
             //cont._outerHeight(cont.children('.datagrid')._outerHeight()+rowSummaryHeight);
             $.hisui.fixPanelTLWH();
@@ -420,7 +429,7 @@
         queryOnSameQueryString: true, //当查询条件相同时，在回车和点击按钮是否查询
         enableNumberEvent:false, /*是否启用数字选行功能，当按数字n键时选中第n行记录*/
         onBeforeShowPanel:function(){
-        },selectRowRender:null // 应为function， 高亮一行数据时 显示提示内容html，修改成null不进入render方法
-        
+        }, selectRowRender: null, // 应为function， 高亮一行数据时 显示提示内容html，修改成null不进入render方法
+        rowSummaryHeight:0
     });
 })(jQuery);

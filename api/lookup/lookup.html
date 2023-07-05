@@ -210,7 +210,7 @@
 					},
 					selectRowRender:function(row){
 						console.log('selectRowRender',row);
-						if (!row) return;
+						if (!row)  return '<p style="margin:0;padding:10px;">无提示信息</p>';
 						if (row.Description.length>12){ //安全组名字长于10 显示提示信息
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。</span>';
 						}if (row.Description.length==5){ //安全组名字长于10 显示提示信息
@@ -220,7 +220,7 @@
 						}else if(row.Description.length>8){
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+'</span>';
 						}else{
-							return ''
+							return '<p style="margin:0;padding:10px;">无提示信息</p>';
 						}
 						
 					}
@@ -241,7 +241,7 @@
 					},
 					selectRowRender:function(row){
 						console.log('selectRowRender',row);
-						if (!row) return;
+						if (!row) return '<p style="margin:0;padding:10px;">无提示信息</p>';
 						if (row.Description.length>12){ //安全组名字长于10 显示提示信息
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。</span>';
 						}if (row.Description.length==5){ //安全组名字长于10 显示提示信息
@@ -251,7 +251,7 @@
 						}else if(row.Description.length>8){
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+'</span>';
 						}else{
-							return ''
+							return '<p style="margin:0;padding:10px;">无提示信息</p>'
 						}
 						
 					}
@@ -471,6 +471,12 @@
 				<td>自适应高度时,最小高度</td>
 				<td>160</td>
 				<td></td>
+			</tr>
+			<tr>
+				<td>rowSummaryHeight</td>
+				<td>行提示区域高度</td>
+				<td>0</td>
+				<td>默认为0, 为0时区域高度为第一次提示信息区域的高度<code>20230705</code></td>
 			</tr>
 			<!--   ***************分割线  事件******************************************************                  -->
 			<tr class="evttitle">

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-07-05
+- `lookup`使用selectRowRender事件显示行提示信息时，面板高度计算优化 [3628178]
+
 ## 2023-06-26
 - `datagrid`支持columnsUrl返回默认排序列`sortColumnDefault` [3537778]
 
