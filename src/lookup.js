@@ -249,10 +249,11 @@
         if (cont.is(":visible")){
             var state = $.data(target, "lookup");
             var opts = state.options;
-            if (cont.find('.lookup-rowSummary').length > 0) { // cont.find('.lookup-rowSummary').remove();
+            if (opts.rowSummaryHeight>0 && cont.find('.lookup-rowSummary').length > 0) { // cont.find('.lookup-rowSummary').remove();
                 cont.find('.lookup-rowSummary').children().remove();
                 $(html).appendTo($('.lookup-rowSummary'));
             } else {
+                cont.find('.lookup-rowSummary').remove();
                 var myRowSummaryObj = $('<div class="lookup-rowSummary">' + html + '</div>').appendTo(cont);
                 if (opts.rowSummaryHeight == 0) opts.rowSummaryHeight = myRowSummaryObj._outerHeight();                
                 $('.lookup-rowSummary').css('height', opts.rowSummaryHeight).css('overflow','auto');
