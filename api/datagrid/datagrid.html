@@ -22,6 +22,11 @@
 	</style>
 </head>
 <body>
+	<style>
+		label.radio, label.checkbox{
+			margin-right: 0px;
+		}
+	</style>
 	<h2>数据网格</h2>
 	<h3>说明:</h3>
     <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
@@ -643,7 +648,86 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 				})
 			})		
 		</script>
-	</div>	
+	</div>
+	
+	<h3>三、勾选列<code>(headerCheckbox)20230710</code></h3>
+	<div class="demo-exp-code entry-content use-prettyprint" prettyprintfor="#mydg10codehtml"><table id="mytable10"></table></div>
+	<script type="text/javascript" class="use-prettyprint" prettyprintfor="#mydg10codejs">
+		$(function(){
+			$HUI.datagrid('#mytable10',{
+				columns:[[
+					// {field:'ck',title:'ckbox',checkbox:true},
+					{field:'id',title:'ID',width:20},
+					{field:'caption',title:'已写病历授权范围',width:200,showTip:true,tipWidth:100,tipPosition:"top",align:'left',formatter:function(value,row){
+							return '<input class="hisui-checkbox" type="checkbox"/>'+value;
+						},
+						headerCheckbox:true /*true时列头显示勾选框,且勾选时，把当前列数据全勾或全取消勾*/},
+					{field:'update',title:'修改',width:60,align:'center',formatter:function(value,row){
+							if (value=='Y'){
+								return '<input class="hisui-checkbox" type="checkbox" checked/>';
+							}
+							return '<input class="hisui-checkbox" type="checkbox"/>';
+						},
+						headerCheckbox:true /*true时列头显示勾选框,且勾选时，把当前列数据全勾或全取消勾*/},
+					{field:'delete',title:'删除',width:60,align:'center',formatter:function(value,row){
+							if (value=='Y') return '<input class="hisui-checkbox" type="checkbox" checked/>';
+							return '<input class="hisui-checkbox" type="checkbox"/>';
+						},
+						headerCheckbox:true /*true时列头显示勾选框,且勾选时，把当前列数据全勾或全取消勾*/},
+					{field:'print',title:'打印',width:60,align:'center',formatter:function(value,row){
+							var val = '';	
+							if (value=='Y') val="checked";
+							if (row.id < 3){
+								return '<input class="hisui-checkbox" type="checkbox" disabled '+ val +'/>';
+							}else{
+								return '<input class="hisui-checkbox" type="checkbox" '+val+'/>';
+							}
+						},
+						headerCheckbox:true /*true时列头显示勾选框,且勾选时，把当前列数据全勾或全取消勾*/
+					}
+				]],
+				data:{
+					rows:[
+					{id:'1',caption:'入院记录(糖尿病) 2023-02-10 09:09:10 医生1',update:'Y',delete:'N',print:'N'},
+					{id:'2',caption:'首次病程记录  2023-02-10 17:10:21 医生1',update:'N',delete:'Y',print:'N'},
+					{id:'3',caption:'日常病程记录 2023-03-11 11:39:01 医生1',update:'N',delete:'N',print:'Y'},
+					{id:'4',caption:'交班记录  2023-03-12 10:39:31 医生1',update:'N',delete:'N',print:'N'},
+					{id:'5',caption:'日常病程记录 2023-03-13 11:39:01 医生1',update:'N',delete:'N',print:'N'},
+					{id:'6',caption:'日常病程记录 2023-03-14 11:39:01 医生1',update:'N',delete:'N',print:'N'}
+					],
+					total:10
+				},
+				toolbar:[{iconCls: 'icon-search',text:"获得[打印]列选中值",handler:function(){
+					var row = $('#mytable10').datagrid('getCheckboxRows','print');
+					console.log(row);
+				}}],
+				idField:'id',
+				autoSizeColumn:false,
+				headerCls:'panel-header-gray',
+				iconCls:'icon-paper',
+				onLoadSuccess:function(data){
+					$(".hisui-checkbox").checkbox();  // 使用这句代码可以让行勾选框变成hisui-checkbox, 也可以注释此行
+				},
+				rownumbers:true,
+				singleSelect:false,
+				width:850,
+				height:300,
+				title:'目录权限',
+				fitColumns:true,
+				checkOnSelect: false, selectOnCheck: false
+			})
+		})		
+	</script>
+	<!--					
+		// var o = $('#mytable10');
+		// for (var i=0;i<data.rows.length;i++){
+		// 	o.datagrid('beginEdit',i);
+		// }
+		// showFilterToolbar:true /*显示过滤工具栏*/
+	-->
+	<pre class="hide lang-html" id="mydg10codehtml"></pre>
+	<pre class="hide lang-js" id="mydg10codejs"></pre>
+
 	<!--测试加载本地数据,翻页条显示问题，需求号：1715492
 		<h3>九、表格加载本地数据</h3>
 	<table id="dg11" class="hisui-datagrid" title="科室列表" style="width:600px;height:300px" 
@@ -708,7 +792,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 	function clearData(){
 		$("#dg11").datagrid('loadData',[]);
 	}
-	</script>-->
+	</script>-->	
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>
@@ -872,6 +956,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>isAllPage</td>
 			<td>入参为true可以取消所有页的选中<code>(20230208)</code></td>
 		</tr>
+		<tr>
+			<td>getCheckboxRows</td>
+			<td>获得某列的所有勾选的记录</td>
+			<td>fieldName</td>
+			<td>返回rows<code>(20230711)</code></td>
+		</tr>
 		<tr class="evttitle">
 			<th>事件名</th>
 			<th>说明</th>
@@ -979,6 +1069,12 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<td>列属性，定义鼠标移入时弹出的提示层是否跟随鼠标，见例3</td>
 			<td>false</td>
 			<td>true或false,默认为false<code>(20210105)</code></td>
+		</tr>
+		<tr>
+			<td>headerCheckbox</td>
+			<td>列头上显示勾选框。勾选时会把当前列中所有checkbox勾中。</td>
+			<td>false</td>
+			<td>true时显示<code>(20230711)</code></td>
 		</tr>	
 	</table>
 	<prettyprint />	

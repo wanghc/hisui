@@ -441,6 +441,10 @@
                             td.append("<div class=\"datagrid-cell\"><span></span><span class=\"datagrid-sort-icon\"></span></div>");
                             var titleTr = col.title;
                             if (true != col.hidden) titleTr = $.hisui.getTrans(col.title); // 隐藏列头不翻译 需求号:3017058
+                            if (col.headerCheckbox) {
+                                titleTr += '<input type="checkbox" class="">';
+                                td.attr('header-checkbox','true');
+                            }
                             $("span", td).html( titleTr );  //add trans
                             $("span.datagrid-sort-icon", td).html(""); //html("&nbsp;");-html(""); neer 2019-4-4 当align:'right'时列头与内容没对齐
                            var cell = td.find("div.datagrid-cell");
@@ -464,6 +468,29 @@
                             cell.css("text-align", (col.halign || col.align || ""));
                             col.cellClass = _547.cellClassPrefix + "-" + col.field.replace(/[\.|\s]/g, "-");
                             cell.addClass(col.cellClass).css("width", "");
+                            if (col.headerCheckbox) {
+                                $('input[type="checkbox"]', cell).checkbox({
+                                    id: col.cellClass+ "cb",
+                                    onCheckChange: function (e, value) {
+                                        var myField = $(e.target).closest('td').attr('field'); // col.field-->总是指向最后一列的col
+                                        var currentColCells = $('.datagrid-row [field="' + myField + '"]');
+                                        if (value) {
+                                            currentColCells.each(function (index,item) {
+                                                var cbox = $('input[type="checkbox"]', item);
+                                                if (cbox.prop('disabled')) return;
+                                                if (cbox.hasClass('checkbox-f')) { cbox.checkbox('check') }
+                                                else {cbox.prop('checked',true)}
+                                            });
+                                        } else {
+                                            currentColCells.each(function (index,item) {
+                                                var cbox = $('input[type="checkbox"]', item);
+                                                if (cbox.prop('disabled')) return;
+                                                if (cbox.hasClass('checkbox-f')) { cbox.checkbox('uncheck') }
+                                                else {cbox.prop('checked',false)}
+                                            });
+                                        }
+                                }});
+                            }
                         } else {
                             //$("<div class=\"datagrid-cell-group\"></div>").html($.hisui.getTrans(col.title)).appendTo(td);   //add trans //这是原来的代码，下面是新加的
                             // add yucz 2019-9-26 支持不固定的标题行
@@ -537,7 +564,9 @@
         var opts = _55b.options;
         var dc = _55b.dc;
         var _55d = dc.header1.add(dc.header2);
-        _55d.find("input[type=checkbox]").unbind(".datagrid").bind("click.datagrid", function (e) {
+        /* 不是所有列头上的勾选框都控制行记录 20230710 */
+        /* 新要求是每列自己的列头勾选控制当前列的勾 */
+        _55d.find(".datagrid-header-check input[type=checkbox]").unbind(".datagrid").bind("click.datagrid", function (e) {
             if (opts.singleSelect && opts.selectOnCheck) {
                 return false;
             }
@@ -658,7 +687,7 @@
                             shiftUncheckRow(rowIndex, tr, _55a);
                             _5d2(_55a, rowIndex);
                         } else {
-                            _5d9(_55a, rowIndex);  /**/
+                            _uncheckRow(_55a, rowIndex);  /**/
                         }
                     }
                 }
@@ -688,6 +717,39 @@
                             _5d3(_55a, rowIndex);
                         } else {
                             _5cb(_55a, rowIndex);
+                        }
+                    }
+                }
+                if (td) {
+                    // 点击行中勾选框时, 来处理全选框状态
+                    var titleTd = td.closest('.datagrid-view').find('.datagrid-header-row td[field=' + _568 + ']');
+                    if ('true' == titleTd.attr('header-checkbox')) {  // 如果是title上有全选勾 2023-07-10
+                        var mycbcount = 0,mycbcheckcount=0;
+                        td.closest('.datagrid-body').find('td[field=' + _568 + '] input[type="checkbox"]').each(function () {
+                            var cbox = $(this);
+                            if (cbox.prop('disabled')) return true;
+                            mycbcount++;
+                            if (cbox.prop('checked')) {
+                                mycbcheckcount++;
+                            } else {
+                                return false;
+                            }                            
+                        });
+                        var mycb = $('input[type="checkbox"]', titleTd);
+                        if (mycbcheckcount==mycbcount) {                            
+                            if (mycb.hasClass('checkbox-f')) {
+                                // mycb.checkbox('check', true)
+                                mycb.prop('checked', true);
+                                mycb.next().addClass('checked');
+                            }
+                            else{mycb.prop('checked', true)}
+                        } else {
+                            if (mycb.hasClass('checkbox-f')) {
+                                // mycb.checkbox('uncheck',  true);
+                                mycb.prop('checked', false);
+                                mycb.next().removeClass('checked');
+                            }
+                            else{mycb.prop('checked', false)}
                         }
                     }
                 }
@@ -1478,7 +1540,7 @@
         }
         var _5d8 = $.data(_5d4, "datagrid").selectedRows;
         if (!_5d6 && opts.checkOnSelect) {
-            _5d9(_5d4, _5d5, true);
+            _uncheckRow(_5d4, _5d5, true);
         }
         opts.finder.getTr(_5d4, _5d5).removeClass("datagrid-row-selected");  
         if (opts.idField) {
@@ -1547,7 +1609,7 @@
             while (currTrId>rowIndex) {
                 if (document.getElementById(preTrId + currTrId)) {
                     if(document.getElementById(preTrId + currTrId).className.indexOf('datagrid-row-selected') > -1) {
-                        _5d9(tbl, currTrId);
+                        _uncheckRow(tbl, currTrId);
                     } else {
                         break;
                     }
@@ -1615,7 +1677,7 @@
         if (tr.length == opts.finder.getRows(_5e7).length) {
             var dc = _5ea.dc;
             var _5eb = dc.header1.add(dc.header2);
-            _5eb.find("input[type=checkbox]")._propAttr("checked", true);
+            _5eb.find("div.datagrid-header-check input[type=checkbox]")._propAttr("checked", true);  // 2023-07-10增加判断
         }
         
         if (opts.idField) {
@@ -1623,7 +1685,7 @@
         }
         opts.onCheck.call(_5e7, rowIndex, row);
     };
-    function _5d9(_5ec, _5ed, _5ee) {
+    function _uncheckRow(_5ec, _5ed, _5ee) {
         var _5ef = $.data(_5ec, "datagrid");
         var opts = _5ef.options;
         /*add onBeforeUncheck event by wanghc 2018-05-23 */
@@ -1645,7 +1707,7 @@
         ck._propAttr("checked", false);
         var dc = _5ef.dc;
         var _5f0 = dc.header1.add(dc.header2);
-        _5f0.find("input[type=checkbox]")._propAttr("checked", false);
+        _5f0.find("div.datagrid-header-check input[type=checkbox]")._propAttr("checked", false);
         if (opts.idField) {
             _503(_5ef.checkedRows, opts.idField, row[opts.idField]);
         }
@@ -1659,7 +1721,7 @@
             _5da(_5f1, true);
         }
         var dc = _5f3.dc;
-        var hck = dc.header1.add(dc.header2).find("input[type=checkbox]");
+        var hck = dc.header1.add(dc.header2).find(".datagrid-header-check input[type=checkbox]");
         var bck = opts.finder.getTr(_5f1, "", "allbody").addClass("datagrid-row-checked").find("div.datagrid-cell-check input[type=checkbox]");
         hck.add(bck)._propAttr("checked", true);
         if (opts.idField) {
@@ -2761,6 +2823,19 @@
             }
         }
     };
+    function _getCheckboxRows(target, fieldName) {
+        var arr = [];
+        var data = $(target).datagrid('getRows');
+        $(target).datagrid('getPanel').find('.datagrid-body td[field="' + fieldName + '"] input[type="checkbox"]').each(function () {
+            var c = $(this).prop('checked');
+            if (c) {
+                var tr = $(this).closest('.datagrid-row');
+                var index = tr.attr('datagrid-row-index');
+                if (index>-1) arr.push(data[index]);
+            }
+        });
+        return arr;
+    };
     $.fn.datagrid.methods = {
         options: function (jq) {
             var _69f = $.data(jq[0], "datagrid").options;
@@ -2966,7 +3041,7 @@
             });
         }, uncheckRow: function (jq, _6ba) {
             return jq.each(function () {
-                _5d9(this, _6ba);
+                _uncheckRow(this, _6ba);
             });
         }, checkAll: function (jq) {
             return jq.each(function () {
@@ -3064,6 +3139,8 @@
                 if (tr) return tr.attr("datagrid-row-index");
             }
             return undefined;
+        }, getCheckboxRows:function(jq,fieldName) {
+            return _getCheckboxRows(jq[0], fieldName);
         }
     };
     $.fn.datagrid.parseOptions = function (_6cc) {

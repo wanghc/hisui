@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-07-11
+- HISUI的树形表格treegrid可以支持增加多列check勾选框 [3537095]
+
 ## 2023-07-05
 - `lookup`使用selectRowRender事件显示行提示信息时，面板高度计算优化 [3628178] [3445649]
 
