@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-07-19
+- 增加`质`字图标`icon-quality` [3701592] :sparkles: 
+
 ## 2023-07-11
 - HISUI的树形表格treegrid可以支持增加多列check勾选框 [3537095]
 
