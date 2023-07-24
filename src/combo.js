@@ -125,9 +125,15 @@
                     var p = $(this).closest("div.combo-panel");
                     $("div.combo-panel:visible").not(_859).not(p).panel("close");
                 }
-            }).bind("keydown.combo paste.combo drop.combo input.combo", function (e) {
+            }).bind("keydown.combo paste.combo drop.combo input.combo compositionend.combo", function (e) {
                 // input.combo在IE下,设置值时触发,造成进入有下拉框界面就弹出下拉panel,2018-10-17 增加return
-                if ("undefined" ==typeof e.keyCode){return ;}
+                /* 
+                医为浏览器110版, 使用搜狗输入法不能触发keydown与input事件,增加compositionend事件.
+                compositionend事件时,keycode为undefined,为不影响以前逻辑增加判断 navigator.userAgent.indexOf('MWBrowser/2023')==-1 
+                测试最新版chrome（114)没有此问题
+                */
+                if ( navigator.userAgent.indexOf('MWBrowser/2023')==-1 && "undefined" == typeof e.keyCode) { return; }
+                
                 //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
                 switch (e.keyCode) {
                     case 38:
