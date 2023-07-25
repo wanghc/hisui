@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>验证框示例</title>
-    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.css">
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script src="../jquery-tag-demo.js" type="text/javascript"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
     <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../src/hisui.js"></script> 
 </head>
 
 <body>
@@ -24,14 +25,14 @@
                 <tr>
 					<td class="r-label required-label">序号验证框</td>
 					<td>
-						<input id="vapatno" class="textbox">
+						<input id="vapatno" class="textbox hisui-inputclearbtn" data-options="onClearBefore:function(val){alert('清空内容before：'+val)}">
 						<a id="vabtn1" href="#" class="hisui-linkbutton">赋值</a><a id="vabtn" href="#" class="hisui-linkbutton" style="margin-left: 5px;">验证序号</a>
 					</td>
 				<!--</tr>
                 <tr>-->
 					<td class="r-label required-label">患者姓名验证框</td>
 					<td>
-						<input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
+						<input class="hisui-validatebox textbox hisui-inputclearbtn" data-options="required:true,validType:'length[3,10]'">
 					</td>
 				</tr>
 				<tr>
@@ -63,47 +64,47 @@
 				<tr>
 					<td class="r-label">查询框</td>
 					<td>
-						<input id="ss" class="hisui-searchbox textbox" data-options="width:155"/>
+						<input id="ss" class="hisui-searchbox textbox hisui-inputclearbtn" data-options="width:155"/>
 						<span style="margin-left: -1px;">用于左侧菜单搜索或树搜索</span>
 					</td>
                 <!--</tr>
                 <tr>-->
 					<td class="r-label">重量数字框</td>
 					<td>
-						<input class="hisui-numberbox textbox" data-options="precision:2,fix:false,max:200,min:0">
+						<input class="hisui-numberbox textbox hisui-inputclearbtn" data-options="precision:2,fix:false,max:200,min:0">
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label">数字框</td>
 					<td>
-                        <input class="hisui-numberbox textbox" data-options="isKeyupChange:true,width:155" id="nunb">
+                        <input class="hisui-numberbox textbox hisui-inputclearbtn" data-options="isKeyupChange:true,width:155" id="nunb">
                         <span style="margin-left: -1px;">值即时变化</span>
 					</td>
 				<!--</tr>
                 <tr>-->
 					<td class='r-label'>默认触发框</td>
 					<td>
-						<input name="default" class="hisui-triggerbox textbox" data-options="handler:trmsg" />
+						<input name="default" class="hisui-triggerbox textbox hisui-inputclearbtn" data-options="handler:trmsg" />
 					</td>
 				</tr>
 				<tr>
 					<td class='r-label'>图片触发框</td>
 					<td>
-						<input id="trimg" name="img" class="hisui-triggerbox textbox"
+						<input id="trimg" name="img" class="hisui-triggerbox textbox  hisui-inputclearbtn"
 							data-options="icon:'icon-img-blue',handler:trmsg,plain:true" />
 					</td>
 				<!--</tr>
                 <tr>-->
 					<td class='r-label'>卡触发框</td>
 					<td>
-						<input id="trcard" name="card" class="hisui-triggerbox textbox"
+						<input id="trcard" name="card" class="hisui-triggerbox textbox  hisui-inputclearbtn"
 							data-options="icon:'icon-card',handler:trmsg,plain:true" />
 					</td>
 				</tr>
 				<tr>
 					<td class='r-label'>复制触发框</td>
 					<td>
-						<input id="trcopy" name="copy" class="hisui-triggerbox textbox"
+						<input id="trcopy" name="copy" class="hisui-triggerbox textbox hisui-inputclearbtn"
 							data-options="icon:'icon-copy-blue',handler:trmsg,plain:true" />
 						<a class="hisui-linkbutton" id="trbtn-disable">禁用</a>
 						<a class="hisui-linkbutton" id="trbtn-enable">启用</a>
@@ -112,7 +113,7 @@
                 <tr>-->
                     <td class='r-label'>统计月份日期框</td>
                     <td>
-                        <input id="dasamth" class="hisui-datebox textbox" data-options='onSelect:daonSelect,
+                        <input id="dasamth" class="hisui-datebox textbox  hisui-inputclearbtn" data-options='onSelect:daonSelect,
                         formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
                         <a class="hisui-linkbutton" id="dasamthBtn">获取值</a>
                     </td>
@@ -120,7 +121,7 @@
                 <tr>
                     <td class='r-label'>生日日期框</td>
                     <td>
-                        <input id="dadb" class="hisui-datebox textbox" data-options='onSelect:daonSelect'/>
+                        <input id="dadb" class="hisui-datebox textbox hisui-inputclearbtn" data-options='onSelect:daonSelect'/>
                         <a class="hisui-linkbutton" id="dasetDateDisBtn">限定可选日期</a>
                         <a class="hisui-linkbutton" id="dadbBtn">获取值</a>
                     </td>
@@ -128,21 +129,21 @@
                 <tr>-->
                     <td class='r-label required-label'>停止日期日期框</td>
                     <td>
-                        <input class="hisui-datebox textbox" value="2020-02-17" data-options='required:true'/>
+                        <input class="hisui-datebox textbox hisui-inputclearbtn" value="2020-02-17" data-options='required:true'/>
                         <span style="color: red;margin-left: -1px;">必填项</span>
                     </td>
                 </tr>
                 <tr>
                     <td class='r-label'>结算时间日期框</td>
                     <td>
-                        <input class="hisui-datetimebox textbox" data-options="onSelect:daonSelect"/>
+                        <input class="hisui-datetimebox textbox hisui-inputclearbtn" data-options="onSelect:daonSelect"/>
                         <!-- <a id="dabtn1" class="hisui-linkbutton">sure</a> -->
                     </td>
                 <!--</tr>
                 <tr>-->
                     <td class="r-label">时间框</td>
                     <td>
-                        <input class="hisui-timespinner" data-options="showSeconds:true,width:155" style="border-radius: 2px;">
+                        <input class="hisui-timespinner hisui-inputclearbtn" data-options="showSeconds:true,width:155" style="border-radius: 2px;">
                     </td>
                 </tr>
                 <tr>
@@ -169,7 +170,7 @@
                 <tr>
                     <td class="r-label">html生成的单选下拉框</td>
                     <td>
-                        <select id="cxstateBox" class="hisui-combobox" name="state" style="width:155px;" data-options="enterNullValueClear:false,onSelect:cxselectHandler,blurValidValue:true">
+                        <select id="cxstateBox" class="hisui-combobox hisui-inputclearbtn" name="state" style="width:155px;" data-options="enterNullValueClear:false,onSelect:cxselectHandler,blurValidValue:true">
                             <option value="AK">Alaska</option>
                             <option value="CT">Connecticut</option>
                             <option value="DE">Delaware</option>
@@ -183,7 +184,7 @@
                     </td>
 					<td class="r-label">放大镜</td>
 					<td>
-						<input id="lookup1" class='textbox'/>
+						<input id="lookup1" class='textbox hisui-inputclearbtn '/>
 					</td>
                 </tr>
                 <tr>
@@ -198,7 +199,7 @@
 						快速日期
 					</td>
 					<td>
-						<input class="hisui-dateboxq textbox" data-options="formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'">
+						<input class="hisui-dateboxq textbox hisui-inputclearbtn " data-options="formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'">
 					</td>
                 </tr>
                 <tr>
@@ -218,7 +219,7 @@
 						快速时间
 					</td>
 					<td>
-						<input class="hisui-timeboxq textbox" data-options='timeFormat:"HMS"'>
+						<input class="hisui-timeboxq textbox hisui-inputclearbtn " data-options='timeFormat:"HMS"'>
 					</td>
 				</tr>
                 <tr>
@@ -227,18 +228,18 @@
 						<select id="cxdfCB" style="width:155px;"></select>
 					</td>
 					<td class="r-label">快速日期时间</td>
-					<td><input data-options="showSeconds:false" class="hisui-datetimeboxq textbox"></td>
+					<td><input data-options="showSeconds:false" class="hisui-datetimeboxq textbox hisui-inputclearbtn "></td>
 				</tr>
                 <tr>
 					<td class="r-label">文件框</td>
 					<td>
-						<input class="hisui-filebox" name="file1" data-options="width:212,plain:true" />
+						<input class="hisui-filebox hisui-inputclearbtn" name="file1" data-options="width:212,plain:true" />
 					</td>
 				<!--</tr>
                 <tr>-->
 					<td class="label">excel文件框</td>
 					<td>
-						<input class="hisui-filebox" name="file2"
+						<input class="hisui-filebox hisui-inputclearbtn" name="file2"
 							data-options="width:212,buttonText:'选择',prompt:'excel文件：*.xls,*.xlsx',plain:true"
 							accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
 					</td>
@@ -246,7 +247,7 @@
 				<tr>
 					<td class="r-label">多选文件框</td>
 					<td>
-						<input class="hisui-filebox" name="file4" style="width:212px;"
+						<input class="hisui-filebox hisui-inputclearbtn" name="file4" style="width:212px;"
 							data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" />
 					</td>
 				</tr>
@@ -345,6 +346,8 @@
                 // 组合
                 var ccObj=$HUI.combo('#cocc',{width:155});
                 var cc2Obj=$HUI.combo('#cocc2',{editable:false,placeholder:'输入查询条件'});
+				$('#cocc').inputclearbtn({onClearBefore:function(e){console.log('before',e)}});
+				$('#cocc2').inputclearbtn({onClearAfter:function(e){console.log('after',e)}});
                 $('#cosp').appendTo(cc2Obj.panel());
                 $('#cosp input').radio({onCheckChange:function(e,v){
                     var v = $(this).val();
@@ -384,6 +387,7 @@
 					//}
 				});
 				cxcbox_rowStyle.setValue("");
+				$("#cxcbox").inputclearbtn({});
 				$("#cxcboxbtn").click(function(){
 					console.log(cxcbox_rowStyle.getValues());
 					//cbox.setValues([]);
@@ -424,6 +428,8 @@
 						}
 					}
 				});
+				$("#cxiconokBox").inputclearbtn({});
+
                 var cxcbox_defaultFilter = $HUI.combobox("#cxdfCB",{
 					valueField:'id', textField:'text',panelHeight:"auto",
 					data:[
@@ -437,6 +443,7 @@
 					],
 					defaultFilter:4
 				});
+				$("#cxdfCB").inputclearbtn({});
 				$("#lookup1").lookup({
 					width:155,panelWidth:750,
 					url:'getGroup',
