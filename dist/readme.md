@@ -43,7 +43,12 @@ $("#btn").linkbutton("disable");
 ```
 或者使用js实现
 ```js
-$("#myid").inputclearbtn({onClearBefore:function(e){}, onClearAfter:function(e){}});
+$("#myid").inputclearbtn({});
+// 或
+$("#myid").inputclearbtn({
+  onClearBefore:function(e){},
+  onClearAfter:function(e){}
+});
 ```
 
 
