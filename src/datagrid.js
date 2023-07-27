@@ -468,26 +468,15 @@
                             cell.css("text-align", (col.halign || col.align || ""));
                             col.cellClass = _547.cellClassPrefix + "-" + col.field.replace(/[\.|\s]/g, "-");
                             cell.addClass(col.cellClass).css("width", "");
-                            if (col.headerCheckbox) {
+                            if (col.headerCheckbox) { // 生成列头上的勾选框, 实现全选/全取消功能
                                 $('input[type="checkbox"]', cell).checkbox({
                                     id: col.cellClass+ "cb",
                                     onCheckChange: function (e, value) {
                                         var myField = $(e.target).closest('td').attr('field'); // col.field-->总是指向最后一列的col
-                                        var currentColCells = $('.datagrid-row [field="' + myField + '"]');
                                         if (value) {
-                                            currentColCells.each(function (index,item) {
-                                                var cbox = $('input[type="checkbox"]', item);
-                                                if (cbox.prop('disabled')) return;
-                                                if (cbox.hasClass('checkbox-f')) { cbox.checkbox('check') }
-                                                else {cbox.prop('checked',true)}
-                                            });
+                                            _checkHeaderCheckbox($(e.target).closest('.datagrid-view2'),myField);
                                         } else {
-                                            currentColCells.each(function (index,item) {
-                                                var cbox = $('input[type="checkbox"]', item);
-                                                if (cbox.prop('disabled')) return;
-                                                if (cbox.hasClass('checkbox-f')) { cbox.checkbox('uncheck') }
-                                                else {cbox.prop('checked',false)}
-                                            });
+                                            _uncheckHeaderCheckbox($(e.target).closest('.datagrid-view2'), myField);
                                         }
                                 }});
                             }
@@ -721,36 +710,10 @@
                     }
                 }
                 if (td) {
-                    // 点击行中勾选框时, 来处理全选框状态
+                    // 点击数据行中勾选框时, 来处理全选框状态
                     var titleTd = td.closest('.datagrid-view').find('.datagrid-header-row td[field=' + _568 + ']');
                     if ('true' == titleTd.attr('header-checkbox')) {  // 如果是title上有全选勾 2023-07-10
-                        var mycbcount = 0,mycbcheckcount=0;
-                        td.closest('.datagrid-body').find('td[field=' + _568 + '] input[type="checkbox"]').each(function () {
-                            var cbox = $(this);
-                            if (cbox.prop('disabled')) return true;
-                            mycbcount++;
-                            if (cbox.prop('checked')) {
-                                mycbcheckcount++;
-                            } else {
-                                return false;
-                            }                            
-                        });
-                        var mycb = $('input[type="checkbox"]', titleTd);
-                        if (mycbcheckcount==mycbcount) {                            
-                            if (mycb.hasClass('checkbox-f')) {
-                                // mycb.checkbox('check', true)
-                                mycb.prop('checked', true);
-                                mycb.next().addClass('checked');
-                            }
-                            else{mycb.prop('checked', true)}
-                        } else {
-                            if (mycb.hasClass('checkbox-f')) {
-                                // mycb.checkbox('uncheck',  true);
-                                mycb.prop('checked', false);
-                                mycb.next().removeClass('checked');
-                            }
-                            else{mycb.prop('checked', false)}
-                        }
+                        _validHeaderCheckboxByData(td.closest('.datagrid-body'), titleTd.parent(), _568);
                     }
                 }
                 if (opts.clicksToEdit==1){
@@ -1295,6 +1258,72 @@
             return _5a4;
         }
     };
+    /**
+     * 当某列数据全选时，把列头中勾选框也选中
+     * 当重新加载数据时，头选中状态要随数据选中变化
+     * @param {JQueryObject} body$ 数据区域对应的JQueryObj opts.dc.body2
+     * @param {JQueryObject} title$ 列头区域对应的JQueryObj opts.dc.header2
+     * @param {String} fieldName 
+     */
+    function _validHeaderCheckboxByData(body$,title$,fieldName) {
+        var mycbcount = 0,mycbcheckcount=0;
+        // td.closest('.datagrid-body')
+        body$.find('td[field=' + fieldName + '] input[type="checkbox"]').each(function () {
+            var cbox = $(this);
+            if (cbox.prop('disabled')) return true;
+            mycbcount++;
+            if (cbox.prop('checked')) {
+                mycbcheckcount++;
+            } else {
+                return false;
+            }                            
+        });
+
+        var mycb = $('td[field="'+fieldName+'"] input[type="checkbox"]', title$);
+        if (mycbcheckcount==mycbcount) {                            
+            if (mycb.hasClass('checkbox-f')) {
+                // mycb.checkbox('check', true)
+                mycb.prop('checked', true);
+                mycb.next().addClass('checked');
+            }
+            else{mycb.prop('checked', true)}
+        } else {
+            if (mycb.hasClass('checkbox-f')) {
+                // mycb.checkbox('uncheck',  true);
+                mycb.prop('checked', false);
+                mycb.next().removeClass('checked');
+            }
+            else{mycb.prop('checked', false)}
+        }
+    }
+    /**
+     * 勾选全选,选中所有勾选框，disable状态的不勾选
+     * @param {JQueryObject} body$ 数据区域对应的JQueryObj
+     * @param {String} fieldName 列名
+     */
+    function _checkHeaderCheckbox(body$,fieldName) {
+        var currentColCells = $('.datagrid-row [field="' + fieldName + '"]',body$);
+        currentColCells.each(function (index,item) {
+            var cbox = $('input[type="checkbox"]', item);
+            if (cbox.prop('disabled')) return;
+            if (cbox.hasClass('checkbox-f')) { cbox.checkbox('check') }
+            else {cbox.prop('checked',true)}
+        });
+    }
+    /**
+     * 取消全选勾，取消数据中的勾选
+     * @param {JQueryObject} body$ 数据区域对应的JQueryObj
+     * @param {String} fieldName 列名
+     */
+    function _uncheckHeaderCheckbox(body$,fieldName) {
+        var currentColCells = $('.datagrid-row [field="' + fieldName + '"]',body$);
+        currentColCells.each(function (index,item) {
+            var cbox = $('input[type="checkbox"]', item);
+            if (cbox.prop('disabled')) return;
+            if (cbox.hasClass('checkbox-f')) { cbox.checkbox('uncheck') }
+            else {cbox.prop('checked',false)}
+        });         
+    }
     function _578(_5a8, data) {
         var _5a9 = $.data(_5a8, "datagrid");
         var opts = _5a9.options;
@@ -1342,6 +1371,14 @@
             $(_5a8).datagrid("fixRowNumber");
         }
         opts.onLoadSuccess.call(_5a8, data);
+        // 20230726 通过数据来判断是否把头上勾选上 [3731015]
+        if (opts.columns.length > 0) {
+            for (var i = 0; i < opts.columns[0].length; i++) {
+                if (true == opts.columns[0][i].headerCheckbox) {
+                    _validHeaderCheckboxByData(dc.body2, dc.header2, opts.columns[0][i].field);
+                }
+            }
+        }
         var _5ad = $(_5a8).datagrid("getPager");
         if (_5ad.length) {
             var _5ae = _5ad.pagination("options");

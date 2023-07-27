@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-07-27
+- :sparkles: 列头上定义全选checkbox后，数据初始化加载时，当前列数据全勾选中时列头也应勾选 [3731015]
+
 ## 2023-07-25
 - :sparkles: 增加`inputclearbtn`插件,为输入框生成清空内容按钮 [3716019]
 使用html实现
