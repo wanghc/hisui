@@ -74,6 +74,15 @@
                 if (_265.panel("options").closed) {
                     _265.panel("open");
                 }
+                if ('number' == typeof opts.closeKeyCode) {
+                    $(_264).dialog('panel').attr("tabindex", "-1").focus();
+                    $(_264).dialog('panel').unbind('keyup.dialog').bind('keyup.dialog', function (e) {
+                        if (opts.closeKeyCode == e.keyCode) {
+                            //if (e.keyCode == 113) {  // Esc=27 F2=113
+                            $(_264).window("close");
+                        }
+                    });
+                }
                 if (opts.onOpen) {
                     opts.onOpen.call(_264);
                 }

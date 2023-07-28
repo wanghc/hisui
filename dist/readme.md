@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-07-28
+- :sparkles: `dialog`窗口支持快捷键关闭 [3719367]
 
 ## 2023-07-27
 - :sparkles: 列头上定义全选checkbox后，数据初始化加载时，当前列数据全勾选中时列头也应勾选 [3731015]
