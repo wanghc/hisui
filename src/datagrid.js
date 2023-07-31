@@ -1381,12 +1381,17 @@
         }
         var _5ad = $(_5a8).datagrid("getPager");
         if (_5ad.length) {
-            var _5ae = _5ad.pagination("options");
-            if (_5ae.total != data.total || opts.pageNumber<1) {
+            var pgopts = _5ad.pagination("options");
+            /*
+            [3734901] 20230731 曾经的翻页数据。pgopts => total:16,pageNumber:2
+            调用loadData({total:0,rows:{}})时 data.total=0, data.pageNumber=2
+            */
+            if (pgopts.total != data.total || opts.pageNumber < 1) {
                 // 20210727 默认total为0后，第一次进入datagrid且数据为空时，不会重置pageNumber,医生站治疗执行弹出界面，有bug把pageNumber设置成了0,导致有数据时也查询不出来
                 _5ad.pagination("refresh", { total: data.total });
-                if (opts.pageNumber != _5ae.pageNumber) {
-                    opts.pageNumber = _5ae.pageNumber;
+                // [3734901] 20230731 调用refresh后，会把pgopts.total与pgopts.pageNumber重置，pgopts.pageNumber=1, opts.pageNumber=2
+                if (opts.pageNumber != pgopts.pageNumber) {
+                    opts.pageNumber = pgopts.pageNumber;
                     _577(_5a8);
                 }
             }
@@ -2147,7 +2152,7 @@
                 }
                 if (filterSuccess) currentDataRows.push(data.rows[i]);
             }
-            var obj = { 'total': currentDataRows.total, 'rows': currentDataRows };
+            var obj = { 'total': currentDataRows.length, 'rows': currentDataRows };
             return obj;
         };
     }
