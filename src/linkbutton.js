@@ -14,7 +14,12 @@
         t.attr("id", opts.id || "");
         var inner = $("<span class=\"l-btn-left\"></span>").appendTo(t);
         if (opts.text) {
-            $("<span class=\"l-btn-text\"></span>").html($.hisui.getTrans(opts.text)).appendTo(inner); //add trans
+            if (opts.notTrans) {
+                $("<span class=\"l-btn-text\"></span>").html(opts.text).appendTo(inner); // 20230801 增加不自动翻译配置项  
+            } else {
+                $("<span class=\"l-btn-text\"></span>").html($.hisui.getTrans(opts.text)).appendTo(inner); //add trans    
+            }
+            
         } else {
             $("<span class=\"l-btn-text l-btn-empty\">&nbsp;</span>").appendTo(inner);
         }
@@ -149,6 +154,7 @@
     $.fn.linkbutton.defaults = {
         //wanghc iconImg:'imgurl' -> background-image:url('../images/uiimages/yellow_paper.png')
         id: null, disabled: false, toggle: false, selected: false, group: null, plain: false, text: "",iconImg:null, iconCls: null, iconAlign: "left", size: "small", onClick: function () {
-        },stopAllEventOnDisabled:false //cryze 禁用时,是否禁用其他方式绑定的事件
+        }, stopAllEventOnDisabled: false //cryze 禁用时,是否禁用其他方式绑定的事件
+        , notTrans:false /*默认自动翻译*/
     };
 })(jQuery);

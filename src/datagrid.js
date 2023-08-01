@@ -2351,9 +2351,9 @@
                         if (ev.keyCode == 13) {
                             $(_t).datagrid('reload2');
                         }
-                    } 
+                    },notTrans:true 
                 }, {
-                    text: opts.findBtn, iconCls: 'icon-search', handler: function () {$(_t).datagrid('reload2'); }
+                    text: opts.findBtn, iconCls: 'icon-search', handler: function () {$(_t).datagrid('reload2'); },notTrans:true
                 },{
                     text: opts.clearBtn, iconCls: 'icon-clear-screen', handler: function () {
                         var tbar = $(_t).closest('.datagrid-wrap').find('.datagrid-toolbar');
@@ -2361,7 +2361,7 @@
                         tbar.find('.datagrid-filter-htable').find('td input[type="text"]').val('');
                         $(_t).datagrid('reload2');
                         opts.toolBarOriginalData = null;
-                    }
+                    },notTrans:true
                 }, {
                     text: opts.advancedBtn, iconCls: 'icon-find-fee-itm', handler: function () {
                         var tbl = $(this).closest('table');
@@ -2391,7 +2391,7 @@
                             if (tbl.next().css('display')!=="none") tbl.next().hide();
                             else  tbl.next().show();
                         }
-                 } }];
+                 },notTrans:true }];
             };
             _545(this);
             _559(this);

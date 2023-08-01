@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2023-08-01
+- :sparkles: `linkbutton`增加notTrans配置项,true表示不翻译.用于系统组件
+
 ## 2023-07-31
 - :bug: 自动增加过滤查询功能导致翻页条显示总数量为NaN
 
