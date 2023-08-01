@@ -11,6 +11,13 @@ if ($.fn.datagrid){
 	$.fn.datagrid.defaults.advanced2Btn = "收起";
 	$.fn.datagrid.defaults.like = "模糊查询";
 }
+if ($.fn.propertygrid) {
+	$.fn.propertygrid.defaults.findBtn = "查询";
+	$.fn.propertygrid.defaults.clearBtn = "清空";
+	$.fn.propertygrid.defaults.advancedBtn = "高级";
+	$.fn.propertygrid.defaults.advanced2Btn = "收起";
+	$.fn.propertygrid.defaults.like = "模糊查询";
+}
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }

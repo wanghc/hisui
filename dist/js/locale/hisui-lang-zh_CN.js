@@ -11,6 +11,13 @@ if ($.fn.datagrid){
 	$.fn.datagrid.defaults.advanced2Btn = "\u6536\u8d77";
 	$.fn.datagrid.defaults.like = "\u6a21\u7cca\u67e5\u8be2";
 }
+if ($.fn.propertygrid) {
+	$.fn.propertygrid.defaults.findBtn = "\u67e5\u8be2";
+	$.fn.propertygrid.defaults.clearBtn = "\u6e05\u7a7a";
+	$.fn.propertygrid.defaults.advancedBtn = "\u9ad8\u7ea7";
+	$.fn.propertygrid.defaults.advanced2Btn = "\u6536\u8d77";
+	$.fn.propertygrid.defaults.like = "\u6a21\u7cca\u67e5\u8be2";
+}
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;
 }

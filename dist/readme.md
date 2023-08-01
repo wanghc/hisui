@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2023-08-01
 - :sparkles: `linkbutton`增加notTrans配置项,true表示不翻译.用于系统组件
+- :bug: 修复`propertygrid`的过滤工具条翻译问题
 
 ## 2023-07-31
 - :bug: 自动增加过滤查询功能导致翻页条显示总数量为NaN
