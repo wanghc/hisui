@@ -112,7 +112,11 @@
         }
         _1e2(_1f2.children("div.panel-header"));
         if (opts.title && !opts.noheader) {
-            var _1f3 = $("<div class=\"panel-header\"><div class=\"panel-title\">" + $.hisui.getTrans(opts.title) + "</div></div>").prependTo(_1f2); //add trans
+            if (opts.notTrans) {
+                var _1f3 = $("<div class=\"panel-header\"><div class=\"panel-title\">" + opts.title + "</div></div>").prependTo(_1f2); // 2023-08-01
+            } else {
+                var _1f3 = $("<div class=\"panel-header\"><div class=\"panel-title\">" + $.hisui.getTrans(opts.title) + "</div></div>").prependTo(_1f2); //add trans 
+            }            
             if (opts.iconCls) {
                 _1f3.find(".panel-title").addClass("panel-with-icon");
                 $("<div class=\"panel-icon\"></div>").addClass(opts.iconCls).appendTo(_1f3);
@@ -590,6 +594,6 @@
         }, onBeforeExpand: function () {
         }, onCollapse: function () {
         }, onExpand: function () {
-        }
+        },notTrans:false /*默认自动翻译*/
     };
 })(jQuery);
