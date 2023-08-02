@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-02
+- :sparkles: `defaultsColumns`中的`title`属性覆盖列定义中的
+
 ## 2023-08-01
 - :sparkles: `linkbutton`增加notTrans配置项,true表示不翻译.用于系统组件
 - :bug: 修复`propertygrid`的过滤工具条翻译问题

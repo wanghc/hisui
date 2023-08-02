@@ -2269,6 +2269,9 @@
                         var property;
                         if (object) {
                             for (property in config) {
+                                if (property == "title") { /*解决defaultsColumns中的title属性覆盖列定义中的*/
+                                    object[property] = config[property];
+                                }
                                 if (config.hasOwnProperty(property) && object[property] === undefined) {
                                     object[property] = config[property];
                                 }
