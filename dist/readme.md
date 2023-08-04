@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-04
+- :sparkles: `lookup`回车会2次进入`onLoadSuccess`方法处理 [3770017]
+
 ## 2023-08-02
 - :sparkles: `defaultsColumns`中的`title`属性覆盖列定义中的
 

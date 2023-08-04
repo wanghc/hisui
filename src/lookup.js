@@ -118,7 +118,8 @@
             _911(target, [q], true);
         }
         if (opts.mode == "remote") {
-            grid.datagrid('loadData',{rows:[],total:0});  //重新从后台查数据前，清空数据
+            // [3770017] lookup回车会调用onLoadSuccess2次，其中第一次是空数据问题。暂时注释下面一行
+            //grid.datagrid('loadData',{rows:[],total:0});  //重新从后台查数据前，清空数据
             grid.datagrid("clearSelections");
             grid.datagrid("load", $.extend({}, opts.queryParams, { q: q }));
         } else {
