@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-10
+- :bug: 因20230731修改导致的bug [3772148]
+- - 使用loadFilter导致`datagrid`总行数总显示成当前页行数
+
 ## 2023-08-04
 - :sparkles: `lookup`回车会2次进入`onLoadSuccess`方法处理 [3770017]
 

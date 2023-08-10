@@ -2152,7 +2152,7 @@
                 }
                 if (filterSuccess) currentDataRows.push(data.rows[i]);
             }
-            var obj = { 'total': currentDataRows.length, 'rows': currentDataRows };
+            var obj = { 'total': data.total||currentDataRows.length, 'rows': currentDataRows };
             return obj;
         };
     }
