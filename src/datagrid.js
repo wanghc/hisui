@@ -2117,16 +2117,19 @@
             // 模糊查询条件值
             var inputAllFieldCond = tbar.find('.datagrid-toolbar-findbox').val().trim().toUpperCase();
             // 每列查询条件值
-            var inputConditions = {};
+            var inputConditions = {}, nullInputConditions = true;
             tbar.find('.datagrid-filter-htable').find("td").each(function () {
                 var _f = $(this).attr('field');
                 var fbox = $(this).find('input[type="text"]');
-                if (_f && fbox.length>0 && fbox.val()!="") inputConditions[_f] = fbox.val().trim().toUpperCase();
+                if (_f && fbox.length>0 && fbox.val()!="") {
+                    inputConditions[_f] = fbox.val().trim().toUpperCase();
+                    nullInputConditions = false;
+                }
             });
             if (typeof data.length == 'number' && typeof data.splice == 'function') {	// is array
                 data = { total: data.length, rows: data }
             }
-            if (inputAllFieldCond=="" && inputConditions=="") return data;
+            if (inputAllFieldCond=="" && nullInputConditions) return data;
             var currentDataRows = [];
             for (var i = 0; i < data.rows.length; i++) {
                 var item = data.rows[i];
@@ -2152,7 +2155,8 @@
                 }
                 if (filterSuccess) currentDataRows.push(data.rows[i]);
             }
-            var obj = { 'total': data.total||currentDataRows.length, 'rows': currentDataRows };
+            /// 有过滤条件时，显示的是当前过滤结果的总行数
+            var obj = { 'total': currentDataRows.length, 'rows': currentDataRows };
             return obj;
         };
     }
