@@ -34,8 +34,8 @@
 						if (sec.items){
 							html += '<ul class="kw-section-list keywords">';
 						}
-						$.each(sec.items, function(indl,lbl){
-							var s = lbl.selected?'class="selected"':'';
+						$.each(sec.items, function (indl, lbl) {
+							var s = 'class="'+(lbl.selected ? ' selected' : '') + (lbl.disabled ? ' disabled' : '')+'"';
 							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+'><a>'+$.hisui.getTrans(lbl.text)+'</a></li>'; //add trans
 						});
 						if (sec.items){
@@ -44,7 +44,7 @@
 						html += '</div>' //kw-section end
 					}else{ //默认label
 						if (inds==0) {html += '<ul class="kw-section-list keywords">';}
-						var s = sec.selected?'class="selected"':'';
+						var s = 'class="'+(sec.selected ? 'selected' : '')+( sec.disabled ? ' disabled' : '') + '"';
 						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+'><a>'+$.hisui.getTrans(sec.text)+'</a></li>'; //add trans
 						if (inds==(chp.items.length-1)) html +='</ul>';
 					}
@@ -54,8 +54,8 @@
 				if (chp.items){
 					html += '<ul class="kw-section-list keywords">';
 				}
-				$.each(chp.items, function(indl,lbl){
-					var s = lbl.selected?'class="selected"':'';
+				$.each(chp.items, function (indl, lbl) {					
+					var s = 'class="'+(lbl.selected ? ' selected' : '')+ (lbl.disabled ? ' disabled' : '')+'"';
 					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+$.hisui.getTrans(lbl.text)+'</a></li>' //add trans
 				});
 				if (chp.items){
@@ -64,13 +64,14 @@
 				html += '</div>' //kw-section end
 			}else{
 				if (indc==0) {html += '<ul class="kw-section-list keywords">';}
-				var s = chp.selected?'class="selected"':'';
+				var s = 'class="'+(chp.selected ? ' selected' : '')+ (chp.disabled ? ' disabled' : '')+'"';
 				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+'><a>'+$.hisui.getTrans(chp.text)+'</a></li>'; //add trans
 				if (indc==(opts.items.length-1)) html +='</ul>';
 			}
 		});
 		t.append(html);
-        t.off('click').on('click','ul.kw-section-list>li',function(e,value){
+		t.off('click').on('click', 'ul.kw-section-list>li', function (e, value) {
+			if ($(this).hasClass('disabled')) return false;
 			var id = $(this).attr('id');
 			selectById(target,id);
 			return false;
@@ -151,7 +152,7 @@
 	$.fn.keywords.parseOptions = function(target){
 		var t = $(target);
 		return $.extend({}, $.parser.parseOptions(target, 
-			['id','iconCls','iconAlign','group','size',{plain:'boolean',toggle:'boolean',selected:'boolean'}]
+			['id','iconCls','iconAlign','group','size',{plain:'boolean',toggle:'boolean',selected:'boolean',disabled:'boolean'}]
 		), {
 			disabled: (t.attr('disabled') ? true : undefined)
 		});

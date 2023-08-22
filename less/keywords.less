@@ -59,6 +59,13 @@ ul.kw-section-list{
         background: @keywords-section-bgcolor;
         color:#feffff;
     }
+    &.disabled a{
+        background-color: #bbbbbb;
+        color:#ffffff;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
 }
 .keywords-labelred .kw-section-list>li{
     & a{
@@ -71,5 +78,11 @@ ul.kw-section-list{
     }
     &.selected a{
         background: @keywords-bgcolor;
+    }
+    &.disabled a{
+        color:#bbbbbb;
+        &:hover{
+            cursor: not-allowed;
+        }
     }
 }

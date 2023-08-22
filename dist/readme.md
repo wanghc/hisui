@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-22
+- :sparkles: 为`keywords`组件元素增加`disabled`配置项 [3806874]
+
 ## 2023-08-17
 - :bug: 表格过滤条查询后,表格总行数显示错误 [3801168]
 - :lipstick: 增加`big-ca`,`big-ca-green`二个图标类 [3759479]

@@ -70,6 +70,14 @@ ul.kw-section-list{
         color: @keywords-select-color;
         border:1px solid @keywords-select-bdcolor;
     }
+    &.disabled a{
+        background-color: #e5e5e5;
+        color:#999999;
+        border: 1px solid #e5e5e5;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
 }
 .keywords-labelred .kw-section-list>li{
     & a{
@@ -85,5 +93,12 @@ ul.kw-section-list{
     &.selected a{
         background: @keywords-red-select-bgcolor;
         color:@keywords-red-select-color;
+    }
+    &.disabled a{
+        background-color: #e5e5e5;
+        color:#999999;
+        &:hover{
+            cursor: not-allowed;
+        }
     }
 }

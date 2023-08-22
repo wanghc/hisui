@@ -31,7 +31,7 @@
                             {
                                 text:'西医诊断',type:"section",items:[
                                     {text:'上呼吸道感染',id:"x1"},{text:'接触性皮炎',id:"x2"},{text:'过敏性皮炎',id:'x3'},{text:'神经性皮炎',id:'x4'},
-                                    {text:'腰间盘突出',id:'x5'},{text:'腰肌老损',id:'x6'},{text:'急性病毒性肝炎',id:'x7'},{text:'中风后遗症',id:'x8'},{text:'高血压脑病',id:'x9'},{text:'过敏性休克',id:'x10'},
+                                    {text:'腰间盘突出',id:'x5',disabled:true},{text:'腰肌老损',id:'x6'},{text:'急性病毒性肝炎',id:'x7'},{text:'中风后遗症',id:'x8'},{text:'高血压脑病',id:'x9'},{text:'过敏性休克',id:'x10'},
                                     {text:'急性酒精中毒',id:'x11',selected:true},{text:'神经性脑鸣',id:'x12'},{text:'偏头痛',id:'x13'},{text:'血管性神经头痛',id:'x14'},{text:'面神经麻痹',id:'x15'}
                                 ]
                             },
@@ -87,7 +87,7 @@
                 labelCls:'red',
                 items:[
                     {text:'知识库',id:'red1'},
-                    {text:'医嘱',id:'red2'},
+                    {text:'医嘱',id:'red2',disabled:true},
                     {text:'中草药',id:'red3'},
                     {text:'检查',id:'red4',selected:true},
                     {text:'检验',id:'red5'},
@@ -115,9 +115,33 @@
         </tr>
         <tr>
             <td>items</td>
-            <td>具体元素值</td>
+            <td>具体元素数组。元素属性包括：text,id,selected,disabled</td>
             <td></td>
             <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>text</td>
+            <td>null</td>
+            <td>标签文本。必需项</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>id</td>
+            <td>null</td>
+            <td>标签id。可选项</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>selected</td>
+            <td>false</td>
+            <td>选中当前标签。可选项</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>disabled</td>
+            <td>false</td>
+            <td>禁用当前标签。可选项<code>20230822</code></td>
         </tr>
 		<tr>
 			<td>singleSelect</td>
