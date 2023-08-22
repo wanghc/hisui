@@ -2129,10 +2129,13 @@
             if (typeof data.length == 'number' && typeof data.splice == 'function') {	// is array
                 data = { total: data.length, rows: data }
             }
+            // 查询条件为空时跳出
             if (inputAllFieldCond=="" && nullInputConditions) return data;
             var currentDataRows = [];
-            for (var i = 0; i < data.rows.length; i++) {
-                var item = data.rows[i];
+            // 前端查询时,对【源数据行】进行过滤 2023-08-22
+            var allData = data.originalRows || data.rows;
+            for (var i = 0; i < allData.length; i++) {
+                var item = allData[i];
                 var filterSuccess = true;
                 var rowArr = [];
                 for (var myField in item){
@@ -2153,7 +2156,7 @@
                 if (filterSuccess && (rowArr.join(',').toUpperCase().indexOf(inputAllFieldCond)==-1 && $.hisui.toChineseSpell(rowArr.join(',')).toUpperCase().indexOf(inputAllFieldCond)==-1)) {
                     filterSuccess = false;
                 }
-                if (filterSuccess) currentDataRows.push(data.rows[i]);
+                if (filterSuccess) currentDataRows.push(allData[i]);
             }
             /// 有过滤条件时，显示的是当前过滤结果的总行数
             var obj = { 'total': currentDataRows.length, 'rows': currentDataRows };
