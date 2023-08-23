@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-23
+- :lipstick: 增加炫彩版7个图标 [3804855]
+- :lipstick: 增加极简版样式类`.lite-gray`,与`.icon`一起使用可以使图标变灰色
+
 ## 2023-08-22
 - :sparkles: 为`keywords`组件元素增加`disabled`配置项 [3806874]
 - :sparkles: 过滤条对本地数据过滤时，不再对【当前页数据行】过滤，修改成对【源数据行】进行过滤
