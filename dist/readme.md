@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2023-08-23
 - :lipstick: 增加炫彩版7个图标 [3804855]
 - :lipstick: 增加极简版样式类`.lite-gray`,与`.icon`一起使用可以使图标变灰色
+- :lipstick: HISUI极简模式下linkbutton与menubutton高度不一致 [3791837]
 
 ## 2023-08-22
 - :sparkles: 为`keywords`组件元素增加`disabled`配置项 [3806874]
