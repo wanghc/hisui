@@ -63,14 +63,25 @@
             }
         })
         if (opts.isKeyupChange){
+            var tempHandler=function(e){
+                _475(_481, $(this).val());
+                $(this).val(opts.formatter.call(_481, _476(_481)));
+            }
+            var keyupChangeHandler=tempHandler;
+            if (opts.keyupChangeDelay>0) {  //增加延迟触发 如值范围5-1000 不加延迟输入 输入11会变51
+                keyupChangeHandler=$.hisui.debounce(tempHandler,opts.keyupChangeDelay);
+            }
+
             $(_481).bind("keyup.numberbox",function(e){ 
                 // neer 2019-04-18 add keydown.numberbox事件 
                 // $(dom).on("keydown",function(){
                 //   $(this).numberbox("getValue");  //拿到的是上一次的值
                 // })
                 //console.log("src="+$(this).val());
-                _475(_481, $(this).val());
-                $(this).val(opts.formatter.call(_481, _476(_481)));
+                //_475(_481, $(this).val());
+                //$(this).val(opts.formatter.call(_481, _476(_481)));
+
+                keyupChangeHandler.call(this,e); //2023-08-24 改为新的
             });
         }
     };
@@ -174,6 +185,7 @@
         forcePrecisionZoer:true, /*在precision>0时, 是否强制加0*/
         fix:true, /*原始功能是强制值在min~max之间, false时只提示 by wanghc 2020-1-21*/
         isKeyupChange:false, /*是否在按键时就同步组件的值。默认是blur时同步值 */
+        keyupChangeDelay:0, /*按键就同步组件值 增加延迟 20230824*/
         /**wanghc height:22修改成30*/
         width: "auto", height: 30, disabled: false, value: "", min: null, max: null, precision: 0, decimalSeparator: ".", groupSeparator: "", prefix: "", suffix: "", filter: function (e) {
             var opts = $(this).numberbox("options");

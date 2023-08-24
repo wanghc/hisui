@@ -26,17 +26,17 @@
 		$.each(opts.items,function(indc,chp){
 			if(chp.type=="chapter"){
 				html +='<div class="kw-chapter">';
-				if(chp.text!="") html += '<a></a>'+$.hisui.getTrans(chp.text); //章节为空时,不显示前台蓝条 //add trans
+				if(chp.text!="") html += '<a></a>'+(opts.notTrans?chp.text:$.hisui.getTrans(chp.text)); //章节为空时,不显示前台蓝条 //add trans
 				html +='</div><div class="kw-line"></div>';
 				$.each(chp.items,function(inds,sec){
 					if(sec.type=='section'){
-						html +='<div class="kw-section"><div class="kw-section-header">'+$.hisui.getTrans(sec.text)+'</div>'; //add trans
+						html +='<div class="kw-section"><div class="kw-section-header">'+(opts.notTrans?sec.text:$.hisui.getTrans(sec.text))+'</div>'; //add trans
 						if (sec.items){
 							html += '<ul class="kw-section-list keywords">';
 						}
 						$.each(sec.items, function (indl, lbl) {
 							var s = 'class="'+(lbl.selected ? ' selected' : '') + (lbl.disabled ? ' disabled' : '')+'"';
-							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+'><a>'+$.hisui.getTrans(lbl.text)+'</a></li>'; //add trans
+							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+'><a>'+(opts.notTrans?lbl.text:$.hisui.getTrans(lbl.text))+'</a></li>'; //add trans
 						});
 						if (sec.items){
 							html +='</ul>'
@@ -45,18 +45,18 @@
 					}else{ //默认label
 						if (inds==0) {html += '<ul class="kw-section-list keywords">';}
 						var s = 'class="'+(sec.selected ? 'selected' : '')+( sec.disabled ? ' disabled' : '') + '"';
-						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+'><a>'+$.hisui.getTrans(sec.text)+'</a></li>'; //add trans
+						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+'><a>'+(opts.notTrans?sec.text:$.hisui.getTrans(sec.text))+'</a></li>'; //add trans
 						if (inds==(chp.items.length-1)) html +='</ul>';
 					}
 				});
 			}else if(chp.type=="section"){
-				html +='<div class="kw-section"><div class="kw-section-header">'+$.hisui.getTrans(chp.text)+'</div>'; //add trans
+				html +='<div class="kw-section"><div class="kw-section-header">'+(opts.notTrans?chp.text:$.hisui.getTrans(chp.text))+'</div>'; //add trans
 				if (chp.items){
 					html += '<ul class="kw-section-list keywords">';
 				}
 				$.each(chp.items, function (indl, lbl) {					
 					var s = 'class="'+(lbl.selected ? ' selected' : '')+ (lbl.disabled ? ' disabled' : '')+'"';
-					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+$.hisui.getTrans(lbl.text)+'</a></li>' //add trans
+					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+(opts.notTrans?lbl.text:$.hisui.getTrans(lbl.text))+'</a></li>' //add trans
 				});
 				if (chp.items){
 					html +='</ul>'
@@ -65,7 +65,7 @@
 			}else{
 				if (indc==0) {html += '<ul class="kw-section-list keywords">';}
 				var s = 'class="'+(chp.selected ? ' selected' : '')+ (chp.disabled ? ' disabled' : '')+'"';
-				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+'><a>'+$.hisui.getTrans(chp.text)+'</a></li>'; //add trans
+				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+'><a>'+(opts.notTrans?chp.text:$.hisui.getTrans(chp.text))+'</a></li>'; //add trans
 				if (indc==(opts.items.length-1)) html +='</ul>';
 			}
 		});
@@ -164,5 +164,6 @@
 		onClick:function(value){},
 		onUnselect:function(value){},
 		onSelect:function(value){}
+		,notTrans:false  //不自动翻译配置项 20230821
 	};
 })(jQuery);

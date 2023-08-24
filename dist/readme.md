@@ -36,7 +36,9 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2023-08-24
-- :sparkles: `datagrid`增加`clearOnload`配置项,在加载数据后清除选中信息 [3764732]
+- :sparkles: `datagrid`增加`clearSelectionsOnload`配置项,在加载数据后清除选中信息 [3764732]
+- :sparkles: `keywords`增加notTrans配置项,true表示不翻译
+- :sparkles: `numberbox`增加keyupChangeDelay配置项，当isKeyupChange为true时，keyup改变组件值延迟时间
 
 ## 2023-08-23
 - :lipstick: 增加炫彩版7个图标 [3804855]
