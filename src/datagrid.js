@@ -1367,6 +1367,7 @@
             opts.view.onAfterRender.call(opts.view, _5a8);
         }
         _5a9.ss.clean();
+        if(opts.clearSelectionsOnload) $(_5a8).datagrid("clearSelections"); // 修复[翻页时全选勾未去掉]问题 [3764732]
         if (opts.rownumbers && opts.fixRowNumber){
             $(_5a8).datagrid("fixRowNumber");
         }
@@ -3638,6 +3639,7 @@
         advancedBtn: "Advance",
         advanced2Btn: "Collapse",
         like: "like",
-        defaultsColumns: null
+        defaultsColumns: null,
+        clearSelectionsOnload:false  /*load时清除选中信息*/
     });
 })(jQuery);
