@@ -53,14 +53,20 @@
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>
-			<th>说明</th>
 			<th>默认值</th>
+			<th>说明</th>
 			<th></th>
 		</tr>
 		<tr>
 			<td>isKeyupChange</td>
 			<td>默认值false</td>
 			<td>值为false时blur时改变组件的值。为true时则keyup时改变组件的值<code>2019-4-18</code></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keyupChangeDelay</td>
+			<td>默认值0</td>
+			<td>当isKeyupChange为true时，keyup改变组件值延迟时间 <code>2023-08-24</code><br>用于解决当值范围为5-10000时，想要输入123却变成523问题 </td>
 			<td></td>
 		</tr>
 		<tr>

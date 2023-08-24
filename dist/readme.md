@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-24
+- :sparkles: `keywords`增加notTrans配置项,true表示不翻译
+- :sparkles: `numberbox`增加keyupChangeDelay配置项，当isKeyupChange为true时，keyup改变组件值延迟时间
+
 ## 2023-08-23
 - :lipstick: 增加炫彩版7个图标 [3804855]
 - :lipstick: 增加极简版样式类`.lite-gray`,与`.icon`一起使用可以使图标变灰色
