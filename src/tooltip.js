@@ -67,11 +67,17 @@
                 }
                 break;
         }
+        var extraLeft = 0;
+        if (left < 0) { extraLeft = left; left = 0; }
         if (!$(_1cb).is(":visible")) {
             left = -100000;
             top = -100000;
         }
         tip.css({ left: left, top: top, zIndex: (opts.zIndex != undefined ? opts.zIndex : ($.fn.window ? $.fn.window.defaults.zIndex++ : "")) });        
+        /*处理提示层超出界面问题 2023-08-25*/
+        if (extraLeft < 0) { // 整体向右移动
+            tip.children('div.tooltip-arrow').eq(0).css({ marginLeft:extraLeft-6});            
+        }
         opts.onPosition.call(_1cb, left, top);
     };
     function _1cd(_1ce, e) {
@@ -91,13 +97,6 @@
             // 增加自动位置切换, 当下面不能显示全时，显示到上方
             tip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right").addClass("tooltip-" + opts.currentPosition);
             tip.show();
-            /*处理提示层超出界面问题 2022-01-10*/
-            var left1 = tip.offset().left;
-            if (left1 < 0) { // 整体向右移动
-                tip.offset({ left: 0 });
-                // 箭头向右移动
-                tip.children('div.tooltip-arrow').eq(0).css({ marginLeft:left1-6});
-            }
             opts.onShow.call(_1ce, e);
             var _1d1 = tip.children(".tooltip-arrow-outer");
             var _1d2 = tip.children(".tooltip-arrow");

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-08-25
+- :sparkles: 移动`tooltip`组件的`show`方法中位置处理逻辑至`reposition`方法下 [3663483]
+
 ## 2023-08-24
 - :sparkles: `datagrid`增加`clearSelectionsOnload`配置项,在加载数据后清除选中信息 [3764732]
 - :sparkles: `keywords`增加notTrans配置项,true表示不翻译
