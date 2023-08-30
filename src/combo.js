@@ -131,8 +131,9 @@
                 医为浏览器110版, 使用搜狗输入法不能触发keydown与input事件,增加compositionend事件.
                 compositionend事件时,keycode为undefined,为不影响以前逻辑增加判断 navigator.userAgent.indexOf('MWBrowser/2023')==-1 
                 测试最新版chrome（114)没有此问题
+                医为浏览器109版，userAgent是MWBrowser/2.0.x，固合并二次的判断=> 包含'MWBrowser/2'作为新浏览器判断
                 */
-                if ( navigator.userAgent.indexOf('MWBrowser/2023')==-1 && "undefined" == typeof e.keyCode) { return; }
+                if ( navigator.userAgent.indexOf('MWBrowser/2')==-1 && "undefined" == typeof e.keyCode) { return; }
                 
                 //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
                 switch (e.keyCode) {
