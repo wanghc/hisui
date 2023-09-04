@@ -127,8 +127,9 @@
             if (opts.checked && !objlabel.hasClass('checked')) objlabel.addClass('checked');
             if (!opts.checked && objlabel.hasClass('checked')) objlabel.removeClass('checked');
 
-            if (opts.label!=objlabel.text()) objlabel.text(opts.label);
-            
+            //if (opts.label!=objlabel.text()) objlabel.text(opts.label);
+            var labelTrans=$.hisui.getTrans(opts.label);
+            if (labelTrans!=objlabel.text()) objlabel.text(labelTrans);  //重复初始化对比翻译后text
         }
         if (opts.required){
             objlabel.unbind('mouseenter').bind('mouseenter.checkbox',function(e){
