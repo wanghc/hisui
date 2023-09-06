@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-09-06
+- :bug: `panel`当`notTrans`配置项为true,通过setTitle方法设置标题也不使用翻译
+
 ## 2023-09-04
 - :bug: `datagrid`行中下划线偶尔看不到问题 [3791752]
 

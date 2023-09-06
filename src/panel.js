@@ -426,7 +426,7 @@
     };
     function _220(_221, _222) {
         $.data(_221, "panel").options.title = _222;
-        $(_221).panel("header").find("div.panel-title").html($.hisui.getTrans(_222)); //add trans
+        $(_221).panel("header").find("div.panel-title").html(  $.data(_221, "panel").options.notTrans?_222:$.hisui.getTrans(_222)  ); //add trans //up20230906 judge notTrans
     };
     var TO = false;
     var _223 = true;
