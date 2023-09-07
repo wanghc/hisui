@@ -132,15 +132,11 @@
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
-                    '-',
                     {text:'修改',iconCls:'icon-write-order',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
-                    {text:'复制',iconCls:'icon-copy',handler:function(){
-                        var text=$(this).text();
-                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
-                    }},
+
                     {text:'删除',iconCls:'icon-cancel',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
@@ -150,6 +146,11 @@
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
+                    {text:'复制',iconCls:'icon-copy',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }},
+                    '-',
                     {text:'禁用',iconCls:'icon-cut',disabled:true,id:'tbl-main-tb-dis1',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
