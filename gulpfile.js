@@ -19,7 +19,7 @@ var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagi
 //var jsArrOld = ['lib/json2.js','src/jquery.hisui.min.js','lib/bootstrap-switch-1.8.0/static/js/bootstrap-switch.js','lib/icheck-1.x/icheck.js','lib/popover1.2.17/jquery.webui-popover.min.js','src/switchbox.js','src/checkbox.js','src/radio.js','src/filebox.js','src/popover.js','src/lookup.js','src/keywords.js','src/triggerbox.js','src/chinesespell.js','src/hisui.js'];
 var slfCmpArr = ['lib/bootstrap-switch-1.8.0/static/js/bootstrap-switch.js','lib/popover1.2.17/jquery.webui-popover.min.js','src/switchbox.js','src/checkbox.js','src/radio.js','src/filebox.js','src/popover.js','src/comboq.js','src/lookup.js','src/keywords.js','src/triggerbox.js','src/chinesespell.js','src/dateboxq.js','src/datetimeboxq.js','src/hstep.js','src/vstep.js','src/timeboxq.js','src/imedisabled.js','src/menutree.js','src/inputclearbtn.js','src/hisui.js'];
 var jsArr    = ['lib/json2.js'].concat(orgCmpArr.map(function(i){return 'src/'+i+'.js';})).concat(slfCmpArr);
-var lessArr = ["easyui","icon","panel","accordion","window","dialog","textbox","combo","combobox","layout","tabs","linkbutton","datagrid","propertygrid","pagination","calendar","datebox","combogrid","numberbox","spinner","progressbar","searchbox","numberspinner","timespinner","calendar","datebox","numberbox","spinner","progressbar","searchbox","slider","menu","menubutton","splitbutton","messager","tree","validatebox","tooltip","checkbox","switchbox","filebox","popover","comboq","lookup","keywords","triggerbox","dateboxq","datetimeboxq",'hstep','vstep','timeboxq','input.hover','menutree','inputclearbtn'];
+var lessArr = ["easyui", "icon", "panel", "accordion", "window", "dialog", "textbox", "combo", "combobox", "layout", "tabs", "linkbutton", "datagrid", "propertygrid", "pagination", "calendar", "datebox", "combogrid", "numberbox", "spinner", "progressbar", "searchbox", "numberspinner", "timespinner", "calendar", "datebox", "numberbox", "spinner", "progressbar", "searchbox", "slider", "menu", "menubutton", "splitbutton", "messager", "tree", "validatebox", "tooltip", "checkbox", "switchbox", "filebox", "popover", "comboq", "lookup", "keywords", "triggerbox", "dateboxq", "datetimeboxq", 'hstep', 'vstep', 'timeboxq', 'input.hover', 'menutree', 'inputclearbtn'];
 //开发测试时在dist生成未压缩js 调试   
 gulp.task('js-dev',function(){
     var arr = jsArr;
@@ -75,7 +75,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite2def'],function(){
+gulp.task('min-css',['min-css-lite2def','pic-en-css','pic-lite-en-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -107,10 +107,22 @@ gulp.task('min-css-lite2def',function(){
     .pipe(gulp.dest("dist/css"))
     .pipe(minifycss())                  //压缩css
     .pipe(rename('hisui.lite.min.css'))      //命名
-    .pipe(gulp.dest("dist/css"));
+        .pipe(gulp.dest("dist/css"));
 })
-
-
+gulp.task('pic-en-css',function(){
+    return gulp.src('less/locale.en.less')
+    .pipe(less())                       //less编译
+    .pipe(minifycss())                  //压缩css
+    .pipe(rename('hisui.en.css'))      //命名
+    .pipe(gulp.dest("dist/css/locale"));
+})
+gulp.task('pic-lite-en-css',function(){
+    return gulp.src('less/lite/locale.en.less')
+    .pipe(less())                       //less编译
+    .pipe(minifycss())                  //压缩css
+    .pipe(rename('hisui.lite.en.css'))      //命名
+    .pipe(gulp.dest("dist/css/locale"));
+})
 // gulp.task('lite2def',['min-js','min-css-lite2def']);
 
 

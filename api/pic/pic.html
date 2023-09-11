@@ -55,7 +55,7 @@
     <div class="demo-exp-code entry-content">
         <div class="conter5"></div>
     </div>
-    <h3>六、系统状态插画</h3>
+    <h3>六、系统状态插画<a href="javascript:void(0);" id="langBtn">切换语言</a></h3>
     <div class="demo-exp-code entry-content">
         <div class="conter6"></div>
     </div>
@@ -102,7 +102,22 @@
             for(var i=0;i<arr.length;i++){
                 html.push('<div class="conter"><div class="'+pre+arr[i]+'"/><div class="clstext">'+pre+arr[i]+'</div></div>');
             }
-            $('.conter6').html(html.join(""));   
+            $('.conter6').html(html.join(""));
+            isChinese = true;
+            var linkObj = null;
+            $("#langBtn").click(function(){
+                if (isChinese){
+                    linkObj = $('<link>', {
+                        rel: 'stylesheet',
+                        type: 'text/css',
+                        href: '../../dist/css/locale/hisui.en.css'
+                    }).appendTo('head');
+                }else{
+                    linkObj.remove();
+                }
+                isChinese = !isChinese;
+                $(this).text('切换成'+(isChinese?'英文':'中文'));
+            });
         }
         $(function(){
             init();
