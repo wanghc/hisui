@@ -744,11 +744,17 @@
 			_1(this);
 			/*wanghc---rowEvent*/
 			//var dc=_99.dc;
+			var frb = $(_c8.dc.body1);  // [3902343] treeField列为冻结列时,checkbox失效 无法选中
 			var bb = $(_c8.dc.body2);
 			//bb.unbind();
 			for(var _7b in _c8.options.rowEvents){
 				bb.bind(_7b,_c8.options.rowEvents[_7b]);
 			}
+			// frozenColumns列也要监听事件,//解决[3902343] treeField列为冻结列时,checkbox失效 无法选中
+			for(var _7b in _c8.options.rowEvents){
+				frb.bind(_7b,_c8.options.rowEvents[_7b]);
+			}
+			
 			if (_c8.options.data) {
 				$(this).treegrid("loadData", _c8.options.data);
 			}
