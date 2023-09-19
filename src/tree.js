@@ -47,7 +47,7 @@
                 return false;
             } else {
                 if (tt.hasClass("tree-checkbox")) {
-                    _e8(_b9, _bd[0], !tt.hasClass("tree-checkbox1"));
+                    _check(_b9, _bd[0], !tt.hasClass("tree-checkbox1"));
                     return false;
                 } else {
                     _16a(_b9, _bd[0]);
@@ -227,7 +227,7 @@
             _c8.onDrop.call(_c6, _e4, _e7, _e5);
         };
     };
-    function _e8(_e9, _ea, _eb) {
+    function _check(_e9, _ea, _eb) {
         var _ec = $.data(_e9, "tree").options;
         if (!_ec.checkbox) {
             return;
@@ -312,9 +312,9 @@
             var ck = _fb.find(".tree-checkbox");
             if (ck.length) {
                 if (ck.hasClass("tree-checkbox1")) {
-                    _e8(_f8, _f9, true);
+                    _check(_f8, _f9, true);
                 } else {
-                    _e8(_f8, _f9, false);
+                    _check(_f8, _f9, false);
                 }
             } else {
                 if (_fa.onlyLeafCheck) {
@@ -327,7 +327,7 @@
                 ck.remove();
             } else {
                 if (ck.hasClass("tree-checkbox1")) {
-                    _e8(_f8, _f9, true);
+                    _check(_f8, _f9, true);
                 } else {
                     if (ck.hasClass("tree-checkbox2")) {
                         var _fd = true;
@@ -341,10 +341,10 @@
                             }
                         }
                         if (_fd) {
-                            _e8(_f8, _f9, true);
+                            _check(_f8, _f9, true);
                         }
                         if (_fe) {
-                            _e8(_f8, _f9, false);
+                            _check(_f8, _f9, false);
                         }
                     }
                 }
@@ -391,10 +391,10 @@
         opts.onCheck = function () {
         };
         if (_109.length) {
-            _e8(_102, $("#" + _109[0].domId)[0], false);
+            _check(_102, $("#" + _109[0].domId)[0], false);
         }
         for (var i = 0; i < _10a.length; i++) {
-            _e8(_102, $("#" + _10a[i].domId)[0], true);
+            _check(_102, $("#" + _10a[i].domId)[0], true);
         }
         opts.onCheck = _10c;
         setTimeout(function () {
@@ -727,7 +727,7 @@
             node.find(".tree-icon").addClass(data.iconCls);
         }
         if (_149 != data.checked) {
-            _e8(_147, _148.target, data.checked);
+            _check(_147, _148.target, data.checked);
         }
     };
     function _14a(_14b) {
@@ -973,11 +973,11 @@
             });
         }, check: function (jq, _186) {
             return jq.each(function () {
-                _e8(this, _186, true);
+                _check(this, _186, true);
             });
         }, uncheck: function (jq, _187) {
             return jq.each(function () {
-                _e8(this, _187, false);
+                _check(this, _187, false);
             });
         }, collapse: function (jq, _188) {
             return jq.each(function () {
