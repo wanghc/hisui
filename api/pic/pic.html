@@ -51,7 +51,7 @@
     <div class="demo-exp-code entry-content">
         <div class="conter4"></div>
     </div>
-    <h3>五、关于插画</h3>
+    <h3>五、关于插画<a href="javascript:void(0);" id="langAboutBtn">切换语言</a></h3>
     <div class="demo-exp-code entry-content">
         <div class="conter5"></div>
     </div>
@@ -116,7 +116,22 @@
                     linkObj.remove();
                 }
                 isChinese = !isChinese;
-                $(this).text('切换成'+(isChinese?'英文':'中文'));
+                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
+                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
+            });
+            $("#langAboutBtn").click(function(){
+                if (isChinese){
+                    linkObj = $('<link>', {
+                        rel: 'stylesheet',
+                        type: 'text/css',
+                        href: '../../dist/css/locale/hisui.en.css'
+                    }).appendTo('head');
+                }else{
+                    linkObj.remove();
+                }
+                isChinese = !isChinese;
+                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
+                $("#langAboutBtn").text('切换成'+(isChinese?'英文':'中文'));
             });
         }
         $(function(){
