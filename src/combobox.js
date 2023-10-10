@@ -304,7 +304,18 @@
             return;
         }
         opts.loader.call(target, param, function (data) {
-            loadData(target, data, remainText);
+            var mydata = data;
+            /*兼容hos数据结构 {"code": "200","msg": "操作成功","data": [{"HOSPRowId": 1,"HOSPDesc": "东华标准版数字化医院[总院]"}],"success": true}*/
+            if ('undefined' !== typeof data.code) {
+                if ($.isArray(data.rows)) {
+                    mydata = data.rows;
+                } else if ($.isArray(data.data)) {
+                    mydata = data.data;
+                } else if ($.isArray(data.records)) {
+                    mydata = data.records;
+                }
+            } 
+            loadData(target, mydata, remainText);  
         }, function () {
             opts.onLoadError.apply(this, arguments);
         });

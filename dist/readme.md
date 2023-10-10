@@ -35,6 +35,17 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-10-10
+- :sparkles: combobox支持多种json数据格式 [3930247]
+
+```js
+// 后台返回值以前支持数据格式：[{"key": 1}]
+// 增加以下三种格式
+ {"code": "200","msg": "操作成功","data": [{"key": 1}],"success": true}
+ {"code": "200","msg": "操作成功","rows": [{"key": 1}],"success": true}
+ {"code": "200","msg": "操作成功","records": [{"key": 1}],"success": true}
+```
+
 ## 2023-10-09
 - 更新字体文件 [3928242]
 
