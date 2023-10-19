@@ -35,6 +35,15 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-10-19
+- :sparkles: treegrid支持多种json数据格式
+```js
+// 后台返回值以前支持数据格式：[{"key": 1}]
+// 增加以下三种格式
+ {"code": "200","msg": "操作成功","data": {total:10,records:[{}]},"success": true}
+```
+
+
 ## 2023-10-10
 - :sparkles: combobox支持多种json数据格式 [3930247]
 
