@@ -1426,8 +1426,8 @@
 							var rowData = data.data || { total: 0, rows: [] };
 							data.message = data.message || data.msg;
 							// 2023-10-19 兼容hos框架返回
-							if ('undefined' == typeof data.rows && data.records) {
-								rowData.rows = data.records;
+							if ('undefined' == typeof rowData.rows && rowData.records) {
+								rowData.rows = rowData.records;
 							}
 							// 20230223 新产品组 急诊
 							/*扩展功能,支持{code:200,message:'success',data:{total:100,rows:[]}}*/
