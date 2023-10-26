@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-10-26
+- :sparkles: `menutree` 组件样式调整
+
 ## 2023-10-19
 - :sparkles: treegrid支持多种json数据格式
 ```js

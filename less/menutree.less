@@ -31,7 +31,7 @@
   top: -100px;;
 }
 .menutree-default-min-width{
-  width: 38px;
+  width: 40px;
   height: 1px;
   padding: 0;
   margin: 0;
@@ -142,7 +142,7 @@
             height: 35px;
             line-height: 35px;
             color: #ffffff;
-            padding: 0 34px 0 13px;
+            padding: 0 34px 0 12px;
           }
 
           &.tree-node-hover {
@@ -197,8 +197,12 @@
             }
 
             .tree-indent {
-              width: 15px;
+              width: 12px;
+              &.tree-indent-hit{
+                width: 16px;
+              }
             }
+
 
             &>span.tree-indent:first-child {
               //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
@@ -259,16 +263,22 @@
     }
 
     &.menutree-tree-collapsible{
+      .menutree-tree.tree>li>ul .tree-node{ 
+        padding-left: 27px;
+      }
+      .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+        padding-left: 11px;
+      }
       .menutree-tree.tree>li>.tree-node{
         .tree-icon{
           display: inline-block;
           height: 35px;
           margin: 0;
           width: 16px;
-          margin-left: 13px;
+          margin-left: 12px;
         }
         .tree-title{
-          padding-left: 10px;
+          padding-left: 6px;
         }
       } 
     }
@@ -279,7 +289,7 @@
         line-height: 35px;
         background-color:@menutree-title-bgcolor;
         color: #ffffff;
-        padding-left: 13px;
+        padding-left: 12px;
       }
 
       .menutree-tree.tree {
@@ -323,7 +333,7 @@
               height: 35px;
               line-height: 35px;
               color: #000000;
-              padding: 0 34px 0 13px;
+              padding: 0 34px 0 12px;
             }
   
             &.tree-node-hover {
@@ -375,6 +385,22 @@
           color: #EE0F0F;
         }
       }
+
+      &.menutree-tree-collapsible{
+        .menutree-tree.tree>li>ul .tree-node{ 
+          padding-left: 27px;
+        }
+        .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+          padding-left: 11px;
+        }
+        
+        .menutree-tree.tree>li>.tree-node{
+          .tree-title {
+            padding-left: 6px;
+          }
+        }
+      }
+
 
       &.menutree-tree-norootcollapse{  //根节点不允许折叠的
         .menutree-tree.tree { //
@@ -543,7 +569,7 @@
               height: 35px;
               line-height: 35px;
               color: #000000;
-              padding: 0 34px 0 13px;
+              padding: 0 34px 0 14px;
             }
   
             &.tree-node-hover {
@@ -556,6 +582,18 @@
           &>ul {
             background-color: transparent;
   
+            .tree-indent {
+              width: 14px;
+              &.tree-indent-hit{
+                width: 16px;
+              }
+            }
+
+
+            &>span.tree-indent:first-child {
+              //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+              width: 0px;
+            }
             .tree-node {
               padding-left: 5px;
               height: 35px;

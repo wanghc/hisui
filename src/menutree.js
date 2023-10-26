@@ -47,7 +47,7 @@
             }
         });
 
-        $(document).off(".menutree").bind("mousedown.menutree", function (e) {
+        $(document).off(".menutree").on("mousedown.menutree", function (e) {
             var p = $(e.target).closest("div.menutree-sp");
             if (p.length) {
                 return;
@@ -168,6 +168,35 @@
             sw.addClass('menutree-hidden');
         }
     }
+
+    function addTreeLiCls(jq,level){
+        level=level||1;
+        if(jq && jq.length>0 ) {
+            jq.find('>li').each(function(){
+                var clsName='menutree-li-level'+(level>2?'x':level)
+                if (!$(this).hasClass(clsName)) {
+                    $(this).removeClass( 'menutree-li-level1 menutree-li-level2 menutree-li-levelx' ).addClass(clsName)
+                }
+
+                var nextLevl=$(this).find('>ul');
+                if(nextLevl.length>0) {
+                    addTreeLiCls(nextLevl,level+1); //下级
+                }else{
+                    if(level>1) {
+                        $(this).find('>.tree-node>.tree-indent').last().addClass('tree-indent-hit');  //最后一个缩进要和折叠按钮同宽度
+                    }
+                }
+                
+            })
+        }
+
+        if(level==1 && jq.find('li.menutree-li-levelx').length==0) {
+            jq.addClass('menutree-tree-nox');
+        }
+
+        
+    }
+
     function setTree(ele){
         var state=$.data(ele, "menutree")
         var opts = state.options;
@@ -225,6 +254,7 @@
 
             },onLoadSuccess:function(node,data){
                 opts.onLoadSuccess.call(ele,node,data);
+                addTreeLiCls(t)  //为树各级节点的li元素增加样式类
                 //setTreeDataState(data,!node,opts.onlyOneExpanded,opts.rootCollapsible);
             },loadFilter:function(data,par){
                 var tdata=opts.loadFilter.call(ele,data,par);
@@ -470,7 +500,7 @@
                 setTreeDataState(tdata,!par,opts.onlyOneExpanded,opts.rootCollapsible);
                 return tdata;
             },onLoadSuccess:function(node,data){
-                
+                addTreeLiCls(t)
             }
         })
         t.tree(treeOpts);

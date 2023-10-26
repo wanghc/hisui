@@ -113,9 +113,9 @@
 
       &>li {
         &>.tree-node { /*第一层节点 根节点*/
-          height:38px;
+          height:40px;
           background-color:@menutree-blueroot-root-bgcolor;
-          line-height: 38px;
+          line-height: 40px;
           position: relative;
           font-weight: bold;
           color: #000000;
@@ -151,10 +151,10 @@
           }
 
           .tree-title {
-            height: 38px;
-            line-height: 38px;
+            height: 40px;
+            line-height: 40px;
             color: #000000;
-            padding: 0 34px 0 13px;
+            padding: 0 34px 0 10px;
           }
 
           &.tree-node-hover {
@@ -167,7 +167,7 @@
           border-bottom: 1px solid #e2e2e2;
 
           .tree-node {
-            padding-left: 5px;
+            padding-left: 4px;
             height: 36px;
             line-height: 36px;
             position: relative;
@@ -196,12 +196,12 @@
               &.tree-collapsed {
                 background: @menutree-gray-little-arrow-right;
                 &.tree-collapsed-hover {
-                  background: @menutree-gray-little-arrow-right;
+                  background: @menutree-blue-little-arrow-right;
                 }
               }
   
               &.tree-expanded {
-                background: @menutree-blue-little-arrow-down;
+                background: @menutree-gray-little-arrow-down;
                 &.tree-expanded-hover {
                   background: @menutree-blue-little-arrow-down;
                 }
@@ -209,8 +209,21 @@
 
             }
 
+            &.tree-node-selected,
+            &.tree-node-hover {
+              .tree-hit.tree-collapsed {
+                background: @menutree-blue-little-arrow-right;
+              }
+              .tree-hit.tree-expanded {
+                background: @menutree-blue-little-arrow-down;
+              }
+            }
+
             .tree-indent {
-              width: 15px;
+              width: 10px;
+              &.tree-indent-hit{
+                width: 16px;
+              }
             }
 
             &>span.tree-indent:first-child {
@@ -280,17 +293,23 @@
     }
 
     &.menutree-tree-collapsible{
+      .menutree-tree.tree>li>ul .tree-node{ 
+        padding-left: 16px;
+      }
+      .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+        padding-left: 4px;
+      }
       .menutree-tree.tree>li>.tree-node{
         .tree-icon{
           display: inline-block;
-          height: 38px;
+          height: 40px;
           margin: 0;
           width: 16px;
-          margin-left: 13px;
+          margin-left: 10px;
           font-weight: normal;
         }
         .tree-title{
-          padding-left: 10px;
+          padding-left: 6px;
         }
       } 
     }
@@ -305,9 +324,9 @@
   
         &>li {
           &>.tree-node { /*第一层节点 根节点*/
-            height: 38px;
+            height: 40px;
             background-color:@menutree-root-bgcolor;
-            line-height: 38px;
+            line-height: 40px;
             position: relative;
             font-weight: bold;
             color: #000000;
@@ -339,10 +358,10 @@
             }
   
             .tree-title {
-              height: 38px;
-              line-height: 38px;
+              height: 40px;
+              line-height: 40px;
               color: #000000;
-              padding: 0 34px 0 13px;
+              padding: 0 34px 0 10px;
             }
   
             &.tree-node-hover {
@@ -359,7 +378,7 @@
             border-bottom: 1px solid #e2e2e2;
   
             .tree-node {
-              padding-left: 5px;
+              padding-left: 4px;
               height: 36px;
               line-height: 36px;
               position: relative;
@@ -398,6 +417,20 @@
           background-color: #FFE9E9;
           color: #EE0F0F;
         }
+      }
+
+      &.menutree-tree-collapsible{
+        .menutree-tree.tree>li>ul .tree-node{ 
+          padding-left: 16px;
+        }
+        .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+          padding-left: 4px;
+        }
+        .menutree-tree.tree>li>.tree-node{
+          .tree-title{
+            padding-left: 6px;
+          }
+        } 
       }
 
       &.menutree-tree-norootcollapse{  //根节点不允许折叠的
@@ -552,14 +585,15 @@
       .menutree-tree.tree {
         &>li {
           &>.tree-node { /*第一层节点 根节点*/
-            height:38px;
+            height:40px;
             background-color:@menutree-root-hover-bgcolor;
-            line-height: 38px;
+            line-height: 40px;
             position: relative;
             font-weight: normal;
             color: #000000;
             position: relative;
             border-bottom: 1px solid #e2e2e2;
+            font-weight: bold;
   
             .tree-hit {
               &.tree-collapsed {
@@ -572,10 +606,10 @@
             }
   
             .tree-title {
-              height: 38px;
-              line-height: 38px;
+              height: 40px;
+              line-height: 40px;
               color: #000000;
-              padding: 0 34px 0 13px;
+              padding: 0 34px 0 10px;
             }
   
             &.tree-node-hover {
@@ -589,8 +623,21 @@
             background-color: transparent;
             border: 0px;
   
+            .tree-indent {
+              width: 10px;
+              &.tree-indent-hit{
+                width: 16px;
+              }
+            }
+
+
+            &>span.tree-indent:first-child {
+              //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+              width: 0px;
+            }
+
             .tree-node {
-              padding-left: 5px;
+              padding-left: 4px;
               height: 35px;
               line-height: 35px;
               position: relative;
