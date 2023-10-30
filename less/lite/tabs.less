@@ -123,6 +123,7 @@
       height: 16px;
       width: 16px;
       //background-color: @tabs-header-bgcolor;
+      font-size: 10px;    /*在textbox.less 定义的13px 会被原css中1px的冲掉 导致显示不出关闭 而且13px过大 在此定义为10px*/
       &::before{
         content: @content-close;
       }
