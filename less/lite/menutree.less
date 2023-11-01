@@ -167,7 +167,7 @@
           border-bottom: 1px solid #e2e2e2;
 
           .tree-node {
-            padding-left: 4px;
+            padding-left: 16px;
             height: 36px;
             line-height: 36px;
             position: relative;
@@ -280,7 +280,9 @@
       }
       
     }
-
+    .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+      padding-left: 4px;
+    }
 
     &.menutree-tree-norootcollapse{  //根节点不允许折叠的
       .menutree-tree.tree { //
@@ -378,7 +380,7 @@
             border-bottom: 1px solid #e2e2e2;
   
             .tree-node {
-              padding-left: 4px;
+              padding-left: 16px;
               height: 36px;
               line-height: 36px;
               position: relative;
@@ -417,6 +419,9 @@
           background-color: #FFE9E9;
           color: #EE0F0F;
         }
+      }
+      .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+        padding-left: 4px;
       }
 
       &.menutree-tree-collapsible{
@@ -467,11 +472,12 @@
   }
 
   .menutree-tree-wrap {
-    background-color: @menutree-root-bgcolor;
+    background-color: #ffffff;
     .menutree-tree.tree {
       border: 0px;
       &>li {
         &>.tree-node { /*第一层节点 根节点*/
+          background-color: #ffffff;
           border: 0px;
           .tree-hit {
             &.tree-collapsed {
@@ -508,7 +514,7 @@
     }
 
     &.menutree-tree-withtitle {  //有标题的
-      background-color: @menutree-root-bgcolor;
+      background-color: #ffffff;
       .menutree-tree-title {
         display: none;
       }
@@ -518,6 +524,7 @@
   
         &>li {
           &>.tree-node { /*第一层节点 根节点*/
+            background-color: #ffffff;
             border: 0px;
             .tree-hit {
               &.tree-collapsed {
@@ -534,10 +541,12 @@
             }
   
             &.tree-node-hover {
-              background-color: @menutree-root-bgcolor;
+              background-color:  @menutree-min-root-hover-bgcolor;
+              color: #ffffff;
             }
             &.tree-node-selected {
-              background-color: @menutree-root-bgcolor;
+              background-color:  @menutree-min-root-hover-bgcolor;
+              color: #ffffff;
             }
 
             .tree-icon{
