@@ -80,6 +80,76 @@
         win.window("open");
         return win;
     };
+    
+    function showWinByOptions(options) {
+        var win = $("<div class=\"messager-body\"></div>").appendTo("body");
+        win.append(options.content);
+        var bbuttons = options.bbuttons;
+        if (bbuttons) {
+            var tb = $("<div class=\"messager-button\"></div>").appendTo(win);
+            // $.messager.defaults.ok/cancel会取翻译或从中修改
+            // 会导致事件不运行
+            var mybuttonIndex = 0; /* 第一个按钮marginleft为0,其它的为10px */
+            for (var _283 in bbuttons) {
+                $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left",mybuttonIndex==0?0:10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
+                mybuttonIndex++;
+            }
+            //add space and esc key event handler add by wanghc  2018-10-09
+            win.on('keydown', function (e) {
+                if (e.target && e.target.nodeName.toUpperCase()=='INPUT') {
+                    return;
+                }
+                if (tb.children().length > 1) { //多个按钮可用 <- 与 -> 左右按钮切换
+                    var $cur = tb.children(".l-btn-focus");
+                    if ($cur.length > 0) {  //当前有focus
+                        if (e.which==37){ //left
+                            e.stopPropagation();
+                            if ($cur.prev().length > 0) {
+                                $cur.trigger('blur');
+                                $cur.prev().trigger('focus');
+                            }
+                        }
+                        if (e.which == 39) { //right
+                            e.stopPropagation();
+                            if ($cur.next().length > 0) {
+                                $cur.trigger('blur');
+                                $cur.next().trigger('focus');
+                            }
+                        }
+                    }
+                }
+                if(e.which==32 || e.which==13){
+                    e.stopPropagation();
+                    if (tb.children(".l-btn-focus").length>0){
+                        tb.children(".l-btn-focus").trigger('click');
+                    }else{
+                        bbuttons['ok'](e);
+                    }
+                    return false;
+                }
+                if(bbuttons['cancel']){ 
+                    if(e.which==27){ //Esc
+                        e.stopPropagation();
+                        bbuttons['cancel'](e);
+                        return false;
+                    }
+                }
+            });
+            //end 2018-10-09
+        }
+        win.window({
+            isTopZindex:true, //wanghc
+            closable:false, //neer---不显示关闭按钮--事件监听问题
+            title: options.title, noheader: (options.title ? false : true), width: options.width||300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
+                setTimeout(function () {
+                    win.window("destroy");
+                }, 100);
+            }
+        });
+        win.window("window").addClass("messager-window");
+        win.children("div.messager-button").children("a:first").focus();
+        return win;
+    };
     function _27f(_280, _281, bbuttons) {
         var win = $("<div class=\"messager-body\"></div>").appendTo("body");
         win.append(_281);
@@ -152,40 +222,34 @@
         show: function (_284) {
             return _27d(_284);
         }, alertSrcMsg: function (_285, msg, icon, fn) {
-            /* 对象文字 add margin-left:42px;*/
-            var _286 = "<div style=\"margin-left:42px;\">" + msg + "</div>";  //add trans
-            switch (icon) {
-                case "error":
-                    _286 = "<div class=\"messager-icon messager-error\"></div>" + _286;
-                    break;
-                case "info":
-                    _286 = "<div class=\"messager-icon messager-info\"></div>" + _286;
-                    break;
-                case "question":
-                    _286 = "<div class=\"messager-icon messager-question\"></div>" + _286;
-                    break;
-                case "warning":
-                    _286 = "<div class=\"messager-icon messager-warning\"></div>" + _286;
-                    break;
-                case "success":
-                    _286 = "<div class=\"messager-icon messager-success\"></div>" + _286;
-                    break;
+            var opts = typeof _285 == "object" ? _285 : {
+                title:_285,msg:msg,icon:icon,fn:fn
             }
-            _286 += "<div style=\"clear:both;\"/>";
-            var _287 = {};
-            _287['ok'] = function (e) {
-                if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
-                if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
-                win.window("close");
-                if (fn) {
-                    fn();
-                    return false;
+            var cls = opts.icon ? "messager-icon messager-" + opts.icon : "";
+            opts = $.extend({}, $.messager.defaults, {                
+                /* 对象文字 add margin-left:42px;*/
+                content: "<div class=\"" + cls + "\"></div>" + "<div style=\"margin-left:42px;\">" + opts.msg + "</div>" + "<div style=\"clear:both;\"/>",
+                bbuttons: {
+                    'ok':function (e) {
+                        if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
+                        if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
+                        win.window("close");
+                        if (opts.fn) {
+                            opts.fn();
+                            return false;
+                        }
+                    }
                 }
-            };
-            var win = _27f(_285, _286, _287);
+            }, opts);
+            var win = showWinByOptions(opts);
+            // var win = _27f(_285, _286, _287);
             return win;
         }, alert: function (_285, msg, icon, fn) {
-            return $.messager.alertSrcMsg(_285, $.hisui.getTrans(msg), icon, fn);
+            var opts = typeof _285 == "object" ? _285 : {
+                title:_285,msg:msg,icon:icon,fn:fn
+            }
+            opts.msg = $.hisui.getTrans(opts.msg);
+            return $.messager.alertSrcMsg(opts);
         }, confirmSrcMsg: function (_288, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
