@@ -35,7 +35,7 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2023-11-02
-- :sparkles: `$.messager.alert`方法增加宽度属性
+- :sparkles: `$.messager.alert`方法增加宽度属性 [4022515]
 ```js
 $.messager.alert({
 							width:520,
