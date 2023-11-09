@@ -34,13 +34,18 @@
 				var tmpState = $.data(target, 'dateboxq');
 				var tmpOpt = tmpState.options;
 				var rtn = true;
+				/// 需求序号	3988287
+				/// 需求名称	HISUI datetimeboxq控件点击确定无法关闭BUG
+				// minDate 00:00:00 - maxDate 00:00:00修改成minDate 00:00:00 - maxDate 23:59:59
 				if (null != tmpOpt.minDate){
-					if (validParams) validParams[0]=tmpOpt.minDate;
+					if (validParams) validParams[0] = tmpOpt.minDate;
+					if (tmpOpt.minDate.indexOf(' ') == -1 && tmpOpt.minDate.indexOf(':') == -1 ) { tmpOpt.minDate += " 00:00:00"; }
 					var d1 = tmpOpt.parser.call(target, tmpOpt.minDate);
 					if (d1>date) rtn= false;
 				}
 				if (null != tmpOpt.maxDate){
-					if (validParams) validParams[1]=tmpOpt.maxDate;
+					if (validParams) validParams[1] = tmpOpt.maxDate;
+					if (tmpOpt.maxDate.indexOf(' ') == -1 && tmpOpt.maxDate.indexOf(':') == -1 ) { tmpOpt.maxDate += " 23:59:59"; }
 					var d2 = tmpOpt.parser.call(target, tmpOpt.maxDate);
 					if (d2<date) rtn = false;
 				}

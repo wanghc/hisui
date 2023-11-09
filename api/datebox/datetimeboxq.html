@@ -51,14 +51,17 @@
 						return date<=now;
 					}
 				});
+				
 				var min = $.fn.datebox.defaults.formatter($.fn.datebox.defaults.parser('t'));
 				var max = $.fn.datebox.defaults.formatter($.fn.datebox.defaults.parser('t+7'));
+				
 				$('#dtbq2').datetimeboxq({
 					onSelect:onSelect,
-					value:min+' 11:11:11',
+					// value:min+' 11:11:11',
 					minDate:min,
 					maxDate:max
 				});
+				$('#dtbq2').datetimeboxq('setValue',"2023-11-16 09:10:10");
 			};
 		</script>
 	</div>

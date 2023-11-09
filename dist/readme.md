@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2023-11-09
+- `datetimeboxq`设置maxDate当天的某个时间点后,点击确定无法关闭日期面板 [3988287]
+
 ## 2023-11-02
 - :sparkles: `$.messager.alert`方法增加宽度属性 [4022515]
 ```js
