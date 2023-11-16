@@ -35,6 +35,18 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-11-15
+- :sparkles: combobox支持多种json数据格式 [3930247]
+
+```js
+// 后台返回值以前支持数据格式：[{"key": 1}]
+// 增加以下三种格式
+ {"code": "200","msg": "操作成功","data": [{"key": 1}],"success": true}
+ {"code": "200","msg": "操作成功","rows": [{"key": 1}],"success": true}
+ {"code": "200","msg": "操作成功","records": [{"key": 1}],"success": true}
+ {"code": "200","msg": "操作成功","data": {"records":[{"key":1}]},"success": true}
+```
+
 ## 2023-11-09
 - `datetimeboxq`设置maxDate当天的某个时间点后,点击确定无法关闭日期面板 [3988287]
 

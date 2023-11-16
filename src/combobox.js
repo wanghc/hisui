@@ -313,6 +313,10 @@
                     mydata = data.data;
                 } else if ($.isArray(data.records)) {
                     mydata = data.records;
+                } else if (data.data != null && typeof data.data === 'object' && $.isArray(data.data) === false) {
+                    if ($.isArray(data.data.records)) {
+                        mydata = data.data.records;
+                    }
                 }
             } 
             loadData(target, mydata, remainText);  
