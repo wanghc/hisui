@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-11-20
+- :bug: `lookup`使用`btoolbar`时，第二次点击放大镜时工具条消失问题 [4068557]
+
 ## 2023-11-15
 - :sparkles: combobox支持多种json数据格式 [3930247]
 

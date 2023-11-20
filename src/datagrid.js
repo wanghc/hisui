@@ -817,7 +817,15 @@
             if (opts.clicksToEdit==2){
                 _5f7(_55a,rowIndex);
             }
-            opts.onDblClickRow.call(_55a, _569, row);
+            // dblclickrow也向后延时
+            if (parseInt(opts.clickDelay) > 0) {
+                //debouncedDgBodyClickFun.call(this,e);
+                setTimeout(function () {
+                    opts.onDblClickRow.call(_55a, _569, row);
+                },opts.clickDelay);
+            } else {
+                opts.onDblClickRow.call(_55a, _569, row);
+            }
             e.stopPropagation();
         }).bind("contextmenu", function (e) {
             var tr = $(e.target).closest("tr.datagrid-row");

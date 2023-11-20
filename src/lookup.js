@@ -278,6 +278,15 @@
         if (!isSelfGrid(state)){
             var grid = $(target).comboq('createPanelBody');
             if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target); 
+            // datagird中btoolbar属性是'#myid'时，第一次初始化后,body中#myid-div就没了，随着datagrid关闭,#myid-div就没有了
+            // 第二次datagrid中就没有btoolbar条件了 [4068557]
+            if ('undefined' == typeof $LOOKUPBTOOLBAR) $LOOKUPBTOOLBAR = {};
+            if ('string'==typeof opts.btoolbar &&  opts.btoolbar!="" && 'undefined' == typeof $LOOKUPBTOOLBAR[opts.btoolbar]) {
+                $LOOKUPBTOOLBAR[opts.btoolbar] = $(opts.btoolbar)[0].outerHTML;  // 缓存html, 再次初始化datagrid-btoolbar时需要使用
+            }
+            if ($(opts.btoolbar).length==0 && $LOOKUPBTOOLBAR[opts.btoolbar]!="") {
+                opts.btoolbar = $LOOKUPBTOOLBAR[opts.btoolbar];
+            }
             grid.datagrid($.extend({}, opts, {
                 title:opts.gridTitle||"",
                 width:400,height:300,
