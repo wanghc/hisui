@@ -3524,9 +3524,13 @@
             if(opts.singleRequest && opts.currentAjax) opts.currentAjax.abort();
             opts.currentAjax = $.ajax({
                 type: opts.method, url: opts.url, data: _70c, dataType: "json", success: function (data) {
+                    
                     if ('undefined' !== typeof data.code && !$.isArray(data.rows)) {
+                        if (data.code == '4001') {
+                            $.messager.popover({ msg: data.msg, type: 'error' });
+                        }
                         var rowData = {total: 0, rows: [] };
-                        if ('object' == typeof data.data) {
+                        if (data.data!=null && 'object' == typeof data.data) {
                             rowData = data.data;
                             if ($.isArray(data.data.records)){ // HOS是使用records作为数组的键名
                                 rowData.rows = data.data.records;

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-11-23
+- :sparkles: `datagrid`对超时进行提示
+
 ## 2023-11-20
 - :bug: `lookup`使用`btoolbar`时，第二次点击放大镜时工具条消失问题 [4068557]
 
