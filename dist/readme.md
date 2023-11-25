@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-11-25
+- tree支持多种json格式
+
 ## 2023-11-23
 - :sparkles: `datagrid`对超时进行提示
 

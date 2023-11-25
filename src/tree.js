@@ -1163,7 +1163,22 @@
             }
             $.ajax({
                 type: opts.method, url: opts.url, data: _1a3, dataType: "json", success: function (data) {
-                    _1a4(data);
+                    var mydata = data;                    
+                    /*兼容hos数据结构 {"code": "200","msg": "操作成功","data": [{"HOSPRowId": 1,"HOSPDesc": "东华标准版数字化医院[总院]"}],"success": true}*/
+                    if ('undefined' !== typeof data.code) {
+                        if ($.isArray(data.rows)) {
+                            mydata = data.rows;
+                        } else if ($.isArray(data.data)) {
+                            mydata = data.data;
+                        } else if ($.isArray(data.records)) {
+                            mydata = data.records;
+                        } else if (data.data != null && typeof data.data === 'object' && $.isArray(data.data) === false) {
+                            if ($.isArray(data.data.records)) {
+                                mydata = data.data.records;
+                            }
+                        }
+                    }
+                    _1a4(mydata);
                 }, error: function () {
                     _1a5.apply(this, arguments);
                 }
