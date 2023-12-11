@@ -182,3 +182,6 @@ if ($.fn.radio){
 if ($.fn.checkbox){
 	$.fn.checkbox.defaults.missingMessage = 'This field is required.';
 }
+if ($.fn.linkbutton){
+	$.fn.linkbutton.defaults.waitingAlert = 'The button has been clicked and the system is responding. Please wait';
+}

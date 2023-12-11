@@ -12,6 +12,22 @@
         }
         t.attr("group", opts.group || "");
         t.attr("id", opts.id || "");
+        // 点击原事件
+        function _clickLinkButton(t){
+            var opts = $(this).linkbutton('options');
+            if (!opts.disabled) {
+                if (opts.toggle) {
+                    if (opts.selected) {
+                        $(this).linkbutton("unselect");
+                    } else {
+                        $(this).linkbutton("select");
+                    }
+                }
+                opts.onClick.call(this);
+            }
+        }
+        // 立即执行事件, 但下一次点击只能在clickWaitingTimems毫秒后
+        opts.debouncedClickFun = $.hisui.debounce(_clickLinkButton,parseInt(opts.clickWaitingTime),true);
         var inner = $("<span class=\"l-btn-left\"></span>").appendTo(t);
         if (opts.text) {
             if (opts.notTrans) {
@@ -38,22 +54,27 @@
         }).bind("blur.linkbutton", function () {
             $(this).removeClass("l-btn-focus");
         }).bind("click.linkbutton", function () {
-            if (!opts.disabled) {
-                if (opts.toggle) {
-                    if (opts.selected) {
-                        $(this).linkbutton("unselect");
-                    } else {
-                        $(this).linkbutton("select");
-                    }
-                }
-                opts.onClick.call(this);
-            }
+            _operationStart(target);
+            // 立即调用
+            opts.debouncedClickFun.call(this,target);
             //return false; //不要阻止 cryze 2018-4-10  
             //cryze 2018-4-19 不阻止的话若a href="#" 会有跳转行为   判断是否是filebox的button时不阻止  不是 改为原样 还是阻止吧 
             if (!t.hasClass('filebox-button')) return false;
         });
         //禁用时 通过监听其下面子元素click事件，如果被禁用了，则阻止事件冒泡
         t.children('span').unbind(".linkbutton").bind("click.linkbutton", function () {
+            if (opts.waiting) {
+                if (opts.waitingAlert!=""){
+                    $.messager.popover({
+                        msg: opts.waitingAlert,
+                        type: 'alert',
+                        timeout: 2000, 		//0不自动关闭。3000s
+                        showSpeed: 'slow', //fast,slow,normal,1500
+                        showType: 'fade'  //show,fade,slide
+                    });
+                }
+                return false;
+            }
             if (opts.disabled && opts.stopAllEventOnDisabled) {
                 return false;
             }else{
@@ -63,6 +84,26 @@
         setSelected(target, opts.selected);
         setDisabled(target, opts.disabled);
     };
+    function _operationStart(target){
+        var t = $(target);
+        t.addClass('l-btn-waiting');
+        t.removeClass('l-btn-focus');
+        var opts = t.linkbutton('options');
+        opts.waiting = true;
+        opts.waitingTimer = setTimeout(function(){
+            _operationCompleted(target);
+        },parseInt(opts.clickWaitingTime));
+    }
+    function _operationCompleted(target){
+        var lb = $.data(target, "linkbutton");
+        if (lb){ // messager.alert界面的按钮，点击后会卸载，此时lb为undefined
+            var opts = lb.options;
+            if (opts.waiting){opts.waiting = false;}else{return ;}
+            clearTimeout(opts.waitingTimer);
+            if (opts.debouncedClickFun && 'function' == typeof opts.debouncedClickFun.cancel) opts.debouncedClickFun.cancel();
+            $(target).removeClass('l-btn-waiting');
+        }
+    }
     function setSelected(target, selected) {
         var opts = $.data(target, "linkbutton").options;
         if (selected) {
@@ -145,6 +186,14 @@
             return jq.each(function () {
                 setSelected(this, false);
             });
+        }, operationCompleted:function(jq){
+            return jq.each(function(){
+                _operationCompleted(this);
+            });
+        }, operationStart:function(jq){
+            return jq.each(function(){
+                _operationStart(this);
+            });
         }
     };
     $.fn.linkbutton.parseOptions = function (target) {
@@ -156,5 +205,7 @@
         id: null, disabled: false, toggle: false, selected: false, group: null, plain: false, text: "",iconImg:null, iconCls: null, iconAlign: "left", size: "small", onClick: function () {
         }, stopAllEventOnDisabled: false //cryze 禁用时,是否禁用其他方式绑定的事件
         , notTrans:false /*默认自动翻译*/
+        , clickWaitingTime:200 // wanghc 点击后按钮禁用毫秒数
+        , waitingAlert:'The button has been clicked and the system is responding. Please wait'
     };
 })(jQuery);

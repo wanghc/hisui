@@ -126,7 +126,11 @@
 .l-btn-disabled, 
 .l-btn-disabled:hover,
 .l-btn.hover-dark.l-btn-disabled:hover ,
-.l-btn.hover-dark.l-btn-disabled{
+.l-btn.hover-dark.l-btn-disabled,
+.l-btn-waiting,
+.l-btn-waiting:hover,
+.l-btn.hover-dark.l-btn-waiting:hover ,
+.l-btn.hover-dark.l-btn-waiting{
   opacity: 1.0;
   filter: alpha(opacity=100);
   background:@linkbutton-disabled-bgcolor;
@@ -136,7 +140,7 @@
     background-color: @linkbutton-disabled-icon-bgcolor;
   }
 }
-.l-btn-plain.l-btn-disabled {
+.l-btn-plain.l-btn-disabled,.l-btn-plain.l-btn-waiting {
   background-color: transparent;
   border-color: transparent;
   .l-btn-left {
@@ -240,38 +244,41 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
 .l-btn.l-btn-small{
     &.green{
       background-color: #2ab66a;
-      &.l-btn-disabled {
+      &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-disabled-bgcolor;
       }
     }
     &.green:hover,&.green.l-btn-focus{
       background-color: #239e5b;
-      &.l-btn-disabled {
+      &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-disabled-bgcolor;
       }
     }
     &.yellow{
       background-color: #ffb746;
-      &.l-btn-disabled {
+      &.l-btn-disabled ,&.l-btn-waiting{
         background:@linkbutton-disabled-bgcolor;
       }
     }
     &.yellow:hover,&.yellow.l-btn-focus{
       background-color: #ff9c00;
-      &.l-btn-disabled {
+      &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-disabled-bgcolor;
       }
     }
     &.red{
       background-color: #f16e57;
-      &.l-btn-disabled {
+      &.l-btn-disabled ,&.l-btn-waiting{
         background:@linkbutton-disabled-bgcolor;
       }
     }
     &.red:hover,&.red.l-btn-focus{
       background-color: #d35b46;
-      &.l-btn-disabled {
+      &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-disabled-bgcolor;
       }
     }
+}
+.l-btn-waiting .l-btn-icon{
+  background-image: url('images/loading.gif') !important;
 }

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2023-12-11
+- :sparkles: 实现`linkbutton`防抖功能(`clickWaitingTime`)
+
 ## 2023-11-25
 - tree支持多种json格式
 

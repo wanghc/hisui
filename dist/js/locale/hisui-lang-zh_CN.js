@@ -203,3 +203,6 @@ if ($.fn.radio){
 if ($.fn.checkbox){
 	$.fn.checkbox.defaults.missingMessage = '\u8be5\u9879\u4e3a\u5fc5\u9009\u9879';
 }
+if ($.fn.linkbutton){
+	$.fn.linkbutton.defaults.waitingAlert = '\u6309\u94ae\u5df2\u70b9\u51fb\u8fc7,\u7cfb\u7edf\u54cd\u5e94\u4e2d,\u8bf7\u7b49\u5f85...';
+}

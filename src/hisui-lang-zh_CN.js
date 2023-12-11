@@ -203,3 +203,6 @@ if ($.fn.radio){
 if ($.fn.checkbox){
 	$.fn.checkbox.defaults.missingMessage = '该项为必选项';
 }
+if ($.fn.linkbutton){
+	$.fn.linkbutton.defaults.waitingAlert = '按钮已点击过,系统响应中,请等待...';
+}
