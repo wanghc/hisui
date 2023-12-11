@@ -2966,13 +2966,16 @@
                         msg.css({ marginLeft: (-msg.outerWidth() / 2), lineHeight: (msg.height() + "px") });
                     }
                 }
+                if (opts.refLinkButton && $(opts.refLinkButton).length>0) $(opts.refLinkButton).linkbutton('operationStart');
             });
         }, loaded: function (jq) {
             return jq.each(function () {
+                var opts = $.data(this, "datagrid").options;
                 $(this).datagrid("getPager").pagination("loaded");
                 var _6a9 = $(this).datagrid("getPanel");
                 _6a9.children("div.datagrid-mask-msg").remove();
                 _6a9.children("div.datagrid-mask").remove();
+                if (opts.refLinkButton && $(opts.refLinkButton).length>0) $(opts.refLinkButton).linkbutton('operationCompleted');
             });
         }, fitColumns: function (jq) {
             return jq.each(function () {
@@ -3652,6 +3655,7 @@
         advanced2Btn: "Collapse",
         like: "like",
         defaultsColumns: null,
-        clearSelectionsOnload:false  /*load时清除选中信息*/
+        clearSelectionsOnload:false,  /*load时清除选中信息*/
+        refLinkButton:null
     });
 })(jQuery);
