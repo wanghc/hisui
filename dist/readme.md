@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2023-12-11
 - :sparkles: 实现`linkbutton`防抖功能(`clickWaitingTime`)
 - :sparkles: 实现`datagrid`联动按钮状态功能(`refLinkButton`)
+- :sparkles: `datagrid`选中头行同时也选中通过`mergedCell`合并的行 [4123477]
 
 ## 2023-11-25
 - tree支持多种json格式

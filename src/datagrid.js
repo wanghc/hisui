@@ -1555,49 +1555,79 @@
         }
         
     };
-    function _5cb(_5cc, _5cd, _5ce) {
-        var _5cf = $.data(_5cc, "datagrid");
+    /**
+     * 
+     * @param {Object} opts 
+     * @param {DomObject} target 
+     * @param {Number} rowIndex 
+     * @param {String} clsName  处理什么样式名 'datagrid-merged-row-selected'
+     * @param {Boolean} add     是增加样式还是删除样式 true
+     */
+    function _handerMergeddRow(opts,target,rowIndex,clsName,add){
+        // 合并行的记录也要选中
+        try{
+            if (opts.finder.getTr(target, rowIndex).children().hasClass('datagrid-td-merged')){
+                var tdfirst = opts.finder.getTr(target, rowIndex).children().eq(0); 
+                var rowspanCount = tdfirst.attr('rowspan');
+                if (rowspanCount>=2){
+                    for (var rowspanIndex=1; rowspanIndex <rowspanCount ;rowspanIndex++){
+                        if (add){
+                            opts.finder.getTr(target, parseInt(rowIndex)+parseInt(rowspanIndex)).addClass("datagrid-merged-row-selected");
+                        }else{
+                            opts.finder.getTr(target, parseInt(rowIndex)+parseInt(rowspanIndex)).removeClass("datagrid-merged-row-selected");
+                        }
+                    }
+                }
+            }
+        }catch(e){
+            
+        }
+    }
+    function _5cb(target, rowIndex, _5ce) {
+        var _5cf = $.data(target, "datagrid");
         var dc = _5cf.dc;
         var opts = _5cf.options;
         var _5d0 = _5cf.selectedRows;
         /*add onBeforeSelect event by wanghc 2018-05-23*/
-        var row = opts.finder.getRow(_5cc, _5cd); //提前
-        if (false === opts.onBeforeSelect.call(_5cc, _5cd,row)){
+        var row = opts.finder.getRow(target, rowIndex); //提前
+        if (false === opts.onBeforeSelect.call(target, rowIndex,row)){
             return ;
         }
         if (opts.singleSelect) {
-            _unselectAll(_5cc);
+            _unselectAll(target);
             _5d0.splice(0, _5d0.length);
         }
         if (!_5ce && opts.checkOnSelect) {
-            _5d2(_5cc, _5cd, true);
+            _5d2(target, rowIndex, true);
         }
         
         if (opts.idField) {
             _505(_5d0, opts.idField, row);
         }
-        opts.finder.getTr(_5cc, _5cd).addClass("datagrid-row-selected");
-        opts.onSelect.call(_5cc, _5cd, row);
-        _5c0(_5cc, _5cd);
+        opts.finder.getTr(target, rowIndex).addClass("datagrid-row-selected");
+        _handerMergeddRow(opts,target,rowIndex,"datagrid-merged-row-selected",true);
+        opts.onSelect.call(target, rowIndex, row);
+        _5c0(target, rowIndex);
     };
-    function _5d3(_5d4, _5d5, _5d6) {
-        var _5d7 = $.data(_5d4, "datagrid");
+    function _5d3(target, rowIndex, _5d6) {
+        var _5d7 = $.data(target, "datagrid");
         var dc = _5d7.dc;
         var opts = _5d7.options;
         /*add onBeforeUnselect event by wanghc 2018-05-23*/
-        var row = opts.finder.getRow(_5d4, _5d5); //提前
-        if (false === opts.onBeforeUnselect.call(_5d4, _5d5, row)){
+        var row = opts.finder.getRow(target, rowIndex); //提前
+        if (false === opts.onBeforeUnselect.call(target, rowIndex, row)){
             return ;
         }
-        var _5d8 = $.data(_5d4, "datagrid").selectedRows;
+        var _5d8 = $.data(target, "datagrid").selectedRows;
         if (!_5d6 && opts.checkOnSelect) {
-            _uncheckRow(_5d4, _5d5, true);
+            _uncheckRow(target, rowIndex, true);
         }
-        opts.finder.getTr(_5d4, _5d5).removeClass("datagrid-row-selected");  
+        opts.finder.getTr(target, rowIndex).removeClass("datagrid-row-selected");  
         if (opts.idField) {
             _503(_5d8, opts.idField, row[opts.idField]);
         }
-        opts.onUnselect.call(_5d4, _5d5, row);
+        _handerMergeddRow(opts,target,rowIndex,"datagrid-merged-row-selected",false);
+        opts.onUnselect.call(target, rowIndex, row);
     };
     function _5da(_5db, _5dc) {
         var _5dd = $.data(_5db, "datagrid");
