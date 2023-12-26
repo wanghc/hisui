@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2023-12-26
+- :sparkles: 增加`linkbutton`在极简下waiting样式
 
 ## 2023-12-11
 - :sparkles: 实现`linkbutton`防抖功能(`clickWaitingTime`)
