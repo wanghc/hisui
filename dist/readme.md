@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2023-12-27
+- :sparkles: `datagrid`隔行变色*#FAFAFA* [4092306]
+
 ## 2023-12-26
 - :sparkles: 增加`linkbutton`在极简下waiting样式
 
