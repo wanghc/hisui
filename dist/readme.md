@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-01-04
+- :bug: `lookup`输入#号会触发'数字选行功能'功能 [4140837]
+
 ## 2023-12-27
 - :sparkles: `datagrid`隔行变色*#FAFAFA* [4092306]
 

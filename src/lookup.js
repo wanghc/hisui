@@ -93,6 +93,8 @@
         var grid = _91c.grid;
         var panel = $(target).comboq("panel"); //state.panel;
         if (opts.isCombo && opts.enableNumberEvent){
+            if (e.shiftKey) return ;
+            if (e.ctrlKey) return ;
             var key = e.keyCode;
             if (isSelfGrid(_91c)&& panel.is(":visible")){  //只有显示状态下才是选行,否则为查询
                 var curtotals = grid.datagrid('getRows');
