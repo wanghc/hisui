@@ -78,6 +78,9 @@
     $hstepContainerSteps = $baseHtml.find(".vstep-container-steps"),
     arrayLength = 0,
 	$target = $(target);
+	if ($target.hasClass('vstep')){
+		$target.empty();
+	}
 	$target.addClass('vstep');
 	$baseHtml.addClass('vstep-lg').width($target.width());
     var items = opts.items;
