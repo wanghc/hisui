@@ -44,6 +44,11 @@
                 _424.timer = undefined;
             }
             _424.validating = false;
+            // 离开时再校验一次，
+            // if (opts.validateOnBlur) {}
+            setTimeout(function() {
+                $(_423).validatebox("validate");
+            }, 0);            
             _425(_423);
         }).bind("mouseenter.validatebox", function () {
             if (box.hasClass("validatebox-invalid")) {
