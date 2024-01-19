@@ -345,8 +345,11 @@
                         if (btn.type == 'input') {
                             var _myinput = $('<td><input class="' + btn.class + '" placeholder="' + btn.placeholder + '"/></td>').appendTo(tr);
                             _myinput.on('keydown',eval(btn.handler || function () {}));
+                        } else if (btn.type=="combobox"){
+                            var _myinput = $('<td><label class="'+btn.lclass+'">'+btn.label+'</label><input class="' + btn.iclass + '"/></td>').appendTo(tr);
+                            _myinput.find('input').eq(0).combobox(btn);
                         }
-                    } else {
+                    }else {
                         var td = $("<td></td>").appendTo(tr);
                         var tool = $("<a href=\"javascript:void(0)\"></a>").appendTo(td);
                         tool[0].onclick = eval(btn.handler || function () {

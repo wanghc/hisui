@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-01-19
+- :sparkles: `datagrid`工具栏支持显示`combobox`
+
 ## 2024-01-12
 - :bug: 在`validatebox`必填输入框中输入文字后，快速`tab`键,文本框并不检验 [4010205]
 
