@@ -1,0 +1,143 @@
+@import "variables.less";
+/*2018-6-28 增大图标与左边间距*/
+/*默认禁用所有panel的header上的icon*/
+.panel-icon {
+  width: 0px;
+}
+.showicon {
+  .panel-icon {
+    left: 10px;
+    width: 16px;
+    font-family: "Mw_mifonts";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: normal;
+  }
+  .panel-title.panel-with-icon{
+    padding-left:32px;
+  }
+}
+
+.panel-title {
+  background-image: none;
+}
+
+.panel-header,
+.panel-body {
+  border-color: @panel-border-color;
+}
+.panel-header {
+  background:@panel-header-bgcolor;
+  filter: none;
+  padding: @panel-header-padding;
+  border-radius: 4px 4px 0 0;
+}
+.panel-status-collapse .panel-header {
+  border-radius: 4px;
+}
+.panel-body {
+  font-size: @panel-body-font-size;
+  border-radius: 0 0 4px 4px;
+  border-top-color: @panel-header-bgcolor;
+  background-color: @panel-body-bgcolor;
+  color:#000;
+}
+.panel-body.panel-body-noheader {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border-top-color: @panel-border-color;
+}
+.panel-title {
+  font-size: @panel-title-font-size;
+  font-weight: bold;
+  color: @panel-title-font-color;
+  height: @panel-title-height;
+  line-height: @panel-title-height;
+  padding-left: 5px;
+}
+.panel-title.panel-with-icon {
+  padding-left: 5px;
+}
+.panel-header .panel-tool a{
+  font-size: 10px;
+  line-height: 16px;
+  height: 16px;
+  width: 16px;
+  margin-left: 10px; /*间距修改 2944142*/
+}
+.panel-tool-close::before {
+  content: @content-close;
+  //background: url('images/panel_tools_1.png') no-repeat -16px 0px;
+}
+.panel-tool-min::before {
+  content: @content-min;
+  //background: url('images/panel_tools_1.png') no-repeat 0px 0px;
+}
+.panel-tool-max::before{
+  content: @content-max;
+  //background: url('images/panel_tools_1.png') no-repeat 0px -16px;
+}
+.panel-tool-restore::before {
+  content: @content-restore;
+  //background: url('images/panel_tools_1.png') no-repeat -16px -16px;
+}
+.panel-tool-collapse::before {
+  content: @content-up;
+  //background: url('images/panel_tools_1.png') no-repeat -32px 0;
+}
+.panel-tool-expand::before {
+  content: @content-down;
+  //background: url('images/panel_tools_1.png') no-repeat -32px -16px;
+}
+
+.panel-tool a:hover {
+  color:@main-hover-color;
+  background-color: #f5f5f5;
+}
+.panel-tool a.panel-tool-close:hover {
+  color:#fF0000;
+}
+
+
+//由于加了圆角，其他继承panel的都会出现，在此再修改回去
+.panel.lookup-p,
+.panel.combo-p,
+.panel.window,
+.layout>.panel,
+.accordion>.panel,
+.tabs-panels>.panel
+{
+  &>.panel-header{
+    padding: 5px 5px;
+    border-color:@panel-border-color;
+  }
+  &>.panel-body{
+    border-color:@panel-border-color;
+  }
+}
+.layout>.panel{
+  &>.panel-header{
+    border-color:@panel-border-color;
+  }
+  &>.panel-body{
+    border-color:@panel-border-color;
+  }
+}
+.panel .panel-body.panel-body-noborder{
+  border-color:@panel-header-bgcolor;
+}
+
+ /*自适应layout在医为浏览器会出现横纵滚动条问题，且滚动幅度刚好为滚动条宽度
+* 应该是宽高计算正确了，但是横纵滚动条互相影响就互相出现了，将类panel-scroll禁止滚动
+* 原来设计上panel-noscroll也是禁止滚动，但是莫名的panel-body的优先了
+ */
+ .panel-body.panel-noscroll {
+  overflow: hidden;
+}

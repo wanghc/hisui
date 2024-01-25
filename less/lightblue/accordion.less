@@ -1,0 +1,65 @@
+@import "variables.less";
+.accordion .accordion-header-selected {
+  background: @accordion-header-select-bgcolor;
+}
+.accordion .accordion-header-selected .panel-title {
+  color: @accordion-title-font-color;
+}
+.accordion {
+  &.accordion-noborder .panel:first-child .accordion-header{
+    border-radius: 4px 4px 0 0;
+  }
+  &.accordion-noborder .panel:last-child .accordion-header.accordion-header-selected{
+    border-radius: 0;
+    border-bottom: 0px
+  }
+  /* 展开时使用body的下边框, 收起时使用header的下边框*/
+  &.accordion-noborder .panel:last-child .accordion-body,&.accordion-noborder .panel:last-child .accordion-header{
+    border-radius: 0 0 4px 4px;
+    border-bottom: 1px solid @accordion-body-border; /* 奇怪这一像素不能显示*/
+  }
+  .accordion-body {
+    border-radius:0;
+    border: 1px solid @accordion-body-border;
+    border-bottom: 0px;
+    background-color: @accordion-body-bgcolor;
+    color: @accordion-body-color;
+  }
+  .accordion-header{
+    border-radius:0;
+    padding: 6px;
+    border: 1px @accordion-body-border solid;
+    border-bottom: 0px;
+    background: @accordion-header-bgcolor;
+    filter: none;
+    .panel-title{
+      padding-left: 5px;
+      color: @accordion-title-font-color;
+    }
+    // .panel-with-icon{  //20230118 手风琴默认不带图标
+    //   padding-left: 31px;
+    // }
+    .panel-icon{
+      left: 10px;
+    }
+    .panel-tool{
+      margin-top: -11px;
+      height: 22px;
+      a {
+        display: inline-block;
+        width: 22px;
+        height: 16px;
+        vertical-align: middle;
+        margin: 0;
+      }
+      .accordion-collapse::before {
+        content: @content-up;
+        //background: url(images/accordion_arrows-black.png) no-repeat -22px 0;
+      }
+      .accordion-expand::before {
+        content: @content-down;
+        //background: url(images/accordion_arrows-black.png) no-repeat 0 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,200 @@
+@import "variables.less";
+.l-btn-plain.m-btn .l-btn-text{
+  color:#000000;
+}
+.m-btn-downarrow, .s-btn-downarrow {
+  color:#ffffff;
+}
+.l-btn-plain .m-btn-downarrow,.l-btn-plain .s-btn-downarrow {
+  color:#7E7E7E;
+}
+.l-btn.m-btn-active{
+  background: #006FD2;
+  border: 0px solid #006FD2;
+}
+.l-btn.l-btn-plain.m-btn-active{
+  background: #EFF9FF;
+  border: 0px solid #EFF9FF;
+}
+.m-btn {
+  .l-btn-text{
+    // color:#000000;
+    min-width:40px;
+    line-height: 28px;  //[2855848]  // [3791837] - 26px->28px
+  }
+  .l-btn-left{
+    .l-btn-text{
+      margin-right: 16px;
+      margin-left: 0px;
+      padding-left: 8px;
+    }
+    &.l-btn-icon-left .l-btn-text{
+      margin-right: 16px;
+      margin-left: 24px;
+      padding-right: 6px;
+      padding-left: 5px;
+    }
+    .m-btn-line {
+      width: 24px;
+    }
+  }
+}
+.l-btn .m-btn-downarrow,
+.l-btn .s-btn-downarrow {
+  width: @linkbutton-height;
+  height: @linkbutton-height;
+  &::before{
+    content: @content-downfill;
+  }
+}
+.m-btn-plain-active,
+.s-btn-plain-active {
+  -moz-border-radius: 0; 
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.m-btn-plain-active{
+  background-color:@menubutton-btn-hover-bgcolor;
+  .l-btn-left .l-btn-text,.l-btn-icon{
+    color:@linkbutton-plain-hover-color;
+  }
+  .m-btn-downarrow{
+    color:@linkbutton-plain-hover-color;
+  }
+}
+
+/*ie11加了兼容模式后,
+  内核成ie7
+  .menubutton-blue.l-btn.l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+  会选中 .l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+
+*/
+.l-btn.l-btn-plain.menubutton-blue{
+  border: 0;
+  padding: 0;
+  background-color:@menubutton-blue-bgcolor;
+  &:hover{
+    background-color:@menubutton-blue-bgcolor-hover;
+  }
+  &.m-btn-plain-active{ /*展开时一直保持底色*/
+    background-color:@menubutton-blue-bgcolor-hover;
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      color: #fff;
+      margin-left: 0;
+      padding-left:10px;
+    }
+    .l-btn-icon{
+      display: none;
+    }
+    .m-btn-downarrow{
+      color:#FFFFFF;
+      &::before{
+        content: @content-downfill;
+      }
+      //background: url(images/arrow_down_white.png) center 8px no-repeat;
+    }
+  }
+}
+///不改原本之前的了 设计图上的蓝色的 在顶层有类 menubutton-blue
+  //菜单
+.menu.menubutton-blue{
+  border-radius: 0;
+  .menu-item{
+    background-color:@menubutton-blue-menu-item-bgcolor;
+    height: 30px;
+    border-bottom: 1px solid @menubutton-blue-border-bottom-color;
+    &:hover{
+      background-color:@menubutton-blue-menu-item-hover;
+    }
+    .menu-text{
+      color: #fff;
+      padding-left: 10px;
+      line-height: 30px;
+    }
+    .menu-icon{
+      display: none;
+    }
+  }
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    display: none;
+  }
+}
+//按钮
+.l-btn.l-btn-plain.menubutton-toolbar{
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  &:hover{
+    background-color:@menubutton-btn-hover-bgcolor;
+  }
+  &.m-btn-plain-active{
+    background-color:@menubutton-btn-hover-bgcolor;
+    .l-btn-left .l-btn-text,.l-btn-icon{
+      color:@linkbutton-plain-hover-color;
+    }
+    .m-btn-downarrow{
+      color:@linkbutton-plain-hover-color;
+    }
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      line-height: 26px;
+      padding: 0 26px 0 31px;
+      margin: 0 0 0 ;
+      color: #666666;
+    }
+    .l-btn-icon{
+      // left:4px;
+      height: 16px;
+      width: 16px;
+      line-height:16px;
+      padding:5px 5px 5px 8px
+    }
+    .m-btn-downarrow{
+      height: 16px;
+      width:  16px;
+      right: 10px;
+      &::before{
+        content: @content-downfill;
+      }
+    }
+  }
+}
+//toolbar 
+  //菜单
+.menu.menubutton-toolbar{
+  .menu-item{
+    background-color: #fff;
+    height: 35px; /*26px*/
+    border: 0px; 
+    &:hover{
+      background-color:@menubutton-menu-item-hover-bgcolor;
+    }
+    .menu-text{
+      color: #000;
+      padding-left: 10px; /*10px*/
+      line-height: 35px; /*26px*/
+    }
+    .menu-icon{
+      display: none;
+    }
+  }
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    margin-left: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom:0px;
+  }
+}

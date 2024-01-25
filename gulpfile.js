@@ -75,7 +75,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite2def','pic-en-css','pic-lite-en-css'],function(){
+gulp.task('min-css',['min-css-lite2def','min-css-lblue','pic-en-css','pic-lite-en-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -107,6 +107,22 @@ gulp.task('min-css-lite2def',function(){
     .pipe(gulp.dest("dist/css"))
     .pipe(minifycss())                  //压缩css
     .pipe(rename('hisui.lite.min.css'))      //命名
+        .pipe(gulp.dest("dist/css"));
+})
+gulp.task('min-css-lblue',function(){
+    var lessPath = "less/lightblue/";
+    var arr =[].concat(lessArr,['beautyscroll']) ;
+    arr.forEach(function(value,index){
+        arr[index]=lessPath+value+".less";
+    })
+    return gulp.src(arr)
+    .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
+    .pipe(gulp.dest("less/lightblue"))            //保存到less目录
+    .pipe(less())                       //less编译
+    .pipe(rename('hisui.lightblue.css'))
+    .pipe(gulp.dest("dist/css"))
+    .pipe(minifycss())                  //压缩css
+    .pipe(rename('hisui.lightblue.min.css'))      //命名
         .pipe(gulp.dest("dist/css"));
 })
 gulp.task('pic-en-css',function(){

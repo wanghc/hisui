@@ -1,0 +1,54 @@
+.datagrid-footer-inner, .datagrid-header, .datagrid-pager, .datagrid-toolbar{
+  border-color: @datagrid-toolbar-border-color;
+}
+.datagrid-toolbar{
+  background: @datagrid-toolbar-bgcolor;
+}
+.datagrid-pager {
+  background: @datagrid-pager-bgcolor;
+}
+.pagination span.l-btn-text.l-btn-empty {
+  line-height: 24px;
+  width: 16px;
+  min-width: 16px;
+  margin:0 4px;
+}
+.pagination .l-btn-plain .l-btn-icon-left .l-btn-icon{
+  text-align: center;
+  vertical-align: top;
+  width: 14px;
+  height: 14px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.pagination span.l-btn-icon {
+  width: 16px;
+  height: 16px;
+  background-image: none;
+  padding-left: 5px;/*20220925 向右偏太多*/
+  &.pagination-first::before{
+    content: @content-pagination-first;
+  }
+  &.pagination-prev::before{
+    content: @content-pagination-prev;
+  }
+  &.pagination-next::before{
+    content: @content-pagination-next;
+  }
+  &.pagination-last::before{
+    content: @content-pagination-last;
+  }
+  &.pagination-load::before{
+    content: @content-pagination-load;
+  }  
+}
+.pagination .l-btn-plain .l-btn-icon-left .l-btn-text.l-btn-empty {
+  margin:0 0 0 9px ;
+}
+.pagination .pagination-num{ //[3241479]
+  &:active,&:focus,&:hover{
+    background-color: @validatebox-focus-bgcolor;
+    border-color: @input-active-border-color;
+  }
+}
+

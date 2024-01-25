@@ -1,0 +1,85 @@
+@import "variables.less";
+/*
+width可以改变右边滚动条的宽度
+height可以改变下边滚动条的高度
+*/
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    box-sizing: border-box;
+}
+
+/*
+设置了滚动条按钮的样式图标
+*/
+::-webkit-scrollbar-button{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAUCAMAAADm3a4bAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABdUExURUxpcWm4/2q6/2q4/2e4/3C//2q3/2m5/zKe/zGe/2m6/2q4/2m4/zKe/y+e/zOe/zCf/zKd/zOd/zCf/zKe/2q9/zGe/2m3/2q3/2q4/2m4/2q3/zOe/2q4/zOe/yg6GkYAAAAddFJOUwDwMM9pEGBmmZ6kkKDYVc8QYPAwjDq/wICw0OCwDjua7QAAAUxJREFUeNqllNtugzAQBZebjQsBDA5J2tj//5k527MiD30IUv2ARxoNEqsV8j7X1utprzKFXk+YTltpjzsYhdNW/HH3Rv0J242daZDpJSyn4q7JjdbeSPUyl3lR7Zzw4Y1gYwTF2LP9QQNtBI32ghq6yk5crmCNYNcSJZZV4+88ypgbaCPouQQJZYauqzzmqoY1gt3WEsq6aTwM+rhDG0GnBEoJGrW2sEawsq1ocX8eSX2rzYLMbvsmH+NT9v9L0n7xtNN++T37dMZ2jVNt1AbAMke+2jUdYyO1ETsAa23WOXsj32tbEj9qyKy9kdrEDbJ2pCZBow1iemTtjTSWgJr2kW/CmAT9LPt7nLf8YKzEWPbypK2xeIxJ0JtuoMXOloTEONqCvWtPUs26P1q1JFi2aq2+6xxJOk+tE+c5sIUlqU1oaf/+aI7/zCf7AkEMGOis8y9oAAAAAElFTkSuQmCC);
+    background-color: @scrollbar-bgcolor;
+    background-repeat: no-repeat;
+}
+::-webkit-scrollbar-button:vertical:decrement {
+    width: 8px;
+    height: 10px;
+    background-position-x: -1px;
+    background-position-y: 0;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+::-webkit-scrollbar-button:vertical:increment {
+    width: 8px;
+    height: 10px;
+    background-position-x: -31px;
+    background-position-y: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+::-webkit-scrollbar-button:horizontal:decrement { /*左边箭头*/
+    width: 8px;
+    height: 8px;
+    background-position-x: 0px;
+    background-position-y: -11px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+::-webkit-scrollbar-button:horizontal:increment {
+    width: 8px;
+    height: 8px;
+    background-position-x: -30px;
+    background-position-y: -11px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/*
+corner角落的意思，可以改变Y滚动条与X滚动条交叉的右下角的样式
+*/
+::-webkit-scrollbar-corner {
+    background-color: #6ab8ff;
+    border-radius: 1px;
+}
+
+/*
+这就是滚动条的样式了
+*/
+::-webkit-scrollbar-thumb {
+    background-color: @scrollbar-btn-bgcolor;
+    border-radius: 4px;
+    border-width:0 ;
+}
+
+/*
+悬浮时
+*/
+::-webkit-scrollbar-thumb:hover {
+    background-color: #AFCEDE;
+    border-radius: 4px;
+    border-width:0 ;
+}
+/*
+滚动条空白处的样式
+*/
+::-webkit-scrollbar-track-piece {
+    background-color: @scrollbar-bgcolor;
+    //border-radius: 4px;
+    border-width:0 ;
+}

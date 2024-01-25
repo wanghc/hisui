@@ -1,0 +1,74 @@
+@import "variables.less";
+.spinner {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+  -moz-border-radius: @input-border-radius;
+  -webkit-border-radius: @input-border-radius;
+  border-radius: @input-border-radius;
+  .spinner-arrow {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff;
+    .spinner-arrow-hover {
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      color:@input-active-border-color;
+      background-color: #d5eefe;
+    }
+  }
+  &:hover,&.spinner-hover{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  /*20221010 disabled样式覆盖:hover样式*/
+  &.disabled{
+    background-color: @input-disabled-bgcolor;
+    border-color: @input-disabled-border-color;
+    .spinner-arrow {
+      background-color: @main-disabled-bgcolor;
+      .spinner-arrow-up {
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-iconbtn-disabled-color;
+      }
+      .spinner-arrow-down {
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-iconbtn-disabled-color;
+      }
+    }
+  }
+}
+
+.spinner .spinner-text {
+  font-size: @spinner-font-size;
+  border: 0px;
+  line-height: @spinner-line-height;
+  height: @spinner-line-height;
+  margin: 0;
+  padding: 0 0 0 5px;
+  *margin-top: -1px;
+  *height: @spinner-line-height-min;
+  *line-height: @spinner-line-height-min;
+  _height: @spinner-line-height-min;
+  _line-height: @spinner-line-height-min;
+  vertical-align: baseline;
+}
+
+
+.spinner-arrow-up::before{
+  content: "\f477";
+}
+.spinner-arrow-down::before{
+  content: "\f476";
+}
+.spinner {
+  border-color: @input-border-color;
+}

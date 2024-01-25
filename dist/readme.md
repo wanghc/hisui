@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2024-01-25
 - :bug: 解决html中data-options中包含//导致程序报错问题
+- 浅蓝色风格实现
 
 ## 2024-01-19
 - :sparkles: `datagrid`工具栏支持显示`combobox`

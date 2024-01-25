@@ -1,0 +1,95 @@
+@import "variables.less";
+.layout-expand-body-title>div{
+  text-align: center;
+  font-weight: bold;
+  color:@panel-title-font-color; /*收起时竖向文字不显示问题*/
+}
+/*改为只控制其子级panel-header 的panel-tool  不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel>.panel-header,.layout-expand>.panel-header{ 
+  .panel-tool a:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+  }
+} 
+
+.layout-split-north {
+  border-bottom: 5px solid @layout-split-border;
+}
+.layout-split-south {
+  border-top: 5px solid @layout-split-border;
+}
+.layout-split-east {
+  border-left: 5px solid @layout-split-border;
+}
+.layout-split-west {
+  border-right: 5px solid @layout-split-border;
+}
+
+
+//默认的layout expand
+.layout-expand {
+  background-color:@panel-header-bgcolor;
+}
+.layout-expand-over {
+  background-color: @panel-header-bgcolor;
+}
+.layout-button-right::before{
+  content: @content-right2;
+}
+.layout-button-left::before{
+  content: @content-left2;
+}
+.layout-button-up::before{
+  content: @content-up2;
+}
+.layout-button-down::before{
+  content: @content-down2;
+}
+/*改为只控制其子级panel-header 的panel-tool 不让其影响放在layout区域下面的panel cryze 2018-10-20*/
+.layout-panel>.panel-header.panel-header-gray,
+.layout-expand>.panel-header.panel-header-gray{
+  .panel-tool a:hover{
+    background-color: #e5e5e5;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+  }
+}
+.layout-expand{
+  .panel-header.panel-header-gray{
+    background-color: #f9f9fa;
+
+  }
+  .panel-header-gray+.panel-body{
+    background-color: #f9f9fa;
+    .layout-expand-body-title>div{
+      text-align: center;
+      font-weight: bold;
+      color:#000;
+    }
+  }
+}
+
+.layout>.panel.layout-panel>.panel-header{
+    padding: 4px 5px;
+}
+
+/*
+.layout-expand {
+  background-color: #F7F7F7;
+}
+.layout-expand-over {
+  background-color: #F9F9FF;
+}
+.layout-expand {
+  .panel-body{
+    border-color:#cccccc;
+  }
+  .panel-header{
+    border-color: #cccccc;
+  }
+}
+
+}*/

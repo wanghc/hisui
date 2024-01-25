@@ -1,0 +1,30 @@
+.s-btn:hover .m-btn-line,
+.s-btn-active .m-btn-line,
+.s-btn-plain-active .m-btn-line {
+  display: inline-block;
+}
+.l-btn:hover .s-btn-downarrow,
+.s-btn-active .s-btn-downarrow,
+.s-btn-plain-active .s-btn-downarrow {
+  border-style: solid;
+  border-color: #aac5e7;
+  border-width: 0 0 0 1px;
+}
+.s-btn{
+  .l-btn-left{
+    &.l-btn-icon-left .l-btn-text{
+      padding-right: 16px;
+    }
+  }
+}
+.l-btn-plain.m-btn:hover .l-btn-left{
+  .l-btn-text{
+    color:@linkbutton-plain-hover-color;
+  }
+  .m-btn-downarrow{
+    color:@linkbutton-plain-hover-color;
+  }
+}
+.menubutton-blue.l-btn-plain.m-btn:hover .l-btn-left .l-btn-text{
+  color:#ffffff;
+}

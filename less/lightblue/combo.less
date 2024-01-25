@@ -1,0 +1,84 @@
+@import "variables.less";
+.combo .combo-text {
+  font-size: @combo-font-size;
+  border:0; //px solid transparent;
+  line-height: @combo-input-line-height;
+  height: @combo-input-line-height;
+  padding: 0px 0px 0px @combo-padding-left;
+  *height:  @combo-input-line-height-ie8;
+  *line-height:  @combo-input-line-height-ie8;
+  _height: @combo-input-line-height-ie8;
+  _line-height: @combo-input-line-height-ie8;
+  
+}
+.combo .combo-arrow::before{
+  content: "\f476";
+}
+.combotree-f + .combo .combo-arrow::before {
+  content: "\f475";
+}
+.combo,
+.combo-panel {
+  background-color: @combo-bgcolor;
+}
+.combo {
+  border-radius: 2px;
+  border-color: @input-border-color;
+  background-color: @combo-bgcolor;
+  &.combo-p-active{
+    border-color: @input-active-border-color;
+    background-color: @input-active-bgcolor;
+    .combo-text{
+      background-color: @input-active-bgcolor;
+    }
+    .combo-arrow{
+      color:@input-active-border-color;  /*2891835*/
+    }
+  }
+  &:hover,&.combo-hover{
+    border-color: @input-active-border-color;
+    background-color: @input-active-bgcolor;
+  }
+}
+
+
+
+
+/* focus-widthin--ie11也没支持，chrome可以
+.combo:focus-within{
+  border-color: @input-border-focus-color;
+}*/
+.combo-arrow.combo-arrow-hover {
+  opacity: @input-arrow-hover-opacity;
+  filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+  background-color: @input-arrow-hover-bgcolor;
+  color: @input-active-border-color;
+}
+
+.combo.disabled{
+  border-color: @main-disabled-border-color;
+  .combo-arrow{
+    background-color: @main-disabled-bgcolor;
+    color: @input-iconbtn-disabled-color;
+  }
+}
+
+.panel.combo-p > .combo-panel{
+  border-color: @combo-panel-border-color;
+}
+
+.panel.combo-p{
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+  &.combo-p-top{
+    border-radius: 4px 4px 0 0;
+    .combo-panel{
+      border-radius: 4px 4px 0 0;
+    }
+  }
+  &.combo-p-bottom{
+    border-radius: 0 0 4px 4px;
+    .combo-panel{
+      border-radius: 0 0 4px 4px;
+    }
+  }
+}
