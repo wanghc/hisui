@@ -342,7 +342,7 @@
             var s = $.trim(t.attr('data-options'));
             if (s) {
                 if (s.substring(0, 1) != "{") {
-                    s = "{" + s + "}";
+                    s = "{" + s +"\n"+ "}";  // 增加\n 兼容options的注释最后一行代码问题，//,required:true
                 }
                 options = (new Function('return ' + s))();
             }
