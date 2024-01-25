@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>放大镜</title>
-	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.min.css">
 	<script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
 	<script type="text/javascript" src="../../src/lookup.js"></script>
@@ -33,7 +33,7 @@
 		<script type='text/javascript' class="use-prettyprint">
 			$(function(){
 				$("#group").lookup({
-					width:200,panelWidth:746,
+					width:200,panelWidth:736,
 					url:'getGroup',
 					mode:'remote',
 					idField:'HIDDEN',
@@ -74,7 +74,7 @@
 					// disabled:true,
 					// readOnly:true,
 					// hasDownArrow:false,
-					width:200,panelWidth:446,
+					width:200,panelWidth:436,
 					url:'getLoc',
 					mode:'remote',
 					idField:'HIDDEN',
@@ -125,7 +125,7 @@
 						]];
 					},
 					pagination:true,
-					panelWidth:446,
+					panelWidth:436,
 				});
 				$('.op-btn').linkbutton({
 					onClick:function(){
@@ -154,7 +154,7 @@
 		<script type='text/javascript' class='use-prettyprint'>
 			$(function(){
 				$("#group2").lookup({
-					width:200,panelWidth:446,
+					width:200,panelWidth:436,
 					url:'getGroup',
 					mode:'remote',
 					idField:'HIDDEN',
@@ -195,7 +195,7 @@
 					}
 				});
 				$("#group3").lookup({
-					width:200,panelWidth:446,
+					width:200,panelWidth:436,
 					url:'getGroup',
 					mode:'remote',
 					idField:'HIDDEN',
