@@ -1,16 +1,16 @@
 @import "variables.less";
 
 /**蓝色根节点**/
-@menutree-blueroot-bgcolor:#ffffff;
-@menutree-blueroot-root-bgcolor:#f8f8f8;  
-@menutree-blueroot-node-hover-bgcolor:#f8f8f8;  
+@menutree-blueroot-bgcolor:@panel-body-bgcolor;
+@menutree-blueroot-root-bgcolor:@panel-header-bgcolor;  
+@menutree-blueroot-node-hover-bgcolor:@panel-header-bgcolor;  
 /**蓝色标题 灰色根节点**/
-@menutree-title-bgcolor:#f8f8f8;
-@menutree-root-bgcolor:#f8f8f8;
-@menutree-root-hover-bgcolor:#f8f8f8;
-@menutree-node-hover-bgcolor:#e5f3ff;
-@menutree-node-hover-color:#339eff;
-@menutree-min-root-hover-bgcolor:#339eff;
+@menutree-title-bgcolor:@panel-header-bgcolor;
+@menutree-root-bgcolor:@panel-header-bgcolor;
+@menutree-root-hover-bgcolor:@panel-header-bgcolor;
+@menutree-node-hover-bgcolor:@panel-header-bgcolor;
+@menutree-node-hover-color:#000000;
+@menutree-min-root-hover-bgcolor:@panel-header-bgcolor;
 
 @menutree-search-bg:url('images/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
 @menutree-expanded-bg:url('images/menutree.png') -176px center no-repeat; /* 176-192 向左折叠*/
@@ -70,7 +70,7 @@
     margin-bottom: 4px;
     text-align: center;
     background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    border: 1px solid @panel-header-bdcolor;
     border-radius: 4px;
 
     .menutree-collapse {
@@ -104,7 +104,7 @@
   }
 
   .menutree-tree-wrap {
-    border: 1px solid #e2e2e2;
+    border: 1px solid @panel-header-bdcolor;
     border-radius: 4px;
     background-color: @menutree-blueroot-bgcolor;
     overflow: auto;
@@ -120,7 +120,7 @@
           font-weight: bold;
           color: #000000;
           position: relative;
-          border-bottom: 1px solid #e2e2e2;
+          border-bottom: 1px solid @panel-header-bdcolor;
 
           .tree-hit {
             position: absolute;
@@ -164,7 +164,7 @@
 
         &>ul {
           background-color: transparent;
-          border-bottom: 1px solid #e2e2e2;
+          border-bottom: 1px solid @panel-header-bdcolor;
 
           .tree-node {
             padding-left: 16px;
@@ -333,7 +333,7 @@
             font-weight: bold;
             color: #000000;
             position: relative;
-            border-bottom: 1px solid #e2e2e2;
+            border-bottom: 1px solid @panel-header-bdcolor;
   
             .tree-hit {
               position: absolute;
@@ -377,7 +377,7 @@
   
           &>ul {
             background-color: transparent;
-            border-bottom: 1px solid #e2e2e2;
+            border-bottom: 1px solid @panel-header-bdcolor;
   
             .tree-node {
               padding-left: 16px;
@@ -601,7 +601,7 @@
             font-weight: normal;
             color: #000000;
             position: relative;
-            border-bottom: 1px solid #e2e2e2;
+            border-bottom: 1px solid @panel-header-bdcolor;
             font-weight: bold;
   
             .tree-hit {
