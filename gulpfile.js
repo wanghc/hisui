@@ -137,6 +137,8 @@ gulp.task('pic-lite-en-css',function(){
     .pipe(less())                       //less编译
     .pipe(minifycss())                  //压缩css
     .pipe(rename('hisui.lite.en.css'))      //命名
+    .pipe(gulp.dest("dist/css/locale"))
+    .pipe(rename('hisui.lightblue.en.css'))      //命名
     .pipe(gulp.dest("dist/css/locale"));
 })
 // gulp.task('lite2def',['min-js','min-css-lite2def']);
