@@ -2776,16 +2776,19 @@
                 } else {
                     return $(_688).combobox("getValue");
                 }
-            }, setValue: function (_689, _68a) {
+            }, setValue: function (_689, val) {
                 var opts = $(_689).combobox("options");
                 if (opts.multiple) {
-                    if (_68a) {
-                        $(_689).combobox("setValues", _68a.split(opts.separator));
+                    if (val) {
+                        if ('string'==typeof val & val){
+                            val = val.split(opts.separator);
+                        }
+                        $(_689).combobox("setValues",val);
                     } else {
                         $(_689).combobox("clear");
                     }
                 } else {
-                    $(_689).combobox("setValue", _68a);
+                    $(_689).combobox("setValue", val);
                 }
             }, resize: function (_68b, _68c) {
                 $(_68b).combobox("resize", _68c);

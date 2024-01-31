@@ -34,7 +34,12 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
-
+## 2024-01-31
+- `editgrid`中`combobox`赋值为`Array`
+```json
+{"comboValue":"val1,val2,val3"}
+{"comboValue":["val1","val2","val3"]}  // 新增加功能
+```
 ## 2024-01-25
 - :bug: 解决html中data-options中包含//导致程序报错问题
 - 浅蓝色风格实现
