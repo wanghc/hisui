@@ -484,29 +484,32 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 &lt;style> .dg6-header-row0{ height: 20px;} .dg6-header-row1{ height: 40px;} .dg6-header-row2{ height: 60px;} &lt;/style>
 &lt;table id="dg6">&lt;/table></code></pre>
 		<script type="text/javascript" class="use-prettyprint">
-		$('#dg6').datagrid({
-			title:'地区',
-			height:'200',
-			columns:[
-				[
-					{title:'行序号',align:'left',halign:'center',rowspan:3}	
-					,{title:'地区',align:'left',halign:'center',colspan:9}
-				],[
-					{title:'北京',field:'bj', align:'left',halign:'center',colspan:3},
-					{title:'上海',field:'sh', align:'left',halign:'center',colspan:3},
-					{title:'南昌',field:'nc', align:'left',halign:'center',colspan:3}
-				],[
-					{title:'朝阳区',field:'bjzy', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'海淀区',field:'bjhd', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'昌平区',field:'bjzp', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'虹口区',field:'bjhk', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'徐汇区',field:'bjxf', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'宝山区',field:'bjbs', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'西湖区',field:'bjsf', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'红谷滩新区',field:'bjhgt', align:'left',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'高新区',field:'bjgx', align:'left',halign:'center',sortable:true,order:'asc',width:82}
+		$(function(){
+			$('#dg6').datagrid({
+				title:'地区',
+				height:'200',
+				columns:[
+					[
+						{title:'行序号',align:'left',halign:'center',rowspan:3}	
+						,{title:'地区',align:'left',halign:'center',colspan:9}
+					],[
+						{title:'北京',field:'bj', align:'left',halign:'center',colspan:3},
+						{title:'上海',field:'sh', align:'left',halign:'center',colspan:3},
+						{title:'南昌',field:'nc', align:'left',halign:'center',colspan:3}
+					],[
+						{title:'朝阳区',field:'bjzy', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'海淀区',field:'bjhd', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'昌平区',field:'bjzp', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'虹口区',field:'bjhk', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'徐汇区',field:'bjxf', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'宝山区',field:'bjbs', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'西湖区',field:'bjsf', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'红谷滩新区',field:'bjhgt', align:'left',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'高新区',field:'bjgx', align:'left',halign:'center',sortable:true,order:'asc',width:82}
+					]
 				]
-			]});
+			});
+		}) 
 		</script>
 	</div>
 	<h3>七、行高适应示例(nowrap为false实现, false时性能下降)</h3>
