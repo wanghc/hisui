@@ -39,7 +39,7 @@
 }</code></pre></h4>
 	<h3>如：默认表格(hisui-datagrid)</h3>	
 	<div class="demo-exp-code entry-content">
-		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fixRowNumber:true,rownumbers:true,headerCls:'panel-header-gray',toolbar: [],fitColumns:true,singleSelect:true,pagination:true">
+		<table class="hisui-datagrid" title="病人列表" style="width:800px;height:400px" data-options="fixRowNumber:true,rownumbers:true,headerCls:'panel-header-gray',toolbar: [],fitColumns:true,singleSelect:true,pagination:true">
 			<thead>   
 				<tr>   
 					<th data-options="field:'code',width:20">编码</th>   
@@ -482,6 +482,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 				title:'地区',
 				height:'400',width:1000,
 				bodyCls:'table-splitline',
+				autoSizeColumn:true,fitColumns:true,
 				toolbar:[],
 				columns:[
 					[
@@ -500,7 +501,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 						{title:'宝山区',field:'bjbs', align:'center',halign:'center',sortable:true,order:'asc',width:82},
 						{title:'西湖区',field:'bjsf', align:'center',halign:'center',sortable:true,order:'asc',width:82},
 						{title:'红谷滩新区',field:'bjhgt', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-						{title:'高新区',field:'bjgx', align:'center',halign:'center',sortable:true,order:'asc',width:82}
+						{title:'高新区',field:'bjgx', align:'center',halign:'center',sortable:true}
 					]
 				],data:{total:5,rows:[
 					{no:1,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
