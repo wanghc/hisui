@@ -397,17 +397,22 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 	</div>
 	<h3>四、定制翻页条</h3>
 	<div class="demo-exp-code entry-content">
-		<table class="hisui-datagrid" style="width:600px;height:50px" 
-		data-options="headerCls:'panel-header-gray',
+		<table class="hisui-datagrid" style="width:600px;height:100px" 
+		data-options="
 		showPageList:false,
 		showRefresh:false,
 		afterPageText:'页,共{pages}页',
 		beforePageText:'第',
 		displayMsg:'显示{from}到{to}条，共{total}条',
 		pagination:true">
+		<thead>   
+			<tr>   
+				<th data-options="field:'code'">翻页条示例</th>
+			</tr>
+		</thead>
+			
 		</table>
-		<pre class="prettyprint hide lang-html"><code>&lt;table ... data-options="headerCls:'panel-header-gray',
-			showPageList:false, showRefresh:false,
+		<pre class="prettyprint hide lang-html"><code>&lt;table ... data-options="showPageList:false, showRefresh:false,
 			afterPageText:'页,共{pages}页', beforePageText:'第', displayMsg:'显示{from}到{to}条，共{total}条',
 			pagination:true"&gt; &lt;/table&gt;
 		</code></pre>
@@ -472,38 +477,41 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 &lt;style> .dg6-header-row0{ height: 20px;} .dg6-header-row1{ height: 40px;} .dg6-header-row2{ height: 60px;} &lt;/style>
 &lt;table id="dg6">&lt;/table></code></pre>
 		<script type="text/javascript" class="use-prettyprint">
-		$('#dg6').datagrid({
-			title:'地区',
-			height:'400',
-			bodyCls:'table-splitline',
-			toolbar:[],
-			columns:[
-				[
-					{title:'行序号',field:'no',align:'left',halign:'center',rowspan:3}	
-					,{title:'地区',align:'left',halign:'center',colspan:9}
-				],[
-					{title:'北京',align:'left',halign:'center',colspan:3},
-					{title:'上海',align:'left',halign:'center',colspan:3},
-					{title:'南昌',align:'left',halign:'center',colspan:3}
-				],[
-					{title:'朝阳区',field:'bjzy', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'海淀区',field:'bjhd', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'昌平区',field:'bjzp', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'虹口区',field:'bjhk', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'徐汇区',field:'bjxf', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'宝山区',field:'bjbs', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'西湖区',field:'bjsf', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'红谷滩新区',field:'bjhgt', align:'center',halign:'center',sortable:true,order:'asc',width:82},
-					{title:'高新区',field:'bjgx', align:'center',halign:'center',sortable:true,order:'asc',width:82}
-				]
-			],data:{total:5,rows:[
-				{no:1,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
-				{no:2,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
-				{no:3,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
-				{no:4,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
-				{no:5,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99}
-			]}
-		});
+		$(function(){
+			$('#dg6').datagrid({
+				title:'地区',
+				height:'400',width:900,
+				bodyCls:'table-splitline',
+				autoSizeColumn:true,fitColumns:true,
+				toolbar:[],
+				columns:[
+					[
+						{title:'行序号',field:'no',align:'left',halign:'center',rowspan:3}	
+						,{title:'地区',align:'left',halign:'center',colspan:9}
+					],[
+						{title:'北京',align:'left',halign:'center',colspan:3},
+						{title:'上海',align:'left',halign:'center',colspan:3},
+						{title:'南昌',align:'left',halign:'center',colspan:3}
+					],[
+						{title:'朝阳区',field:'bjzy', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'海淀区',field:'bjhd', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'昌平区',field:'bjzp', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'虹口区',field:'bjhk', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'徐汇区',field:'bjxf', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'宝山区',field:'bjbs', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'西湖区',field:'bjsf', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'红谷滩新区',field:'bjhgt', align:'center',halign:'center',sortable:true,order:'asc',width:82},
+						{title:'高新区',field:'bjgx', align:'center',halign:'center',sortable:true}
+					]
+				],data:{total:5,rows:[
+					{no:1,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
+					{no:2,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
+					{no:3,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
+					{no:4,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99},
+					{no:5,bjzy:1000,bjhb:200,bjzp:100,bjhk:90,bjxf:201,bjbs:202,bjsf:203,bjhgt:100,bjgx:99}
+				]}
+			});
+		}); 
 		</script>
 	</div>
 	<h3>七、行高适应示例(nowrap为false实现, false时性能下降)</h3>
