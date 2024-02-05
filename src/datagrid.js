@@ -178,7 +178,7 @@
         }
         view.height(_51e.height());
     };
-    function _526(_527, _528, _529) {
+    function _fixRowHeight(_527, _528, _529) {
         var rows = $.data(_527, "datagrid").data.rows;
         var opts = $.data(_527, "datagrid").options;
         var dc = $.data(_527, "datagrid").dc;
@@ -321,7 +321,7 @@
                     }
                 }, 0);
             }, onExpand: function () {
-                _526(_546);
+                _fixRowHeight(_546);
                 opts.onExpand.call(_548);
             }
         }));
@@ -938,23 +938,23 @@
         }
         opts.onSortColumn.call(_56d, opts.sortName, opts.sortOrder);
     };
-    function _579(_57a) {
-        var _57b = $.data(_57a, "datagrid");
-        var opts = _57b.options;
-        var dc = _57b.dc;
+    function _579(target) {
+        var state = $.data(target, "datagrid");
+        var opts = state.options;
+        var dc = state.dc;
         dc.body2.css("overflow-x", "");
         if (!opts.fitColumns) {
             return;
         }
-        if (!_57b.leftWidth) {
-            _57b.leftWidth = 0;
+        if (!state.leftWidth) {
+            state.leftWidth = 0;
         }
         var _57c = dc.view2.children("div.datagrid-header");
         var _57d = 0;
         var _57e;
-        var _57f = _557(_57a, false);
-        for (var i = 0; i < _57f.length; i++) {
-            var col = _getColumnOption(_57a, _57f[i]);
+        var cols = _557(target, false);
+        for (var i = 0; i < cols.length; i++) {
+            var col = _getColumnOption(target, cols[i]);
             if (_580(col)) {
                 _57d += col.width;
                 _57e = col;
@@ -964,31 +964,31 @@
             return;
         }
         if (_57e) {
-            _581(_57e, -_57b.leftWidth);
+            _addWidth(_57e, -state.leftWidth);
         }
         var _582 = _57c.children("div.datagrid-header-inner").show();
-        var _583 = _57c.width() - _57c.find("table").width() - opts.scrollbarSize + _57b.leftWidth;
+        var _583 = _57c.width() - _57c.find("table").width() - opts.scrollbarSize + state.leftWidth;
         var rate = _583 / _57d;
         if (!opts.showHeader) {
             _582.hide();
         }
-        for (var i = 0; i < _57f.length; i++) {
-            var col = _getColumnOption(_57a, _57f[i]);
+        for (var i = 0; i < cols.length; i++) {
+            var col = _getColumnOption(target, cols[i]);
             if (_580(col)) {
                 var _584 = parseInt(col.width * rate);
-                _581(col, _584);
+                _addWidth(col, _584);
                 _583 -= _584;
             }
         }
-        _57b.leftWidth = _583;
+        state.leftWidth = _583;
         if (_57e) {
-            _581(_57e, _57b.leftWidth);
+            _addWidth(_57e, state.leftWidth);
         }
-        _542(_57a);
+        _542(target);
         if (_57c.width() >= _57c.find("table").width()) {
             dc.body2.css("overflow-x", "hidden");
         }
-        function _581(col, _585) {
+        function _addWidth(col, _585) {
             if (col.width + _585 > 0) {
                 col.width += _585;
                 col.boxWidth += _585;
@@ -1081,7 +1081,7 @@
         _595.css("table-layout", "auto");
         _596(_592);
         setTimeout(function () {
-            _526(_592);
+            _fixRowHeight(_592);
             _59b(_592);
             resizeTHGroup(_592);
         }, 0);
@@ -1408,7 +1408,7 @@
                 }
             }
         }
-        _526(_5a8);
+        _fixRowHeight(_5a8);
         dc.body2.triggerHandler("scroll");
         _5af(_5a8);
         $(_5a8).datagrid("autoSizeColumn");
@@ -1975,7 +1975,7 @@
                 }
             }
         });
-        _526(_610, _611, true);
+        _fixRowHeight(_610, _611, true);
     };
     function _607(_618, _619) {
         var opts = $.data(_618, "datagrid").options;
@@ -2047,7 +2047,7 @@
         _503(_626.checkedRows, opts.idField, row[opts.idField]);
         opts.view.deleteRow.call(opts.view, _624, _625);
         if (opts.height == "auto") {
-            _526(_624);
+            _fixRowHeight(_624);
         }
         $(_624).datagrid("getPager").pagination("refresh", { total: data.total });
     };
@@ -3023,7 +3023,7 @@
             });
         }, fixRowHeight: function (jq, _6ab) {
             return jq.each(function () {
-                _526(this, _6ab);
+                _fixRowHeight(this, _6ab);
             });
         },fixRowNumber : function (jq) {
                 return jq.each(function () {
