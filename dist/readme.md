@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2024-02-07
+- :sparkles: 增加中文繁体翻译文件
+
 ## 2024-01-31
 - `editgrid`中`combobox`赋值为`Array`
 ```json

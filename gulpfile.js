@@ -53,6 +53,14 @@ gulp.task('zh-CH',function(){
     }))
     .pipe(gulp.dest('dist/js/locale'));
 });
+gulp.task('zh-TC',function(){
+    return gulp.src('src/hisui-lang-zh_TC.js')
+    //.pipe(chinese2unicode())
+    .pipe(replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0]|[ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ１２３４５６７８９０｀！＠＃＄％＾＆＊（）＿＋｜＼｛｝［］＂＇。《》／？：；￥｛｝，！、])/g, function (s) {
+        return '\\u' + s.charCodeAt(0).toString(16);
+    }))
+    .pipe(gulp.dest('dist/js/locale'));
+});
 gulp.task('min-js',function(){
     var arr = jsArr;
     var prefix = "jquery.hisui" ;
@@ -146,4 +154,4 @@ gulp.task('pic-lite-en-css',function(){
 
 //dist -> default
 // dist目录下的js全修改成min, 不留源代码
-gulp.task('default',['min-js','min-css','zh-CH']);
+gulp.task('default',['min-js','min-css','zh-CH','zh-TC']);
