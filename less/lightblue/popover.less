@@ -19,7 +19,7 @@
     white-space:normal;
     background-color:#fff;
     background-clip:padding-box;
-    border:1px solid #E2E2E2;
+    border:1px solid @popover-title-border-color;
     border-radius:4px;
     -webkit-box-shadow:0 3px 10px rgba(0,0,0,.2);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
@@ -78,9 +78,6 @@
     padding:9px 10px; /*14px->10px*/
     overflow:auto;
     display:block;
-    border-bottom: 1px solid #BADDFF;
-    border-left: 1px solid #BADDFF;
-    border-right: 1px solid #BADDFF;
     background-color: @popover-body-bgcolor;
 }
 .webui-popover .webui-popover-content>div:first-child{
@@ -117,7 +114,8 @@
     font-weight:bold;
     line-height:18px;
     background-color:@popover-title-bg-color;
-    border:1px solid @popover-title-border-color;
+    border:1px solid transparent;
+    border-bottom:1px solid @popover-title-border-color;
     border-radius:4px 4px 0 0;
     display:block;
     color: #000000;
