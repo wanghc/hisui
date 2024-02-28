@@ -35,6 +35,11 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-02-28
+
+- `datebox`点击今天按钮时, 先触发`change`再触发`select`事件
+- - 解决点击今天按钮,onSelect事件中使用$('#id').datebox('getValue')取到老值问题
+
 ## 2024-02-26
 - `popover`宽高保持与以前一样
 

@@ -330,8 +330,8 @@
 					month:nowDay.getMonth()+1,
 					current:nowDay
 				});
-				opts.onSelect.call(target, nowDay);
 				doEnter(target,true);
+				opts.onSelect.call(target, nowDay);
 			}
 		},{
 			text: function(target){return $(target).datebox('options').closeText;},
