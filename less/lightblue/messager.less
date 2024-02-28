@@ -1,3 +1,4 @@
+@import "variables.less";
 .messager-body {
   padding: 10px;
   overflow: hidden;
@@ -43,8 +44,11 @@
   width: 96%;
   border-radius: 2px;
   padding: 1px 0 1px 10px;
-  border: 1px solid #cccccc; /*2943214*/
+  border: 1px solid @input-border-color; /*2943214*/
   height: 26px;
+  &:hover,&:focus{
+    border:1px solid @input-active-border-color;
+  }
 }
 /*--popover--*/
 .messager-popover{
