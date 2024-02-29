@@ -2780,7 +2780,7 @@
                 var opts = $(_689).combobox("options");
                 if (opts.multiple) {
                     if (val) {
-                        if ('string'==typeof val & val){
+                        if ('string'==typeof val && val){
                             val = val.split(opts.separator);
                         }
                         $(_689).combobox("setValues",val);

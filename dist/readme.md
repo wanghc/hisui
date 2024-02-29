@@ -35,8 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
-## 2024-02-28
+## 2024-02-29
+- `datagrid`数据表格编辑多选`combo`时赋值修改
 
+## 2024-02-28
 - `datebox`点击今天按钮时, 先触发`change`再触发`select`事件
 - - 解决点击今天按钮,onSelect事件中使用$('#id').datebox('getValue')取到老值问题
 
