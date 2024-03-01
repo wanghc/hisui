@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-03-01
+- `combotree`支持查询 [4344768]
+
 ## 2024-02-29
 - `datagrid`数据表格编辑多选`combo`时赋值修改
 

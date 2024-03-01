@@ -89,6 +89,19 @@
         }
         $(_8f8).combo("setValues", vv).combo("setText", ss.join(opts.separator));
     };
+    function _doFilter(target, q) {
+        var state = $.data(target, "combotree");
+        var opts = state.options;
+        var tree = state.tree;
+        state.remainText = true;
+        tree.tree("doFilter", opts.multiple ? q.split(opts.separator) : q);
+    }
+	function _enter(target){
+        var state=$.data(target,"combotree");
+        state.remainText=false;
+        $(target).combotree("setValues",$(target).combotree("getValues"));
+        $(target).combotree("hidePanel");
+	};
     $.fn.combotree = function (_8fa, _8fb) {
         if (typeof _8fa == "string") {
             var _8fc = $.fn.combotree.methods[_8fa];
@@ -163,5 +176,22 @@
     $.fn.combotree.parseOptions = function (_901) {
         return $.extend({}, $.fn.combo.parseOptions(_901), $.fn.tree.parseOptions(_901));
     };
-    $.fn.combotree.defaults = $.extend({}, $.fn.combo.defaults, $.fn.tree.defaults, { editable: false });
+    $.fn.combotree.defaults = $.extend({}, $.fn.combo.defaults, $.fn.tree.defaults, { 
+        editable: false,
+        textField: null,
+        unselectedValues: [],
+        mappingRows: [],
+        keyHandler:{
+            up: function(e) {},
+            down: function(e) {},
+            left: function(e) {},
+            right: function(e) {},
+            enter: function(e) {
+                _enter(this);
+            },
+            query: function(q, e) {
+                _doFilter(this, q);
+            }
+        }
+    });
 })(jQuery);

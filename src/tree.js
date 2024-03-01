@@ -901,6 +901,32 @@
         _108(_179, node);
         opts.onCancelEdit.call(_179, node);
     };
+    function _doFilter(target,q){
+        var state =$.data(target,"tree");
+        var opts = state.options;
+        var ids={};
+        $.hisui.forEach(state.data,true,function(_f9){
+            if(opts.filter.call(target,q,_f9)){
+                $("#"+_f9.domId).removeClass("tree-node-hidden");
+                ids[_f9.domId]=1;
+                _f9.hidden=false;
+            }else{
+            $("#"+_f9.domId).addClass("tree-node-hidden");
+                _f9.hidden=true;
+            }
+        });
+        for(var id in ids){
+            _showParentNode(id);
+        }
+        function _showParentNode(_fb){
+            var p=$(target).tree("getParent",$("#"+_fb)[0]);
+            while(p){
+                $(p.target).removeClass("tree-node-hidden");
+                p.hidden=false;
+                p=$(target).tree("getParent",p.target);
+            }
+        };
+    };
     $.fn.tree = function (_17b, _17c) {
         if (typeof _17b == "string") {
             return $.fn.tree.methods[_17b](this, _17c);
@@ -1047,6 +1073,10 @@
             return jq.each(function () {
                 _178(this, _196);
             });
+        }, doFilter: function(jq, q) {
+            return jq.each(function() {
+                _doFilter(this, q);
+            });
         }
     };
     $.fn.tree.parseOptions = function (_197) {
@@ -1156,6 +1186,21 @@
     $.fn.tree.defaults = {
         url: null, method: "post", animate: false, checkbox: false, cascadeCheck: true, onlyLeafCheck: false, lines: false, dnd: false, data: null, formatter: function (node) {
             return node.text;
+        },filter:function(q,node){
+            var qq=[];
+            $.map($.isArray(q)?q:[q],function(q){
+                q=$.trim(q);
+                if(q){
+                    qq.push(q);
+                }
+            });
+            for(var i=0;i<qq.length;i++){
+                var _12c = node.text.toLowerCase().indexOf(qq[i].toLowerCase());
+                if(_12c>=0){
+                    return true;
+                }
+            }
+            return !qq.length;
         }, loader: function (_1a3, _1a4, _1a5) {
             var opts = $(this).tree("options");
             if (!opts.url) {
