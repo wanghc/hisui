@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-03-04
+- 当`validatebox`销毁后，触发blur与focus事件时不再验证值,防止列表编辑报错.
+
 ## 2024-03-01
 - `combotree`支持查询 [4344768]
 

@@ -30,7 +30,9 @@
                             clearTimeout(_424.timer);
                         }
                         _424.timer = setTimeout(function () {
-                            $(_423).validatebox("validate");
+                            if ($.data(_423, "validatebox")){ // 编辑元素已不存在,不用再validate了
+                                $(_423).validatebox("validate");
+                            }
                         }, _424.options.delay);
                     } else {
                         _429(_423);
@@ -47,7 +49,9 @@
             // 离开时再校验一次，
             // if (opts.validateOnBlur) {}
             setTimeout(function() {
-                $(_423).validatebox("validate");
+                if ($.data(_423, "validatebox")){ // 表格编辑时, 编辑元素已不存在,不用再validate了
+                    $(_423).validatebox("validate");
+                }
             }, 0);            
             _425(_423);
         }).bind("mouseenter.validatebox", function () {
