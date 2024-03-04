@@ -160,6 +160,7 @@
     };
     function loadData(target, data, remainText) {
         var state = $.data(target, "combobox");
+        if ('undefined'==typeof state) return ;
         var opts = state.options;
         state.data = opts.loadFilter.call(target, data);
         state.groups = [];
