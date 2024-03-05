@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单选框</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+</head>
+<body>
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+    <h2>单选框, 通过图片得到蓝色系勾选框</h2>
+    <h3>说明:</h3>
+    <span>用于多选一的业务场情。</span>
+    <h3>一、单选框示例</h3>
+   <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+<table>
+    <tr>
+        <td class="r-label">
+            想吃什么
+        </td>
+        <td id="eatlist" class="fs0">
+            <input type="radio" label='苹果' name='wantEat' value="apple">
+            <input type="radio" label='桔子' name='wantEat' value="orange">
+            <input type="radio" label='香蕉' name='wantEat' value="banana" id="ba">
+        </td>
+        <td class="links">
+            <a id="selectba" class="hisui-linkbutton" href="#">选中香蕉</a>
+            <a id="insertRadio" class="hisui-linkbutton" href="#">插入梨</a>
+            <a id="getValue" class="hisui-linkbutton" href="#">获得选中值</a>
+        </td>
+    </tr>
+</table>
+        </div>
+<script class="use-prettyprint lang-js">
+$(function(){
+    logger.level=1;
+    $HUI.radio("[name='wantEat']",{
+        onChecked:function(e,value){
+            logger.info($(e.target).attr("label"));  //输出当前选中的label值
+        }
+    });
+    $("#selectba").click(function(){
+        $HUI.radio("#ba").setValue(true);
+    });
+    $("#insertRadio").click(function(){
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='黄金梨' value='pear1' name='wantEat'>");
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='秋月梨' value='pear2' name='wantEat'>");
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='黄梨' value='pear3' name='wantEat'>");
+        $("#eatlist").append("<input class='hisui-radio' type='radio' label='鸭梨' value='pear4' name='wantEat'>");
+        $HUI.radio("#eatlist input.hisui-radio",{});
+    });
+    $("#getValue").click(function(){
+        var checkedRadioJObj = $("input[name='wantEat']:checked");
+        $.messager.alert("提示","value="+checkedRadioJObj.val()+" , label="+checkedRadioJObj.attr("label"));
+    })
+});
+</script>
+    </div>
+    <h3>二、样式为复选框的单选框</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+            <table>
+                <tr>
+                    <td class="r-label">
+                        <span style="color: red;">*</span>最高学位
+                    </td>
+                    <td class="fs0">
+                        <input class='hisui-radio' type="radio" label='学士' name='highestDegree' value="bachelor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+                        <input class='hisui-radio' type="radio" label='硕士' name='highestDegree' value="master" data-options="radioClass:'hischeckbox_square-blue',required:true">
+                        <input class='hisui-radio' type="radio" label='博士' name='highestDegree' value="doctor" data-options="radioClass:'hischeckbox_square-blue',required:true">
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <h3>三、必选功能</h3>
+    <div class="demo-exp-code entry-content"> 
+        <div class="use-prettyprint lang-html">
+            <table>
+                <tr>
+                    <td class="r-label">
+                        <span style="color: red;">*</span>性别
+                    </td>
+                    <td class="fs0">
+                    <input class='hisui-radio' type="radio" label='男' name='sex' value="1" data-options="required:true">
+                    <input class='hisui-radio' type="radio" label='女' name='sex' value="2" data-options="required:true">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <a href="#" onclick="setSexRequired();" class="hisui-linkbutton" style="margin-top: 10px;">切换必选功能</a>
+	   <span id="requiredMsg" style="line-height: 30px;vertical-align: bottom;"></span>
+	   <script type="text/javascript" class="use-prettyprint">
+		var flag = true;
+		function setSexRequired(){
+			$("#requiredMsg").html('当前'+(flag?"非必选":"必选"));
+			$('[name="sex"]').radio('setRequired',flag=!flag);
+		};</script>
+    </div>
+    <h3>四、不能取消选择功能(requiredSel)</h3>
+    <div class="demo-exp-code entry-content"> 
+        <div class="use-prettyprint lang-html">
+            <table>
+                <tr>
+                    <td class="r-label">
+                        <span style="color: red;">*</span>是否阳性
+                    </td>
+                    <td class="fs0">
+                        <input class='hisui-radio' type="radio" label='是' name='yesno' value="Y" data-options="required:true,requiredSel:true">
+                        <input class='hisui-radio' type="radio" label='否' name='yesno' value="N" data-options="required:true,requiredSel:true">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+    <div>
+        <h3>单选组件的相关配置、事件、方法</h3>
+        <table class="table">
+            <tr class="protitle">
+                <th>属性</th>
+                <th>说明</th>
+                <th>默认值</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>radio的名字</td>
+                <td>''</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>label</td>
+                <td>描述</td>
+                <td>''</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>disabled</td>
+                <td>是否禁用。默认可用</td>
+                <td>false</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>checked</td>
+                <td>是否选中。默认不选中</td>
+                <td>false</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>boxPosition</td>
+                <td>勾选框位置</td>
+                <td>'left'</td>
+                <td>可选'right'<code>20191104</code></td>
+            </tr>
+            <tr>
+                <td>requiredSel</td>
+                <td>必选</td>
+                <td>false</td>
+                <td>true不可取消选中<code>20191126</code></td>
+            </tr>
+            <tr>
+                <td>required</td>
+                <td>name相同判断为一组，且是否必选一项</td>
+                <td>false</td>
+                <td>true时为必选一项,不选会变红提示<code>20200726</code></td>
+            </tr>
+            <tr class="evttitle">
+                <th>事件名</th>
+                <th>说明</th>
+                <th>入参</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>onCheckChange</td>
+                <td>选中改变事件</td>
+                <td>e,value</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>onChecked</td>
+                <td>选中事件</td>
+                <td>e,value</td>
+                <td></td>
+            </tr>
+            <tr class="mthtitle">
+                <th>方法名</th>
+                <th>说明</th>
+                <th>入参</th>
+                <th>返回值</th>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td>拿到配置项对象</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>setValue</td>
+                <td>选中元素,此方法入参为false无效。选中当前元素会自动清空同名radio</td>
+                <td>true</td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>getValue</td>
+                <td>拿到值</td>
+                <td></td>
+                <td>false|true</td>
+            </tr>
+            <tr>
+                <td>setDisable</td>
+                <td>禁用</td>
+                <td>false|true</td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>check</td>
+                <td>选中</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>uncheck</td>
+                <td>取消选中</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>toggle</td>
+                <td>切换选中</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>disable</td>
+                <td>禁用选框</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>enable</td>
+                <td>启用选框</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>indeterminate</td>
+                <td>设置不定选状态</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>determinate</td>
+                <td>取消不定选状态</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>update</td>
+                <td>重绘选框</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>destroy</td>
+                <td>销毁选框</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>isValid</td>
+                <td>验证必状态<code>20200726</code></td>
+                <td></td>
+                <td>Boolean</td>
+            </tr>
+            <tr>
+				<td>setRequired</td>
+				<td>调置或取消必项状态<code>20210205</code></td>
+				<td>true|false</td>
+				<td>jquery对象</td>
+			</tr>
+        </table>
+    </div>
+    <prettyprint/>
+    <script>
+        function onResizePretty(){
+            $('.hisui-radio').radio('isValid');
+        }
+    </script>
+</body>
+</html>
