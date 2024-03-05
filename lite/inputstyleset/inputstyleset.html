@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>验证框示例</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script src="../jquery-tag-demo.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../../src/hisui.js"></script> 
+</head>
+
+<body>
+	<style>	
+		.hisui-panel td{padding:5px 0;}
+		.hisui-panel td.r-label{padding-right: 10px;}
+    </style>
+    <h2>输入框样式集合</h2>
+		<div class="hisui-panel" title="输入框样式示例" style="width:1260px;padding:10px;"
+			data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',closable:false,collapsible:false,minimizable:false,maximizable:false">
+			<table cellpadding="0">
+                <tr>
+					<td class="r-label required-label">序号验证框</td>
+					<td>
+						<input id="vapatno" class="textbox hisui-inputclearbtn" data-options="onClearBefore:function(val){alert('清空内容before：'+val)}">
+						<a id="vabtn1" href="#" class="hisui-linkbutton">赋值</a><a id="vabtn" href="#" class="hisui-linkbutton" style="margin-left: 5px;">验证序号</a>
+					</td>
+				<!--</tr>
+                <tr>-->
+					<td class="r-label required-label">患者姓名验证框</td>
+					<td>
+						<input class="hisui-validatebox textbox hisui-inputclearbtn" data-options="required:true,validType:'length[3,10]'">
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label required-label">邮箱验证框</td>
+					<td>
+						<input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
+					</td>
+				<!--</tr>
+                <tr>-->
+					<td class="r-label required-label">URL验证框</td>
+					<td>
+						<input id="vaurlVx" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
+						<a id="vabtn2" href="#" class="hisui-linkbutton">禁用URL</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label required-label">身份证验证框</td>
+					<td>
+						<input class="hisui-validatebox textbox" data-options="required:true,validType:'idcard'">
+					</td>
+				<!--</tr>
+                <tr>-->
+					<td class="r-label required-label">手机号验证框</td>
+					<td>
+                        <input class="hisui-validatebox textbox" data-options="required:true,validType:'mobilephone'">
+                        <span style="margin-left: -1px;">12位手机号时，会自动去除首位的0</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">查询框</td>
+					<td>
+						<input id="ss" class="hisui-searchbox textbox hisui-inputclearbtn" data-options="width:155"/>
+						<span style="margin-left: -1px;">用于左侧菜单搜索或树搜索</span>
+					</td>
+                <!--</tr>
+                <tr>-->
+					<td class="r-label">重量数字框</td>
+					<td>
+						<input class="hisui-numberbox textbox hisui-inputclearbtn" data-options="precision:2,fix:false,max:200,min:0">
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">数字框</td>
+					<td>
+                        <input class="hisui-numberbox textbox hisui-inputclearbtn" data-options="isKeyupChange:true,width:155" id="nunb">
+                        <span style="margin-left: -1px;">值即时变化</span>
+					</td>
+				<!--</tr>
+                <tr>-->
+					<td class='r-label'>默认触发框</td>
+					<td>
+						<input name="default" class="hisui-triggerbox textbox hisui-inputclearbtn" data-options="handler:trmsg" />
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>图片触发框</td>
+					<td>
+						<input id="trimg" name="img" class="hisui-triggerbox textbox  hisui-inputclearbtn"
+							data-options="icon:'icon-img-blue',handler:trmsg,plain:true" />
+					</td>
+				<!--</tr>
+                <tr>-->
+					<td class='r-label'>卡触发框</td>
+					<td>
+						<input id="trcard" name="card" class="hisui-triggerbox textbox  hisui-inputclearbtn"
+							data-options="icon:'icon-card',handler:trmsg,plain:true" />
+					</td>
+				</tr>
+				<tr>
+					<td class='r-label'>复制触发框</td>
+					<td>
+						<input id="trcopy" name="copy" class="hisui-triggerbox textbox hisui-inputclearbtn"
+							data-options="icon:'icon-copy-blue',handler:trmsg,plain:true" />
+						<a class="hisui-linkbutton" id="trbtn-disable">禁用</a>
+						<a class="hisui-linkbutton" id="trbtn-enable">启用</a>
+					</td>
+				<!--</tr>
+                <tr>-->
+                    <td class='r-label'>统计月份日期框</td>
+                    <td>
+                        <input id="dasamth" class="hisui-datebox textbox  hisui-inputclearbtn" data-options='onSelect:daonSelect,
+                        formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+"-"+m;},validParams:"YM"'/>
+                        <a class="hisui-linkbutton" id="dasamthBtn">获取值</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='r-label'>生日日期框</td>
+                    <td>
+                        <input id="dadb" class="hisui-datebox textbox hisui-inputclearbtn" data-options='onSelect:daonSelect'/>
+                        <a class="hisui-linkbutton" id="dasetDateDisBtn">限定可选日期</a>
+                        <a class="hisui-linkbutton" id="dadbBtn">获取值</a>
+                    </td>
+                <!--</tr>
+                <tr>-->
+                    <td class='r-label required-label'>停止日期日期框</td>
+                    <td>
+                        <input class="hisui-datebox textbox hisui-inputclearbtn" value="2020-02-17" data-options='required:true'/>
+                        <span style="color: red;margin-left: -1px;">必填项</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class='r-label'>结算时间日期框</td>
+                    <td>
+                        <input class="hisui-datetimebox textbox hisui-inputclearbtn" data-options="onSelect:daonSelect"/>
+                        <!-- <a id="dabtn1" class="hisui-linkbutton">sure</a> -->
+                    </td>
+                <!--</tr>
+                <tr>-->
+                    <td class="r-label">时间框</td>
+                    <td>
+                        <input class="hisui-timespinner hisui-inputclearbtn" data-options="showSeconds:true,width:155" style="border-radius: 2px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="r-label">空组合</td>
+                    <td><input id="cocc" placeholder="空面板"></td>
+                <!--</tr>
+                <tr>-->
+                    <td class="r-label">查询条件组合</td>
+                    <td>
+                        <select id="cocc2" style="width:155px"></select>
+                        <div id="cosp">
+                            <div style="color:#000000;background:#fafafa;padding:5px;">Select a language</div>
+                            <div style="padding:10px">
+                                <input class='hisui-radio' type="radio" name="lang" value="01" label='Java'><br/>
+                                <input class='hisui-radio' type="radio" name="lang" value="02" label='Ruby'><br/>
+                                <input class='hisui-radio' type="radio" name="lang" value="03" label='Basic'><br/>
+                                <input class='hisui-radio' type="radio" name="lang" value="04" label='Cache'><br/>
+                                <input class='hisui-radio' type="radio" name="lang" value="05" label='HTML'><br/>
+                                <input class='hisui-radio' type="radio" name="lang" value="06" label='CSS'>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="r-label">html生成的单选下拉框</td>
+                    <td>
+                        <select id="cxstateBox" class="hisui-combobox hisui-inputclearbtn" name="state" style="width:155px;" data-options="enterNullValueClear:false,onSelect:cxselectHandler,blurValidValue:true">
+                            <option value="AK">Alaska</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="MD">Maryland</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH" selected>Ohio</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                        <a href='#' id="cxcboxbtn1" class="hisui-linkbutton">获取选择的值(getValues)</a>
+                    </td>
+					<td class="r-label">放大镜</td>
+					<td>
+						<input id="lookup1" class='textbox hisui-inputclearbtn '/>
+					</td>
+                </tr>
+                <tr>
+                    <td class="r-label">rowStyle生成的多选下拉框</td>
+                    <td>
+                        <select id="cxcbox" style="width:155px;">
+						</select>
+						<!-- <a href='#' id="cxcboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
+						<a href='#' id="cxcboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a> -->
+                    </td>
+					<td class="r-label">
+						快速日期
+					</td>
+					<td>
+						<input class="hisui-dateboxq textbox hisui-inputclearbtn " data-options="formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'">
+					</td>
+                </tr>
+                <tr>
+					<td class="r-label">formatter生成的多选下拉框</td>
+					<td>
+						<select id="cxiconokBox" style="width:155px;"></select>
+						<style>
+							.icon{
+								width: 20px;
+								height: 20px;
+								margin-right: 10px;
+								float: right;
+							}
+						</style>
+					</td>
+					<td class="r-label">
+						快速时间
+					</td>
+					<td>
+						<input class="hisui-timeboxq textbox hisui-inputclearbtn " data-options='timeFormat:"HMS"'>
+					</td>
+				</tr>
+                <tr>
+					<td class="r-label">defaultFilter配置的下拉框</td>
+					<td>
+						<select id="cxdfCB" style="width:155px;"></select>
+					</td>
+					<td class="r-label">快速日期时间</td>
+					<td><input data-options="showSeconds:false" class="hisui-datetimeboxq textbox hisui-inputclearbtn "></td>
+				</tr>
+                <tr>
+					<td class="r-label">文件框</td>
+					<td>
+						<input class="hisui-filebox hisui-inputclearbtn" name="file1" data-options="width:212,plain:true" />
+					</td>
+				<!--</tr>
+                <tr>-->
+					<td class="label">excel文件框</td>
+					<td>
+						<input class="hisui-filebox hisui-inputclearbtn" name="file2"
+							data-options="width:212,buttonText:'选择',prompt:'excel文件：*.xls,*.xlsx',plain:true"
+							accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">多选文件框</td>
+					<td>
+						<input class="hisui-filebox hisui-inputclearbtn" name="file4" style="width:212px;"
+							data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" />
+					</td>
+				</tr>
+			</table>
+        </div>
+        <script type="text/javascript">
+            function trmsg(value, name) {
+                var title = "点击了name=" + name + "触发组件的按钮,value=" + value;
+                $.messager.popover({
+                    type: "info",
+                    msg: title
+                });
+                if (name == "copy") {
+                    var v = $("#trcard").triggerbox('getValue');
+                    $("#trcopy").triggerbox('setValue', v);
+                }
+            }
+            function daonSelect(date){
+				// $('#result').text(date)
+			}
+            function cxselectHandler(rec){
+                console.log({onSelect:rec});
+                console.log($("#cxstateBox").combobox('getValue'));
+                //$.messager.popover({msg: rec.text,type:'info',timeout: 2000,showType: 'show'});
+            }
+			$(function(){
+                // 验证框
+                var valbox = $HUI.validatebox("#vapatno", {
+					required: true,
+					placeholder:"序号必填"
+				});
+				$("#vabtn1").click(function(){
+					$("#vapatno").val("12345678").validatebox("validate");
+				});
+				$("#vabtn").click(function () {
+					//$("#vapatno").data("validatebox").validating=true;
+					//$("#vapatno").validatebox("validate");
+					// valbox.jdata <=> $("#vapatno").data("validatebox")
+					//下面二句 可以让tooltip主动显示出来
+					valbox.jdata.validating = true;
+					valbox.validate();
+					// 获得验证结果
+					var patnoHasValue = valbox.isValid();
+					if (patnoHasValue) {
+						alert("序号验证通过");
+					} else {
+						alert("序号为空");
+					}
+				});
+				$("#vabtn2").click(function(){
+					var box = $("#vaurlVx");
+					var value = box.prop("disabled");
+					if(value == false){
+						box.validatebox("setDisabled",true);
+						$("#vabtn2 > span > span").text("启用URL");
+						box.validatebox("validate");
+					}
+					else{
+						box.validatebox("setDisabled",false);
+						$("#vabtn2 > span > span").text("禁用URL");
+						box.validatebox("validate");
+					}
+				});           
+                // 数字框
+                $("#nunb").on('keyup',function(e){
+					console.log("numberbox value = "+$(this).numberbox('getValue'));
+					if (e.keyCode==13){
+						console.log("numberbox value enterkey ="+$(this).numberbox('getValue'));
+					}
+                });
+                // 触发框
+                $('#trbtn-disable').click(function () {
+					$('#trcopy').triggerbox('disable')
+				});
+				$('#trbtn-enable').click(function () {
+					$('#trcopy').triggerbox('enable')
+                });
+                // 日期框
+                $("#dasamthBtn").click(function(){
+					var val = $("#dasamth").datebox('getValue');
+					$.messager.alert( "提示",val);
+				});
+				$("#dasetDateDisBtn").click(function(){
+					var now = new Date();
+					var now6 = new Date();
+					now6.setTime(now.getTime()+(6*24*60*60*1000));
+					var opt = $("#dadb").datebox('options');
+					opt.minDate = opt.formatter(now); //'2019-11-24';
+					opt.maxDate = opt.formatter(now6); //'2019-11-30';
+					$.messager.popover({msg: '设置可选日期范围成功',type:'success',timeout: 1000});
+				});
+				$("#dadbBtn").click(function(){
+					var val = $("#dadb").datebox('getValue');
+					$.messager.alert( "提示",val);
+				});
+                // 组合
+                var ccObj=$HUI.combo('#cocc',{width:155});
+                var cc2Obj=$HUI.combo('#cocc2',{editable:false,placeholder:'输入查询条件'});
+				$('#cocc').inputclearbtn({onClearBefore:function(e){console.log('before',e)}});
+				$('#cocc2').inputclearbtn({onClearAfter:function(e){console.log('after',e)}});
+                $('#cosp').appendTo(cc2Obj.panel());
+                $('#cosp input').radio({onCheckChange:function(e,v){
+                    var v = $(this).val();
+                    var l = $(this).attr('label');
+                    cc2Obj.setValue(v);
+                    cc2Obj.setText(l);
+                    cc2Obj.hidePanel();
+                }});
+                // 下拉框
+				var cxcbox_rowStyle = $HUI.combobox("#cxcbox",{
+					valueField:'id',
+					textField:'text',
+					multiple:true,
+					rowStyle:'checkbox',
+					selectOnNavigation:false,
+					allSelectButtonPosition:'top',
+					onAllSelectClick:function(e){
+						var arr = $(this).combobox("getValues");
+						console.log(arr);
+					},
+					data:[
+						{id:'css',text:'CSS语言'}
+						,{id:'html',text:'HTML语言'}
+						,{id:'c',text:'C语言'}
+						,{id:'cplus',text:'C++语言'}
+						,{id:'java',text:'JAVA语言'}
+						,{id:'cache',text:'M语言'}
+						,{id:'sql',text:'结构化查询语言'}
+					],
+					editable:false,
+					panelHeight:"200" //"auto"
+					//onChange:function(newval,oldval){
+						/*$(this).combobox("panel").find('input').prop('checked',false);
+						for (var i=0;i<newval.length;i++){
+							$(this).combobox("panel").find('#r'+newval[i]).prop('checked',true);
+						}*/
+					//}
+				});
+				cxcbox_rowStyle.setValue("");
+				$("#cxcbox").inputclearbtn({});
+				$("#cxcboxbtn").click(function(){
+					console.log(cxcbox_rowStyle.getValues());
+					//cbox.setValues([]);
+					//cbox.loadData([{id:'m',text:'m语言'}]);
+				});
+				$("#cxcboxbtn1").click(function(){
+					console.log($("#cxstateBox").combobox("getValue"));
+				});
+				$("#cxcboxselbtn").click(function(){
+					cxcbox_rowStyle.setValues(["css","html","c","cplus","java","cache","sql"])
+					//$("#cbox").combobox('panel').parent().find('._hisui_combobox-selectall').trigger('click');
+				});
+				var cxcbox_formatter = $HUI.combobox("#cxiconokBox",{
+					valueField:'id', textField:'text', multiple:true, selectOnNavigation:false,panelHeight:"auto",
+					data:[
+						{id:'css',text:'CSS语言'}
+						,{id:'html',text:'HTML语言'}
+						,{id:'c',text:'C语言'}
+						,{id:'cplus',text:'C++语言'}
+						,{id:'java',text:'JAVA语言'}
+						,{id:'cache',text:'M语言'}
+						,{id:'sql',text:'结构化查询语言'}
+					],
+					editable:true,
+					formatter:function(row){  
+						var opts;
+						if(row.selected==true){
+							opts = row.text+"<span id='i"+row.id+"' class='icon icon-ok'></span>";
+						}else{
+							opts = row.text+"<span id='i"+row.id+"' class='icon'></span>";
+						}
+						return opts;
+					},
+					onChange:function(newval,oldval){
+						$(this).combobox("panel").find('.icon').removeClass('icon-ok');
+						for (var i=0;i<newval.length;i++){
+							$(this).combobox("panel").find('#i'+newval[i]).addClass('icon-ok');
+						}
+					}
+				});
+				$("#cxiconokBox").inputclearbtn({});
+
+                var cxcbox_defaultFilter = $HUI.combobox("#cxdfCB",{
+					valueField:'id', textField:'text',panelHeight:"auto",
+					data:[
+						{id:'1',text:'高血压病'}
+						,{id:'2',text:'伤寒性肝炎'}
+						,{id:'3',text:'猪霍乱沙门菌败血症'}
+						,{id:'4',text:'细菌性食物中毒'}
+						,{id:'5',text:'骨髓增生异常综合征'}
+						,{id:'6',text:'难治性贫血'}
+						,{id:'7',text:'难治性贫血,单系病态造血'}
+					],
+					defaultFilter:4
+				});
+				$("#cxdfCB").inputclearbtn({});
+				$("#lookup1").lookup({
+					width:155,panelWidth:750,
+					url:'getGroup',
+					mode:'remote',
+					idField:'HIDDEN',
+					textField:'Description',
+					columns:[[  
+						{field:'Description',title:'安全组名称',width:200},  
+						{field:'HIDDEN',title:'安全组ID',width:100} ,
+						{field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+							return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
+						}} 
+					]],
+					pagination:true
+				});
+            });
+        </script>
+</body>
+</html>

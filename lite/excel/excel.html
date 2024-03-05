@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>导出execl示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+	<script src="../jquery-tag-demo.js" type="text/javascript"></script>
+</head>
+<body>
+	<h2>后台Query查询结果导出Excel</h2>
+	<span>通过公共方法调用Query生成文件</span>
+	<div style="margin: 10px 0;"></div>
+	<h2>一.导成CSV文件功能说明</h2>
+	<div class="demo-exp-code entry-content">
+		<h4>1.1 发送请求给后台,后台运行Query生成<a  href="https://baike.baidu.com/item/CSV/10739?fr=aladdin" target="_blank">CVS文件</a>,然后再通过location.href下载到本地</h4>
+		<span>注意：</span>
+		<ul class="replist">
+			<li>格式文件导出为后台导出,无需前台插件支持</li>
+			<li>0开头内容会变忽略0</li>
+			<li>长数字变成科学计算法时,可以数字后加特殊不可见字符处理(\t)</li>
+		</ul>
+		<pre class="prettyprint linenums lang-js hide"><code>// js文件中代码 ，导出rowid为1的安全组所有菜单
+// excelname不用包含后缀
+var rtn = tkMakeServerCall("websys.Query","ToExcel","excelname","web.Util.Menu","SelectGroupMenu",1);
+location.href = rtn;</code></pre>
+	<pre class="prettyprint linenums lang-js hide"><code>//引用websys.jquery.js后，导出文件中代码，
+var rtn = $cm({
+	dataType:'text',
+	ResultSetType:"Excel",
+	ExcelName:"excelname", //默认DHCCExcel
+	ClassName:"web.Util.Menu",
+	QueryName:"SelectGroupMenu",
+	GroupId:1
+},false);
+location.href = rtn;</code></pre>
+	</div>
+	<h2>二.导出标准Excel文件示例：</h2>
+	<style>
+		.replist{
+			list-style: none;
+		}
+		.replist li{
+			margin: 5px 0px;
+		}
+	</style>
+	<div class="demo-exp-code entry-content">
+	<h4>2.1 导出Excel文件说明</h4>
+	<ul class="replist">
+		<li>
+			依赖 jquery.js , websys.jquery.js二个js文件
+		</li>
+		<li>
+			IE浏览器需要增加ActiveX运行
+		</li>
+		<li>
+			非IE浏览器记得界面写入：<code>&lt;ADDINS require="CmdShell"&gt;&lt;/ADDINS&gt;</code>
+		</li>
+		<li>
+			使用<code>$cm({ResultSetType:"ExcelPlugin",ExcelName:"excel名称",PageName:"界面标识代码",ClassName:"类名",QueryName:"Query名",参数名1:参数值1,参数名2:参数值2})</code>导出或打印Excel
+		</li>
+	</ul>
+	<pre class="prettyprint linenums lang-js hide"><code>// 异步导出结果集
+showProgressBar("导出中....");
+$cm({
+	ResultSetType:"ExcelPlugin",  //表示通过DLL生成Excel，可支持IE与Chrome系。Chrome系浏览器请安装中间件
+	//ExcelPlugin时支持参数：
+	//  showLineCfg:"Y", //显示Excel线条
+	//ResultSetTypeDo:"Print",    //默认Export，可以设置为：PRINT , PREVIEW
+	//localDir:"D:\\tmp\\",	      //D:\\tmp\\表示固定文件路径, "Self"表示用户导出时选择保存路径，默认保存到桌面
+	ExcelName:"excelname",		  //默认DHCCExcel，不用包含后缀
+	PageName:"DHCSSUserLog",      //表示是哪个界面的导出，区分相同的Query多个界面使用情况。与2.1配置界面时PAGENAME对应
+	ClassName:"web.DHCSSUserLogonLog",
+	QueryName:"FindUserLog",
+	Stdate:Stdate ,
+	Enddate:Enddate ,
+	Guser:Guser , 
+	StartTime:StartTime,
+	EndTime:EndTime
+},function(){
+	hideProgressBar();
+});
+// 同步导出结果集
+$cm({
+	ResultSetType:"ExcelPlugin",
+	ExcelName:"excelname",
+	PageName:"DHCSSUserLog",
+	ClassName:"web.DHCSSUserLogonLog",
+	QueryName:"FindUserLog",
+	Stdate:Stdate ,
+	Enddate:Enddate ,
+	Guser:Guser , 
+	StartTime:StartTime,
+	EndTime:EndTime
+},false);</code></pre>
+	<h3>2.2 导出Excel文件配置功能说明</h3>
+	<ul class="replist">
+		<li>使用ExcelPlugin导出Excel时，可以使用配置界面设置导出哪些列，列宽，字体大小，标题内容，落款内容，排序定义</li>
+		<li>使用以下代码打开配置界面：</li>
+		<li><code>window.open("websys.query.customisecolumn.csp?CONTEXT=K类名:Query名&PAGENAME=界面标识代码&PREFID=0");</code></li>
+		<li>
+			<img style="width: 1400px;height: 700;" src="excelcolumncfg.png" />
+		</li>
+
+	</ul>
+	<span>注：</span>
+	<ul class="replist">		
+		
+		<li>标题内容配置后,会在Excel第一行合并列显示。配置可编写m代码</li>
+		<li>落款内容配置后,会在Excel数据记录最后显示。配置可编写m代码</li>
+		<li>如果配置字体大小自适应则列上定义的字体大小无效</li>
+		<li>Excel只识别【月/日/年】与【年-月-日】数据</li>
+	</ul>
+</div>
+	<div class="demo-exp-code entry-content"> 
+		<h2>websys.Query类中ToExcel类方法</h2>
+		<table class="table">
+			<tr class="protitle">
+				<th>参数</th>
+				<th>类型</th>
+				<th></th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td>ResultSetType</td>
+				<td>{String}</td>
+				<td>必填项</td>
+				<td>Excel表示导出csv，ExcelPlugin表示导出标准Excel</td>
+			</tr>
+			<tr>
+				<td>ExcelName</td>
+				<td>{ String }</td>
+				<td>必填项</td>
+				<td>最终要导出的Excel名称,不用带后缀</td>
+			</tr>
+			<tr>
+				<td>PageName</td>
+				<td>{String}</td>
+				<td>选填项</td>
+				<td>ResultSetType为ExcelPlugin时，且要读配置打印内容时必填</td>
+			</tr>
+			<tr>
+				<td>ClassName</td>
+				<td>{ String }</td>
+				<td>必填项</td>
+				<td>后台类名</td>
+			</tr>
+			<tr>
+				<td>QueryName</td>
+				<td>{ String }</td>
+				<td>必填项</td>
+				<td>后台Query名</td>
+			</tr>
+			<tr>
+				<td>p1</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第1个入参</td>
+			</tr>
+			<tr>
+				<td>p2</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第2个入参</td>
+			</tr>
+			<tr>
+				<td>...</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第n个入参</td>
+			</tr>
+			<tr>
+				<td>p16</td>
+				<td>{ String|Int }</td>
+				<td>可选项</td>
+				<td>Query第16个入参</td>
+			</tr>
+		</table>	
+	</div>
+	<prettyprint></prettyprint>
+</body>
+</html>
