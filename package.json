@@ -20,5 +20,11 @@
   "dependencies": {
     "gulp-chinese2unicode": "^1.0.1",
     "gulp-string-replace": "^1.1.2"
+  },
+  "scripts": {
+    "upload":"node ./nodescripts/upload.js",
+    "all":"gulp",
+    "min-js":"gulp min-js",
+    "min-css":"gulp min-css"
   }
 }
