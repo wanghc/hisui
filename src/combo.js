@@ -206,15 +206,15 @@
     function _85f(_860) {
         var _861 = $.data(_860, "combo");
         var opts = _861.options;
-        var _862 = _861.combo;
-        var _863 = _861.panel;
-        _863.panel("move", { left: _864(), top: _865() });
-        if (_863.panel("options").closed) {
-            _863.panel("open");
+        var comboInputObj = _861.combo;
+        var panelObj = _861.panel;
+        panelObj.panel("move", { left: _864(), top: _865() });
+        if (panelObj.panel("options").closed) {
+            panelObj.panel("open");
             //resize不在初始化时做, 提升首屏速度
             var co = _861.combo;
-            _863.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight });
-            if(_863.find(".datagrid").length>0){ 
+            panelObj.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight });
+            if(panelObj.find(".datagrid").length>0){ 
                 // datagrid--width=0,height=0
                 $.data(_860, "combogrid").grid.datagrid("resize",{ width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight })
             }
@@ -222,25 +222,29 @@
             opts.onShowPanel.call(_860);
         }
         (function () {
-            if (_863.is(":visible")) {
+            if (panelObj.is(":visible")) {
                 /*20220923增加面板位置样式*/
                 var topVal = _865();
-                if (topVal > _862.offset().top) {
-                    _863.parent().removeClass('combo-p-top').addClass('combo-p-bottom');
+                if (topVal > comboInputObj.offset().top) {
+                    panelObj.parent().removeClass('combo-p-top').addClass('combo-p-bottom');
                 } else {
-                    _863.parent().removeClass('combo-p-bottom').addClass('combo-p-top');
+                    panelObj.parent().removeClass('combo-p-bottom').addClass('combo-p-top');
                 }
-                _863.panel("move", { left: _864(), top: topVal });
+                if (panelObj.prev().hasClass("_hisui_combobox-selectall") && panelObj.parent().hasClass('combo-p-top')){ 
+                    // 当弹出到录入框上方时，top要再减去[全选/取消全选]工具条的高度
+                    topVal -=32;
+                }
+                panelObj.panel("move", { left: _864(), top: topVal });
                 setTimeout(arguments.callee, 200);
             }
         })();
         function _864() {
-            var left = _862.offset().left;
+            var left = comboInputObj.offset().left;
             if (opts.panelAlign == "right") {
-                left += _862._outerWidth() - _863._outerWidth();
+                left += comboInputObj._outerWidth() - panelObj._outerWidth();
             }
-            if (left + _863._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
-                left = $(window)._outerWidth() + $(document).scrollLeft() - _863._outerWidth();
+            if (left + panelObj._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
+                left = $(window)._outerWidth() + $(document).scrollLeft() - panelObj._outerWidth();
             }
             if (left < 0) {
                 left = 0;
@@ -248,12 +252,12 @@
             return left;
         };
         function _865() {
-            var top = _862.offset().top + _862._outerHeight() - 1; //默认向下显示 20190711-1减少1px接逢线
-            if (top + _863._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
-                top = _862.offset().top - _863._outerHeight() + 1 ; //在上面显示 20190711+1减少1px接逢线
+            var top = comboInputObj.offset().top + comboInputObj._outerHeight() - 1; //默认向下显示 20190711-1减少1px接逢线
+            if (top + panelObj._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
+                top = comboInputObj.offset().top - panelObj._outerHeight() + 1 ; //在上面显示 20190711+1减少1px接逢线
             }
             if (top < $(document).scrollTop()) {
-                top = _862.offset().top + _862._outerHeight() - 1; //向下显示 20190711-1减少1px接逢线
+                top = comboInputObj.offset().top + comboInputObj._outerHeight() - 1; //向下显示 20190711-1减少1px接逢线
             }
             return top;
         };
