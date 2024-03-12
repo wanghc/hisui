@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="../favicon.ico"/>
 	<link rel="bookmark" href="../favicon.ico"/>
-	<title>HISUI(炫彩)</title>
-	<link id="themecss" rel="stylesheet" type="text/css" href="../dist/css/hisui.min.css">
-	<script type="text/javascript" src="../dist/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../dist/js/jquery.hisui.js"></script>	
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>HISUI</title>
+    
+    <link rel="stylesheet" type="text/css" href="../dist/css/hisui.min.css"></link>
+    <script type="text/javascript" src="../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="demo.css">
+    
+    <script type="text/javascript">
+        var HISUIStyleCode = 'blue';
+    </script>
     <style>
         .hisui-accordion ul {
             list-style: none;
@@ -15,8 +25,10 @@
             padding: 0;
         }
         .hisui-accordion ul>li {
+            
             line-height: 28px;
-            padding: 0 5px 0 15px;
+            
+	        padding: 0 5px 0 15px;
         }
         .hisui-accordion ul>li>a {
             position: relative;
@@ -133,8 +145,8 @@
          </div>   
     </div>-->
     <div region="west" border="true" split="true" title="HISUI组件"  style="width:200px;padding:0px;">                
-        <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
-            <div title="基础" style="background-color:#F9F9F9;">
+        <div id="accd" class="hisui-accordion " fit="true" data-options="border:false">
+            <div title="基础"   style="background-color:#F9F9F9;">
                 <ul>
                     <!--<li><a href="javascript:void(0);" src="use/use.html" class="api-navi-tab">起步(use)</a></li>-->
                     <li><a href="javascript:void(0);"  src="ajax/ajax.html" class="api-navi-tab">数据访问（ajax）</a></li>
@@ -147,7 +159,7 @@
                     <li><a href="javascript:void(0);"  src="popover/popover.html" class="api-navi-tab">泡芙提示（popover）</a></li>
                 </ul>
             </div>
-            <div title="布局" style="background-color:#F9F9F9;">   
+            <div title="布局"   style="background-color:#F9F9F9;">   
                 <ul>
                     <li><a href="javascript:void(0);" src="panel/panel.html" class="api-navi-tab">面板(panel)</a></li>
                     <li><a href="javascript:void(0);" src="tab/tab.html" class="api-navi-tab">页签(tab)</a></li>
@@ -155,9 +167,10 @@
                     <li><a href="javascript:void(0);" src="layout/layout.html" class="api-navi-tab">五方布局(layout)</a></li>
                     <li><a href="javascript:void(0);" src="hstep/hstep.html" class="api-navi-tab">水平步骤(hstep)</a></li>
                     <li><a href="javascript:void(0);" src="vstep/vstep.html" class="api-navi-tab">纵向步骤(vstep)</a></li>
+                    
                 </ul>   
             </div>
-            <div title="表单" style="background-color:#F9F9F9;">
+            <div title="表单"   style="background-color:#F9F9F9;">
                 <ul>
                     <li><a href="javascript:void(0);" src="label/index.html" class="api-navi-tab">文本(label)</a></li>
                     <li><a href="javascript:void(0);" src="linkbutton/linkbutton.html" class="api-navi-tab">按钮(linkbutton)</a></li>
@@ -180,7 +193,7 @@
                     <li><a href="javascript:void(0);"  src="imedisabled/imedisabled.html" class="api-navi-tab">切换英文输入法</a></li> -->
                 </ul>
             </div>
-            <div title="表格及树" style="background-color:#F9F9F9;">
+            <div title="表格及树"   style="background-color:#F9F9F9;">
                 <ul>
                     <li><a href="javascript:void(0);" src="datagrid/datagrid.html" class="api-navi-tab">表格(datagrid)</a></li>
                     <li><a href="javascript:void(0);" src="datagrid/datagrid.scroll.html" class="api-navi-tab">表格滚动加载(scroll)</a></li>
@@ -188,19 +201,21 @@
                     <li><a href="javascript:void(0);" src="datagrid/datagrid.celledit.html" class="api-navi-tab">单元编辑(celledit)</a></li>
                     <li><a href="javascript:void(0);" src="treegrid/treegrid.html" class="api-navi-tab">树形表格(treegrid)</a></li>
                     <li><a href="javascript:void(0);" src="tree/tree.html" class="api-navi-tab">树(tree)</a></li>
-                    <li><a href="javascript:void(0);" src="menutree/menutree.html" class="api-navi-tab">菜单树(menutree)</a></li>
+                    
+		    <li><a href="javascript:void(0);" src="menutree/menutree.html" class="api-navi-tab">菜单树(menutree)</a></li>
+		    
                     <li><a href="javascript:void(0);" src="combogrid/combogrid.html" class="api-navi-tab">下拉表格(combogrid)</a></li>
                     <li><a href="javascript:void(0);" src="combotree/combotree.html" class="api-navi-tab">下拉树(combotree)</a></li>                    
                 </ul>
             </div>
-            <div title="窗口" style="background-color:#F9F9F9;"> 
+            <div title="窗口"  style="background-color:#F9F9F9;"> 
                  <ul>       
                     <li><a href="javascript:void(0);"  src="window/window.html" class="api-navi-tab">窗口(window)</a></li>
                     <li><a href="javascript:void(0);"  src="dialog/dialog.html" class="api-navi-tab">模态窗(dialog)</a></li>
                     <li><a href="javascript:void(0);"  src="messager/messager.html" class="api-navi-tab">消息框(messager)</a></li>
                 </ul>
             </div>
-            <div title="极速系列" style="background-color:#F9F9F9;"> 
+            <div title="极速系列"  style="background-color:#F9F9F9;"> 
                 <ul>
                    <li><a href="javascript:void(0);"  src="lookup/lookup.html" class="api-navi-tab">放大镜(lookup)</a></li>
                    <li><a href="javascript:void(0);"  src="datebox/dateboxq.html" class="api-navi-tab">日期框(dateboxq)</a></li>
@@ -208,7 +223,7 @@
                    <li><a href="javascript:void(0);"  src="datebox/datetimeboxq.html" class="api-navi-tab">日期时间(datetimeboxq)</a></li>
                </ul>
            </div>
-            <div title="测试" style="background-color:#F9F9F9;"> 
+            <div title="测试"  style="background-color:#F9F9F9;"> 
                 <ul>   
                     <li><a href="javascript:void(0);"  src="treegrid/treegrid.dnd.html" class="api-navi-tab">拖拽树形表格(treegrid.dnd)</a></li>    
                     <li><a href="javascript:void(0);"  src="test/formtest.html" class="api-navi-tab">表单们(formtest)</a></li>
