@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<link rel="stylesheet" type="text/css" href="../../lib/scrollbar/jquery.mCustomScrollbar.min.css">
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>滚动条</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+    <script type="text/javascript">
+        var HISUIStyleCode = 'lightblue';
+    </script>
+
+	<script src="../../lib/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var oldOnAfterRender = $.fn.datagrid.defaults.view.onAfterRender;
+		$.fn.datagrid.defaults.view.onAfterRender = function(target){
+			oldOnAfterRender(target);
+			//$(".hisui-srcollbar").mCustomScrollbar({theme:'dark'});
+			$(".datagrid-wrap.panel-body .datagrid-view2 .datagrid-body").mCustomScrollbar({theme:'dark'});
+		}
+		</script>
+</head>
+<body>
+	<h2>数据网格</h2>
+	<h3>说明:</h3>
+    <span>数据网格（datagrid）的列信息是定义在 &lt;thead>标记中，数据是定义在 &lt;tbody>标记中，确保为所有的数据列设置 field 名称。</span>
+	<h3>如：默认表格(hisui-datagrid)</h3>
+	<div class="demo-exp-code entry-content"> 
+		<table class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="fitColumns:true,singleSelect:true,pagination:true">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'code',width:20">编码</th>   
+					<th data-options="field:'name',width:20">姓名</th>   
+					<th data-options="field:'price',width:20">科室</th>
+					<th data-options="field:'num',width:20">诊断</th>
+					<th data-options="field:'note',width:20">代码</th>
+					<th data-options="field:'re'">原因</th>   
+				</tr>   
+			</thead>   
+			<tbody>   
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+				</tr>   
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>002</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>  
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+				</tr>
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+				</tr>   
+			</tbody>   
+		</table>
+	</div>
+	<h3>编辑灰色表格(<code>headerCls:'panel-header-gray'</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<table id='mytb' class="hisui-datagrid" title="病人列表" style="width:600px;height:300px" 
+		data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',
+		singleSelect:true,
+		pagination:true,toolbar: [{
+			iconCls: 'icon-edit',
+			text:'编辑',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('beginEdit',curInd);}
+		},{
+			iconCls: 'icon-save',
+			text:'保存',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('endEdit',curInd)}
+		},{
+			iconCls: 'icon-remove',
+			text:'删除',
+			disabled:false,
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('deleteRow',curInd)}
+		},{
+			iconCls: 'icon-help',
+			text:'帮助',
+			handler: function(){alert('你点击了帮助按钮')}
+		},'-',{
+			iconCls: 'icon-ok',
+			handler: function(){alert('你点击了ok图标')}
+		},{
+			iconCls: 'icon-search',
+			handler: function(){alert('你点击了查询图标')}
+		}],onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},onDblClickRow:function(){console.log(arguments)},
+		">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'code',width:40">编码</th>   
+					<th data-options="field:'name',width:40,editor:{type:'text'}">姓名</th>   
+					<th data-options="field:'price',width:50">就诊科室</th>
+					<th data-options="field:'num',width:40">诊断</th>
+					<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称</th>
+					<th data-options="field:'re',width:70,editor:{type:'datebox'}">日期</th>   
+					<th data-options="field:'datetime',width:100,editor:{type:'datetimebox'}">日期与时间</th>   
+				</tr>   
+			</thead>   
+			<tbody>   
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:08:50</td>   
+				</tr>   
+				<tr>   
+					<td>002</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>
+				</tr>
+				<tr>   
+					<td>003</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>
+				</tr>
+				<tr>   
+					<td>004</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>  
+				</tr>
+				<tr>   
+					<td>005</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>   
+				</tr>   
+			</tbody>   
+		</table> 
+
+		<pre class="prettyprint hide lang-html"><code>&lt;table class="hisui-datagrid" title="病人列表" style="width:600px;height:400px" 
+			data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',pagination:true,toolbar: [{
+			iconCls: 'icon-edit',
+			text:'编辑',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
+				$('#mytb').datagrid('beginEdit',curInd);}
+		},{
+			iconCls: 'icon-save',
+			text:'保存',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
+				$('#mytb').datagrid('endEdit',curInd)}
+		},{
+			iconCls: 'icon-remove',
+			text:'删除',
+			disabled:true,
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
+				$('#mytb').datagrid('deleteRow',curInd)}
+		},{
+			iconCls: 'icon-help',
+			text:'帮助',
+			handler: function(){alert('你点击了帮助按钮')}
+		}]
+	">   
+		&lt;thead>   
+			&lt;tr>
+				&lt;th data-options="field:'code',width:40">编码&lt;/th>   
+				&lt;th data-options="field:'name',width:40,editor:{type:'text'}">姓名&lt;/th>   
+				&lt;th data-options="field:'price',width:50">就诊科室&lt;/th>
+				&lt;th data-options="field:'num',width:40">诊断&lt;/th>
+				&lt;th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称&lt;/th>
+				&lt;th data-options="field:'re',width:70,editor:{type:'datebox'}">日期&lt;/th>   
+				&lt;th data-options="field:'datetime',width:100,editor:{type:'datetimebox'}">日期与时间&lt;/th>   
+			&lt;/tr>   
+		&lt;/thead>   
+		&lt;tbody>   
+			&lt;tr>   
+				&lt;td>001&lt;/td>&lt;td>王小二&lt;/td>&lt;td>内三科&lt;/td>&lt;td>感觉&lt;/td>&lt;td>name1&lt;/td>&lt;td>2323&lt;/td>   
+			&lt;/tr>
+			......
+		&lt;/tbody>   
+	&lt;/table&gt;</code></pre>
+	</div>
+	<!--<div class="demo-exp-code entry-content"> 
+		<table title="菜单管理" class="hisui-datagrid" id="treegrid2" style="width:680px;height:400px"
+			data-options="rownumbers:true,autoSizeColumn:false">
+			<thead>
+				<tr>
+					<th field="menuName" width="160" align="left">菜单名</th>
+					<th field="menuLink" width="100" align="right">链接</th>
+					<th field="menuCode" width="160" align="right">代码</th>
+					<th field="menuSort" width="60" align="right">顺序</th>
+					<th field="menuEx" width="60" align="right">表达式</th>
+				</tr>
+			</thead>
+		</table>
+		<script type="text/javascript">
+			$(function(){
+				var treegridObj2 = $HUI.datagrid("#treegrid2",{});
+					treegridObj2.loadData({"total":19,"rows":[
+					{"id":1,"menuName":"配置管理","menuLink":"cfgmgr.csp","menuCode":"cfgManager","menuSort":"","menuEx":""},
+					{"id":11,"menuName":"菜单管理","menuLink":"menumgr.csp","menuCode":"menuManager","menuSort":1,"menuEx":"&name=1","_parentId":1},
+					{"id":12,"menuName":"用户管理","menuLink":"usermgr.csp","menuCode":"userManager","menuSort":2,"menuEx":"&name=1","_parentId":1},
+					{"id":13,"menuName":"安全管理","menuLink":"groupmgr.csp","menuCode":"groupManager","menuSort":3,"menuEx":"&name=1","_parentId":1},
+					
+					{"id":2,"menuName":"医生站","menuLink":"docmgr.csp","menuCode":"docManager","menuSort":"","menuEx":""},
+					{"id":14,"menuName":"便民门诊","menuLink":"regmgr.csp","menuCode":"regManager","menuSort":1,"menuEx":"&name=1","_parentId":2},
+					{"id":15,"menuName":"诊断录入","menuLink":"diagmgr.csp","menuCode":"diagManager","menuSort":2,"menuEx":"&name=1","_parentId":2},
+					{"id":16,"menuName":"医嘱录入","menuLink":"ordermgr.csp","menuCode":"orderManager","menuSort":3,"menuEx":"&name=1","_parentId":2},
+					{"id":17,"menuName":"病历书写","menuLink":"eprmgr.csp","menuCode":"eprManager","menuSort":4,"menuEx":"&name=1","_parentId":2},
+					{"id":18,"menuName":"病人列表","menuLink":"patlist.csp","menuCode":"patlistManager","menuSort":5,"menuEx":"&name=1","_parentId":2},
+					{"id":19,"menuName":"历次就诊","menuLink":"admlist.csp","menuCode":"admlistManager","menuSort":6,"menuEx":"&name=1","_parentId":2}
+				]});
+			});
+		</script>
+		<pre class="prettyprint lang-html"><code></code>
+		</pre>
+	</div>-->
+	<h3>自定义表格工具栏(<code>toolbar:'#custtb'</code>) </h3>
+	<div class="demo-exp-code entry-content"> 
+		<div id="custtb" >
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+			<a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-arrow-left-top'">菜单</a>
+			<div id="mm-toolbar" style="width:100px;">   
+				<div onclick="console.log('停止');">停止</div>   
+				<div onclick="console.log('作废');">作废</div>     
+				<div onclick="console.log('其他');">其他</div>   
+			</div>
+		</div>
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:250px" data-options="headerCls:'panel-header-gray',pagination:true,
+			toolbar:'#custtb',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
+			onDblClickRow:function(){console.log(arguments)},">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'code'">编码</th>   
+					<th data-options="field:'name'">名称</th>   
+					<th data-options="field:'price'">价格</th>
+					<th data-options="field:'num'">数量</th>
+					<th data-options="field:'note'">描述</th>
+					<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
+					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
+				</tr>   
+			</thead>   
+			<tbody>    
+			</tbody>   
+		</table> 
+	
+	<pre class="prettyprint hide lang-html"><code>&lt;table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:400px" 
+		data-options="headerCls:'panel-header-gray',pagination:true,toolbar:'#custtb',..."&gt;   
+	...
+&lt;/table&gt; 
+&lt;div id="custtb" &gt;
+	&lt;a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true"&gt;查询&lt;/a&gt;
+	&lt;a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-remove',plain:true"&gt;删除&lt;/a&gt;
+	&lt;a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar" 
+		data-options="menu:'#mm-toolbar',iconCls:'icon-arrow-left-top'"&gt;菜单&lt;/a&gt;
+	&lt;div id="mm-toolbar" style="width:100px;"&gt;   
+		&lt;div onclick="console.log('停止');"&gt;停止&lt;/div&gt;   
+		&lt;div onclick="console.log('作废');"&gt;作废&lt;/div&gt;     
+		&lt;div onclick="console.log('其他');"&gt;其他&lt;/div&gt;   
+	&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+	</div>
+	<h3>通过JS代码定义表格</h3>
+	<div class="demo-exp-code entry-content"> 
+		<table id="mytable3"></table>
+		<script type="text/javascript">
+			$(function(){
+				$HUI.datagrid('#mytable3',{
+					autoSizeColumn:false,
+					fitColumns:true,
+					columns:[[
+						{field:'code',title:'代码',width:100},
+						{field:'name',title:'描述',width:100},
+						{field:'price',title:'价格',width:100}
+					]],
+					data:[
+						{id:'1','code':'XJ',name:'香蕉',price:'2.50'},
+						{id:'2','code':'XJ',name:'苹果',price:'2.50'},
+						{id:'3','code':'XJ',name:'梨',price:'5.50'},
+						{id:'4','code':'XJ',name:'橙子',price:'3.50'},
+						{id:'5','code':'XJ',name:'橘子',price:'4.50'},
+						{id:'6','code':'XJ',name:'芒果',price:'4.60'},
+						{id:'7','code':'XJ',name:'西瓜',price:'2.40'},
+						{id:'8','code':'XJ',name:'荔枝',price:'2.50'},
+						{id:'9','code':'XJ',name:'凤梨',price:'2.50'},
+						{id:'10','code':'XJ',name:'椰子',price:'2.50'}
+					],
+					idField:'id',
+					rownumbers:true,
+					singleSelect:true,
+					width:600,
+					height:200,
+					title:'水果单价表'
+				})
+			})		
+		</script>
+	<pre class="prettyprint hide lang-html"><code>&lt;table id="mytable3"&gt;&lt;/table&gt;
+&lt;script type="text/javascript"&gt;
+	$(function(){
+		$HUI.datagrid('#mytable3',{
+			autoSizeColumn:false,
+			fitColumns:true,
+			columns:[[
+				{field:'code',title:'代码',width:100},
+				{field:'name',title:'描述',width:100},
+				{field:'price',title:'价格',width:100}
+			]],
+			data:[
+				{id:'1','code':'banana',name:'香蕉',price:'2.50'},
+				{id:'2','code':'apple',name:'苹果',price:'2.50'},
+				...
+			],
+			idField:'id',
+			rownumbers:true,
+			singleSelect:true,
+			width:500,
+			title:'水果单价表'
+		})
+	})		
+&lt;/script&gt;</code></pre>
+	</div>
+	<h3>定制翻页条</h3>
+	<div class="demo-exp-code entry-content">
+		<table class="hisui-datagrid" style="width:600px;height:50px" 
+		data-options="headerCls:'panel-header-gray',
+		showPageList:false,
+		showRefresh:false,
+		afterPageText:'页,共{pages}页',
+		beforePageText:'第',
+		displayMsg:'显示{from}到{to}条，共{total}条',
+		pagination:true">
+		</table>
+		<pre class="prettyprint hide lang-html"><code>&lt;table ... data-options="headerCls:'panel-header-gray',
+			showPageList:false, showRefresh:false,
+			afterPageText:'页,共{pages}页', beforePageText:'第', displayMsg:'显示{from}到{to}条，共{total}条',
+			pagination:true"&gt; &lt;/table&gt;
+		</code></pre>
+	</div>
+	<div style="height: 200px;">
+		<table class="table">
+			<tr class="protitle">
+				<th>属性</th>
+				<th>说明</th>
+				<th>默认值</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>autoSizeColumn</td>
+				<td>是否自动计算列属性</td>
+				<td>true</td>
+				<td>如果不用请设置成false。严重影响效率</td>
+			</tr>
+			<tr>
+				<td>showRefresh</td>
+				<td>是否显示翻页条上的刷新按钮</td>
+				<td>true</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>showPageList</td>
+				<td>是否显示翻页条上的下拉行列表</td>
+				<td>true</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>afterPageText</td>
+				<td>翻页条上输入框后-显示信息</td>
+				<td>页,共{pages}页</td>
+				<td>值为''，则不显示信息</td>
+			</tr>
+			<tr>
+				<td>beforePageText</td>
+				<td>翻页条上输入框前-显示信息</td>
+				<td>第</td>
+				<td>值为''，则不显示信息</td>
+			</tr>
+			<tr>
+				<td>displayMsg</td>
+				<td>显示信息</td>
+				<td>显示 {from} 到 {to} ,从 {total} 条记录</td>
+				<td>值为''，则不显示信息</td>
+			</tr>
+			<tr class="evttitle">
+				<th>事件名</th>
+				<th>说明</th>
+				<th>入参</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>onDblClickHeader</td>
+				<td>双击列头事件</td>
+				<td>e,field</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+
+	<prettyprint />	
+</body>
+</html>

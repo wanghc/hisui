@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../../templates/hisui-header.ejs',{title:"下拉表格"}) %>
+</head>
+<body>
+    <h2>组合网格</h2>
+    <h3>说明:</h3>
+    <span>组合网格（combogrid）把可编辑的文本框和下拉数据网格面板结合起来，用户可以从下拉数据网格面板中快速查找和选择。组合网格（combogrid）提供了选择某个项目的键盘导航支持。</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content"> 
+        <select class="hisui-combogrid" id="combogrid" style="width:250px" data-options="
+            panelWidth: 500,
+            blurValidValue:true,
+            idField: 'itemid',
+            textField: 'productname',
+            //showFilterToolbar:true,
+            columns: [[
+                {field:'itemid',title:'Item ID',width:80},
+                {field:'productname',title:'Product',width:120},
+                {field:'listprice',title:'List Price',width:80,align:'right'},
+                {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
+                {field:'attr1',title:'Attribute',width:200},
+                {field:'status',title:'Status',width:60,align:'center'}
+            ]],
+            fitColumns: true
+            //,required:true
+        ">
+    </select>
+    <script type="text/javascript">
+        $.parser.onComplete = function(cxt){
+            if (cxt) return ;
+            var trObj = $HUI.combogrid("#combogrid");
+            var grid = trObj.grid();
+            grid.datagrid("loadData",{"total":5,"rows":[
+                {"itemid":"EST-1","productname":"Koi","listprice":36.50,"unitcost":10.00,"attr1":"Large","status":"P"},
+                {"itemid":"EST-10","productname":"Dalmation","listprice":18.50,"unitcost":12.00,"attr1":"Spotted Adult Female","status":"P"},
+                {"itemid":"EST-11","productname":"Rattlesnake","listprice":38.50,"unitcost":12.00,"attr1":"Venomless","status":"P"},
+                {"itemid":"EST-12","productname":"Rattlesnake","listprice":26.50,"unitcost":12.00,"attr1":"Rattleless","status":"P"},
+                {"itemid":"EST-13","productname":"Iguana","listprice":35.50,"unitcost":12.00,"attr1":"Green Adult","status":"P"}
+            ]});
+        };
+    </script>
+  
+   <pre class="prettyprint lang-html hide"><code>&lt;select class="hisui-combogrid" id="combogrid" style="width:250px" data-options="
+            panelWidth: 500,
+            blurValidValue:true,
+            idField: 'itemid',
+            textField: 'productname',
+            method: 'get',
+            columns: [[
+                {field:'itemid',title:'Item ID',width:80},
+                {field:'productname',title:'Product',width:120},
+                {field:'listprice',title:'List Price',width:80,align:'right'},
+                {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
+                {field:'attr1',title:'Attribute',width:200},
+                {field:'status',title:'Status',width:60,align:'center'}
+            ]],
+            fitColumns: true
+        ">    
+&lt;/select&gt;</code></pre><pre class="prettyprint lang-js hide">&lt;script type="text/javascript"&gt;
+    $(function(){
+        var trObj = $HUI.combogrid("#combogrid");
+        var grid = trObj.grid();
+        grid.datagrid("loadData",{"total":5,"rows":[
+            {"itemid":"EST-1","productname":"Koi","listprice":36.50,"unitcost":10.00,"attr1":"Large","status":"P"},
+            {"itemid":"EST-10","productname":"Dalmation","listprice":18.50,"unitcost":12.00,"attr1":"Spotted Adult Female","status":"P"},
+            {"itemid":"EST-11","productname":"Rattlesnake","listprice":38.50,"unitcost":12.00,"attr1":"Venomless","status":"P"},
+            {"itemid":"EST-12","productname":"Rattlesnake","listprice":26.50,"unitcost":12.00,"attr1":"Rattleless","status":"P"},
+            {"itemid":"EST-13","productname":"Iguana","listprice":35.50,"unitcost":12.00,"attr1":"Green Adult","status":"P"}
+        ]});
+    });
+&lt;/script&gt;    
+    </pre>  </div>
+    <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>enterNullValueClear</td>
+			<td>默认值true。当为false时，在输入框内回车，没有匹配值不清空输入框。</td>
+			<td>true</td>
+			<td></td>
+        </tr>
+        <tr>
+			<td>blurValidValue</td>
+			<td>为true时，光标离开时，检查是否选中值,没选中则置空输入框的值。<code>2018-12-26</code></td>
+			<td>false</td>
+			<td></td>
+		</tr>
+    </table>
+    <prettyprint/>
+</body>
+</html>

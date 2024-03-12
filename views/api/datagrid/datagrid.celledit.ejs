@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<%- include('../../templates/hisui-header.ejs',{title:"单元格编辑列表"}) %>
+</head>
+<body>
+	<script type="text/javascript" src="../../dist/plugin/datagrid-cellediting.js"></script>
+	<h2>单元格编辑表格</h2>
+	<h3>说明:</h3>
+	<style>
+	.a{
+		position: absolute;
+		height: 345px;
+		top: 0px;
+		left: 710px;
+		margin: 0px;
+	}
+	</style>
+    <span>单元格编辑功能来自于EasyUI的cellediting组件，主要用于单元编辑功能</span>
+	<div class="demo-exp-code entry-content " >
+		<table id="dg" title="甲患者生命体征录入" class='use-prettyprint lang-html' data-options="toolbar:[],rownumbers:true" style="width:500px;height:500px">
+			<thead>
+				<tr>
+					<th data-options="field:'opdate',width:120,editor:{type:'dateboxq'}">日期</th>
+					<th data-options="field:'note1',width:200,align:'center',editor:{type:'celltextarea'}">行高自适应</th>
+					<th data-options="field:'temperature',width:100,editor:{type:'numberbox',options:{precision:1}}">体温</th>
+					<th data-options="field:'pulse',width:60,editor:{type:'numberbox',options:{precision:0,min:60,max:100}}">脉搏</th>
+					<th data-options="field:'heartbeat',width:60,align:'right',editor:{type:'numberbox',options:{precision:0}}">心跳</th>
+					<th data-options="field:'breath',width:80,align:'right',editor:'numberbox'">呼吸</th>
+					<th data-options="field:'bloodpress',width:60,editor:{type:'numberbox',options:{precision:0,min:80,max:120}}">血压</th>
+					<th data-options="field:'status',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">正常</th>
+					<th data-options="field:'note',width:160,align:'center',editor:{type:'textarea'}">备注</th>
+				</tr>
+			</thead>
+		</table>
+		<script type="text/javascript" class='use-prettyprint lang-js'>
+			var data = {"total":28,"rows":[
+				{"no":1,"opdate":"2020-09-06","temperature":38.8,"pulse":60,"heartbeat":68,"breath":25,"bloodpress":120,"status":"Y","note":"abcd","note1":"心跳（heartbeat ），\n顾名思义就是心脏的跳动。\n右心房收纳全身的静脉血，\n通过右心室从肺动脉泵出，此时肺动脉中流的是静脉血，通过肺中的气体交换，变成含氧丰富的动脉血，由肺静脉送至左心房，\n再通过左心室的主动脉泵向全身各个组织器官以满足其正常生理活动的需要"},
+				{"no":2,"opdate":"2020-09-07","temperature":37.5,"pulse":66,"heartbeat":78,"breath":24,"bloodpress":110,"status":"Y","note":"abcd","note1":"体温：正常值：口腔舌下温度为36.3～37.2℃，\n直肠温度36.5～37.7℃比口腔温度高（0.2～0.5℃），\n腋下温度36.0℃-37.0℃。"},
+				{"no":3,"opdate":"2020-09-08","temperature":37,"pulse":80,"heartbeat":88,"breath":22,"bloodpress":110,"status":"Y","note":"abcd","note1":"脉搏：脉搏的频率受年龄和性别的影响，\n胎儿每分钟110～160次，\n婴儿每分钟120～140次，\n幼儿每分钟90～100次，\n学龄期儿童每分钟80～90次"},
+				{"no":4,"opdate":"2020-09-09","temperature":37.1,"pulse":83,"heartbeat":98,"breath":22,"bloodpress":112,"status":"Y","note":"abcd","note1":"肺活量：正常成人男子肺活量约为3500～4000毫升，\n女子约为2500～3500毫升"},
+				{"no":5,"opdate":"2020-09-10","temperature":37.2,"pulse":83,"heartbeat":95,"breath":22,"bloodpress":112,"status":"Y","note":"abcd","note1":"血压：\n正常成人安静状态下的血压范围较稳定，\n正常范围收缩压90～139mmHg，\n舒张压60～89mmHg，\n脉压30～40mmHg。"},
+				{"no":6,"opdate":"2020-09-06","temperature":38.8,"pulse":60,"heartbeat":68,"breath":25,"bloodpress":120,"status":"Y","note":"abcd","note1":"心跳（heartbeat ），\n顾名思义就是心脏的跳动。\n右心房收纳全身的静脉血，\n通过右心室从肺动脉泵出，此时肺动脉中流的是静脉血，通过肺中的气体交换，变成含氧丰富的动脉血，由肺静脉送至左心房，\n再通过左心室的主动脉泵向全身各个组织器官以满足其正常生理活动的需要"},
+				{"no":7,"opdate":"2020-09-07","temperature":37.5,"pulse":66,"heartbeat":78,"breath":24,"bloodpress":110,"status":"Y","note":"abcd","note1":"体温：正常值：口腔舌下温度为36.3～37.2℃，\n直肠温度36.5～37.7℃比口腔温度高（0.2～0.5℃），\n腋下温度36.0℃-37.0℃。"},
+				{"no":8,"opdate":"2020-09-08","temperature":37,"pulse":80,"heartbeat":88,"breath":22,"bloodpress":110,"status":"Y","note":"abcd","note1":"脉搏：脉搏的频率受年龄和性别的影响，\n胎儿每分钟110～160次，\n婴儿每分钟120～140次，\n幼儿每分钟90～100次，\n学龄期儿童每分钟80～90次"},
+				{"no":9,"opdate":"2020-09-09","temperature":37.1,"pulse":83,"heartbeat":98,"breath":22,"bloodpress":112,"status":"Y","note":"abcd","note1":"肺活量：正常成人男子肺活量约为3500～4000毫升，\n女子约为2500～3500毫升"},
+				{"no":10,"opdate":"2020-09-10","temperature":37.2,"pulse":83,"heartbeat":95,"breath":22,"bloodpress":112,"status":"Y","note":"abcd","note1":"血压：\n正常成人安静状态下的血压范围较稳定，\n正常范围收缩压90～139mmHg，\n舒张压60～89mmHg，\n脉压30～40mmHg。"},
+				{"no":11,"opdate":"2020-09-06","temperature":38.8,"pulse":60,"heartbeat":68,"breath":25,"bloodpress":120,"status":"Y","note":"abcd","note1":"心跳（heartbeat ），\n顾名思义就是心脏的跳动。\n右心房收纳全身的静脉血，\n通过右心室从肺动脉泵出，此时肺动脉中流的是静脉血，通过肺中的气体交换，变成含氧丰富的动脉血，由肺静脉送至左心房，\n再通过左心室的主动脉泵向全身各个组织器官以满足其正常生理活动的需要"},
+				{"no":12,"opdate":"2020-09-07","temperature":37.5,"pulse":66,"heartbeat":78,"breath":24,"bloodpress":110,"status":"Y","note":"abcd","note1":"体温：正常值：口腔舌下温度为36.3～37.2℃，\n直肠温度36.5～37.7℃比口腔温度高（0.2～0.5℃），\n腋下温度36.0℃-37.0℃。"},
+				{"no":13,"opdate":"2020-09-08","temperature":37,"pulse":80,"heartbeat":88,"breath":22,"bloodpress":110,"status":"Y","note":"abcd","note1":"脉搏：脉搏的频率受年龄和性别的影响，\n胎儿每分钟110～160次，\n婴儿每分钟120～140次，\n幼儿每分钟90～100次，\n学龄期儿童每分钟80～90次"},
+				{"no":14,"opdate":"2020-09-09","temperature":37.1,"pulse":83,"heartbeat":98,"breath":22,"bloodpress":112,"status":"Y","note":"abcd","note1":"肺活量：正常成人男子肺活量约为3500～4000毫升，\n女子约为2500～3500毫升"},
+				{"no":15,"opdate":"2020-09-10","temperature":37.2,"pulse":83,"heartbeat":95,"breath":22,"bloodpress":112,"status":"Y","note":"abcd","note1":"血压：\n正常成人安静状态下的血压范围较稳定，\n正常范围收缩压90～139mmHg，\n舒张压60～89mmHg，\n脉压30～40mmHg。"}
+			]};
+			$(function(){
+				$('#dg').datagrid({
+					data: data
+				}).datagrid('enableCellEditing').datagrid('gotoCell', {
+					index: 0,
+					field: 'temperature'
+				});
+			});
+		</script>
+	</div>
+	<table class="table">
+		<tr class="evttitle">
+			<th>事件名</th>
+			<th>说明</th>
+			<th>入参</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>onCellEnterHandler</td>
+			<td>编辑框中回车事件</td>
+			<td>index,field</td>
+			<td><code>20200908</code></td>
+		</tr>
+		<tr class="protitle">
+			<th>编辑类型</th>
+			<th>说明</th>
+			<th>详解</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>celltextarea</td>
+			<td>单元格编辑类型</td>
+			<td>解析成textarea，编辑当前类型单元格时，自适应内容高度，宽度与列同宽。见示例一<code>2020-12-03</code></td>
+			<td></td>
+		</tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>

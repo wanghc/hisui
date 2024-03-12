@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<%- include('../../templates/hisui-header.ejs',{title:"对话框"}) %>
+
+</head>
+<body>
+	<h2>模态窗口</h2>
+	<h3>说明:</h3>
+    <span>对话框（Dialog）是一个特殊的窗口（window），可以包含在顶部的工具栏和在底部的按钮。默认情况下，对话框（Dialog）不能改变大小，但是用户可以设置 resizable 属性为 true，使其可以改变大小。</span>
+	<h3>如：</h3>
+	<script type="text/javascript">
+		function opennew(){
+			$('#dd3').dialog({
+				title:'d3',
+				width:400,
+				height:200,
+				top:150,
+				left:220,
+				closeKeyCode:113,
+				content:'dd3'
+			});
+		}
+	</script>
+	<div class="demo-exp-code entry-content"> 
+		<div id="dd3"></div>
+		<div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;padding:10px;"　
+		data-options="iconCls:'icon-w-card',resizable:true,modal:true,closeKeyCode:27,toolbar1:[{
+				text:'修改',
+				iconCls:'icon-write-order',
+				handler:function(){alert('edit')}
+			},{
+				text:'帮助',
+				iconCls:'icon-help',
+				handler:function(){alert('help')}
+			}],buttons:[{
+				text:'保存',
+				handler:function(){}
+			},{
+				text:'关闭',
+				handler:function(){$HUI.dialog('#dd2').close();}
+			}]">   
+			<div >
+				<label class="r-label">请输入你的工号：</label>
+				<input class="textbox">
+			</div>
+			<div style="margin-top: 20px;">
+				弹出后按<code>Esc</code>可以关闭窗口
+			</div>
+			<!--<div>
+				<a onclick="opennew()" href="#">再弹出窗口</a>
+			</div>-->   
+		</div><pre class="prettyprint hide lang-html"><code>&lt;div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:250px;left:500px;padding:10px;"　
+data-options="iconCls:'icon-save',resizable:true,modal:true,toolbar:[{
+		text:'修改',
+		iconCls:'icon-write-order',
+		handler:function(){alert('edit')}
+	},{
+		text:'帮助',
+		iconCls:'icon-help',
+		handler:function(){alert('help')}
+	}],buttons:[{
+		text:'保存',
+		handler:function(){}
+	},{
+		text:'关闭',
+		handler:function(){$HUI.dialog('#dd2').close();}
+	}]">   
+	这是一个模态操作框&lt;code>hisui-dialog&lt;/code>
+&lt;/div&gt;</code></pre>
+	</div>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isTopZindex</td>
+			<td>是否覆盖控件界面</td>
+			<td>false</td>
+			<td>默认情况下会被病历控件遮盖，true时则可显示到最上层,但dom会复杂些。</td>
+		</tr>
+		<tr>
+			<td>closeKeyCode</td>
+			<td>弹出窗口后关闭快捷</td>
+			<td>Number类型，默认不响应事件</td>
+			<td>如：27表示Esc，113表示F2。<code>20230728</code></td>
+		</tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>
