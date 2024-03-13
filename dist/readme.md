@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2024-03-13
 - :sparkles: `menubutton`与`splitbutton`连击提示修改 [4378767]
+- :sparkles: `linkbutton`对green，yellow，red色系处理 [4374134]
 
 ## 2024-03-08
 - 实现`hisui-label`组件 [4371974]
