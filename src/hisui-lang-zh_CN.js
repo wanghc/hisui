@@ -206,3 +206,9 @@ if ($.fn.checkbox){
 if ($.fn.linkbutton){
 	$.fn.linkbutton.defaults.waitingAlert = '按钮已点击过,系统响应中,请等待...';
 }
+if ($.fn.splitbutton){
+	$.fn.splitbutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
+}
+if ($.fn.menubutton){
+	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
+}

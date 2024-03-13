@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-03-13
+- :sparkles: `menubutton`与`splitbutton`连击提示修改 [4378767]
+
 ## 2024-03-08
 - 实现`hisui-label`组件 [4371974]
 

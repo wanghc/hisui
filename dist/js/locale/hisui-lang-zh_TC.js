@@ -206,3 +206,9 @@ if ($.fn.checkbox){
 if ($.fn.linkbutton){
 	$.fn.linkbutton.defaults.waitingAlert = '\u6309\u9215\u5df2\u9ede\u64ca\u904e,\u7cfb\u7d71\u97ff\u61c9\u4e2d,\u8acb\u7b49\u5f85...';
 }
+if ($.fn.splitbutton){
+	$.fn.splitbutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
+}
+if ($.fn.menubutton){
+	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
+}
