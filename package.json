@@ -24,8 +24,9 @@
     "md5": "^2.3.0"
   },
   "scripts": {
-    "upload": "node ./nodescripts/upload.js",
-    "genapi": "node ./nodescripts/genapi.js",
+    "upload": "node ./ns/upload.js",
+    "genapi": "node ./ns/genapi.js",
+    "watch":"node ./ns/watch.js",
     "all": "gulp",
     "min-js": "gulp min-js",
     "min-css": "gulp min-css"

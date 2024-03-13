@@ -16,11 +16,10 @@ module.exports.handler = function (filename,opt){
     }
     let srcRootPathIndex = filename.indexOf(opt.srcRootPath) + opt.srcRootPath.length;
     let destFilename = opt.destRootPath + filename.slice(srcRootPathIndex) //  api/xx/xxx.ejs
-    console.log("源文件"+filename+",目录文件"+destFilename);
+    //console.log("源文件"+filename+",目录文件"+destFilename);
     let parentDir = destFilename.slice(0,destFilename.lastIndexOf('/'));
     if (filename.lastIndexOf('.ejs')>-1){
         var parentItemDir = opt.destRootPath; //destFilename.slice(srcRootPathIndex,filename.indexOf('/',srcRootPathIndex))
-        console.log("parentItemDir  "+parentItemDir);
         if (parentItemDir=='lite'){
             opt.jsSuffix='.lite',opt.themeCode="lite";
         }else if (parentItemDir=='lightblue'){
@@ -40,7 +39,7 @@ module.exports.handler = function (filename,opt){
                     if (fserr){
                         console.error(fserr);
                     }else{
-                        console.log('成功生成：'+htmlFileName);
+                        //console.log('成功生成：'+htmlFileName);
                     }
                 });
             }
@@ -50,7 +49,7 @@ module.exports.handler = function (filename,opt){
             fs.mkdirSync(parentDir);
         }
         fs.copyFile(filename,destFilename,function(){
-            console.log('复制'+destFilename);
+            //console.log('复制'+destFilename);
         });
     }
 }
