@@ -56,6 +56,10 @@
             margin: 5px;
             border-bottom: 1px dashed #e5e5e5;
         }
+        .cntt-splitline{
+            height: 10px;
+            border-top: 1px dotted #cccccc;
+        }
         .panel-header, .panel-body {
             border-color: #ffffff;
         }
@@ -88,7 +92,7 @@
         <ul class="iconlist"></ul>
     </div>
     <!-- <div class='line'></div> -->
-    <div class="hisui-panel" title="文字处理图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
+    <div class="hisui-panel" title="编辑/文字处理(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
         <ul class="fontlist"></ul>
     </div>
     <div class="hisui-panel" title="黑色线条图标-常用于侧菜单图标" data-options="headerCls:'panel-header-card',titleWidth:260" style="padding:10px;margin-bottom:10px;">    
@@ -101,6 +105,18 @@
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="箭头图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
         <ul class="arrowlist"></ul>
+    </div>
+    <div class="hisui-panel" title="纸张图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="paperlist"></ul>
+    </div>
+    <div class="hisui-panel" title="医疗图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="medlist"></ul>
+    </div>
+    <div class="hisui-panel" title="费用图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="feelist"></ul>
+    </div>
+    <div class="hisui-panel" title="消息类图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="msglist"></ul>
     </div>
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
@@ -173,6 +189,7 @@
     <div class="mytooltip"></div>
     <script type="text/javascript">
         $(function(){
+            
             var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','arrow-left','arrow-right','back','cal','cancel','card','clean','config',
             'epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy',
             'stamp','batch-cfg','inv','batch-add','eye','calc','submit','clock','rent','run','line-key','takes','key','img','setting','ok','filter','predrug',"trigger-box",
@@ -186,68 +203,106 @@
                     </li>'
                 ).appendTo(".whitelist").find("a").linkbutton();
             }
+            var cw = Math.floor($('.hisui-panel').width()-40); //document.documentElement.clientWidth;
             /*--------------------------------*/
-            var icons = ['add','add-item','write-order','cancel','edit','remove','save','cut','ok','no','reload','search','print','help','sum','tip','filter'
+            var icons = [
+            'add','add-item','ok',''
+            ,'cancel','remove','dustbin-red','clear-screen',''
+            ,'search',''
+            ,'edit','blue-edit','gray-edit','paper-pen-blue',''
+            ,'save','save-to','save-sure','paper-save','save-tmpl',''
+            ,'accept','run','submit','pause','radio','other','no','unuse','pause-red','circle-down','face-red','submit-gray','done',''
+            
+            ,'print','print-box','reprint-inv','print-inv','print-arr-bo','print-arr-bo-gray','paper-print',''
+            
+            ,'paper-plane','undo-paper-plane','paper-plane-clock',''
+            ,'funnel-eye','funnel-half','funnel-empty','funnel-on',''
+            ,'eye','green-line-eye','eye-deepgrade','show-set',''
+            ,'clock','clock-blod','clock-record','clock-black','clock-orange',''
+            ,'star-orange-body','star-yellow','star-light-yellow','star','star-half','star-empty','star-orange-border',''
+            
+            ,'qua-pro-sort','qua-pro-dis','qua-pro-blue','select-grant','cancel-select-grant','refuse-select-grant','ca-green',''
+            
+            ,'patient','outhosp-patient','trans-pat','patient-info','pat-opr'
+            ,'pat-alert-red','pat-alert-yellow','pat-house','person','person-key-yel','person-ok','pat-add-red','pat-write','doctor','doctor-green-no','chg-doctor-grant','doctor-green-pen','person-seal','doc-caseload','user-black','user',''
+            ,'house','house-maint','house-posi-maint','pat-house-switch','home-back','change-loc','home-black','home-gray',''
+                        
+            ,'img','insert-local-image','image-properties','edit-picture','miss-img',''
+            ,'alert-pen','alert-red','alert','alarm','alarm-key',''
+            ,'key','muti-key','key-switch','lock','unlock',''
+            ,'stamp','stamp-cancel','stamp-pass','audit-x',''
+            ,'book','book-green','open-book','knw-submit','book-blue','book-gray',''
+            ,'export','import','import-reset','upload','download','excel','import-xls','export-data','export-paper','export-all',''
+            ,'compu-torus','compu-torus-gray','compu-run','compu-run-gray','green-chart','gray-chart','analysis','sample-stat',''
+            ,'wax-stat','wax-tat-stat','two-recta-gear','two-recta-gear-gray','three-cuboid-green','set-col','split','skip-no','paper-arrow',"compare","compare-no","compare-yes"
+            ,'slice-stat','slice-tat-stat','slice-only','paper-arrow-down','template','template-down','all-select',''
+            ,'batch-cfg','gear-gray','attachment','barbell','location','nail','scanning','cancel-ref','ref','tel','sound','camera','video','track'
+            ,'tooth','minus','fishbone-diagram','share','share-no','forbid','ignore','re-ignore','wrench-blue','target-arrow','ip-cfg',''
+                        
+            ,'base-info','adjust-inventory','gen','check','checkbox','snowflake-blue','icd',"no-dot",'emr-cri','date','cale-3day','cal-pen'
+            ,'double-quotes','other-yellow','verify','chart-year','max-no','set-zero','return','yellow-qa'
+            ,'dsh-water','water-drop','ice-water'
+            ,'price-maint','ga-maint','bed','uncheckin','checkin'
             //,'mini-add','mini-edit','mini-refresh' /*2018-06-28 去除mini图标*/
-            //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'
-            ,'bed','house','house-maint','house-posi-maint','person','person-key-yel','key-switch','big-switch','report-switch','report-blue-shie-key','patient','outhosp-patient','stethoscope'
-            ,'uncheckin','checkin','end-adm','change-loc','doctor','clear-screen','read-card','update','upload-cloud','unload-cloud','reset'
-            ,'other','patient-info','del-diag','add-diag','emr-cri'
-            ,'funnel-eye','funnel-half','funnel-empty','funnel-on','eye','green-line-eye','export','import','download','omega','eye-deepgrade'
-            ,'fee-arrow','fee'
-            ,'star-yellow','star-light-yellow','star','star-half','star-empty','star-orange-border','star-orange-body','book','all-select','all-unselect'
-            ,'select-grant','cancel-select-grant','refuse-select-grant','double-quotes','transfer'
-            ,'batch-cfg','batch-add','import-xls','init','inv-search','submit','chart-sum','chart-year'
-            ,'attachment','import-reset','mnypaper-cfg','mnypaper-run','mnypaper-ok','mnypaper-no','mnypaper-down','mnypaper-down2'
-            ,'stamp','stamp-cancel','stamp-pass','line-paid','split','alert','user','money-down'
-            ,'max-no','excel','img','save-to','save-sure','export-data','export-all','set-col','template','adjust-inventory','cancel-money'
-            ,'set-zero','accept-money','accept','show-set','camera','blue-edit','gray-edit','pat-write','up','down','fx','key','run','muti-key'
-            ,'pause','forbid','ignore','re-ignore','unuse','arrow-up','person-seal'
-            ,'scanning','return','doc-caseload','snowflake-blue','speci-mt','print-box','tube-add','tube-del','wrench-blue','gen'
-            ,'paper-submit','open-book','export-paper','track','paper-eye','run-red',"compare-no","compare-yes","compare","paper-arrow"
-            ,'adm-add','adm-same','alert-red','all-screen','analysis','arrow-blue','arrow-zoom','audit-x','base-info','blue-drug-ok','blue-move','book-green','bottle-drug','cal-pen','cancel-ref','cancel-top','check','checkbox','chg-doctor-grant','clock','clock-blod','clock-record','clock-black','clock-orange','barbell','target-arrow','contain','doctor-green-no','down-arrow-box','drug','drug-arrow-red','drug-audit','drug-clock','drug-link','dsh-water','durg-freq','durg-ref','face-red','find-adm','fire','format-line','format-line-dott','format-line-num','gen-barcode','home-black','home-gray','icd','injector','knw-submit','location','lock','move-left-most','move-up-most','mtpaper-add','mtpaper-arrw-lftp','mtpaper-redo','mtpaper-undo','mttext','mutpaper-tri','mutpaper-x','nail','no-conatin','other-yellow','paper-bed','paper-blue-line','paper-chart','paper-drug','paper-link-pen','paper-new','paper-no','paper-ok','paper-opr-record','paper-save','paper-table','paper-upgrade','paper-upgrade-add','paper-x','pat-add-red','pat-alert-red','pat-alert-yellow','pat-house','pat-house-switch','pat-opr','radio','ref','repeat-drug','right-arrow','switch','tel','text','tip-blue','top-green','trans-pat','tube','unlock','upload','virus','virus-drug','water-drop','yellow-qa'
-            ,'down-blue','export-report','add-report','finish-report','take-report','paper-plane','undo-paper-plane','h24-stat','stat','wax-stat','wax-tat-stat','paper-stat','slice-stat','slice-tat-stat','slice-only','sample-stat','paper-pen','paper-pen-blue','wating','done','user-black','report-check-black','up-gray','down-gray','pat-info','tooth',
-            'paid','return-paid','int-bill','cancel-int-bill','reprint-inv','print-inv','rebill','pat-fee-det','find-paid-det','find-ord-det',
-            'find-fee-itm','skip-no','injector-water','alert-pen','board-alert','doctor-green-pen','minus','alarm','ip-cfg','have-son-node','mater-info','send-msg','price-maint','ga-maint','qua-pro-sort','change-pay-way','qua-pro-dis','qua-pro-blue','rectangle-flow','paper-switch'
-            ,'bell-blue-no','bell-blue','bell-yellow','have-message','three-cuboid-green','dustbin-red'
-            ,'print-arr-bo','print-arr-bo-gray','gear-gray','triangle-green-right','triangle-gray-right','triangle-green-left','triangle-gray-left','paper-pay','paper-pay-gray','compu-torus','compu-torus-gray','two-recta-gear','two-recta-gear-gray','compu-run','compu-run-gray','paper-blue-add','paper-blue-add-gray','trian-recta-right','trian-recta-right-gray','box-red-add','box-red-add-gray','green-chart','gray-chart','report-eye','report-eye-gray','trian-recta-left','trian-recta-left-gray','refresh-gray','clock-pen','clock-pen-gray','drug-eye','drug-eye-gray','miss-img'
-            ,"herb-back","herb-pre","herb-next","herb-no","herb-ok","decoct-herb","decoct-change","paper-eye-r","paper-pre","no-dot","date",'verify','ca-green','ster-again','ster-bat','ster-bio','ster-cancel','ster-finish','ster-ok','pause-red','alarm-key','align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue','valign-bottom-blue','valign-middle-blue','valign-top-blue','barcode-blue','qrcode-blue','line','move','table-blue','table-col'
-            ,'stamp-mess','paper-lightning','cale-3day','stamp-add','stamp-switch','stamp-undo','template-down','paper-minus','paper-lightning','fishbone-diagram','ice-water','circle-down','sure-readed','read-details','ring-blue'
-            ,'bag','bag-x','disp-x','disp-back','msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed','sound','video','share','share-no','paper-share','home-back','paper-plane-clock','file-open','file','paper-unlink','shopping-cart-ok','person-ok','physics-monitor','change-x-virus','paper-print','multi-del'
-            ,'insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','arrow-left-top-gray','arrow-top-gray','book-blue','book-gray','file-gray','paper-pen-gray','submit-gray'
+            //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'            
+            ,'ster-bio','all-unselect','batch-add','multi-del','bag','bag-x','disp-x','disp-back','physics-monitor'
+            ,'have-son-node','rectangle-flow','creating-a-pedigree-map','edit-pedigree-chart','read-card','box-red-add'
+            ,'box-red-add-gray','fire'            
         ];
             //icons.sort();
             for(var i=0;i<icons.length;i++){
-                $(
+                if (icons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".iconlist");
+                }else{
+                    $(
                     '<li>\
                     <span class="icon icon-'+icons[i]+'">icon-'+icons[i]+'</span>\
                     </li>'
-                ).appendTo(".iconlist");
+                    ).appendTo(".iconlist");
+                }
             }
             var papericons = [
-                'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
-                ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'
-                ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up','paper-link','paper-info','set-paper','red-cancel-paper'
-                ,'paper-ques','paper-key','paper-group','paper-clock-bue'
+                'paper','write-order','cancel-order','abort-order','stop-order','write-order','paper-tri','paper-stamp','set-paper','paper-link',''
+                ,'paper-eye','paper-bed','paper-chart','paper-new','paper-no','paper-ok','paper-opr-record','paper-x','h24-stat'
+                ,'stat','paper-pen','pat-info','rebill','paper-eye-r','paper-minus','paper-info','red-cancel-paper','paper-ques'
+                ,'paper-key','paper-arrow-up','paper-group','paper-clock-bue','paper-cfg','apply-adm','apply-check','apply-opr'
+                ,'check-reg','paper-pen-gray',''
+                ,'paper-table','paper-pre','paper-money','paper-lightning','paper-unlink','board-alert','export-report','add-report'
+                ,'report-eye','paper-share','report-switch','report-blue-shie-key','paper-blue-line','finish-report','take-report'
+                ,'paper-stat','paper-blue-add','paper-submit','report-eye-gray','paper-blue-add-gray','report-check-black',''
+                ,'mtpaper-add','mtpaper-arrw-lftp','mtpaper-redo','mtpaper-undo','mutpaper-tri','mutpaper-x','copy-prn','copy-sos','replace-order','resort'
+                ,'paper-link-pen','find-fee-itm','paper-upgrade-add','exe-order','add-note','table-col','paper-upgrade','mater-info','paper-switch'
             ];
             //icons.sort();
             for(var i=0;i<papericons.length;i++){
-                $(
+                if (papericons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".paperlist");
+                }else{
+                    $(
                     '<li>\
                     <span class="icon icon-'+papericons[i]+'">icon-'+papericons[i]+'</span>\
                     </li>'
-                ).appendTo(".iconlist");
+                    ).appendTo(".paperlist");
+                }
             }
             //-----
             var fonticons=['lt-rt-19','lt-rt-37','lt-rt-46','lt-rt-55','lt-rt-64','lt-rt-73'
             ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation','unindent','align-justify'
-            ,'align-left','align-center','align-right','cut-blue','paste','paste-board','copy'];
+            ,'format-line','format-line-dott','format-line-num'
+            ,'align-left','align-center','align-right','mttext','text','fx','sum','chart-sum','contain','no-conatin','omega'
+            ,'help','tip','tip-blue','filter','cut','cut-blue','paste','paste-board','copy',''
+            ,'align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue'
+            ,'valign-bottom-blue','valign-middle-blue','valign-top-blue','gen-barcode','barcode-blue','qrcode-blue','line','move','table-blue'];
             for(var i=0;i<fonticons.length;i++){
-                $(
+                if (fonticons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".fontlist");
+                }else{
+                    $(
                     '<li>\
                     <span class="icon icon-'+fonticons[i]+'">icon-'+fonticons[i]+'</span>\
                     </li>'
-                ).appendTo(".fontlist");
+                    ).appendTo(".fontlist");
+                }
             }
             //-----黑色线条图标,炫彩与极简相同，可以使用在侧菜单
             var blackIcons=['outInstc-mgr','book-rep','book-rep-v1','book-pen','paper-settings','book-settings','eye-scan-box','org-frame','alert-pen-gray','paper-set-qus','bk-mgr','pc','pc-v1','pc-v2','ecg-adm','key2','data-stat','user-settings','pda-execution-rate'];
@@ -270,17 +325,82 @@
                 ).appendTo(".chinCharlist");
             }
             //----
-            var arrowicons=['arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back','arrow-le-bo-gray'];
+            
+            var arrowicons=[
+            'arrow-left-top','back','arrow-left-top-gray','arrow-right-top','undo','arrow-le-bo-gray','redo',
+            'arrow-top','arrow-bottom','arrow-right','arrow-left','top-green','down-blue','arrow-top-gray',
+            'up','down','move-up-most','cancel-top','move-left-most',
+            
+            'trian-recta-left','triangle-green-left','triangle-green-right','trian-recta-right',
+            'trian-recta-left-gray','triangle-gray-left','triangle-gray-right','trian-recta-right-gray','',
+            'big-switch','transfer','reload','refresh-gray','reset','init','wating','clock-pen','clock-pen-gray','',
+            'update','upload-cloud','unload-cloud','',
+            'arrow-up','down-arrow-box','up-gray','down-gray','right-arrow','run-red','arrow-blue','submit','submit-gray','circle-down','other','arrow-zoom','switch','all-screen','blue-move',''
+            ];
             for(var i=0;i<arrowicons.length;i++){
-                $(
+                if (arrowicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".arrowlist");
+                }else{
+                    $(
+                        '<li>\
+                        <span class="icon icon-'+arrowicons[i]+'">icon-'+arrowicons[i]+'</span>\
+                        </li>'
+                    ).appendTo(".arrowlist");
+                }
+            }
+            //----医疗,药品,医疗用器类
+            var medicons=['end-adm','del-diag','add-diag','adm-add','adm-same','stethoscope','find-adm',''
+            ,'bottle-drug','tube','ster-bat','tube-add','tube-del','speci-mt','injector','injector-water',''
+            ,'drug','drug-arrow-red','drug-audit','drug-clock','drug-link','blue-drug-ok','durg-freq','durg-ref','paper-drug','copy-drug','repeat-drug','drug-eye','drug-eye-gray',''
+            ,'herb-back','herb-pre','herb-next','herb-no','herb-ok','decoct-herb','decoct-change',''
+            ,'virus','virus-drug','change-x-virus','ster-again','ster-cancel','ster-finish','ster-ok'
+            ,''];
+            for(var i=0;i<medicons.length;i++){
+                if (medicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".medlist");
+                }else{
+                    $(
                     '<li>\
-                    <span class="icon icon-'+arrowicons[i]+'">icon-'+arrowicons[i]+'</span>\
+                    <span class="icon icon-'+medicons[i]+'">icon-'+medicons[i]+'</span>\
                     </li>'
-                ).appendTo(".arrowlist");
+                    ).appendTo(".medlist");
+                }
+            }
+            //----费用类
+            var feeicons=['fee','fee-arrow','int-bill','cancel-int-bill','line-paid',
+            'pat-fee-det','cancel-money','accept-money','money-down'
+            ,'paid','change-pay-way','return-paid'
+            ,'find-ord-det','inv-search','paper-pay','paper-pay-gray'
+            ,'find-paid-det','mnypaper-cfg','mnypaper-run','mnypaper-ok','mnypaper-no','mnypaper-down','mnypaper-down2','shopping-cart-ok',''];
+            for(var i=0;i<feeicons.length;i++){
+                if (feeicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".feeList");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+feeicons[i]+'">icon-'+feeicons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".feelist");
+                }
+            }
+            //----消息类，可标识消息状态的图标
+            var msgicons=['msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed',''
+            ,'file-open','file','file-gray','stamp-mess','stamp-add','stamp-switch','stamp-undo','sure-readed','read-details',''
+            ,'ring-blue','bell-blue','bell-blue-no','bell-yellow','have-message','send-msg'];
+            for(var i=0;i<msgicons.length;i++){
+                if (msgicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".msgiList");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+msgicons[i]+'">icon-'+msgicons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".msglist");
+                }
             }
             //----
             var bigicons = [
-            ['doctor-green','doctor-adm','favorite','favorite-add','img','omega','position','print','refresh','unlock'
+            ['doctor-green','doctor-adm','favorite','favorite-add','img','position','print','refresh','unlock'
             ,'book-arrow','book-eye','book-ref','book-arrow-rt','book-arrow-ok','book-to-book','del','save','clear',
             'ring-blue','ring','skip-no','paper-search','paper-pen','paper-arrow','fee-arrow','card-reader','home','stamp','tooth','open-eye','close-eye',
             'stop','start','return','meterage','maint','inspect','disuse','change-account','card','bar','eye-deepgrade'
@@ -339,6 +459,9 @@
             var _t =$(this);
             var cls = _t.text().trim();
             var txt = '无';
+            if (_t.hasClass('cntt-splitline')){
+                return ;
+            }
             $.each(iconDictionary,function(k){
                 if(cls==k) txt = iconDictionary[cls];
                 if (txt!='无') {
@@ -351,7 +474,7 @@
                 style:'inverse',
                 trigger:'hover',
                 placement:'bottom',
-                title:'该图标一般用途',
+                title:'用途说明',
                 content:txt,
                 cache:true
             }).popover('show');
