@@ -184,7 +184,12 @@
             text: function (_962) {
                 return $(_962).datetimebox("options").currentText;
             }, handler: function (_963) {
-                $(_963).datetimebox("calendar").calendar({ year: new Date().getFullYear(), month: new Date().getMonth() + 1, current: new Date() });
+                var opts = $(_963).datetimebox("options");
+                var d = new Date();
+                $(_963).datetimebox("calendar").calendar({ year: d.getFullYear(), month: d.getMonth() + 1, current: d });
+                var ts = opts.timeSeparator;
+                // 点击[今天]按钮，时间设置成当前时间 [4385191]
+                $(_963).datetimebox("spinner").timespinner("setValue",d.getHours()+ts+d.getMinutes()+ts+d.getSeconds());
                 _953(_963);
             }
         }, {

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-03-15
+- :sparkles: `datetimebox`点击[今天]按钮时，时间也同步成当前 [4385191]
+
 ## 2024-03-13
 - :sparkles: `menubutton`与`splitbutton`连击提示修改 [4378767]
 - :sparkles: `linkbutton`对green，yellow，red色系处理 [4374134]
