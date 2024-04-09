@@ -293,6 +293,11 @@
         } else {
             setValues(target, selected.length ? [selected[selected.length - 1]] : [], remainText);
         }
+        if (opts.defaultHoverFirstRow===true) { // hover样式第一行
+            if (data.length > 0) {
+                $(target).combo("panel").find('.combobox-item:eq(0)').addClass("combobox-item-hover");
+            }
+        }
         opts.onLoadSuccess.call(target, data);
     };
     function request(target, url, param, remainText) {
@@ -615,7 +620,7 @@
         };
     };
     $.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
-        forceValidValue:false,allowNull:false,selectAllBtnDesc:'select/unselect',
+        forceValidValue:false,allowNull:false,selectAllBtnDesc:'select/unselect',defaultHoverFirstRow:false,
         allSelectButtonPosition:'top',rowStyle:'',valueField: "value", textField: "text", groupField: null, groupFormatter: function (group) {
             return group;
         }, mode: "local", method: "post", url: null, data: null, keyHandler: {
