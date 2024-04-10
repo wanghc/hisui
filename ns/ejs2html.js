@@ -35,13 +35,28 @@ module.exports.handler = function (filename,opt){
                 if (!fs.existsSync(parentDir)){
                     fs.mkdirSync(parentDir);
                 }
-                fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
-                    if (fserr){
-                        console.error(fserr);
-                    }else{
-                        //console.log('成功生成：'+htmlFileName);
+                // 存在对应版本的views.ejs文件时，不生成其它版本的html,减少异步写文件冲突
+                
+                if (fs.existsSync('views/'+destFilename)){
+                    console.log('views/'+destFilename+" 存在，"+(filename+'='+destFilename));
+                    if (filename==('views/'+destFilename)){
+                        fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
+                            if (fserr){
+                                console.error(fserr);
+                            }else{
+                                console.log('成功生成：'+htmlFileName);
+                            }
+                        });
                     }
-                });
+                }else{
+                    fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
+                        if (fserr){
+                            console.error(fserr);
+                        }else{
+                            console.log('成功生成：'+htmlFileName);
+                        }
+                    });
+                }
             }
         })
     }else{

@@ -1,3 +1,8 @@
+
+// 上传lite目录到服务器上
+//  lite > scp -P 22 -r ./ root@hisui.cn:/usr/share/nginx/wordpress/lite/
+// 上传lightblue目录到服务器上
+//  lightblue > scp -P 22 -r ./ root@hisui.cn:/usr/share/nginx/wordpress/lightblue/
 const fs = require("fs");
 var path = require("path")
 var root = path.join(__dirname)
@@ -17,6 +22,11 @@ const interface = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+/**
+ * 
+ * @param {String} path view/api
+ * @param {Object} opt {srcRootPath:"views/lightblue",destRootPath:"lightblue"}
+ */
 
 function myReadDir(path,opt){
 	fs.readdir(path,function(err,menu){	
