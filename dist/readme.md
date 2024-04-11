@@ -35,7 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
-## 2023-04-09
+## 2024-04-11
+- :sparkles: `combobox`增加`defaultHoverFirstRow`属性,默认选中第一行 [4421115]
+
+## 2024-04-09
 - :sparkles: `combobox`增加`defaultHoverFirstRow`属性,默认选中第一行 [4421115]
 
 ## 2024-03-15

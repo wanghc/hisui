@@ -295,7 +295,7 @@
         }
         if (opts.defaultHoverFirstRow===true) { // hover样式第一行
             if (data.length > 0) {
-                $(target).combo("panel").find('.combobox-item:eq(0)').addClass("combobox-item-hover");
+                $(target).combo("panel").find('.combobox-item:visible:eq(0)').addClass("combobox-item-hover");
             }
         }
         opts.onLoadSuccess.call(target, data);
@@ -372,6 +372,11 @@
             setValues(target, vv, true);
             // wanghc 2018-11-7 输入骨科不能进入onSelect事件，输入骨后选骨科可以进入onSelect问题
             if(vv.length>0) { opts.onSelect.call(target, opts.finder.getRow(target, vv[vv.length-1]));}
+            if (opts.defaultHoverFirstRow===true) { // hover样式第一行
+                if (data.length > 0) {
+                    $(target).combo("panel").find('.combobox-item:visible:eq(0)').addClass("combobox-item-hover");
+                }
+            }
         }
     };
     function doEnter(target) {
@@ -469,6 +474,9 @@
                 $(target).combo("panel").find("div.combobox-item,div.combobox-group").show();
                 scrollTo(target, $(target).combobox("getValue"));
                 opts.onShowPanel.call(target);
+                if (opts.defaultHoverFirstRow===true) { // hover样式第一行
+                    $(target).combo("panel").find('.combobox-item:visible:eq(0)').addClass("combobox-item-hover");
+                }
             },
             onHidePanel:onHidePanelHandler
         }));
