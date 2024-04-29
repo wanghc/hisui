@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-04-29
+- :lipstick: 为兼容不同浏览器`tabs`关闭按钮位置调整
+
 ## 2024-04-11
 - :sparkles: `combobox`增加`defaultHoverFirstRow`属性,默认选中第一行 [4421115]
 
