@@ -287,7 +287,7 @@
                 if (!opts.validator.call(target, dvalue)) {
                     cls += " calendar-disabled";
                 }
-                data.push("<td class=\"" + cls + "\" abbr=\"" + s + "\" style=\"" + styleValue + "\">" + d + "</td>");
+                data.push("<td tabindex=-1 class=\"" + cls + "\" abbr=\"" + s + "\" style=\"" + styleValue + "\">" + d + "</td>");
             }
             data.push("</tr>");
         }
@@ -320,6 +320,8 @@
                 opts.onChange.call(target, opts.current, oldValue);
             }
             opts.onDblClick.call(target, opts.current);
+        }).bind('keydown.calendar', function (e) {
+            opts.onKeyDownInCalendar.call(target,e, opts.current);
         });
     };
     $.fn.calendar = function (options, param) {
@@ -382,6 +384,9 @@
         }, onSelect: function (date) {
         }, onChange: function (newDate, oldDate) {
         }, onDblClick: function (date) {            
+        }, onKeyDownInCalendar: function (e, date) {
+            
         }
+
     };
 })(jQuery);

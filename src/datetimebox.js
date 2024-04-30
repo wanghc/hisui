@@ -19,6 +19,11 @@
                 var bs = $(target).datetimebox('options').buttons;;
                 if (bs.length>1 && bs[1].handler) bs[1].handler.call(this, target);
                 opts.onDblClick.call(target, date);
+            },onKeyDownInCalendar:function(e,data){
+                if (e.keyCode == 13) {
+                    var bs = $(target).datetimebox('options').buttons;;
+                    if (bs.length>1 && bs[1].handler) bs[1].handler.call(this, target);
+                }
             }
         });
         var _94d = $(target).datebox("panel");
@@ -29,6 +34,11 @@
         }
         _94b.spinner.timespinner({ showSeconds: opts.showSeconds, separator: opts.timeSeparator }).unbind(".datetimebox").bind("mousedown.datetimebox", function (e) {
             e.stopPropagation();
+        }).bind("keydown.datetimebox", function (e) {
+            if (13==e.keyCode) {
+                var bs = $(target).datetimebox('options').buttons;;
+                if (bs.length>1 && bs[1].handler) bs[1].handler.call(this, target);
+            }  
         });
         _94e(target, opts.value);
         $(target).combo('textbox').unbind('.datetimebox').bind("dblclick.datetimebox", function (e) { 
