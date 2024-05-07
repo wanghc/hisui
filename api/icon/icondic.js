@@ -108,6 +108,7 @@ var iconDictionary={
     "icon-checkbox":"检验检查勾选",
     "icon-base-info":"基本信息，个人信息",
     "icon-arrow-zoom":"放大，扩展",
+    "icon-arrow-shrink":"缩小，收起",
     "icon-down-arrow-box":"下拉框",
     "icon-paper-bed":"临床意义",
     "icon-blue-move":"位置移动",

@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2024-05-07
 - :sparkles: `datagrid`查询条件处点击`高级`显示列查询条件时，不再显示勾选框 [4488212]
 - :sparkles: `datagrid`查询条件多次点击`高级`按钮不变为`收起`问题修复 [4488237]
+- :lipstick: 增加`arrow-shrink`图标，修改`arrow-zoom`图标[4504978] [4505120]
 
 ## 2024-04-30
 - 在`datetimebox`的弹出式日历界面上增加回车事件，用于确定日期 [4509262]
