@@ -2440,9 +2440,13 @@
                                 }
                             });
                         } else {
-                            $(this).find('.l-btn-text').text(opts.advancedBtn);
-                            if (tbl.next().css('display')!=="none") tbl.next().hide();
-                            else  tbl.next().show();
+                            if (tbl.next().css('display')!=="none"){
+                                $(this).find('.l-btn-text').text(opts.advancedBtn); 
+                                tbl.next().hide();
+                            } else {
+                                $(this).find('.l-btn-text').text(opts.advanced2Btn); 
+                                tbl.next().show();
+                            }
                         }
                  },notTrans:true }];
             };
