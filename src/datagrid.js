@@ -2426,6 +2426,7 @@
                             if (htbl1.length > 0) { h += htbl1.html(); }
                             if (htbl2.length > 0) { h += htbl2.html(); }
                             var filterBoxBar = $('<table class="datagrid-filter-htable" border="0" cellspacing="0" cellpadding="0" style="height: 35px;"><tr>'+h+'</tr></table>').insertAfter(tbl);
+                            filterBoxBar.find('.datagrid-header-check').removeClass('datagrid-header-check').css({width:27}).find('input').remove();
                             /*在对应列上插入查询输入框*/
                             filterBoxBar.find('.datagrid-cell').each(function () {
                                 var pl = $(this).text();
