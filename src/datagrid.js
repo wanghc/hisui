@@ -440,7 +440,15 @@
                         $("<div class=\"datagrid-header-check\"></div>").html("<input type=\"checkbox\"/>").appendTo(td);
                     } else {
                         if (col.field) {
-                            td.attr("field", col.field);
+                            td.attr("field", col.field)
+                            if ("undefined"!=typeof col.columnHeaderTitle && col.columnHeaderTitle) {
+                                td.attr("title",col.columnHeaderTitle);
+                                td.addClass('datagrid-header-col-tip');
+                                td.tooltip({
+                                    position:'bottom',
+                                    trackMouse:false
+                                });
+                            }
                             td.append("<div class=\"datagrid-cell\"><span></span><span class=\"datagrid-sort-icon\"></span></div>");
                             var titleTr = col.title;
                             if (true != col.hidden) titleTr = $.hisui.getTrans(col.title); // 隐藏列头不翻译 需求号:3017058

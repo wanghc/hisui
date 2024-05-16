@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-05-16
+- :sparkles: `datagrid`列定义增加列说明属性`columnHeaderTitle` [4517900]
 
 ## 2024-05-07
 - :sparkles: `datagrid`查询条件处点击`高级`显示列查询条件时，不再显示勾选框 [4488212]
