@@ -35,7 +35,8 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 ## 2024-05-16
-- :sparkles: `datagrid`列定义增加列说明属性`columnHeaderTitle` [4517900]
+- :sparkles: `datagrid`列定义增加列说明属性`columnHeaderTitle` [4517900]\
+- :lipstick: `datebox`数据无效时，样式修改[4561777][4561791]
 
 ## 2024-05-07
 - :sparkles: `datagrid`查询条件处点击`高级`显示列查询条件时，不再显示勾选框 [4488212]

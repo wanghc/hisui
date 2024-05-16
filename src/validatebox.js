@@ -105,6 +105,7 @@
                 var _437 = _435 || opts.validParams || eval(_436[2]);
                 if (!rule["validator"].call(_42f, _431, _437)) {
                     box.addClass("validatebox-invalid");
+                    box.closest('.combo').addClass("combo-invalid");
                     var _438 = rule["message"];
                     if (_437) {
                         for (var i = 0; i < _437.length; i++) {
@@ -121,6 +122,7 @@
             return true;
         };
         box.removeClass("validatebox-invalid");
+        box.closest('.combo').removeClass("combo-invalid");
         _425(_42f);
         if (opts.novalidate || box.is(":disabled")) {
             return true;
@@ -128,6 +130,7 @@
         if (opts.required) {
             if (_431 == "") {
                 box.addClass("validatebox-invalid");
+                box.closest('.combo').addClass("combo-invalid");
                 _432(opts.missingMessage);
                 if (_430.validating) {
                     _426(_42f);

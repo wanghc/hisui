@@ -50,3 +50,11 @@
 .combo-p > .combo-panel{
   border-color: @combo-panel-border-color;
 }
+/*新加样式*/
+.combo-invalid{
+  border-color:red;
+}
+/*老项目可能有人手动清空validatebox-invalid样式, 样式最好在validatebox-invalid上修改, 尽量不在combo-invalid上写*/
+.validatebox-invalid+span .combo-arrow{ 
+  background-color: #fff3f3;
+}
