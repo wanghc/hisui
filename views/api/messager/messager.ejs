@@ -6,11 +6,6 @@
 </head>
 
 <body>
-	<style>
-		.messager-button .l-btn{
-			width: 80px;
-		}
-	</style>
 	<h2>消息框</h2>
 	<h3>说明:</h3>
 	<div>消息框（messager）提供不同样式的消息框，包括警示（alert）、确认（confirm）、提示（prompt）、进展（progress）等等。所有的消息框都是异步的。用户可以在与消息框交互后使用回调函数来完成一些动作。</div>
@@ -86,8 +81,8 @@
 					$('#confirm3').click(function () {
 						var oldOk = $.messager.defaults.ok;
 						var oldNo = $.messager.defaults.no;
-						$.messager.defaults.ok = "保存";
-						$.messager.defaults.no = "不存";
+						$.messager.defaults.ok = "保存并签名";
+						$.messager.defaults.no = "不保存";
 						var btns = $.messager.confirm3("提示", "病历内容有修改,你确定保存吗?", function (r) {
 							if (true===r) {
 								$.messager.popover({ msg: "保存病历", type: 'info' });
