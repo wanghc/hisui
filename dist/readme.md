@@ -34,8 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-05-22
+- :sparkles: `messager`组件中按钮长度自适应 [4588999]
+
 ## 2024-05-16
-- :sparkles: `datagrid`列定义增加列说明属性`columnHeaderTitle` [4517900]\
+- :sparkles: `datagrid`列定义增加列说明属性`columnHeaderTitle` [4517900]
 - :lipstick: `datebox`数据无效时，样式修改[4561777][4561791]
 
 ## 2024-05-07
