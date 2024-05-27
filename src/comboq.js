@@ -168,14 +168,19 @@
                             if (!opts.isCombo) return;
                             if (opts.minQueryLen>0 && _t.val().length<opts.minQueryLen) return;
                             state.timer = setTimeout(function () {
+                                // [4578037] 把显示逻辑提前
+                                // 1. 中草药录入界面，当输入gc后,会弹出放大镜
+                                // 2. 再点击界面其它地方，让放大镜隐藏
+                                // 3. 快速删除c，再输入c，此时放大镜弹窗不自动弹出(previousValue是等于q的)
+                                
+                                // showPanel返回false时，直接返回不运行查询方法
+                                if (!state.isShow) {
+                                    var rtn = $(target).comboq("showPanel");
+                                    if (rtn == false) return;
+                                }
                                 var q = _t.val();
                                 if (state.previousValue != q) {
-                                    state.previousValue = q;
-                                    // showPanel返回false时，直接返回不运行查询方法
-                                    if (!state.isShow) {
-                                        var rtn = $(target).comboq("showPanel");
-                                        if (rtn == false) return;
-                                    }
+                                    state.previousValue = q;                                    
                                     opts.keyHandler.query.call(target, _t.val(), e);
                                     $(target).comboq("validate");
                                 }
