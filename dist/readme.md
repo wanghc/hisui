@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2024-05-27
+- :sparkles:  增加翻译图标[4598358]
+
 ## 2024-05-22
 - :sparkles: `messager`组件中按钮长度自适应 [4588999]
 
