@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2024-05-27
 - :sparkles:  增加翻译图标[4598358]
 - :sparkles:  `lookup`输入字符时自动弹出窗口优化 [4578037]
+- :sparkles: 同时出现时`$.messager.popover`信息时，向下追加显示 [4593369]
 
 ## 2024-05-22
 - :sparkles: `messager`组件中按钮长度自适应 [4588999]

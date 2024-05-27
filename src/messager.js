@@ -389,7 +389,13 @@
             +'<span class="messager-popover-icon '+o.type+'"/><span class="content">'+ o.msg +'</span>' //add trans
             if (o.timeout>5000) +'<span class="close"></span>'
             +'</div>';  
-            
+            var lastPopover = $(".messager-popover:visible");
+            if (lastPopover.length>0){ // 多个提示框,重叠时,纵向排开
+                // 多个提示层, 如果重叠，top则向下移动
+                if (o.style.top=='') {
+                    o.style.top = lastPopover.last().offset().top + lastPopover.last()._outerHeight() + 10;
+                }
+            }
             var t = $(html).appendTo("body");
             if (o.style.left==''){
                 o.style.left = document.body.clientWidth/2-(t.width()/2)
