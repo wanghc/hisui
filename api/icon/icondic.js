@@ -605,6 +605,7 @@ var iconDictionary={
     'icon-edit-pedigree-chart': '编辑谱系图',
     'icon-image-properties': "图片属性",
     'icon-quality':"质控，质量",
+    'icon-internationalize':'翻译',
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
