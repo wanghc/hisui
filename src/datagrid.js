@@ -2322,12 +2322,12 @@
                         opts.sortOrder = json.sortOrderDefault;
                     }
                     /*config中出现了, 但object中不存在的属性，将从config对象中复制到object中*/
-                    var applyIf = function (object, config) {
+                    var applyIf = function (object, config, forceField) {
                         var property;
                         if (object) {
                             for (property in config) {
-                                if (property == "title") { /*解决defaultsColumns中的title属性覆盖列定义中的*/
-                                    object[property] = config[property];
+                                if ("string"==typeof forceField && property == forceField) { /*解决defaultsColumns中的title属性覆盖列定义中的*/
+                                    object[property] = config[property];  // 强制覆盖列定义中的title属性
                                 }
                                 if (config.hasOwnProperty(property) && object[property] === undefined) {
                                     object[property] = config[property];
@@ -2353,7 +2353,7 @@
                         for (var i = 0; i < json.cm.length; i++) {
                             var defaultObj = $.hisui.getArrayItem(defaultCm, 'field', json.cm[i].field)
                             if (defaultObj) {
-                                applyIf(json.cm[i], defaultObj);
+                                applyIf(json.cm[i], defaultObj,'title');
                             }
                         }
                     }

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-05-30
+- :bug: 后台定义的列头信息没办法覆盖`datagrid`-`columns`中的`title`属性值 [4604410]
+
 ## 2024-05-27
 - :sparkles:  增加翻译图标[4598358]
 - :sparkles:  `lookup`输入字符时自动弹出窗口优化 [4578037]
