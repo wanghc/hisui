@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2024-05-30
 - :bug: 后台定义的列头信息没办法覆盖`datagrid`-`columns`中的`title`属性值 [4604410]
+- :lipstick: 增加`群`伤图标 [4614365]
 
 ## 2024-05-27
 - :sparkles:  增加翻译图标[4598358]
