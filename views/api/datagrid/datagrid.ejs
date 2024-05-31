@@ -797,6 +797,15 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 			<th></th>
 		</tr>
 		<tr>
+			<td>fitColumns</td>
+			<td>列自动适应</td>
+			<td>none</td>
+			<td>
+				为true时，<code>一定要表格的每一列都给上width值</code>，以便自动按比例缩放。
+				如果某一列不给宽度，会以width:auto宽度来自动展开，其它指定宽度的列再按等比缩放宽度。（但此方式在某些情况下会出现列头不能对齐问题）
+			</td>
+		</tr>
+		<tr>
 			<td>autoSizeColumn</td>
 			<td>是否自动计算列属性</td>
 			<td>true</td>

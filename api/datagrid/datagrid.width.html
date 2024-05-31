@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>面板示例</title>
+	<link rel="stylesheet" type="text/css" href="../../dist/css/hisui.css">
+	<script type="text/javascript" src="../../dist/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="../../dist/js/jquery.hisui.js"></script>
+	
+	<!--
+		1. 当columns中包含【未指定列宽】的列时，打开chrome调试器后, 刷新界面列表列头与数据不能对齐
+		2. 引入下面代码<script type="text/javascript" src="../../src/datagrid.js"></script>，能对齐
+		3. 不打开chrome调试器，能对齐
+		4. 所有列给上宽度，能对齐
+	-->
+	
+	<script type="text/javascript" src="../mock-min.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+		<table id="tCF_BSP_SYS_CDSSService">
+		</table>
+	<script type="text/javascript">
+		$(function(){
+				$('#tCF_BSP_SYS_CDSSService').datagrid({
+					columns:[
+					[{"field":"TSrvCode","title":"代码",width:100}
+					,{"field":"TSrvDesc","title":"描述",width:100},{"field":"TSrvURL","title":"链接",width:100}
+					,{"field":"TSrvVersion","title":"版本"},{"field":"TSrvParam","title":"参数"}
+					,{"field":"TSrvStDate","title":"日期",width:100},{"field":"TSrvActive","title":"激活",width:100}
+					,{"field":"TSrvHospId","title":"医院",width:100},{"field":"TSrvSourceList","title":"资源列表",width:100}
+					,{"field":"TSrvInit","title":"初始化运行",width:100}]
+					],
+					width:1200,
+					height:300,
+					// fit:true,
+					fitColumns:true,
+					autoSizeColumn:true,
+					rownumbers:true,
+					pagination:true,
+					showPageList:false,
+					singleSelect:true,
+					url:'getcdss'
+				});
+		});
+	</script>
+</body>
+</html>
