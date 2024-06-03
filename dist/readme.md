@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-06-03
+- :bug: 同一界面超过10个`datagrid`时，列头与内容列对不齐问题处理 [4580862]
 
 ## 2024-05-30
 - :bug: 后台定义的列头信息没办法覆盖`datagrid`-`columns`中的`title`属性值 [4604410]

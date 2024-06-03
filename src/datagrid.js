@@ -95,7 +95,9 @@
             }, remove: function (_513) {
                 var tmp = [];
                 for (var s in _50a.cache) {
-                    if (s.indexOf(_513) == -1) {
+                    //界面有多个表格时如： _513 = ".datagrid-cell-c1"且s = ".datagrid-cell-c11-specimenName"，这时会误判
+                    // if (s.indexOf(_513) == -1) {  // 2024-06-03 修改判断
+                    if (s.indexOf(_513+'-') == -1) {  
                         tmp.push([s, _50a.cache[s].width]);
                     }
                 }
