@@ -122,7 +122,7 @@
 			}
 		}).bind('blur.comboq',function(e){  //
 			if(opts.onBlur) opts.onBlur.call(this,target);
-		}).bind("keydown.comboq paste.comboq drop.comboq input.comboq", function (e) {
+		}).bind("keydown.comboq paste.comboq drop.comboq input.comboq compositionend.comboq", function (e) {
             // input.comboq在IE下,设置值时触发,造成进入有下拉框界面就弹出下拉panel,2018-10-17 增加return
             if ("undefined" ==typeof e.keyCode){return ;}
             //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
