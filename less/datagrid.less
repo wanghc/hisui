@@ -24,8 +24,12 @@
 .datagrid-header, .datagrid-td-rownumber{
   background: @datagrid-header-bgcolor;
 }
-.datagrid-header td, .datagrid-body td, .datagrid-footer td{
+.datagrid-header td, .datagrid-body td{
   border-color:@datagrid-border-color;
+  border-style: solid;
+}
+.datagrid-footer td{
+  border-color: transparent;
   border-style: solid;
 }
 .datagrid-row-selected ,.datagrid-merged-row-selected,

@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-06-06
+- :lipstick: 修改炫彩`datagrid-footer`样式 [4635882]
+
 ## 2024-06-03
 - :bug: 同一界面超过10个`datagrid`时，列头与内容列对不齐问题处理 [4580862]
 
