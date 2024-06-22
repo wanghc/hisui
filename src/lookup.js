@@ -96,6 +96,10 @@
             if (e.shiftKey) return ;
             if (e.ctrlKey) return ;
             var key = e.keyCode;
+            if ("undefined" == typeof e.keyCode && e.type=="input") {
+                // input事件没有keyCode值, 导致数字选行功能不可使用,e.originalEvent.data存得是最后字符
+				if (e.originalEvent.data) key = e.originalEvent.data.charCodeAt(0);
+            }
             if (isSelfGrid(_91c)&& panel.is(":visible")){  //只有显示状态下才是选行,否则为查询
                 var curtotals = grid.datagrid('getRows');
                 if (curtotals && curtotals.length>0){

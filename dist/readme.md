@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-06-22
+- :bug: 处理`lookup`的数字选行功能失效问题 [4689121]
+
 ## 2024-06-06
 - :lipstick: 修改炫彩`datagrid-footer`样式 [4635882]
 - :bug: `lookup`在中文输入法下输入中文时不查询问题 [4643908]
