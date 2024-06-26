@@ -104,8 +104,8 @@
                         // input事件没有keyCode值, 导致数字选行功能不可使用,e.originalEvent.data存得是最后字符
                         // 2024-06-25 下面代码会导致 a=97,b=98----i=105都能选行了
                         // if (e.originalEvent.data) key = e.originalEvent.data.charCodeAt(0);
-                        if (",1,2,3,4,5,6,7,8,9,0,".indexOf(e.originalEvent.data)>-1){
-                            key = 49
+                        if (",1,2,3,4,5,6,7,8,9,".indexOf(e.originalEvent.data)>-1){
+                            key = e.originalEvent.data.charCodeAt(0);
                         }
                     }
                     if (key<=57 && key >=49){ // 1=49 中文输入法下key=229 ime-mode:disabled
