@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2024-07-02
 - :bug: `datetimebox`组件第一次点击时间框，光标总是自动跳转到最后面 [4676620]
+- `datagrid-scrollview`兼容java的标准接口返回JSON格式
 
 ## 2024-06-26
 - :bug: 处理`lookup`的数字选行功能问题 [4693265]

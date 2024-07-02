@@ -18,7 +18,22 @@ $.extend($.fn.datagrid.defaults, {
 			data: param,
 			dataType: 'json',
 			success: function(data){
-				success(data);
+				if ('undefined' !== typeof data.code && !$.isArray(data.rows)) {
+					if (data.code == '4001') {
+						$.messager.popover({ msg: data.msg, type: 'error' });
+					}
+					var rowData = {total: 0, rows: [] };
+					if (data.data!=null && 'object' == typeof data.data) {
+						rowData = data.data;
+						if ($.isArray(data.data.records)){ // HOS是使用records作为数组的键名
+							rowData.rows = data.data.records;
+						}
+					}
+					rowData.message = data.message || data.msg;
+					success(rowData);
+				} else {
+					success(data);
+				}
 			},
 			error: function(){
 				error.apply(this, arguments);
