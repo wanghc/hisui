@@ -102,11 +102,15 @@
         _94e(target, opts.formatter.call(target, d));        
     }
     function onBlur(target){
+        // 如果当前面板是弹出状态且点击的是timespinner时不format/setvalue
+        // 该插件第一次点击时间框，无论点击什么地方，光标都会自动跳转到秒后 [4676620] // wanghc 2024-07-02
+        // 点击时间框时,先进入datetimebox的onBlur，重新设置时间时，光标挤到最后面，再进入timespinner框的click事件
+        if ($(target).datetimebox('panel').closest('.panel.combo-p').css('display')=='block'){
+            return ;
+        }
         if ($(target).combo('textbox').val()=='') {
             // 如果当前输入框为空 不再进行格式化值 而是直接setValue空 避免点击关闭和删掉输入框值时又变回当前日期  //cryze 2022-11-04
-            // 该插件第一次点击时间框，无论点击什么地方，光标都会自动跳转到秒后 [4676620] // wanghc 2024-07-02
-            // 点击时间框时,先进入datetimebox的onBlur，重新设置时间时，光标挤到最后面，再进入timespinner框的click事件
-            //_94e(target, ''); 
+            _94e(target, ''); 
         }else{
             formatterValue(target);
         }
