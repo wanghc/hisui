@@ -305,7 +305,8 @@
                 onBeforeLoad: function (param) {
                     var cont = $($.hisui.globalContainerSelector);
                     resizeGridAndCont(cont, grid);
-                    opts.onBeforeLoad.apply(target, arguments);
+                    // 重写返回值 [4753725]
+                    return opts.onBeforeLoad.apply(target, arguments);
                 },
                 onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){

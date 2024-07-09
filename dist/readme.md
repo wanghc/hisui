@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2024-07-09
 - 浅蓝风格下卡片`panel`标题宽度变小问题修改 [4755995]
+- 处理`lookup`的`onBeforeLoad`返回值,false取消查询 [4753725]
 
 ## 2024-07-02
 - :bug: `datetimebox`组件第一次点击时间框，光标总是自动跳转到最后面 [4676620]
