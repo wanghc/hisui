@@ -3,7 +3,7 @@
  *  对外一个方法changeTheme(themecss) 给top层调用
  */
  function runPrettyPrint(){
-    var baseUrl = "https://hisui.cn/api";
+    var baseUrl = "//hisui.cn/api";
     try{
         if ($("prettyprint").length>0){
             $('body').append('<link rel="stylesheet" type="text/css" href="'+baseUrl+'/prettify.css"><script type="text/javascript" src="'+baseUrl+'/prettify.js"><\/script>');
