@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-08-18
+- :sparkles: `validatebox`组件的`mobilephone`规则修改 [4866357]
+
 ## 2024-07-09
 - 浅蓝风格下卡片`panel`标题宽度变小问题修改 [4755995]
 - 处理`lookup`的`onBeforeLoad`返回值,false取消查询 [4753725]

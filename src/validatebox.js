@@ -308,7 +308,7 @@
             }, mobilephone: {
                 validator:function (value){
                     var testmp = function (phone){
-                        return (phone.length==11) && /^1[3|4|5|8][0-9]\d{8}$/.test(phone);
+                        return (phone.length==11) && /^1[1-9][0-9]\d{8}$/.test(phone);
                     }
                     var status = false;
                     status = testmp(value);
