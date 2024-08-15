@@ -50,9 +50,10 @@
         if (!proxy) {
             proxy = $(e.data.target);
         }
+        // 在有滚动条的父容器下拖拽元素，弹出的跟随元素的位置会偏移 [4865704] 2024-08-15
         proxy.css({
-            left: e.data.left,
-            top: e.data.top
+            left: e.data.left - $(e.data.parent).scrollLeft(),
+            top: e.data.top - $(e.data.parent).scrollTop()
         });
         $("body").css("cursor", opts.cursor);
     };
