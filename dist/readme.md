@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-08-19
+- 还原输入框宽度样式代码（影响已有界面）
 
 ## 2024-08-18
 - :sparkles: `validatebox`组件的`mobilephone`规则修改 [4866357]
