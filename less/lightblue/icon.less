@@ -275,6 +275,15 @@ tree-icon tree-file显示默认的文件图标
 	border:1px solid #22A1FF ;
 	color: #0086FF;
 }
+.icon-gcp::before{
+	content: "GCP";
+	background: #DCFFF8;
+	border: 1px solid #18BBA2;
+	color: #18BBA2;
+	width: 28px;
+	font-size: 12px;
+	line-height: 14px;
+}
 .icon-evaluate-red:before {
 	content: "评";
 	background: #FFE6E3;
@@ -299,6 +308,7 @@ tree-icon tree-file显示默认的文件图标
 	border: 1px solid #F68300;
 	color: #FB7D00;
 }
+
 .c-pic(@name,@img,@dir,@type,@suffix) {
 	.pic-@{dir}-@{name}{
 		background: url('icons/@{type}/@{dir}/@{img}.@{suffix}') no-repeat center center;
