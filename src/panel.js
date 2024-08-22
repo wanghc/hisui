@@ -48,7 +48,6 @@
         var isLiteStyle = false;
         if ("undefined" != typeof HISUIStyleCode && HISUIStyleCode.toLocaleLowerCase() == 'lite') isLiteStyle = true;
         if ("undefined" != typeof HISUIStyleCode && HISUIStyleCode.toLocaleLowerCase() == 'lightblue') isLiteStyle = true;
-        lightblue
         if (null!=opts.headerCls && "undefined"!=typeof opts.headerCls && opts.headerCls.indexOf("panel-header-card") > -1 && (!isLiteStyle)) { /*炫彩UI才设置width*/
             if (null!=opts.titleWidth && "undefined"!=typeof opts.titleWidth) {
                 _1e7.width(opts.titleWidth);
