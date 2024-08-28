@@ -36,6 +36,9 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2024-08-28
+- :bug: 当点击其它iframe时，隐藏`comboq`系弹窗(`lookup`,`dateboxq`)
+
+## 2024-08-28
 - :bug: `datagrid`过滤条页码显示问题 [4892987]
  
 ## 2024-08-22

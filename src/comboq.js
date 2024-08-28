@@ -357,4 +357,13 @@
         }, onChange: function (newValue,oldValue) {
         }
     });
+    // 跨iframe下，点击其他页面，隐藏下拉框
+    $(window).on('blur',function(){
+        _hide();
+    });
+    // if(document.all){
+    //     document.getElementById("myframe").attachEvent("onblur",dothis);
+    // }else{
+    //     document.getElementById("myframe").contentWindow.addEventListener("blur",dothis,false);
+    // }
 })(jQuery);
