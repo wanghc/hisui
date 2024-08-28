@@ -2164,7 +2164,7 @@
         var opts = $.data(target, "datagrid").options;
         opts.oldLoadFilter = opts.loadFilter;
         opts.loadFilter = function (data) {
-            data = opts.oldLoadFilter.call(this, data);
+            
             var tbar = $(target).closest('.datagrid-wrap').find('.datagrid-toolbar');
             // 模糊查询条件值
             var inputAllFieldCond = tbar.find('.datagrid-toolbar-findbox').val().trim().toUpperCase();
@@ -2212,6 +2212,7 @@
             }
             /// 有过滤条件时，显示的是当前过滤结果的总行数
             var obj = { 'total': currentDataRows.length, 'rows': currentDataRows };
+            obj = opts.oldLoadFilter.call(this, obj);
             return obj;
         };
     }
