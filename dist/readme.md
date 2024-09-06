@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-09-06
+- :bug: 在多页签界面,非激活状态的页签下`datagrid`定期刷新数据时，高度变成0问题处理 [4953831]
+
 ## 2024-08-28
 - :bug: 当点击其它iframe时，隐藏`comboq`系弹窗(`lookup`,`dateboxq`)
 
