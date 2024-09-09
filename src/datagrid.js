@@ -166,9 +166,11 @@
         _521.css("height", "");
         _522.css("height", "");
         hh = Math.max(_521.height(), _522.height());
-        _521.height(hh);
-        _522.height(hh);
-        _51f.add(_520)._outerHeight(hh);
+        if (hh>0){ // 在多页签界面,非激活状态的页签下datagrid定期刷新数据时，高度变成0问题处理 20240906 [4953831]
+            _521.height(hh);
+            _522.height(hh);
+            _51f.add(_520)._outerHeight(hh);
+        }
         if (opts.height != "auto") {
             var _524 = _51c - _51e.children("div.datagrid-header")._outerHeight() - _51e.children("div.datagrid-footer")._outerHeight() - wrap.children("div.datagrid-toolbar")._outerHeight()- wrap.children("div.datagrid-btoolbar")._outerHeight();
             wrap.children("div.datagrid-pager").each(function () {
