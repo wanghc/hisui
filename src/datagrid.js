@@ -2187,7 +2187,11 @@
                 data = { total: data.length, rows: data }
             }
             // 查询条件为空时跳出
-            if (inputAllFieldCond=="" && nullInputConditions) return data;
+            if (inputAllFieldCond=="" && nullInputConditions) {
+                //return data;
+                // 2024-09-19 如果查询条件为空时,也要调用一次用户自己定义的loadFilter [4972992]
+                return opts.oldLoadFilter.call(this, data);
+            }
             var currentDataRows = [];
             // 前端查询时,对【源数据行】进行过滤 2023-08-22
             var allData = data.originalRows || data.rows;
