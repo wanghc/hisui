@@ -120,6 +120,8 @@ var iconDictionary={
     "icon-ref":"关联",
     "icon-other-yellow":"其他",
     "icon-doctor-green-no":"删除医生权限",
+    "icon-doctor-green-pen":"医生签名",
+    "icon-nurse-pen":"护士签名",
     "icon-pat-alert-red":"危重患者",
     "icon-clock-record":"历史记录",
     "icon-cancel-ref":"取消关联,拆关联",
