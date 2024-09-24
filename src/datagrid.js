@@ -785,7 +785,23 @@
                                     content:tipCtt,
                                     position:tipPosition,
                                     trackMouse:tipTrackMouse,
-                                    tipWidth:tipWidth
+                                    tipWidth:tipWidth,
+                                    onShow:function(){
+                                        var _o = this;
+                                        (function(){
+                                            if ($(_o).closest("div").length==0){ // td节点实际已不存在 则销毁tooltip组件
+                                                $(_o).tooltip("hide");
+                                                $(_o).tooltip("destroy");
+                                                return;
+                                            }
+                                            if ($.data(_o, "tooltip")){  // 是tooltip时才继续执行，否则表示组件销毁
+                                                setTimeout(arguments.callee, 200);
+                                            }
+                                        }());
+                                    },
+                                    onHide:function(){
+                                        $(this).tooltip("destroy");
+                                    }
                                     /*onShow:function(e1){
                                         //2020-11-03 left不能少于10
                                         var l = e1.pageX-(250/2);
