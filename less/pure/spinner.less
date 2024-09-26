@@ -1,0 +1,133 @@
+@import "variables.less";
+.spinner {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.spinner .spinner-text {
+  font-size: 12px;
+  border: 0px;
+  line-height: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0 2px;
+  *margin-top: -1px;
+  *height: 18px;
+  *line-height: 18px;
+  _height: 18px;
+  _line-height: 18px;
+  vertical-align: baseline;
+}
+.spinner-arrow {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+.spinner-arrow-up,
+.spinner-arrow-down {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  display: block;
+  font-size: 1px;
+  width: 18px;
+  height: 10px;
+}
+.spinner-arrow-hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+}
+.spinner-arrow-up {
+  background: url('images/spinner_arrows.png') no-repeat 1px center;
+}
+.spinner-arrow-down {
+  background: url('images/spinner_arrows.png') no-repeat -15px center;
+}
+.spinner {
+  border-color: #95B8E7;
+}
+.spinner-arrow {
+  background-color: #E0ECFF;
+}
+.spinner-arrow-hover {
+  background-color: #eaf2ff;
+}
+.spinner {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+  -moz-border-radius: @input-border-radius;
+  -webkit-border-radius: @input-border-radius;
+  border-radius: @input-border-radius;
+  .spinner-arrow {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff;
+    .spinner-arrow-hover {
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      color:@input-active-border-color;
+      background-color: #d5eefe;
+    }
+  }
+  &:hover,&.spinner-hover{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  /*20221010 disabled样式覆盖:hover样式*/
+  &.disabled{
+    background-color: @input-disabled-bgcolor;
+    border-color: @input-disabled-border-color;
+    .spinner-arrow {
+      background-color: @main-disabled-bgcolor;
+      .spinner-arrow-up {
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-iconbtn-disabled-color;
+      }
+      .spinner-arrow-down {
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-iconbtn-disabled-color;
+      }
+    }
+  }
+}
+
+.spinner .spinner-text {
+  font-size: @spinner-font-size;
+  border: 0px;
+  line-height: @spinner-line-height;
+  height: @spinner-line-height;
+  margin: 0;
+  padding: 0 0 0 5px;
+  *margin-top: -1px;
+  *height: @spinner-line-height-min;
+  *line-height: @spinner-line-height-min;
+  _height: @spinner-line-height-min;
+  _line-height: @spinner-line-height-min;
+  vertical-align: baseline;
+}
+
+
+.spinner-arrow-up::before{
+  content: "\f477";
+}
+.spinner-arrow-down::before{
+  content: "\f476";
+}
+.spinner {
+  border-color: @input-border-color;
+}

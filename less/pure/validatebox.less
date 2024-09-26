@@ -1,0 +1,79 @@
+@import "variables.less";
+
+.validatebox-text{
+  height:@validatebox-height;
+  line-height:@validatebox-height;
+  margin:0;
+  padding:0 0 0 @validatebox-padding-left;
+  box-sizing:content-box;
+  border: @validatebox-border-width @validatebox-border-type @input-border-color;
+  background-color: @input-bgcolor;
+  color:@validatebox-font-color;
+  font-size:@validatebox-font-size;
+  vertical-align: middle;
+  &:active{
+    background-color: @validatebox-focus-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  &:focus{
+    background-color: @validatebox-focus-bgcolor;
+    border-color: @input-active-border-color;
+    &+span>span,&+input+span>span{ /*20190710 numberspinner--input+input+span*/
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      background-color: @input-focus-bgcolor;
+    }
+  }
+  &:hover{
+    background-color: @validatebox-focus-bgcolor;
+    border-color: @input-active-border-color;
+  }
+}
+/*2019-07-10 span:hover---输入框与arrow都变色*/
+.searchbox:hover,.lookup:hover,.combo:hover,.spinner:hover{
+  input,span>span{
+    opacity: @input-arrow-hover-opacity;
+    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    background-color: @input-hover-bgcolor;
+  }
+}
+/*2022-10-10 组件禁用时背景色不变*/
+.searchbox.disabled:hover,.lookup.disabled:hover,.combo.disabled:hover,.spinner.disabled:hover{
+  input,span>span{
+    opacity: @input-arrow-hover-opacity;
+    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    background-color: @input-disabled-bgcolor;
+  }
+}
+.validatebox-invalid {
+  background-image: url('images/validatebox_warning.png');
+  background-repeat: no-repeat;
+  background-position: right center;
+  border-color: #ffa8a8;
+  background-color: #fff3f3;
+  color: #000;
+}
+.validatebox-text.validatebox-invalid {
+  background-position: right 8px center;
+  background-position-x: 96%\9;
+  background-position-y: 50%\9;
+  border-color:@input-invalid-border-color;
+  background-color: @input-invalid-bgcolor;
+  &::-webkit-input-placeholder {
+    color: @input-invalid-placeholder-color;
+  }
+}
+textarea.validatebox-text.validatebox-invalid{
+  background-position: right 10px bottom 10px;
+  background-position-x: 90%\9;
+  background-position-y: 50%\9;
+}
+input[type=text]::-ms-clear{
+  display:none;
+  width:0px;
+  height:0px;
+}
+input::-ms-reveal{display: none;width: 0px;height: 0px;}
+input:-webkit-input-placeholder { /* WebKit 核心浏览器 如谷歌Chrome */color:#999;}
+input:-moz-placeholder { /* 火狐浏览器 */color:#999;}
+input:-ms-input-placeholder { /* IE 10+ */color:#999;}

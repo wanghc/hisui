@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>快速时间组件</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+    <script type="text/javascript">
+        var HISUIStyleCode = 'lightblue';
+    </script>
+</head>
+<body>
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<style>
+		.demo-exp-code td{padding:5px 0;}
+		.demo-exp-code td.r-label{padding-right: 10px;}
+	</style>
+	<h2>时间框(timeboxq)<code>2020-10-14</code></h2>
+	<h3>timeboxq继承自validatebox。简洁时间框,支持数字输入及n输入,当光标离开时自动转换成要求格式。如11转成<code>11:00:00</code>,118转成<code>11:08:00</code>,n+15转成15分钟后<code id="af15"></code>时间,n-15表示15分钟前<code id="bf15"></code>时间</h3>
+	<h3>一.日期格式设置(<code>timeFormat:"HMS"</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<table class="use-prettyprint">
+			<tr>
+				<td class='r-label'>执行时间</td>
+				<td class='r-label'>
+					<input id="exeTime" class="hisui-timeboxq textbox" data-options='timeFormat:"HMS"'/>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<h3>二.日期范围设置(<code>minTime:"8:30",maxTime:"17:30"</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<table class="use-prettyprint">
+			<tr>
+				<td class='r-label'>上班时间</td>
+				<td class='r-label'>
+					<input id="tb2" class="hisui-timeboxq textbox" data-options='minTime:"8:30",maxTime:"17:30"'/>
+				</td>
+				<td class='r-label'>
+					<a class="hisui-linkbutton" id="setTimeDisBtn">时间改成996</a>
+				</td>
+			</tr>
+		</table>
+		<script type="text/javascript" class="use-prettyprint">
+			$.extend($.fn.validatebox.defaults.rules, {
+				TimeG:{
+					validator:function(value,param){
+						console.log(value);
+						console.log(param);
+						return true;
+					}
+				}
+			});
+			$("#setTimeDisBtn").click(function(){
+				var opt = $("#tb2").timeboxq('options');
+				var target = document.getElementById('tb2');
+				opt.minTime = opt.formatter.call(target,opt.parser.call(target,"9:00"));
+				opt.maxTime = opt.formatter.call(target,opt.parser.call(target,"21:00"));
+				$.messager.popover({msg: '设置可选范围成功',type:'success',timeout: 1000});
+			});
+		</script>
+		
+		<script type="text/javascript" class="use-prettyprint">			
+			$.parser.onComplete = function(ctx){
+				var opt = $('#exeTime').timeboxq('options'); 
+				var target = document.getElementById('exeTime');
+				$("#af15").html(opt.formatter.call(target,opt.parser.call(target,"n+15")));
+				$("#bf15").html(opt.formatter.call(target,opt.parser.call(target,"n-15")));
+				$("#exeTime").timeboxq({
+					onChange:function(newValue,oldValue){
+						console.log("newValue="+newValue+", oldValue="+oldValue);
+					},
+					validType:["TimeG['endtb']"]
+				});
+
+			};
+		</script>
+	</div>
+<table class="table">
+	<tr class="protitle">
+		<th>属性</th>
+		<th>说明</th>
+		<th>默认值</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td>timeFormat</td>
+		<td>默认值为HMS。表示日期显示成HH-MM-SS</td>
+		<td>HMS</td>
+		<td>可以设置成HM,如果需求实现其它方式格式可重写formatter</td>
+	</tr>
+	<tr>
+		<td>minTime</td>
+		<td>最小时间。如:8:30</td>
+		<td>00:00:00</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>maxTime</td>
+		<td>最大时间。如:17:30</td>
+		<td>23:59:59</td>
+		<td></td>
+	</tr>
+	<tr class="protitle">
+		<th>事件</th>
+		<th>说明</th>
+		<th>入参</th>
+		<th></th>
+	</tr>
+	<tr>
+		<td>onChange</td>
+		<td>值变化后调用</td>
+		<td>newTime,oldTime</td>
+		<td></td>
+	</tr>
+</table>
+<prettyprint/>
+</body>
+</html>

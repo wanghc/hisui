@@ -83,7 +83,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite2def','min-css-lblue','pic-en-css','pic-lite-en-css'],function(){
+gulp.task('min-css',['min-css-lite2def','min-css-lblue','min-css-pure','pic-en-css','pic-lite-en-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -133,6 +133,22 @@ gulp.task('min-css-lblue',function(){
     .pipe(rename('hisui.lightblue.min.css'))      //命名
         .pipe(gulp.dest("dist/css"));
 })
+gulp.task('min-css-pure',function(){
+    var lessPath = "less/pure/";
+    var arr =[].concat(lessArr,['beautyscroll']) ;
+    arr.forEach(function(value,index){
+        arr[index]=lessPath+value+".less";
+    })
+    return gulp.src(arr)
+    .pipe(concat('hisui.min.less'))     //合并所有less文件到hisui.min.less
+    .pipe(gulp.dest("less/pure"))            //保存到less目录
+    .pipe(less())                       //less编译
+    .pipe(rename('hisui.pure.css'))
+    .pipe(gulp.dest("dist/css"))
+    .pipe(minifycss())                  //压缩css
+    .pipe(rename('hisui.pure.min.css'))      //命名
+        .pipe(gulp.dest("dist/css"));
+})
 gulp.task('pic-en-css',function(){
     return gulp.src('less/locale.en.less')
     .pipe(less())                       //less编译
@@ -144,9 +160,11 @@ gulp.task('pic-lite-en-css',function(){
     return gulp.src('less/lite/locale.en.less')
     .pipe(less())                       //less编译
     .pipe(minifycss())                  //压缩css
-    .pipe(rename('hisui.lite.en.css'))      //命名
+    .pipe(rename('hisui.lite.en.css'))      //极简命名
     .pipe(gulp.dest("dist/css/locale"))
-    .pipe(rename('hisui.lightblue.en.css'))      //命名
+    .pipe(rename('hisui.lightblue.en.css'))      //淡蓝命名
+    .pipe(gulp.dest("dist/css/locale"))
+    .pipe(rename('hisui.pure.en.css'))      //纯净命名
     .pipe(gulp.dest("dist/css/locale"));
 })
 // gulp.task('lite2def',['min-js','min-css-lite2def']);

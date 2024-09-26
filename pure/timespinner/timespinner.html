@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>时间组件</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+    <script type="text/javascript">
+        var HISUIStyleCode = 'lightblue';
+    </script>
+</head>
+<body>
+	<style>td{padding:0px;}</style>
+	<h2>时间框</h2>
+	<h3>说明:</h3>
+    <span>时间验证框（timespinner） 。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint lang-html">
+			<div class="hisui-panel" title="登记" style="width:400px;padding:10px" 
+					data-options="closable:false,headerCls:'panel-header-gray'">
+				<table>
+					<tr>
+						<td class="r-label">时间</td>
+						<td>
+							<input class="hisui-timespinner" data-options="showSeconds:true" style="border-radius: 2px;">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="demo-exp-code entry-content">
+		<div>
+			<div class="hisui-panel use-prettyprint lang-html" title="执行记录时间" style="width:400px;padding:10px" 
+				data-options="closable:false,headerCls:'panel-header-gray'">
+				<table>
+					<tr>
+						<td class="r-label">执行时间</td>
+						<td class="r-label">
+							<input id="tsp" class="hisui-timespinner" data-options="showSeconds:true" style="border-radius: 2px;">
+						</td>
+						<td class="r-label">
+							默认微调分钟
+						</td>
+					</tr>
+				</table>
+				<script>
+					$.parser.onComplete= function(ctn){
+						if (ctn){return ;}
+						$("#tsp").timespinner("setValue","101010");
+						$("#tsp").timespinner("setSpinStart",4);
+					};
+				</script>
+			</div>
+		</div>
+	</div>
+	<div class="demo-exp-code entry-content">
+		<div>
+			<div class="hisui-panel use-prettyprint lang-html" title="步增示例" style="width:400px;padding:10px" 
+				data-options="closable:false,headerCls:'panel-header-gray'">
+				<table>
+					<tr>
+						<td class="r-label">执行时间</td>
+						<td class="r-label">
+							<input id="stepex" class="hisui-timespinner" data-options="showSeconds:true,minutesStep:10,secondStep:15" style="border-radius: 2px;">
+						</td>
+						<td>步调：10分,15秒</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<prettyprint></prettyprint>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>setSpinStart</td>
+			<td>设置当前微调位置。如:4。则默认光标在第4个字符位置，即分钟区域<code>20220613</code></td>
+			<td>当入参值小于0或大于内容总长度时无效</td>
+			<td>正整数</td>
+		</tr>
+		<tr>
+			<td>hourStep</td>
+			<td>调整时钟的增量值<code>20230217</code></td>
+			<td>1小时</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>minutesStep</td>
+			<td>调整分钟的增量值<code>20230217</code></td>
+			<td>1分钟</td>
+			<td></td>
+		</tr>
+		
+		<tr>
+			<td>secondStep</td>
+			<td>调整秒钟的增量值<code>20230217</code></td>
+			<td>1秒钟</td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>

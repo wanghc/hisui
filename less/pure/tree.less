@@ -1,0 +1,332 @@
+@import "variables.less";
+
+.tree {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.tree li {
+  white-space: nowrap;
+}
+.tree li ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.tree-node {
+  height: 18px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tree-hit {
+  cursor: pointer;
+}
+.tree-expanded,
+.tree-collapsed,
+.tree-folder,
+.tree-file,
+.tree-checkbox,
+.tree-indent {
+  display: inline-block;
+  width: 16px;
+  height: 18px;
+  vertical-align: top;
+  overflow: hidden;
+}
+.tree-expanded {
+  background: url('@{images-path}/tree_icons.png') no-repeat -18px 0px;
+}
+.tree-expanded-hover {
+  background: url('@{images-path}/tree_icons.png') no-repeat -50px 0px;
+}
+.tree-collapsed {
+  background: url('@{images-path}/tree_icons.png') no-repeat 0px 0px;
+}
+.tree-collapsed-hover {
+  background: url('@{images-path}/tree_icons.png') no-repeat -32px 0px;
+}
+.tree-lines .tree-expanded,
+.tree-lines .tree-root-first .tree-expanded {
+  background: url('@{images-path}/tree_icons.png') no-repeat -144px 0;
+}
+.tree-lines .tree-collapsed,
+.tree-lines .tree-root-first .tree-collapsed {
+  background: url('@{images-path}/tree_icons.png') no-repeat -128px 0;
+}
+.tree-lines .tree-node-last .tree-expanded,
+.tree-lines .tree-root-one .tree-expanded {
+  background: url('@{images-path}/tree_icons.png') no-repeat -80px 0;
+}
+.tree-lines .tree-node-last .tree-collapsed,
+.tree-lines .tree-root-one .tree-collapsed {
+  background: url('@{images-path}/tree_icons.png') no-repeat -64px 0;
+}
+.tree-line {
+  background: url('@{images-path}/tree_icons.png') no-repeat -176px 0;
+}
+.tree-join {
+  background: url('@{images-path}/tree_icons.png') no-repeat -192px 0;
+}
+.tree-joinbottom {
+  background: url('@{images-path}/tree_icons.png') no-repeat -160px 0;
+}
+.tree-folder {
+  background: url('@{images-path}/tree_icons.png') no-repeat -208px 0;
+}
+.tree-folder-open {
+  background: url('@{images-path}/tree_icons.png') no-repeat -224px 0;
+}
+.tree-file {
+  background: url('@{images-path}/tree_icons.png') no-repeat -240px 0;
+}
+.tree-loading {
+  background: url('images/loading.gif') no-repeat center center;
+}
+.tree-checkbox0 {
+  background: url('@{images-path}/tree_icons.png') no-repeat -208px -18px;
+}
+.tree-checkbox1 {
+  background: url('@{images-path}/tree_icons.png') no-repeat -224px -18px;
+}
+.tree-checkbox2 {
+  background: url('@{images-path}/tree_icons.png') no-repeat -240px -18px;
+}
+.tree-title {
+  font-size: 12px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 0 2px;
+  height: 18px;
+  line-height: 18px;
+}
+.tree-node-proxy {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0 2px 0 20px;
+  border-width: 1px;
+  border-style: solid;
+  z-index: 9900000;
+}
+.tree-dnd-icon {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 18px;
+  left: 2px;
+  top: 50%;
+  margin-top: -9px;
+}
+.tree-dnd-yes {
+  background: url('images/tree_icons.png') no-repeat -256px 0;
+}
+.tree-dnd-no {
+  background: url('images/tree_icons.png') no-repeat -256px -18px;
+}
+.tree-node-top {
+  border-top: 1px dotted red;
+}
+.tree-node-bottom {
+  border-bottom: 1px dotted red;
+}
+.tree-node-append .tree-title {
+  border: 1px dotted red;
+}
+.tree-editor {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  height: 14px !important;
+  height: 18px;
+  line-height: 14px;
+  padding: 1px 2px;
+  width: 80px;
+  position: absolute;
+  top: 0;
+}
+.tree-node-proxy {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #95B8E7;
+}
+.tree-node-hover {
+  background: #eaf2ff;
+  color: #000000;
+}
+.tree-node-selected {
+  background: #ffe48d;
+  color: #000000;
+}
+.tree-node{
+  //height: 28px;
+  height: auto;
+}
+.tree-title {
+  font-size: 14px;
+  //height: 28px;
+  height: auto;
+  line-height: 28px;
+  padding:  0 5px; /*2942057*/
+}
+.tree-node-selected{
+  background: @tree-node-hover-bgcolor;
+}
+.tree-node-hover{
+  background: @tree-node-hover-bgcolor;
+}
+/*增加.tree>li>ul解决 大节点也变色背景问题 */
+.tree>li>ul .tree-node-selected .tree-title{
+  background: @tree-node-hover-bgcolor;
+}
+.tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
+  margin-top:5px;
+}
+/*线条*/
+.tree-lines{
+  .tree-collapsed,.tree-expanded,.tree-indent {
+    margin-top: 0;
+    height: auto;
+    height: 28px;
+  }
+  .tree-line {
+    background: url('@{images-path}/tree_lines.png') no-repeat -113px center;
+  }
+  .tree-join {
+    background: url('@{images-path}/tree_lines.png') no-repeat -129px center;
+  }
+  .tree-expanded{
+    background: url('@{images-path}/tree_lines.png') no-repeat -81px center;
+  }
+  .tree-collapsed {
+    background: url('@{images-path}/tree_lines.png') no-repeat -65px center;
+  }
+  .tree-root-first{
+    .tree-expanded{
+      background: url('@{images-path}/tree_lines.png') no-repeat -200px center;
+    }
+    .tree-collapsed {
+      background: url('@{images-path}/tree_lines.png') no-repeat -184px center;
+    }
+  }
+  .tree-node-last,.tree-root-one{
+    .tree-expanded{
+      background: url('@{images-path}/tree_lines.png') no-repeat -17px center;
+    }
+    .tree-collapsed {
+      background: url('@{images-path}/tree_lines.png') no-repeat -1px center;
+    }
+  }
+  .tree-joinbottom {
+    background: url('@{images-path}/tree_lines.png') no-repeat -97px center;
+  }
+
+  /*高度不固定时  tree-folder tree-file tree-folder-open   都加了一个类 tree-icon-lines*/
+  .tree-folder.tree-folder-open.tree-icon-lines{
+    margin: 0;
+    background: url('@{images-path}/tree_lines.png') no-repeat -151px center;
+  }
+  .tree-folder.tree-icon-lines,
+  .tree-file.tree-icon-lines{
+    margin: 0;
+    background: url('@{images-path}/tree_lines.png') no-repeat -167px center;
+  }
+
+}
+
+
+/*将树的样式整成手风琴 加个类accordiontree 尝试下*/
+.accordiontree.tree{
+  border: 1px solid @tree-border-color;
+  
+  &>li{
+    &>.tree-node{
+      height: 36px;
+      line-height: 36px;
+      background-color:@accordion-tree-header-bgcolor;
+      position: relative;
+      .tree-hit{
+        position: absolute;
+        height: 14px;
+        width: 14px;
+        top:50%;
+        margin-top:-7px;
+        right: 10px;
+        &.tree-collapsed::before{
+          content: @content-down;
+          //background: url(images/accordion_arrows2.png) -19px center no-repeat;
+        }
+        &.tree-expanded::before{
+          content: @content-up;
+          //background: url(images/accordion_arrows2.png) -2px center no-repeat;
+        }
+        &:hover{
+          color:@main-hover-color;
+          background-color: @linkbutton-plain-hover-bgcolor;
+          -moz-border-radius: 2px;
+          -webkit-border-radius: 2px;
+          border-radius: 2px;
+          opacity: 1.0;
+          filter: opacity(100);
+        }
+      }
+      .tree-icon{
+        display: none;
+      }
+      .tree-title{
+        height: 36px;
+        line-height: 36px;
+        color: #000;
+        padding: 0 34px 0 15px;
+      }
+      &.tree-node-hover{
+        background-color:@tree-node-hover-bgcolor;
+      }
+    }
+    &>ul{
+      background-color: @accordion-tree-bgcolor;
+      .tree-node{
+        padding-left: 5px;
+        height: 36px;
+        line-height: 36px;
+        position: relative;
+        &.tree-node-hover{
+          background-color: @accordion-tree-hover-bgcolor;
+        }
+        &.tree-node-selected{
+          background-color: @accordion-tree-select-bgcolor;
+          .tree-title{ /*2019-12-12 解决选中行变黄底色问题 */
+            background: @accordion-tree-select-bgcolor;
+          }
+        }
+        .tree-hit{
+          width: 15px;
+          height: 18px;
+          margin-top: 9px;
+        }
+        .tree-indent{
+          width: 15px;
+        }
+        &>span.tree-indent:first-child{   //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+          width: 0px;
+        }
+        .tree-icon{
+          display: none;
+        }
+        .tree-title{
+          height: 36px;
+          line-height: 36px;
+          color: #000;
+          padding: 0 10px 0 0;
+        }
+      }
+    }
+  }
+}
+.treegrid-tr-tree-div-hidden{
+  display:none;
+}
+
+
+
+
+

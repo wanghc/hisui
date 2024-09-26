@@ -1,0 +1,174 @@
+@import "variables.less";
+.messager-body {
+  padding: 10px;
+  overflow: hidden;
+}
+.messager-button {
+  text-align: center;
+  padding-top: 10px;
+}
+.messager-button .l-btn {
+  width: 70px;
+}
+.messager-icon {
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin: 0 10px 10px 0;
+}
+.messager-error {
+  background: url('images/messager_icons.png') no-repeat scroll -64px 0;
+}
+.messager-info {
+  background: url('images/messager_icons.png') no-repeat scroll 0 0;
+}
+.messager-question {
+  background: url('images/messager_icons.png') no-repeat scroll -32px 0;
+}
+.messager-warning {
+  background: url('images/messager_icons.png') no-repeat scroll -96px 0;
+}
+.messager-progress {
+  padding: 10px;
+}
+.messager-p-msg {
+  margin-bottom: 5px;
+}
+.messager-body .messager-input {
+  width: 100%;
+  padding: 1px 0;
+  border: 1px solid #95B8E7;
+}
+.messager-body {
+  padding: 10px;
+  overflow: hidden;
+  word-wrap: break-word;
+  background-color: @messager-body-bgcolor;
+}
+.messager-button {
+  text-align: center;
+  padding-top: 10px;
+}
+// .messager-button .l-btn {
+//   width: 70px;
+//   text-align: center;
+// }
+// 按钮长度自适应 4588999
+.messager-button .l-btn {
+  width: auto;
+  white-space: nowrap;
+}
+.messager-icon {
+  float: left;
+  width: 32px;
+  height: 32px;
+  margin: 0 10px 10px 0;
+}
+.messager-info {
+  background: url('@{images-path}/messager_icons.png') no-repeat scroll 0 0;
+}
+.messager-question {
+  background: url('@{images-path}/messager_icons.png') no-repeat scroll -32px 0;
+}
+.messager-error {
+  background: url('@{images-path}/messager_icons.png') no-repeat scroll -64px 0;
+}
+.messager-warning {
+  background: url('@{images-path}/messager_icons.png') no-repeat scroll -96px 0;
+}
+.messager-success{
+  background: url('@{images-path}/messager_icons.png') no-repeat scroll -128px 0;
+}
+.messager-progress {
+  padding: 10px;
+}
+.messager-p-msg {
+  margin-bottom: 5px;
+}
+.messager-body .messager-input {
+  width: 96%;
+  border-radius: 2px;
+  padding: 1px 0 1px 10px;
+  border: 1px solid @input-border-color; /*2943214*/
+  height: 26px;
+  &:hover,&:focus{
+    border:1px solid @input-active-border-color;
+  }
+}
+/*--popover--*/
+.messager-popover{
+  position: absolute;
+  border-radius: 5px;
+  display: block;
+  padding:6px 15px;
+  font-weight:bold;
+  font-size: 14px;
+  z-index: 10000;
+}
+.messager-popover.success{
+  color:#13AE37;
+  background: #EFFFEB;
+  border:1px #A8E59A solid;
+}
+.messager-popover.info{
+  color:#339EFF;
+  background: #EFF9FF;
+  border:1px #9CD0FF solid;
+}
+.messager-popover.alert{
+  color:#DF7000;
+  background: #FFF1E3;
+  border:1px #FF9933 solid;
+}
+.messager-popover.error{
+  color:#EE0F0F;
+  background: #FFE9E9;
+  border:1px #FFA4A4 solid;
+}
+.messager-popover-icon{
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.messager-popover-icon.success{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll 0 0;
+}
+.messager-popover-icon.alert{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -16px 0;
+}
+.messager-popover-icon.error{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -32px 0;
+}
+.messager-popover-icon.info{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -48px 0;
+}
+.messager-popover .content{
+  height: 18px;
+  float: left;
+}
+.messager-popover .close{
+  //margin-left: 30px;
+  float: right;
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.messager-popover.success .close{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -64px 0;
+}
+.messager-popover.alert .close{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -80px 0;
+}
+.messager-popover.error .close{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -96px 0;
+}
+.messager-popover.info .close{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -112px 0;
+}
+.messager-popover .close:hover{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -128px 0;
+  cursor: pointer;
+  //background-image: url(images/panel_tools_2.png);
+}

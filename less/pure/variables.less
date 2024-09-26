@@ -1,0 +1,378 @@
+@main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
+@main-font-size:14px;
+@main-color:#40a2de;
+@main-hover-color:#378ec4; /*好多hover的颜色*/
+//@combo-img: url(images/combo_arrow.png) no-repeat center center;
+//@lookup-img: url(images/lookup_arrow.png) no-repeat center center;
+//@date-img:url(images/datebox_arrow_40a2de.png) no-repeat center center;
+//@date-hover-img:url(images/datebox_arrow_378ec4.png) no-repeat center center;
+//@date-disabled-img:url(images/datebox_arrow_bbbbbb.png) no-repeat center center;
+//== 字体
+@content-up:"\f264";
+@content-down:"\f265";
+@content-up2:"\f483";
+@content-down2:"\f481";
+@content-right2:"\f235";
+@content-left2:"\f482";
+
+@content-restore:"\f478";
+@content-max:"\f167";
+@content-min:"\f479";
+@content-close:"\f480";
+
+@content-upfill:"\f477";
+@content-downfill:"\f476";
+
+@content-pagination-first:"\f312";
+@content-pagination-prev:"\f302";
+@content-pagination-next:"\f301";
+@content-pagination-last:"\f308";
+@content-pagination-load:"\f029";
+//==
+
+@body-bgcolor:#F5F5F5;
+
+
+//== images 
+@images-path:"images/lightblue";
+//== icon
+@icon-path:"icons/default";
+
+
+
+@input-border-color:#baddff;
+@input-bgcolor:#ffffff;
+@input-color:#000000;
+@input-active-border-color:#339eff;
+@input-active-bgcolor:#eff9ff;
+@input-active-color:#000000;
+@input-disabled-border-color:#CCCCCC;
+@input-disabled-bgcolor:#F5F5F5;
+@input-disabled-color:#999999;
+@input-placeholder-color:#999999;
+@input-invalid-bgcolor:#ffe9e9;
+@input-invalid-border-color:#ffa4a4;
+@input-invalid-placeholder-color:#ee0f0f;
+
+@input-arrow-opacity:1; /*0.7;*/
+@input-arrow-opacity-ie:100*@input-arrow-opacity;
+@input-border-radius:2px; /*add 2019-12-23*/
+
+
+//---------arrow-------//
+@input-arrow-hover-bgcolor:@input-hover-bgcolor;
+@input-arrow-hover-opacity:1;
+@input-arrow-hover-opacity-ie:100*@input-arrow-hover-opacity;
+@input-border-hover-color:@input-active-border-color;
+@input-hover-bgcolor:@input-active-bgcolor;
+//----------focus---------//
+@input-focus-bgcolor:@input-hover-bgcolor;
+@input-border-focus-color:#339EFF;
+
+// 输入框小图标几种状态颜色//
+@input-iconbtn-color:#6ab8ff;
+@input-iconbtn-hover-color:#339eff;;
+@input-iconbtn-disabled-color:@input-disabled-color;
+
+//-------------disabled----------//
+@main-disabled-bgcolor:@input-disabled-bgcolor;
+@main-disabled-border-color:@input-disabled-border-color;
+@linkbutton-disabled-bgcolor:#E5E5E5;
+@linkbutton-disabled-icon-bgcolor:#D1D1D1;
+@linkbutton-disabled-icon-color:#999999;
+
+//== tooltip
+@tooltipFontColor:#ffffff;
+@tooltipArrowColor:#ffffff;
+@tooltipFontSize:14px;
+@tooltipPadding:10px;
+@tooltipBorderRadius:4px;
+@tooltipDefalutBorderColor:#4f75aa;
+@tooltipDefalutBorderWidth:0;
+@tooltipDefalutBgColor:rgba(0,0,0,0.7);
+
+@tooltipErrorBgColor:#ff5153;
+@tooltipErrorBgColor:#ff9683;
+
+//== validatebox
+@validatebox-border-width:1px;
+@validatebox-border-color:@input-border-color;
+@validatebox-border-type:solid;
+@validatebox-height:28px;
+@validatebox-padding-left:5px;
+@validatebox-font-color:@input-color;
+@validatebox-font-size:@main-font-size;
+@validatebox-focus-bgcolor:@input-active-bgcolor;
+//==searchbox
+@searchbox-border-width:1px;
+@searchbox-border-color: @panel-header-bdcolor;
+@searchbox-border-type:solid;
+@searchbox-height:28px;
+@searchbox-width:30px;
+@searchbox-padding-left:5px;
+@searchbox-font-color:@input-color;
+@validatebox-font-size:@main-font-size;
+@searchbox-font-size:@main-font-size;
+@searchbox-bgcolor:@panel-body-bgcolor;
+@searchbox-arrow-bgcolor:@panel-body-bgcolor;
+@searchbox-hover-bgcolor:#40a2dd;
+@searchbox-button-hover-bgcolor: #378ec4;
+
+//== panel
+@panel-title-height:26px;
+@panel-title-font-size:@main-font-size;
+@panel-title-font-color:#000000;
+@panel-header-padding:3px 5px;  /*4px修改成3px，影响医嘱套维护界面。会多出多余的滚动条*/
+@panel-header-bgcolor:#E5F2FF; //#ffffff;
+@panel-header-bdcolor:#BADDFF;
+@panel-border-color: @panel-header-bdcolor; // #E2E2E2; 
+@panel-border-card-color:#509de1;
+@panel-border-card-color-gray:#E3E3E3;
+@panel-header-blue-bgcolor:#b4dbf5;
+@panel-shadow:0px 3px 6px rgba(0, 0, 0, 0.16);
+@panel-body-font-size:@main-font-size;
+@panel-body-bgcolor:#fcfdff;
+//== popover 
+@popover-title-bg-color:@panel-header-bgcolor;
+@popover-title-border-color:@panel-border-color;
+@popover-body-bgcolor:@panel-body-bgcolor;
+//== combo
+@combo-arrow-width:30px;
+@combo-arrow-height:30px;
+@combo-arrow-bgcolor:none; /*main-color*/;
+@combo-arrow-color:#ffffff;
+@combo-arrow-hover-color:none; /*main-hover-color*/;
+@combo-border-color:@panel-header-bdcolor;
+@combo-select-row-bgcolor:#e5e5e5;
+@combo-font-size:@main-font-size;
+@combo-input-line-height:28px;
+@combo-input-line-height-ie8:26px;
+@combo-row-line-height:24px;
+@combo-bgcolor:@panel-body-bgcolor;
+@combo-padding-left:@validatebox-padding-left;
+@combo-panel-border-color:#339EFF;
+
+//== combobox 
+@combobox-item-font-size:@main-font-size;
+@combobox-item-padding:3px;
+@combobox-item-right-padding:0px;
+@combobox-item-left-padding:5px;
+@combobox-item-line-height:24px;
+@combobox-gitem-left-padding:10px;
+@combobox-item-hover-bgcolor:#E2E2E2;
+@combobox-item-hover-font-color:#000000;
+@combobox-item-select-bgcolor:#E5E5E5;
+@combobox-item-select-font-color:#000000;
+
+//== datebox
+@datebox-button-font-size:12px;
+@datebox-button-bgcolor:#F4F4F4;
+@datebox-button-font-color:#444;
+
+//== accordion
+@accordion-header-bgcolor:@panel-header-bgcolor;
+@accordion-header-bgcolor-green:#21BA45;
+@accordion-header-select-bgcolor:@panel-header-bgcolor;
+@accordion-border-color: @panel-header-bdcolor;
+@accordion-title-font-color:#000000;
+@accordion-body-bgcolor:@panel-body-bgcolor;
+@accordion-body-color:#7a7875;
+@accordion-body-border:#E2E2E2;
+//==
+@accordion-tree-header-bgcolor:@panel-header-bgcolor;
+@accordion-tree-bgcolor:@panel-body-bgcolor;
+@accordion-tree-select-bgcolor:@panel-header-bgcolor;
+@accordion-tree-hover-bgcolor:@panel-header-bdcolor;
+//== tabs
+@tabs-header-height:36px;
+@tabs-header-bgcolor:@panel-header-bgcolor;
+@tabs-header-hover-bgcolor:@panel-header-bgcolor;
+@tabs-header-hover-bdcolor:@panel-header-bdcolor;
+@tabs-brand-hover-bgcolor:@panel-header-bgcolor;
+@tabs-header-select-top-color:#339EFF;
+@tabs-header-font-color:#000000;
+@tabs-header-select-font-color:#339eff;
+@tabs-title-font-size:@main-font-size;
+@tabs-header-arrow-hover-bgcolor:@tabs-header-select-top-color;
+@tabs-header-bdcolor:@panel-header-bdcolor;
+@tabs-shadow:@panel-shadow;
+
+/*tabs-gray*/
+@tabs-header-gray-bgcolor:#F7F7F7;
+@tabs-header-gray-select-top-color:#017BCE;
+@tabs-header-gray-font-color:#000000;
+@tabs-header-gray-select-bgcolor:#ffffff;
+@tabs-header-gray-select-font-color:#1584D2;
+@tabs-header-gray-border:#CCC;
+@tabs-header-gray-hover-bgcolor:#CCC;
+@tabs-header-gray-arrow-hover-bgcolor:#cccccc;
+@tabs-li-after-border-left-corlor:#2A72B0;
+@tabs-li-after-border-right-corlor:#70B5F1;
+
+//== window
+@window-header-bgcolor:@panel-header-bgcolor;
+@window-body-bgcolor:#ecf6ff;
+@window-shadow:0px 0px 20px rgba(0, 0, 0, 0.16);
+@window-title-color:#000000;
+
+//== linkbutton
+@linkbutton-font-size:14px;
+@linkbutton-height:28px;
+@icon-height:16px;
+@icon-width:16px;
+@linkbutton-bgcolor:#339EFF;
+@linkbutton-font-color:#ffffff;
+@linkbutton-padding-leftright:8px;
+@linkbutton-min-width:80px;
+@linkbutton-text-width:@linkbutton-min-width - (2 * @linkbutton-padding-leftright);
+@linkbutton-hover-bgcolor:#006FD2;
+@linkbutton-focus-bordercolor:transparent;
+@linkbutton-left-bgcolor:#007BE9;
+@linkbutton-border-radius:2px;
+
+@linkbutton-hover-dark-bgcolor:#0063a7;
+@linkbutton-plain-hover-bgcolor: #eff9ff;
+@linkbutton-plain-hover-color: #339eff;
+@linkbutton-border-hover-color:#b7d2ff;
+
+//== link-----<a/>
+@link-color:#40A2DE;
+@link-hover-color:#378ec4;
+
+
+
+//== dialog
+@dialog-body-bgcolor:@window-body-bgcolor;
+
+//==datagrid
+@datagrid-header-bgcolor:@panel-header-bgcolor;
+@datagrid-inner-border-color:#E2E2E2;
+@datagrid-border-color:@panel-header-bdcolor;
+@datagrid-row:#ffffff;
+@datagrid-row-color:#000000;
+@datagrid-row-hover:#e5f2ff;;
+@datagrid-row-hover-color: #000000;
+@datagrid-row-select:#FFEDCE;
+@datagrid-row-select-color: #C88003;
+@datagrid-cell-font-size:14px;
+@datagrid-toolbar-text-color:@linkbutton-plain-hover-color;
+@datagrid-toolbar-hover:@linkbutton-plain-hover-bgcolor;
+@datagrid-row-alt-bgcolor:#f1f6fc;
+@datagrid-toolbar-border-color: @datagrid-border-color;
+@datagrid-toolbar-bgcolor:@panel-body-bgcolor;
+@datagrid-pager-bgcolor:@datagrid-header-bgcolor;
+
+//== layout
+@layout-split-border:transparent;
+
+//== spinner
+@spinner-line-height:28px;
+@spinner-line-height-min:26px;
+@spinner-font-size:14px;
+@spinner-arrow-bgcolor:none; /*main-hover-color*/;
+//== keywords 
+@keywords-bgcolor:#E5E5E5;
+@keywords-color:#000000;
+@keywords-select-bgcolor:#EFF9FF;
+@keywords-select-color:#339EFF;
+@keywords-select-bdcolor:#48B9FF;
+@keywords-hover-bgcolor:#EFF9FF;
+@keywords-hover-color:#339EFF;
+@keywords-red-color:#000000;
+@keywords-red-bgcolor:#E5E5E5;
+@keywords-red-select-bgcolor: #FFE9DB;
+@keywords-red-select-color:#FF4401;
+@keywords-red-hover-bgcolor:#F1F1F1;
+@keywords-red-hover-color:#FF4401;
+@keywords-chapter-color:#339eff;
+@keywords-section-hover-color:#339eff; //#017bce;
+@keywords-section-bgcolor:#40a2de;
+
+//==menubutton
+@menubutton-blue-bgcolor: @linkbutton-bgcolor;   
+@menubutton-blue-bgcolor-hover:@linkbutton-hover-bgcolor;
+@menubutton-blue-menu-item-bgcolor: @linkbutton-bgcolor;
+@menubutton-blue-border-bottom-color:@linkbutton-bgcolor;
+@menubutton-blue-menu-item-hover: @linkbutton-hover-bgcolor;
+@menubutton-btn-hover-bgcolor:#EFF9FF;
+@menubutton-btn-plain-active-bgcolor:#E5E5E5;
+@menubutton-menu-item-bgcolor:@linkbutton-hover-bgcolor;
+@menubutton-menu-item-hover-bgcolor:#E5E5E5;
+
+//==menu
+@menu-active-border-color:#e5e5e5;
+@menu-active-bgcolor:#e5e5e5;
+@menu-border-color:#40a2de;
+@menu-shadow:@panel-shadow;
+@menu-body-bgcolor:@panel-body-bgcolor;
+@menu-sep-border-color:@panel-header-bdcolor;
+
+//==filebox
+@filebox-border-color:#40a2de;
+
+//tree
+@tree-border-color:#E5E5E5;
+@tree-node-bgcolor:#E5E5E5;
+@tree-node-hover-bgcolor:#E5E5E5;
+
+//easyui
+@easyui-pagination-num-border-color:#95B8E7;
+//使用textbox样式类后长度,context-box的长度
+@textbox-width:148px;
+
+@scrollbar-bgcolor:@panel-header-bgcolor;
+@scrollbar-btn-bgcolor: #cae3fc;
+@scrollbar-btn-hover-bgcolor:@panel-header-bdcolor;
+
+@messager-body-bgcolor:@window-body-bgcolor;
+
+/*variables-end*/
+body {
+    font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+    padding:10px;
+    font-size:@main-font-size;
+    margin:0;
+    background-color: @body-bgcolor;
+}
+body * {
+    font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+    font-size:@main-font-size;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	padding:0 0 12px 0;
+}
+.demo-tip{
+	display:none;
+}
+.r-label{
+    text-align: right;
+    padding-right: 10px;
+}
+.required-label:before {
+    content: '*';
+    color: red;
+    vertical-align: bottom;
+    line-height: 100%;
+}
+a{
+    color:@keywords-chapter-color;
+}
+/*chrome默认了outline*/
+input,textarea {
+    outline-width: 0;
+}
+#z-q-container{
+    position: absolute;
+    overflow: hidden;
+    background-color: @combo-bgcolor;
+    border: 1px solid @combo-panel-border-color;
+    z-index: 9000;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+    border-radius: 0 0 4px 4px;
+}
