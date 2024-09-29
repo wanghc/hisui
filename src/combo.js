@@ -226,8 +226,10 @@
                 /*20220923增加面板位置样式*/
                 var topVal = _865();
                 if (topVal > comboInputObj.offset().top) {
+                    comboInputObj.removeClass('combo-p-top').addClass('combo-p-bottom');
                     panelObj.parent().removeClass('combo-p-top').addClass('combo-p-bottom');
                 } else {
+                    comboInputObj.removeClass('combo-p-bottom').addClass('combo-p-top');
                     panelObj.parent().removeClass('combo-p-bottom').addClass('combo-p-top');
                 }
                 if (panelObj.prev().hasClass("_hisui_combobox-selectall") && panelObj.parent().hasClass('combo-p-top')){ 
