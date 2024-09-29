@@ -1,56 +1,43 @@
-@import "variables.less";
 .datebox-calendar-inner {
   height: 180px;
 }
+
 .datebox-button {
   height: 18px;
   padding: 2px 5px;
   text-align: center;
+  background-color:@datebox-button-bgcolor;
+
+  a {
+    font-size: @datebox-button-font-size;
+    color:@datebox-button-font-color;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    
+    &:hover{
+      opacity: 1.0;
+      filter: alpha(opacity=100);
+    }
+  }
 }
-.datebox-button a {
-  font-size: 12px;
-  font-weight: bold;
-  text-decoration: none;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
-}
-.datebox-button a:hover {
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-}
-.datebox-current,
-.datebox-close {
+
+.datebox-current,.datebox-close {
   float: left;
 }
+
 .datebox-close {
   float: right;
 }
-.datebox .combo-arrow {
-  background-image: url('images/datebox_arrow.png');
-  background-position: center center;
+
+.datebox{
+
+  .combo-arrow::before{
+    content: "\f024";
+  }
 }
-.datebox-button {
-  background-color: #F4F4F4;
-}
-.datebox-button a {
-  color: #444;
-}
-/*日历最下面的today close*/
-.datebox-button a {
-  font-size: @datebox-button-font-size;
-}
-.datebox-button {
-  background-color:@datebox-button-bgcolor;
-}
-.datebox-button a {
-  color:@datebox-button-font-color;
-}
-.datebox .combo-arrow {
-  background:none;
-}
+
 .datetimebox-f + .datebox .combo-arrow::before{
   content: "\f044";
-}
-.datebox .combo-arrow::before{
-  content: "\f024";
 }

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>输入框样式集合</title>
     
-    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../jquery-tag-demo.js"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
     <script type="text/javascript">
-        var HISUIStyleCode = 'lightblue';
+        var HISUIStyleCode = 'pure';
     </script>
 	<script type="text/javascript" src="../../src/hisui.js"></script> 
 </head>
@@ -140,6 +140,21 @@
                         <span style="color: red;margin-left: -1px;">必填项</span>
                     </td>
                 </tr>
+				<tr>
+                    <td class="r-label">rowStyle生成的多选下拉框</td>
+                    <td>
+                        <select id="cxcbox" style="width:155px;">
+						</select>
+						<!-- <a href='#' id="cxcboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
+						<a href='#' id="cxcboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a> -->
+                    </td>
+					<td class="r-label">
+						快速日期
+					</td>
+					<td>
+						<input class="hisui-dateboxq textbox hisui-inputclearbtn " data-options="formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'">
+					</td>
+                </tr>
                 <tr>
                     <td class='r-label'>结算时间日期框</td>
                     <td>
@@ -194,21 +209,7 @@
 						<input id="lookup1" class='textbox hisui-inputclearbtn '/>
 					</td>
                 </tr>
-                <tr>
-                    <td class="r-label">rowStyle生成的多选下拉框</td>
-                    <td>
-                        <select id="cxcbox" style="width:155px;">
-						</select>
-						<!-- <a href='#' id="cxcboxbtn" class="hisui-linkbutton">获取选择的值(getValues)</a>
-						<a href='#' id="cxcboxselbtn" class="hisui-linkbutton">选中所有(setValues)</a> -->
-                    </td>
-					<td class="r-label">
-						快速日期
-					</td>
-					<td>
-						<input class="hisui-dateboxq textbox hisui-inputclearbtn " data-options="formatter:function(date){var y = date.getFullYear(); var m = date.getMonth()+1;return y+'-'+m;},validParams:'YM'">
-					</td>
-                </tr>
+                
                 <tr>
 					<td class="r-label">formatter生成的多选下拉框</td>
 					<td>

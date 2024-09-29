@@ -6,11 +6,12 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     //babel = require('gulp-babel'),
     uglify = require('gulp-uglify'),
-    notify = require('gulp-notify');   //提示
+    notify = require('gulp-notify'),   //提示
     //chinese2unicode = require('gulp-chinese2unicode')
-    replace = require('gulp-string-replace')
+    replace = require('gulp-string-replace'),
     //foal = require('gulp-foal');    //传参
     //livereload-半自动,connect-全自动
+    stylelint = require('gulp-stylelint');
 var orgCmpArr = ['parser','draggable','droppable','resizable','linkbutton','pagination','tree','progressbar','tooltip','panel','window','dialog','messager',
 'accordion','tabs','layout','menu','menubutton','splitbutton','searchbox','validatebox','form','numberbox','calendar',
 'spinner','numberspinner','timespinner','datagrid','propertygrid','treegrid','combo','combobox','combotree','combogrid',
@@ -169,7 +170,15 @@ gulp.task('pic-lite-en-css',function(){
 })
 // gulp.task('lite2def',['min-js','min-css-lite2def']);
 
-
+// 定义一个 Gulp 任务来运行 Stylelint
+gulp.task('stylelint', function () {
+    return gulp.src(['less/pure/combo.less']) // 指定要检查的文件路径
+      .pipe(stylelint({
+        reporters: [
+          { formatter: 'string', console: true } // 使用字符串格式化器并将结果输出到控制台
+        ]
+      }));
+  });
 // dist -> default
 // dist目录下的js全修改成min, 不留源代码
 gulp.task('default',['min-js','min-css','zh-CH','zh-TC']);

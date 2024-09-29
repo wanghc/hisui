@@ -11,6 +11,8 @@
   -moz-border-radius: @input-border-radius;
   -webkit-border-radius: @input-border-radius;
   border-radius: @input-border-radius;
+  border-color: @input-border-color;
+  background-color: @searchbox-bgcolor;
   &.disabled{
     border-color: @main-disabled-border-color;
     background-color: @main-disabled-bgcolor;
@@ -27,101 +29,41 @@
       filter: alpha(opacity=@input-arrow-hover-opacity-ie);
       background-color: @input-arrow-hover-bgcolor;
     }
+    .triggerbox-button{
+      color:@input-iconbtn-hover-color;
+    }
   }
   &:hover,&.triggerbox-hover{
     background-color: @input-active-bgcolor;
     border-color: @input-active-border-color;
   }
-}
-.triggerbox .triggerbox-text {
-  font-size: @searchbox-font-size;
-  border: 0;
-  margin: 0;
-  padding: 0 0 0 5px;
-  margin-top: -1px;
-  vertical-align: top;
-  /*focus bgcolor*/
-  &:active,&:focus{
-    background-color:@input-arrow-hover-bgcolor;
-    background-color: @input-hover-bgcolor;
-    &+span>span { 
-      opacity: @input-arrow-hover-opacity;
-      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-      background-color: @input-arrow-hover-bgcolor;
+  .triggerbox-text {
+    font-size: @searchbox-font-size;
+    border: 0;
+    margin: 0;
+    padding: 0 0 0 5px;
+    margin-top: -1px;
+    vertical-align: top;
+    /*focus bgcolor*/
+    &:active,&:focus{
+      background-color:@input-arrow-hover-bgcolor;
+      background-color: @input-hover-bgcolor;
+      &+span>span { 
+        opacity: @input-arrow-hover-opacity;
+        filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+        background-color: @input-arrow-hover-bgcolor;
+      }
+    }
+    &:disabled{
+      background-color: @input-disabled-bgcolor;
     }
   }
-  &:disabled{
-    background-color: @main-disabled-bgcolor;
-  }
-}
-.triggerbox .triggerbox-prompt {
-  font-size: @searchbox-font-size;
-  color: #ccc;
-}
-.triggerbox-button {
-  width: @searchbox-width;
-  height: @searchbox-height;
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: top;
-  cursor: pointer;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-}
-.triggerbox-button-hover {
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  background-color:@input-arrow-hover-bgcolor;
-  color:#339EFF;
-}
-.triggerbox .l-btn-plain {
-  border: 0;
-  padding: 0;
-  vertical-align: top;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
-  -moz-border-radius: 0 0 0 0;
-  -webkit-border-radius: 0 0 0 0;
-  border-radius: 0 0 0 0;
-}
-.triggerbox .l-btn-plain:hover {
-  border: 0;
-  padding: 0;
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  -moz-border-radius: 0 0 0 0;
-  -webkit-border-radius: 0 0 0 0;
-  border-radius: 0 0 0 0;
-}
-.triggerbox a.m-btn-plain-active {
-  -moz-border-radius: 0 0 0 0;
-  -webkit-border-radius: 0 0 0 0;
-  border-radius: 0 0 0 0;
-}
-.triggerbox {
-  border-color: @input-border-color;/*#95B8E7;*/
-  background-color: @searchbox-bgcolor;
   &.triggerbox-plain{
-    background-color: #ffffff;
+    background-color: @input-bgcolor;
     &.disabled{
-      background-color: @main-disabled-bgcolor;
+      background-color: @input-disabled-bgcolor;
       color:@input-iconbtn-disabled-color;
       border-color: @input-border-color;
-      /*.triggerbox-button {
-        &.icon-trigger-box{
-          background: url(icons/trigger_box_disabled.png) center center no-repeat;
-        }
-        &.icon-copy-blue{
-          background: url(icons/copy_blue_disabled.png) center center no-repeat;
-        }
-        &.icon-folder{
-          background: url(icons/folder_disabled.png) center center no-repeat;
-        }
-        &.icon-img-blue{
-          background: url(icons/img_blue_disabled.png) center center no-repeat;
-
-        }
-      }*/
     }
     .triggerbox-button {
       &.triggerbox-button-hover {
@@ -132,16 +74,36 @@
       }
     }
   }
+  .l-btn-plain {
+    border: 0;
+    padding: 0;
+    vertical-align: top;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    border-radius: 0 0 0 0;
+    background: #E0ECFF;
+    &:hover {
+      opacity: 1.0;
+      filter: alpha(opacity=100);
+    }
+  }
+  .l-btn-plain-disabled {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+  }
+  a.m-btn-plain-active {
+    border-radius: 0 0 0 0;
+  }
+  .triggerbox-prompt {
+    font-size: @searchbox-font-size;
+    color: #ccc;
+  }
 }
-.triggerbox .l-btn-plain {
-  background: #E0ECFF;
+.triggerbox-button-hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  background-color:@input-arrow-hover-bgcolor;
+  color:#339EFF;
 }
-.triggerbox .l-btn-plain-disabled,
-.triggerbox .l-btn-plain-disabled:hover {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-}
-
-
 
 

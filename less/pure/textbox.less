@@ -15,7 +15,7 @@ input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-t
   margin:0;
   padding:0 0 0 @validatebox-padding-left;
   box-sizing:content-box;
-  border-radius: 2px;
+  border-radius: @input-border-radius;
   border: @validatebox-border-width @validatebox-border-type @input-border-color;
   color:@validatebox-font-color;
   font-size:@validatebox-font-size;
@@ -67,7 +67,7 @@ input::-moz-placeholder, textarea::-moz-placeholder {
 input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   color:@input-placeholder-color;
 }
-.searchbox-button,.combo-arrow,.triggerbox.triggerbox-plain .triggerbox-button{
+.searchbox-button,.combo-arrow,.triggerbox-button{
   background: none;
   width: @combo-arrow-width;
   height: @combo-arrow-height;
@@ -82,6 +82,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   text-align: center;
   line-height: 28px;
   color:@input-iconbtn-color;
+  cursor: pointer;
 }
 .spinner-arrow .spinner-arrow-down, .spinner-arrow .spinner-arrow-up,.panel-tool a, .tabs-icon,.tabs-close,.tabs-scroller-left, .tabs-scroller-right,
 .m-btn-downarrow{

@@ -34,29 +34,30 @@
 
 
 //== images 
-@images-path:"images/lightblue";
+@images-path:"images/pure";
 //== icon
 @icon-path:"icons/default";
 
 
 
-@input-border-color:#baddff;
+@input-border-color:#cccccc;
 @input-bgcolor:#ffffff;
 @input-color:#000000;
-@input-active-border-color:#339eff;
-@input-active-bgcolor:#eff9ff;
+@input-active-border-color:#008fff;
+@input-active-bgcolor:#edf6ff;
 @input-active-color:#000000;
-@input-disabled-border-color:#CCCCCC;
-@input-disabled-bgcolor:#F5F5F5;
-@input-disabled-color:#999999;
-@input-placeholder-color:#999999;
-@input-invalid-bgcolor:#ffe9e9;
-@input-invalid-border-color:#ffa4a4;
-@input-invalid-placeholder-color:#ee0f0f;
+@input-disabled-border-color:#cccccc;
+@input-disabled-bgcolor:#f1f1f1;
+@input-disabled-color:#939393;
+@input-placeholder-color:#939393;
+@input-invalid-bgcolor:#fff0f0;
+@input-invalid-color:#fc494f;;
+@input-invalid-border-color:#ee0f0f;
+@input-invalid-placeholder-color:#fc494f;
 
 @input-arrow-opacity:1; /*0.7;*/
 @input-arrow-opacity-ie:100*@input-arrow-opacity;
-@input-border-radius:2px; /*add 2019-12-23*/
+@input-border-radius:6px;
 
 
 //---------arrow-------//
@@ -67,19 +68,16 @@
 @input-hover-bgcolor:@input-active-bgcolor;
 //----------focus---------//
 @input-focus-bgcolor:@input-hover-bgcolor;
-@input-border-focus-color:#339EFF;
+@input-border-focus-color:#008fff;
 
 // 输入框小图标几种状态颜色//
-@input-iconbtn-color:#6ab8ff;
-@input-iconbtn-hover-color:#339eff;;
-@input-iconbtn-disabled-color:@input-disabled-color;
+@input-iconbtn-color:#8a8a8a;
+@input-iconbtn-hover-color:#0490ff;;
+@input-iconbtn-disabled-color:#989898;
 
 //-------------disabled----------//
 @main-disabled-bgcolor:@input-disabled-bgcolor;
 @main-disabled-border-color:@input-disabled-border-color;
-@linkbutton-disabled-bgcolor:#E5E5E5;
-@linkbutton-disabled-icon-bgcolor:#D1D1D1;
-@linkbutton-disabled-icon-color:#999999;
 
 //== tooltip
 @tooltipFontColor:#ffffff;
@@ -142,7 +140,7 @@
 @combo-arrow-bgcolor:none; /*main-color*/;
 @combo-arrow-color:#ffffff;
 @combo-arrow-hover-color:none; /*main-hover-color*/;
-@combo-border-color:@panel-header-bdcolor;
+@combo-border-color:@input-active-border-color;
 @combo-select-row-bgcolor:#e5e5e5;
 @combo-font-size:@main-font-size;
 @combo-input-line-height:28px;
@@ -150,7 +148,7 @@
 @combo-row-line-height:24px;
 @combo-bgcolor:@panel-body-bgcolor;
 @combo-padding-left:@validatebox-padding-left;
-@combo-panel-border-color:#339EFF;
+@combo-panel-border-color:@combo-border-color;
 
 //== combobox 
 @combobox-item-font-size:@main-font-size;
@@ -228,18 +226,37 @@
 @linkbutton-hover-bgcolor:#006FD2;
 @linkbutton-focus-bordercolor:transparent;
 @linkbutton-left-bgcolor:#007BE9;
-@linkbutton-border-radius:2px;
-
 @linkbutton-hover-dark-bgcolor:#0063a7;
 @linkbutton-plain-hover-bgcolor: #eff9ff;
 @linkbutton-plain-hover-color: #339eff;
 @linkbutton-border-hover-color:#b7d2ff;
 
+@linkbutton-border-radius:6px;
+
+@linkbutton-disabled-bgcolor:#E5E5E5;
+@linkbutton-disabled-icon-bgcolor:#D1D1D1;
+@linkbutton-disabled-icon-color:#999999;
+@linkbutton-green-bgcolor:#38BA54;
+@linkbutton-green-hover-bgcolor:#30ac4f;
+@linkbutton-green-click-bgcolor:#289f4d;
+@linkbutton-green-disabled-bgcolor:#b0e2ba;
+@linkbutton-green-disabled-color:#ffffff;
+@linkbutton-red-bgcolor:#FC494F;
+@linkbutton-red-hover-bgcolor:#ea404c;
+@linkbutton-red-click-bgcolor:#d83549;
+@linkbutton-red-disabled-bgcolor:#fdb6b8;
+@linkbutton-red-disabled-color:#ffffff;
+@linkbutton-yellow-bgcolor:#FFAA00;
+@linkbutton-yellow-hover-bgcolor:#ed9a01;
+@linkbutton-yellow-click-bgcolor:#db8a00;
+@linkbutton-yellow-disabled-bgcolor:#ffdd99;
+@linkbutton-yellow-disabled-color:#ffffff;
+
 //== link-----<a/>
-@link-color:#40A2DE;
-@link-hover-color:#378ec4;
-
-
+@link-color:#008fff;
+@link-hover-color:#008fff;
+@link-click-color:#006edb;
+@link-disabled-color: #b4b3b3;
 
 //== dialog
 @dialog-body-bgcolor:@window-body-bgcolor;
@@ -361,8 +378,21 @@ h2 {
     line-height: 100%;
 }
 a{
-    color:@keywords-chapter-color;
+    color:@link-color;
+    text-decoration:none;
+    &:hover{
+        color:@link-hover-color;
+        text-decoration:underline;
+    }
+    &.a-disable{
+        color:@link-disabled-color;
+        cursor: not-allowed;
+        &:hover{
+            text-decoration:none;
+        }
+    }
 }
+
 /*chrome默认了outline*/
 input,textarea {
     outline-width: 0;

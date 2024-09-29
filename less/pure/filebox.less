@@ -77,10 +77,11 @@
     .filebox-button.l-btn { 
       background-color: transparent;
       .l-btn-text{
+        background:transparent;
+        color:#191919;
         &.l-btn-empty{
           background-color: transparent;
         }
-        background: @linkbutton-bgcolor;
       }
       .l-btn-icon {
         background-color: transparent;
@@ -97,10 +98,10 @@
       }
       &.l-btn-disabled{
         .l-btn-text{
+          background: @linkbutton-disabled-bgcolor;
           &.l-btn-empty{
             background-color: transparent;
           }
-          background: @linkbutton-disabled-bgcolor;
         }
         .l-btn-icon {
           background-color: transparent;
@@ -110,10 +111,10 @@
         }
         &:hover{
           .l-btn-text{
+            color:@input-iconbtn-hover-color;
             &.l-btn-empty{
               background-color: transparent;
             }
-            background: @linkbutton-disabled-bgcolor;
           }
           .l-btn-icon {
             opacity: 1;
