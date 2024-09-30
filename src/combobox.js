@@ -1,3 +1,28 @@
+// 20240930  需求号[4948365] 下位面板中有滚动条时, 选中行背景色不能全行问题
+jQuery.fn.comboboxAddClass = function(classes) {
+    if (classes=='combobox-item-selected' || classes=='combobox-item-hover'){
+        // 2024-09-30 外层面板总宽度 ，scrollWidth-滚动条宽度
+        var parentEl = $(this).parent()[0];
+        if (parentEl){
+            if (parentEl.scrollWidth > parentEl.clientWidth){
+                // 2024-09-30 外层面板总宽度 ，scrollWidth-滚动条宽度
+                var panelWidth = parentEl.scrollWidth - (parentEl.offsetWidth - parentEl.clientWidth);
+                if (panelWidth>0) $(this).width(panelWidth);
+            }
+        }
+    }
+    return $(this).addClass(classes);
+};
+jQuery.fn.comboboxRemoveClass = function(classes) {
+    var rtn = $(this).removeClass(classes);
+    if (classes=='combobox-item-selected' || classes=='combobox-item-hover'){
+        if (!$(this).hasClass('combobox-item-selected') && !$(this).hasClass('combobox-item-hover')) {  // 非选中,非hover状态，重置宽度,解决查询过滤宽度问题
+            $(this).width('');
+        }
+    }
+    return rtn;
+};
+// -- 结束 20240930
 (function ($) {
     var COMBOBOX_SERNO = 0;
     function getRowIndex(target, value) {
@@ -34,7 +59,7 @@
         if (!item.length) {
             item = panel.children("div.combobox-item-selected");
         }
-        item.removeClass("combobox-item-hover");
+        item.comboboxRemoveClass("combobox-item-hover");
         var firstSelector = "div.combobox-item:visible:not(.combobox-item-disabled):first";
         var lastSelector = "div.combobox-item:visible:not(.combobox-item-disabled):last";
         if (!item.length) {
@@ -53,7 +78,7 @@
             }
         }
         if (item.length) {
-            item.addClass("combobox-item-hover");
+            item.comboboxAddClass("combobox-item-hover");
             var row = opts.finder.getRow(target, item);
             if (row) {
                 scrollTo(target, row[opts.valueField]);
@@ -120,7 +145,7 @@
     function setValues(target, values, remainText) {
         var opts = $.data(target, "combobox").options;
         var panel = $(target).combo("panel");
-        panel.find("div.combobox-item-selected").removeClass("combobox-item-selected");
+        panel.find("div.combobox-item-selected").comboboxRemoveClass("combobox-item-selected");
         var vv = [], ss = [],vvn=[];
         for (var i = 0; i < values.length; i++) {
             var v = values[i];
@@ -132,7 +157,7 @@
                     vvn.push(v);
                 }
             }
-            opts.finder.getEl(target, v).addClass("combobox-item-selected");
+            opts.finder.getEl(target, v).comboboxAddClass("combobox-item-selected");
             var row = opts.finder.getRow(target, v);
             if (row) { 
                 s = row[opts.textField];
@@ -152,9 +177,9 @@
             //wanghc 2018-10-17 rowStyle=checkbox 选中数据行时,判断是不是应该选中全选勾
             var tmpLen = $.data(target, "combobox").data.length;
             if (vvn.length==tmpLen){
-                panel.parent().children("._hisui_combobox-selectall").addClass("checked");
+                panel.parent().children("._hisui_combobox-selectall").comboboxAddClass("checked");
             }else{
-                panel.parent().children("._hisui_combobox-selectall").removeClass("checked");
+                panel.parent().children("._hisui_combobox-selectall").comboboxRemoveClass("checked");
             }
         }
     };
@@ -244,19 +269,19 @@
                 var myPanelWidth = myPanelJObj.width() - 5; //5是padding-left
                 var myallselJObj = $('<div style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>'+opts.selectAllBtnDesc+'</div>')
                 .bind('mouseenter',function(e){
-                    $(e.target).closest("div._hisui_combobox-selectall").addClass("combobox-selectall-hover");
+                    $(e.target).closest("div._hisui_combobox-selectall").comboboxAddClass("combobox-selectall-hover");
                     e.stopPropagation();
                 }).bind('mouseleave',function(e){
-                    $(e.target).closest("div._hisui_combobox-selectall").removeClass("combobox-selectall-hover");
+                    $(e.target).closest("div._hisui_combobox-selectall").comboboxRemoveClass("combobox-selectall-hover");
                     e.stopPropagation();
                 }).bind('click',function(e){
                     var _t = $(this);
                     if (_t.hasClass('checked')){
-                        _t.removeClass('checked');
+                        _t.comboboxRemoveClass('checked');
                         $(target).combobox("setValues",[]);
                     }else{
                         var tmpArr = [];
-                        _t.addClass('checked');
+                        _t.comboboxAddClass('checked');
                         //全选为当前 可见的
                         var panel = $(target).combo('panel');
                         panel.find('div.combobox-item').filter(":visible").each(function(){
@@ -283,11 +308,11 @@
                 if (opts.allSelectButtonPosition=='bottom'){
                     //myallselJObj.appendTo($(target).combo("panel"));
                     myallselJObj.insertAfter(myPanelJObj);
-                    myallselJObj.parent().addClass('bbtm');
+                    myallselJObj.parent().comboboxAddClass('bbtm');
                 }else{
                     //myallselJObj.prependTo($(target).combo("panel"));
                     myallselJObj.insertBefore(myPanelJObj);
-                    myallselJObj.parent().addClass('btop');
+                    myallselJObj.parent().comboboxAddClass('btop');
                 }
             }
         } else {
@@ -295,7 +320,7 @@
         }
         if (opts.defaultHoverFirstRow===true) { // hover样式第一行
             if (data.length > 0) {
-                $(target).combo("panel").find('.combobox-item:visible:eq(0)').addClass("combobox-item-hover");
+                $(target).combo("panel").find('.combobox-item:visible:eq(0)').comboboxAddClass("combobox-item-hover");
             }
         }
         opts.onLoadSuccess.call(target, data);
@@ -342,7 +367,7 @@
             request(target, null, { q: q }, true);
         } else {
             var panel = $(target).combo("panel");
-            panel.find("div.combobox-item-selected,div.combobox-item-hover").removeClass("combobox-item-selected combobox-item-hover");
+            panel.find("div.combobox-item-selected,div.combobox-item-hover").comboboxRemoveClass("combobox-item-selected combobox-item-hover");
             panel.find("div.combobox-item,div.combobox-group").hide();
             var data = state.data;
             var vv = [];
@@ -359,7 +384,7 @@
                         var item = opts.finder.getEl(target, v).show();
                         if (s.toLowerCase() == q.toLowerCase()) {
                             vv.push(v);
-                            item.addClass("combobox-item-selected");
+                            item.comboboxAddClass("combobox-item-selected");
                             //opts.onSelect.call(target, opts.finder.getRow(target, v));
                         }
                         if (opts.groupField && group != g) {
@@ -374,7 +399,7 @@
             if(vv.length>0) { opts.onSelect.call(target, opts.finder.getRow(target, vv[vv.length-1]));}
             if (opts.defaultHoverFirstRow===true) { // hover样式第一行
                 if (data.length > 0) {
-                    $(target).combo("panel").find('.combobox-item:visible:eq(0)').addClass("combobox-item-hover");
+                    $(target).combo("panel").find('.combobox-item:visible:eq(0)').comboboxAddClass("combobox-item-hover");
                 }
             }
         }
@@ -456,7 +481,7 @@
         COMBOBOX_SERNO++;
         state.itemIdPrefix = "_hisui_combobox_i" + COMBOBOX_SERNO;
         state.groupIdPrefix = "_hisui_combobox_g" + COMBOBOX_SERNO;
-        $(target).addClass("combobox-f");
+        $(target).comboboxAddClass("combobox-f");
         var onHidePanelHandler = opts.onHidePanel;
         if (opts && opts.blurValidValue){
             opts.forceValidValue = true; //这时强制设置值检查
@@ -472,23 +497,25 @@
         $(target).combo($.extend({}, opts, {
             onShowPanel: function () {
                 $(target).combo("panel").find("div.combobox-item,div.combobox-group").show();
+                // 20240930 为了触发行的宽度重新赋值，addClass [4948365] 下位面板中有滚动条时, 选中行背景色不能全行问题
+                $(target).combo("panel").find(".combobox-item-selected").comboboxAddClass('combobox-item-selected');
                 scrollTo(target, $(target).combobox("getValue"));
                 opts.onShowPanel.call(target);
                 if (opts.defaultHoverFirstRow===true) { // hover样式第一行
-                    $(target).combo("panel").find('.combobox-item:visible:eq(0)').addClass("combobox-item-hover");
+                    $(target).combo("panel").find('.combobox-item:visible:eq(0)').comboboxAddClass("combobox-item-hover");
                 }
             },
             onHidePanel:onHidePanelHandler
         }));
         $(target).combo("panel").unbind().bind("mouseover", function (e) {
-            $(this).children("div.combobox-item-hover").removeClass("combobox-item-hover");
+            $(this).children("div.combobox-item-hover").comboboxRemoveClass("combobox-item-hover");
             var item = $(e.target).closest("div.combobox-item");
             if (!item.hasClass("combobox-item-disabled")) {
-                item.addClass("combobox-item-hover");
+                item.comboboxAddClass("combobox-item-hover");
             }
             e.stopPropagation();
         }).bind("mouseout", function (e) {
-            $(e.target).closest("div.combobox-item").removeClass("combobox-item-hover");
+            $(e.target).closest("div.combobox-item").comboboxRemoveClass("combobox-item-hover");
             e.stopPropagation();
         }).bind("click", function (e) {
             var item = $(e.target).closest("div.combobox-item");
@@ -566,7 +593,7 @@
             return jq.each(function () {
                 $(this).combo("clear");
                 var panel = $(this).combo("panel");
-                panel.find("div.combobox-item-selected").removeClass("combobox-item-selected");
+                panel.find("div.combobox-item-selected").comboboxRemoveClass("combobox-item-selected");
             });
         }, reset: function (jq) {
             return jq.each(function () {
