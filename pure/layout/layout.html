@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>布局</title>
     
-    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../jquery-tag-demo.js"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
     <script type="text/javascript">
-        var HISUIStyleCode = 'lightblue';
+        var HISUIStyleCode = 'pure';
     </script>
 </head>
 <body>
@@ -45,6 +45,50 @@ east 区域可以用来显示一些推广的项目，center 区域可以用来�
 					主要的内容
 				</div>   
 			</div>
+		</div>
+	</div>
+	<h3>布局组件的相关配置</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>clickExpand</td>
+			<td>点击展开与否。为true时，展开区域不再悬浮</td>
+			<td>false</td>
+			<td></td>
+		</tr>
+	</table>
+	<h3>区域面板配置</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>showCollapsedTitle</td>
+			<td>在区域面板处于折叠状态的时候是否显示title</td>
+			<td>false</td>
+			<td></td>
+		</tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>e,iconCls:'icon-paper'" 
+					style="width:200px;padding:10px;">
+						自动收起><code>data-options="collapsed:true"</code>
+				</div>   
+				<div data-options="region:'west',title:'导航',split:true,headerCls:'panel-header-gray',showCollapsedTitle:true,iconCls:'icon-paper'" style="width:100px;padding:10px;">导航</div>   
+				<div data-options="region:'center',title:'',split:true,showCollapsedTitle:true,bodyCls:'panel-header-gray'" 
+					style="padding:10px;">
+					主要的内容
+				</div>   
+			</div>  
 		</div>
 	</div>
 	<h3>布局组件的相关配置</h3>

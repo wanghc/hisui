@@ -24,6 +24,8 @@ module.exports.handler = function (filename,opt){
             opt.jsSuffix='.lite',opt.themeCode="lite";
         }else if (parentItemDir=='lightblue'){
             opt.jsSuffix='.lightblue',opt.themeCode="lightblue";
+        }else if (parentItemDir=='pure'){
+            opt.jsSuffix='.pure',opt.themeCode="pure";
         }else{
             opt.jsSuffix="",opt.themeCode="blue";
         }

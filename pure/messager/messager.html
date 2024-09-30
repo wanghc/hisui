@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>消息提示框</title>
     
-    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../jquery-tag-demo.js"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
     <script type="text/javascript">
-        var HISUIStyleCode = 'lightblue';
+        var HISUIStyleCode = 'pure';
     </script>
 </head>
 
@@ -55,16 +55,10 @@
 							width:520,
 							icon:'info',
 							title:'合理用药提示',
-							msg:'<div style="height:300px;overflow:auto;">'
-							+'阿司匹林肠溶片(5)本患者（门急诊）同时开具多个阿司匹林肠溶片医嘱。避免重复给药。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。'
+							msg:'阿司匹林肠溶片(5)本患者（门急诊）同时开具多个阿司匹林肠溶片医嘱。避免重复给药。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。'
 							+'避免重复用药。 阿司匹林肠溶片(4)本品用于预防一过性脑缺血发作、心肌梗死、心房动、人工心脏膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，'
 							+'以及脑梗、心梗的二级预防。不建议超适应症使用。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。避免重复用药，阿司匹林肠溶片(4)本品用于预防'
 							+'一过性脑缺血发作、心肌梗死、心房颤动、人工心脏瓣膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，以及脑梗、心梗的二级预防。不建议超适应症使用。'
-							+'阿司匹林肠溶片(5)本患者（门急诊）同时开具多个阿司匹林肠溶片医嘱。避免重复给药。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。'
-							+'避免重复用药。 阿司匹林肠溶片(4)本品用于预防一过性脑缺血发作、心肌梗死、心房动、人工心脏膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，'
-							+'以及脑梗、心梗的二级预防。不建议超适应症使用。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。避免重复用药，阿司匹林肠溶片(4)本品用于预防'
-							+'一过性脑缺血发作、心肌梗死、心房颤动、人工心脏瓣膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，以及脑梗、心梗的二级预防。不建议超适应症使用。'
-							+'</div>'
 							+'<div style="color:red;">是否继续审核?</div>',
 							fn:function(){
 								$.messager.popover({ msg: "你已点击确定" });

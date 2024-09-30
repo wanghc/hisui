@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>面板</title>
     
-    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../jquery-tag-demo.js"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
     <script type="text/javascript">
-        var HISUIStyleCode = 'lightblue';
+        var HISUIStyleCode = 'pure';
     </script>
 </head>
 
@@ -78,6 +78,95 @@
 			<td>可选值<code>'showicon'</code>,因极简版默认不显示图标,可用showicon用于强制显示图标</td>
 		</tr>
 		<tr>
+            <td>notTrans</td>
+            <td>不自动翻译与否</td>
+            <td>false</td>
+            <td>默认自动翻译。true表示不翻译 <code>20230801</code></td>
+        </tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>l-header-gray',iconCls:'icon-paper',closable:true,collapsible:true,minimizable:true,maximizable:true"&gt;&lt;/div&gt;</code></pre>
+		<!-- 2018-09-17 -->	
+		<div class="hisui-panel" title="" style="width:400px;padding:10px 30px 20px 30px;" 
+		data-options="iconCls:'icon-paper',bodyCls:'panel-body-gray',closable:true,collapsible:true,minimizable:true,maximizable:true">
+		没有标题的灰色面板，只需修改<code>bodyCls:'panel-body-gray'</code>,增加于<code>2018-09-17</code>
+		</div>
+		<pre class="prettyprint lang-html hide"><code>&lt;div class="hisui-panel panel-header-gray" title="" data-options="..."&gt;&lt;/div&gt;</code></pre>
+		
+		<div class="hisui-panel" title="灰色 大一点" style="width:400px;padding:10px 30px 20px 30px;" 
+		data-options="iconCls:'icon-paper',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-big panel-header-gray'">大一点面板
+			<code>headerCls:'panel-header-big panel-header-gray'</code>
+		</div>
+		<pre class="prettyprint lang-html hide"><code>&lt;div data-options="headerCls:'panel-header-big panel-header-gray',..."&gt;&lt;/div&gt;</code></pre>
+		<div id="accPanel" title="病人信息" style="width:400px;padding:20px;">
+			还可通过js生成
+		</div>
+		<pre class="prettyprint lang-html hide"><code>&lt;div id="accPanel" title="病人信息" style="width:400px;padding:20px;"&gt;还可通过js生成&lt;/div&gt;</code></pre>
+		<pre class="lang-js hide" id="mypanelppjs"></pre>
+	</div>
+	<!--需求号 2940147 <h3>三、其它色系</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="hisui-panel" title="白色" style="width:400px;padding:10px 30px 20px 30px;" 
+		data-options="iconCls:'icon-paper',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-white'">
+		白色面板只需修改<code>headerCls:'panel-header-white'</code>
+		</div>
+		<div style="height: 10px;"></div>
+		<div class="hisui-panel " style="width:400px;padding:20px;">
+			没标题 没有title
+		</div> 
+	</div>
+    -->
+	<script type="text/javascript" class="use-prettyprint" prettyprintfor="#mypanelppjs" >
+		var init = function () {
+			var valbox = $HUI.panel("#accPanel", {
+				iconCls: 'icon-paper',
+				closable: true,
+				onBeforeClose: function () {
+					alert("你点击了关闭!");
+					return false
+				},
+				collapsible: true,
+				onBeforeCollapse: function () {
+					alert("你点击了收起!");
+					return false
+				},
+				minimizable: true,
+				onMinimize: function () {
+					alert("你点击了最小化!");
+					return false
+				},
+				maximizable: true,
+				onMaximize: function () {
+					alert("你点击了最大化!");
+					return false
+				},
+				headerCls: 'panel-header-gray'
+			});
+		}
+		$(init);
+	</script>
+	
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>headerCls</td>
+			<td>面板头样式类</td>
+			<td>null,表示蓝色</td>
+			<td>可选值：<code>'panel-header-gray'</code>,<code>'panel-header-blue'</code>, <code>'panel-header-acc'</code>, <code>'panel-header-white'</code>,<code>'panel-header-card'</code>,<code>'panel-header-card-gray'</code>,<code>'panel-header-big'</code></td>
+		</tr>
+		<tr>
+			<td>bodyCls</td>
+			<td>面板内容样式类</td>
+			<td>null</td>
+			<td>可选值：<code>'panel-body-gray'</code></td>
+		</tr>
+        <tr>
             <td>notTrans</td>
             <td>不自动翻译与否</td>
             <td>false</td>
