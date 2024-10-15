@@ -458,6 +458,20 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       background-color: @linkbutton-hover-bgcolor;
       outline: @linkbutton-hover-bgcolor dotted thin;
     }
+    &.white{
+      background-color: @linkbutton-white-bgcolor;
+      color:@linkbutton-white-color;
+      &.l-btn-disabled,&.l-btn-waiting {
+        background:@linkbutton-white-disabled-bgcolor;
+        color:@linkbutton-white-disabled-color;
+      }
+    }
+    &.white:hover,&.white.l-btn-focus{
+      background-color: @linkbutton-white-click-bgcolor;
+      &.l-btn-disabled,&.l-btn-waiting {
+        background:@linkbutton-white-disabled-bgcolor;
+      }
+    }
     &.green{
       background-color: @linkbutton-green-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {

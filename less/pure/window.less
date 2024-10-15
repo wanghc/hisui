@@ -1,39 +1,61 @@
 @import "variables.less";
 .window {
   overflow: hidden;
-  padding: 5px;
   border-width: 1px;
   border-style: solid;
+  background-color: #d7e9ff;
+  background: linear-gradient(180deg,#d7e9ff 0%,#f1f7fe 100%);
+  background-repeat: repeat-x;
+  padding: 0px;
+  border-bottom: 0px;
+  .window-header {
+    border-color: @window-header-bgcolor;
+    border-bottom: 1px solid @panel-header-bdcolor;
+    background:  @window-header-bgcolor;
+    padding: 0px 0px 6px 0px;
+    .panel-with-icon {
+      padding-left: 5px; /*18px*/
+    }
+    .panel-icon{
+      top: 50%;
+      margin-top: -11px;
+      left: 20px;
+      display: none;
+    }
+    .panel-tool {
+      top: 50%;
+      margin-top: -11px;
+      right: 12px;
+      .panel-tool-close,.panel-tool-max,.panel-tool-restore,.panel-tool-min,.panel-tool-collapse,.panel-tool-expand {
+        background-image: none;
+      }
+      .panel-tool-close{
+        background-image: none;
+        &:hover{
+          background-image: none;
+        }
+      }
+    }
+    .panel-with-icon {
+      padding-left: 18px;
+    }
+  }
+  .window-body {
+    border-top-width: 0px;
+    border-width: 0px;
+    border-style: solid;
+    background-color:@window-body-bgcolor;
+  }
+  .window-body-noheader {
+    border-top-width: 1px;
+  }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d7e9ff,endColorstr=#d7e9ff,GradientType=0);
 }
-.window .window-header {
-  background: transparent;
-  padding: 0px 0px 6px 0px;
-}
-.window .window-body {
-  border-width: 1px;
-  border-style: solid;
-  border-top-width: 0px;
-}
-.window .window-body-noheader {
-  border-top-width: 1px;
-}
-.window .window-header .panel-icon,
-.window .window-header .panel-tool {
-  top: 50%;
-  margin-top: -11px;
-}
-.window .window-header .panel-icon {
-  left: 1px;
-}
-.window .window-header .panel-tool {
-  right: 1px;
-}
-.window .window-header .panel-with-icon {
-  padding-left: 18px;
-}
+
 .window-proxy {
   position: absolute;
   overflow: hidden;
+  border: 1px dashed #95B8E7;
 }
 .window-proxy-mask {
   position: absolute;
@@ -55,92 +77,31 @@
 .window,
 .window-shadow {
   position: absolute;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 6px;
 }
 .window-shadow {
   background: #ccc;
-  -moz-box-shadow: 2px 2px 3px #cccccc;
-  -webkit-box-shadow: 2px 2px 3px #cccccc;
-  box-shadow: 2px 2px 3px #cccccc;
+  box-shadow:0px 3px 25px rgba(0, 0, 0, 0.4);
   filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
 }
-.window,
-.window .window-body {
-  border-color: #95B8E7;
+.window,.window .window-body {
+  border-color: transparent;
 }
-.window {
-  background-color: #E0ECFF;
-  background: -webkit-linear-gradient(top,#EFF5FF 0,#E0ECFF 20%);
-  background: -moz-linear-gradient(top,#EFF5FF 0,#E0ECFF 20%);
-  background: -o-linear-gradient(top,#EFF5FF 0,#E0ECFF 20%);
-  background: linear-gradient(to bottom,#EFF5FF 0,#E0ECFF 20%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#E0ECFF,GradientType=0);
-}
-.window-proxy {
-  border: 1px dashed #95B8E7;
-}
-.window-proxy-mask,
-.window-mask {
+
+.window-proxy-mask,.window-mask {
   background: #ccc;
 }
-.window,
-.window-shadow {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
-.panel.window {
-  
-  padding: 0px;
-  border-bottom: 0px;
-  
-  
-  .window-header{
-    border-color: @window-header-bgcolor;
-    border-bottom: 1px solid @panel-header-bdcolor;
-    background:  @window-header-bgcolor; /*transparent;*/
-    
-    .panel-icon {
-      left: 20px; /*1px*/
-      display: none;
-    }
-    .panel-tool {
-      right: 12px; /*1px*/
-      .panel-tool-close,.panel-tool-max,.panel-tool-restore,.panel-tool-min,.panel-tool-collapse,.panel-tool-expand {
-        background-image: none;
-      }
-      .panel-tool-close{
-        background-image: none;
-        &:hover{
-          background-image: none;
-        }
-      }
-    }
-    .panel-with-icon {
-      padding-left: 5px; /*18px*/
-    }
-  }
-  .window-body{
-    border-width: 0px;
-    border-style: solid;
-    background-color:@window-body-bgcolor;
-  }
-  .window-body-noheader{
-    border-top-width: 1px;
-  }
-
+.window,.window-shadow {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
 }
 
 .window-shadow {
   background: #666666;
-  /// 2 2 3 #ccc
   -moz-box-shadow: @window-shadow;
   -webkit-box-shadow: @window-shadow;
   box-shadow: @window-shadow;
-  
 }
 .window,.window .window-body {
   border:none;
@@ -157,6 +118,6 @@
 }
 .window.panel>.panel-header>.panel-title{
   color: @window-title-color;
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 18px;
 }
