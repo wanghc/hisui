@@ -26,7 +26,7 @@
 	<div class="demo-exp-code entry-content"> 
 		<div class="use-prettyprint">
 			<div id="dd2" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;">   
-				<div style="background-color: #ffffff;margin: 10px;padding:10px;height: 224px;">
+				<div style="background-color: #ffffff;margin:0 10px 10px 10px;padding:10px;height: 234px;">
 					这是一个模态操作框<code>hisui-dialog</code>
 				</div>
 			</div>
@@ -35,14 +35,16 @@
 			$(function(){			
 				var btns = $("#dd2").dialog({
 					resizable:true,modal:true,buttons:[{
-						text:'保存',
-						handler:function(){}
-					},{
 						text:'关闭',
 						handler:function(){$HUI.dialog('#dd2').close();}
+					},{
+						text:'保存',
+						handler:function(){}
 					}]
 				});
-				btns.children("div.dialog-button").find("a:eq(0)").addClass('green');
+				
+					btns.children("div.dialog-button").find("a:eq(0)").addClass('white');
+				
 			});
 		</script>
 	</div>
@@ -68,8 +70,7 @@
 	</table>
 	<prettyprint/>
 </body>
-</html>　
-data-options="iconCls:'icon-save',resizable:true,modal:true,toolbar:[{
+</html>ls:'icon-save',resizable:true,modal:true,toolbar:[{
 		text:'修改',
 		iconCls:'icon-write-order',
 		handler:function(){alert('edit')}

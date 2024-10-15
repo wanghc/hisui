@@ -4,17 +4,22 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"面板"}) %>
 </head>
-
+<% if (themeCode=="pure") {%>
+<body style="background-color:#cde6ff;">
+<% }else{ %>
 <body>
+<% } %>
 	<h2>面板</h2>
 	<h3>说明:</h3>
 	<span>面板是其他组件或元素的容器</span>
 	<h3>一、面板</h3>
 	<div>
 		<div class="use-prettyprint">
-			<div class="hisui-panel" title="病人信息" style="width:400px;padding:20px;" 
-			data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
-				面板
+			<div style="padding: 10px;">
+				<div class="hisui-panel" title="病人信息" style="width:400px;padding:20px;" 
+				data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
+					面板
+				</div>
 			</div>
 		</div>
 	</div>
@@ -44,6 +49,21 @@
 			
 		</div>
 	</div>
+	<% if (themeCode=="pure") {%>
+		<h3>三、蓝色面板</h3>
+		<div>
+			<div class="use-prettyprint">
+				<div style="padding: 10px;">
+					<div>
+						<div class="hisui-panel" title="病人信息" style="height:200px;padding:20px;" 
+						data-options="headerCls:'panel-header-blue',closable:false,collapsible:true,minimizable:false,maximizable:false">
+							蓝色面板headerCls:'panel-header-blue'
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	<% } %>
 	<table class="table">
 		<tr class="protitle">
 			<th>属性</th>
