@@ -151,7 +151,24 @@
                     break;
                 case 13:
                     //e.preventDefault();
-                    opts.keyHandler.enter.call(target, e);
+                    //opts.keyHandler.enter.call(target, e);
+                    // 解决【按住回车时,一直发请求问题】
+                    setTimeout(function (){
+                        if (opts.editable) {
+                            // 回车增加延迟查询功能
+                            if (state.timer) {
+                                clearTimeout(state.timer);
+                            }
+                            if (opts.minQueryLen>0 && _t.val().length<opts.minQueryLen) return;
+                            state.timer = setTimeout(function () {
+                                if (!state.isShow) {
+                                    var rtn = $(target).comboq("showPanel");
+                                    if (rtn == false) return;
+                                }                            
+                                opts.keyHandler.enter.call(target, e);
+                            }, opts.delay);
+                        }
+                    },0);
                     break;
                     //return false;
                 case 9:
