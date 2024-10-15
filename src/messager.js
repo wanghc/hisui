@@ -146,7 +146,7 @@
                 }, 100);
             }
         });
-        win.window("window").addClass("messager-window");
+        win.window("window").addClass("messager-window").addClass("messager-window-"+(options.icon||"info"));
         win.children("div.messager-button").children("a:first").focus();
         return win;
     };
