@@ -2716,6 +2716,10 @@
                 if ($(_666).val() == _667) {
                     _668 = true;
                 }
+                // true!='true'做以下兼容 [5022029]
+                if ('boolean'==typeof _667 && _667 == true && $(_666).val() == 'true'){
+                    _668 = true;
+                }
                 $(_666)._propAttr("checked", _668);
             }
         }, numberbox: {
