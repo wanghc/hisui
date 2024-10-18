@@ -149,17 +149,11 @@
   color: #000000;
   border-color: #95B8E7;
 }
-.tree-node-hover {
-  background: #eaf2ff;
-  color: #000000;
-}
-.tree-node-selected {
-  background: #ffe48d;
-  color: #000000;
-}
+
 .tree-node{
   //height: 28px;
   height: auto;
+  color: #191919
 }
 .tree-title {
   font-size: 14px;
@@ -170,9 +164,13 @@
 }
 .tree-node-selected{
   background: @tree-node-hover-bgcolor;
+  color: @tree-node-selected-font-color;
+  border-radius: 6px;
 }
 .tree-node-hover{
   background: @tree-node-hover-bgcolor;
+  color: @tree-node-hover-font-color;
+  border-radius: 6px;
 }
 /*增加.tree>li>ul解决 大节点也变色背景问题 */
 .tree>li>ul .tree-node-selected .tree-title{

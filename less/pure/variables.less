@@ -30,7 +30,7 @@
 @content-pagination-load:"\f029";
 //==
 
-@body-bgcolor:#F5F5F5;
+@body-bgcolor:#cde6ff;
 
 
 //== images 
@@ -167,15 +167,16 @@
 @datebox-button-bgcolor:#F4F4F4;
 @datebox-button-font-color:#444;
 
+
 //== accordion
-@accordion-header-bgcolor:@panel-header-bgcolor;
-@accordion-header-bgcolor-green:#21BA45;
-@accordion-header-select-bgcolor:@panel-header-bgcolor;
-@accordion-border-color: @panel-header-bdcolor;
-@accordion-title-font-color:#000000;
-@accordion-body-bgcolor:@panel-body-bgcolor;
-@accordion-body-color:#7a7875;
-@accordion-body-border:#E2E2E2;
+@accordion-header-bgcolor:#f1f7fe;
+@accordion-header-bgcolor-green:#e4f0fe;
+@accordion-header-select-bgcolor:#f1f7fe;
+@accordion-border-color: transparent;
+@accordion-title-font-color:#424656;
+@accordion-body-bgcolor:#f1f7fe;
+@accordion-body-color:#191919;
+@accordion-body-border:transparent;
 //==
 @accordion-tree-header-bgcolor:@panel-header-bgcolor;
 @accordion-tree-bgcolor:@panel-body-bgcolor;
@@ -184,19 +185,24 @@
 //== tabs
 @tabs-header-height:36px;
 @tabs-header-bgcolor:@panel-header-bgcolor;
+@tabs-header-font-color:#939393;
+
 @tabs-header-hover-bgcolor:@panel-header-bgcolor;
-@tabs-header-hover-bdcolor:@panel-header-bdcolor;
+@tabs-header-hover-line-color:#008fff;
+@tabs-header-hover-font-color:#939393;
+
 @tabs-brand-hover-bgcolor:@panel-header-bgcolor;
-@tabs-header-select-top-color:#339EFF;
-@tabs-header-font-color:#000000;
-@tabs-header-select-font-color:#339eff;
-@tabs-title-font-size:@main-font-size;
+
+@tabs-header-select-top-color:#008fff;
+@tabs-header-select-font-color:#424656;
+
+@tabs-title-font-size:18px;
 @tabs-header-arrow-hover-bgcolor:@tabs-header-select-top-color;
 @tabs-header-bdcolor:@panel-header-bdcolor;
 @tabs-shadow:@panel-shadow;
 
 /*tabs-gray*/
-@tabs-header-gray-bgcolor:#F7F7F7;
+@tabs-header-gray-bgcolor:#f1f7fe;
 @tabs-header-gray-select-top-color:#017BCE;
 @tabs-header-gray-font-color:#000000;
 @tabs-header-gray-select-bgcolor:#ffffff;
@@ -218,24 +224,29 @@
 @linkbutton-height:28px;
 @icon-height:16px;
 @icon-width:16px;
-@linkbutton-bgcolor:#339EFF;
-@linkbutton-font-color:#ffffff;
+@linkbutton-bgcolor:#EDF6FF;
+@linkbutton-font-color:#008FFF;
+@linkbutton-border-color:#A5D5FF;
 @linkbutton-padding-leftright:8px;
 @linkbutton-min-width:80px;
 @linkbutton-text-width:@linkbutton-min-width - (2 * @linkbutton-padding-leftright);
-@linkbutton-hover-bgcolor:#006FD2;
+@linkbutton-hover-bgcolor:#E1EDFF;
 @linkbutton-focus-bordercolor:transparent;
 @linkbutton-left-bgcolor:#007BE9;
 @linkbutton-hover-dark-bgcolor:#0063a7;
-@linkbutton-plain-hover-bgcolor: #eff9ff;
-@linkbutton-plain-hover-color: #339eff;
+
+@linkbutton-plain-color: #008fff;
+@linkbutton-plain-hover-bgcolor: #edf6ff;
+@linkbutton-plain-hover-color: #008fff;
+
 @linkbutton-border-hover-color:#b7d2ff;
-
 @linkbutton-border-radius:6px;
-
-@linkbutton-disabled-bgcolor:#E5E5E5;
+@linkbutton-disabled-border-color:#EAEAEA;
+@linkbutton-disabled-bgcolor:#F4F4F4;
+@linkbutton-disabled-text-color:#C3C3C3;
 @linkbutton-disabled-icon-bgcolor:#D1D1D1;
-@linkbutton-disabled-icon-color:#999999;
+@linkbutton-disabled-icon-color:#C3C3C3;
+
 @linkbutton-white-color:#191919;
 @linkbutton-white-bgcolor:#ffffff;
 @linkbutton-white-hover-bgcolor:#f7f7fa;
@@ -243,17 +254,21 @@
 @linkbutton-white-disabled-bgcolor:#f4f4f4;
 @linkbutton-white-disabled-color:#c3c3c3;
 
+@linkbutton-green-color:#FFFFFF;
 @linkbutton-green-bgcolor:#38BA54;
 @linkbutton-green-hover-bgcolor:#30ac4f;
 @linkbutton-green-click-bgcolor:#289f4d;
 @linkbutton-green-disabled-bgcolor:#b0e2ba;
 @linkbutton-green-disabled-color:#ffffff;
 
+@linkbutton-red-color:#FFFFFF;
 @linkbutton-red-bgcolor:#FC494F;
 @linkbutton-red-hover-bgcolor:#ea404c;
 @linkbutton-red-click-bgcolor:#d83549;
 @linkbutton-red-disabled-bgcolor:#fdb6b8;
 @linkbutton-red-disabled-color:#ffffff;
+
+@linkbutton-yellow-color:#FFFFFF;
 @linkbutton-yellow-bgcolor:#FFAA00;
 @linkbutton-yellow-hover-bgcolor:#ed9a01;
 @linkbutton-yellow-click-bgcolor:#db8a00;
@@ -314,19 +329,22 @@
 @keywords-section-bgcolor:#40a2de;
 
 //==menubutton
-@menubutton-blue-bgcolor: @linkbutton-bgcolor;   
-@menubutton-blue-bgcolor-hover:@linkbutton-hover-bgcolor;
-@menubutton-blue-menu-item-bgcolor: @linkbutton-bgcolor;
-@menubutton-blue-border-bottom-color:@linkbutton-bgcolor;
-@menubutton-blue-menu-item-hover: @linkbutton-hover-bgcolor;
-@menubutton-btn-hover-bgcolor:#EFF9FF;
-@menubutton-btn-plain-active-bgcolor:#E5E5E5;
-@menubutton-menu-item-bgcolor:@linkbutton-hover-bgcolor;
-@menubutton-menu-item-hover-bgcolor:#E5E5E5;
+@menubutton-blue-bgcolor: #ffffff;   
+@menubutton-blue-hover-fcolor:@linkbutton-plain-color;
+@menubutton-blue-bgcolor-hover:#d7e9ff;
+@menubutton-blue-menu-item-bgcolor: #FFFFFF;
+@menubutton-blue-menu-item-fcolor: @linkbutton-white-color;
+@menubutton-blue-border-bottom-color:#FFFFFF;
+@menubutton-blue-menu-item-hover: #d7e9ff;
+@menubutton-btn-hover-bgcolor:#d7e9ff;
+@menubutton-btn-plain-active-bgcolor:#d7e9ff;
+@menubutton-menu-item-bgcolor:#d7e9ff;
+
+@menubutton-menu-item-hover-bgcolor:#d7e9ff;
 
 //==menu
-@menu-active-border-color:#e5e5e5;
-@menu-active-bgcolor:#e5e5e5;
+@menu-active-border-color:#d7e9ff;
+@menu-active-bgcolor:#d7e9ff;
 @menu-border-color:#40a2de;
 @menu-shadow:@panel-shadow;
 @menu-body-bgcolor:@panel-body-bgcolor;
@@ -338,16 +356,21 @@
 //tree
 @tree-border-color:#E5E5E5;
 @tree-node-bgcolor:#E5E5E5;
-@tree-node-hover-bgcolor:#E5E5E5;
-
+@tree-node-hover-bgcolor:#d7e9ff;
+@tree-node-hover-font-color:#191919;
+@tree-node-selected-bgcolor:#d7e9ff;
+@tree-node-selected-font-color:#191919;
 //easyui
 @easyui-pagination-num-border-color:#95B8E7;
 //使用textbox样式类后长度,context-box的长度
 @textbox-width:148px;
 
-@scrollbar-bgcolor:@panel-header-bgcolor;
-@scrollbar-btn-bgcolor: #424656;
-@scrollbar-btn-hover-bgcolor:#424656;
+
+@scrollbar-bgcolor:#ffffff;
+
+@scrollbar-btn-bgcolor:rgba(66, 70, 86, 0.45);/* #424656;*/
+@scrollbar-btn-hover-bgcolor:rgba(66, 70, 86, 0.6);
+
 
 @messager-body-bgcolor:@window-body-bgcolor;
 

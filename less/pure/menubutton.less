@@ -101,14 +101,12 @@
   border-color: #aac5e7;
   border-width: 0 0 0 1px;
 }
-.l-btn-plain.m-btn .l-btn-text{
-  color:#000000;
-}
+
 .m-btn-downarrow, .s-btn-downarrow {
   color:#ffffff;
 }
 .l-btn-plain .m-btn-downarrow,.l-btn-plain .s-btn-downarrow {
-  color:#7E7E7E;
+  color:@linkbutton-plain-color;
 }
 .l-btn.m-btn-active{
   background: #006FD2;
@@ -177,6 +175,7 @@
   background-color:@menubutton-blue-bgcolor;
   &:hover{
     background-color:@menubutton-blue-bgcolor-hover;
+    color:@menubutton-blue-hover-fcolor;
   }
   &.m-btn-plain-active{ /*展开时一直保持底色*/
     background-color:@menubutton-blue-bgcolor-hover;
@@ -185,7 +184,7 @@
     width: 100%;
     text-align: left;
     .l-btn-text{
-      color: #fff;
+      color: @linkbutton-plain-color;
       margin-left: 0;
       padding-left:10px;
     }
@@ -193,7 +192,7 @@
       display: none;
     }
     .m-btn-downarrow{
-      color:#FFFFFF;
+      color:@linkbutton-plain-color;
       &::before{
         content: @content-downfill;
       }
@@ -213,7 +212,7 @@
       background-color:@menubutton-blue-menu-item-hover;
     }
     .menu-text{
-      color: #fff;
+      color: @menubutton-blue-menu-item-fcolor;
       padding-left: 10px;
       line-height: 30px;
     }
@@ -252,7 +251,7 @@
       line-height: 26px;
       padding: 0 26px 0 31px;
       margin: 0 0 0 ;
-      color: #666666;
+      color: @linkbutton-plain-color;
     }
     .l-btn-icon{
       // left:4px;

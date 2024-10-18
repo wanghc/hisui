@@ -3,8 +3,8 @@ width可以改变右边滚动条的宽度
 height可以改变下边滚动条的高度
 */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
     box-sizing: border-box;
 }
 
@@ -12,48 +12,50 @@ height可以改变下边滚动条的高度
 设置了滚动条按钮的样式图标
 */
 ::-webkit-scrollbar-button{
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAUCAMAAADm3a4bAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABdUExURUxpcWm4/2q6/2q4/2e4/3C//2q3/2m5/zKe/zGe/2m6/2q4/2m4/zKe/y+e/zOe/zCf/zKd/zOd/zCf/zKe/2q9/zGe/2m3/2q3/2q4/2m4/2q3/zOe/2q4/zOe/yg6GkYAAAAddFJOUwDwMM9pEGBmmZ6kkKDYVc8QYPAwjDq/wICw0OCwDjua7QAAAUxJREFUeNqllNtugzAQBZebjQsBDA5J2tj//5k527MiD30IUv2ARxoNEqsV8j7X1utprzKFXk+YTltpjzsYhdNW/HH3Rv0J242daZDpJSyn4q7JjdbeSPUyl3lR7Zzw4Y1gYwTF2LP9QQNtBI32ghq6yk5crmCNYNcSJZZV4+88ypgbaCPouQQJZYauqzzmqoY1gt3WEsq6aTwM+rhDG0GnBEoJGrW2sEawsq1ocX8eSX2rzYLMbvsmH+NT9v9L0n7xtNN++T37dMZ2jVNt1AbAMke+2jUdYyO1ETsAa23WOXsj32tbEj9qyKy9kdrEDbJ2pCZBow1iemTtjTSWgJr2kW/CmAT9LPt7nLf8YKzEWPbypK2xeIxJ0JtuoMXOloTEONqCvWtPUs26P1q1JFi2aq2+6xxJOk+tE+c5sIUlqU1oaf/+aI7/zCf7AkEMGOis8y9oAAAAAElFTkSuQmCC);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAAAYCAMAAABuvUuCAAAARVBMVEVMaXE/Pz8/RFU/P09AQ1dBRlVCRVNDQ1dDR1c/QVU4OFU/P1FCRFVARVRAQ1RARVVARVVBRVVBRVVDQ1BARVU/RlVARFNCILg5AAAAF3RSTlMADJ0QIsxJJkAwCRw8m6u1qr+0E454dyq2gkIAAAGPSURBVHjazZPbsoMgDEUjxQtVkFo9//+pZ2/SUPrmdHxoXnQmaxYhIfIZ99mPo5/v/L+FZZqWcJMvmOf4iqeIn17hzzPdvnflLKSDcwGf+w3pIaUBn3qeMQxjGMZ08fGINM3wpL5PMM0Bnq3vN5iCyIE8uD8yewrkdjIReXCRDD3OFZOnJ2ea/ELPutK0iDBPjgzz5MgwTw4MIdd1IBXKIYBUaB0GkISYj+DIMJ/AkWF+A1dEB/Igj1I28iC1bORBatkw0UOGJnrI0EQPmDONPDOQy8Z/1YP8+WDZWrSWjaK/Y561jbWR/jyjb7+ONu0YrEgZ7RZtsNwRY7gjxsStGb6+/bprGU9NRHdttafGHTGGO2LMqttYPYRs1wChVt01QItCZvI4jCZlpqGYlNnNI+Po6EGITFOiByFm2pUpJqdMMSUwKoqNKDWirRXFRpQa0WaiWrVtdr2a3n/5vL/XPtar2e6byRpJkzWSpnezXdPs3DRbd99Mx3v8uRn/+h6/a8afm/HDA+aqB3nlivwDntoh4+yBfj4AAAAASUVORK5CYII=);
     background-color: @scrollbar-bgcolor;
     background-repeat: no-repeat;
 }
+// 纵向滚动条
 ::-webkit-scrollbar-button:vertical:decrement {
-    width: 8px;
+    width: 12px;
     height: 10px;
     background-position-x: -1px;
     background-position-y: 0;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
+    // border-top-right-radius: 4px;
+    // border-top-left-radius: 4px;
 }
 ::-webkit-scrollbar-button:vertical:increment {
-    width: 8px;
+    width: 12px;
     height: 10px;
-    background-position-x: -31px;
+    background-position-x: -36px; //-31px;
     background-position-y: 0;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+    // border-bottom-right-radius: 4px;
+    // border-bottom-left-radius: 4px;
 }
+// 横向滚动条
 ::-webkit-scrollbar-button:horizontal:decrement { /*左边箭头*/
-    width: 8px;
-    height: 8px;
-    background-position-x: 0px;
-    background-position-y: -11px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    width: 10px;
+    height: 12px;
+    background-position-x: -1px;
+    background-position-y: -13px; //-11px;
+    // border-top-left-radius: 4px;
+    // border-bottom-left-radius: 4px;
 }
 ::-webkit-scrollbar-button:horizontal:increment {
-    width: 8px;
-    height: 8px;
-    background-position-x: -30px;
-    background-position-y: -11px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    width: 10px;
+    height: 12px;
+    background-position-x: -36px; //-30px;
+    background-position-y: -13px; //-11px;
+    // border-top-right-radius: 4px;
+    // border-bottom-right-radius: 4px;
 }
 
 /*
 corner角落的意思，可以改变Y滚动条与X滚动条交叉的右下角的样式
 */
 ::-webkit-scrollbar-corner {
-    background-color: #6ab8ff;
+    background-color: #cccccc;
     border-radius: 1px;
 }
 
@@ -70,7 +72,7 @@ corner角落的意思，可以改变Y滚动条与X滚动条交叉的右下角的
 悬浮时
 */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #AFCEDE;
+    background-color: @scrollbar-btn-hover-bgcolor;
     border-radius: 4px;
     border-width:0 ;
 }

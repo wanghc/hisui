@@ -31,24 +31,13 @@
 <a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
 <a href="#" class="hisui-linkbutton" id="btn1">点我提示</a></div>
     </div>
-    <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html links'>
-<a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
-<a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
-<a href="#" class="showicon hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
-<a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-edit'"></a></div>
-    </div>
-    <h3>深色可用类</h3>
-    <span>如果需要鼠标悬浮时按钮变色更深，在class中加入<code>hover-dark</code>.如病人信息条.</span>
-    <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html links'>
-<a href="#" class="hisui-linkbutton hover-dark" data-options="iconCls:'icon-w-find'">时间线查看</a>
-<a href="#" class="hisui-linkbutton hover-dark" >确诊</a></div>
-    </div>
+    <!-- pure不再显示iconImg  -->
 
     <h3>不同色系按钮</h3>
     <span>按钮默认是蓝色，如果需要使用其它色系的按钮，在class中加入<code>green</code>、<code>yellow</code>、或者<code>red</code>，按钮就会改变色系</span>
     <br><span>其中<code>green</code>表示通过，<code>yellow</code>表示警示，<code>red</code>表示拒绝</span>
     <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html links'>
-<a href="#" class="hisui-linkbutton">蓝色按钮</a>
+<a href="#" class="hisui-linkbutton">常用按钮</a>
 <a href="#" class="hisui-linkbutton green">绿色按钮</a>
 <a href="#" class="hisui-linkbutton yellow">黄色按钮</a>
 <a href="#" class="hisui-linkbutton red">红色按钮</a></div>
@@ -185,7 +174,34 @@
 	</table>
 	<prettyprint/>
 </body>
-</html>��认禁用200毫秒后激活; 点击后把按钮设置成waiting状态，禁用再次点击<code>20231211</code></td>  
+</html>
+			<td>是否素色</td>
+			<td>false</td>
+			<td>为true时,按钮素色</td>
+        </tr>
+        <tr>
+            <td>iconImg</td>
+            <td>图片地址</td>
+            <td>null</td>
+            <td>'unlock.png'</td>
+        </tr>
+        <tr>
+            <td>stopAllEventOnDisabled</td>
+            <td>在disabled时是否阻止按钮事件</td>
+            <td>false</td>
+            <td>通过监听生成的子元素span的点击事件，当stopAllEventOnDisabled为true，且按钮被禁用时，阻止事件冒泡。</td>
+        </tr>
+        <tr>
+            <td>notTrans</td>
+            <td>不自动翻译与否</td>
+            <td>false</td>
+            <td>默认自动翻译。true表示不翻译 <code>20230801</code></td>
+        </tr>
+        <tr>
+            <td>clickWaitingTime</td>
+            <td>点击后禁用时长(毫秒)</td>
+            <td>200</td>
+            <td>默认禁用200毫秒后激活; 点击后把按钮设置成waiting状态，禁用再次点击<code>20231211</code></td>  
         </tr>
         <tr>
             <td>waitingAlert</td>

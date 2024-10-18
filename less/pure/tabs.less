@@ -70,39 +70,55 @@
   width: 50000px;
   border-style: solid;
   border-width: 0 0 1px 0;
+  li  {
+    float: left;
+    display: inline-block;
+    margin: 0 4px -1px 0;
+    padding: 0;
+    position: relative;
+    border: 0;
+    a.tabs-inner {
+      display: inline-block;
+      text-decoration: none;
+      margin: 0;
+      padding: 0 10px;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      white-space: nowrap;
+      border-width: 1px;
+      border-style: solid;
+      -moz-border-radius: 5px 5px 0 0;
+      -webkit-border-radius: 5px 5px 0 0;
+      border-radius: 5px 5px 0 0;
+    }
+    &.tabs-selected {
+      a.tabs-inner {
+        font-weight: bold;
+        outline: none;
+      }
+      a:hover.tabs-inner {
+        cursor: default;
+        pointer: default;
+      }
+    }
+    a.tabs-close {
+      position: absolute;
+      font-size: 1px;
+      display: block;
+      height: 12px;
+      padding: 0;
+      top: 50%;
+      margin-top: -6px;
+      overflow: hidden;
+      width: 12px;
+      right: 5px;
+      opacity: 0.6;
+      filter: alpha(opacity=60);
+    }
+  }
+  
 }
-.tabs li {
-  float: left;
-  display: inline-block;
-  margin: 0 4px -1px 0;
-  padding: 0;
-  position: relative;
-  border: 0;
-}
-.tabs li a.tabs-inner {
-  display: inline-block;
-  text-decoration: none;
-  margin: 0;
-  padding: 0 10px;
-  height: 25px;
-  line-height: 25px;
-  text-align: center;
-  white-space: nowrap;
-  border-width: 1px;
-  border-style: solid;
-  -moz-border-radius: 5px 5px 0 0;
-  -webkit-border-radius: 5px 5px 0 0;
-  border-radius: 5px 5px 0 0;
-}
-.tabs li.tabs-selected a.tabs-inner {
-  font-weight: bold;
-  outline: none;
-}
-.tabs li.tabs-selected a:hover.tabs-inner {
-  cursor: default;
-  pointer: default;
-}
-.tabs li a.tabs-close,
 .tabs-p-tool {
   position: absolute;
   font-size: 1px;
@@ -112,24 +128,16 @@
   top: 50%;
   margin-top: -6px;
   overflow: hidden;
-}
-.tabs li a.tabs-close {
-  width: 12px;
-  right: 5px;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
-}
-.tabs-p-tool {
   right: 16px;
-}
-.tabs-p-tool a {
-  display: inline-block;
-  font-size: 1px;
-  width: 12px;
-  height: 12px;
-  margin: 0;
-  opacity: 0.6;
-  filter: alpha(opacity=60);
+  a {
+    display: inline-block;
+    font-size: 1px;
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+  }
 }
 .tabs li a:hover.tabs-close,
 .tabs-p-tool a:hover {
@@ -149,9 +157,7 @@
   top: 50%;
   margin-top: -8px;
 }
-.tabs-title {
-  font-size: 12px;
-}
+
 .tabs-closable {
   padding-right: 8px;
 }
@@ -234,15 +240,11 @@
 .tabs-header-left .tabs li a.tabs-inner {
   display: block;
   text-align: left;
-  -moz-border-radius: 5px 0 0 5px;
-  -webkit-border-radius: 5px 0 0 5px;
   border-radius: 5px 0 0 5px;
 }
 .tabs-header-right .tabs li a.tabs-inner {
   display: block;
   text-align: left;
-  -moz-border-radius: 0 5px 5px 0;
-  -webkit-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0;
 }
 .tabs-panels-right {
@@ -271,50 +273,6 @@
   background: #eaf2ff;
   color: #000000;
   filter: none;
-}
-.tabs li.tabs-selected a.tabs-inner {
-  background-color: #ffffff;
-  color: #0E2D5F;
-  background: -webkit-linear-gradient(top,#EFF5FF 0,#ffffff 100%);
-  background: -moz-linear-gradient(top,#EFF5FF 0,#ffffff 100%);
-  background: -o-linear-gradient(top,#EFF5FF 0,#ffffff 100%);
-  background: linear-gradient(to bottom,#EFF5FF 0,#ffffff 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#ffffff,GradientType=0);
-}
-.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
-  background: -webkit-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
-  background: -moz-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
-  background: -o-linear-gradient(top,#ffffff 0,#EFF5FF 100%);
-  background: linear-gradient(to bottom,#ffffff 0,#EFF5FF 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#EFF5FF,GradientType=0);
-}
-.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
-  background: -webkit-linear-gradient(left,#EFF5FF 0,#ffffff 100%);
-  background: -moz-linear-gradient(left,#EFF5FF 0,#ffffff 100%);
-  background: -o-linear-gradient(left,#EFF5FF 0,#ffffff 100%);
-  background: linear-gradient(to right,#EFF5FF 0,#ffffff 100%);
-  background-repeat: repeat-y;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#ffffff,GradientType=1);
-}
-.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  background: -webkit-linear-gradient(left,#ffffff 0,#EFF5FF 100%);
-  background: -moz-linear-gradient(left,#ffffff 0,#EFF5FF 100%);
-  background: -o-linear-gradient(left,#ffffff 0,#EFF5FF 100%);
-  background: linear-gradient(to right,#ffffff 0,#EFF5FF 100%);
-  background-repeat: repeat-y;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#EFF5FF,GradientType=1);
-}
-.tabs li a.tabs-inner {
-  color: #0E2D5F;
-  background-color: #E0ECFF;
-  background: -webkit-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
-  background: -moz-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
-  background: -o-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
-  background: linear-gradient(to bottom,#EFF5FF 0,#E0ECFF 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EFF5FF,endColorstr=#E0ECFF,GradientType=0);
 }
 .tabs-header,
 .tabs-tool {
@@ -409,25 +367,25 @@
     height: 34px;
     /*wanghc 2018-3-19  win7-ie11*/
     margin: 0px;
-    overflow: hidden;
-
+    // overflow: hidden;
+    overflow: visible; /*让非selected元素的下边框也能显示，非pure版本不显示*/
     &:not(:last-child)::after {
       content: none;
     }
 
     &.tabs-selected {
       overflow: visible;
+      
       a.tabs-inner {
         background: @tabs-header-bgcolor;
         border: 0 solid;
         border-bottom: 3px solid @tabs-header-select-top-color;
         color: @tabs-header-select-font-color;
-        font-weight: normal;
-
+        font-weight: 700;
         &:hover {
           background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
-          font-weight: normal;
+          font-weight: 700;
         }
       }
 
@@ -450,11 +408,11 @@
       border-width: 0;
       border-bottom: 3px solid @tabs-header-bgcolor;
       filter: none;
-
       &:hover {
         border-top-color: @tabs-header-hover-bgcolor;
         background: @tabs-header-bgcolor;
-        color: @tabs-header-select-font-color;
+        color: @tabs-header-hover-font-color;
+        border-bottom-color:@tabs-header-hover-line-color;
         filter: none;
       }
 
@@ -490,6 +448,7 @@
 
   /*tabs-brand no hover no pointer  cryze 2018-3-15*/
   li.tabs-brand {
+    overflow: hidden;
     a.tabs-inner {
       cursor: default;
 
@@ -497,6 +456,7 @@
         border-top-color: @tabs-header-bgcolor;
         background: @tabs-header-bgcolor;
         color: @tabs-header-font-color;
+        border-bottom-color:transparent;
       }
 
       .tabs-title {
@@ -675,10 +635,10 @@
       float: left;
       margin: 0px;
       &.tabs-brand{
-        border-bottom: 1px solid @tabs-header-bdcolor;
+        border-bottom: 1px solid @tabs-header-gray-bgcolor;
         a.tabs-inner:hover{
-            background: @tabs-brand-hover-bgcolor;
-            color: #000000;
+            background: @tabs-header-gray-bgcolor;
+            color:@tabs-header-font-color;
             border: 1px solid transparent;
             border-left: 3px solid transparent;
         }
@@ -687,8 +647,9 @@
         content: none;
       }
       a.tabs-inner {
-        border: 1px solid @tabs-header-bgcolor;
-        border-left: 3px solid @tabs-header-bgcolor;  /*这里是背景色,只能选中才显示左竖线*/
+        border: 1px solid @tabs-header-gray-bgcolor;
+        border-left: 3px solid @tabs-header-gray-bgcolor;  /*这里是背景色,只能选中才显示左竖线*/
+        background-color: @tabs-header-gray-bgcolor;
         &:hover {
           background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
@@ -706,7 +667,7 @@
           border-top: 1px solid @tabs-header-bdcolor;
           border-bottom: 1px solid @tabs-header-bdcolor;
           border-right: 1px solid transparent;
-          background: none;
+          background: #ffffff;
         }
       }
     }
@@ -728,10 +689,10 @@
       float: right;
       margin: 0px;
       &.tabs-brand{
-        border-bottom: 1px solid @tabs-header-bdcolor;
+        border-bottom: 1px solid @tabs-header-gray-bgcolor;
         a.tabs-inner:hover{
-            background: @tabs-brand-hover-bgcolor;
-            color: #000000;
+            background: @tabs-header-gray-bgcolor;
+            color: @tabs-header-font-color;
             border: 1px solid transparent;
             border-right: 3px solid transparent;
         }
@@ -740,8 +701,9 @@
         content: none;
       }
       a.tabs-inner {
-        border: 1px solid @tabs-header-bgcolor;
-        border-right: 3px solid @tabs-header-bgcolor;
+        border: 1px solid @tabs-header-gray-bgcolor;
+        border-right: 3px solid @tabs-header-gray-bgcolor;
+        background-color: @tabs-header-gray-bgcolor;
         &:hover {
           background: @tabs-header-hover-bgcolor;
           color: @tabs-header-select-font-color;
@@ -759,7 +721,7 @@
           border-top: 1px solid @tabs-header-bdcolor;
           border-bottom: 1px solid @tabs-header-bdcolor;
           border-left: 1px solid  @tabs-header-bgcolor;
-          background: none;
+          background: #ffffff;
         }
       }
     }
@@ -894,6 +856,7 @@
       -moz-border-radius: 4px 0 0 4px ;
       -webkit-border-radius: 4px 0 0 4px ;
       border-radius: 4px 0 0 4px ;
+      background-color: @tabs-header-gray-bgcolor;
       &.tabs-header-noborder{ /*border:false*/
         border: 0;
       }
@@ -994,9 +957,9 @@
   }
 }
 .tabs-gray-btm{
-  .tabs li a.tabs-close{
-    margin-top:-14px;
-  }
+  // .tabs li a.tabs-close{
+  //   margin-top:-14px;
+  // }
   .tabs a.tabs-inner{
     border-bottom: 1px solid @panel-header-bdcolor;
   }

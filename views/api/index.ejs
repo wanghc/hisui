@@ -24,8 +24,19 @@
             text-decoration: none;
             color:#000000;
         }
-        .hisui-accordion ul>li:hover ,.hisui-accordion ul>li.active{
-            background-color: #E3E3E3;
+        .hisui-accordion ul>li:hover{
+            <% if (themeCode=="pure") {%>
+                background-color: #e4f0fe;
+            <% }else{ %>
+                background-color: #E3E3E3;
+            <% } %>            
+        }
+        .hisui-accordion ul>li.active{
+            <% if (themeCode=="pure") {%>
+                background-color: #d7e9ff;
+            <% }else{ %>
+                background-color: #E3E3E3;
+            <% } %>            
         }
         #tabs .panel .panel-body{
             overflow: hidden;
@@ -136,6 +147,10 @@
         <div id="accd" class="hisui-accordion <% if (themeCode!="blue") {%> accordion-gray<% } %>" fit="true" data-options="border:false">
             <div title="基础" <% if (themeCode=="blue") {%>  style="background-color:#F9F9F9;"<%}%>>
                 <ul>
+                    <% if (themeCode=="pure") {%>
+                    <li><a href="javascript:void(0);"  src="tooltip/tooltip.html" class="api-navi-tab">提示（tooltip）</a></li>
+                    <li><a href="javascript:void(0);"  src="popover/popover.html" class="api-navi-tab">泡芙提示（popover）</a></li>    
+                    <% }else{ %>
                     <!--<li><a href="javascript:void(0);" src="use/use.html" class="api-navi-tab">起步(use)</a></li>-->
                     <li><a href="javascript:void(0);"  src="ajax/ajax.html" class="api-navi-tab">数据访问（ajax）</a></li>
                     <li><a href="javascript:void(0);"  src="excel/excel.html" class="api-navi-tab">导出Excel（excel）</a></li>
@@ -145,6 +160,7 @@
                     <li><a href="javascript:void(0);" src="pic/pic.html" class="api-navi-tab">插画</a></li>
                     <li><a href="javascript:void(0);"  src="tooltip/tooltip.html" class="api-navi-tab">提示（tooltip）</a></li>
                     <li><a href="javascript:void(0);"  src="popover/popover.html" class="api-navi-tab">泡芙提示（popover）</a></li>
+                    <% } %>
                 </ul>
             </div>
             <div title="布局" <% if (themeCode=="blue") {%>  style="background-color:#F9F9F9;"<%}%>>   

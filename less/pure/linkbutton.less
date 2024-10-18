@@ -328,6 +328,7 @@
 .l-btn.hover-dark {
   &:hover{
     background: @linkbutton-hover-dark-bgcolor;
+    color:#FFFFFF;
     .l-btn-icon{
       background-color: @linkbutton-hover-dark-bgcolor;
     }
@@ -335,7 +336,7 @@
 
 }
 .l-btn-plain {
-  color: #000000;
+  color: @linkbutton-plain-color;
   background: transparent;
   border: 0px solid transparent;   //不应有border 有的话32了
   padding: 0px;
@@ -474,6 +475,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     }
     &.green{
       background-color: @linkbutton-green-bgcolor;
+      color:@linkbutton-green-color;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-green-disabled-bgcolor;
         color:@linkbutton-green-disabled-color;
@@ -487,6 +489,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     }
     &.yellow{
       background-color: @linkbutton-yellow-bgcolor;
+      color:@linkbutton-yellow-color;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-yellow-disabled-bgcolor;
         color:@linkbutton-yellow-disabled-color;
@@ -500,6 +503,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     }
     &.red{
       background-color: @linkbutton-red-bgcolor;
+      color:@linkbutton-red-color;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-red-disabled-bgcolor;
         color:@linkbutton-red-disabled-color;
