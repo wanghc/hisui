@@ -910,52 +910,37 @@
   }
 }
 
-.tabs-keywords {
-  .tabs-header {
-    background-color: transparent;
-    border: 0px;
-  }
-
-  .tabs-panels {
-    border: 0px;
-  }
-
-  .tabs {
-    border-width: 0;
-    overflow: hidden;
-  }
-
-  .tabs li {
-    &::after {
-      content: none;
+.tabs-keywords .tabs{
+  li{
+    .tabs-title{
+      font-size: 14px;
     }
-
-    a.tabs-inner {
-      border-radius: 4px;
-      border: 0px;
-      background-color: @keywords-bgcolor;
-      color: @keywords-color;
-      border: 1px solid @keywords-bgcolor;
+    a.tabs-inner{
+      color:@tabs-keywords-color;
+      &:hover{
+        color: @tabs-keywords-color;
+        background: @tabs-keywords-hover-bgcolor;
+        border-bottom-color: transparent;
+        border-radius: 6px;
+        &+.tabs-close{
+          color:@tabs-header-select-font-color;
+        }
+      }
     }
-
-    a.tabs-inner:hover {
-      background: @keywords-hover-bgcolor;
-      color: @keywords-hover-color;
-      border: 1px solid @keywords-bgcolor;
-    }
-  }
-
-  .tabs li.tabs-selected {
-    a.tabs-inner {
-      background-color: @keywords-select-bgcolor;
-      background-image: url(images/keywords_arrow.png);
-      background-position: right 0 bottom 0;
-      background-repeat: no-repeat;
-      color: @keywords-select-color;
-      border: 1px solid @keywords-select-bdcolor;
+    &.tabs-selected{
+      a.tabs-inner{
+        background: @tabs-keywords-selected-bgcolor;
+        color:@tabs-keywords-selected-font-color;
+        font-weight: 400;
+        border-radius: 6px;
+      }
+      .tabs-close{
+        color:@tabs-header-select-font-color;
+      }
     }
   }
 }
+
 .tabs-gray-btm{
   // .tabs li a.tabs-close{
   //   margin-top:-14px;
@@ -993,6 +978,29 @@
       }
       .tabs-close{
         color:@tabs-header-select-font-color;
+      }
+    }
+  }
+}
+.tabs-text .tabs{
+  border-bottom-color:#e4e4e4 ;
+  li{
+    overflow: hidden;
+    .tabs-title{
+      font-size: 14px;
+    }
+    a.tabs-inner{
+      color:@tabs-text-color;
+    }
+    &:hover{
+      overflow: visible;
+    }
+    &.tabs-selected{
+      overflow: visible;
+      a.tabs-inner{
+        background: @tabs-text-selected-bgcolor;
+        color:@tabs-text-selected-font-color;
+        font-weight: 700;
       }
     }
   }
