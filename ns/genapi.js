@@ -45,17 +45,17 @@ function myReadDir(path,opt){
 };
 interface.question('生成什么版本的示例[1:lite，2:lightblue，3:pure，空]:', answer => {
     if (answer=='3'){
-        myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"pure"});
-        myReadDir("views/lite",{srcRootPath:"views/lite",destRootPath:"pure"});
-        myReadDir("views/lightblue",{srcRootPath:"views/lightblue",destRootPath:"pure"});
         myReadDir("views/pure",{srcRootPath:"views/pure",destRootPath:"pure"});
+        myReadDir("views/lightblue",{srcRootPath:"views/lightblue",destRootPath:"pure"});
+        myReadDir("views/lite",{srcRootPath:"views/lite",destRootPath:"pure"});        
+        myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"pure"});
     }else if (answer=='2'){
-        myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"lightblue"});
-        myReadDir("views/lite",{srcRootPath:"views/lite",destRootPath:"lightblue"});
         myReadDir("views/lightblue",{srcRootPath:"views/lightblue",destRootPath:"lightblue"});
+        myReadDir("views/lite",{srcRootPath:"views/lite",destRootPath:"lightblue"});
+        myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"lightblue"});
     }else if (answer=='1'){
-        myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"lite"});
         myReadDir("views/lite",{srcRootPath:"views/lite",destRootPath:"lite"});
+        myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"lite"});
     }else{
         myReadDir("views/api",{srcRootPath:"views/api",destRootPath:"api"});
     }

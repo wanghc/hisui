@@ -1,6 +1,7 @@
 const fs = require("fs");
 const ejs = require("ejs");
-/* 
+/*
+把某个ejs或html文件生成到对应目录下
 @param filename 文件路径 views下文件路径
 @param opt {srcRootPath:"views/api",destRootPath:"lite"}
 */
@@ -37,20 +38,14 @@ module.exports.handler = function (filename,opt){
                 if (!fs.existsSync(parentDir)){
                     fs.mkdirSync(parentDir);
                 }
+                console.log(`生成${htmlFileName}`);
                 // 存在对应版本的views.ejs文件时，不生成其它版本的html,减少异步写文件冲突
-                
-                if (fs.existsSync('views/'+destFilename)){
-                    console.log('views/'+destFilename+" 存在，"+(filename+'='+destFilename));
-                    if (filename==('views/'+destFilename)){
-                        fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
-                            if (fserr){
-                                console.error(fserr);
-                            }else{
-                                console.log('成功生成：'+htmlFileName);
-                            }
-                        });
-                    }
+                if (fs.existsSync(`${htmlFileName}`)){
+                    console.log(`${htmlFileName}存在，不生成`);
+                    // html存在不生成
+                    return ;
                 }else{
+                    console.log(`生成views/${htmlFileName}`);
                     fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
                         if (fserr){
                             console.error(fserr);
@@ -59,6 +54,26 @@ module.exports.handler = function (filename,opt){
                         }
                     });
                 }
+                // if (fs.existsSync('views/'+destFilename)){
+                //     console.log('views/'+destFilename+" 存在，"+(filename+'='+destFilename));
+                //     if (filename==('views/'+destFilename)){
+                //         fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
+                //             if (fserr){
+                //                 console.error(fserr);
+                //             }else{
+                //                 console.log('成功生成：'+htmlFileName);
+                //             }
+                //         });
+                //     }
+                // }else{
+                //     fs.writeFile(htmlFileName,str,'utf-8',function(fserr){
+                //         if (fserr){
+                //             console.error(fserr);
+                //         }else{
+                //             console.log('成功生成：'+htmlFileName);
+                //         }
+                //     });
+                // }
             }
         })
     }else{
