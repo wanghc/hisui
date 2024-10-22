@@ -47,21 +47,6 @@
   text-align: center;
   margin: 0;
 }
-.pagination-first {
-  background: url('@{images-path}/pagination_icons.png') no-repeat 0 center;
-}
-.pagination-prev {
-  background: url('@{images-path}/pagination_icons.png') no-repeat -16px center;
-}
-.pagination-next {
-  background: url('@{images-path}/pagination_icons.png') no-repeat -32px center;
-}
-.pagination-last {
-  background: url('@{images-path}/pagination_icons.png') no-repeat -48px center;
-}
-.pagination-load {
-  background: url('@{images-path}/pagination_icons.png') no-repeat -64px center;
-}
 .pagination-loading {
   background: url('@{images-path}/loading.gif') no-repeat center center;
 }
@@ -93,26 +78,42 @@
   font-size: 12px;
   line-height: 14px;
 }
-.pagination span.l-btn-icon {
-  width: 16px;
-  height: 16px;
-  background-image: none;
-  padding-left: 5px;/*20220925 向右偏太多*/
-  &.pagination-first::before{
-    content: @content-pagination-first;
+.pagination {
+
+  .l-btn-plain:hover {
+    background-color: @page-btn-hover-bgcolor;
+    border-radius: @page-btn-hover-radius;
+    span.l-btn-icon {
+      color: @page-btn-hover-fcolor;
+    }
   }
-  &.pagination-prev::before{
-    content: @content-pagination-prev;
+  .l-btn-plain.l-btn-disabled{
+    background-color: @page-btn-disabled-bgcolor;
+    span.l-btn-icon{
+      color: @page-btn-disabled-fcolor;
+    }
   }
-  &.pagination-next::before{
-    content: @content-pagination-next;
+  span.l-btn-icon {
+    width: 16px;
+    height: 16px;
+    padding-left: 5px;/*20220925 向右偏太多*/
+    color:@page-btn-fcolor;
+    &.pagination-first::before{
+      content: @content-pagination-first;
+    }
+    &.pagination-prev::before{
+      content: @content-pagination-prev;
+    }
+    &.pagination-next::before{
+      content: @content-pagination-next;
+    }
+    &.pagination-last::before{
+      content: @content-pagination-last;
+    }
+    &.pagination-load::before{
+      content: @content-pagination-load;
+    }  
   }
-  &.pagination-last::before{
-    content: @content-pagination-last;
-  }
-  &.pagination-load::before{
-    content: @content-pagination-load;
-  }  
 }
 .pagination .l-btn-plain .l-btn-icon-left .l-btn-text.l-btn-empty {
   margin:0 0 0 9px ;
@@ -123,4 +124,3 @@
     border-color: @input-active-border-color;
   }
 }
-
