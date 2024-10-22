@@ -591,6 +591,43 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 		</script>
 	</div>
 	
+		<h3>九、蓝色表格演示(headerCls:'datagrid-header-blue')</h3>
+		<div class="demo-exp-code entry-content">
+			<table id="mytable10"></table>
+			<script type="text/javascript" class="use-prettyprint">
+				$(function(){
+					$HUI.datagrid('#mytable10',{
+						autoSizeColumn:false,
+						fitColumns:true,idField:'id',
+						headerCls:'datagrid-header-blue',
+						rownumbers:true,width:650,height:300,
+						title:'属性列表',titleNoWrap:false,/*表头自动折行*/
+						toolbar:[],
+						nowrap:false,
+						fontSize:12, /*表格上设置字体大小*/
+						lineHeight:12,
+						columns:[[
+							{field:'ck',title:'sel',checkbox:true},
+							{field:'code',title:'属性序号',width:40},
+							{field:'name',title:'属性名',width:100},
+							{field:'type',title:'类型',width:100,align:'right'},
+							{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
+						]],
+						data:{
+							rows:[
+							{id:'1',code:'10',name:'checkOnSelect',type:'boolean',desc:'If true, the checkbox is checked/unchecked when the user clicks on a row. If false, the checkbox is only checked/unchecked when the user clicks exactly on the checkbox.This property is available since version 1.3.'},
+							{id:'2',code:'11',name:'nowrap',type:'boolean',desc:'True to display data in one line. Set to true can improve loading performance.'},
+							{id:'3',code:'12',name:'fitColumns',type:'boolean',desc:'True to auto expand/contract the size of the columns to fit the grid width and prevent horizontal scrolling.'},
+							{id:'4',code:'13',name:'resizeHandle',type:'boolean',desc:'Resizing column position, Available value are: "left","right","both". When "right", users can resize columns by dragging the right edge of column headers, etc.This property is available since version 1.3.2.'}
+							],
+							total:10
+						}
+					})
+				})		
+			</script>
+		</div>
+	
+	
 	<!--测试加载本地数据,翻页条显示问题，需求号：1715492
 		<h3>九、表格加载本地数据</h3>
 	<table id="dg11" class="hisui-datagrid" title="科室列表" style="width:600px;height:300px" 
