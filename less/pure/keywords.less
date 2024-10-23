@@ -71,9 +71,9 @@ ul.kw-section-list{
         border:1px solid @keywords-select-bdcolor;
     }
     &.disabled a{
-        background-color: #f2f3f7;
-        color:#b4b3b3;
-        border: 1px solid #f2f3f7;
+        background-color: @keywords-disabled-bgcolor;
+        color:@keywords-disabled-fcolor;
+        border: 1px solid @keywords-disabled-bgcolor;
         &:hover{
             cursor: not-allowed;
         }
@@ -95,8 +95,31 @@ ul.kw-section-list{
         color:@keywords-red-select-color;
     }
     &.disabled a{
-        background-color: #e5e5e5;
-        color:#999999;
+        background-color: @keywords-disabled-bgcolor;
+        color:@keywords-disabled-fcolor;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
+}
+.keywords-labeldarkblue .kw-section-list>li{
+    & a{
+        background: @keywords-darkblue-bgcolor;
+        color: @keywords-darkblue-color;
+        border:1px solid transparent;
+        &:hover{
+            cursor: pointer;
+            background: @keywords-darkblue-hover-bgcolor;
+            color:@keywords-darkblue-hover-color
+        }
+    }
+    &.selected a{
+        background: @keywords-darkblue-select-bgcolor;
+        color:@keywords-darkblue-select-color;
+    }
+    &.disabled a{
+        background-color: @keywords-disabled-bgcolor;
+        color:@keywords-disabled-fcolor;
         &:hover{
             cursor: not-allowed;
         }

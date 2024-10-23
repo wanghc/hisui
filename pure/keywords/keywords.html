@@ -114,6 +114,32 @@
     </script>
 </div>
 
+<h3 style="clear: both;">三.蓝色的标签页(<code>labelCls:'darkblue'</code>)</h3>
+<div class="demo-exp-code entry-content">
+    <div id="darkbluekw"></div>
+    <script type="text/javascript" class="use-prettyprint">
+        $(function(){
+            $("#darkbluekw").keywords({
+                singleSelect:true,
+                onClick:function(v){console.log("点击->"+v.text)},
+                onUnselect:function(v){console.log("取消选择->"+v.text);},
+                onSelect:function(v){console.log("选择->"+v.text);},
+                labelCls:'darkblue',
+                items:[
+                    {text:'知识库',id:'red1'},
+                    {text:'医嘱',id:'red2',disabled:true},
+                    {text:'中草药',id:'red3'},
+                    {text:'检查',id:'red4',selected:true},
+                    {text:'生命体征',id:'red6'},
+                    {text:'诊断',id:'red7'},
+                    {text:'病理',id:'red8'}
+                ]
+            });
+        })
+    </script>
+</div>
+
+
     <table class="table">
 		<tr class="protitle">
 			<th>配置项</th>
