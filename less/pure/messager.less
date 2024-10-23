@@ -98,32 +98,16 @@
 /*--popover--*/
 .messager-popover{
   position: absolute;
-  border-radius: 5px;
+  border-radius: 6px;
   display: block;
   padding:6px 15px;
-  font-weight:bold;
-  font-size: 14px;
+  font-weight:@messager-body-fweight;
+  font-size: @messager-body-fsize;
   z-index: 10000;
-}
-.messager-popover.success{
-  color:#13AE37;
-  background: #EFFFEB;
-  border:1px #A8E59A solid;
-}
-.messager-popover.info{
-  color:#339EFF;
-  background: #EFF9FF;
-  border:1px #9CD0FF solid;
-}
-.messager-popover.alert{
-  color:#DF7000;
-  background: #FFF1E3;
-  border:1px #FF9933 solid;
-}
-.messager-popover.error{
-  color:#EE0F0F;
-  background: #FFE9E9;
-  border:1px #FFA4A4 solid;
+  color:@messager-body-fcolor;
+  background: @messager-body-bgcolor;
+  border:1px solid @messager-body-bgcolor;
+  box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 .messager-popover-icon{
   float: left;
@@ -147,37 +131,4 @@
 .messager-popover .content{
   height: 18px;
   float: left;
-}
-.messager-popover .close{
-  //margin-left: 30px;
-  float: right;
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-.messager-popover.success .close{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -64px 0;
-}
-.messager-popover.alert .close{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -80px 0;
-}
-.messager-popover.error .close{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -96px 0;
-}
-.messager-popover.info .close{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -112px 0;
-}
-.messager-popover .close:hover{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -128px 0;
-  cursor: pointer;
-  //background-image: url(images/panel_tools_2.png);
-}
-.messager-window-info {
-  background: linear-gradient(180deg, #d7e9ff 0%, #ffffff 100%);
-}
-.messager-window-success {
-  background: linear-gradient(180deg, #eeffe6 0%, #ffffff 100%);
-}
-.messager-window-error {
-  background: linear-gradient(180deg, #ffefef 0%, #ffffff 100%);
 }
