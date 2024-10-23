@@ -35,13 +35,19 @@
     </div>
     <% } %>
     <h3>不同色系按钮</h3>
-    <span>按钮默认是蓝色，如果需要使用其它色系的按钮，在class中加入<code>green</code>、<code>yellow</code>、或者<code>red</code>，按钮就会改变色系</span>
+    <span>按钮默认是蓝色，如果需要使用其它色系的按钮，在class中加入<code>blue</code>、<code>green</code>、<code>yellow</code>、或者<code>red</code>，按钮就会改变色系</span>
     <br><span>其中<code>green</code>表示通过，<code>yellow</code>表示警示，<code>red</code>表示拒绝</span>
-    <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html links'>
-<a href="#" class="hisui-linkbutton">常用按钮</a>
-<a href="#" class="hisui-linkbutton green">绿色按钮</a>
-<a href="#" class="hisui-linkbutton yellow">黄色按钮</a>
-<a href="#" class="hisui-linkbutton red">红色按钮</a></div>
+    <div class="demo-exp-code entry-content">
+<% if (themeCode!="pure") {%>
+<div class='use-prettyprint lang-html links'>
+<% }else{%>
+<div class='use-prettyprint lang-html links' style="background-color: #cde6ff;height: 40px;padding: 10px;">
+<a href="#" class="hisui-linkbutton white">白色(white)按钮</a>
+<a href="#" class="hisui-linkbutton blue">蓝色(blue)按钮</a>
+<% } %>
+<a href="#" class="hisui-linkbutton green">绿色(green)按钮</a>
+<a href="#" class="hisui-linkbutton yellow">黄色(yellow)按钮</a>
+<a href="#" class="hisui-linkbutton red">红色(red)按钮</a></div>
     </div>
 
     <h3>禁用 事件处理</h3>
