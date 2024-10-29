@@ -765,7 +765,7 @@
                 return;
             }
             var rowIndex = getRowIndexByTr(tr);
-           if (colname && $.trim(td.text())!=""){
+           if (colname && td.text()!=""){ // 为空不进入，如果是空格进入。希望显示提示 [5101555]
                var tmpdg = $.data(_55a, "datagrid");
                var mycm = tmpdg.options.columns||[];
                cm = mycm.concat(tmpdg.options.frozenColumns);
@@ -781,7 +781,8 @@
                                 var tipWidth = cm[i][j].tipWidth||350;
                                 var tipPosition = cm[i][j].tipPosition||"bottom";
                                 var tipTrackMouse = cm[i][j].tipTrackMouse || false;
-                                td.tooltip({
+                                // 返回值不为空时才提示 [5101555]
+                                if (""!=tipCtt) td.tooltip({
                                     content:tipCtt,
                                     position:tipPosition,
                                     trackMouse:tipTrackMouse,
