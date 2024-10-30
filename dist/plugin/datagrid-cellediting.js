@@ -330,7 +330,7 @@
 				dg.datagrid('gotoCell', param);
 				setTimeout(function(){
 					input.unbind('.cellediting').bind('keydown.cellediting', function(e){
-						if (e.keyCode == 13){
+						if (e.keyCode == 13 || e.keyCode == 9){ // 按tab也可以换到下一格 [5101590]
 							return opts.navHandler['13'].call(target, e);
 							// return false;
 						}
