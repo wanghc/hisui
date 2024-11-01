@@ -1,13 +1,10 @@
 .has-switch {
   display: inline-block;
   cursor: pointer;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+  border-radius: 14px;
   height:26px;
   border: none;
   border-color:transparent;
-  background-color:transparent;
   position: relative;
   text-align: left;
   overflow: hidden;
@@ -18,10 +15,11 @@
   -o-user-select: none;
   user-select: none;
   vertical-align: middle;
-  min-width: 80px;
+  min-width: 66px;
+  background-color: #008fff;
 }
 .has-switch.switch-mini {
-  min-width: 56px;
+  min-width: 46px;
   height:20px;
 }
 .has-switch.switch-mini i.switch-mini-icons {
@@ -34,10 +32,10 @@
   margin-bottom: -1px;
 }
 .has-switch.switch-small {
-  min-width: 80px;
+  min-width: 66px;
 }
 .has-switch.switch-large {
-  min-width: 120px;
+  min-width: 80px;
 }
 .has-switch.deactivate {
   opacity: 0.5;
@@ -61,19 +59,48 @@
   transition: left 0.5s;
 }
 .has-switch > div.switch-off {
-  background-color: #bdbdbd;
+  background-color: #BACCE0;
   left: -50%; /*-49->-50 */
-}
-.has-switch > div.switch-off label {
-  border:1px solid #bdbdbd;
+  label {
+    border:1px solid transparent;
+    width: 22px;
+    height: 22px;
+    margin: 2px;
+    border-radius: 12px;
+    &.switch-mini{
+      height: 16px;
+      width: 16px;
+    }
+  }
+  span.switch-gray{ // 开启状态- gray都透明 
+    background-color: transparent;
+    color: #ffffff;
+    margin-right: -20px;
+    top: -2px;
+  }
+  span.switch-primary{
+    color:transparent;
+  }
 }
 
 .has-switch > div.switch-on {
-  background-color: #48B9FF;
   left: 0%;
-}
-.has-switch > div.switch-on label {
-  border:1px solid #48B9FF; 
+  label{
+    border:1px solid transparent;
+    border-radius: 12px; 
+    width: 22px;
+    height: 22px;
+    margin: 2px -20px 2px 10px;
+    &.switch-mini{
+      height: 16px;
+      margin: 2px 6px 2px 4px;
+      width: 16px;
+    }
+  }
+  span.switch-gray{ // 开启状态- gray都透明 
+    background-color: transparent;
+    color: transparent;
+  }
 }
 .has-switch input[type=radio],
 .has-switch input[type=checkbox] {
@@ -131,9 +158,8 @@
 }
 .has-switch label.disabled,
 .has-switch label[disabled] {
-  color: #333333;
-  background-color: #e6e6e6;
-  *background-color: #d9d9d9;
+  color: #ffffff;
+  background-color: #99d2ff;
 }
 .has-switch label:active,
 .has-switch label.active {
@@ -173,24 +199,16 @@
 }
 .has-switch span.switch-right.disabled,
 .has-switch span.switch-right[disabled] {
-  color: #333333;
-  background-color: #ffffff;
-  *background-color: #f2f2f2;
+  color: #b4b3b3;
+  background-color: #e5e5e5;
 }
 
 .has-switch span.switch-primary,
 .has-switch span.switch-left {
   color: #ffffff;
   position: relative;
-  top:0;
-  // text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #48B9FF;
-  border-color: #0088cc #0088cc #005580;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #0088cc;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  top:-2px;
+  left: 4px;
 }
 
 .has-switch span.switch-info {
@@ -203,13 +221,6 @@
   background-image: -o-linear-gradient(top, #2f96b4, #5bc0de);
   background-image: linear-gradient(to bottom, #2f96b4, #5bc0de);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2f96b4', endColorstr='#ff5bc0de', GradientType=0);
-  border-color: #5bc0de #5bc0de #28a1c5;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #5bc0de;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .has-switch span.switch-info:hover,
 .has-switch span.switch-info:focus,
@@ -235,13 +246,6 @@
   background-image: -o-linear-gradient(top, #51a351, #62c462);
   background-image: linear-gradient(to bottom, #51a351, #62c462);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff51a351', endColorstr='#ff62c462', GradientType=0);
-  border-color: #62c462 #62c462 #3b9e3b;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #62c462;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .has-switch span.switch-success:hover,
 .has-switch span.switch-success:focus,
@@ -267,13 +271,6 @@
   background-image: -o-linear-gradient(top, #f89406, #fbb450);
   background-image: linear-gradient(to bottom, #f89406, #fbb450);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff89406', endColorstr='#fffbb450', GradientType=0);
-  border-color: #fbb450 #fbb450 #f89406;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #fbb450;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .has-switch span.switch-warning:hover,
 .has-switch span.switch-warning:focus,
@@ -299,13 +296,6 @@
   background-image: -o-linear-gradient(top, #bd362f, #ee5f5b);
   background-image: linear-gradient(to bottom, #bd362f, #ee5f5b);
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffbd362f', endColorstr='#ffee5f5b', GradientType=0);
-  border-color: #ee5f5b #ee5f5b #e51d18;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #ee5f5b;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .has-switch span.switch-danger:hover,
 .has-switch span.switch-danger:focus,
@@ -321,24 +311,7 @@
 .has-switch span.switch-danger.active {
   background-color: #e9322d;
 }
-.has-switch span.switch-default {
-  color: #333333;
-  // text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  background-color: #f0f0f0;
-  background-image: -moz-linear-gradient(top, #e6e6e6, #ffffff);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6e6e6), to(#ffffff));
-  background-image: -webkit-linear-gradient(top, #e6e6e6, #ffffff);
-  background-image: -o-linear-gradient(top, #e6e6e6, #ffffff);
-  background-image: linear-gradient(to bottom, #e6e6e6, #ffffff);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffe6e6e6', endColorstr='#ffffffff', GradientType=0);
-  border-color: #ffffff #ffffff #d9d9d9;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #ffffff;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
 .has-switch span.switch-default:hover,
 .has-switch span.switch-default:focus,
 .has-switch span.switch-default:active,
@@ -354,18 +327,6 @@
   background-color: #e6e6e6;
 }
 /*增加灰色 2018-6-28*/
-.has-switch span.switch-gray {
-  color: #ffffff;
-  // text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #bdbdbd;
-  background-repeat: repeat-x;
-  border-color: #bdbdbd #bdbdbd #bdbdbd;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #bdbdbd;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
 .has-switch span.switch-gray:hover,
 .has-switch span.switch-gray:focus,
 .has-switch span.switch-gray:active,
@@ -374,7 +335,6 @@
 .has-switch span.switch-gray[disabled] {
   color: #ffffff;
   background-color: #bdbdbd;
-  *background-color: #bdbdbd;
 }
 .has-switch span.switch-gray:active,
 .has-switch span.switch-gray.active {
