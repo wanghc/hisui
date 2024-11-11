@@ -3,7 +3,7 @@
 	font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Wenquanyi Micro Hei","Microsoft Yahei",Arial,sans-serif;
     display: inline-block;
     position: relative;
-	color: #000;
+	color: #939393;
 	width: 700px;
 	height: 60px;
 	font-size: 18px;
@@ -20,7 +20,7 @@
 			width: 100px;
 			height: 85px;
 			.cnode{
-				background-image: url('images/lite/hstep.png');
+				background-image: url('@{images-path}/hstep.png');
 				background-repeat: no-repeat;
 				width: 20px;
 				height: 20px;
@@ -30,7 +30,7 @@
 				cursor: pointer;
 			}
 			&.done{
-				color:#000000;
+				color:#666666;
 				.cnode{
 					background-position: 0px -60px;
 				}	
@@ -42,7 +42,7 @@
 				}
 			}
 			&.active{
-				color: #13AE37;
+				color: #191919;
 				background-color: transparent;
 				.cnode{
 					margin-top: 7px;
@@ -50,24 +50,24 @@
 					margin-bottom: 3px;
 				}
 				.cntt {
-					color: #13AE37;
+					color: #939393;
 				}
 			}
-			&.hover{
-				color:#339EFF;
-				.cnode{
-					margin-top: 6px;
-					background-position: 0px -100px;
-					margin-bottom: 4px;
-				}
-				.cntt{
-					color:#339EFF;
-				}
-			}
+			// &.hover{
+			// 	color:#339EFF;
+			// 	.cnode{
+			// 		margin-top: 6px;
+			// 		background-position: 0px -100px;
+			// 		margin-bottom: 4px;
+			// 	}
+			// 	.cntt{
+			// 		color:#339EFF;
+			// 	}
+			// }
 		}
 	}	
 	.hstep-progress-highlight{
-		background: #18af66;
+		background: #008fff;
 	}
 	.hstep-progress {
 		width: 400px;
@@ -81,7 +81,7 @@
 		.hstep-progress-bar {
 			width: 400px;
 			height: 20px;
-			background: #e4e4e4;
+			background: #cccccc;
 			display: inline-block;
 			.hstep-progress-highlight {
 				height: 20px;

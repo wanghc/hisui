@@ -3,7 +3,7 @@
 	font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Wenquanyi Micro Hei","Microsoft Yahei",Arial,sans-serif;
     display: inline-block;
     position: relative;
-	color: #000;
+	color: #939393;
 	height: 700px;
 	font-size: 18px;
 	ul.vstep-container-steps{
@@ -21,7 +21,7 @@
 				margin: 5px 5px 0 0px;
 			}
 			.cnode{
-				background-image: url('images/lite/hstep.png');
+				background-image: url('@{images-path}/hstep.png');
 				background-repeat: no-repeat;
 				width: 20px;
 				height: 20px;
@@ -35,7 +35,7 @@
 				margin-left:5px;
 			}
 			&.done{
-				color: #000000; //[2941768]
+				color: #666666; //[2941768]
 				.cnode{
 					background-position: 0px -60px;
 				}	
@@ -47,7 +47,7 @@
 				}
 			}
 			&.active{
-				color: #13AE37;
+				color: #191919;
 				background-color: transparent;
 				.cnode{
 					margin-top: 7px;
@@ -55,24 +55,24 @@
 					margin-bottom: 3px;
 				}
 				.cntt {
-					color: #13AE37;
+					color: #939393;
 				}
 			}
-			&.hover{
-				color:#339EFF;
-				.cnode{
-					margin-top: 6px;
-					background-position: 0px -100px;
-					margin-bottom: 4px;
-				}
-				.cntt{
-					color:#339EFF;
-				}
-			}
+			// &.hover{
+			// 	color:#339EFF;
+			// 	.cnode{
+			// 		margin-top: 6px;
+			// 		background-position: 0px -100px;
+			// 		margin-bottom: 4px;
+			// 	}
+			// 	.cntt{
+			// 		color:#339EFF;
+			// 	}
+			// }
 		}
 	}	
 	.vstep-progress-highlight{
-		background: #18af66;
+		background: #008fff;
 	}
 	.vstep-progress {
 		width: 1px;
@@ -86,7 +86,7 @@
 		.vstep-progress-bar {
 			width: 20px;
 			height: 400px;
-			background: #e4e4e4;
+			background: #cccccc;
 			display: inline-block;
 			.vstep-progress-highlight {
 				height: 20px;
