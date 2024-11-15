@@ -3,8 +3,8 @@ width可以改变右边滚动条的宽度
 height可以改变下边滚动条的高度
 */
 ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     box-sizing: border-box;
 }
 
@@ -18,17 +18,17 @@ height可以改变下边滚动条的高度
 }
 // 纵向滚动条
 ::-webkit-scrollbar-button:vertical:decrement {
-    width: 12px;
+    width: 6px;
     height: 10px;
-    background-position-x: -1px;
+    background-position-x: 2px;
     background-position-y: 0;
     // border-top-right-radius: 4px;
     // border-top-left-radius: 4px;
 }
 ::-webkit-scrollbar-button:vertical:increment {
-    width: 12px;
+    width: 6px;
     height: 10px;
-    background-position-x: -36px; //-31px;
+    background-position-x: -35px; //-31px;
     background-position-y: 0;
     // border-bottom-right-radius: 4px;
     // border-bottom-left-radius: 4px;
@@ -38,7 +38,7 @@ height可以改变下边滚动条的高度
     width: 10px;
     height: 12px;
     background-position-x: -1px;
-    background-position-y: -13px; //-11px;
+    background-position-y: -11px; //-11px;
     // border-top-left-radius: 4px;
     // border-bottom-left-radius: 4px;
 }
@@ -46,7 +46,7 @@ height可以改变下边滚动条的高度
     width: 10px;
     height: 12px;
     background-position-x: -36px; //-30px;
-    background-position-y: -13px; //-11px;
+    background-position-y: -11px; //-11px;
     // border-top-right-radius: 4px;
     // border-bottom-right-radius: 4px;
 }
@@ -55,7 +55,7 @@ height可以改变下边滚动条的高度
 corner角落的意思，可以改变Y滚动条与X滚动条交叉的右下角的样式
 */
 ::-webkit-scrollbar-corner {
-    background-color: #cccccc;
+    background-color: #ffffff;
     border-radius: 1px;
 }
 
@@ -83,4 +83,17 @@ corner角落的意思，可以改变Y滚动条与X滚动条交叉的右下角的
     background-color: @scrollbar-bgcolor;
     //border-radius: 4px;
     border-width:0 ;
+}
+*::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: @scrollbar-btn-hover-bgcolor;
+    border-radius: 4px;
+    border:4px dashed transparent ;
+    background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+    background-color: @scrollbar-btn-hover-bgcolor;
 }

@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2024-11-15
 - :lipstick: 修改纯净风格的`datagrid`,增加横向线条
+- :lipstick: 滚动条美化及悬浮变宽
 
 ## 2024-11-01
 - 修改纯净风格的`switch-box`样式 [5041820]
