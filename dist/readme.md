@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-11-19
+- :sparkles: 增加`layout`增加大间距配置`isBigPadding`
 
 ## 2024-11-15
 - :lipstick: 修改纯净风格的`datagrid`,增加横向线条

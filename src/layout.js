@@ -19,10 +19,10 @@
 				cpos.height = cpos.height - parseInt(_364parent.css("padding-top")) - parseInt(_364parent.css("padding-bottom"));
 			}
         }
-        _367(_368(_366.expandNorth) ? _366.expandNorth : _366.north, "n");
-        _367(_368(_366.expandSouth) ? _366.expandSouth : _366.south, "s");
-        _369(_368(_366.expandEast) ? _366.expandEast : _366.east, "e");
-        _369(_368(_366.expandWest) ? _366.expandWest : _366.west, "w");
+        _367(_isPanelVisible(_366.expandNorth) ? _366.expandNorth : _366.north, "n");
+        _367(_isPanelVisible(_366.expandSouth) ? _366.expandSouth : _366.south, "s");
+        _369(_isPanelVisible(_366.expandEast) ? _366.expandEast : _366.east, "e");
+        _369(_isPanelVisible(_366.expandWest) ? _366.expandWest : _366.west, "w");
         _366.center.panel("resize", cpos);
         resizeSubLayout(_366);
         function _36a(pp) {
@@ -34,7 +34,7 @@
             return Math.min(Math.max(opts.width, opts.minWidth), opts.maxWidth);
         };
         function _367(pp, type) {
-            if (!pp.length || !_368(pp)) {
+            if (!pp.length || !_isPanelVisible(pp)) {
                 return;
             }
             var opts = pp.panel("options");
@@ -52,7 +52,7 @@
             }
         };
         function _369(pp, type) {
-            if (!pp.length || !_368(pp)) {
+            if (!pp.length || !_isPanelVisible(pp)) {
                 return;
             }
             var opts = pp.panel("options");
@@ -144,6 +144,14 @@
         }, _373);
         pp.panel(_375);
         _374[dir] = pp;
+        if (pp.panel("options").isBigPadding || pp.panel("options").isNormalPadding){
+            if (pp.panel("options").isBigPadding){
+                pp.panel("panel").addClass("layout-big-split-" + dir);
+            }
+            if (pp.panel("options").isNormalPadding) {
+                pp.panel("panel").addClass("layout-split-" + dir);
+            }
+        }        
         if (pp.panel("options").split) {
             var _378 = pp.panel("panel");
             _378.addClass("layout-split-" + dir);
@@ -267,7 +275,7 @@
             });
         }
         var _38d = _38c();
-        if (!_368(_387[_389])) {
+        if (!_isPanelVisible(_387[_389])) {
             _387.center.panel("resize", _38d.resizeC);
         }
         p.panel("panel").animate(_38d.collapse, _386, function () {
@@ -340,7 +348,7 @@
                     if (_385 == "north") {
                         _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
                         var hh = _38e.height;
-                        if (!_368(_387.expandNorth)) {
+                        if (!_isPanelVisible(_387.expandNorth)) {
                             hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
                         }
                         _387.east.add(_387.west).add(_387.expandEast).add(_387.expandWest).panel("resize", { top: _38f - 1, height: hh });
@@ -349,7 +357,7 @@
                         if (_385 == "south") {
                             _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
                             var hh = _38e.height;
-                            if (!_368(_387.expandSouth)) {
+                            if (!_isPanelVisible(_387.expandSouth)) {
                                 hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
                             }
                             _387.east.add(_387.west).add(_387.expandEast).add(_387.expandWest).panel("resize", { height: hh });
@@ -397,7 +405,7 @@
             }
         };
     };
-    function _368(pp) {
+    function _isPanelVisible(pp) {
         if (!pp) {
             return false;
         }
@@ -481,5 +489,8 @@
     };
     // cryze 2018-9-18 原collapsedSize并不适用于 noth south的折叠高度   ，故新增collapsedHeight表示noth south的折叠高度
     // cryze 2018-9-18 增加 showCollapsedTitle ，控制是否在折叠的时候显示标题
-    $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null,showCollapsedTitle:false, split: false, collapsedSize: 28,collapsedHeight: 38, minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000 });
+    $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null,showCollapsedTitle:false, split: false, collapsedSize: 28,collapsedHeight: 38, minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000,
+        isNormalPadding:false,
+        isBigPadding:false
+     });
 })(jQuery);
