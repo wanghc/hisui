@@ -17,8 +17,19 @@
     <script type="text/javascript">
         var HISUIStyleCode = 'pure';
     </script>
-</head>
 
+
+	<style>
+		.my-demo-content{
+			background-color: #e3e3e3; 
+			height: 100%;
+			width: 100%; 
+			border-radius: 6px;
+			display: grid;
+			place-items: center;
+		}
+	</style>
+</head>
 <body style="background-color:#cde6ff;">
 
 	<h2>面板</h2>
@@ -28,18 +39,20 @@
 	<div>
 		<div class="use-prettyprint">
 			<div style="padding: 10px;">
-				<div class="hisui-panel" title="病人信息" style="width:400px;padding:20px;" 
+				<div class="hisui-panel" title="病人信息" style="width:500px;height: 300px;padding:8px 15px 15px 15px;" 
 				data-options="closable:false,collapsible:true,minimizable:false,maximizable:true">
-					面板
+					<div class="my-demo-content">
+						内容
+					</div>
 				</div>
 			</div>
 		</div>
 		
 			<div class="use-prettyprint">
 				<div style="padding: 10px;">
-					<div class="hisui-panel" title="图标面板" style="width:400px;padding:20px;" 
-					data-options="iconCls:'icon-paper-table',closable:false,collapsible:false,minimizable:true,maximizable:true">
-					iconCls:'icon-paper-table'
+					<div class="hisui-panel" title="图标面板" style="width:500px;height: 300px;padding:8px 15px 15px 15px;"
+					data-options="iconCls:'icon-paper-table',closable:false,collapsible:true,minimizable:false,maximizable:true">
+					<div class="my-demo-content">iconCls:'icon-paper-table'</div>
 					</div>
 				</div>
 			</div>
@@ -77,9 +90,11 @@
 			<div class="use-prettyprint">
 				<div style="padding: 10px;">
 					<div>
-						<div class="hisui-panel" title="蓝色面板" style="height:200px;padding:20px;" 
+						<div class="hisui-panel" title="蓝色面板" style="width:500px;height: 300px;padding:8px 15px 15px 15px;" 
 						data-options="headerCls:'panel-header-blue',closable:false,collapsible:true,minimizable:false,maximizable:false">
-							headerCls:'panel-header-blue'
+							<div class="my-demo-content">
+								iconCls:'panel-header-blue'
+							</div>
 						</div>
 					</div>
 				</div>
