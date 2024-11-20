@@ -16,7 +16,7 @@
   border-color: @panel-border-color;
   background:@panel-header-bgcolor;
   padding: @panel-header-padding;
-  border-radius: 6px 6px 0 0;
+  border-radius: @panel-border-radius @panel-border-radius 0 0;
   &.panel-header-blue{
     background-color:#f1f7fe;
   }
@@ -24,16 +24,24 @@
     right: 5px;
     width: auto;
     a {
+      background: none;
+      opacity: @input-arrow-opacity;
+      font: normal normal normal 13px/1 Mw_mifonts;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-align: center;
+      color:@panel-tool-a-color;
+      text-decoration: none;
       display: inline-block;
       width: 16px;
       height: 16px;
       opacity: 0.6;
       filter: alpha(opacity=60);
-      margin: 0 0 0 2px;
+      margin: 0 0 0 10px;
       vertical-align: top;
-      font-size: 10px;
+      font-size: 12px;
       line-height: 16px;
-      margin-left: 10px; /*间距修改 2944142*/
       &:hover {
         opacity: 1;
         filter: alpha(opacity=100);
@@ -58,7 +66,7 @@
   padding: 0;
   border-color: @panel-border-color;
   font-size: @panel-body-font-size;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 @panel-border-radius @panel-border-radius;
   border-top-color: @panel-header-bgcolor;
   background-color: @panel-body-bgcolor;
   color:#000000;
@@ -149,13 +157,13 @@
   }
 }
 .panel-status-collapse .panel-header {
-  border-radius: 4px;
+  border-radius: @panel-border-radius;
 }
 
 .panel-body.panel-body-noheader {
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+  -moz-border-radius: @panel-border-radius;
+  -webkit-border-radius: @panel-border-radius;
+  border-radius: @panel-border-radius;
   border-top-color: @panel-border-color;
 }
 
