@@ -10,7 +10,7 @@
   background-repeat: repeat-x;
   color: @linkbutton-font-color;
   background: @linkbutton-bgcolor;
-  border: 0px solid @linkbutton-bgcolor;  //不应有border 有的话32了
+  border: 1px solid @linkbutton-border-color;
   border-radius: @linkbutton-border-radius;
   text-align: center;
   span {
@@ -38,7 +38,7 @@
   &.active{
     background: @linkbutton-hover-bgcolor;
     color:@linkbutton-font-color;
-    border: 0px solid @linkbutton-hover-bgcolor;
+    border: 1px solid @linkbutton-border-color;
     filter: none;
     .l-btn-icon{
       background-color: @linkbutton-hover-bgcolor;
@@ -47,7 +47,7 @@
   &:hover{
     background: @linkbutton-hover-bgcolor;
     color:@linkbutton-font-color;
-    border: 0px solid @linkbutton-hover-bgcolor;
+    border: 1px solid @linkbutton-border-color;
     filter: none;
     .l-btn-icon{
       background-color: @linkbutton-hover-bgcolor;
@@ -65,12 +65,6 @@
 .l-btn-plain {
   border: 0;
   padding: 1px;
-}
-.l-btn-disabled {
-  color: #ccc;
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  cursor: default;
 }
 .l-btn-left {
   display: inline-block;
@@ -195,18 +189,6 @@
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-}
-.l-btn-disabled,
-.l-btn-disabled:hover {
-  background: #fafafa;
-  color: #444;
-  background: -webkit-linear-gradient(top,#ffffff 0,#eeeeee 100%);
-  background: -moz-linear-gradient(top,#ffffff 0,#eeeeee 100%);
-  background: -o-linear-gradient(top,#ffffff 0,#eeeeee 100%);
-  background: linear-gradient(to bottom,#ffffff 0,#eeeeee 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#eeeeee,GradientType=0);
-  filter: alpha(opacity=50) progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff,endColorstr=#eeeeee,GradientType=0);
 }
 .l-btn-plain-disabled,
 .l-btn-plain-disabled:hover {
@@ -366,10 +348,9 @@
 .l-btn.hover-dark.l-btn-waiting:hover ,
 .l-btn.hover-dark.l-btn-waiting{
   opacity: 1.0;
-  filter: alpha(opacity=100);
   background:@linkbutton-disabled-bgcolor;
-  color:#999999;
-  border-color: @linkbutton-disabled-bgcolor;
+  color:@linkbutton-disabled-text-color;
+  border-color: @linkbutton-disabled-border-color;
   cursor:no-drop;
   .l-btn-icon{
     background-color: @linkbutton-disabled-icon-bgcolor;
@@ -407,7 +388,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   padding: 0;
   border: 0;
   .l-btn-icon-left {
-    padding: 4px 10px;
+    padding: 10px;
     width: auto;
     .l-btn-icon{
       height: 28px;
@@ -418,21 +399,31 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       font-size: 28px;
       padding-left: 5px;
       padding-top: 0px;
+      color:#939393;
     }
    .l-btn-text{
       padding: 38px 0 0px; /*43--38px 20180929*/ /*44修改成38px 20230130*/
       line-height: 14px;
       margin: 0;
       text-align: center;
+      color:#191919;
     }
   }
   &:hover{
     border: 0;
     padding: 0;
     background:@linkbutton-plain-hover-bgcolor;
-    color:@input-border-focus-color;
+    border-radius: 6px;
+  }
+  &.l-btn-plain-disabled{
+    &:hover{
+      background:none;
+    }
+    .l-btn-icon{
+      color:#B4B3B3;
+    }
     .l-btn-text{
-      color:@input-border-focus-color;  /*#21ba45;*/
+      color:#B4B3B3;
     }
   }
 }
@@ -462,13 +453,16 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     &.white{
       background-color: @linkbutton-white-bgcolor;
       color:@linkbutton-white-color;
+      border-color: @linkbutton-white-border-color;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-white-disabled-bgcolor;
-        color:@linkbutton-white-disabled-color;
+        color: @linkbutton-white-disabled-color;
+        border-color: @linkbutton-white-disabled-border-color;
       }
     }
     &.white:hover,&.white.l-btn-focus{
-      background-color: @linkbutton-white-click-bgcolor;
+      background-color: @linkbutton-white-hover-bgcolor;
+      border-color: @linkbutton-white-hover-border-color;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-white-disabled-bgcolor;
       }
@@ -476,13 +470,16 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     &.blue{
       background-color: @linkbutton-blue-bgcolor;
       color:@linkbutton-blue-color;
+      border-color: @linkbutton-blue-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
         color:@linkbutton-blue-disabled-color;
+        border-color: @linkbutton-blue-disabled-bgcolor;
       }
     }
     &.blue:hover,&.blue.l-btn-focus{
       background-color: @linkbutton-blue-click-bgcolor;
+      border-color: @linkbutton-blue-click-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
       }
@@ -490,43 +487,55 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     &.green{
       background-color: @linkbutton-green-bgcolor;
       color:@linkbutton-green-color;
+      border-color: @linkbutton-green-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-green-disabled-bgcolor;
         color:@linkbutton-green-disabled-color;
+        border-color: @linkbutton-green-disabled-bgcolor;
       }
     }
     &.green:hover,&.green.l-btn-focus{
       background-color: @linkbutton-green-click-bgcolor;
+      border-color: @linkbutton-green-click-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-green-disabled-bgcolor;
+        border-color:@linkbutton-green-disabled-bgcolor;
       }
     }
     &.yellow{
       background-color: @linkbutton-yellow-bgcolor;
       color:@linkbutton-yellow-color;
+      border-color: @linkbutton-yellow-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-yellow-disabled-bgcolor;
         color:@linkbutton-yellow-disabled-color;
+        border-color: @linkbutton-yellow-disabled-bgcolor;
       }
     }
     &.yellow:hover,&.yellow.l-btn-focus{
       background-color: @linkbutton-yellow-click-bgcolor;
+      border-color: @linkbutton-yellow-click-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-yellow-disabled-bgcolor;
+        border-color:@linkbutton-yellow-disabled-bgcolor;
       }
     }
     &.red{
       background-color: @linkbutton-red-bgcolor;
       color:@linkbutton-red-color;
+      border-color: @linkbutton-red-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-red-disabled-bgcolor;
         color:@linkbutton-red-disabled-color;
+        border-color: @linkbutton-red-disabled-bgcolor;
       }
     }
     &.red:hover,&.red.l-btn-focus{
       background-color: @linkbutton-red-click-bgcolor;
+      border-color: @linkbutton-red-click-bgcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-red-disabled-bgcolor;
+        border-color:@linkbutton-red-disabled-bgcolor;
       }
     }
     // &.l-btn-disabled{ /*2863284要求去除*/
