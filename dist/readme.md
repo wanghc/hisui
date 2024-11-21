@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2024-11-21
+- :lipstick: `comboq`系列弹出层位置样式补写
+
 ## 2024-11-19
 - :sparkles: 增加`layout`增加大间距配置`isBigPadding`
 

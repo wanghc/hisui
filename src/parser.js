@@ -243,9 +243,11 @@
                 if (myTop > _t.offset().top) {
                     myTop--; 
                     panel.removeClass('comboq-p-top').addClass('comboq-p-bottom');
+                    _t.removeClass('comboq-textbox-top').addClass('comboq-textbox-bottom');
                 } else {
                     myTop++;
                     panel.removeClass('comboq-p-bottom').addClass('comboq-p-top');
+                    _t.removeClass('comboq-textbox-bottom').addClass('comboq-textbox-top');
                 }
                 var myLeft = getLeft();
                 if (Math.abs(myTop-panel.offset().top)>2 || Math.abs(myLeft-panel.offset().left)>2){
