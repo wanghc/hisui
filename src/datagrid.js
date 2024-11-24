@@ -2219,7 +2219,7 @@
                 for (var myField in item){
                     if (item.hasOwnProperty(myField)) {
                         //非字符类型--通过
-                        if ("string" !== typeof item[myField] && "number" !== typeof item[myField]) {break;}
+                        if ("string" !== typeof item[myField] && "number" !== typeof item[myField]) {continue;}
                         if (inputConditions.hasOwnProperty(myField) && inputConditions[myField]!="") {
                             /*对应字段没有匹配 - 不通过*/
                             if (item[myField].toString().toUpperCase().indexOf(inputConditions[myField])==-1 && $.hisui.toChineseSpell(item[myField].toString()).toUpperCase().indexOf(inputConditions[myField])==-1) {
