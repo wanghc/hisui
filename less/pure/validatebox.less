@@ -4,38 +4,48 @@
   line-height:@validatebox-height;
   background-color: @input-bgcolor;
   vertical-align: middle;
-  &:active{
-    background-color: @validatebox-focus-bgcolor;
-    border-color: @input-active-border-color;
-  }
   &:focus{
     background-color: @validatebox-focus-bgcolor;
     border-color: @input-active-border-color;
-    &+span>span,&+input+span>span{ /* 20190710 numberspinner--input+input+span */
-      opacity: @input-arrow-hover-opacity;
-      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+    &+span>span,&+input+span>span{
       background-color: @input-focus-bgcolor;
     }
   }
-  &:hover{
-    background-color: @validatebox-focus-bgcolor;
-    border-color: @input-active-border-color;
-  }
 }
 /*2019-07-10 span:hover---输入框与arrow都变色*/
-.searchbox:hover,.lookup:hover,.combo:hover,.spinner:hover{
-  input,span>span{
-    opacity: @input-arrow-hover-opacity;
-    filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-    background-color: @input-hover-bgcolor;
-  }
-}
+// .searchbox:hover,.lookup:hover{
+//   input,span>span{
+//     opacity: @input-arrow-hover-opacity;
+//     filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+//     background-color: @input-hover-bgcolor;
+//   }
+// }
 /*2022-10-10 组件禁用时背景色不变*/
 .searchbox.disabled:hover,.lookup.disabled:hover,.combo.disabled:hover,.spinner.disabled:hover{
   input,span>span{
     opacity: @input-arrow-hover-opacity;
     filter: alpha(opacity=@input-arrow-hover-opacity-ie);
     background-color: @input-disabled-bgcolor;
+  }
+}
+.combo,.searchbox,.lookup{
+  input:hover{
+    background-color: @input-hover-bgcolor;
+    &+span>span{
+      background-color: @input-hover-bgcolor;
+      color:@input-iconbtn-hover-color;
+    }    
+  }
+  input+span>span:hover{
+    background-color: @input-hover-bgcolor;
+    color:@input-iconbtn-hover-color;
+  }
+  input:focus,input:active{
+    background-color: @input-focus-bgcolor;
+    &+span>span{
+      background-color: @input-focus-bgcolor;
+      color:@input-iconbtn-color;
+    }    
   }
 }
 input.validatebox-invalid {

@@ -28,12 +28,18 @@ input.comboq.textbox{
   padding-right: 0px;
 }
 #z-q-container.comboq-p-top{
-  border-radius: 4px 4px 0 0;
+  border-radius: @input-border-radius @input-border-radius 0 0;
 }
 #z-q-container.comboq-p-bottom{
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 @input-border-radius @input-border-radius;
 }
 input.comboq-active{
   background-color: @input-active-bgcolor;
-  border-color: @input-active-border-color;
+  border-color: @input-active-border-color; 
+}
+input.comboq-active.comboq-textbox-bottom{
+  border-radius: @input-border-radius @input-border-radius 0 0;
+}
+input.comboq-active.comboq-textbox-top{
+  border-radius: 0 0 @input-border-radius @input-border-radius;
 }
