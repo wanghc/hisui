@@ -2185,6 +2185,7 @@
     function addToolLoadFilter(target) {
         var opts = $.data(target, "datagrid").options;
         opts.oldLoadFilter = opts.loadFilter;
+        if (opts.filterToolbarType=='remote'){ return ;}
         opts.loadFilter = function (data) {
             
             var tbar = $(target).closest('.datagrid-wrap').find('.datagrid-toolbar');
@@ -3738,6 +3739,9 @@
         like: "like",
         defaultsColumns: null,
         clearSelectionsOnload:false,  /*load时清除选中信息*/
-        refLinkButton:null
+        refLinkButton:null,
+        //'local'表示过滤originRows||rows数据；
+        //'remote'不会过滤数据，只会触发datagrid的reload方法，可以通过onBeforeLoad来重写参数。 默认值'local'
+        filterToolbarType : 'local'
     });
 })(jQuery);

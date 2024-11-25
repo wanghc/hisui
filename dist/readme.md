@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2024-11-25
+- 为datagrid配置项`filterToolbarType` [5164741]
+
 ## 2024-11-24
 - :bug: 解决`showFilterToolbar`使用时查询问题 [5164741]
 
