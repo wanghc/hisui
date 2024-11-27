@@ -108,7 +108,6 @@ label.radio ,label.checkbox{
 }
 .fs0{
     font-size: 0px;
-    padding: 0;
 }
 /*用于装多个按钮,让linkbutton间保持10px间距*/
 .links{
@@ -120,7 +119,4 @@ label.radio ,label.checkbox{
 .cntt{
     color:#666;
     font-weight: 500;
-}
-.hstep-container-steps .cntt div{
-    margin-bottom: 3px;
 }

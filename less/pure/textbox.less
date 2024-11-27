@@ -3,6 +3,10 @@ input[type=text],textarea{
   border-color: @input-border-color;
   width:@textbox-width;/*websys.css-width:130px;*/
 }
+input::selection,textarea::selection {
+  background-color: #008FFF; /* 输入框中选中文本的背景色 */
+  color:#FFFFFF;
+}
 /*不增加type=text，当<input>定义时不带type时选择不到*/
 /*textbox[type=text] 覆盖老的选择器*/
 .textbox[type=text] {

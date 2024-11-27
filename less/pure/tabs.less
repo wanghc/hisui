@@ -81,7 +81,7 @@
       display: inline-block;
       text-decoration: none;
       margin: 0;
-      padding: 0 10px;
+      padding: 0 15px;
       height: 25px;
       line-height: 25px;
       text-align: center;
@@ -352,6 +352,9 @@
 }
 .tabs-panels{
   border-radius: 0 0 4px 4px;
+  &>.panel>.panel-body{
+    background-color: transparent;
+  }
   &>.panel>.panel-body.panel-body-noheader{  //20220718 tabs内区域不要圆角,导致内部iframe也带圆角 [2790963]
     border-radius: 0px;
   }
@@ -417,7 +420,7 @@
       }
 
       .tabs-title.tabs-closable {
-        padding-right: 24px;
+        padding-right: 21px;
       }
 
       .tabs-icon {
@@ -431,7 +434,7 @@
 
     a.tabs-close {
       background-image: none;
-      right: 10px;
+      right: 15px;
       height: 16px;
       width: 16px;
       //background-color: @tabs-header-bgcolor;

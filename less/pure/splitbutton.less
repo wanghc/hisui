@@ -11,17 +11,30 @@
   border-width: 0 0 0 1px;
 }
 .s-btn{
+  &.l-btn-plain{
+    color:@splitbutton-fcolor;
+  }
+  &.l-btn.s-btn-active{
+    background-color: @splitbutton-hover-bgcolor;
+    border-color: @splitbutton-hover-border-color;
+    .l-btn-text{
+      color:@splitbutton-fcolor;
+    }
+  }
   .l-btn-left{
     &.l-btn-icon-left .l-btn-text{
       padding-right: 16px;
+    }
+    .m-btn-downarrow{
+      color:@splitbutton-fcolor;      
     }
   }
 }
 .l-btn-plain.m-btn:hover .l-btn-left{
   .l-btn-text{
-    color:@linkbutton-plain-hover-color;
+    color:@menubutton-blue-hover-fcolor;
   }
   .m-btn-downarrow{
-    color:@linkbutton-plain-hover-color;
+    color:@menubutton-blue-hover-fcolor;
   }
 }

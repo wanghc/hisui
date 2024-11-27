@@ -26,10 +26,15 @@
 				#sp label.item{
 					padding: 5px 10px;
 					display: block;
+					<% if (themeCode=="pure") {%>
+						color:#191919 ;
+					<% } %>
 				}
 				#sp label.item:hover{
 					<% if (themeCode=="blue") {%>
 					background-color:#dbecf8 ;
+					<% }else if (themeCode=="pure"){ %>
+					background-color:#D7E9FF;
 					<% }else{ %>
 					background-color:#E5E5E5 ;
 					<% } %>
@@ -37,7 +42,7 @@
 			</style>
 			<select id="cc2"></select>
 			<div id="sp">
-				<div class="header" style="background:#f5f5f5;padding:5px;">Select a language</div>
+				<!--<div class="header" style="background:#f5f5f5;padding:5px;">Select a language</div>-->
 				<div class="body">
 					<label class="item" value="java">Java语言</label>
 					<label class="item" value="ruby">Ruby语言</label>

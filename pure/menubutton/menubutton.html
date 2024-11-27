@@ -17,7 +17,9 @@
         var HISUIStyleCode = 'pure';
     </script>
 </head>
-<body>
+
+<body style="background-color:#FFFFFF;">
+
     <h2>菜单按钮</h2>
     <h3>说明:</h3>
     <span>菜单按钮（menubutton）是下拉菜单的一部分。它与链接按钮（linkbutton）及菜单（menu）有关。显示链接按钮（linkbutton），隐藏菜单（menu）。当用户点击或移动鼠标到链接按钮（linkbutton）上时，将显示菜单（menu）以允许用户点击菜单。</span>
@@ -126,7 +128,7 @@
     <h3>表格中使用按钮 </h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="custtb2" >
-			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-add',plain:true">增加</a>
 			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</a>
 			<a href="javascript:void(0)" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar2',iconCls:'icon-add-note'">其他</a>
 			<div id="mm-toolbar2" style="width:100px;">   
@@ -134,7 +136,7 @@
 				<div onclick="console.log('作废');">作废</div>     
 			</div>
 		</div>
-		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,
 			toolbar:'#custtb2',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
 			onDblClickRow:function(){console.log(arguments)}">   
 			<thead>   
@@ -147,7 +149,18 @@
 					<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
 					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
 				</tr>   
-			</thead>   
+			</thead>
+            <tbody>
+                <tr>
+                    <td>mycode</td>
+                    <td>mycaption</td>
+                    <td>myprice</td>
+                    <td>11</td>
+                    <td>mydesc</td>
+                    <td>2015-09-09</td>
+                    <td>2015-09-09 12:12:12</td>
+                </tr>
+            </tbody>   
 			<tbody>    
 			</tbody>   
 		</table> 
