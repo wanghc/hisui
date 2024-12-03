@@ -59,6 +59,12 @@ if ($.fn.combotree){
 }
 if ($.fn.combogrid){
 	$.fn.combogrid.defaults.missingMessage = '\u8be5\u8f93\u5165\u9879\u4e3a\u5fc5\u8f93\u9879';
+	$.fn.combogrid.defaults.loadMsg = '\u6b63\u5728\u5904\u7406\uff0c\u8bf7\u7a0d\u5f85\u3002\u3002\u3002';
+	$.fn.combogrid.defaults.findBtn = "\u67e5\u8be2";
+	$.fn.combogrid.defaults.clearBtn = "\u6e05\u7a7a";
+	$.fn.combogrid.defaults.advancedBtn = "\u9ad8\u7ea7";
+	$.fn.combogrid.defaults.advanced2Btn = "\u6536\u8d77";
+	$.fn.combogrid.defaults.like = "\u6a21\u7cca\u67e5\u8be2";
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['\u65e5','\u4e00','\u4e8c','\u4e09','\u56db','\u4e94','\u516d'];

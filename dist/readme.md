@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2024-12-03
+- :globe_with_meridians: `showFilterToolbar`增加翻译 [5203104]
+
 ## 2024-11-25
 - 为datagrid配置项`filterToolbarType` [5164741]
 

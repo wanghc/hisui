@@ -59,6 +59,12 @@ if ($.fn.combotree){
 }
 if ($.fn.combogrid){
 	$.fn.combogrid.defaults.missingMessage = '该输入项为必输项';
+	$.fn.combogrid.defaults.loadMsg = '正在处理，请稍待。。。';
+	$.fn.combogrid.defaults.findBtn = "查询";
+	$.fn.combogrid.defaults.clearBtn = "清空";
+	$.fn.combogrid.defaults.advancedBtn = "高级";
+	$.fn.combogrid.defaults.advanced2Btn = "收起";
+	$.fn.combogrid.defaults.like = "模糊查询";
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['日','一','二','三','四','五','六'];

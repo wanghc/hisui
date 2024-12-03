@@ -59,6 +59,12 @@ if ($.fn.combotree){
 }
 if ($.fn.combogrid){
 	$.fn.combogrid.defaults.missingMessage = '該輸入項為必輸項';
+	$.fn.combogrid.defaults.loadMsg = '正在處理，請稍待。。。';
+	$.fn.combogrid.defaults.findBtn = "查詢";
+	$.fn.combogrid.defaults.clearBtn = "清空";
+	$.fn.combogrid.defaults.advancedBtn = "高級";
+	$.fn.combogrid.defaults.advanced2Btn = "收起";
+	$.fn.combogrid.defaults.like = "模糊查詢";
 }
 if ($.fn.calendar){
 	$.fn.calendar.defaults.weeks = ['日','一','二','三','四','五','六'];
