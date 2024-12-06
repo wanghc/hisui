@@ -228,7 +228,7 @@
             var cls = opts.icon ? "messager-icon messager-" + opts.icon : "";
             opts = $.extend({}, $.messager.defaults, {                
                 /* 对象文字 add margin-left:42px;*/
-                content: "<div class=\"" + cls + "\"></div>" + "<div style=\"margin-left:126px;padding-right:50px\">" + opts.msg + "</div>" + "<div style=\"clear:both;\"/>",
+                content: "<div class=\"" + cls + "\"></div>" + "<div style=\"margin-left:42px\">" + opts.msg + "</div>" + "<div style=\"clear:both;\"/>",
                 bbuttons: {
                     'ok':function (e) {
                         if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -251,7 +251,7 @@
             opts.msg = $.hisui.getTrans(opts.msg);
             return $.messager.alertSrcMsg(opts);
         }, confirmSrcMsg: function (_288, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:126px;width:288px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
@@ -278,7 +278,7 @@
         }, confirm: function (title, msg, fn) {
             return $.messager.confirmSrcMsg(title, $.hisui.getTrans(msg), fn);
         }, confirm3SrcMsg: function (title, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:126px;width:288px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -308,7 +308,7 @@
         }, confirm3: function (title, msg, fn) {
             return $.messager.confirm3SrcMsg(title, $.hisui.getTrans(msg), fn);
         }, promptSrcMsg: function (_28b, msg, fn) {
-            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:126px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
+            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
             _28d['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
