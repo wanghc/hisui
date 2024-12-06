@@ -1,0 +1,54 @@
+# $ cat .gitignore
+#忽略 .rar 结尾文件
+#忽略 .chm 结尾文件
+*.chm
+#忽略 ~ 结尾文件
+*~
+*.zip
+*old.html
+*old.js
+*-old.less
+#忽略 .vscode 目录
+.vscode/
+less-old/
+lib/
+bug
+src-old/
+api/scrollbar
+资料/
+node_modules/
+favicon.ico
+git.txt
+package-lock.json
+
+issues-20180418.txt
+index.hashead.html
+ihelp/
+dist*.rar
+src/jquery.hisui.src.js
+dist/js/jquery.hisui.js
+dist/js/jquery.hisui.min.js
+dist/css/hisui.css
+dist/css/hisui.min.css
+dist/css/locale/*
+api/datagrid/an.html
+api/datagrid/an.json
+dist/css/hisui.css
+dist/css/hisui.min.css
+dist/js/jquery.hisui.js
+dist/js/jquery.hisui.min.js
+dist/css/hisui.lite.css
+dist/css/hisui.lite.min.css
+dist/css/hisui.lightblue.css
+dist/css/hisui.lightblue.min.css
+dist/css/hisui.pure.min.css
+dist/css/hisui.pure.css
+less/hisui.min.less
+less/lite/hisui.min.less
+less/lightblue/hisui.min.less
+less/pure/hisui.min.less
+less/lightblue_bak
+api/test/*
+nodescripts/upload.js
+cache'代码编写规范v1.15 -0819.doc
+
