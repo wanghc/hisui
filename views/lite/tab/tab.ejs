@@ -10,7 +10,11 @@
 		</style>
 	<% } %>
 </head>
+<% if (themeCode=="pure") {%>
+<body style="background-color:#cde6ff;">
+<%}else{%>
 <body>
+<% } %>
 	<h2>页签</h2>
 	<h3>说明:</h3>
     <span>页签（Tabs ）一次仅显示一个面板（panel），每个面板（panel）都有标题、图标和关闭按钮。 当 Tabs 被选中时，将显示对应的面板（panel）的内容。</span>
@@ -20,7 +24,7 @@
 		
 		<div id="tt" class="hisui-tabs"  style="width:500px;height:100px;" >
 			<!--wanghc 2018-04-11 tab页签上不要增加小图标 data-options="iconCls:'icon-add-note'"-->   
-			<div title="电子病历" style="padding:20px;">   
+			<div title="电子病历" data-options="closable:true" style="padding:20px;">   
 				tab1 电子病历
 			</div>   
 			<div title="诊断录入" data-options="closable:true" style="overflow:auto;padding:20px;">   

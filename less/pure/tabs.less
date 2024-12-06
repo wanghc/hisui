@@ -353,7 +353,7 @@
 .tabs-panels{
   border-radius: 0 0 4px 4px;
   &>.panel>.panel-body{
-    background-color: transparent;
+    background-color: #ffffff;
   }
   &>.panel>.panel-body.panel-body-noheader{  //20220718 tabs内区域不要圆角,导致内部iframe也带圆角 [2790963]
     border-radius: 0px;
@@ -537,7 +537,7 @@
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
-  border-color: @tabs-header-bdcolor;
+  border-color: #ffffff;
 }
 .tabs-scroller-left{
   border-left-width:0px ;
@@ -862,6 +862,7 @@
       -webkit-border-radius: 4px 0 0 4px ;
       border-radius: 4px 0 0 4px ;
       background-color: @tabs-header-gray-bgcolor;
+      border-color: @tabs-header-gray-bgcolor;
       &.tabs-header-noborder{ /*border:false*/
         border: 0;
       }
