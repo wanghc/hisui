@@ -383,6 +383,7 @@
         background: @tabs-header-bgcolor;
         border: 0 solid;
         border-bottom: 3px solid @tabs-header-select-top-color;
+        border-radius: 1px;
         color: @tabs-header-select-font-color;
         font-weight: 700;
         &:hover {
@@ -653,6 +654,7 @@
         border: 1px solid @tabs-header-gray-bgcolor;
         border-left: 3px solid @tabs-header-gray-bgcolor;  /*这里是背景色,只能选中才显示左竖线*/
         background-color: @tabs-header-gray-bgcolor;
+        color: @tabs-header-base-font-color;
         &:hover {
           background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
@@ -916,7 +918,7 @@
 .tabs-keywords .tabs{
   li{
     .tabs-title{
-      font-size: 14px;
+      font-size: 16px;
     }
     a.tabs-inner{
       color:@tabs-keywords-color;
@@ -953,11 +955,15 @@
   }
 }
 .tabs-system{
+  .tabs-header{
+    background-color: @tabs-system-blue-background-color;
+  }
   li{
     a.tabs-inner{
+      background-color: @tabs-system-blue-background-color;
+    
       &::after{
         content: ' ';
-        border-right: 1px solid #E2E2E2;
         right: 0;
         position: absolute;
         top: 8px;
@@ -969,28 +975,44 @@
       &:hover{
         background: none;
         &+.tabs-close{
-          color:@tabs-header-select-font-color;
+          color: @tabs-header-hover-font-color
         }
+      }
+      .tabs-title{
+        font-size: 14px;
+        color: @tabs-header-base-font-color;
       }
     }
     &.tabs-selected{
-      background-color: @tabs-header-select-font-color;
+      background-color: @tabs-system-blue-background-color;
       a.tabs-inner{
-        background: @tabs-header-hover-bgcolor;
+        background: @tabs-system-blue-background-color;
         font-weight: 700;
+        &:hover{
+          background: @tabs-system-blue-background-color;
+        }
       }
       .tabs-close{
-        color:@tabs-header-select-font-color;
+        color:@tabs-header-hover-font-color;
+      }
+    }
+    a.tabs-close{
+      margin-left: 5px;
+      color:@tabs-header-hover-font-color;
+      &:hover{
+        margin-left: 5px;
+        color:@tabs-header-hover-font-color;
       }
     }
   }
 }
+
 .tabs-text .tabs{
   border-bottom-color:#e4e4e4 ;
   li{
     overflow: hidden;
     .tabs-title{
-      font-size: 14px;
+      font-size: 16px;
     }
     a.tabs-inner{
       color:@tabs-text-color;

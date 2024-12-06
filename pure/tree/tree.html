@@ -290,7 +290,7 @@
 							return node.text;
 						}else{
 							return "<div >"
-								+"<span data-id='"+node.id+"' class='icon icon-edit' style='display:block;width:16px;height:16px;position:absolute;right:5px;top:5px;'></span>"
+								+"<span data-id='"+node.id+"' class='icon icon-edit' style='display:block;width:16px;height:16px;position:absolute;right:8px;top:13px;'></span>"
 								+"<div style='height:20px;line-height:20px;color:gray'>"+(new Date()).toLocaleString()+"</div>"
 								+"<div style='height:20px;line-height:20px;'>"+node.text+"</div>"
 								+"</div>";
@@ -312,115 +312,8 @@
 		</script>
 		</div>
 	</div>
-	<h3>四、转成手风琴样式(<code>class="accordiontree"</code>)</h3>
-	<div class="demo-exp-code entry-content">
-		<P>为生成树的dom增加类accordiontree 可将树的样式变为下样式</P>
-		<P style="color: red;">2023-03-22新增了<code>menutree组件</code>，建议优先尝试<a id="goto-menutree" href="../menutree/menutree.html" target="_blank">menutree</a></P>
-		<script>
-			$(function(){
-				$('#goto-menutree').click(function(){
-					if(window.parent && window.parent!=window &&window.parent.$) {
-						var p$=window.parent.$;
-						var flag=false;
-						p$('.api-navi-tab').each(function(){
-							if($(this).text().indexOf('menutree')>-1) {
-								p$(this).click();
-								flag=true;
-								return false;
-							}
-						})
-						if(flag) return false;
-					}
+	
 
-
-				})
-			})
-		</script>
-
-		<!--tree 高度在外部限定-->
-		<div class="use-prettyprint">
-			<div style="height:500px;width:208px;overflow:auto">
-				<ul id="mytt" style="width:188px;" class="accordiontree" data-options="animate:true"></ul>
-			</div>
-			<script type="text/javascript">
-				$(function () {
-					$('#mytt').tree({
-						data: [{
-							"id": 1,
-							"text": "物资信息",
-							"state": "open",
-							"children": [{
-								"id": 11,
-								"text": "Node 11",
-								"children": [{
-									"id": 111,
-									"text": "Node 111",
-									"iconCls":"icon-drug"
-								}, {
-									"id": 112,
-									"text": "Node 112",
-									"iconCls":"icon-drug"
-								}]
-							}, {
-								"id": 12,
-								"text": "Node 12"
-							}]
-						}, {
-							"id": 2,
-							"text": "物资信息2",
-							"state": "open",
-							"children": [{
-								"id": 21,
-								"text": "Node 21",
-								"children": [{
-									"id": 211,
-									"text": "Node 211"
-								}, {
-									"id": 212,
-									"text": "Node 212",
-									"children": [{
-										"id": 2121,
-										"text": "Node 2121"
-									}, {
-										"id": 2122,
-										"text": "Node 2122"
-									}]
-								}]
-							}, {
-								"id": 22,
-								"text": "Node 22"
-							}]
-						}, {
-							"id": 3,
-							"text": "物资信息3",
-							"state": "closed",
-							"children": [{
-								"id": 31,
-								"text": "Node 31",
-								"children": [{
-									"id": 311,
-									"text": "Node 311"
-								}]
-							}]
-						}],
-						onClick: function (node) {
-							$('#mytt').tree('toggle', node.target); //简单单吉展开关闭
-							/*  //类手风琴 只开一个根节点操作
-							if($(node.target).parent().parent().hasClass('accordiontree')&&node.state=="closed"){
-								var roots=$('#mytt').tree('getRoots');
-								$.each(roots,function(i,o){
-									$('#mytt').tree('collapse',o.target);
-								})
-							}
-							$('#mytt').tree('toggle',node.target);
-							*/
-						}
-					})
-				})
-			</script>
-		</div>
-	</div>
-    <div>
 	<h3>tree新增属性、方法</h3>
 	<table class="table">
 		<tr class="protitle">

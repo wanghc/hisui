@@ -9,9 +9,9 @@
     <span>切换开关</span>
     <h3>如：</h3>
     <div class="demo-exp-code entry-content"> 
-        <div id="switch1" class="hisui-switchbox" style="margin-left:5px" data-options="onText:'启用',offText:'禁用',
+        <div id="switch1" class="hisui-switchbox" style="margin-left:5px" data-options="onText:'开启',offText:'关闭',
         size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:function(event,obj){console.log(event);console.log(obj);}">
-        </div><pre class="prettyprint hide lang-html"><code>&lt;div id="switch1" class="hisui-switchbox" style="margin-left:5px" data-options="onText:'启用',offText:'禁用',
+        </div><pre class="prettyprint hide lang-html"><code>&lt;div id="switch1" class="hisui-switchbox" style="margin-left:5px" data-options="onText:'开启',offText:'关闭',
 size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:function(event,obj){console.log(event);console.log(obj);}">
 &lt;/div&gt;</code></pre>
     </div>
@@ -20,8 +20,7 @@ size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:func
         <div id="switch2" ></div>
         <pre class="prettyprint hide lang-js"><code>$(function(){
     $HUI.switchbox('#switch2',{
-        onText:'开',
-        offText:'关',
+ 
         onClass:'primary',
         offClass:'gray',
         onSwitchChange:function(e,obj){
@@ -33,8 +32,7 @@ size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:func
         <script>
             $(function(){
                 $HUI.switchbox('#switch2',{
-                    onText:'开',
-                    offText:'关',
+        
                     onClass:'primary',
                     offClass:'gray',
                     onSwitchChange:function(e,obj){
