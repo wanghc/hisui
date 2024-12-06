@@ -60,24 +60,29 @@
 }
 .messager-icon {
   float: left;
-  width: 32px;
-  height: 32px;
-  margin: 0 10px 10px 0;
+  width: 46px;
+  height: 46px;
+  margin: 0 20px 10px 50px;
 }
 .messager-info {
-  background: url('@{images-path}/messager_icons.png') no-repeat scroll 0 0;
+  background: url('@{images-path}/messager_info.svg') no-repeat;
+  background-size: 46px 46px;
+
 }
 .messager-question {
-  background: url('@{images-path}/messager_icons.png') no-repeat scroll -32px 0;
+  background: url('@{images-path}/messager_question.svg') no-repeat;
+  background-size: 46px 46px;
 }
 .messager-error {
-  background: url('@{images-path}/messager_icons.png') no-repeat scroll -64px 0;
+  background: url('@{images-path}/messager_error.svg') no-repeat;
+  background-size: 46px 46px;
 }
 .messager-warning {
   background: url('@{images-path}/messager_icons.png') no-repeat scroll -96px 0;
 }
 .messager-success{
-  background: url('@{images-path}/messager_icons.png') no-repeat scroll -128px 0;
+  background: url('@{images-path}/messager_success.svg') no-repeat;
+  background-size: 46px 46px;
 }
 .messager-progress {
   padding: 10px;
@@ -100,7 +105,7 @@
   position: absolute;
   border-radius: 6px;
   display: block;
-  padding:6px 15px;
+  padding:12px 20px;
   font-weight:@messager-body-fweight;
   font-size: @messager-body-fsize;
   z-index: 10000;

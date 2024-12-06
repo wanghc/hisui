@@ -150,13 +150,17 @@
   font-size: 1px;
   text-align: center;
   overflow: hidden;
+  
 }
 .datagrid-header-check input,
 .datagrid-cell-check input {
   margin: 0;
   padding: 0;
-  width: 15px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
+  border: 1px;
+  border-radius: 3px;
+  border-color: #CCCCCC;
 }
 .datagrid-resize-proxy {
   position: absolute;
@@ -247,7 +251,7 @@
 .datagrid-htable,
 .datagrid-btable,
 .datagrid-ftable {
-  color: #000000;
+  color: #191919;
   border-collapse: separate;
 }
 .datagrid-row-alt {
@@ -312,7 +316,9 @@
 }
 
 .datagrid-header .datagrid-cell span {
-  font-size: @datagrid-cell-font-size  ;
+  font-size: 14px  ;
+  color: #939393;
+  font-weight: bold;
 } 
 .datagrid-header .datagrid-header-autowrap .datagrid-cell{
   white-space: pre-wrap;
@@ -321,6 +327,7 @@
 /*---*/
 .datagrid-header-row, .datagrid-row{
   height: 35px;
+  border: 1px solid #FFFFFF;
   td {
     border-left: 0;
     border-right: 0;
@@ -330,8 +337,11 @@
   height: 34px;
 
 }
-.datagrid-header, .datagrid-td-rownumber{
+.datagrid-header{
   background: @datagrid-header-bgcolor;
+}
+.datagrid-td-rownumber{
+  background: #FFF;
 }
 .datagrid-header td, .datagrid-body td, .datagrid-footer td{
   border-color:@datagrid-border-color;
@@ -342,13 +352,14 @@
 }
 .datagrid-row-selected ,.datagrid-merged-row-selected,
 .datagrid-row-over.datagrid-row-selected{  /* selected>hover */
+  //margin: 0px 1px;
   background: @datagrid-row-select;
   color:@datagrid-row-select-color;
 }
 .datagrid-row-over, .datagrid-header td.datagrid-header-over {
-  background: @datagrid-row-hover;
-  color: @datagrid-row-hover-color;
-  cursor: default;
+  // background: @datagrid-row-hover;
+  // color: @datagrid-row-hover-color;
+  // cursor: default;
 }
 .datagrid-cell, .datagrid-cell-group{
   /*text-overflow: ellipsis;*/ /*2018-12-4 showTip*/
@@ -358,11 +369,16 @@
 .datagrid-toolbar {
   background-color: #ffffff;
   border-color:@datagrid-border-color;
+  padding-left: 15px;
+  //padding-bottom: 10px;
   // padding:2px 2px; /* 2988534 */
   .l-btn-plain {
     padding: 0 0 0 ;
     border: 0;
     margin-top: 2px;
+    //margin-left: 5px;
+   // margin-right: 5px;
+    border-radius: 6px;
     margin-bottom: 2px;
     color:@linkbutton-font-color;
     &:hover{
@@ -372,7 +388,7 @@
     .l-btn-icon-left{
       .l-btn-text{
         line-height: 26px;
-        padding: 0 8px 0 29px;
+        padding: 0 18px 0 29px;
         margin: 0 0 0 ;
       }
       
@@ -399,8 +415,9 @@
   }
   .l-btn-plain-disabled{
     .l-btn-left{
+      color: #b4b3b3;
       .l-btn-icon{
-        color:#bbbbbb;
+        color:#b4b3b3;
       }
     }
   }

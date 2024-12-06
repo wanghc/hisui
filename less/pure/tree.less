@@ -165,12 +165,12 @@
 .tree-node-selected{
   background: @tree-node-hover-bgcolor;
   color: @tree-node-selected-font-color;
-  border-radius: 6px;
+  //border-radius: 6px;
 }
 .tree-node-hover{
   background: @tree-node-hover-bgcolor;
   color: @tree-node-hover-font-color;
-  border-radius: 6px;
+  //border-radius: 6px;
 }
 /*增加.tree>li>ul解决 大节点也变色背景问题 */
 .tree>li>ul .tree-node-selected .tree-title{
@@ -178,6 +178,16 @@
 }
 .tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
   margin-top:5px;
+}
+.tree-collapsed, .tree-expanded{
+  margin-left: 7px;
+}
+.tree-folder{
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+.tree-checkbox{
+  margin-left: 2.5px;
 }
 /*线条*/
 .tree-lines{

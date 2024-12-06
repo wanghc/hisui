@@ -81,38 +81,7 @@
         });
     </script>
 </div>
-<h3 style="clear: both;">二.红色的标签页(<code>labelCls:'red'</code>)</h3>
-<div class="demo-exp-code entry-content">
-    <div id="redkw"></div>
-    <pre class="prettyprint lang-html hide"><code>&lt;div id="redkw">&lt;/div></code></pre>
-    <script type="text/javascript" class="use-prettyprint">
-        $(function(){
-            $("#redkw").keywords({
-                singleSelect:true,
-                onClick:function(v){console.log("点击->"+v.text)},
-                onUnselect:function(v){console.log("取消选择->"+v.text);},
-                onSelect:function(v){console.log("选择->"+v.text);},
-                labelCls:'red',
-                items:[
-                    {text:'知识库',id:'red1'},
-                    {text:'医嘱',id:'red2',disabled:true},
-                    {text:'中草药',id:'red3'},
-                    {text:'检查',id:'red4',selected:true},
-                    {text:'检验',id:'red5'},
-                    {text:'生命体征',id:'red6'},
-                    {text:'诊断',id:'red7'},
-                    {text:'病理',id:'red8'}
-                ]
-            });
-            function btnHandler(){
-                var rs = $("#kw").keywords("getSelected");
-                console.log(rs);
-                $("#kw").keywords("clearAllSelected");
-            }
-            $("#btn").click(btnHandler);
-        })
-    </script>
-</div>
+
 
 <h3 style="clear: both;">三.蓝色的标签页(<code>labelCls:'darkblue'</code>)</h3>
 <div class="demo-exp-code entry-content">

@@ -64,7 +64,7 @@
   border-style: solid;
   overflow: auto;
   border-top-width: 0;
-  padding: 0;
+  padding: 0px 10px 10px 10px;
   border-color: @panel-border-color;
   font-size: @panel-body-font-size;
   border-radius: 0 0 @panel-border-radius @panel-border-radius;
@@ -159,7 +159,7 @@
 }
 
 .panel-title.panel-with-icon {
-  padding-left: 28px;
+  padding-left: 32px;
 }
 
 .panel-tool-close::before {
@@ -215,6 +215,7 @@
   }
 }
 .panel .panel-body.panel-body-noborder{
+  border-radius: 6px;
   border-color:@panel-header-bgcolor;
 }
 
@@ -224,4 +225,7 @@
  */
 .panel-body.panel-noscroll {
   overflow: hidden;
+}
+.hisui-window {
+  border-radius: 6px;
 }

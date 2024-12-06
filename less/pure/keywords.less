@@ -45,7 +45,7 @@ ul.kw-section-list{
     float: left;
     margin:5px 5px 5px 0px;
     & a{
-        border-radius: 2px;
+        border-radius: 6px;
         display: block;
         height: 24px;
         line-height: 24px;
@@ -103,10 +103,13 @@ ul.kw-section-list{
     }
 }
 .keywords-labeldarkblue .kw-section-list>li{
+
+    margin:0px;
     & a{
         background: @keywords-darkblue-bgcolor;
         color: @keywords-darkblue-color;
         border:1px solid transparent;
+        padding: 0px 15px;
         &:hover{
             cursor: pointer;
             background: @keywords-darkblue-hover-bgcolor;
@@ -114,11 +117,14 @@ ul.kw-section-list{
         }
     }
     &.selected a{
+        font-size: 16px;
+        font-weight: bold;
         background: @keywords-darkblue-select-bgcolor;
         color:@keywords-darkblue-select-color;
     }
     &.disabled a{
-        background-color: @keywords-disabled-bgcolor;
+        padding: 0px 15px;
+        background-color: #FFF;
         color:@keywords-disabled-fcolor;
         &:hover{
             cursor: not-allowed;
