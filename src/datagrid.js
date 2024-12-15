@@ -514,7 +514,7 @@
                 }
             }
             if (_552 && opts.rownumbers) {
-                var td = $("<td rowspan=\"" + opts.frozenColumns.length + "\"><div class=\"datagrid-header-rownumber\"></div></td>");
+                var td = $("<td rowspan=\"" + opts.frozenColumns.length + "\"><div class=\"datagrid-header-rownumber\">"+$.hisui.getTrans($.hisui.getStyleCodeConfigValue("datagridRowNumberHeaderTitle"))+"</div></td>");
                 if ($("tr", t).length == 0) {
                     var myFrozenColumnsTr = '<tr class="datagrid-header-row';
                     if (!opts.titleNoWrap) myFrozenColumnsTr += ' datagrid-header-autowrap';
