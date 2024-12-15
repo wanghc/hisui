@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-12-15
+- :sparkles: 抽象出styleCodeConfig来配置不同样式下js变量
+
 ## 2024-12-03
 - :globe_with_meridians: `showFilterToolbar`增加翻译 [5203104]
 
