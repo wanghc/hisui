@@ -226,6 +226,15 @@
             },
             datagridRowNumberHeaderTitle:{
                 "pure":'序号', "default":''
+            },
+            dateTodayColor:{
+                default:"#449edd",pure:"#008FFF"
+            },
+            dateCloseColor:{
+                default: "#ff2600",pure:"#939393"
+            },
+            dateOkColor:{
+                default: "#ff2600"
             }
         },
         getStyleCodeConfigValue(key){

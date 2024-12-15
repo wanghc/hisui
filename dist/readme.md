@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2024-12-15
 - :sparkles: 抽象出styleCodeConfig来配置不同样式下js变量
 - 纯净版`datagrid`的`rownumber`列标题从空修改成`序号`二字，列宽从25修改成36
+- :lipstick: 纯净版本日历面板按钮颜色修改
 
 ## 2024-12-03
 - :globe_with_meridians: `showFilterToolbar`增加翻译 [5203104]
