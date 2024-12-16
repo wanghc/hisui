@@ -215,6 +215,33 @@
             }
             // 当前界面有application/x-iemrplugin
             $.hisui.switchObjectSize(options,win,toHide,trgt,hisuiCmpName);
+        },
+            /**增加不同版本风格相关变量 */
+        styleCodeConfig : {
+            mustCalcPanelHeaderCardTitleWidth:{
+                "default":true,"blue":true,"lite":false,"lightblue":false,pure:false
+            },
+            accordionBodyExHeight : {
+                "lite":-1,"lightblue":-1,"default":0
+            },
+            datagridRowNumberHeaderTitle:{
+                "pure":'序号', "default":''
+            },
+            dateTodayColor:{
+                default:"#449edd",pure:"#008FFF"
+            },
+            dateCloseColor:{
+                default: "#ff2600",pure:"#939393"
+            },
+            dateOkColor:{
+                default: "#ff2600"
+            }
+        },
+        getStyleCodeConfigValue(key){
+            if ("undefined" == typeof HISUIStyleCode ) return $.hisui.styleCodeConfig[key].default;
+            if ("undefined" == typeof $.hisui.styleCodeConfig[key]) return "";
+            if ("undefined" == typeof $.hisui.styleCodeConfig[key][HISUIStyleCode]) return $.hisui.styleCodeConfig[key].default;
+            return $.hisui.styleCodeConfig[key][HISUIStyleCode];
         }
     };
     $.hisui.globalContainerId = 'z-q-container';
@@ -280,6 +307,7 @@
             return top;
         };
     }
+
     /*--1.5.js--jquery.parser.js--method-----end---*/
     $.parser = {
         auto: true, onComplete: function (context) {

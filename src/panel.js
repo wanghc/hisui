@@ -45,11 +45,8 @@
         }
         _1e7.add(_1e8)._outerWidth(_1e6.width());
         //wanghc card--
-        var isLiteStyle = false;
-        if ("undefined" != typeof HISUIStyleCode && HISUIStyleCode.toLocaleLowerCase() == 'lite') isLiteStyle = true;
-        if ("undefined" != typeof HISUIStyleCode && HISUIStyleCode.toLocaleLowerCase() == 'lightblue') isLiteStyle = true;
-        if ("undefined" != typeof HISUIStyleCode && HISUIStyleCode.toLocaleLowerCase() == 'pure') isLiteStyle = true;
-        if (null!=opts.headerCls && "undefined"!=typeof opts.headerCls && opts.headerCls.indexOf("panel-header-card") > -1 && (!isLiteStyle)) { /*炫彩UI才设置width*/
+        var mustCalcPanelHeaderCardTitleWidth = $.hisui.getStyleCodeConfigValue('mustCalcPanelHeaderCardTitleWidth');
+        if (null!=opts.headerCls && "undefined"!=typeof opts.headerCls && opts.headerCls.indexOf("panel-header-card") > -1 && mustCalcPanelHeaderCardTitleWidth) { /*炫彩UI才设置width*/
             if (null!=opts.titleWidth && "undefined"!=typeof opts.titleWidth) {
                 _1e7.width(opts.titleWidth);
             }else{
