@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"下拉框"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<h2>组合框</h2>
     <h3>说明:</h3>
 	<span>组合（combo）是在 html 页面上显示一个可编辑的文本框和下拉面板。它是用于创建其他复杂的组合组件（比如：组合框 combobox、组合树 combotree、组合网格 combogrid，等等）的基础组件。</span>

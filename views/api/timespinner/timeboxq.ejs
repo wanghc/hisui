@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"快速时间组件"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<style>
 		.demo-exp-code td{padding:5px 0;}

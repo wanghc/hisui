@@ -3,7 +3,11 @@
 <head>
     <%- include('../../templates/hisui-header.ejs',{title:"下拉表格"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
     <h2>组合网格</h2>
     <h3>说明:</h3>
     <span>组合网格（combogrid）把可编辑的文本框和下拉数据网格面板结合起来，用户可以从下拉数据网格面板中快速查找和选择。组合网格（combogrid）提供了选择某个项目的键盘导航支持。</span>

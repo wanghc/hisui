@@ -4,7 +4,11 @@
     <%- include('../../templates/hisui-header.ejs',{title:"纵向节点图组件"}) %>
     
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 <h2>纵向节点图组件(<code>vstep</code>)</h2>
 <h3>说明：</h3>
 <span>可用于步骤图，流程图，闭环图等，可自定义节点后描述内容及格式。<code>2021-02-26</code>。</span>

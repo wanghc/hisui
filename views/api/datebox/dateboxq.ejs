@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
 	<%- include('../../templates/hisui-header.ejs',{title:"快速日期"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<style>
 		.demo-exp-code td{padding:5px 0;}

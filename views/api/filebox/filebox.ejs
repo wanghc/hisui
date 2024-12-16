@@ -5,7 +5,11 @@
 	<%- include('../../templates/hisui-header.ejs',{title:"文件选择框"}) %>
 </head>
 
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<style>
 		td {
 			padding: 5px 0;

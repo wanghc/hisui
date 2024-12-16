@@ -4,7 +4,11 @@
 	<meta charset="UTF-8">
     <%- include('../../templates/hisui-header.ejs',{title:"日期时间"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<style>
 		.demo-exp-code td{padding:5px 0;}
 		.demo-exp-code td.r-label{padding-right: 10px;}

@@ -4,7 +4,11 @@
 	<%- include('../../templates/hisui-header.ejs',{title:"放大镜"}) %>
 	<script src="../mock-min.js" type="text/javascript"></script>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<script src="data.js" type="text/javascript"></script>
 	<h2>放大镜</h2>
 	<h3>说明:</h3>

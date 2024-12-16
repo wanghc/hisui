@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"快速下拉框"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<h2>弹出层快速框</h2>
     <h3>说明:</h3>
 	<span>弹出层快速框是所有q系统的父组件,可以在IE下快速呈现。</span>

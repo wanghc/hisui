@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"横向节点图"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 <h2>横向节点图组件(<code>hstep</code>)</h2>
 <h3>说明：</h3>
 <span>可用于步骤图，流程图，闭环图等。</span>

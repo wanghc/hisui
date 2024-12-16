@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"勾选框"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<style>.wd120{width: 120px;}</style>
 	<h2>选择框, 通过图片得到蓝色系勾选框</h2>
 	<h3>说明:</h3>
