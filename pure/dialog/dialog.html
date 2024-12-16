@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>对话框</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,20 +16,20 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
+
 
 </head>
-<body>
+
+    <body style="background-color: #FFFFFF;">
+
 	<h2>模态窗口</h2>
 	<h3>说明:</h3>
     <span>对话框（Dialog）是一个特殊的窗口（window），可以包含在顶部的工具栏和在底部的按钮。默认情况下，对话框（Dialog）不能改变大小，但是用户可以设置 resizable 属性为 true，使其可以改变大小。</span>
 	<h3>如：</h3>
 	<div class="demo-exp-code entry-content"> 
 		<div class="use-prettyprint">
-			<div id="dd2" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;">   
-				<div style="background-color: #ffffff;margin:0 10px 10px 10px;padding:10px;height: 234px;">
+			<div id="dd2" title="完成接诊" style="width:400px;height:350px;top:120px;left:200px;padding:0 20px;">   
+				<div style="padding:10px;">
 					这是一个模态操作框<code>hisui-dialog</code>
 				</div>
 			</div>
