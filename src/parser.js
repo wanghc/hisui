@@ -237,7 +237,7 @@
                 default: "#ff2600"
             },
             inputHeight:{
-                default: 30,pure:21
+                default: 30,pure:32
             }
         },
         getStyleCodeConfigValue(key){
