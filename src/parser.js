@@ -238,6 +238,15 @@
             },
             inputHeight:{
                 default: 30,pure:32
+            },
+            messagerPromptBtnIndex:{
+                default:['ok','cancel'],pure:['cancel','ok']
+            },
+            messagerConfirm3BtnIndex:{
+                default:['ok','no','cancel'],pure:['cancel','no','ok']
+            },
+            messagerConfirmBtnIndex:{
+                default:['ok','cancel'],pure:['cancel','ok']
             }
         },
         getStyleCodeConfigValue(key){

@@ -253,7 +253,8 @@
         }, confirmSrcMsg: function (_288, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
-            _28a['ok'] = function (e) {
+            var messagerConfirmBtnIndex = $.hisui.getStyleCodeConfigValue('messagerConfirmBtnIndex');
+            _28a[messagerConfirmBtnIndex[0]] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
                 // 解决IE下输入框值改变时弹出confirm，且回车focus下一输入框情况下，如果回车自动触发ok按钮问题
                 // 回车--光标跳到下一框--触发change--弹出confirm---自动click-ok
@@ -266,7 +267,7 @@
                     return false;
                 }
             };
-            _28a['cancel'] = function () {
+            _28a[messagerConfirmBtnIndex[1]] = function () {
                 win.window("close");
                 if (fn) {
                     fn(false);
@@ -280,7 +281,8 @@
         }, confirm3SrcMsg: function (title, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
-            _28a['ok'] = function (e) {
+            var messagerConfirm3BtnIndex = $.hisui.getStyleCodeConfigValue('messagerConfirm3BtnIndex');
+            _28a[messagerConfirm3BtnIndex[0]] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
@@ -289,14 +291,14 @@
                     return false;
                 }
             };
-            _28a['no'] = function () {
+            _28a[messagerConfirm3BtnIndex[1]] = function () {
                 win.window("close");
                 if (fn) {
                     fn(false);
                     return false;
                 }
             };
-            _28a['cancel'] = function () {
+            _28a[messagerConfirm3BtnIndex[2]] = function () {
                 win.window("close");
                 if (fn) {
                     fn(undefined);
@@ -310,7 +312,8 @@
         }, promptSrcMsg: function (_28b, msg, fn) {
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
-            _28d['ok'] = function (e) {
+            var messagerPromptBtnIndex = $.hisui.getStyleCodeConfigValue('messagerPromptBtnIndex');
+            _28d[messagerPromptBtnIndex[0]] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
@@ -319,7 +322,7 @@
                     return false;
                 }
             };
-            _28d['cancel'] = function () {
+            _28d[messagerPromptBtnIndex[1]] = function () {
                 win.window("close");
                 if (fn) {
                     fn();
