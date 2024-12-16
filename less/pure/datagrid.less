@@ -1,6 +1,10 @@
 @import "variables.less";
 .datagrid{
   border-radius: 4px;
+  border: 1px #FFF solid; //2024.12.12 yx 默认修改为白色边框
+}
+.datagrid-border-gray-parent{  //2024.12.12 yx 增加灰色边框表格
+  border-radius: 4px;
   border: 1px #e4e4e4 solid;
 }
 .datagrid .panel-body {
@@ -187,6 +191,7 @@
   margin: 0;
   padding: 2px;
   border-width: 1px;
+  border-radius: 6px;
   border-style: solid;
 }
 .datagrid-sort .datagrid-sort-icon{
@@ -326,7 +331,7 @@
 }
 /*---*/
 .datagrid-header-row, .datagrid-row{
-  height: 35px;
+  height: 32px;
   border: 1px solid #FFFFFF;
   td {
     border-left: 0;
@@ -351,9 +356,13 @@
   border-bottom-color: transparent;
 }
 .datagrid-row-selected ,.datagrid-merged-row-selected,
-.datagrid-row-over.datagrid-row-selected{  /* selected>hover */
+.datagrid-row-selected{  /* selected>hover */
   //margin: 0px 1px;
   background: @datagrid-row-select;
+  color:@datagrid-row-select-color;
+}
+.datagrid-row-over{
+  background: #FEF5E5;
   color:@datagrid-row-select-color;
 }
 .datagrid-row-over, .datagrid-header td.datagrid-header-over {
@@ -367,9 +376,10 @@
 }
 /*toolbar 一点改动*/
 .datagrid-toolbar {
+  //padding-bottom: 10px; //加上后默认 默认高度10 改为margin 下划线又随着变化
   background-color: #ffffff;
   border-color:@datagrid-border-color;
-  padding-left: 15px;
+  padding-left: 10px;
   //padding-bottom: 10px;
   // padding:2px 2px; /* 2988534 */
   .l-btn-plain {
@@ -387,8 +397,8 @@
     }
     .l-btn-icon-left{
       .l-btn-text{
-        line-height: 26px;
-        padding: 0 18px 0 29px;
+        line-height: 39px;
+        padding: 0 10px 0 29px;
         margin: 0 0 0 ;
       }
       
@@ -401,8 +411,8 @@
         // left:5px;
         height: 16px;
         width: 16px;
-        line-height: 16px;
-        padding: 5px 5px 5px 8px;
+        line-height: 28px;
+        padding: 5px 5px 5px 10px;
       }
       .l-btn-empty+.l-btn-icon{
         left: 0;

@@ -41,6 +41,7 @@
   border: 1px solid #b7d2ff;
   filter: none;
 }
+
 .m-btn .l-btn-left .l-btn-text {
   margin-right: 20px;
 }
@@ -253,7 +254,7 @@
       height: 16px;
       width: 16px;
       line-height:16px;
-      padding:5px 5px 5px 8px
+      padding:5px 5px 5px 10px
     }
     .m-btn-downarrow{
       height: 16px;
@@ -270,7 +271,7 @@
 .menu.menubutton-toolbar{
   .menu-item{
     background-color: #fff;
-    height: 35px; /*26px*/
+    height: 34px; /*26px*/
     border: 0px; 
     &:hover{
       background-color:@menubutton-menu-item-hover-bgcolor;
@@ -278,7 +279,7 @@
     .menu-text{
       color: #191919;
       padding-left: 10px; /*10px*/
-      line-height: 35px; /*26px*/
+      line-height: 34px; /*26px*/
     }
     .menu-icon{
       display: none;
@@ -293,4 +294,11 @@
     margin-bottom: 0;
     border-bottom:0px;
   }
+}
+.l-btn-icon{
+  padding-left: 10px;
+}
+.m-btn-downarrow::before{
+
+  line-height: 18px;
 }

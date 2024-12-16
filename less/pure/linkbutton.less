@@ -8,9 +8,9 @@
   outline: none;
   vertical-align: middle;
   background-repeat: repeat-x;
-  color: @linkbutton-font-color;
-  background: @linkbutton-bgcolor;
-  border: 1px solid @linkbutton-border-color;
+  color: #FFF;
+  background: #008FFF;
+  border: 1px solid #008FFF;
   border-radius: @linkbutton-border-radius;
   text-align: center;
   span {
@@ -45,8 +45,8 @@
     }
   }
   &:hover{
-    background: @linkbutton-hover-bgcolor;
-    color:@linkbutton-font-color;
+    background: #006EDB;
+    color:#FFF;
     border: 1px solid @linkbutton-border-color;
     filter: none;
     .l-btn-icon{
@@ -205,8 +205,8 @@
   background: #ddd;
 }
 .l-btn-text {
-  min-width: 0;/*@linkbutton-text-width;*/
-  line-height: @linkbutton-height;
+  min-width: 46px;/*@linkbutton-text-width;*/
+  line-height: 32px;
   font-size: @linkbutton-font-size;
   padding: 0 15px;
   margin: 0px;
@@ -348,9 +348,9 @@
 .l-btn.hover-dark.l-btn-waiting:hover ,
 .l-btn.hover-dark.l-btn-waiting{
   opacity: 1.0;
-  background:@linkbutton-disabled-bgcolor;
-  color:@linkbutton-disabled-text-color;
-  border-color: @linkbutton-disabled-border-color;
+  background:#99D2FF;
+  color:#FFF;
+  border-color: #99D2FF;
   cursor:no-drop;
   .l-btn-icon{
     background-color: @linkbutton-disabled-icon-bgcolor;
@@ -468,9 +468,9 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       }
     }
     &.blue{
-      background-color: @linkbutton-blue-bgcolor;
-      color:@linkbutton-blue-color;
-      border-color: @linkbutton-blue-bgcolor;
+      background-color: #EDF6FF;
+      color:#008FFF;
+      border-color: #A5D5FFF;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
         color:@linkbutton-blue-disabled-color;
@@ -478,8 +478,8 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       }
     }
     &.blue:hover,&.blue.l-btn-focus{
-      background-color: @linkbutton-blue-click-bgcolor;
-      border-color: @linkbutton-blue-click-bgcolor;
+      background-color: #D7E9FF;
+      border-color: #008FFF;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
       }

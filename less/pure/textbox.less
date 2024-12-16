@@ -21,7 +21,7 @@ input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-t
   box-sizing:content-box;
   border-radius: @input-border-radius;
   border: @validatebox-border-width @validatebox-border-type @input-border-color;
-  color:@validatebox-font-color;
+  color:#191919;
   font-size:@validatebox-font-size;
   &:active{
     background-color: @input-active-bgcolor;
@@ -37,8 +37,8 @@ input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-t
   }
 }
 input.textbox{
-  line-height:@validatebox-height;
-  height:@validatebox-height;
+  line-height:32px;
+  height:32px;
 }
 .textbox:disabled,
 .textareabox-text:disabled,
@@ -49,6 +49,10 @@ textarea:disabled, input:not([type]):disabled, input[type="text"]:disabled{
   border-color: @input-disabled-border-color;
   color: @input-disabled-color;
   cursor: not-allowed;
+}
+.searchbox-text{
+  height: 32px;
+  line-height: 32px;
 }
 .checkbox.disabled ,.radio.disabled,.filebox.disabled input{
   cursor: not-allowed;

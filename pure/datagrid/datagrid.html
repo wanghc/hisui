@@ -111,13 +111,109 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 			iconCls: 'icon-help',
 			text:'帮助',
 			handler: function(){alert('你点击了帮助按钮')}
-		},'-',{
-			//iconCls: 'icon-ok',
-			text:'查询',
-			handler: function(){alert('你点击了查询')}
+		}],onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},onDblClickRow:function(){console.log(arguments)}
+		">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'code',width:40">编码</th>   
+					<th data-options="field:'name',width:40,editor:{type:'text'}">姓名</th>   
+					<th data-options="field:'price',width:50">就诊科室</th>
+					<th data-options="field:'num',width:60">诊断</th>
+					<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称</th>
+					<th data-options="field:'re',width:70,editor:{type:'datebox'}">日期</th>   
+					<th data-options="field:'datetime',width:110,editor:{type:'datetimebox'}">日期与时间</th>   
+				</tr>   
+			</thead>   
+			<tbody>   
+				<tr>   
+					<td>001</td><td>王小二</td><td>内三科</td><td>支气管肺炎</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:08:50</td>   
+				</tr>   
+				<tr>   
+					<td>002</td><td>李四</td><td>内三科</td><td>叶间胸膜炎</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>
+				</tr>
+				<tr>   
+					<td>003</td><td>张三</td><td>内三科</td><td>大叶性肺炎</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>
+				</tr>
+				<tr>   
+					<td>004</td><td>刘小五</td><td>内三科</td><td>感冒</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>  
+				</tr>
+				<tr>   
+					<td>005</td><td>朱小六</td><td>内三科</td><td>肺结核</td><td>name1</td><td>2018-01-02</td><td>2018-01-02 12:00:00</td>   
+				</tr>   
+			</tbody>   
+		</table> 
+
+		<pre class="prettyprint hide lang-html"><code>&lt;table class="hisui-datagrid" title="病人列表" style="width:600px;height:400px" 
+			data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',iconCls:'icon-paper',pagination:true,toolbar: [{
+			iconCls: 'icon-write-order',
+			text:'编辑',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
+				$('#mytb').datagrid('beginEdit',curInd);}
 		},{
-			iconCls: 'icon-search',
-			handler: function(){alert('你点击了查询图标')}
+			iconCls: 'icon-save',
+			text:'保存',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
+				$('#mytb').datagrid('endEdit',curInd)}
+		},{
+			iconCls: 'icon-cancel',
+			text:'删除',
+			disabled:true,
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;
+				$('#mytb').datagrid('deleteRow',curInd)}
+		},{
+			iconCls:'icon-set-col',
+			text:'修改列标题',
+			handler:function(){var jqobj = $('#mytb');jqobj.datagrid('setColumnTitle',{'datetime':'时间(新)','code':'代码(新)'})}
+		},{
+			iconCls: 'icon-help',
+			text:'帮助',
+			handler: function(){alert('你点击了帮助按钮')}
+		}]
+	">   
+		&lt;thead>   
+			&lt;tr>
+				&lt;th data-options="field:'code',width:40">编码&lt;/th>   
+				&lt;th data-options="field:'name',width:40,editor:{type:'text'}">姓名&lt;/th>   
+				&lt;th data-options="field:'price',width:50">就诊科室&lt;/th>
+				&lt;th data-options="field:'num',width:40">诊断&lt;/th>
+				&lt;th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称&lt;/th>
+				&lt;th data-options="field:'re',width:70,editor:{type:'datebox'}">日期&lt;/th>   
+				&lt;th data-options="field:'datetime',width:100,editor:{type:'datetimebox'}">日期与时间&lt;/th>   
+			&lt;/tr>   
+		&lt;/thead>   
+		&lt;tbody>   
+			&lt;tr>   
+				&lt;td>001&lt;/td>&lt;td>王小二&lt;/td>&lt;td>内三科&lt;/td>&lt;td>感觉&lt;/td>&lt;td>name1&lt;/td>&lt;td>2323&lt;/td>   
+			&lt;/tr>
+			......
+		&lt;/tbody>   
+	&lt;/table&gt;</code></pre>
+	</div>
+	<div class="demo-exp-code entry-content" style="background: white;">
+		<table id='mytb' class="hisui-datagrid " title="病人列表" style="width:600px;height:300px" 
+		data-options="autoSizeColumn:false,fitColumns:true,headerCls:'datagrid-border-gray',
+		singleSelect:true,
+		pagination:true,toolbar: [{
+			iconCls: 'icon-edit',
+			text:'',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('beginEdit',curInd);}
+		},{
+			iconCls: 'icon-save',
+			text:'',
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('endEdit',curInd)}
+		},{
+			iconCls: 'icon-cancel',
+			text:'',
+			disabled:true,
+			handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('deleteRow',curInd)}
+		},{
+			iconCls:'icon-set-col',
+			text:'修改列标题',
+			handler:function(){var jqobj = $('#mytb');jqobj.datagrid('setColumnTitle',{'datetime':'时间(新)','code':'代码(新)'})}
+		},{
+			iconCls: 'icon-help',
+			text:'帮助',
+			handler: function(){alert('你点击了帮助按钮')}
 		}],onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},onDblClickRow:function(){console.log(arguments)}
 		">   
 			<thead>   
@@ -200,7 +296,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 	<h3>二、自定义表格工具栏(<code>toolbar:'#custtb'</code>) </h3>
 	<div class="demo-exp-code entry-content"> 
 		<div id="custtb" >
-			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-search',plain:true">查询</a>
+			
 			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</a>
 			<a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-add-note'">其他</a>
 			<div id="mm-toolbar" style="width:100px;">   
@@ -284,6 +380,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 					//nowrap:false,
 					//autoSizeColumn:false,
 					//fitColumns:true,
+					striped:false,
 					showFooter:true,
 					loadFilter:function(data){ 
 						if(data.footer && data.footer.length>0){
@@ -608,7 +705,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 						lineHeight:12,
 						columns:[[
 							{field:'ck',title:'sel',checkbox:true},
-							{field:'code',title:'属性序号',width:40},
+							{field:'code',title:'属性序号',width:100},
 							{field:'name',title:'属性名',width:100},
 							{field:'type',title:'类型',width:100,align:'right'},
 							{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/

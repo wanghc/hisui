@@ -441,6 +441,7 @@
       //background-color: @tabs-header-bgcolor;
       font-size: 10px;    /*在textbox.less 定义的13px 会被原css中1px的冲掉 导致显示不出关闭 而且13px过大 在此定义为10px*/
       &::before{
+        color: #939393;
         content: @content-close;
       }
       &:hover {
@@ -484,7 +485,7 @@
   background:@tabs-header-bgcolor;
 }*/
 .tabs-title {
-  font-size: @tabs-title-font-size;
+  font-size: 16px;
 }
 
 .tabs-header-bottom .tabs li a.tabs-inner {
@@ -925,7 +926,8 @@
       color:@tabs-keywords-color;
       &:hover{
         color: @tabs-keywords-color;
-        background: @tabs-keywords-hover-bgcolor;
+        //background: @tabs-keywords-hover-bgcolor;
+        background: #FFF;
         border-bottom-color: transparent;
         border-radius: 6px;
         &+.tabs-close{
@@ -992,17 +994,22 @@
         &:hover{
           background: @tabs-system-blue-background-color;
         }
+        .tabs-title{
+          font-size: 14px;
+          color: #424656;
+        }
       }
       .tabs-close{
         color:@tabs-header-hover-font-color;
       }
+
     }
     a.tabs-close{
       margin-left: 5px;
       color:@tabs-header-hover-font-color;
       &:hover{
         margin-left: 5px;
-        color:@tabs-header-hover-font-color;
+        color:#FC494F;
       }
     }
   }
@@ -1031,3 +1038,9 @@
     }
   }
 }
+// .tabs-text{
+//   .tabs li{
+//     height: 46px;
+//   }
+// }
+

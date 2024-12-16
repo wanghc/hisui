@@ -33,8 +33,8 @@
   .combo-text {
     font-size: @combo-font-size;
     border:0; //px solid transparent;
-    line-height: @combo-input-line-height;
-    height: @combo-input-line-height;
+    line-height: 32px;
+    height: 32px;
     padding: 0px 0px 0px @combo-padding-left;
     *height:  @combo-input-line-height-ie8;
     *line-height:  @combo-input-line-height-ie8;
@@ -45,6 +45,10 @@
   .combo-arrow::before{
     content: "\f476";
     font-size: 16px;
+    color: #666666;
+    &:hover{
+      color: #008FFF;
+    }
   }
   &.combo-p-active.combo-p-bottom{
     border-radius: @input-border-radius @input-border-radius 0 0 ;
@@ -87,6 +91,9 @@
   filter: alpha(opacity=@input-arrow-hover-opacity-ie);
   background-color: @input-arrow-hover-bgcolor;
   color: @input-active-border-color;
+  ::before{
+    color: #008FFF;
+  }
 }
 
 .panel.combo-p > .combo-panel{

@@ -66,6 +66,9 @@
       filter: alpha(opacity=@input-arrow-hover-opacity-ie);
       color:@input-active-border-color;
       background-color: @spinner-arrow-hover-bgcolor;
+      ::before{
+        color:@input-active-border-color;
+      }
     }
   }
   &:focus input, &:active input{
@@ -114,14 +117,20 @@
 
 
 .spinner-arrow-up::before{
+
   content: "\f264";
   font-size: 10px;
   color: #191919;
+  width: 16px;
+  height: 16px;
 }
 .spinner-arrow-down::before{
+
   content: "\f265";
   font-size: 10px;
   color: #191919;
+  width: 16px;
+  height: 16px;
 }
 .spinner {
   border-color: @input-border-color;

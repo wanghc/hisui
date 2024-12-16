@@ -22,7 +22,7 @@
     border-color: #f1f7fe;
   }
   .panel-tool {
-    right: 5px;
+    right: 15px;
     width: auto;
     a {
       background: none;
@@ -69,7 +69,7 @@
   font-size: @panel-body-font-size;
   border-radius: 0 0 @panel-border-radius @panel-border-radius;
   border-top-color: @panel-header-bgcolor;
-  background-color: @panel-body-bgcolor;
+  background-color: #FFF;
   color:#000000;
 
 }
@@ -137,12 +137,14 @@
   background: url('images/panel_tools.png') no-repeat -32px -16px;
 }
 .panel-title {
+  display: flex;
+  align-items: center; /* 垂直居中 */
   font-size: @panel-title-font-size;
   font-weight: bold;
   color: @panel-title-font-color;
-  height: @panel-title-height;
+  height: 38px;
   line-height: @panel-title-height;
-  padding-left: 15px;
+  padding-left: 9px;
 }
 /*2018-6-28 增大图标与左边间距*/
 /*默认禁用所有panel的header上的icon*/
@@ -188,7 +190,7 @@
 }
 
 .panel-tool a.panel-tool-close:hover {
-  color:#fF0000;
+  color:#FC494F;
 }
 //由于加了圆角，其他继承panel的都会出现，在此再修改回去
 .panel.lookup-p,

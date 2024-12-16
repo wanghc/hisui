@@ -25,11 +25,30 @@
     &.l-btn-icon-left .l-btn-text{
       padding-right: 16px;
     }
-    .m-btn-downarrow{
+    .m-btn-downarrow::before{
+      display: block;
+      line-height: 20px;
+      padding-left: 3px;
       color:@splitbutton-fcolor;      
     }
   }
+  // :active .l-btn-waiting{
+  //   color:#FFF;
+  // }
+  .l-btn-waiting::before{
+    color:#FFF;
+  }
+  .l-btn-icon{
+
+    line-height: 32px;
+    padding: 0px 5px 0px 10px;
+    ::before{
+      color:@splitbutton-fcolor;
+    }
+  }
+
 }
+
 .l-btn-plain.m-btn:hover .l-btn-left{
   .l-btn-text{
     color:@menubutton-blue-hover-fcolor;
