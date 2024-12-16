@@ -86,13 +86,14 @@ var Level = {
 	不能定义fn.x.defaults.width默认宽度。
 	如有某元素定义class='hisui-combobox width110',此时组件不会去拿对应框的宽度110,而是此处定义的宽度
 	*/
+	
 	$.fn.combo.defaults.width = 177;
-	$.fn.combo.defaults.height = 30;
-	$.fn.combobox.defaults.height = 30;
-	$.fn.combotree.defaults.height = 30;
-	$.fn.combogrid.defaults.height = 30;
-	$.fn.datebox.defaults.height = 30;
-	$.fn.datetimebox.defaults.height = 30;
+	$.fn.combo.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");
+	$.fn.combobox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
+	$.fn.combotree.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
+	$.fn.combogrid.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
+	$.fn.datebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
+	$.fn.datetimebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
 	$.fn.tabs.defaults.tabHeight=36;
     /*var cardHandler = function(){
         $(".panel-header.panel-header-card,.panel-header.panel-header-card-gray").each(function(){

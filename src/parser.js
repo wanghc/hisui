@@ -235,6 +235,9 @@
             },
             dateOkColor:{
                 default: "#ff2600"
+            },
+            inputHeight:{
+                default: 30,pure:21
             }
         },
         getStyleCodeConfigValue(key){
