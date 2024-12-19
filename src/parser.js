@@ -239,11 +239,20 @@
             inputHeight:{
                 default: 30,pure:32
             },
+            messagerPromptBtnIndex:{
+                default:['ok','cancel'],pure:['cancel','ok']
+            },
+            messagerConfirm3BtnIndex:{
+                default:['ok','no','cancel'],pure:['cancel','no','ok']
+            },
+            messagerConfirmBtnIndex:{
+                default:['ok','cancel'],pure:['cancel','ok']
+            },
             tabHeight:{
                 default: 36,pure:44
             }
         },
-        getStyleCodeConfigValue(key){
+        getStyleCodeConfigValue : function(key){
             if ("undefined" == typeof HISUIStyleCode ) return $.hisui.styleCodeConfig[key].default;
             if ("undefined" == typeof $.hisui.styleCodeConfig[key]) return "";
             if ("undefined" == typeof $.hisui.styleCodeConfig[key][HISUIStyleCode]) return $.hisui.styleCodeConfig[key].default;

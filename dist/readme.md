@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-12-19
+- :bug: `getStyleCodeConfigValue`写法兼容IE浏览器
+
 ## 2024-12-15
 - :sparkles: 抽象出styleCodeConfig来配置不同样式下js变量
 - 纯净版`datagrid`的`rownumber`列标题从空修改成`序号`二字，列宽从25修改成36
