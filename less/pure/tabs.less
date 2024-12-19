@@ -5,7 +5,7 @@
 }
 .tabs-header {
   border-width: 1px;
-  border-style: solid;
+  //border-style: solid;
   border-bottom-width: 0;
   position: relative;
   padding: 0;
@@ -165,7 +165,7 @@
   margin: 0px;
   padding: 0px;
   border-width: 1px;
-  border-style: solid;
+  //border-style: solid;
   border-top-width: 0;
   overflow: hidden;
 }
@@ -240,7 +240,7 @@
 .tabs-header-left .tabs li a.tabs-inner {
   display: block;
   text-align: left;
-  border-radius: 5px 0 0 5px;
+  border-radius: 6px 0 0 6px;
 }
 .tabs-header-right .tabs li a.tabs-inner {
   display: block;
@@ -323,14 +323,14 @@
 .tabs-scroller-left::before{
   content: @content-left2;
   display: block;
-  margin-top: 10px;
-  margin-left: 0px;
+  margin-top: 13px;
+  margin-left: 8px;
 }
 .tabs-scroller-right::before{
   content: @content-right2;
   display: block;
-  margin-top: 10px;
-  margin-left: 2px;
+  margin-top: 13px;
+  margin-right: 10px;
 }
 
 .tabs-scroller-right,.tabs-scroller-left{
@@ -346,12 +346,12 @@
 
 .tabs-header {
   padding-top: 0px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 6px 6px 0 0;
   border-width: 1px;
   border-bottom-width: 0px;
 }
 .tabs-panels{
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 6px 6px;
   &>.panel>.panel-body{
     background-color: #ffffff;
   }
@@ -407,7 +407,7 @@
       -moz-border-radius: 0;
       -webkit-border-radius: 0;
       border-radius: 0;
-      color: @tabs-header-font-color;
+      color: #939393;
       background: @tabs-header-bgcolor;
       border-width: 0;
       border-bottom: 3px solid @tabs-header-bgcolor;
@@ -628,7 +628,7 @@
 .tabs-header-left {
   padding:0;
   &.tabs-header {
-    border-radius: 4px 0 0 4px;
+    border-radius: 6px 0 0 6px;
     border-width: 1px;
     border-right-width: 0px;
   }
@@ -847,31 +847,31 @@
 
 .tabs-gray {
   .tabs-header {
-    -moz-border-radius: 4px 4px 0 0;
-    -webkit-border-radius: 4px 4px 0 0;
-    border-radius: 4px 4px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
     &.tabs-header-bottom{
-      -moz-border-radius: 0 0 4px 4px ;
-      -webkit-border-radius: 0 0 4px 4px ;
-      border-radius: 0 0 4px 4px ;
+      -moz-border-radius: 0 0 6px 6px ;
+      -webkit-border-radius: 0 0 6px 6px ;
+      border-radius: 0 0 6px 6px ;
       &.tabs-header-noborder{ /*border:false*/
         border: 0;
       }
     }
     &.tabs-header-left{
-      -moz-border-radius: 4px 0 0 4px ;
-      -webkit-border-radius: 4px 0 0 4px ;
-      border-radius: 4px 0 0 4px ;
+      -moz-border-radius: 6px 0 0 6px ;
+      -webkit-border-radius: 6px 0 0 6px ;
+      border-radius: 6px 0 0 6px ;
       background-color: @tabs-header-gray-bgcolor;
-      border-color: @tabs-header-gray-bgcolor;
+      //border-color: @tabs-header-gray-bgcolor;
       &.tabs-header-noborder{ /*border:false*/
         border: 0;
       }
     }
     &.tabs-header-right{
-      -moz-border-radius: 0 4px 4px 0 ;
-      -webkit-border-radius: 0 4px 4px 0 ;
-      border-radius:  0 4px 4px 0 ;
+      -moz-border-radius: 0 6px 6px 0 ;
+      -webkit-border-radius: 0 6px 6px 0 ;
+      border-radius:  0 6px 6px 0 ;
       &.tabs-header-noborder{ /*border:false*/
         border: 0;
       }
@@ -881,32 +881,32 @@
     }
   }
   .tabs-panels{
-    -moz-border-radius: 0 0 4px 4px ;
-    -webkit-border-radius: 0 0 4px 4px ;
-    border-radius: 0 0 4px 4px ;
+    -moz-border-radius: 0 0 6px 6px ;
+    -webkit-border-radius: 0 0 6px 6px ;
+    border-radius: 0 0 6px 6px ;
     &.tabs-panels-noborder{ /*border:false*/
       border: 0;
     }
     &.tabs-panels-top{
-      -moz-border-radius: 4px 4px 0 0;
-      -webkit-border-radius: 4px 4px 0 0;
-      border-radius: 4px 4px 0 0;
+      -moz-border-radius: 6px 6px 0 0;
+      -webkit-border-radius: 6px 6px 0 0;
+      border-radius: 6px 6px 0 0;
       &.tabs-panels-noborder{ /*border:false*/
         border: 0;
       }
     }
     &.tabs-panels-right{
-      -moz-border-radius: 0 4px 4px 0 ;
-      -webkit-border-radius: 0 4px 4px 0 ;
-      border-radius:  0 4px 4px 0 ;
+      -moz-border-radius: 0 6px 6px 0 ;
+      -webkit-border-radius: 0 6px 6px 0 ;
+      border-radius:  0 6px 6px 0 ;
       &.tabs-panels-noborder{ /*border:false*/
         border: 0;
       }
     }
     &.tabs-panels-left{
-      -moz-border-radius: 4px 0 0 4px ;
-      -webkit-border-radius: 4px 0 0 4px ;
-      border-radius: 4px 0 0 4px ;
+      -moz-border-radius: 6px 0 0 6px ;
+      -webkit-border-radius: 6px 0 0 6px ;
+      border-radius: 6px 0 0 6px ;
       &.tabs-panels-noborder{ /*border:false*/
         border: 0;
       }
@@ -1038,9 +1038,135 @@
     }
   }
 }
+
+.tabs-container{
+  .tabs-header{
+  //border-bottom: 2px solid yellow;
+    padding-bottom: 2px;
+    .tabs-wrap{
+      .tabs{
+        .tabs-brand{
+          .tabs-inner{
+            .tabs-title{
+              color: #424656;
+            }
+
+          }
+        }
+      }
+    }
+  }
+  .tabs {
+    margin: 0px;
+    li {
+      margin: 0px 15px;
+      a.tabs-inner {
+        
+          padding: 0px;
+        
+      }
+      .tabs-icon{
+        left: 0px;
+        top: 21px;
+      }
+      .tabs-close{
+        right: 0px;
+        top: 21px;
+        ::before{
+          &:hover {
+            color:red;
+            background-color: transparent;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+
 // .tabs-text{
 //   .tabs li{
 //     height: 46px;
 //   }
 // }
 
+.tabs-gray{
+  .tabs-header-left{
+    border: 1px solid #FFF;
+    border-color:#FFF;
+    .tabs-wrap{
+      .tabs{
+
+        li{
+          height: 46px;
+          margin: 0px;
+          .tabs-inner{
+            .tabs-title{
+              margin-left: 14px;
+            }
+
+          }
+          .tabs-close{
+            right: 10px;
+          }
+
+          &.tabs-brand{
+            .tabs-title{
+              margin-left: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .tabs-header-right{
+    border: 1px solid #FFF;
+    border-color:#FFF;
+    background-color: #F1F7FE;
+    .tabs-wrap{
+      .tabs{
+
+        li{
+          height: 46px;
+          margin: 0px;
+          .tabs-inner{
+            .tabs-title{
+              margin-left: 14px;
+            }
+
+          }
+          .tabs-close{
+            right: 10px;
+          }
+
+          &.tabs-brand{
+            .tabs-title{
+              margin-left: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.tabs-keywords{
+  .tabs-header{
+    .tabs-wrap{
+      .tabs{
+        li {
+          &.tabs-selected{
+            a.tabs-inner{
+              background-color:#FFF;
+              color: #008FFF;
+              font-weight: bold;
+              border-radius: 0px;
+              border-bottom: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

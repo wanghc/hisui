@@ -94,7 +94,9 @@ var Level = {
 	$.fn.combogrid.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
 	$.fn.datebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
 	$.fn.datetimebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
-	$.fn.tabs.defaults.tabHeight=36;
+	$.fn.tabs.defaults.tabHeight = $.hisui.getStyleCodeConfigValue("tabHeight");;
+
+
     /*var cardHandler = function(){
         $(".panel-header.panel-header-card,.panel-header.panel-header-card-gray").each(function(){
 			var _t = $(this);

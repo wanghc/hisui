@@ -247,6 +247,9 @@
             },
             messagerConfirmBtnIndex:{
                 default:['ok','cancel'],pure:['cancel','ok']
+            },
+            tabHeight:{
+                default: 36,pure:44
             }
         },
         getStyleCodeConfigValue : function(key){
