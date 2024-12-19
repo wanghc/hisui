@@ -238,6 +238,9 @@
             },
             inputHeight:{
                 default: 30,pure:32
+            },
+            tabHeight:{
+                default: 36,pure:44
             }
         },
         getStyleCodeConfigValue(key){

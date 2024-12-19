@@ -24,13 +24,13 @@
 		
 		<div id="tt" class="hisui-tabs"  style="width:500px;height:100px;" >
 			<!--wanghc 2018-04-11 tab页签上不要增加小图标 data-options="iconCls:'icon-add-note'"-->   
-			<div title="电子病历" data-options="closable:true" style="padding:20px;">   
+			<div title="电子病历" data-options="closable:true,iconCls:'icon-paper-table'" style="padding:15px;">   
 				tab1 电子病历
 			</div>   
-			<div title="诊断录入" data-options="closable:true" style="overflow:auto;padding:20px;">   
+			<div title="诊断录入" data-options="closable:true,iconCls:'icon-paper-table'" style="overflow:auto;padding:15px;">   
 				tab1   诊断录入  
 			</div>   
-			<div title="医嘱录入" data-options="closable:true" style="padding:20px;">   
+			<div title="医嘱录入" data-options="closable:true,iconCls:'icon-paper-table'" style="padding:15px;">   
 				tab1   医嘱录入 
 			</div> 
 		</div>
@@ -43,16 +43,16 @@
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint lang-html">
 	<div id="tt2" class="hisui-tabs" style="width:500px;height:150px;">   
-		<div title="电子病历" style="padding:20px;">   
+		<div title="电子病历" style="padding:15px;">   
 			如果页签太多则自动隐藏，可滚动显示 
 		</div>   
-		<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:20px;">   
+		<div title="诊断录入" data-options="closable:false" style="overflow:auto;padding:15px;">   
 			诊断录入    
 		</div>   
-		<div title="医嘱录入" data-options="closable:false" style="padding:20px;">   
+		<div title="医嘱录入" data-options="closable:false" style="padding:15px;">   
 			医嘱录入    
 		</div>  
-		<div title="检查列表" data-options="closable:false" style="padding:20px;">   
+		<div title="检查列表" data-options="closable:false" style="padding:15px;">   
 			检查列表    
 		</div>
 	</div>
@@ -76,14 +76,14 @@
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint">
 			<div id="mytabs1" class="hisui-tabs" style="width:500px;height:100px;">   
-				<div title="电子病历" data-options="" style="padding:20px;"></div>   
-				<div title="诊断录入" data-options="" style="padding:20px;"></div>   
-				<div title="医嘱录入" data-options="" style="padding:20px;"></div>
-				<div title="检查列表" data-options="" style="padding:20px;"></div>
-				<div title="检验列表" data-options="" style="padding:20px;"></div>
-				<div title="过敏记录" data-options="" style="padding:20px;"></div>
-				<div title="生命体征" data-options="" style="padding:20px;"></div>
-				<div title="就诊列表" data-options="" style="padding:20px;"></div>
+				<div title="电子病历" data-options="" style="padding:15px;"></div>   
+				<div title="诊断录入" data-options="" style="padding:15px;"></div>   
+				<div title="医嘱录入" data-options="" style="padding:15px;"></div>
+				<div title="检查列表" data-options="" style="padding:15px;"></div>
+				<div title="检验列表" data-options="" style="padding:15px;"></div>
+				<div title="过敏记录" data-options="" style="padding:15px;"></div>
+				<div title="生命体征" data-options="" style="padding:15px;"></div>
+				<div title="就诊列表" data-options="" style="padding:15px;"></div>
 			</div>
 		</div>
 	</div>	
@@ -91,18 +91,18 @@
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint">
 			<div id="tt-brand-gray" class="hisui-tabs" style="width:500px;height:150px;" data-options="isBrandTabs:true">   
-				<div title="医嘱浏览" style="padding:20px;" data-options="iconCls:'icon-add-note'"></div>   
-				<div title="全部" data-options="closable:false" style="padding:20px;"></div>
-				<div title="药品" data-options="closable:false" style="padding:20px;"></div>  
-				<div title="检查" data-options="closable:false" style="padding:20px;"></div>
-				<div title="检验" data-options="closable:false" style="padding:20px;"></div>  
+				<div title="医嘱浏览" style="padding:15px;" data-options="iconCls:'icon-paper-table'"></div>   
+				<div title="全部" data-options="closable:false" style="padding:15px;"></div>
+				<div title="药品" data-options="closable:false" style="padding:15px;"></div>  
+				<div title="检查" data-options="closable:false" style="padding:15px;"></div>
+				<div title="检验" data-options="closable:false" style="padding:15px;"></div>  
 			</div>
 		</div>
 	</div>
 	
 	<h3>二.页签位置定义(<code>data-options="tabPosition:'left'"</code>)</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div style="margin:20px 0;">
+		<div style="margin:15px 0;">
 			<span>tabPosition:</span>
 			<select onchange="$('#tt3').tabs({tabPosition:this.value});$('#tabPosition').html('tabPosition:\''+this.value+'\'');">
 				<!--<option value="top">Top</option>
@@ -112,22 +112,23 @@
 			</select>
 		</div>
 		<div id="tt3" class="hisui-tabs tabs-gray"  data-options="tabPosition:'left',isBrandTabs:true,headerWidth:130,height:200,width:500">   
-			<div title="电子病历" style="padding:20px;">   
+			<div title="电子病历" style="padding:15px;" >   
 				<code id="tabPosition">tabPosition:'left'</code><br>
 				<code>headerWidth:100</code><br>
 				<code>border:false</code><br>
 			</div>   
-			<div title="诊断录入"  style="overflow:auto;padding:20px;">   
+			<div title="诊断录入"  style="overflow:auto;padding:15px;">   
 				tab2    
 			</div>   
-			<div title="医嘱录入"  data-options="closable:true,selected:true" style="padding:20px;">   
+			<div title="医嘱录入"  data-options="closable:true,selected:true" style="padding:15px;">   
 				tab3    
 			</div>
-			<div title="检查列表" style="padding:20px;">   
+			<div title="检查列表" style="padding:15px;">   
 				tab4    
 			</div>
 		</div>
 	</div>
+	<% if (themeCode!="pure") {%>
 	<h3>三.系统性页签(<code>headerCls="tabs-system"</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<div id="tt4" class="hisui-tabs tabs-system"  data-options="height:200,width:500">   
@@ -148,6 +149,7 @@
 			</div>
 		</div>
 	</div>
+	<% } %>	
 	<% if (themeCode=="pure") {%>
 		<h3>四.二级标签页(<code>headerCls="tabs-keywords"</code>)</h3>
 		<div class="demo-exp-code entry-content">
@@ -169,26 +171,7 @@
 				</div>
 			</div>
 		</div>
-		<h3>五.文本页签(<code>headerCls="tabs-text"</code>)</h3>
-		<div class="demo-exp-code entry-content">
-			<div id="tt4" class="hisui-tabs tabs-text"  data-options="height:200,width:500">   
-				<div title="主页" style="padding:20px;">   
-					<code>tabs-system</code>
-				</div>   
-				<div title="诊断录入" data-options="closable:false,selected:true" style="padding:20px;">   
-					<div>
-						<span>系统性页签一般用于系统级导航</span>
-						<span>增加了竖线分割与选中背景色</span>
-					</div>
-				</div>   
-				<div title="医嘱录入" data-options="closable:false" style="padding:20px;">   
-					tab3    
-				</div>
-				<div title="检查列表" data-options="closable:false" style="padding:20px;">   
-					tab4    
-				</div>
-			</div>
-		</div>	
+
 	<% } %>	
 	<prettyprint/>
 </body>

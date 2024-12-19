@@ -64,11 +64,12 @@
     .spinner-arrow-hover {
       opacity: @input-arrow-hover-opacity;
       filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-      color:@input-active-border-color;
+      color:#008FFF;
       background-color: @spinner-arrow-hover-bgcolor;
       ::before{
-        color:@input-active-border-color;
+        color:#008FFF;
       }
+      
     }
   }
   &:focus input, &:active input{
@@ -111,7 +112,7 @@
   vertical-align: baseline;
   &.timespinner-f{
     text-align: right;
-    padding:0 0 0 10px ;
+    padding:0 10px 0 10px ;
   }
 }
 
@@ -123,6 +124,9 @@
   color: #191919;
   width: 16px;
   height: 16px;
+  &:hover{
+    color: #008FFF;
+  }
 }
 .spinner-arrow-down::before{
 

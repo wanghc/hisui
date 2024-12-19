@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>手风琴</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,9 +16,7 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
+
 </head>
 
 <body style="background-color: #cde6ff;">
@@ -28,16 +29,16 @@
         <div class="use-prettyprint lang-html">
             <div id="acc" class="hisui-accordion" style="width:200px;height:450px;float:left;"
                 data-options="border:false">   
-                <div title="等待区" style="overflow:auto;padding:10px;">   
+                <div title="等待区" style="overflow:auto;padding:15px;">   
                     content1
                 </div>
-                <div title="留观区" style="padding:10px">   
+                <div title="留观区" style="padding:15px">   
                     content2    
                 </div>    
-                <div title="住院区" style="padding:10px;">   
+                <div title="住院区" style="padding:15px;">   
                     <code>class="hisui-accordion"</code>
                 </div>   
-                <div title="出院区" style="padding:10px">   
+                <div title="出院区" style="padding:15px">   
                     content4   
                 </div>   
             </div>
@@ -46,7 +47,8 @@
         <div style="height:300px;width:60px;float:left">
             <a id="addBtn" href="#" >增加</a>
         </div>
-        <div style="height:300px;width:120px;float:left">
+            <!-- <div  style="height:300px;width:120px;float:left">&nbsp;&nbsp;</div> -->
+        <div style="height:300px;width:120px;float:left;margin-left: 20px;">
             <a id="removeBtn" href="#" class="hisui-linkbutton">删除当前</a>
         </div>
         <div style="padding:2px ;clear: left"></div>

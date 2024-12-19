@@ -27,7 +27,7 @@
   background: url('images/accordion_arrows.png') no-repeat -16px 0;
 }
 .accordion {
-  background: #ffffff;
+  background: #f1f7fe;
   border-color: #95B8E7;
 }
 .accordion .accordion-header {
@@ -76,7 +76,7 @@
     filter: none;
     .panel-title{
       font-size: 16px;
-      margin-left: 15px;
+      margin-left: 4px;
       padding-left: 5px;
       color: @accordion-title-font-color;
     }
@@ -88,13 +88,24 @@
     }
     .panel-tool{
       margin-top: -11px;
-      height: 22px;
+      height: 28px;
+      right: 8px;
       a {
         display: inline-block;
-        width: 22px;
-        height: 16px;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
         vertical-align: middle;
         margin: 0;
+        &:hover {
+          opacity: 1;
+          filter: alpha(opacity=100);
+          -moz-border-radius: 3px 3px 3px 3px;
+          -webkit-border-radius: 3px 3px 3px 3px;
+          border-radius: 3px 3px 3px 3px;
+          color:#939393;
+          background-color: #D7E9FF;
+        }
       }
       .accordion-collapse::before {
         content: @content-up;

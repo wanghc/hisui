@@ -13,6 +13,16 @@
 .s-btn{
   &.l-btn-plain{
     color:@splitbutton-fcolor;
+    .l-btn-left{
+      display: flex;
+      align-items: center;
+      .m-btn-downarrow{
+        font-size: 16px;
+        &::before{
+          color: #008FFF;
+        }
+      }
+    }
   }
   &.l-btn.s-btn-active{
     background-color: @splitbutton-hover-bgcolor;
@@ -22,12 +32,13 @@
     }
   }
   .l-btn-left{
+    
     &.l-btn-icon-left .l-btn-text{
-      padding-right: 16px;
+      padding-right: 14px;
     }
     .m-btn-downarrow::before{
       display: block;
-      line-height: 20px;
+      line-height: 17px;
       padding-left: 3px;
       color:@splitbutton-fcolor;      
     }
@@ -56,4 +67,45 @@
   .m-btn-downarrow{
     color:@menubutton-blue-hover-fcolor;
   }
+}
+.hisui-splitbutton  {
+
+  min-width: 95px;
+  &.l-btn{
+    // background-color: #EDF6FF;
+    // border: 1px solid #A5D5FF;
+    // color: #008FFF;
+    &:hover{
+      //background-color: #E1EDFF;
+    }
+    &:active{
+      //background-color: #D7E9FF;
+    }
+    
+  }
+  &.l-btn-waiting{
+    //background-color: #D7E9FF;
+  }
+  &.m-btn {
+    .l-btn-left{
+      .m-btn-line{
+        align-items: center;
+        height: 22px;
+      }
+    }
+  } 
+  .l-btn-left{
+    .l-btn-text{
+      padding-right: 0px;
+    }
+    display: flex;
+    align-items: center;
+    .m-btn-downarrow{
+      font-size: 16px;
+      &::before{
+        color: #FFF;
+      }
+    }
+  }
+  
 }
