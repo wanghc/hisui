@@ -249,7 +249,7 @@
                 default:['ok','cancel'],pure:['cancel','ok']
             }
         },
-        getStyleCodeConfigValue(key){
+        getStyleCodeConfigValue : function(key){
             if ("undefined" == typeof HISUIStyleCode ) return $.hisui.styleCodeConfig[key].default;
             if ("undefined" == typeof $.hisui.styleCodeConfig[key]) return "";
             if ("undefined" == typeof $.hisui.styleCodeConfig[key][HISUIStyleCode]) return $.hisui.styleCodeConfig[key].default;
