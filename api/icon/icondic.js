@@ -610,6 +610,7 @@ var iconDictionary={
     'icon-internationalize':'翻译',
     'icon-mass-injury':'群伤',
     'icon-gcp':'临床药理实验患者',
+    'icon-implant':'植入物',
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
