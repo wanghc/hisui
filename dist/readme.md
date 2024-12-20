@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2024-12-20
+- :sparkles: 输入日期数字后回车自动定位显示当月该日期 [5160398]
+
 ## 2024-12-19
 - :bug: `getStyleCodeConfigValue`写法兼容IE浏览器
 - :lipstick: 增加植入物图标`icon-implant` [5267345]
