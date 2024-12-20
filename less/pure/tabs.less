@@ -375,7 +375,9 @@
     &:not(:last-child)::after {
       content: none;
     }
-
+    a.tabs-close::before {
+      content: @content-close;
+    }
     &.tabs-selected {
       overflow: visible;
       
@@ -398,9 +400,6 @@
         content: none;
       }
 
-      a.tabs-close::before {
-        content: @content-close;
-      }
     }
 
     a.tabs-inner {
@@ -440,12 +439,9 @@
       width: 16px;
       //background-color: @tabs-header-bgcolor;
       font-size: 10px;    /*在textbox.less 定义的13px 会被原css中1px的冲掉 导致显示不出关闭 而且13px过大 在此定义为10px*/
-      &::before{
-        color: #939393;
-        content: @content-close;
-      }
+      color: #939393;
       &:hover {
-        color:red;
+        color:#FC494F;
         background-color: transparent;
       }
     }
@@ -1072,13 +1068,6 @@
       .tabs-close{
         right: 0px;
         top: 21px;
-        ::before{
-          &:hover {
-            color:red;
-            background-color: transparent;
-          }
-        }
-
       }
     }
   }

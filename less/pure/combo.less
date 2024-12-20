@@ -43,13 +43,12 @@
     _line-height: @combo-input-line-height-ie8;
     vertical-align: baseline;
   }
+  .combo-arrow:hover{
+    color: #008FFF;
+  }
   .combo-arrow::before{
     content: "\f476";
     font-size: 16px;
-    color: #666666;
-    &:hover{
-      color: #008FFF;
-    }
   }
   &.combo-p-active.combo-p-bottom{
     border-radius: @input-border-radius @input-border-radius 0 0 ;
@@ -64,15 +63,12 @@
       background-color: @input-active-bgcolor;
     }
     .combo-arrow{
-      color:#666666;
+      color:#008FFF;
     }
   }
   &:hover,&.combo-hover{
     border-color: @input-active-border-color;
     background-color: @input-active-bgcolor;
-    .combo-arrow{
-      color:#666666;
-    }
   }
   &.disabled{
     border-color: @main-disabled-border-color;
