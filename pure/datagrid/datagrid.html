@@ -47,7 +47,7 @@
 }</code></pre></h4>
 	<h3>如：默认表格(hisui-datagrid)</h3>	
 	<div class="demo-exp-code entry-content">
-		<table class="hisui-datagrid"  style="width:800px;height:400px" data-options="fixRowNumber:true,rownumbers:true,headerCls:'panel-header-gray',fitColumns:true,singleSelect:true,pagination:true">
+		<table class="hisui-datagrid"  style="width:800px;height:400px" data-options="fixRowNumber:true,striped:false,rownumbers:true,headerCls:'panel-header-gray',fitColumns:true,singleSelect:true,pagination:true">
 			<thead>   
 				<tr>   
 					<th data-options="field:'code',width:20">编码</th>   
@@ -89,7 +89,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 	<h3>一、编辑灰色表格(<code>headerCls:'panel-header-gray'</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<table id='mytb' class="hisui-datagrid"  style="width:600px;height:300px" 
-		data-options="autoSizeColumn:false,fitColumns:true,headerCls:'panel-header-gray',
+		data-options="autoSizeColumn:false,fitColumns:true,striped:false,headerCls:'panel-header-gray',
 		singleSelect:true,
 		pagination:true,toolbar: [{
 			iconCls: 'icon-edit',
@@ -192,7 +192,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 	</div>
 	<div class="demo-exp-code entry-content" style="background: white;">
 		<table id='mytb' class="hisui-datagrid " title="病人列表" style="width:600px;height:300px" 
-		data-options="autoSizeColumn:false,fitColumns:true,headerCls:'datagrid-border-gray',
+		data-options="autoSizeColumn:false,fitColumns:true,striped:false,headerCls:'datagrid-border-gray',
 		singleSelect:true,
 		pagination:true,toolbar: [{
 			iconCls: 'icon-edit',
@@ -305,7 +305,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 				<div onclick="console.log('作废');">作废</div>     
 			</div>
 		</div>
-		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,striped:false,
 			toolbar:'#custtb',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
 			onDblClickRow:function(){console.log(arguments)}">   
 			<thead>   
@@ -587,6 +587,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 				title:'地区',
 				height:'400',width:900,
 				bodyCls:'table-splitline',
+				striped:false,
 				autoSizeColumn:true,fitColumns:true,
 				toolbar:[],
 				columns:[
@@ -631,6 +632,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',
 					toolbar:[],
+					striped:false,
 					nowrap:false,  /*此处为false*/
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
@@ -665,6 +667,7 @@ td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',titleNoWrap:false,/*表头自动折行*/
 					toolbar:[],
+					striped:false,
 					nowrap:false,
 					fontSize:12, /*表格上设置字体大小*/
 					lineHeight:12,

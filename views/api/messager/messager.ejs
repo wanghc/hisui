@@ -91,7 +91,7 @@
 					var oldCancel = $.messager.defaults.cancel;
 					$.messager.defaults.ok = "同意";
 					$.messager.defaults.cancel = "拒绝";
-					$.messager.confirm("删除", "确定提交并保存?", function (r) {
+					var btns = $.messager.confirm("删除", "确定提交并保存?", function (r) {
 						if (r) {
 							$.messager.popover({ msg: "点击了确定", type: 'info' });
 						} else {
@@ -100,7 +100,9 @@
 						/*要写在回调方法内,否则在旧版下可能不能回调方法*/
 						$.messager.defaults.ok = oldOk;
 						$.messager.defaults.cancel = oldCancel;
-					});
+					}).children("div.messager-button");
+					btns.children("a:eq(1)").addClass('white').focus();
+					btns.children("a:eq(0)"); //修改成green2943195
 				});
 				$('#confirm2').click(function () {
 					var btns = $.messager.confirm("保存", "确定提交并保存?", function (r) {
@@ -110,8 +112,8 @@
 							$.messager.popover({ msg: "点击了取消" });
 						}
 					}).children("div.messager-button");
-					btns.children("a:eq(1)").focus();
-					btns.children("a:eq(0)").addClass('green'); //修改成green2943195
+					btns.children("a:eq(1)").addClass('white').focus();
+					btns.children("a:eq(0)"); //修改成green2943195
 				});
 				$('#confirm3').click(function () {
 					var oldOk = $.messager.defaults.ok;
@@ -131,7 +133,7 @@
 						$.messager.defaults.no = oldNo;
 					}).children("div.messager-button");
 					btns.children("a:eq(0)").addClass('green');
-					btns.children("a:eq(2)").focus();
+					btns.children("a:eq(2)").addClass('white');
 				});
 			})
 		</script>
