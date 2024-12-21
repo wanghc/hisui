@@ -95,6 +95,7 @@ var Level = {
 	$.fn.datebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
 	$.fn.datetimebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
 	$.fn.tabs.defaults.tabHeight = $.hisui.getStyleCodeConfigValue("tabHeight");;
+	$.fn.filebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");
 
 
     /*var cardHandler = function(){

@@ -163,7 +163,11 @@ if ($.fn.datebox){;
 		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
 			return new Date(y,m-1,d);
 		}else{
-			return new Date();
+			var nowDate = new Date();
+			if (parseInt(s,10)<32){
+				return new Date(nowDate.getFullYear(),nowDate.getMonth(),s);
+			}
+			return nowDate;
 		}
 	};
 }

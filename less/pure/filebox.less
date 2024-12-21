@@ -18,16 +18,6 @@
     -moz-border-radius: 0 @input-border-radius @input-border-radius 0;
     -webkit-border-radius: 0 @input-border-radius @input-border-radius 0;
     border-radius: @input-border-radius @input-border-radius @input-border-radius @input-border-radius;
-    &.filebox-no-txet{
-      -moz-border-radius: @input-border-radius;
-      -webkit-border-radius: @input-border-radius;
-      border-radius: @input-border-radius;
-    }
-  }
-  &.filebox-no-txet{
-    -moz-border-radius: @input-border-radius;
-    -webkit-border-radius: @input-border-radius;
-    border-radius: @input-border-radius;
   }
   &:hover,&.filebox-hover{
     background-color: @input-active-bgcolor;
@@ -38,7 +28,6 @@
     }
   }
   &:hover{
-
     .filebox-text{
       background-color:#FFF;
     }
@@ -58,6 +47,13 @@
     padding: 0;
     vertical-align: top;
     border-radius: 0 0 0 0;
+    color:#191919;
+    &:hover{
+      color: #008FFF;
+    }
+    &.l-btn-disabled:hover{
+      color:#191919;
+    }
     .l-btn-text{
       min-width: 0px;
       padding-right: 5px;
@@ -87,57 +83,53 @@
     left: -5000px;
   }
   &.filebox-plain{
-    .filebox-button.l-btn { 
-      background-color: transparent;
-      .l-btn-text{
-        background:transparent;
-        color:#191919;
-        &.l-btn-empty{
-          background-color: transparent;
-        }
-      }
-      .l-btn-icon {
-        background-color: transparent;
-        opacity: 1; /*0.7;*/
-        filter: alpha(opacity=70);
-        color:@input-iconbtn-color;
-        left: 13px;
-      }
+    &.filebox-no-txet{
       .l-btn-icon-left{
-
-        .icon-folder{
-          padding-left: 0px;
+        .l-btn-text{
+          padding:0px !important;
+          width: 0px;
+        }
+        .l-btn-icon{
+          padding: 8px 6px !important;
+          margin-left: 0px !important;
+          background-image: none !important;
         }
       }
-      &:hover{
-        .l-btn-icon {
-          color:@input-iconbtn-hover-color;
+    }
+    .filebox-button { 
+      background-color: transparent;
+      .l-btn-icon-left{
+        .l-btn-text{
+          padding-right: 14px;
+          padding-left: 5px;
+          background:transparent;
+          &.l-btn-empty{
+            background-color: transparent;
+          }
+        }
+        .l-btn-icon{
+          background-color: transparent;
+          left: 13px;
+          padding-left: 0px;
+          position: relative;
+          margin-right: 12px;
+          margin-left: -100%;
+          background-repeat: no-repeat;
+          padding-right: 2px;
+          background-position: right;
+          background-size: 1px 16px;
+          background-image: url(../css/images/pure/vline.jpg);
         }
       }
       &.l-btn-disabled{
         .l-btn-text{
           background: @linkbutton-disabled-bgcolor;
-          &.l-btn-empty{
-            background-color: transparent;
-          }
         }
         .l-btn-icon {
           background-color: transparent;
           opacity: 1;
           filter: alpha(opacity=100);
           color:@input-iconbtn-disabled-color;
-        }
-        &:hover{
-          .l-btn-text{
-            color:@input-iconbtn-hover-color;
-            &.l-btn-empty{
-              background-color: transparent;
-            }
-          }
-          .l-btn-icon {
-            opacity: 1;
-            filter: alpha(opacity=100);
-          }
         }
       }
     }
@@ -151,9 +143,5 @@
   cursor: pointer;
   left: 0;
   top: 0;
-  color: #191919;
   z-index: 10;
-}
-.filebox:hover .l-btn-text{
-  color: #008FFF;
 }

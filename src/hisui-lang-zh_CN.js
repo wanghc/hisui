@@ -87,7 +87,8 @@ if ($.fn.datebox){
 		return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
 	};
 	$.fn.datebox.defaults.parser = function(s){
-		/*t-n , t+n*/
+		/*t-n , t+n */
+		/* 2回车 解析成当前月份2日 */
 		if (!s) return new Date();
 		function ConvertTDate(dt) {
 			var xdays = 0;
@@ -159,10 +160,15 @@ if ($.fn.datebox){
 				return new Date(y,m-1,1);
 			}
 		}
+
 		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
 			return new Date(y,m-1,d);
 		}else{
-			return new Date();
+			var nowDate = new Date();
+			if (parseInt(s,10)<32){
+				return new Date(nowDate.getFullYear(),nowDate.getMonth(),s);
+			}
+			return nowDate;
 		}
 	};
 }
