@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>消息提示框</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'lite';
+    </script>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+
+</head>
+
+<body>
+	<h2>消息框</h2>
+	<h3>说明:</h3>
+	<div>消息框（messager）提供不同样式的消息框，包括警示（alert）、确认（confirm）、提示（prompt）、进展（progress）等等。所有的消息框都是异步的。用户可以在与消息框交互后使用回调函数来完成一些动作。</div>
+	<div><code>20230601</code>增加$.messager.alertSrcMsg/confirmSrcMsg/promptSrcMsg/popoverSrcMsg方法不自动翻译msg入参内容。</div>
+	<h3>一、常用提示</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint hide">
+			<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1">提示info</a>
+			<a class="hisui-linkbutton" iconCls="icon-w-cancel" id="alert2">失败error</a>
+			<a class="hisui-linkbutton" iconCls="icon-w-ok" id="alert3">成功success</a>
+			<script>
+				$(function () {
+					$('#alert1').click(function () {
+						$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", 'info');
+					});
+					$('#alert2').click(function () {
+						$.messager.alert("简单提示", "数据请求失败，请根据以下提示来完成该操作。<p>检查网线是否与电脑正常连接</p><p>请进入网络和Internet界面检查电脑IP地址与网关是否设置正确</p><p>不解决联系管理员</p>", 'error');
+					});
+					$('#alert3').click(function () {
+						$.messager.alert("简单提示", "支付成功", 'success');
+					});
+				})
+			</script>
+		</div>
+	</div>
+	<h3>二、长提示内容(<code>$.messager.alert</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint hide">
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert4">长提示(自动高度)</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert5">长提示(带滚动条)</a>
+		<script type="text/javascript">
+			$(function () {
+				$('#alert4').click(function(){
+					$.messager.alert({
+						width:850,
+						icon:'info',
+						title:'合理用药提示',
+						msg:'阿司匹林肠溶片，阿司匹林对血小板聚集有抑制作用，因此阿司匹林肠溶片适应症如下：降低急性心肌梗死疑似患者的发病风险。预防心肌梗死 [2]复发。中风的二级预防。降低短暂性脑缺血发作(TIA)及其继发脑卒中的风险。降低稳定性和不稳定性心绞痛患者的发病风险。动脉外科手术或介入手术后，如经皮冠脉腔内成形术(PTCA)，冠状动脉旁路术(CABG)，颈动脉内膜剥离术，动静脉分流术预防大手术后深静脉血栓和肺栓塞降低心血管危险因素者（冠心病家族史、糖尿病、血脂异常、高血压、肥胖、抽烟史、年龄大于50岁者）心肌梗死发作的风险。说明：阿司匹林肠溶片因其活性成份的含量不宜用作止痛剂。'
+						+'阿司匹林肠溶片(5)本患者（门急诊）同时开具多个阿司匹林肠溶片医嘱。避免重复给药。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。'
+						+'避免重复用药。 阿司匹林肠溶片(4)本品用于预防一过性脑缺血发作、心肌梗死、心房动、人工心脏膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，'
+						+'以及脑梗、心梗的二级预防。不建议超适应症使用。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。避免重复用药，阿司匹林肠溶片(4)本品用于预防'
+						+'一过性脑缺血发作、心肌梗死、心房颤动、人工心脏瓣膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，以及脑梗、心梗的二级预防。不建议超适应症使用。'
+						,
+						fn:function(){
+							$.messager.popover({ msg: "你已点击确定" });
+						}
+					});
+				});
+				// msg内拼接html(<div style="height:240px;overflow:auto;">)实现滚动条
+				$('#alert5').click(function(){
+					$.messager.alert({
+						width:850,
+						icon:'info',
+						title:'合理用药提示',
+						msg:
+						'<div style="height:240px;overflow:auto;">阿司匹林肠溶片，阿司匹林对血小板聚集有抑制作用，因此阿司匹林肠溶片适应症如下：降低急性心肌梗死疑似患者的发病风险。预防心肌梗死 [2]复发。中风的二级预防。降低短暂性脑缺血发作(TIA)及其继发脑卒中的风险。降低稳定性和不稳定性心绞痛患者的发病风险。动脉外科手术或介入手术后，如经皮冠脉腔内成形术(PTCA)，冠状动脉旁路术(CABG)，颈动脉内膜剥离术，动静脉分流术预防大手术后深静脉血栓和肺栓塞降低心血管危险因素者（冠心病家族史、糖尿病、血脂异常、高血压、肥胖、抽烟史、年龄大于50岁者）心肌梗死发作的风险。说明：阿司匹林肠溶片因其活性成份的含量不宜用作止痛剂。'
+						+'阿司匹林肠溶片(5)本患者（门急诊）同时开具多个阿司匹林肠溶片医嘱。避免重复给药。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。'
+						+'避免重复用药。 阿司匹林肠溶片(4)本品用于预防一过性脑缺血发作、心肌梗死、心房动、人工心脏膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，'
+						+'以及脑梗、心梗的二级预防。不建议超适应症使用。阿司匹林肠溶片(5)阿司匹林肠溶片与阿司匹林肠溶片均含有阿司匹林。避免重复用药，阿司匹林肠溶片(4)本品用于预防'
+						+'一过性脑缺血发作、心肌梗死、心房颤动、人工心脏瓣膜、动静脉或其他手术后的血栓形成。也可用于治疗不稳定型心绞痛，以及脑梗、心梗的二级预防。不建议超适应症使用。'
+						+'</div>'
+						+'<div style="color:red;">是否继续审核?</div>'
+						,fn:function(){
+							$.messager.popover({ msg: "你已点击确定" });
+						}
+					});
+				});
+			})
+		</script>
+		</div>
+	</div>
+	<h3>三、确认窗口(<code>$.messager.confirm</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint hide">
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm2">confirm默认取消</a>
+		<!-- 2022-02-23 增加三选 -->
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm3">confirm三选</a>
+		<script type="text/javascript">
+			$(function () {
+				$('#confirm1').click(function () {
+					var oldOk = $.messager.defaults.ok;
+					var oldCancel = $.messager.defaults.cancel;
+					$.messager.defaults.ok = "同意";
+					$.messager.defaults.cancel = "拒绝";
+					var btns = $.messager.confirm("删除", "确定提交并保存?", function (r) {
+						if (r) {
+							$.messager.popover({ msg: "点击了确定", type: 'info' });
+						} else {
+							$.messager.popover({ msg: "点击了取消" });
+						}
+						/*要写在回调方法内,否则在旧版下可能不能回调方法*/
+						$.messager.defaults.ok = oldOk;
+						$.messager.defaults.cancel = oldCancel;
+					}).children("div.messager-button");
+					btns.children("a:eq(1)").addClass('white').focus();
+					btns.children("a:eq(0)"); //修改成green2943195
+				});
+				$('#confirm2').click(function () {
+					var btns = $.messager.confirm("保存", "确定提交并保存?", function (r) {
+						if (r) {
+							$.messager.popover({ msg: "点击了确定", type: 'info' });
+						} else {
+							$.messager.popover({ msg: "点击了取消" });
+						}
+					}).children("div.messager-button");
+					btns.children("a:eq(1)").addClass('white').focus();
+					btns.children("a:eq(0)"); //修改成green2943195
+				});
+				$('#confirm3').click(function () {
+					var oldOk = $.messager.defaults.ok;
+					var oldNo = $.messager.defaults.no;
+					$.messager.defaults.ok = "保存并签名";
+					$.messager.defaults.no = "不保存";
+					var btns = $.messager.confirm3("提示", "病历内容有修改,你确定保存吗?", function (r) {
+						if (true===r) {
+							$.messager.popover({ msg: "保存病历", type: 'info' });
+						} else if (false === r){
+							$.messager.popover({ msg: "不保存病历", type: 'info' });
+						} else {
+							$.messager.popover({ msg: "取消" });
+						}
+						/*要写在回调方法内,否则在旧版下可能不能回调方法*/
+						$.messager.defaults.ok = oldOk;
+						$.messager.defaults.no = oldNo;
+					}).children("div.messager-button");
+					btns.children("a:eq(0)").addClass('green');
+					btns.children("a:eq(2)").addClass('white');
+				});
+			})
+		</script>
+		</div>
+	</div>
+	<h3>四、基于messager的简单提示方法(<code>$.messager.popover</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint hide">
+			<a href="#" class="hisui-linkbutton" id='succ'>success</a>
+			<a href="#" class="hisui-linkbutton" id='info'>info</a>
+			<a href="#" class="hisui-linkbutton" id='alert'>alert</a>
+			<a href="#" class="hisui-linkbutton" id='error'>error</a>
+			<script>
+				$(function () {
+					$('#succ').click(function () {
+						$.messager.popover({
+							msg: '保存成功！',
+							type: 'success',
+							timeout: 2000, 		//0不自动关闭。3000s
+							showType: 'slide'  //show,fade,slide
+						});
+					});
+					$('#info').click(function () {
+						$.messager.popover({
+							msg: '简单提示！',
+							type: 'info',
+							timeout: 2000, 		//0不自动关闭。3000s
+							showSpeed: 'slow', //fast,slow,normal,1500
+							showType: 'fade'  //show,fade,slide
+						});
+					});
+					$('#alert').click(function () {
+						$.messager.popover({
+							msg: '简单警示！',
+							type: 'alert'
+						});
+					});
+					$('#error').click(function () {
+						$.messager.popover({
+							msg: '保存失败！',
+							type: 'error'
+						});
+					});
+				})
+			</script>
+		</div>
+	</div>
+	<h3>五、对话框(<code>$.messager.prompt</code>)与进度条(<code>$.messager.progress</code>)</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint hide">
+			<a class="hisui-linkbutton" iconCls="icon-w-edit" id="prompt1">prompt</a>
+			<a class="hisui-linkbutton" iconCls="icon-w-import" id="progress1">progress</a>
+			<!-- <a class="hisui-linkbutton" iconCls="icon-w-paper" id="show1">show</a> -->
+			<script type="text/javascript">
+				$(function () {
+					$('#prompt1').click(function () {
+						var btns = $.messager.prompt("提示", "修改前请签名：", function (r) {
+							if (r) {
+								$.messager.popover({ msg: "你的签名是：" + r, type: 'info' });
+							} else {
+								$.messager.popover({ msg: "点击了【取消】或输入为空" });
+							}
+						}).children("div.messager-button");
+						btns.children("a:eq(0)").addClass('green');
+					})
+					$('#progress1').click(function () {
+						$.messager.progress({
+							title: "提示",
+							msg: '正在导入数据',
+							text: '导入中....'
+						});
+						setTimeout('$.messager.progress("close");', 4 * 1000);
+					})
+	
+					$('#show1').click(function () {
+						$.messager.show({
+							title: '标题',
+							msg: '3秒后会自动关闭',
+							timeout: 3000,
+							showType: 'slide'/*,
+						style:{
+							right:'',
+							top:document.body.scrollTop+document.documentElement.scrollTop,
+							bottom:''
+						}*/
+						});
+					});
+				})
+			</script>
+		</div>
+	</div>
+
+	<table class="table">
+		<tr class="protitle">
+			<th>$.messager.confirm3</th>
+			<th>三选提示说明</th>
+			<th><code>2022-02-23</code>增加</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>title</td>
+			<td>第一个入参：提示标题</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>msg</td>
+			<td>第二个入参：提示内容</td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>fun</td>
+			<td>第三个入参：用户点击按钮后的回调函数</td>
+			<td>
+<pre><code>function(r){
+	// 第一个按钮：ok,返回true,
+	// 第二个按钮：no,返回false,
+	// 第三个按钮：cancel,返回undefined
+	// 示例见[confirm三选]
+}</code></pre>
+			</td>
+			<td></td>
+		</tr>
+		<tr class="protitle">
+			<th>$.messager.popover</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>msg</td>
+			<td>提示内容</td>
+			<td>''</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>type</td>
+			<td>提示类型</td>
+			<td>'error'</td>
+			<td>决定显示的提示样式，可选属性,'success','info','alert','error'</td>
+		</tr>
+		<tr>
+			<td>timeout</td>
+			<td>显示时间长度(毫秒)/td>
+			<td>3000</td>
+			<td>0表示一直显示不消失。</td>
+		</tr>
+		<tr>
+			<td>showSpeed</td>
+			<td>显示速度</td>
+			<td>'fast'</td>
+			<td>可选属性,'fast','slow','normal',数字(毫秒数)</td>
+		</tr>
+		<tr>
+			<td>showType</td>
+			<td>显示方式</td>
+			<td>'slide'</td>
+			<td>可选属性,'slide','fade','show'</td>
+		</tr>
+		<tr>
+			<td>style</td>
+			<td>显示位置</td>
+			<td>顶部中间位置</td>
+			<td>right,top,left,bottom</td>
+		</tr>
+	</table>
+	<prettyprint />
+</body>
+
+</html>

@@ -463,15 +463,6 @@
       .tabs-title {
         font-weight: bold;
       }
-
-      .tabs-icon {   /* 极简brand页签不显示图标 2023-02-03 */
-        width: 0;
-        overflow: hidden;
-      }
-      .tabs-title.tabs-with-icon{  /*极简brand页签不显示图标 2023-02-03 */
-        padding-left: 0;
-      }
-
     }
   }
 }
@@ -659,7 +650,8 @@
           border-left: 3px solid @tabs-header-hover-bgcolor;
         }
         .tabs-icon {
-          margin-top: -8px;
+          margin-top: -7px;
+          margin-left:17px;
         }
       }
       &.tabs-selected{
@@ -713,7 +705,8 @@
           border-right: 3px solid @tabs-header-hover-bgcolor;
         }
         .tabs-icon {
-          margin-top: -8px;
+          margin-top: -7px;
+          margin-left: 17px;
         }
       }
       &.tabs-selected{
