@@ -147,7 +147,7 @@
         <div id="accd" class="hisui-accordion <% if (themeCode!="blue") {%> accordion-gray<% } %>" fit="true" data-options="border:false">
             <div title="基础" <% if (themeCode=="blue") {%>  style="background-color:#F9F9F9;"<%}%>>
                 <ul>
-                    <% if (themeCode=="pure") {%>
+                    <% if (themeCode=="pure" || themeCode=="lightblue") {%>
                     <li><a href="javascript:void(0);"  src="tooltip/tooltip.html" class="api-navi-tab">提示（tooltip）</a></li>
                     <li><a href="javascript:void(0);"  src="popover/popover.html" class="api-navi-tab">泡芙提示（popover）</a></li>    
                     <% }else{ %>
@@ -171,10 +171,8 @@
                     <li><a href="javascript:void(0);" src="layout/layout.html" class="api-navi-tab">五方布局(layout)</a></li>
                     <li><a href="javascript:void(0);" src="hstep/hstep.html" class="api-navi-tab">水平步骤(hstep)</a></li>
                     <li><a href="javascript:void(0);" src="vstep/vstep.html" class="api-navi-tab">纵向步骤(vstep)</a></li>
-                    <% if (themeCode!="blue") {%>
-		    <li><a href="javascript:void(0);" target="_blank" src="layout/layout-query.html" class="api-navi-tab">标准查询界面</a></li>
-                    <li><a href="javascript:void(0);" target="_blank" src="layout/layout-menu.html" class="api-navi-tab">左侧菜单布局</a></li>
-		    <% } %>
+                    <% if (themeCode!="blue") {%><li><a href="javascript:void(0);" target="_blank" src="layout/layout-query.html" class="api-navi-tab">标准查询界面</a></li>
+                    <li><a href="javascript:void(0);" target="_blank" src="layout/layout-menu.html" class="api-navi-tab">左侧菜单布局</a></li><% } %>
                 </ul>   
             </div>
             <div title="表单" <% if (themeCode=="blue") {%>  style="background-color:#F9F9F9;"<%}%>>
@@ -189,7 +187,7 @@
                     <li><a href="javascript:void(0);"  src="triggerbox/triggerbox.html" class="api-navi-tab">触发框(triggerbox)</a></li>
                     <li><a href="javascript:void(0);"  src="datebox/datebox.html" class="api-navi-tab">日期框(datebox)</a></li>
                     <li><a href="javascript:void(0);"  src="timespinner/timespinner.html" class="api-navi-tab">时间框(timespinner)</a></li>
-                    <!-- <li><a href="javascript:void(0);"  src="combo/combo.html" class="api-navi-tab">组合(combo)</a></li> -->
+                    <% if (themeCode!="pure") {%><li><a href="javascript:void(0);"  src="combo/combo.html" class="api-navi-tab">组合(combo)</a></li><% } %>
                     <li><a href="javascript:void(0);"  src="combobox/combobox.html" class="api-navi-tab">下拉框(combobox)</a></li>
                     <li><a href="javascript:void(0);"  src="switchbox/switchbox.html" class="api-navi-tab">开关(switchbox)</a></li>
                     <li><a href="javascript:void(0);"  src="checkbox/checkbox.html" class="api-navi-tab">复选框(checkbox)</a></li>
