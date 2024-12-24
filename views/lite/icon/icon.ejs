@@ -44,7 +44,7 @@
             height: 28px;
             display: inline-block;
         }
-        .iconlist, .fontlist, .arrowlist, .bigiconlist, chinCharlist{
+        .iconlist, .fontlist, .arrowlist, .bigiconlist, .chinCharlist , .paneliconlist {
             display: inline-block;
         }
         .bigicon{
@@ -106,6 +106,9 @@
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="箭头图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
         <ul class="arrowlist"></ul>
+    </div>
+    <div class="hisui-panel" title="面板图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
+        <ul class="paneliconlist"></ul>
     </div>
     <!-- <div class='line'></div> -->
     <div class="hisui-panel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
@@ -234,7 +237,7 @@
                 'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
                 ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'
                 ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up','paper-link','paper-info','set-paper','red-cancel-paper'
-                ,'paper-thumb','paper-adm-pen','message-diag','note-pen','paper-ques','paper-key','paper-group','paper-clock-bue','home','tabs','panel-brand'
+                ,'paper-thumb','paper-adm-pen','message-diag','note-pen','paper-ques','paper-key','paper-group','paper-clock-bue'
             ];
             //icons.sort();
             for(var i=0;i<papericons.length;i++){
@@ -283,6 +286,15 @@
                     <span class="icon icon-'+arrowicons[i]+'">icon-'+arrowicons[i]+'</span>\
                     </li>'
                 ).appendTo(".arrowlist");
+            }
+            //----
+            var panelicons=['home','tabs','panel-brand'];
+            for(var i=0;i<panelicons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+panelicons[i]+'">icon-'+panelicons[i]+'</span>\
+                    </li>'
+                ).appendTo(".paneliconlist");
             }
             //----
             var bigicons = [
