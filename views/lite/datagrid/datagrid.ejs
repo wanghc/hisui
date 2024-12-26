@@ -290,7 +290,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 				<div onclick="console.log('作废');">作废</div>     
 			</div>
 		</div>
-		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,striped:false,
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:100px" data-options="iconCls:'icon-panel-brand',headerCls:'panel-header-gray',pagination:true,striped:false,
 			toolbar:'#custtb',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
 			onDblClickRow:function(){console.log(arguments)}">   
 			<thead>   
@@ -367,6 +367,7 @@ toolbar: [] //配置项toolbar为空时,会在标题与列头产生间距",
 					//autoSizeColumn:false,
 					//fitColumns:true,
 					striped:false,
+					iconCls:'icon-panel-brand',
 					showFooter:true,
 					loadFilter:function(data){ 
 						if(data.footer && data.footer.length>0){

@@ -168,7 +168,7 @@
   border-radius: 6px;
 }
 .tree-node-hover{
-  background: @tree-node-hover-bgcolor;
+  background: #E4F0FE;
   color: @tree-node-hover-font-color;
   border-radius: 6px;
 }
@@ -288,7 +288,7 @@
         padding: 0 34px 0 15px;
       }
       &.tree-node-hover{
-        background-color:@tree-node-hover-bgcolor;
+        background-color:#E4F0FE;
       }
     }
     &>ul{
@@ -299,7 +299,7 @@
         line-height: 36px;
         position: relative;
         &.tree-node-hover{
-          background-color: @accordion-tree-hover-bgcolor;
+          background-color: #E4F0FE;
         }
         &.tree-node-selected{
           background-color: @accordion-tree-select-bgcolor;
@@ -333,6 +333,16 @@
 }
 .treegrid-tr-tree-div-hidden{
   display:none;
+}
+.hisui-tree{
+  .tree-node{
+    &.tree-node-hover{
+      background-color: #e4f0fe;
+    }
+    &.tree-node-selected{
+      background-color: #d7e9ff;
+    }
+  }
 }
 
 

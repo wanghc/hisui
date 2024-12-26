@@ -38,6 +38,9 @@
   font-size: 1px;
   width: 18px;
   height: 10px;
+  &:hover{
+    color: #008FFF;
+  }
 }
 .spinner {
   border-color: #95B8E7;
@@ -65,10 +68,13 @@
     .spinner-arrow-hover {
       opacity: @input-arrow-hover-opacity;
       filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-      color:#008FFF;
+      color:#008FFF !important;
       background-color: @spinner-arrow-hover-bgcolor;
       ::before{
-        color:#008FFF;
+        &:hover{
+          color:#008FFF !important;
+        }
+        
       }
       
     }
@@ -90,6 +96,7 @@
       .spinner-arrow-up {
         background-image: none; //url(images/spinner_arrows_disable.png);
         color:@input-iconbtn-disabled-color;
+ 
       }
       .spinner-arrow-down {
         background-image: none; //url(images/spinner_arrows_disable.png);
@@ -140,3 +147,5 @@
 .spinner {
   border-color: @input-border-color;
 }
+.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-up:before{color:#008FFF}
+.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-down:before{color:#008FFF}
