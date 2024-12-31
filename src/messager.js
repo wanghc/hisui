@@ -396,7 +396,13 @@
             if (lastPopover.length>0){ // 多个提示框,重叠时,纵向排开
                 // 多个提示层, 如果重叠，top则向下移动
                 if (o.style.top=='') {
-                    o.style.top = lastPopover.last().offset().top + lastPopover.last()._outerHeight() + 10;
+                    // 使用showType:slide显示时,会有高度变化动化。
+                    // 二个异步请求都成功同时提示出popover,导致重叠，高度没展开时,默认为36px
+                    var lastPopoverHeight = 30;
+                    if (lastPopover.last()._outerHeight()>20){
+                        lastPopoverHeight = lastPopover.last()._outerHeight();
+                    }
+                    o.style.top = lastPopover.last().offset().top + lastPopoverHeight + 10;
                 }
             }
             var t = $(html).appendTo("body");
@@ -412,7 +418,13 @@
                     t.show();
                     break;
                 case "slide":
-                    t.slideDown(o.showSpeed);
+                    t.slideDown(o.showSpeed,'swing',function(){
+                        var poJobj = $(".messager-popover:visible");
+                        if (poJobj.length>=2){ // 界面上有二个以上的提示
+                            var secondToLastJobj = poJobj.eq(length-2) ;
+                            t.css({top:secondToLastJobj.offset().top + secondToLastJobj._outerHeight() + 10});
+                        }
+                    });
                     break;
                 case "fade":
                     t.fadeIn(o.showSpeed);
