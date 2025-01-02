@@ -85,8 +85,9 @@
 .pagination span.l-btn-text.l-btn-empty {
   line-height: 24px;
   width: 16px;
-  min-width: 16px;
+  min-width: 0px;
   margin:0 4px;
+  width: 0px;
 }
 .pagination .l-btn-plain .l-btn-icon-left .l-btn-icon{
   text-align: center;
@@ -95,6 +96,7 @@
   height: 16px;
   font-size: 16px;
   line-height: 16px;
+  position: relative;
 }
 .pagination {
 
@@ -130,9 +132,6 @@
       content: @content-pagination-load;
     }  
   }
-}
-.pagination .l-btn-plain .l-btn-icon-left .l-btn-text.l-btn-empty {
-  margin:0 0 0 9px ;
 }
 .pagination .pagination-num{ //[3241479]
   &:active,&:focus,&:hover{

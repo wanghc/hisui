@@ -57,6 +57,7 @@
   padding: 1px 2px;
   border-width: 0 0 1px 0;
   border-style: solid;
+  border-color: transparent;
 }
 .datagrid-btn-separator {
   float: left;
@@ -243,12 +244,6 @@
 .datagrid-pager {
   background: #F4F4F4;
 }
-.datagrid-header,
-.datagrid-toolbar,
-.datagrid-pager,
-.datagrid-footer-inner {
-  //border-color: #dddddd;
-}
 .datagrid-header td,
 .datagrid-body td,
 .datagrid-footer td {
@@ -373,11 +368,7 @@
   background: #FEF5E5;
   color:@datagrid-row-select-color;
 }
-.datagrid-row-over, .datagrid-header td.datagrid-header-over {
-  // background: @datagrid-row-hover;
-  // color: @datagrid-row-hover-color;
-  // cursor: default;
-}
+
 .datagrid-cell, .datagrid-cell-group{
   /*text-overflow: ellipsis;*/ /*2018-12-4 showTip*/
   padding: 0 8px;
@@ -558,9 +549,6 @@ td.datagrid-value-changed {
   .datagrid-row-alt{
     background: @datagrid-header-blue-bgcolor;
   }
-  .datagrid-row-over{
-    //background: @datagrid-header-blue-hover-bgcolor;
-  }
   .datagrid-row-selected{
     background: @datagrid-header-blue-select-bgcolor;
   }
@@ -568,9 +556,4 @@ td.datagrid-value-changed {
 .datagrid-header-rownumber{
   color: #939393;
   font-weight: 700;
-}
-.datagrid{
-  .panel-body{
-    color: #FFF;
-  }
 }
