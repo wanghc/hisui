@@ -111,9 +111,6 @@
 .datagrid-header .datagrid-cell {
   height: auto;
 }
-.datagrid-header .datagrid-cell span {
-  font-size: 12px;
-}
 .datagrid-cell-group {
   text-align: center;
 }
@@ -193,7 +190,6 @@
   margin: 0;
   padding: 2px;
   border-width: 1px;
-  border-radius: 6px;
   border-style: solid;
 }
 .datagrid-sort .datagrid-sort-icon{
@@ -316,11 +312,6 @@
   font-size: @datagrid-cell-font-size;
 }
 
-.datagrid-header .datagrid-cell span {
-  font-size: 14px  ;
-  color: #939393;
-  font-weight: bold;
-} 
 .datagrid-header .datagrid-header-autowrap .datagrid-cell{
   white-space: pre-wrap;
   word-break: break-all;
@@ -373,6 +364,12 @@
   /*text-overflow: ellipsis;*/ /*2018-12-4 showTip*/
   padding: 0 8px;
 }
+.datagrid-htable td:first-child .datagrid-cell,
+.datagrid-btable td:first-child .datagrid-cell,
+.datagrid-htable td:first-child .datagrid-header-rownumber,
+.datagrid-btable td:first-child .datagrid-cell-rownumber{
+  padding-left: 15px;
+}
 /*toolbar 一点改动*/
 .datagrid-toolbar {
   //padding-bottom: 10px; //加上后默认 默认高度10 改为margin 下划线又随着变化
@@ -396,8 +393,8 @@
     }
     .l-btn-icon-left{
       .l-btn-text{
-        line-height: 39px;
-        padding: 0 0 0 29px;
+        line-height: 28px;
+        padding: 0 10px 0 29px;
         margin: 0 0 0 ;
       }
       
@@ -411,7 +408,7 @@
         height: 16px;
         width: 16px;
         line-height: 28px;
-        padding: 5px 5px 5px 10px;
+        padding: 1px 5px 5px 10px;
       }
       .l-btn-empty+.l-btn-icon{
         left: 0;
@@ -553,7 +550,12 @@ td.datagrid-value-changed {
     background: @datagrid-header-blue-select-bgcolor;
   }
 }
-.datagrid-header-rownumber{
-  color: #939393;
-  font-weight: 700;
+// .datagrid-header-rownumber{
+//   color: #939393;
+//   font-weight: 700;
+// }
+
+.datagrid-header-row{
+  color:#939393;
+  font-weight: bold;
 }

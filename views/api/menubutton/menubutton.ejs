@@ -171,7 +171,7 @@
 				<div onclick="console.log('作废');">作废</div>     
 			</div>
 		</div>
-		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:200px" data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',pagination:true,
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:240px" data-options="iconCls:'<% if (themeCode=="pure") { %>icon-panel-brand<% } else {%>icon-paper<%}%>',headerCls:'panel-header-gray',pagination:true,
 			toolbar:'#custtb2',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
 			onDblClickRow:function(){console.log(arguments)}">   
 			<thead>   
