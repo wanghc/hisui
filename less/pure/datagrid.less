@@ -186,12 +186,6 @@
   margin: 0;
   padding: 0;
 }
-.datagrid-body .datagrid-editable .datagrid-editable-input {
-  margin: 0;
-  padding: 2px;
-  border-width: 1px;
-  border-style: solid;
-}
 .datagrid-sort .datagrid-sort-icon{
   display: inline;
   padding: 0 13px 0 0;
@@ -264,9 +258,7 @@
   background: #ffe48d;
   color: #000000;
 }
-.datagrid-body .datagrid-editable .datagrid-editable-input {
-  border-color: #95B8E7;
-}
+
 .propertygrid .datagrid-view1 .datagrid-body td {
   padding-bottom: 1px;
   border-width: 0 1px 0 0;
@@ -369,6 +361,10 @@
 .datagrid-htable td:first-child .datagrid-header-rownumber,
 .datagrid-btable td:first-child .datagrid-cell-rownumber{
   padding-left: 15px;
+}
+.datagrid-htable td:first-child .datagrid-editable,
+.datagrid-btable td:first-child .datagrid-editable{
+  padding-left: 1px;
 }
 /*toolbar 一点改动*/
 .datagrid-toolbar {
@@ -481,7 +477,6 @@
     border: @validatebox-border-width @validatebox-border-type @input-border-color;
     background-color: @input-bgcolor;
     margin: 0;
-    padding:0 0 0 @validatebox-padding-left;
     line-height:@validatebox-height;
     &:hover,&:active,&:focus{
       background-color: @input-active-bgcolor;

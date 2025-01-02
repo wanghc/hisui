@@ -19,14 +19,14 @@
 	</style>
     <span>单元格编辑功能来自于EasyUI的cellediting组件，主要用于单元编辑功能</span>
 	<div class="demo-exp-code entry-content " >
-		<table id="dg" title="甲患者生命体征录入" class='use-prettyprint lang-html' data-options="toolbar:[],rownumbers:true" style="width:500px;height:500px">
+		<table id="dg" title="甲患者生命体征录入" class='use-prettyprint lang-html' data-options="<% if (themeCode=="pure") { %>striped:false,iconCls:'icon-panel-brand',<% }else{ %>toolbar:[],<%}%>rownumbers:true" style="width:500px;height:500px">
 			<thead>
 				<tr>
-					<th data-options="field:'opdate',width:120,editor:{type:'dateboxq'}">日期</th>
+					<th data-options="field:'opdate',width:120,align:'center',editor:{type:'dateboxq',options:{width:130}}">日期</th>
 					<th data-options="field:'note1',width:200,align:'center',editor:{type:'celltextarea'}">行高自适应</th>
-					<th data-options="field:'temperature',width:100,editor:{type:'numberbox',options:{precision:1}}">体温</th>
-					<th data-options="field:'pulse',width:60,editor:{type:'numberbox',options:{precision:0,min:60,max:100}}">脉搏</th>
-					<th data-options="field:'heartbeat',width:60,align:'right',editor:{type:'numberbox',options:{precision:0}}">心跳</th>
+					<th data-options="field:'temperature',width:100,align:'center',editor:{type:'numberbox',options:{precision:1}}">体温</th>
+					<th data-options="field:'pulse',width:60,align:'center',editor:{type:'numberbox',options:{precision:0,min:60,max:100}}">脉搏</th>
+					<th data-options="field:'heartbeat',width:60,align:'center',align:'right',editor:{type:'numberbox',options:{precision:0}}">心跳</th>
 					<th data-options="field:'breath',width:80,align:'right',editor:'numberbox'">呼吸</th>
 					<th data-options="field:'bloodpress',width:60,editor:{type:'numberbox',options:{precision:0,min:80,max:120}}">血压</th>
 					<th data-options="field:'status',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">正常</th>
