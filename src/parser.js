@@ -253,7 +253,11 @@
             },
             dateboxqPanelHeight:{
                 default: 202,pure: 210
+            },
+            datetimeboxPanelHeight:{
+                default: 232,pure: 248
             }
+
         },
         getStyleCodeConfigValue : function(key){
             if ("undefined" == typeof HISUIStyleCode ) return $.hisui.styleCodeConfig[key].default;

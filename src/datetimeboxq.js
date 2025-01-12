@@ -152,7 +152,7 @@
         return $.extend({}, $.fn.dateboxq.parseOptions(_961), $.parser.parseOptions(_961, [{ showSeconds: "boolean" }]));
     };
     $.fn.datetimeboxq.defaults = $.extend({}, $.fn.dateboxq.defaults, {
-		showSeconds: true,panelHeight:232,
+		showSeconds: true,panelHeight:$.hisui.getStyleCodeConfigValue('datetimeboxPanelHeight'),
 		buttons: [{
             text: function (_962) {
                 return $(_962).dateboxq("options").currentText;
