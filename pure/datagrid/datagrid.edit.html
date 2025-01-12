@@ -146,12 +146,12 @@
 	<div class="use-prettyprint" prettyprintfor="#mydg2codehtml">
 		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
 		
-		data-options="iconCls:'icon-panel-brand',singleSelect: true,url:'data2.csp',
+		data-options="iconCls:'icon-panel-brand',singleSelect: true,url:'data2.csp',striped:false,
 		
 		method: 'get',rownumbers:true,onClickRow: onClickRow2,toolbar:[]">
 		<thead>
 		<tr>	
-			<th data-options="field:'grantBtnGroup',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
+			<th data-options="field:'grantBtnGroup',align:'center',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
 				var valArr = value.split('#');
 				var rtnArr = [];
 				$.each(valArr,function(i,item){
