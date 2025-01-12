@@ -174,7 +174,7 @@
 	};
 	$.fn.dateboxq.defaults = $.extend({}, $.fn.comboq.defaults, {
 		panelWidth: 180,
-		panelHeight:202,
+		panelHeight:$.hisui.getStyleCodeConfigValue("dateboxqPanelHeight"),
 		parser:$.fn.datebox.defaults.parser,
 		formatter:$.fn.datebox.defaults.formatter,
 		currentText:$.fn.datebox.defaults.currentText,

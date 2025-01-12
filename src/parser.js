@@ -250,6 +250,9 @@
             },
             tabHeight:{
                 default: 36,pure:44
+            },
+            dateboxqPanelHeight:{
+                default: 202,pure: 210
             }
         },
         getStyleCodeConfigValue : function(key){
