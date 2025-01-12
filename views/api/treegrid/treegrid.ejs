@@ -18,10 +18,9 @@
 		<div class="hisui-layout" style="width:700px;height:500px;" >
 			<div region='center' data-options="border:false">
 				<table title="菜单管理" class='hisui-treegrid' id="treegrid2"
-					data-options="fit:true,idField:'id',headerCls:'panel-header-gray',iconCls:'icon-paper',treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,checkOnSelect: false, selectOnCheck: false,toolbar:[{
+					data-options="fit:true,idField:'id',headerCls:'panel-header-gray'<% if (themeCode=="pure") { %>,iconCls:'icon-panel-brand',striped:false<% }else{ %>,iconCls:'icon-paper',striped:true<% } %>,treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,checkOnSelect: false, selectOnCheck: false,toolbar:[{
 						iconCls: 'icon-paper-table',text:'获得所有选中',
 						handler: function(){
-							debugger;
 							var o = $('#treegrid2').treegrid('getCheckedNodes','checked');
 							log(o);
 						}
@@ -40,21 +39,23 @@
 					}]">
 					<thead data-options="frozen:true">
 						<tr>
-							<th field="menuName" width="160" align="left" >菜单名</th>
+							<th field="menuName" width="180" align="center" >菜单名</th>
 						</tr>
 					</thead>
 						<thead>
 							<tr>						
 								<th field="menuLink" width="100" align="left">链接</th>
 								<th field="menuCode" width="160" align="left">代码</th>
-								<th field="menuSort" width="60" align="right">顺序</th>
-								<th field="menuEx" width="160" align="left">表达式</th>
+								<th field="menuSort" width="40" align="right">顺序</th>
+								<th field="menuEx" width="120" align="left">表达式</th>
 							</tr>
 						</thead>
 					</table>
 			</div>
-			<div data-options="region:'south',title:'控制台',split:true,headerCls:'panel-header-gray',iconCls:'icon-format-line'" style="height:100px">
-					<code id="logspan" ></code>
+			<div data-options="region:'south',title:'控制台',split:true,headerCls:'panel-header-gray'<% if (themeCode=='pure') { %>,iconCls:'icon-panel-brand'<% }else{ %>,iconCls:'icon-paper'<% } %>" style="height:100px">
+				<div style="padding:0 15px 0px 15px;" >
+					<code id="logspan"></code>
+				</div>
 			</div>
 		</div>
 		<script type="text/javascript">
@@ -161,12 +162,11 @@ $(function(){
 	<h3>报表 合并列</h3>
 	<div class="demo-exp-code entry-content"> 
 		<table title="报表" class="hisui-treegrid" id="treegrid1" style="width:680px;height:400px"
-		data-options="method: 'get',toolbar:[],headerCls:'panel-header-gray panel-header-line-gray',iconCls:'icon-paper',
+		data-options="method: 'get',toolbar:[],headerCls:'panel-header-gray panel-header-line-gray',
 			showFooter: true,
 			idField: 'id',
 			treeField: 'region',
-			iconCls:'icon-paper',
-			headerCls:'panel-header-gray panel-header-line-gray'
+			<% if (themeCode=='pure') { %>iconCls:'icon-panel-brand',striped:false<% }else{ %>iconCls:'icon-paper',striped:true<% } %>
 		">
 			<thead frozen="true">
 				<tr>
