@@ -37,7 +37,7 @@
 	<div class="use-prettyprint" prettyprintfor="#mydg1codehtml">
 		
 		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:1162px;height:300px"
-		data-options="toolbar:[],singleSelect: true,onClickRow: onClickRow,url:'data.csp'">
+		data-options="toolbar:[],singleSelect: true,onClickRow: onClickRow,iconCls:'icon-panel-brand',url:'data.csp'">
 		
 		<thead>
 		<tr>
@@ -56,8 +56,8 @@
 							method:'get',
 							url:'feetype.csp',
 							required:true,
-							blurValidValue:true,
-							panelHeight:'auto'
+							panelHeight:'auto',
+							blurValidValue:true
 						}
 					}">费用类型combobox</th>
 			<th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)</th>
@@ -67,7 +67,7 @@
 			<th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox</th>
 			<th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox</th>
 			
-			<th data-options="field:'op',width:140,align:'center',editor:{type:'linkbutton',options:{iconCls:'icon-save',handler:function(){endEditing();}}}">按钮linkbutton</th>
+			<th data-options="field:'op',width:140,align:'center',formatter:function(val,row){return `<a href='#' onclick='endEditing();'>${val}</a>`}">按钮linkbutton</th>
 			
 			<th data-options="field:'dbq',width:120,align:'left',editor:{type:'dateboxq'}">日期q</th>
 			<th data-options="field:'timesp',width:80,align:'left',editor:{type:'timespinner'}">时间</th>
@@ -83,7 +83,6 @@
 	function endEditing(){
 			if (editIndex == undefined){return true}
 			if ($('#dg').datagrid('validateRow', editIndex)){
-				debugger
 				//列表中下拉框实现，修改后把回写feetypename，因为formatter显示的是feetypename字段
 				var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'feetypeid'});
 				var feetypename = $(ed.target).combobox('getText');
@@ -147,7 +146,7 @@
 	<div class="use-prettyprint" prettyprintfor="#mydg2codehtml">
 		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:300px;height:300px"
 		
-		data-options="singleSelect: true,url:'data2.csp',
+		data-options="iconCls:'icon-panel-brand',singleSelect: true,url:'data2.csp',
 		
 		method: 'get',rownumbers:true,onClickRow: onClickRow2,toolbar:[]">
 		<thead>
