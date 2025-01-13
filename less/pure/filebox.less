@@ -47,7 +47,7 @@
     padding: 0;
     vertical-align: top;
     border-radius: 0 0 0 0;
-    color:#191919;
+    color:#666666;
     &:hover{
       color: #008FFF;
     }
@@ -62,6 +62,7 @@
   }
   .filebox-button-right{
     right: 0;
+    top: -1px;
   }
   .filebox-button-left{
     left: 0;
@@ -93,6 +94,7 @@
           padding: 8px 6px !important;
           margin-left: 0px !important;
           background-image: none !important;
+          width: 16px!important;
         }
       }
     }
@@ -116,14 +118,15 @@
           margin-left: -100%;
           background-repeat: no-repeat;
           padding-right: 2px;
-          background-position: right;
           background-size: 1px 16px;
           background-image: url(../css/images/pure/vline.png);
+          background-position: 24px;
+          width: 24px;
         }
       }
       &.l-btn-disabled{
         .l-btn-text{
-          background: @linkbutton-disabled-bgcolor;
+          background: #f1f1f1;
         }
         .l-btn-icon {
           background-color: transparent;
