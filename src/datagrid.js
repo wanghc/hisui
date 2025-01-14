@@ -1891,8 +1891,9 @@
             var _5fb = $(this).parent().attr("field");
             var ed = $.data(this, "datagrid.editor");
             ed.actions.setValue(ed.target, row[_5fb]);
+            if ('function'==typeof ed.actions.setText) ed.actions.setText(ed.target, ed.oldHtml);
         });
-        _5fc(_5f8, rowIndex);
+        _validateRow(_5f8, rowIndex);
         opts.onBeginEdit.call(_5f8, rowIndex, row);
     };
     /// endEdit(t,rowIndex=0,flag)
@@ -1906,7 +1907,7 @@
             return;
         }
         if (!_600) {
-            if (!_5fc(_5fe, _5ff)) {
+            if (!_validateRow(_5fe, _5ff)) {
                 return;
             }
             var _603 = false;
@@ -2026,7 +2027,7 @@
             }
         });
     };
-    function _5fc(_61a, _61b) {
+    function _validateRow(_61a, _61b) {
         var tr = $.data(_61a, "datagrid").options.finder.getTr(_61a, _61b);
         if (!tr.hasClass("datagrid-row-editing")) {
             return true;
@@ -2116,7 +2117,7 @@
         var data = $.data(_635, "datagrid").data;
         var ok = true;
         for (var i = 0, len = data.rows.length; i < len; i++) {
-            if (_5fc(_635, i)) {
+            if (_validateRow(_635, i)) {
                 _5fd(_635, i, false);
             } else {
                 ok = false;
@@ -2893,6 +2894,10 @@
                 } else {
                     $(_69b).combogrid("setValue", _69c);
                 }
+            }, setText:function(t,txt){
+                if ($(t).combogrid('options').lazy){ // 懒加载下拉表格
+                    $(t).combogrid('setText',txt);
+                }
             }, resize: function (_69d, _69e) {
                 $(_69d).combogrid("resize", _69e);
             }
@@ -3220,7 +3225,7 @@
                 opts.view.refreshRow.call(opts.view, this, _6c0);
             });
         }, validateRow: function (jq, _6c1) {
-            return _5fc(jq[0], _6c1);
+            return _validateRow(jq[0], _6c1);
         }, updateRow: function (jq, _6c2) {
             return jq.each(function () {
                 var opts = $.data(this, "datagrid").options;

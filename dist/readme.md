@@ -35,6 +35,24 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-01-14
+- :sparkles: 编辑表格内`combogrid`在懒加载时默认显示设置`oldHtml`文本
+```js
+// 解决lazy时，双击编辑时速度，且不触发数据查询
+editor:{
+  type:'combogrid',
+  url:url,
+  method: 'post',
+  lazy:true,
+  queryOnFirstArrowDown:true,
+  mode:'remote',
+  multiple:true,
+  ...
+}
+
+
+```
+
 ## 2024-12-31
 - :bug: 同时提示出二个`popover`时,解决提示层会重叠问题 [5287885]
 
