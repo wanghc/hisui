@@ -16,7 +16,7 @@
                 var _907 = opts.onSelect;
                 opts.onSelect = function () {
                 };
-                _911(_903, _906, _904.remainText);
+                _setValues(_903, _906, _904.remainText);
                 opts.onSelect = _907;
                 opts.onLoadSuccess.apply(_903, arguments);
             }, onClickRow: _908, onSelect: function (_909, row) {
@@ -91,7 +91,7 @@
             grid.datagrid("selectRow", _910);
         }
     };
-    function _911(_912, _913, _914) {
+    function _setValues(_912, _913, _914) {
         var _915 = $.data(_912, "combogrid");
         var opts = _915.options;
         var grid = _915.grid;
@@ -143,9 +143,9 @@
         var grid = _91c.grid;
         _91c.remainText = true;
         if (opts.multiple && !q) {
-            _911(_91b, [], true);
+            _setValues(_91b, [], true);
         } else {
-            _911(_91b, [q], true);
+            _setValues(_91b, [q], true);
         }
         if (opts.mode == "remote") {
             grid.datagrid("clearSelections");
@@ -245,13 +245,13 @@
             return $.extend($.data(jq[0], "combogrid").options, { originalValue: _925.originalValue, disabled: _925.disabled, readonly: _925.readonly });
         }, grid: function (jq) {
             return $.data(jq[0], "combogrid").grid;
-        }, setValues: function (jq, _926) {
+        }, setValues: function (jq, values) {
             return jq.each(function () {
-                _911(this, _926);
+                _setValues(this, values);
             });
-        }, setValue: function (jq, _927) {
+        }, setValue: function (jq, value) {
             return jq.each(function () {
-                _911(this, [_927]);
+                _setValues(this, [value]);
             });
         }, clear: function (jq) {
             return jq.each(function () {
