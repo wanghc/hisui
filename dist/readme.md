@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-01-16
+- :sparkles: 编辑表格编辑时增加调用`setValueText`
+
 ## 2025-01-14
 - :sparkles: 编辑表格内`combogrid`在懒加载时默认显示设置`oldHtml`文本
 ```js
