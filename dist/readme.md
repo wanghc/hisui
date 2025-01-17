@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-01-17
+- :sparkles: 处理`body *`字体大小影响hos模板打印的问题
+
 ## 2025-01-16
 - :sparkles: 编辑表格编辑时增加调用`setValueText`
 
