@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>切换开关</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,11 +16,11 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
+
 </head>
-<body style="background-color: #FFFFFF;">
+
+    <body style="background-color: #FFFFFF;">
+
     <h2>开/关。源自Bootstrap的<a href="http://www.bootcss.com/p/bootstrap-switch/" target="_blank">switch插件</a>。</h2>
     <h3>说明:</h3>
     <span>切换开关</span>
@@ -34,7 +37,8 @@ size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:func
         <div id="switch2" ></div>
         <pre class="prettyprint hide lang-js"><code>$(function(){
     $HUI.switchbox('#switch2',{
- 
+        onText:'开',
+        offText:'关',
         onClass:'primary',
         offClass:'gray',
         onSwitchChange:function(e,obj){

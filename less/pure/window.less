@@ -1,16 +1,25 @@
 @import "variables.less";
 .window {
+  min-width: 474px;
+  min-height: 274px;
   overflow: hidden;
   border-width: 1px;
   border-style: solid;
-  background-color: #d7e9ff;
-  background: linear-gradient(180deg,#d7e9ff 0%,#f1f7fe 100%);
+  background-image: url('@{images-path}/messager_blue.png') ;
   background-repeat: repeat-x;
+  background-color: #F1F7FE;
+
+  // background-color: #d7e9ff;
+  // background: linear-gradient(180deg,#d7e9ff 0%,#f1f7fe 100%);
+  // background-repeat: repeat-x;
   padding: 0px;
   border-bottom: 0px;
+  .panel-header-noborder{
+    border-width: 0 0 0 0;
+  }
   .window-header {
     border-color: @window-header-bgcolor;
-    border-bottom: 1px solid @panel-header-bdcolor;
+    //border-bottom: 1px solid @panel-header-bdcolor;
     background:  @window-header-bgcolor;
     padding: 0px 0px 6px 0px;
     .panel-with-icon {
@@ -36,10 +45,14 @@
         }
       }
     }
-    .panel-with-icon {
+    // .panel-with-icon {
+    //   padding-left: 15px;
+    //   padding-top: 5px;
+    //   padding-bottom: 5px;
+    // }
+    .panel-title{
+      height: 48px;
       padding-left: 15px;
-      padding-top: 5px;
-      padding-bottom: 5px;
     }
   }
   .window-body {

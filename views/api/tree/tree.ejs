@@ -196,7 +196,7 @@
 		</div>
 	</div>
 	<h3>三、formatter实现节点自定义格式</h3>
-	<div class="demo-exp-code entry-content">
+	<div class="demo-exp-code entry-content" style="background-color: #f1f7fe;">
 		
 		<p>formatter返回的html高度不定，需要为tree增加配置项<code>autoNodeHeight:true,lines:true</code>;原文件夹或文件图标会替换成线条<p>
 		<div class="use-prettyprint">
@@ -283,14 +283,14 @@
 						}else{
 							return "<div >"
 								+"<span data-id='"+node.id+"' class='icon icon-edit' style='display:block;width:16px;height:16px;position:absolute;right:8px;top:13px;'></span>"
-								+"<div style='height:20px;line-height:20px;color:gray'>"+(new Date()).toLocaleString()+"</div>"
+								+"<div style='height:20px;line-height:20px;color:#939393'>"+(new Date()).toLocaleString()+"</div>"
 								+"<div style='height:20px;line-height:20px;'>"+node.text+"</div>"
 								+"</div>";
 							//同时给此树下的tree-node 加上position: relative;   以实现小图标靠右
 						}
 						
 					},
-					lines:true,autoNodeHeight:true
+					lines:false,autoNodeHeight:false
 				})
 
 				//可能还需要监听事件

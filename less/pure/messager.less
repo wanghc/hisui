@@ -105,7 +105,7 @@
   position: absolute;
   border-radius: 6px;
   display: block;
-  padding:12px 20px;
+  padding:11px 19px;
   font-weight:@messager-body-fweight;
   font-size: @messager-body-fsize;
   z-index: 10000;
@@ -113,28 +113,32 @@
   background: @messager-body-bgcolor;
   border:1px solid @messager-body-bgcolor;
   box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
+  .content{
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 .messager-popover-icon{
   float: left;
   width: 16px;
   height: 16px;
   margin-right: 10px;
-  margin-top: 2px;
-}
-.messager-popover-icon.success{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll 0 0;
-}
-.messager-popover-icon.alert{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -16px 0;
-}
-.messager-popover-icon.error{
-  background: url('@{images-path}/messager_popover.png') no-repeat scroll -32px 0;
+  margin-top: 4px;
 }
 .messager-popover-icon.info{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll 0 0;
+}
+.messager-popover-icon.success{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -16px 0;
+}
+.messager-popover-icon.alert{
+  background: url('@{images-path}/messager_popover.png') no-repeat scroll -32px 0;
+}
+.messager-popover-icon.error{
   background: url('@{images-path}/messager_popover.png') no-repeat scroll -48px 0;
 }
 .messager-popover .content{
-  height: 18px;
+  height: 24px;
   float: left;
 }
 .messager-window{
@@ -147,15 +151,18 @@
     padding-bottom: 40px;
   }
   .messager-input{
-    width: 320px !important;
+    width: 277px !important;
+    border-radius: 6px;
     margin-top: 10px;
     height: 28px;
     line-height: 28px;
   }
   .messager-body{
+    padding: 10px 0px;
+    margin-top: 20px;
     width: 100% !important;
     :nth-child(5){
-      margin-left: 100px !important;
+      margin-left: 126px !important;
     }
     .messager-button{
       a:nth-child(2){
@@ -164,6 +171,33 @@
       a:nth-child(3){
         margin-left: 20px !important;
       }
+    }
+    .messager-icon{
+      margin: 0 20px 0px 60px;
+    }
+    div:nth-child(2){
+      min-height: 54px;
+    }
+    .messager-progress{
+      padding: 0px 60px 40px 60px;
+      .messager-p-bar{
+
+        min-height: 30px !important;
+        margin-right: 0px;
+
+        .progressbar-text{
+         
+        }
+      }
+      .messager-p-msg{
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .window-header {
+    .panel-title{
+      height: 48px;
+      padding-left: 15px;
     }
   }
   .messager-p-bar{
@@ -180,7 +214,7 @@
     padding-bottom: 40px;
   }
   .messager-body{
-    margin-top: 30px;
+    margin-top: 20px;
     min-width: 454px;
     .l-btn-small{
       &:focus{
@@ -192,18 +226,19 @@
       position: absolute;
     }
     div:nth-child(2){
-      margin-left: 107px !important;
+      margin-left: 126px !important;
       position: relative;
+      min-height: 54px;
     }
   }
   .window-header {
     .panel-title{
-      padding-top: 11px;
+      height: 48px;
       padding-left: 15px;
     }
   }
   div:nth-child(2) {
-    padding-right: 50px;
+    padding-right: 60px;
   }
   .messager-info{
     margin-left: 50px;
@@ -220,7 +255,7 @@
     padding-bottom: 40px;
   }
   .messager-body{
-    margin-top: 30px;
+    margin-top: 20px;
     min-width: 454px;
     .l-btn-small{
       &:focus{
@@ -232,18 +267,19 @@
       position: absolute;
     }
     div:nth-child(2){
-      margin-left: 107px !important;
+      margin-left: 126px !important;
       position: relative;
+      min-height: 54px;
     }
   }
   .window-header {
     .panel-title{
-      padding-top: 11px;
+      height: 48px;
       padding-left: 15px;
     }
   }
   div:nth-child(2) {
-    padding-right: 50px;
+    padding-right: 60px;
   }
   .messager-info{
     margin-left: 50px;
@@ -254,12 +290,13 @@
   background-repeat: repeat-x;
   background-color: #FFF;
   min-width: 474px;
+  //min-height: 274px !important;
   .messager-button{
     padding-top: 50px;
     padding-bottom: 40px;
   }
   .messager-body{
-    margin-top: 30px;
+    margin-top: 20px;
     min-width: 454px;
     .l-btn-small{
       &:focus{
@@ -270,19 +307,21 @@
       height: 100%;
       position: absolute;
     }
+
     div:nth-child(2){
-      margin-left: 107px !important;
+      margin-left: 126px !important;
       position: relative;
+      min-height: 54px;
     }
   }
   .window-header {
     .panel-title{
-      padding-top: 11px;
+      height: 48px;
       padding-left: 15px;
     }
   }
   div:nth-child(2) {
-    padding-right: 50px;
+    padding-right: 60px;
   }
   .messager-info{
     margin-left: 50px;
