@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>分割按钮</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,11 +16,11 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
+
 </head>
-<body style="background-color: #FFFFFF;">
+
+    <body style="background-color: #FFFFFF;">
+
     <h2>分割按钮</h2>
     <h3>说明:</h3>
     <span>分割按钮（Split Button）包含一个链接按钮（Link Button）和一个菜单（Menu）。当用户点击或者鼠标悬停在向下箭头区域，将会显示一个对应的菜单。</span>
@@ -35,7 +38,7 @@
         <a href="javascript:void(0)" id="sb2" class="hisui-splitbutton" data-options="menu:'#mm3',plain:false,onClick:function(){
             $.messager.popover({msg:'按钮自己',type:'info'});
         }">打印[F6]</a>   
-        <div id="mm3" style="width:100px;" class="menu-no-icon">   
+        <div id="mm3" style="width:100px;" class="menu-no-icon menu-no-icon-blue">   
             <div onclick="$.messager.popover({msg:'PDF',type:'info'});">打印PDF</div>   
             <div onclick="$.messager.popover({msg:'预览',type:'info'});">打印预览</div>
             <div onclick="$.messager.popover({msg:'报告',type:'info'});">打印报告</div>   
