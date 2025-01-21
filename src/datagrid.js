@@ -2171,7 +2171,9 @@
     function _reload2(target,param) {
         var status = $.data(target, "datagrid");
         var opts = status.options;
-        if (opts.mode=='remote'){
+        // filterToolbarType : 'local'   表示过滤本地数据originRows||rows数据。 默认值local.
+        // filterToolbarType : 'remote'  不会过滤，只会触发datagrid的reload方法，参数得自己拼接
+        if (opts.filterToolbarType=='remote'){
             $(target).datagrid('load',param);
         }else{
             // console.dir(opts.originalRows);     // combogird与datagrid时 - 为undefined
