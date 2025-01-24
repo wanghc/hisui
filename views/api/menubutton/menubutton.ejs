@@ -14,7 +14,11 @@
    
     <h3>一、多级菜单</h3>
 	<div class="demo-exp-code entry-content"> 
+        <% if (themeCode=="pure") {%>
+        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton hisui-multi-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改</a>
+        <% }else{ %>
         <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改</a>
+        <% } %>
         <div id="mmedit" style="width:150px;">
             <div data-options="iconCls:'icon-undo'">撤销</div>
             <div data-options="iconCls:'icon-redo'">撤回</div>
@@ -55,7 +59,11 @@
     </div>
     <h3>二、无图标菜单(<code>menu-no-icon</code>) <code>2018-09-17</code></h3>
 	<div class="demo-exp-code entry-content"> 
-        <a href="javascript:void(0)" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-paper-info'">操作</a>
+        <% if (themeCode=="pure") {%>
+        <a href="javascript:void(0)" class="hisui-menubutton hisui-no-icon-menubutton" data-options="menu:'#mm3'">操作</a>
+        <% }else{ %>
+        <a href="javascript:void(0)" class="hisui-menubutton" data-options="menu:'#mm3'">操作</a>
+        <% } %>
         <div id="mm3" style="width:100px;" class='menu-no-icon'>   
             <div onclick="console.log('停止');">停止</div>   
             <div onclick="console.log('作废');">作废</div>
