@@ -88,7 +88,7 @@
 	<h3>一、编辑灰色表格(<code>headerCls:'panel-header-gray'</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint hide lang-html">
-			<table id='mytb' class="hisui-datagrid" title="" style="width:600px;height:300px" 
+			<table id='mytb' class="hisui-datagrid" title="" style="width:600px;height:320px" 
 			data-options="autoSizeColumn:false,fitColumns:true,striped:false,headerCls:'panel-header-gray',
 			singleSelect:true,
 			pagination:true,toolbar: [{
@@ -96,7 +96,7 @@
 				text:'',
 				handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('beginEdit',curInd);}
 			},{
-				iconCls: 'icon-save',
+				iconCls: 'icon-add',
 				text:'',
 				handler: function(){var jqobj = $('#mytb');var curInd =jqobj.datagrid('getRowIndex',jqobj.datagrid('getSelected')) ;$('#mytb').datagrid('endEdit',curInd)}
 			},{
@@ -149,7 +149,10 @@
 	<div class="demo-exp-code entry-content"> 
 		<div class="use-prettyprint hide lang-html">
 			<div id="custtb" >
-				<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</a>
+				
+				
+				<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-save',plain:true">保存</a>
+				
 				<a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-add-note'">其他</a>
 				<div id="mm-toolbar" style="width:100px;">   
 					<div onclick="console.log('停止');">停止</div>   
@@ -467,6 +470,7 @@
 					$HUI.datagrid('#mytable10',{
 						autoSizeColumn:false,
 						fitColumns:true,idField:'id',
+						bodyCls:'table-splitline-btm-hidden',
 						headerCls:'datagrid-header-blue',
 						rownumbers:true,width:650,height:300,
 						title:'属性列表',titleNoWrap:false,/*表头自动折行*/
@@ -476,9 +480,9 @@
 						lineHeight:12,
 						columns:[[
 							{field:'ck',title:'sel',checkbox:true},
-							{field:'name',title:'属性名',align:'center',width:100},
-							{field:'type',title:'类型',align:'center',width:100,align:'right'},
-							{field:'desc',title:'说明',align:'center',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
+							{field:'name',title:'属性名',width:100},
+							{field:'type',title:'类型',width:100},
+							{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
 						]],
 						data:{
 							rows:[

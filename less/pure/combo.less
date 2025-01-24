@@ -58,7 +58,7 @@
   }
   .combo-arrow::before{
     content: "\f624";
-    font-size: 16px;
+    font-size: 14px;
   }
   &.combo-p-active.combo-p-bottom{
     border-radius: @input-border-radius @input-border-radius 0 0 ;
@@ -129,4 +129,9 @@
 /*老项目可能有人手动清空validatebox-invalid样式, 样式最好在validatebox-invalid上修改, 尽量不在combo-invalid上写*/
 .validatebox-invalid+span .combo-arrow{ 
   background-color: #ffe9e9;
+}
+.combo-panel {
+  .tree-expanded{
+    margin-top: 8px;
+  }
 }

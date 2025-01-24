@@ -1058,10 +1058,16 @@
       .tabs-icon{
         left: 0px;
         top: 21px;
+        color: #ccc;
       }
       .tabs-close{
         right: 0px;
         top: 21px;
+      }
+      &.tabs-selected{
+        .tabs-icon {
+          color:#939393
+        }
       }
     }
   }
@@ -1155,4 +1161,18 @@
 }
 .tabs-icon{
   color: #939393;
+}
+.tabs-first-icon{
+  li {
+    .tabs-icon{
+      color: #939393 !important;
+    }
+  }
+}
+.tabs-right-left{
+  li {
+    .tabs-icon{
+      color: #939393 !important;
+    }
+  }
 }

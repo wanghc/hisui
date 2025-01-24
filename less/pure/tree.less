@@ -223,6 +223,9 @@
   }
   .tree-expanded{
     background: url('@{images-path}/tree_lines.png') no-repeat -81px center;
+    &.hover{
+      background: url('@{images-path}/tree_icons.png') no-repeat -50px 0px;
+    }
   }
   .tree-collapsed {
     background: url('@{images-path}/tree_lines.png') no-repeat -65px center;
@@ -362,7 +365,12 @@
     }
   }
 }
-
+// .tree-lines{
+//   .tree-expanded-hover {
+//     margin-top: 7px;
+//     background: url('@{images-path}/tree_icons.png') no-repeat -50px 0px !important;
+//   }
+// }
 // .tree{
 //   .tree-node{
 //     .tree-expanded{
