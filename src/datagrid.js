@@ -2441,6 +2441,7 @@
                 opts.view = $.extend({}, opts.view);
                 $.data(this, "datagrid", { options: opts, panel: _650.panel, dc: _650.dc, ss: null, selectedRows: [], checkedRows: [], data: { total: 0, rows: [] }, originalRows: [], updatedRows: [], insertedRows: [], deletedRows: [] });
             }
+            if('function' == typeof opts.onInitBefore2) opts.onInitBefore2.call(this,opts);
             var _t = this;
             if (opts.showFilterToolbar && (opts.toolbar == null || opts.toolbar == "")) {
                 addToolLoadFilter(_t);
