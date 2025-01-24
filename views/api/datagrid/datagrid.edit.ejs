@@ -22,12 +22,17 @@
 	<div class="use-prettyprint" prettyprintfor="#mydg1codehtml">
 		<% if (themeCode=="blue") {%>
 		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:1200px;height:300px"
-		data-options="toolbar:[],singleSelect: true,
-		headerCls:'panel-header-gray',onClickRow: onClickRow,iconCls:'icon-paper',url: 'data.csp'">
+		data-options="toolbar:[],singleSelect: true,headerCls:'panel-header-gray',onClickRow: onClickRow,iconCls:'icon-paper',url: 'data.csp'">
 
 		<% }else{%>
 		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:1162px;height:300px"
-		data-options="toolbar:[],singleSelect: true,onClickRow: onClickRow,iconCls:'icon-panel-brand',url:'data.csp'">
+
+			<% if (themeCode=="pure") {%>
+				data-options="toolbar:[],singleSelect: true,onClickRow: onClickRow,iconCls:'icon-panel-brand',url:'data.csp',striped:false">
+			<% }else{%>
+				data-options="toolbar:[],singleSelect: true,onClickRow: onClickRow,iconCls:'icon-panel-brand',url:'data.csp'">
+			<% } %>
+
 		<% } %>
 		<thead>
 		<tr>

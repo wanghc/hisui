@@ -168,7 +168,7 @@
 						$.messager.popover({
 							msg: '保存成功！',
 							type: 'success',
-							timeout: 0, 		//0不自动关闭。3000s
+							timeout: 3000, 		//0不自动关闭。3000s
 							showType: 'slide'  //show,fade,slide
 						});
 					});
@@ -176,7 +176,7 @@
 						$.messager.popover({
 							msg: '简单提示！',
 							type: 'info',
-							timeout: 0, 		//0不自动关闭。3000s
+							timeout: 3000, 		//0不自动关闭。3000s
 							showSpeed: 'slow', //fast,slow,normal,1500
 							showType: 'fade'  //show,fade,slide
 						});
@@ -184,14 +184,14 @@
 					$('#alert').click(function () {
 						$.messager.popover({
 							msg: '简单警示！',
-							timeout: 0, 
+							timeout: 3000, 
 							type: 'alert'
 						});
 					});
 					$('#error').click(function () {
 						$.messager.popover({
 							msg: '保存失败！',
-							timeout: 0, 
+							timeout: 3000, 
 							type: 'error'
 						});
 					});
