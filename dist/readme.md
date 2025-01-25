@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-01-25
+- :sparkles: 鼠标移到按钮上时不隐藏下拉菜单。见`splibutton`示例
+
 ## 2025-1-24
 - :sparkles: `datagrid`增加`onInitBefore2`事件,确保html定义的列头与js内定义的列头都到了opts.columns内 [5425842]
 
