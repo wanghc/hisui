@@ -245,17 +245,17 @@
         }
         //add by wanghc 增加点击侧边收起块，展开侧边 2018-05-17
         var layoutObj = $.data(_384,"layout");
-        var _387 = layoutObj.panels;
+        var layoutPanels = layoutObj.panels;
         var opt = layoutObj.options;
-        var p = _387[_385];
+        var p = layoutPanels[_385];
         var _388 = p.panel("options");
         if (_388.onBeforeCollapse.call(p) == false) {
             return;
         }
         var _389 = "expand" + _385.substring(0, 1).toUpperCase() + _385.substring(1);
-        if (!_387[_389]) {
-            _387[_389] = _38a(_385);
-            _387[_389].panel("panel").bind("click", function () {
+        if (!layoutPanels[_389]) {
+            layoutPanels[_389] = _38a(_385);
+            layoutPanels[_389].panel("panel").bind("click", function () {
                 if (opt.clickExpand){
                     _390(_384, _385);
                     return false;
@@ -275,12 +275,12 @@
             });
         }
         var _38d = _38c();
-        if (!_isPanelVisible(_387[_389])) {
-            _387.center.panel("resize", _38d.resizeC);
+        if (!_isPanelVisible(layoutPanels[_389])) {
+            layoutPanels.center.panel("resize", _38d.resizeC);
         }
         p.panel("panel").animate(_38d.collapse, _386, function () {
             p.panel("collapse", false).panel("close");
-            _387[_389].panel("open").panel("resize", _38d.expandP);
+            layoutPanels[_389].panel("open").panel("resize", _38d.expandP);
             $(this).unbind(".layout");
         });
         function _38a(dir) {
@@ -329,7 +329,7 @@
         };
         function _38c() {
             var cc = $(_384);
-            var _38e = _387.center.panel("options");
+            var _38e = layoutPanels.center.panel("options");
             var _38f = _388.collapsedSize;
             if (_385 == "east") {
                 var ww = _38e.width + _388.width - _38f;
@@ -348,19 +348,19 @@
                     if (_385 == "north") {
                         _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
                         var hh = _38e.height;
-                        if (!_isPanelVisible(_387.expandNorth)) {
+                        if (!_isPanelVisible(layoutPanels.expandNorth)) {
                             hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
                         }
-                        _387.east.add(_387.west).add(_387.expandEast).add(_387.expandWest).panel("resize", { top: _38f - 1, height: hh });
+                        layoutPanels.east.add(layoutPanels.west).add(layoutPanels.expandEast).add(layoutPanels.expandWest).panel("resize", { top: _38f - 1, height: hh });
                         return { resizeC: { top: _38f - 1, height: hh }, expand: { top: 0 }, expandP: { top: 0, left: 0, width: cc.width(), height: _38f }, collapse: { top: -_388.height, width: cc.width() } };
                     } else {
                         if (_385 == "south") {
                             _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
                             var hh = _38e.height;
-                            if (!_isPanelVisible(_387.expandSouth)) {
+                            if (!_isPanelVisible(layoutPanels.expandSouth)) {
                                 hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
                             }
-                            _387.east.add(_387.west).add(_387.expandEast).add(_387.expandWest).panel("resize", { height: hh });
+                            layoutPanels.east.add(layoutPanels.west).add(layoutPanels.expandEast).add(layoutPanels.expandWest).panel("resize", { height: hh });
                             return { resizeC: { height: hh }, expand: { top: cc.height() - _388.height }, expandP: { top: cc.height() - _38f, left: 0, width: cc.width(), height: _38f }, collapse: { top: cc.height(), width: cc.width() } };
                         }
                     }
@@ -489,7 +489,8 @@
     };
     // cryze 2018-9-18 原collapsedSize并不适用于 noth south的折叠高度   ，故新增collapsedHeight表示noth south的折叠高度
     // cryze 2018-9-18 增加 showCollapsedTitle ，控制是否在折叠的时候显示标题
-    $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null,showCollapsedTitle:false, split: false, collapsedSize: 28,collapsedHeight: 38, minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000,
+    $.fn.layout.paneldefaults = $.extend({}, $.fn.panel.defaults, { region: null,showCollapsedTitle:false, split: false, 
+        collapsedSize: $.hisui.getStyleCodeConfigValue("collapsedSize"),collapsedHeight: $.hisui.getStyleCodeConfigValue("collapsedHeight"), minWidth: 10, minHeight: 10, maxWidth: 10000, maxHeight: 10000,
         isNormalPadding:false,
         isBigPadding:false
      });

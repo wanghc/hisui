@@ -256,8 +256,13 @@
             },
             datetimeboxPanelHeight:{
                 default: 232,pure: 248
+            },
+            collapsedSize:{  /** layout折叠时东西面板宽度 */
+                default: 28,pure: 56
+            },
+            collapsedHeight:{ /** layout折叠时南北面板高度 */
+                default: 38,pure: 56
             }
-
         },
         getStyleCodeConfigValue : function(key){
             if ("undefined" == typeof HISUIStyleCode ) return $.hisui.styleCodeConfig[key].default;

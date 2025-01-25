@@ -26,14 +26,37 @@
   cursor: pointer;
   z-index: 1;
 }
+
+.layout-expand-north,.layout-expand-south{
+  background-color: transparent;
+  .panel-header{
+    background-color: #ffffff;
+  }
+}
+.layout-expand.layout-expand-north{
+  border-bottom: 10px solid transparent;
+}
+.layout-expand.layout-expand-south{
+  border-top: 10px solid transparent;
+}
+.layout-expand.layout-expand-west{
+  border-right: 10px solid transparent;
+}
+.layout-expand.layout-expand-east{
+  border-left: 10px solid transparent;
+}
+.layout-expand .layout-expand-body-title *{
+  font-size: 18px;
+}
 .layout-expand .panel-header,
 .layout-expand .panel-body {
-  background: transparent;
-  filter: none;
   overflow: hidden;
 }
-.layout-expand .panel-header {
-  border-bottom-width: 0px;
+.layout-expand .panel-header,.layout-expand .panel-body {
+  border-width: 0px;
+}
+.layout-expand .panel-title{
+  height: 36px;
 }
 .layout-split-proxy-h,
 .layout-split-proxy-v {
@@ -74,12 +97,6 @@
   background-color: #aac5e7;
 }
 
-.layout-expand {
-  background-color: #E0ECFF;
-}
-.layout-expand-over {
-  background-color: #E0ECFF;
-}
 .layout-expand-body-title>div{
   text-align: center;
   font-weight: bold;
@@ -122,14 +139,6 @@
   border-right: 10px solid @layout-split-border;
 }
 
-
-//默认的layout expand
-.layout-expand {
-  background-color:@panel-header-bgcolor;
-}
-.layout-expand-over {
-  background-color: @panel-header-bgcolor;
-}
 .layout-button-right::before{
   content: @content-right2;
 }
@@ -152,39 +161,7 @@
     border-radius: 2px;
   }
 }
-.layout-expand{
-  .panel-header.panel-header-gray{
-    background-color: #f9f9fa;
-
-  }
-  .panel-header-gray+.panel-body{
-    background-color: #f9f9fa;
-    .layout-expand-body-title>div{
-      text-align: center;
-      font-weight: bold;
-      color:#000;
-    }
-  }
-}
 
 .layout>.panel.layout-panel>.panel-header{
     padding: 4px 5px;
 }
-
-/*
-.layout-expand {
-  background-color: #F7F7F7;
-}
-.layout-expand-over {
-  background-color: #F9F9FF;
-}
-.layout-expand {
-  .panel-body{
-    border-color:#cccccc;
-  }
-  .panel-header{
-    border-color: #cccccc;
-  }
-}
-
-}*/
