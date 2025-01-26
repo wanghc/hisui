@@ -51,12 +51,12 @@
 			<table class="hisui-datagrid" title="" style="width:800px;height:400px" data-options="fixRowNumber:true,striped:false,rownumbers:true,headerCls:'panel-header-gray',fitColumns:true,singleSelect:true,pagination:true">
 				<thead>   
 					<tr>   
-						<th data-options="field:'code',width:20,align:'center'">编码</th>   
-						<th data-options="field:'name',width:20,align:'center'">姓名</th>   
-						<th data-options="field:'price',width:20,align:'center'">科室</th>
-						<th data-options="field:'num',width:20,align:'center'">诊断</th>
-						<th data-options="field:'note',width:20,align:'center'">代码</th>
-						<th data-options="field:'re',align:'center'">原因</th>   
+						<th data-options="field:'code',width:20">编码</th>   
+						<th data-options="field:'name',width:20">姓名</th>   
+						<th data-options="field:'price',width:20">科室</th>
+						<th data-options="field:'num',width:20">诊断</th>
+						<th data-options="field:'note',width:20">代码</th>
+						<th data-options="field:'re'">原因</th>   
 					</tr>   
 				</thead>   
 				<tbody>   
@@ -116,13 +116,13 @@
 			">   
 				<thead>   
 					<tr>   
-						<th data-options="field:'code',width:40,align:'center'">编码</th>   
-						<th data-options="field:'name',width:40,editor:{type:'text'},align:'center'">姓名</th>   
-						<th data-options="field:'price',width:50,align:'center'">就诊科室</th>
-						<th data-options="field:'num',width:60,align:'center'">诊断</th>
-						<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}},align:'center'">名称</th>
-						<th data-options="field:'re',width:70,editor:{type:'datebox'},align:'center'">日期</th>   
-						<th data-options="field:'datetime',width:110,editor:{type:'datetimebox'},align:'center'">日期与时间</th>   
+						<th data-options="field:'code',width:40">编码</th>   
+						<th data-options="field:'name',width:40,editor:{type:'text'}">姓名</th>   
+						<th data-options="field:'price',width:50">就诊科室</th>
+						<th data-options="field:'num',width:60">诊断</th>
+						<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称</th>
+						<th data-options="field:'re',width:70,editor:{type:'datebox'}">日期</th>   
+						<th data-options="field:'datetime',width:110,editor:{type:'datetimebox'}">日期与时间</th>   
 					</tr>   
 				</thead>   
 				<tbody>   
@@ -408,9 +408,9 @@
 					nowrap:false,  /*此处为false*/
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
-						{field:'code',title:'工号',width:100},
+						{field:'code',title:'工号',width:50},
 						{field:'name',title:'属性名',width:100,wordBreak:"break-all"},
-						{field:'type',title:'类型',width:100,align:'right'},
+						{field:'type',title:'类型',width:100},
 						{field:'desc',title:'说明',width:200,wordBreak:"break-all"}  /*break-all 说明内容任意换行*/
 					]],
 					data:{
@@ -444,9 +444,9 @@
 					lineHeight:12,
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
-						{field:'name',title:'属性名',align:'center',width:100},
-						{field:'type',title:'类型',align:'center',width:100,align:'right'},
-						{field:'desc',title:'说明',align:'center',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
+						{field:'name',title:'属性名',width:100},
+						{field:'type',title:'类型',width:100},
+						{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
 					]],
 					data:{
 						rows:[
@@ -497,38 +497,55 @@
 				})		
 			</script>
 		</div>
-		<h3>十、不显示下边线条(<code>table-splitline-btm-hidden</code>)</h3>
-		<div class="demo-exp-code entry-content"> 
-			<table id="mytable11"></table>
-			<script type="text/javascript" class="use-prettyprint hide lang-js">
-				$(function(){
-					$HUI.datagrid('#mytable11',{
-						striped:false,iconCls:'icon-panel-brand',
-						bodyCls:'table-splitline-btm-hidden',
-						columns:[[
-							{field:'name',title:'描述',width:60,showTip:true,tipWidth:100,tipPosition:"right"},
-							{field:'price',title:'价格',width:60,align:'right'},
-							{field:'desc',title:'说明',width:480,showTip:true,tipWidth:450,tipTrackMouse:true}
-						]],
-						data:{
-							rows:[
-							{id:'1',code:'Banana',name:'香蕉',price:'2.50',desc:'香蕉（学名：Musa nana Lour.）芭蕉科芭蕉属植物，又指其果实，热带地区广泛种植。香蕉味香、富含营养，植株为大型草本，从根状茎发出，由叶鞘下部形成高3～6公尺(10～20尺)的假杆；叶长圆形至椭圆形，有的长达3～3.5公尺(10～11.5尺)，宽65公分(26寸)，10～20枚簇生茎顶。穗状花序下垂 [1]  ，由假杆顶端抽出，花多数，淡黄色；果序弯垂，结果10～20串，约50～150个。植株结果后枯死，由根状茎长出的吸根继续繁殖，每一根株可活多年。原产亚洲东南部，台湾、海南、广东、广西等均有栽培。'},
-							{id:'2',code:'Apple',name:'苹果',price:'2.50',desc:'苹果（学名：Malus pumila）是水果的一种，是蔷薇科苹果亚科苹果属植物，其树为落叶乔木。苹果的果实富含矿物质和维生素，是人们经常食用的水果之一。苹果是一种低热量食物，每100克只产生60千卡热量。苹果中营养成分可溶性大，易被人体吸收，故有“活水”之称。其有利于溶解硫元素，使皮肤润滑柔嫩 [1]  。据说“每天一苹果，医生远离我”。'},
-							{id:'3',code:'Bear',name:'梨',price:'5.50',desc:'梨，通常品种是一种落叶乔木或灌木，极少数品种为常绿，属于被子植物门双子叶植物纲蔷薇科苹果亚科。叶片多呈卵形，大小因品种不同而各异。花为白色，或略带黄色、粉红色，有五瓣。果实形状有圆形的，也有基部较细尾部较粗的，即俗称的“梨形”；不同品种的果皮颜色大相径庭，有黄色、绿色、黄中带绿、绿中带黄、黄褐色、绿褐色、红褐色、褐色，个别品种亦有紫红色；野生梨的果径较小，在1到4厘米之间，而人工培植的品种果径可达8厘米，长度可达18厘米'},
-							{id:'4',code:'orange',name:'橙子',price:'3.50',desc:'橙子（学名：Citrus sinensis 英语：orange），是芸香科柑橘属植物橙树的果实，亦称为黄果、柑子、金环、柳丁。橙子是一种柑果，有很高的食用，药用价值。'},
-							{id:'5',code:'tangerine',name:'橘子',price:'4.50',desc:'橘（英语：Mandarin orange；学名：Citrus reticulata）是芸香科柑橘属的一种水果。“橘”（jú）和“桔”（jú）都是现代汉语规范字，然“桔”作橘子一义时，为“橘”的俗写。在广东的一些方言中二字同音，“桔”也曾做过“橘”的二简字。闽南语称橘为柑仔。西南官话区的各方言中呼为“柑子”或“柑儿”。'}
-							],
-							total:10
-						},
-						idField:'id',
-						headerCls:'panel-header-gray',
-						width:608,
-						height:300,
-						title:'水果单价表'
-					})
-				})		
-			</script>
+
+		<h3>十、白色背景灰边框表格(<code>headerCls:'datagrid-border-gray'</code>)</h3>
+		<div class="demo-exp-code entry-content" style="background-color: white;">
+			<div class="use-prettyprint hide lang-html">
+				<table class="hisui-datagrid" title="病人列表" style="width:800px;height:400px" data-options="fixRowNumber:true,
+				
+					striped:false
+					,iconCls:'icon-panel-brand'
+					
+						,rownumbers:true,headerCls:'datagrid-border-gray',fitColumns:true,singleSelect:true,pagination:true">
+					<thead>   
+						<tr>   
+							<th data-options="field:'code',width:20">编码</th>   
+							<th data-options="field:'name',width:20">姓名</th>   
+							<th data-options="field:'price',width:20">科室</th>
+							<th data-options="field:'num',width:20">诊断</th>
+							<th data-options="field:'note',width:20">代码</th>
+							<th data-options="field:'re'">原因</th>   
+						</tr>   
+					</thead>   
+					<tbody>   
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+						</tr>   
+						<tr>   
+							<td>002</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>  
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+						</tr>
+					</tbody>   
+				</table>
+			</div>
 		</div>
+
+
+		
 	
 	
 	<!--测试加载本地数据,翻页条显示问题，需求号：1715492
