@@ -14,7 +14,17 @@
 	<div class="demo-exp-code entry-content use-prettyprint" prettyprintfor="#mydg1codehtml"> 
 	
 		<table id="dg" class="hisui-datagrid" title="病人列表" style="width:800px;height:300px" 
-		data-options="url:null,toolbar:[],idField:'no',fitColumns:true,<% if (themeCode=="blue") {%>headerCls:'panel-header-gray',iconCls:'icon-paper',<% } %>view:scrollview,rownumbers:true,singleSelect:false,autoRowHeight:false,pageSize:50,pagination:true">   
+		data-options="url:null,toolbar:[],idField:'no',fitColumns:true,
+		<% if (themeCode=="blue") {%>
+			headerCls:'panel-header-gray',iconCls:'icon-paper',
+		<% } %>
+		<% if (themeCode=="pure") {%>
+				iconCls:'icon-panel-brand',striped:false",
+		<% } %>
+
+
+
+			view:scrollview,rownumbers:true,singleSelect:false,autoRowHeight:false,pageSize:50,pagination:true">   
 
 
 			<thead>   
@@ -69,7 +79,14 @@
 	<h3>远程数据。拉动时一次加载一页数据，渲染要显示的行数据</h3>
 	<div class="demo-exp-code entry-content use-prettyprint" prettyprintfor="#mydg2codehtml"> <!--,view:scrollview-->
 		<table id="dg1" title="病人列表" style="width:800px;height:300px" class="hisui-datagrid"
-		data-options="url:'getpatdata.jsp',toolbar:[],view:scrollview,fitColumns:true,<% if (themeCode=="blue") {%>headerCls:'panel-header-gray',iconCls:'icon-paper',<%}%>rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:false">   
+		data-options="url:'getpatdata.jsp',toolbar:[],view:scrollview,fitColumns:true,
+		<% if (themeCode=="blue") {%>
+			headerCls:'panel-header-gray',iconCls:'icon-paper',
+		<%}%>
+		<% if (themeCode=="pure") {%>
+			iconCls:'icon-panel-brand',striped:false",
+		<% } %>
+		rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:false">   
 			<thead>   
 				<tr>   
 					<th data-options="field:'no',width:20">编码</th>   

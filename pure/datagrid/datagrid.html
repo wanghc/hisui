@@ -51,12 +51,12 @@
 			<table class="hisui-datagrid" title="" style="width:800px;height:400px" data-options="fixRowNumber:true,striped:false,rownumbers:true,headerCls:'panel-header-gray',fitColumns:true,singleSelect:true,pagination:true">
 				<thead>   
 					<tr>   
-						<th data-options="field:'code',width:20,align:'center'">编码</th>   
-						<th data-options="field:'name',width:20,align:'center'">姓名</th>   
-						<th data-options="field:'price',width:20,align:'center'">科室</th>
-						<th data-options="field:'num',width:20,align:'center'">诊断</th>
-						<th data-options="field:'note',width:20,align:'center'">代码</th>
-						<th data-options="field:'re',align:'center'">原因</th>   
+						<th data-options="field:'code',width:20">编码</th>   
+						<th data-options="field:'name',width:20">姓名</th>   
+						<th data-options="field:'price',width:20">科室</th>
+						<th data-options="field:'num',width:20">诊断</th>
+						<th data-options="field:'note',width:20">代码</th>
+						<th data-options="field:'re'">原因</th>   
 					</tr>   
 				</thead>   
 				<tbody>   
@@ -116,13 +116,13 @@
 			">   
 				<thead>   
 					<tr>   
-						<th data-options="field:'code',width:40,align:'center'">编码</th>   
-						<th data-options="field:'name',width:40,editor:{type:'text'},align:'center'">姓名</th>   
-						<th data-options="field:'price',width:50,align:'center'">就诊科室</th>
-						<th data-options="field:'num',width:60,align:'center'">诊断</th>
-						<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}},align:'center'">名称</th>
-						<th data-options="field:'re',width:70,editor:{type:'datebox'},align:'center'">日期</th>   
-						<th data-options="field:'datetime',width:110,editor:{type:'datetimebox'},align:'center'">日期与时间</th>   
+						<th data-options="field:'code',width:40">编码</th>   
+						<th data-options="field:'name',width:40,editor:{type:'text'}">姓名</th>   
+						<th data-options="field:'price',width:50">就诊科室</th>
+						<th data-options="field:'num',width:60">诊断</th>
+						<th data-options="field:'note',width:50,editor:{type:'validatebox',options:{required:true}}">名称</th>
+						<th data-options="field:'re',width:70,editor:{type:'datebox'}">日期</th>   
+						<th data-options="field:'datetime',width:110,editor:{type:'datetimebox'}">日期与时间</th>   
 					</tr>   
 				</thead>   
 				<tbody>   
@@ -408,9 +408,9 @@
 					nowrap:false,  /*此处为false*/
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
-						{field:'code',title:'工号',width:100},
+						{field:'code',title:'工号',width:50},
 						{field:'name',title:'属性名',width:100,wordBreak:"break-all"},
-						{field:'type',title:'类型',width:100,align:'right'},
+						{field:'type',title:'类型',width:100},
 						{field:'desc',title:'说明',width:200,wordBreak:"break-all"}  /*break-all 说明内容任意换行*/
 					]],
 					data:{
@@ -444,9 +444,9 @@
 					lineHeight:12,
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
-						{field:'name',title:'属性名',align:'center',width:100},
-						{field:'type',title:'类型',align:'center',width:100,align:'right'},
-						{field:'desc',title:'说明',align:'center',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
+						{field:'name',title:'属性名',width:100},
+						{field:'type',title:'类型',width:100},
+						{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
 					]],
 					data:{
 						rows:[
