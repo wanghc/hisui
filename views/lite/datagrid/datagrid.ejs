@@ -484,6 +484,57 @@
 				})		
 			</script>
 		</div>
+
+		<h3>十、白色背景灰边框表格(<code>headerCls:'datagrid-border-gray'</code>)</h3>
+		<div class="demo-exp-code entry-content" style="background-color: white;">
+			<div class="use-prettyprint hide lang-html">
+				<table class="hisui-datagrid" title="病人列表" style="width:800px;height:400px" data-options="fixRowNumber:true,
+				<% if (themeCode=="pure") { %>
+					striped:false
+					,iconCls:'icon-panel-brand'
+					<% }else{ %>
+						toolbar: []
+						<%}%>
+						,rownumbers:true,headerCls:'datagrid-border-gray',fitColumns:true,singleSelect:true,pagination:true">
+					<thead>   
+						<tr>   
+							<th data-options="field:'code',width:20">编码</th>   
+							<th data-options="field:'name',width:20">姓名</th>   
+							<th data-options="field:'price',width:20">科室</th>
+							<th data-options="field:'num',width:20">诊断</th>
+							<th data-options="field:'note',width:20">代码</th>
+							<th data-options="field:'re'">原因</th>   
+						</tr>   
+					</thead>   
+					<tbody>   
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+						</tr>   
+						<tr>   
+							<td>002</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>  
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感冒</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+						</tr>
+						<tr>   
+							<td>001</td><td>王小二</td><td>内三科</td><td>感觉</td><td>name1</td><td>2323</td>   
+						</tr>
+					</tbody>   
+				</table>
+			</div>
+		</div>
+
+
+		<% if (themeCode!=="pure") {%>
 		<h3>十、不显示下边线条(<code>table-splitline-btm-hidden</code>)</h3>
 		<div class="demo-exp-code entry-content"> 
 			<table id="mytable11"></table>
@@ -516,6 +567,7 @@
 				})		
 			</script>
 		</div>
+		<% } %>
 	<% } %>
 	
 	<!--测试加载本地数据,翻页条显示问题，需求号：1715492
