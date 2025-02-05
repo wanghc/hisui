@@ -31,6 +31,7 @@
                     $("<option></option>").text(_84.pageList[i]).appendTo(ps);
                 }
                 $("<td></td>").append(ps).appendTo(tr);
+                //ps.combobox();
             } else {
                 if (_88 == "sep") {
                     $("<td><div class=\"pagination-btn-separator\"></div></td>").appendTo(tr);
