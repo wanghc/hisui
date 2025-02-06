@@ -14,7 +14,11 @@
 		}
 	</style>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #CDE6FF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<style>
 		label.radio, label.checkbox{
 			margin-right: 0px;

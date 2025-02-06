@@ -4,7 +4,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<%- include('../../templates/hisui-header.ejs',{title:"单元格编辑列表"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #CDE6FF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<script type="text/javascript" src="../../dist/plugin/datagrid-cellediting.js"></script>
 	<h2>单元格编辑表格</h2>
 	<h3>说明:</h3>

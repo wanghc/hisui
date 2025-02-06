@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"滚动列表示例"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #CDE6FF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<script type="text/javascript" src="../../dist/plugin/datagrid-scrollview.js"></script>
 	<h2>数据网格-滚动加载</h2>
 	<h3>说明:</h3>

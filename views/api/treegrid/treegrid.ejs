@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"树形网格"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #CDE6FF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<h2>树形网格</h2>
 	<h3>说明:</h3>
     <span>树形网格（TreeGrid）从数据网格（DataGrid）继承，但是允许在行之间存在父/子节点关系。许多属性继承至数据网格（DataGrid），可以用在树形网格（TreeGrid）中。为了使用树形网格（TreeGrid），用户必须定义 'treeField' 属性，指明哪个字段作为树节点。</span>

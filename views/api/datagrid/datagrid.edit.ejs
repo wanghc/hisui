@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"编辑列表示例"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #CDE6FF;">
+<% }else{ %>
+    <body>
+<% } %>
 	<style>
 		label.radio, label.checkbox{margin: 0px;}
 		label.checkbox, label.hischeckbox_square-blue.radio {
