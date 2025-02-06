@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    var HISUIStyleCode = 'lite';
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../src/datagrid.js"></script>
+    <script type="text/javascript" src="../../src/combogridmult.js"></script>
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <script type="text/javascript" src="../lookup/data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    <style>
+        .combogridmult{
+            position: relative;
+        }
+        span.combogridmult-label {
+            position: relative;
+            display: block;
+            margin: 4px 0 0 4px;
+            padding: 0 20px 0 4px;
+            float: left;
+            text-decoration: none;
+            border-radius: 5px 5px 5px 5px;
+            background: #eaf2ff;
+            color: #000000;
+        }
+        .textbox-addon{
+            position: absolute;
+        }
+        .textbox-addon-right{
+            right: 0px;
+            top: 0px;
+            height: 100%;
+        }
+        .combogridmult .combo-text {
+            float: left;
+        }
+        .combogridmult .combo-arrow{
+            height: 100%!important;
+        }
+        .combogridmult-remove {
+            background: url(../../dist/css/images/tabs_icons_2.png) no-repeat 0px center;
+            position: absolute;
+            display: block;
+            width: 16px;
+            height: 16px;
+            right: 2px;
+            top: 50%;
+            margin-top: -8px;
+            opacity: 0.6;
+            filter: alpha(opacity = 60);
+        }
+    </style>
+</head>
+<body>
+    <h2>Combogrid Multi-select Example</h2>
+    <p>Select items using checkboxes in the grid:</p>
+    <input id="cg" name="item" style="width:320px;">
+<script type="text/javascript">
+    $(function(){
+        $("#cg").combogridmult({
+            valuesJson:[{id:4,text:'BLK-病理科'},{id:1,text:'CK-产科'},{id:63,text:'CRKMZ-传染科门诊'}],
+            panelWidth: 430,panelHeight:430,
+            url:'getpatdata.jsp',
+            method: 'post',
+            idField: 'id',
+            textField: 'text',
+            fitColumns: true,
+            multiple:true,
+            pagination: true,
+            pageSize:10,
+            pageList: [10,20,30],
+            columns: [[
+                {field:'id',title:'no',width:60},
+                {field:'text',title:'name',width:220},
+                {field:'code',title:'code',width:150}
+            ]],
+            onSelect: function(index,row){
+                console.log(row);
+            },
+            onUnselect: function(index,row){
+                console.log(row);
+            }
+        });
+    })
+</script>
+</body>
+</html>

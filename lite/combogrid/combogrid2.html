@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+    var HISUIStyleCode = 'lite';
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lite.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="../../src/datagrid.js"></script>
+    <script type="text/javascript" src="../../src/combogrid.js"></script>
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <script type="text/javascript" src="../lookup/data.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+</head>
+<body>
+    <h2>Combogrid Multi-select Example</h2>
+    <p>Select items using checkboxes in the grid:</p>
+    <input id="cg" class="hisui-combogrid" name="item" style="width:320px;"
+           data-options="
+               panelWidth: 430,panelHeight:430,
+               url:'getpatdata.jsp',
+               method: 'post',
+               idField: 'id',
+               textField: 'text',
+               fitColumns: true,
+               multiple:true,
+               pagination: true,
+               pageSize:10,
+               pageList: [10,20,30],
+               columns: [[
+                   {field:'id',title:'no',width:60},
+                   {field:'text',title:'name',width:220},
+                   {field:'code',title:'code',width:150}
+               ]],
+               onSelect: function(index,row){
+                   var rows = $('#cg').combogrid('grid').datagrid('getSelections');
+                   var selectedIds = $.map(rows, function(row){return row.itemid;});
+                   $('#selectedItems').val(selectedIds.join(','));
+               },
+               onUnselect: function(index,row){
+                   var rows = $('#cg').combogrid('grid').datagrid('getSelections');
+                   var selectedIds = $.map(rows, function(row){return row.itemid;});
+                   $('#selectedItems').val(selectedIds.join(','));
+               }
+           ">
+    <br/>
+    Selected Items: <input id="selectedItems" readonly>
+</body>
+</html>
