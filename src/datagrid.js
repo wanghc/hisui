@@ -409,6 +409,12 @@
         }
         // wanghc 初始化时,增加加滚动条 2018-12-20
         dc.body2.html("<div style='width:"+dc.view2.find('.datagrid-header-row').width()+"px;border:solid 0px;height:1px;'></div>");
+        console.log("_54b");
+        if (!(opts.rownumbers || (opts.frozenColumns && opts.frozenColumns.length))) {
+            console.log("addclass - ");
+            dc.view1.closest('.datagrid-view').addClass("datagrid-not-view1");
+            return;
+        }
         //_54b => renderGridHeader
         function _54b(_550, _551, _552) {
             if (!_551) {
