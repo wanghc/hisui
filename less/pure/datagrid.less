@@ -396,6 +396,11 @@
     &:hover{
       background-color: @menubutton-blue-bgcolor-hover;
       border-radius: 6px;
+      padding: 0 0 0 ;
+      border: 0;
+    }
+    &.l-btn-disabled:hover{
+      background-color: transparent;
     }
     .l-btn-icon-left{
       .l-btn-text{
@@ -419,10 +424,6 @@
       .l-btn-empty+.l-btn-icon{
         left: 0;
       }
-    }
-    &:hover{
-      padding: 0 0 0 ;
-      border: 0;
     }
   }
   .l-btn-plain-disabled{
