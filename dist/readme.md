@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-02-06
+- :sparkles: 为`datagrid`增加datagrid-not-view1样式类，来区分是否有固定列
+
 ## 2025-01-25
 - :sparkles: 鼠标移到按钮上时不隐藏下拉菜单。见`splibutton`示例
 
