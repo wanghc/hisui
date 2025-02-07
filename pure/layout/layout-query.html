@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--单独编写不通过ejs生成-->
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>布局查询</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,9 +17,7 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
+
     <style>
         td.l-value{
             text-align: left;
@@ -33,9 +35,9 @@
 <body style="padding:10px;box-sizing: border-box;">
     <div class="hisui-panel" data-options="fit:true,title:'',border:false">
         <div class="hisui-layout" fit="true" style="background-color:#CDE6FF;">
-            <div data-options="region:'north',border:true,title:'面板标题',isNormalPadding:true,collapsible:false " style="height: 140px;padding: 5px 15px;border-bottom: 1px dashed #E2E2E2; ">
+            <div data-options="region:'north',border:true,title:'面板标题',iconCls:'icon-panel-brand',isNormalPadding:true,collapsible:false " style="height: 153px;padding: 5px 14px; ">
                 <table cellspacing="0" cellpadding="0" broder="0">
-                    <tr style="height: 40px;">
+                    <tr style="height: 42px;">
                         <td class="r-label">条件</td>
                         <td class="l-value"><input type="text" class="textbox" id="arg1" style="width:193px;"></td>
                         <td class="r-label">条件</td>
@@ -47,10 +49,10 @@
                             <input class="hisui-radio"type="radio" name="arg4" checked label="单选选择条件" id="arg4-2" />
                         </td>
                         <td>
-                            <a href="javascript:void(0);" class="hisui-linkbutton blue" id="btn-find">查询</a>
+                            <a href="javascript:void(0);" class="hisui-linkbutton" id="btn-find">查询</a>
                         </td>
                     </tr>
-                    <tr style="height: 40px;">
+                    <tr style="height: 42px;">
                         <td class="r-label">条件</td>
                         <td class="l-value"><input type="text" class="textbox" id="arg5" style="width:193px;"></td>
                         <td class="r-label">条件</td>
@@ -62,12 +64,12 @@
                             <input class="hisui-checkbox" type="checkbox" checked label="复选选择条件" id="arg9" />
                         </td>
                         <td>
-                            <a href="javascript:void(0);" class="hisui-linkbutton" id="btn-clear">清屏</a>
+                            <a href="javascript:void(0);" class="hisui-linkbutton blue" id="btn-clear">清屏</a>
                         </td>
                     </tr>
                 </table>
             </div> <!--end layout-north-->
-            <div data-options="region:'center',border:false">
+            <div data-options="region:'center',border:true">
                 <table id="tbl-main"></table>
             </div> <!--end layout-center-->
         </div><!--end layout-->
@@ -108,9 +110,7 @@
                 fit:true,
                 fitColumns:true,
                 rownumbers:true,
-		
-		striped:true,
-		
+		        striped:false,
                 frozenColumns:[[
                     {field:'ck',checkbox:true,width:50},
                     {field:'op',title:'操作',formatter:function(val,row,ind){
