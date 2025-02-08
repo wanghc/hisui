@@ -2,15 +2,17 @@
 
 /**蓝色根节点**/
 @menutree-blueroot-bgcolor:@panel-body-bgcolor;
-@menutree-blueroot-root-bgcolor:@panel-header-bgcolor;  
-@menutree-blueroot-node-hover-bgcolor:@panel-header-bgcolor;  
+@menutree-blueroot-root-bgcolor:transparent;  
+@menutree-blueroot-node-hover-bgcolor:transparent;  
 /**蓝色标题 灰色根节点**/
 @menutree-title-bgcolor:@panel-header-bgcolor;
 @menutree-root-bgcolor:@panel-header-bgcolor;
-@menutree-root-hover-bgcolor:@panel-header-bgcolor;
-@menutree-node-hover-bgcolor:@panel-header-bgcolor;
-@menutree-node-hover-color:#000000;
-@menutree-min-root-hover-bgcolor:@panel-header-bgcolor;
+@menutree-root-hover-bgcolor:transparent;
+@menutree-node-hover-bgcolor:#e4f0fe;
+@menutree-min-root-hover-bgcolor:transparent;
+@menutree-node-selected-bgcolor:#d7e9ff;
+@menutree-min-root-selected-bgcolor:#d7e9ff;
+@menutree-root-selected-bgcolor:#d7e9ff;
 
 @menutree-search-bg:url('images/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
 @menutree-expanded-bg:url('images/menutree.png') -176px center no-repeat; /* 176-192 向左折叠*/
@@ -92,8 +94,12 @@
   }
 
   .menutree-searchbox-wrap {
-    margin-bottom: 4px;
+    margin-bottom: 10px;
+    .searchbox-f{
+      border-color: transparent;
+    }
     .searchbox{
+      border-color: transparent;
       .searchbox-button{
 
       }
@@ -106,16 +112,16 @@
   .menutree-tree-wrap {
     border: 1px solid @panel-header-bdcolor;
     border-radius: 4px;
-    background-color: @menutree-blueroot-bgcolor;
+    background-color: #f1f7fe;
     overflow: auto;
     .menutree-tree.tree {
       border: 0px solid @tree-border-color;
 
       &>li {
         &>.tree-node { /*第一层节点 根节点*/
-          height:40px;
-          background-color:@menutree-blueroot-root-bgcolor;
-          line-height: 40px;
+          height:44px;
+          background-color:#f1f7fe;
+          line-height: 44px;
           position: relative;
           font-weight: bold;
           color: #000000;
@@ -151,10 +157,11 @@
           }
 
           .tree-title {
-            height: 40px;
-            line-height: 40px;
-            color: #000000;
-            padding: 0 34px 0 10px;
+            height: 44px;
+            line-height: 44px;
+            color: #424656;
+            padding: 0 34px 0 15px;
+            font-size: 16px;
           }
 
           &.tree-node-hover {
@@ -168,23 +175,21 @@
 
           .tree-node {
             padding-left: 16px;
-            height: 36px;
-            line-height: 36px;
+            height: 38px;
+            line-height: 38px;
             position: relative;
 
             &.tree-node-hover {
               background-color:@menutree-node-hover-bgcolor;
               .tree-title {
                 background: @menutree-node-hover-bgcolor;
-                color: @menutree-node-hover-color;
               }
             }
 
             &.tree-node-selected {
-              background-color: @menutree-node-hover-bgcolor;
+              background-color: @menutree-node-selected-bgcolor;
               .tree-title {
-                background: @menutree-node-hover-bgcolor;
-                color: @menutree-node-hover-color;
+                background: @menutree-node-selected-bgcolor;
               }
             }
 
@@ -222,7 +227,7 @@
             .tree-indent {
               width: 10px;
               &.tree-indent-hit{
-                width: 16px;
+                width: 1px;
               }
             }
 
@@ -236,9 +241,9 @@
             }
 
             .tree-title {
-              height: 36px;
-              line-height: 36px;
-              color: #000;
+              height: 38px;
+              line-height: 38px;
+              color: #191919;
               padding: 0 10px 0 0;
             }
           }
@@ -257,17 +262,17 @@
         padding-left: 5px;
         padding-right: 5px;
         height: 16px;
-        background-color: #e4e4e4;
+        background-color: #80b2ff;
         border-radius: 4px;
         line-height: 16px;
         text-align: center;
         font-size: 12px;
-        color: #666666;
+        color: #ffffff;
       }
       .tree-node-selected .menutree-tip-count,
       .tree-node-hover .menutree-tip-count {
-        background-color: #FFE9E9;
-        color: #EE0F0F;
+        background-color: #80b2ff;
+        color: #ffffff;
       }
 
       .menutree-reg-word {
@@ -282,6 +287,7 @@
     }
     .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
       padding-left: 4px;
+      margin: 0 15px;
     }
 
     &.menutree-tree-norootcollapse{  //根节点不允许折叠的
@@ -370,7 +376,7 @@
               background-color: @menutree-root-hover-bgcolor;
             }
             &.tree-node-selected {
-              background-color: @menutree-root-hover-bgcolor;
+              background-color: @menutree-root-selected-bgcolor;
             }
           }
 
@@ -389,15 +395,13 @@
                 background-color:@menutree-node-hover-bgcolor;                
                 .tree-title {
                   background: @menutree-node-hover-bgcolor;
-                  color: @menutree-node-hover-color;
                 }
               }
   
               &.tree-node-selected {
-                background-color:@menutree-node-hover-bgcolor;
+                background-color:@menutree-node-selected-bgcolor;
                 .tree-title {
-                  background: @menutree-node-hover-bgcolor;
-                  color: @menutree-node-hover-color;
+                  background: @menutree-node-selected-bgcolor;
                 }
               }
               .tree-title {
@@ -411,13 +415,13 @@
         }
 
         .menutree-tip-count {
-          background-color: #E4E4E4;
-          color: #666666;
+          background-color: #80b2ff;
+          color: #ffffff;
         }
         .tree-node-selected .menutree-tip-count,
         .tree-node-hover .menutree-tip-count {
-          background-color: #FFE9E9;
-          color: #EE0F0F;
+          background-color: #80b2ff;
+          color: #ffffff;
         }
       }
       .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
@@ -500,7 +504,7 @@
             background-color: @menutree-min-root-hover-bgcolor;
           }
           &.tree-node-selected {
-            background-color: @menutree-min-root-hover-bgcolor;
+            background-color: @menutree-min-root-selected-bgcolor;
           }
         }
 
@@ -545,7 +549,7 @@
               color: #ffffff;
             }
             &.tree-node-selected {
-              background-color:  @menutree-min-root-hover-bgcolor;
+              background-color:  @menutree-min-root-selected-bgcolor;
               color: #ffffff;
             }
 
@@ -569,7 +573,7 @@
               background-color: @menutree-min-root-hover-bgcolor;
             }
             &.tree-node-selected {
-              background-color: @menutree-min-root-hover-bgcolor;
+              background-color: @menutree-min-root-selected-bgcolor;
             }
           }
         }
@@ -625,7 +629,7 @@
               background-color: @menutree-root-hover-bgcolor;
             }
             &.tree-node-selected {
-              background-color: @menutree-root-hover-bgcolor;
+              background-color: @menutree-root-selected-bgcolor;
             }
           }
           &>ul {
@@ -655,15 +659,13 @@
                 background-color:@menutree-node-hover-bgcolor;                
                 .tree-title {
                   background: @menutree-node-hover-bgcolor;
-                  color: @menutree-node-hover-color;
                 }
               }
   
               &.tree-node-selected {
-                background-color:@menutree-node-hover-bgcolor;
+                background-color:@menutree-node-selected-bgcolor;
                 .tree-title {
-                  background: @menutree-node-hover-bgcolor;
-                  color: @menutree-node-hover-color;
+                  background: @menutree-node-selected-bgcolor;
                 }
               }
               .tree-title {
@@ -674,13 +676,13 @@
           
         }
         .menutree-tip-count {
-          background-color: #E4E4E4;
-          color: #666666;
+          background-color: #80b2ff;
+          color: #ffffff;
         }
         .tree-node-selected .menutree-tip-count,
         .tree-node-hover .menutree-tip-count {
-          background-color: #FFE9E9;
-          color: #EE0F0F;
+          background-color: #80b2ff;
+          color: #ffffff;
         }
       }
   
