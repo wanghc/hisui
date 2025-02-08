@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="../../favicon.ico"/>
+	<link rel="bookmark" href="../../favicon.ico"/>
     <!--单独编写不通过ejs生成-->
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -48,8 +50,11 @@
                             <input class="hisui-radio" type="radio" name="arg4" label="单选条件" id="arg4-1" />
                             <input class="hisui-radio"type="radio" name="arg4" checked label="单选条件" id="arg4-2" />
                         </td>
-                        <td>
+                        <td class="l-value">
                             <a href="javascript:void(0);" class="hisui-linkbutton" id="btn-find">查询</a>
+                        </td>
+                        <td class="l-value">
+                            <a href="javascript:void(0);" class="hisui-linkbutton" id="btn-openwin">打开窗口</a>
                         </td>
                     </tr>
                     <tr style="height: 42px;">
@@ -73,7 +78,11 @@
                 <table id="tbl-main"></table>
             </div> <!--end layout-center-->
         </div><!--end layout-->
-
+        <div id="dialog2" title="完成接诊" style="width:400px;height:350px;padding:0 20px;display: none;">   
+            <div style="padding:10px;">
+                
+            </div>
+        </div>
         
 
     </div>
@@ -104,7 +113,19 @@
             $('#arg3').combobox({width:200,data:allGroup,valueField:'HIDDEN',textField:'Description'})
             $('#arg6').combobox({width:200,data:allUser,valueField:'HIDDEN',textField:'Description'})
             $('#arg7').combobox({width:200,data:allLoc,valueField:'HIDDEN',textField:'Description'})
-
+            $("#btn-openwin").click(function(){
+                var btns = $("#dialog2").show().dialog({
+                    resizable:true,modal:true,buttons:[{
+                        text:'关闭',
+                        handler:function(){$HUI.dialog('#dialog2').close();}
+                    },{
+                        text:'保存',
+                        handler:function(){}
+                    }]
+                });
+                btns.children("div.dialog-button").find("a:eq(0)").addClass('white');
+                btns.children("div.dialog-button").find("a:eq(1)").addClass('green');
+            });
             $('#tbl-main').datagrid({
                 border:false,
                 fit:true,
