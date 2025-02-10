@@ -150,18 +150,35 @@
         win.children("div.messager-button").children("a:first").focus();
         return win;
     };
-    function _27f(_280, _281, bbuttons) {
+    /**
+     * 
+     * @param {String} title  
+     * @param {String} message 
+     * @param {Object} bbuttons 
+     * @param {Array} bbuttonsIndex 增加按钮显示顺序
+     * @returns 
+     */
+    function _createMessageWindow(title, message, bbuttons,bbuttonsSort) {
         var win = $("<div class=\"messager-body\"></div>").appendTo("body");
-        win.append(_281);
+        win.append(message);
         if (bbuttons) {
             var tb = $("<div class=\"messager-button\"></div>").appendTo(win);
             // $.messager.defaults.ok/cancel会取翻译或从中修改
             // 会导致事件不运行
             var mybuttonIndex = 0; /* 第一个按钮marginleft为0,其它的为10px */
-            for (var _283 in bbuttons) {
-                $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left",mybuttonIndex==0?0:10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
-                mybuttonIndex++;
+            if (bbuttonsSort){
+                for (var sortIndex=0;sortIndex<bbuttonsSort.length;sortIndex++){
+                    var _283 = bbuttonsSort[sortIndex];
+                    $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left",mybuttonIndex==0?0:10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
+                    mybuttonIndex++;
+                }
+            }else{
+                for (var _283 in bbuttons) {
+                    $("<a></a>").attr("href", "javascript:void(0)").text($.messager.defaults[_283]).css("margin-left",mybuttonIndex==0?0:10).bind("click", eval(bbuttons[_283])).appendTo(tb).linkbutton();
+                    mybuttonIndex++;
+                }
             }
+            
             //add space and esc key event handler add by wanghc  2018-10-09
             win.on('keydown', function (e) {
                 if (e.target && e.target.nodeName.toUpperCase()=='INPUT') {
@@ -208,7 +225,7 @@
         win.window({
             isTopZindex:true, //wanghc
             closable:false, //neer---不显示关闭按钮--事件监听问题
-            title: _280, noheader: (_280 ? false : true), width: 300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
+            title: title, noheader: (title ? false : true), width: 300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");
                 }, 100);
@@ -242,7 +259,7 @@
                 }
             }, opts);
             var win = showWinByOptions(opts);
-            // var win = _27f(_285, _286, _287);
+            // var win = _createMessageWindow(_285, _286, _287);
             return win;
         }, alert: function (_285, msg, icon, fn) {
             var opts = typeof _285 == "object" ? _285 : {
@@ -253,8 +270,7 @@
         }, confirmSrcMsg: function (_288, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
-            var messagerConfirmBtnIndex = $.hisui.getStyleCodeConfigValue('messagerConfirmBtnIndex');
-            _28a[messagerConfirmBtnIndex[0]] = function (e) {
+            _28a['ok'] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
                 // 解决IE下输入框值改变时弹出confirm，且回车focus下一输入框情况下，如果回车自动触发ok按钮问题
                 // 回车--光标跳到下一框--触发change--弹出confirm---自动click-ok
@@ -267,22 +283,22 @@
                     return false;
                 }
             };
-            _28a[messagerConfirmBtnIndex[1]] = function () {
+            _28a['cancel'] = function () {
                 win.window("close");
                 if (fn) {
                     fn(false);
                     return false;
                 }
             };
-            var win = _27f(_288, _289, _28a);
+            var messagerConfirmBtnSort = $.hisui.getStyleCodeConfigValue('messagerConfirmBtnIndex');
+            var win = _createMessageWindow(_288, _289, _28a,messagerConfirmBtnSort);
             return win;
         }, confirm: function (title, msg, fn) {
             return $.messager.confirmSrcMsg(title, $.hisui.getTrans(msg), fn);
         }, confirm3SrcMsg: function (title, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
             var _28a = {};
-            var messagerConfirm3BtnIndex = $.hisui.getStyleCodeConfigValue('messagerConfirm3BtnIndex');
-            _28a[messagerConfirm3BtnIndex[0]] = function (e) {
+            _28a['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
@@ -291,29 +307,29 @@
                     return false;
                 }
             };
-            _28a[messagerConfirm3BtnIndex[1]] = function () {
+            _28a['no'] = function () {
                 win.window("close");
                 if (fn) {
                     fn(false);
                     return false;
                 }
             };
-            _28a[messagerConfirm3BtnIndex[2]] = function () {
+            _28a['cancel'] = function () {
                 win.window("close");
                 if (fn) {
                     fn(undefined);
                     return false;
                 }
             };
-            var win = _27f(title, _289, _28a);
+            var messagerConfirm3BtnSort = $.hisui.getStyleCodeConfigValue('messagerConfirm3BtnIndex');
+            var win = _createMessageWindow(title, _289, _28a,messagerConfirm3BtnSort);
             return win;
         }, confirm3: function (title, msg, fn) {
             return $.messager.confirm3SrcMsg(title, $.hisui.getTrans(msg), fn);
         }, promptSrcMsg: function (_28b, msg, fn) {
             var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
-            var messagerPromptBtnIndex = $.hisui.getStyleCodeConfigValue('messagerPromptBtnIndex');
-            _28d[messagerPromptBtnIndex[0]] = function (e) {
+            _28d['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
@@ -322,14 +338,15 @@
                     return false;
                 }
             };
-            _28d[messagerPromptBtnIndex[1]] = function () {
+            _28d['cancel'] = function () {
                 win.window("close");
                 if (fn) {
                     fn();
                     return false;
                 }
             };
-            var win = _27f(_28b, _28c, _28d);
+            var messagerPromptBtnSort = $.hisui.getStyleCodeConfigValue('messagerPromptBtnIndex');
+            var win = _createMessageWindow(_28b, _28c, _28d,messagerPromptBtnSort);
             win.find("input.messager-input").eq(0).focus();
             return win;
         }, prompt: function(_28b, msg, fn){ 
@@ -352,7 +369,7 @@
             var opts = $.extend({ title: "", msg: "", text: undefined, interval: 300 }, _28e || {});
             
             var _291 = "<div class=\"messager-progress\"><div class=\"messager-p-msg\"></div><div class=\"messager-p-bar\"></div></div>";
-            var win = _27f(opts.title, _291, null);
+            var win = _createMessageWindow(opts.title, _291, null);
             win.find("div.messager-p-msg").html($.hisui.getTrans(opts.msg));  //add trans
             var bar = win.find("div.messager-p-bar");
             bar.progressbar({ text: opts.text });

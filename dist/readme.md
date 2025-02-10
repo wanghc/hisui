@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-02-10
+- :sparkles: 纯净版本下`confirm`及`prompt`窗口按钮顺序调整
+
 ## 2025-02-06
 - :sparkles: 为`datagrid`增加datagrid-not-view1样式类，来区分是否有固定列
 
