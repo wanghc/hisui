@@ -79,7 +79,7 @@ var Level = {
     var HUIObject = {};
     // jquery.validatebox.js中写死了color
     $.fn.validatebox.defaults.tipOptions.onShow = function () {
-        $(this).tooltip("tip");
+    	$(this).tooltip("tip").addClass("tooltip-validatebox-invalid");
 	};
 	/*
 	还原到最初的几个定义
