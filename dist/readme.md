@@ -35,6 +35,11 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-02-12
+- 纯净版本body不自带padding
+- 纯净版本下拉框选中的记录背景色修改
+- `linkbutton`蓝色按钮边框色修改
+
 ## 2025-02-10
 - :sparkles: 纯净版本下`confirm`及`prompt`窗口按钮顺序调整
 
