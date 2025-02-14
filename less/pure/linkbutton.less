@@ -304,9 +304,9 @@
   outline: @linkbutton-focus-bordercolor dotted thin;
   background-color: @linkbutton-hover-bgcolor;
 }
-.l-btn.l-btn-plain.l-btn-focus {
-  color: #000000;
-}
+// .l-btn.l-btn-plain.l-btn-focus {
+//   color: #000000;
+// }
 /*特殊情况（按钮在蓝色病人信息条上时）：hover背景色为#0063a7*/
 .l-btn.hover-dark {
   &:hover{
@@ -444,9 +444,6 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   background-color: @menu-active-bgcolor;
   outline: transparent dotted thin;
   background-color:#eff9ff;
-  .l-btn-left{
-    color:@linkbutton-plain-hover-color;
-  }
 }
 /*增加其它色系按钮*/
 .l-btn.l-btn-small{
@@ -552,22 +549,11 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
 .big .l-btn-icon{
   font-family: "Microsoft Yahei", verdana, helvetica, arial, sans-serif;/*需求号：3169718 去除字体定义,在before上有定义fontfamily。不去除时在医为浏览器下，big图标不能居中 2023-01-03*/
 }
-.l-btn-plain{
-  // .l-btn-icon-left{
-  //   .l-btn-text{
-  //     padding:0 6px 0 27px !important;
-  //   }
-  //   .l-btn-icon{
-  //     padding:0 3px 5px 6px !important;
-  //   }
-  // }
-
-}
-.hisui-linkbutton:not(.red):not(.yellow):not(.green):not(.blue):not(.white){
-  &.l-btn-focus{
-    background-color: #006EDB !important;
-  }  
-}
+// .hisui-linkbutton:not(.red):not(.yellow):not(.green):not(.blue):not(.white){
+//   &.l-btn-focus{
+//     background-color: #006EDB !important;
+//   }  
+// }
 
 .datagrid-toolbar{
   a:nth-child(1) {
@@ -577,15 +563,5 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   }
   a {
     margin-right: 6px !important; 
-  }
-  .hisui-linkbutton{
-  .l-btn-icon-left{
-    .l-btn-text{
-      padding:0 6px 0 27px !important;
-    }
-    .l-btn-icon{
-      padding:0 3px 5px 6px !important;
-    }
-  }
   }
 }
