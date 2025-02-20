@@ -108,6 +108,31 @@
             }
             return key;
         }
+        ,hisuiStyle:null
+        , getHisuiStyle:function(){
+            if($.hisui.hisuiStyle===null){
+                var hisuiStyle='';
+                if(typeof HISUIStyleCode=='string'){ //从全局变量取
+                    hisuiStyle=HISUIStyleCode;
+                }else{
+                    $('link').each(function(){
+                        if(this.href.indexOf('/hisui.')>-1){
+                            var temp=this.href.split('/hisui.')[1].split('.')[0];
+                            if(temp!='css' && temp!='min') {
+                                hisuiStyle=temp;
+                            }else{
+                                hisuiStyle='';
+                            }
+                            return false;
+                        }
+                    });
+                }
+                $.hisui.hisuiStyle=hisuiStyle;
+                return hisuiStyle;
+            }else{
+                return $.hisui.hisuiStyle;
+            }
+        }
         
         ,
         /**

@@ -5,6 +5,7 @@
     $.parser.plugins.push('menutree');
 
     function create(ele){
+
         var p=$('<div class="menutree-wrap"><div class="menutree-collapse-wrap"></div><div class="menutree-searchbox-wrap"></div><div class="menutree-tree-wrap"></div></div>').insertAfter(ele);
         p.panel({ doSize: false,border:false ,onResize:function(w,h){
             setTimeout(function(){
