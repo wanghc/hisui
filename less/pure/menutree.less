@@ -6,13 +6,28 @@
 @menutree-blueroot-node-hover-bgcolor:transparent;  
 /**蓝色标题 灰色根节点**/
 @menutree-title-bgcolor:@panel-header-bgcolor;
-@menutree-root-bgcolor:@panel-header-bgcolor;
-@menutree-root-hover-bgcolor:transparent;
-@menutree-node-hover-bgcolor:#e4f0fe;
-@menutree-min-root-hover-bgcolor:transparent;
+@menutree-root-bgcolor:#f1f7fe;
+@menutree-root-hover-bgcolor:#f1f7fe;
+@menutree-node-hover-bgcolor:#e4f0fe;;
+@menutree-min-root-hover-bgcolor:#f1f7fe;
 @menutree-node-selected-bgcolor:#d7e9ff;
-@menutree-min-root-selected-bgcolor:#d7e9ff;
-@menutree-root-selected-bgcolor:#d7e9ff;
+@menutree-min-root-selected-bgcolor:#f1f7fe;
+@menutree-root-selected-bgcolor:#f1f7fe;
+@menutree-wrap-bgcolor:#f1f7fe;
+@menutree-min-wrap-bgcolor:#f1f7fe;
+@menutree-root-color:#424656;
+@menutree-node-color:#191919;
+
+/*子树*/
+@menutree-sub-wrap-bgcolor:#ffffff;
+@menutree-sub-root-bgcolor:#ffffff;
+@menutree-sub-root-hover-bgcolor:@menutree-sub-root-bgcolor;
+@menutree-sub-root-selected-bgcolor:@menutree-sub-root-bgcolor;
+@menutree-sub-node-bgcolor:#ffffff;
+@menutree-sub-node-hover-bgcolor:@menutree-node-hover-bgcolor;
+@menutree-sub-node-selected-bgcolor:@menutree-node-selected-bgcolor;
+
+
 
 @menutree-search-bg:url('images/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
 @menutree-expanded-bg:url('images/menutree.png') -176px center no-repeat; /* 176-192 向左折叠*/
@@ -30,7 +45,7 @@
 @menutree-blue-little-arrow-down:url('images/menutree.png') -80px center no-repeat; /* 80-96 小蓝色上箭头*/
 
 .menutree-default-width{
-  width: 180px;
+  width: 200px;
   height: 1px;
   padding: 0;
   margin: 0;
@@ -38,7 +53,7 @@
   top: -100px;;
 }
 .menutree-default-min-width{
-  width: 40px;
+  width: 44px;
   height: 1px;
   padding: 0;
   margin: 0;
@@ -124,7 +139,7 @@
           line-height: 44px;
           position: relative;
           font-weight: bold;
-          color: #000000;
+          color: @menutree-root-color;
           position: relative;
           border-bottom: 1px solid @panel-header-bdcolor;
 
@@ -174,22 +189,23 @@
           border-bottom: 1px solid @panel-header-bdcolor;
 
           .tree-node {
-            padding-left: 16px;
+            padding-left: 1px;
             height: 38px;
             line-height: 38px;
             position: relative;
+            margin: 0 15px;
 
             &.tree-node-hover {
               background-color:@menutree-node-hover-bgcolor;
               .tree-title {
-                background: @menutree-node-hover-bgcolor;
+                background: transparent;
               }
             }
 
             &.tree-node-selected {
               background-color: @menutree-node-selected-bgcolor;
               .tree-title {
-                background: @menutree-node-selected-bgcolor;
+                background: transparent;
               }
             }
 
@@ -302,7 +318,7 @@
 
     &.menutree-tree-collapsible{
       .menutree-tree.tree>li>ul .tree-node{ 
-        padding-left: 16px;
+        padding-left: 1px;
       }
       .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
         padding-left: 4px;
@@ -310,7 +326,7 @@
       .menutree-tree.tree>li>.tree-node{
         .tree-icon{
           display: inline-block;
-          height: 40px;
+          height: 44px;
           margin: 0;
           width: 16px;
           margin-left: 10px;
@@ -332,12 +348,12 @@
   
         &>li {
           &>.tree-node { /*第一层节点 根节点*/
-            height: 40px;
+            height: 44px;
             background-color:@menutree-root-bgcolor;
-            line-height: 40px;
+            line-height: 44px;
             position: relative;
             font-weight: bold;
-            color: #000000;
+            color: @menutree-root-color;
             position: relative;
             border-bottom: 1px solid @panel-header-bdcolor;
   
@@ -366,9 +382,9 @@
             }
   
             .tree-title {
-              height: 40px;
-              line-height: 40px;
-              color: #000000;
+              height: 44px;
+              line-height: 44px;
+              color: @menutree-root-color;
               padding: 0 34px 0 10px;
             }
   
@@ -386,26 +402,26 @@
             border-bottom: 1px solid @panel-header-bdcolor;
   
             .tree-node {
-              padding-left: 16px;
-              height: 36px;
-              line-height: 36px;
+              padding-left: 1px;
+              height: 38px;
+              line-height: 38px;
               position: relative;
   
               &.tree-node-hover {
                 background-color:@menutree-node-hover-bgcolor;                
                 .tree-title {
-                  background: @menutree-node-hover-bgcolor;
+                  background: transparent;
                 }
               }
   
               &.tree-node-selected {
                 background-color:@menutree-node-selected-bgcolor;
                 .tree-title {
-                  background: @menutree-node-selected-bgcolor;
+                  background: transparent;
                 }
               }
               .tree-title {
-                color: #000;
+                color: @menutree-node-color;
               }
             }
           }
@@ -430,7 +446,7 @@
 
       &.menutree-tree-collapsible{
         .menutree-tree.tree>li>ul .tree-node{ 
-          padding-left: 16px;
+          padding-left: 1px;
         }
         .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
           padding-left: 4px;
@@ -476,12 +492,12 @@
   }
 
   .menutree-tree-wrap {
-    background-color: #ffffff;
+    background-color: @menutree-min-wrap-bgcolor;
     .menutree-tree.tree {
       border: 0px;
       &>li {
         &>.tree-node { /*第一层节点 根节点*/
-          background-color: #ffffff;
+          background-color: @menutree-min-wrap-bgcolor;
           border: 0px;
           .tree-hit {
             &.tree-collapsed {
@@ -492,24 +508,41 @@
               display: none;
             }
           }
+          .tree-icon.tree-folder{
+            margin: 4px;
+            width: 36px;
+            height: 36px;
+            border-radius:6px;
+            text-align: center;
+            line-height: 36px;
+          }
 
           .tree-title {
             display: none;
           }
         }
         &.menutree-root-hover>.tree-node { 
-          background-color: @menutree-min-root-hover-bgcolor;
-          color: #ffffff;
+          //background-color: @menutree-min-root-hover-bgcolor;
+          //color: #ffffff;
+          .tree-icon.tree-folder{
+            background-color: @menutree-node-hover-bgcolor;
+          }
           &.tree-node-hover {
-            background-color: @menutree-min-root-hover-bgcolor;
+            //background-color: @menutree-min-root-hover-bgcolor;
+            .tree-icon.tree-folder{
+              background-color: @menutree-node-hover-bgcolor;
+            }
           }
           &.tree-node-selected {
-            background-color: @menutree-min-root-selected-bgcolor;
+            //background-color: @menutree-min-root-selected-bgcolor;
+            .tree-icon.tree-folder{
+              background-color: @menutree-node-selected-bgcolor;
+            }
           }
         }
 
         &>ul {
-          background-color: #ffffff;
+          background-color: @menutree-min-wrap-bgcolor;
           position: absolute;
           border: 0;
           display: none!important;
@@ -518,7 +551,7 @@
     }
 
     &.menutree-tree-withtitle {  //有标题的
-      background-color: #ffffff;
+      background-color: @menutree-min-wrap-bgcolor;
       .menutree-tree-title {
         display: none;
       }
@@ -528,7 +561,7 @@
   
         &>li {
           &>.tree-node { /*第一层节点 根节点*/
-            background-color: #ffffff;
+            background-color: @menutree-min-wrap-bgcolor;
             border: 0px;
             .tree-hit {
               &.tree-collapsed {
@@ -539,18 +572,31 @@
                 display: none;
               }
             }
-  
+            .tree-icon.tree-folder{
+              margin: 4px;
+              width: 36px;
+              height: 36px;
+              border-radius:6px;
+              text-align: center;
+              line-height: 36px;
+            }
             .tree-title {
               display: none;
             }
   
             &.tree-node-hover {
-              background-color:  @menutree-min-root-hover-bgcolor;
-              color: #ffffff;
+              //background-color:  @menutree-min-root-hover-bgcolor;
+              //color: #ffffff;
+              .tree-icon.tree-folder{
+                background-color: @menutree-node-hover-bgcolor;
+              }
             }
             &.tree-node-selected {
-              background-color:  @menutree-min-root-selected-bgcolor;
-              color: #ffffff;
+              //background-color:  @menutree-min-root-selected-bgcolor;
+              //color: #ffffff;
+              .tree-icon.tree-folder{
+                background-color: @menutree-node-selected-bgcolor;
+              }
             }
 
             .tree-icon{
@@ -567,8 +613,8 @@
           }
 
           &.menutree-root-hover>.tree-node { 
-            background-color: @menutree-min-root-hover-bgcolor;
-            color: #ffffff;
+            //background-color: @menutree-min-root-hover-bgcolor;
+            //color: #ffffff;
             &.tree-node-hover {
               background-color: @menutree-min-root-hover-bgcolor;
             }
@@ -585,7 +631,7 @@
 }
 
 
-
+/*折叠后 显示的子树*/
 .menutree.menutree-sp{
   box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
   &>.panel-body {
@@ -594,16 +640,17 @@
     overflow: auto;
   }
   .menutree-tree-wrap{
+    background-color: @menutree-sub-wrap-bgcolor;
       overflow: hidden;
       .menutree-tree.tree {
         &>li {
           &>.tree-node { /*第一层节点 根节点*/
-            height:40px;
-            background-color:@menutree-root-hover-bgcolor;
-            line-height: 40px;
+            height:44px;
+            background-color:@menutree-sub-root-bgcolor;
+            line-height: 44px;
             position: relative;
             font-weight: normal;
-            color: #000000;
+            color: @menutree-root-color;
             position: relative;
             border-bottom: 1px solid @panel-header-bdcolor;
             font-weight: bold;
@@ -619,17 +666,17 @@
             }
   
             .tree-title {
-              height: 40px;
-              line-height: 40px;
-              color: #000000;
+              height: 44px;
+              line-height: 44px;
+              color: @menutree-root-color;
               padding: 0 34px 0 10px;
             }
   
             &.tree-node-hover {
-              background-color: @menutree-root-hover-bgcolor;
+              background-color: @menutree-sub-root-hover-bgcolor;
             }
             &.tree-node-selected {
-              background-color: @menutree-root-selected-bgcolor;
+              background-color: @menutree-sub-root-selected-bgcolor;
             }
           }
           &>ul {
@@ -651,25 +698,26 @@
 
             .tree-node {
               padding-left: 4px;
-              height: 35px;
-              line-height: 35px;
+              height: 38px;
+              line-height: 38px;
               position: relative;
+              margin: 0 5px;
   
               &.tree-node-hover {
-                background-color:@menutree-node-hover-bgcolor;                
+                background-color:@menutree-sub-node-hover-bgcolor;                
                 .tree-title {
-                  background: @menutree-node-hover-bgcolor;
+                  background: transparent;
                 }
               }
   
               &.tree-node-selected {
-                background-color:@menutree-node-selected-bgcolor;
+                background-color:@menutree-sub-node-selected-bgcolor;
                 .tree-title {
-                  background: @menutree-node-selected-bgcolor;
+                  background: transparent;
                 }
               }
               .tree-title {
-                color: #000;
+                color: @menutree-node-color;
               }
             }
           }
@@ -687,7 +735,5 @@
       }
   
   }
-
-
 
 }
