@@ -37,6 +37,8 @@ $("#btn").linkbutton("disable");
 
 ## 2025-02-20
 - 增加查询面板左边距样式类 `.hisuicom-leftpadding-container` [5474027]
+- 增加`$.hisui.getHisuiStyle()`方法获取当前hisui样式
+- 调整`menutree`纯净版样式
 
 ## 2025-02-14
 - 处理表格工具栏上按钮`l-btn-focus`时样式

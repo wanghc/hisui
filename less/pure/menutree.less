@@ -27,6 +27,8 @@
 @menutree-sub-node-hover-bgcolor:@menutree-node-hover-bgcolor;
 @menutree-sub-node-selected-bgcolor:@menutree-node-selected-bgcolor;
 
+@menutree-collapse-wrap-bgcolor:#f1f7fe;
+
 
 
 @menutree-search-bg:url('images/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
@@ -83,29 +85,41 @@
   }
 
   .menutree-collapse-wrap {
-    height: 26px;
-    margin-bottom: 4px;
-    text-align: center;
-    background-color: #f8f8f8;
-    border: 1px solid @panel-header-bdcolor;
-    border-radius: 6px;
+    height: 44px;
+    text-align: right;
+    line-height: 44px;
+    background-color: @menutree-collapse-wrap-bgcolor;
+    border: 0;
+    border-radius: 0 0 6px 6px ;
 
     .menutree-collapse {
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      text-align: center;
+      margin: 8px;
+      cursor: pointer;
+      &:hover{
+        background-color: @menutree-node-selected-bgcolor;
+      }
+
+    }
+    .menutree-collapse.menutree-expanded::before {
+      content: "";
       width: 16px;
       height: 16px;
       display: inline-block;
-      margin-top: 6px;
-      cursor: pointer;
-      &.menutree-expanded{
-        background: @menutree-expanded-bg;
-      }
-      &.menutree-collapsed{
-        background: @menutree-collapsed-bg;
-      }
+      margin: 6px;
+      background: @menutree-expanded-bg;
     }
-
-
-
+    .menutree-collapse.menutree-collapsed::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin: 6px;
+      background: @menutree-collapsed-bg;
+    }
   }
 
   .menutree-searchbox-wrap {
@@ -317,6 +331,7 @@
     }
 
     &.menutree-tree-collapsible{
+      border-radius: 6px 6px 0 0;  //可折叠 折叠在底部  此处底部不需要圆角
       .menutree-tree.tree>li>ul .tree-node{ 
         padding-left: 1px;
       }
@@ -488,8 +503,34 @@
   }
 
   .menutree-searchbox-wrap {
-    display: none;
+    display: block;
+    .searchbox{
+      display: none;
+    }
+
+    .menutree-searchbox-proxy {
+      width: 44px;
+      height: 32px;
+      border-radius: 6px;
+      background-color: #ffffff;
+      cursor: pointer;
+      text-align: center;
+      color: #666;
+      &::before{
+        font: normal normal normal 14px/1 Mw_mifonts;
+        content: "\f018";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        margin-top: 8px;
+      }
+      &:hover{
+        color: #008FFF;
+      }
+    }
   }
+  
 
   .menutree-tree-wrap {
     background-color: @menutree-min-wrap-bgcolor;

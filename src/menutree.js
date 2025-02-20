@@ -6,7 +6,12 @@
 
     function create(ele){
 
-        var p=$('<div class="menutree-wrap"><div class="menutree-collapse-wrap"></div><div class="menutree-searchbox-wrap"></div><div class="menutree-tree-wrap"></div></div>').insertAfter(ele);
+        if($.hisui.getHisuiStyle()=='pure'){
+            var p=$('<div class="menutree-wrap"><div class="menutree-searchbox-wrap"><div class="menutree-searchbox-proxy"></div></div><div class="menutree-tree-wrap"></div><div class="menutree-collapse-wrap"></div></div>').insertAfter(ele);
+        }else{
+            var p=$('<div class="menutree-wrap"><div class="menutree-collapse-wrap"></div><div class="menutree-searchbox-wrap"></div><div class="menutree-tree-wrap"></div></div>').insertAfter(ele);
+        }
+
         p.panel({ doSize: false,border:false ,onResize:function(w,h){
             setTimeout(function(){
                 resizeItem(ele,{width:w,height:h})
@@ -96,17 +101,21 @@
         var s=sw.find('.menutree-searchbox');
         if(s.length>0) s.searchbox('resize',opts.width);
         var treeHeight=opts.height-(tw.offset().top-tw.parent().offset().top);
+
+        if($.hisui.getHisuiStyle()=='pure' && opts.collapsible){
+            treeHeight=treeHeight-cw.outerHeight();
+        }
         tw._outerHeight(treeHeight);
-
-
     }
     function setCollapse(ele){
-        var opts = $.data(ele, "menutree").options;
-        var panel = $.data(ele, "menutree").panel;
+        var state=$.data(ele, "menutree");
+        var opts = state.options;
+        var panel = state.panel;
         var cw=panel.find('.menutree-collapse-wrap');
         var c=cw.find('.menutree-collapse');
         if(c.length==0) {
             c=$('<span class="menutree-collapse menutree-expanded"></span>').appendTo(cw);
+            state.collapse=c;
             c.on('click',function(){
                 if($(this).hasClass('menutree-expanded')) { //当前为展开状态
                     $(this).removeClass('menutree-expanded');
@@ -138,6 +147,17 @@
             cw.addClass('menutree-hidden');
         }
     }
+
+    //展开
+    function expandMenuTree(ele){
+        var state=$.data(ele, "menutree");
+        var c=state.collapse;
+        if(c.hasClass('menutree-collapsed')){
+            c.trigger('click');
+        }
+    }
+
+
     function setSearchbox(ele){
         var state=$.data(ele, "menutree")
         var opts = state.options;
@@ -168,6 +188,13 @@
         }else{
             sw.addClass('menutree-hidden');
         }
+
+        sw.find('.menutree-searchbox-proxy').off('click.menutree').on('click.menutree',function(e){
+            expandMenuTree(ele);
+            setTimeout(function(){
+                s.searchbox('textbox').focus();
+            },200);
+        });
     }
 
     function addTreeLiCls(jq,level){
