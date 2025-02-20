@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-02-20
+- 增加查询面板左边距样式类 `.hisuicom-leftpadding-container` [5474027]
+
 ## 2025-02-14
 - 处理表格工具栏上按钮`l-btn-focus`时样式
 - 修复表格工具栏上按钮无图片时文字靠右问题 `药房界面`
