@@ -62,6 +62,155 @@
             header.children("div.tabs-tool").remove();
         }
     };
+    //简单的右键菜单
+    function createSimpleContextMenu(ele){
+        var state = $.data(ele, "tabs");
+        var opts=state.options;
+        if(opts.simpleContextMenu){
+            var ctxmenu=$('<div class="tabs-ctx-menu">'
+                            +'<div class="tabs-ctx-menu-refresh" >刷新</div>'
+                            +'<div class="menu-sep" ></div>'
+                            +'<div class="tabs-ctx-menu-close" >关闭</div>'
+                            +'<div class="tabs-ctx-menu-closeother" >关闭其他</div>'
+                            +'<div class="tabs-ctx-menu-closeall" >关闭全部</div>'
+                            +'<div class="tabs-ctx-menu-closeleft" >关闭左侧</div>'
+                            +'<div class="tabs-ctx-menu-closeright">关闭右侧</div>'
+                        +'</div>').appendTo('body');
+            ctxmenu.menu({})
+            state.ctxmenu=ctxmenu;
+
+            ctxmenu.find('.tabs-ctx-menu-refresh').off('click.tabs').on('click.tabs',function(){
+                if($(this).hasClass('menu-item-disabled')){
+                    return;
+                }
+                var currTabInd = ctxmenu.data("currtab"),
+                currTab= $(ele).tabs('getTab',currTabInd);
+                var frame=currTab.find('iframe')
+                $(ele).tabs('select',currTabInd);  //刷新选中当前页
+                if(frame.length>0){
+                    frame.attr('src',frame.attr('src'));
+                }
+            });
+    
+            ctxmenu.find('.tabs-ctx-menu-close').off('click.tabs').on('click.tabs',function(){
+                if($(this).hasClass('menu-item-disabled')){
+                    return;
+                }
+                var currTabInd = ctxmenu.data("currtab");
+	            $(ele).tabs('close',currTabInd);
+            });
+
+            ctxmenu.find('.tabs-ctx-menu-closeother').off('click.tabs').on('click.tabs',function(){
+                if($(this).hasClass('menu-item-disabled')){
+                    return;
+                }
+                var currTabInd = ctxmenu.data("currtab"),newCurrTabInd=currTabInd;
+                var tabs=$(ele).tabs('tabs');
+                for (var i=tabs.length-1;i>0;i--){  //从最后一个关
+                    if (i!=currTabInd) {
+                        $(ele).tabs('close',i);
+                        if(i<currTabInd) newCurrTabInd--;  //关闭当前标签左侧的 当前标签索引会-1
+                    }
+                    
+                }
+                //需要重新选中当前
+                $(ele).tabs('select',newCurrTabInd);
+                return false;
+            });
+
+            ctxmenu.find('.tabs-ctx-menu-closeall').off('click.tabs').on('click.tabs',function(){
+                if($(this).hasClass('menu-item-disabled')){
+                    return;
+                }
+                var tabs=$(ele).tabs('tabs');
+                for (var i=tabs.length-1;i>0;i--){  //从最后一个关
+                    $(ele).tabs('close',i);
+                }
+            });
+            ctxmenu.find('.tabs-ctx-menu-closeleft').off('click.tabs').on('click.tabs',function(){
+                if($(this).hasClass('menu-item-disabled')){
+                    return;
+                }
+                var currTabInd = ctxmenu.data("currtab"),newCurrTabInd=currTabInd;
+                var tabs=$(ele).tabs('tabs');
+                for (var i=tabs.length-1;i>0;i--){  //从最后一个关
+                    if (i<currTabInd) {
+                        $(ele).tabs('close',i);
+                        if(i<currTabInd) newCurrTabInd--;  //关闭当前标签左侧的 当前标签索引会-1
+                    }
+                    
+                }
+                //需要重新选中当前
+                $(ele).tabs('select',newCurrTabInd);
+                return false;
+            });
+            ctxmenu.find('.tabs-ctx-menu-closeright').off('click.tabs').on('click.tabs',function(){
+                if($(this).hasClass('menu-item-disabled')){
+                    return;
+                }
+                var currTabInd = ctxmenu.data("currtab"),newCurrTabInd=currTabInd;
+                var tabs=$(ele).tabs('tabs');
+                for (var i=tabs.length-1;i>0;i--){  //从最后一个关
+                    if (i>currTabInd) {
+                        $(ele).tabs('close',i);
+                    }
+                    
+                }
+                //需要重新选中当前
+                $(ele).tabs('select',newCurrTabInd);
+                return false;
+            });
+
+        }
+
+
+    }
+    function showSimpleContextMenu(ele,e,title,index){
+        var state = $.data(ele, "tabs");
+        var ctxmenu=state.ctxmenu;
+        var opts=state.options;
+        var tabsCount=$(ele).tabs('tabs').length;
+
+        var currTab=$(ele).tabs('getTab',index);
+        var currTabClosable=currTab.panel('options').closable;
+        var frame=currTab.find('iframe');
+
+        if(frame.length==0){
+            ctxmenu.menu('disableItem',ctxmenu.find('.tabs-ctx-menu-refresh')[0]);
+        }else{
+            ctxmenu.menu('enableItem',ctxmenu.find('.tabs-ctx-menu-refresh')[0]);
+        }
+        
+        if (!currTabClosable){ //不可关闭
+            ctxmenu.menu('disableItem',ctxmenu.find('.tabs-ctx-menu-close')[0]);
+        }else{
+            ctxmenu.menu('enableItem',ctxmenu.find('.tabs-ctx-menu-close')[0]);
+        }
+
+        if(index>1){  //有个首页 第三个起 才可以关闭左侧
+            ctxmenu.menu('enableItem',ctxmenu.find('.tabs-ctx-menu-closeleft')[0]);
+        }else{
+            ctxmenu.menu('disableItem',ctxmenu.find('.tabs-ctx-menu-closeleft')[0]);
+        }
+        if(index<tabsCount-1){  //倒数第二个才可以关闭右侧
+            ctxmenu.menu('enableItem',ctxmenu.find('.tabs-ctx-menu-closeright')[0]);
+        }else{
+            ctxmenu.menu('disableItem',ctxmenu.find('.tabs-ctx-menu-closeright')[0]);
+        }
+
+        if ( index>1 || index<tabsCount-1 ){ //能关闭左侧  或能关闭右侧  即能关闭其它
+            ctxmenu.menu('enableItem',ctxmenu.find('.tabs-ctx-menu-closeother')[0]);
+        }else{
+            ctxmenu.menu('disableItem',ctxmenu.find('.tabs-ctx-menu-closeother')[0]);
+        }
+        ctxmenu.menu('show', {
+            left: e.pageX,
+            top: e.pageY
+        });
+        ctxmenu.data("currtab",index);
+    }
+    var debounced_showSimpleContextMenu=$.hisui.debounce(showSimpleContextMenu,200)
+
     function setSize(container) {
         var state = $.data(container, "tabs");
         var opts = state.options;
@@ -204,6 +353,10 @@
                 //opts.onContextMenu.call(container, e, li.find("span.tabs-title").html(), getLiIndex(li));
                 var liIndex= getLiIndex(li);
                 var liTitle= getTab(container,liIndex).panel('options').title;
+                if (opts.simpleContextMenu){ //显示简单的右键菜单
+                    e.preventDefault();
+                    debounced_showSimpleContextMenu(container,e,liTitle,liIndex);
+                }
                 opts.onContextMenu.call(container, e, liTitle,liIndex); //opts上的title不翻译 元素显示上的是翻译过后的
             }
         });
@@ -577,6 +730,7 @@
                 wrapTabs(this);
             }
             addTools(this);
+            createSimpleContextMenu(this);  //简单右键菜单
             setProperties(this);
             setSize(this);
             bindEvents(this);
@@ -677,6 +831,6 @@
         }, onAdd: function (title, index) {
         }, onUpdate: function (title, index) {
         }, onContextMenu: function (e, title, index) {
-        }
+        },simpleContextMenu:false  //是否显示简单右键菜单
     };
 })(jQuery);
