@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-02-21
+- `menutree`组件增加`findNode`方法
+* 
 ## 2025-02-20
 - 增加查询面板左边距样式类 `.hisuicom-leftpadding-container` [5474027]
 - 增加`$.hisui.getHisuiStyle()`方法获取当前hisui样式

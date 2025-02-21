@@ -643,7 +643,11 @@
         var state=$.data(ele, "menutree")
         var node=state.tree.tree('find',id);
         if(node) state.tree.tree('select',node.target);
-
+    }
+    function findNode(ele,id){
+        var state=$.data(ele, "menutree")
+        var node=state.tree.tree('find',id);
+        return node;
     }
     $.fn.menutree = function (opt, arg) {
         if (typeof opt == "string") {
@@ -687,6 +691,8 @@
             jq.each(function(){
                 selectById(this,param)
             })
+        },findNode:function(jq,param){
+            return findNode(jq[0],param)
         }
 
     };
