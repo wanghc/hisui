@@ -138,7 +138,7 @@
   padding: 0;
 }
 .l-btn-focus {
-  outline: #0000FF dotted thin;
+  outline: @linkbutton-focus-outline-color dotted thin;
 }
 .l-btn-large {
   .l-btn-text {
@@ -301,8 +301,8 @@
   border-radius:0;
 }
 .l-btn-focus {
-  outline: @linkbutton-focus-bordercolor dotted thin;
-  background-color: @linkbutton-hover-bgcolor;
+  outline: @linkbutton-focus-outline-color dotted thin;
+  background-color: @linkbutton-focus-bgcolor;
 }
 // .l-btn.l-btn-plain.l-btn-focus {
 //   color: #000000;
@@ -441,15 +441,14 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   vertical-align: middle;
 }
 .l-btn-plain.l-btn.l-btn-small.l-btn-focus{
-  background-color: @menu-active-bgcolor;
-  outline: transparent dotted thin;
-  background-color:#eff9ff;
+  background-color: @linkbutton-focus-bgcolor;
+  outline: @linkbutton-focus-outline-color dotted thin;
 }
 /*增加其它色系按钮*/
 .l-btn.l-btn-small{
     &.l-btn-focus {
-      background-color: @linkbutton-hover-bgcolor;
-      outline: @linkbutton-hover-bgcolor dotted thin;
+      background-color: @linkbutton-focus-bgcolor;
+      outline: @linkbutton-focus-outline-color dotted thin;
     }
     &.white{
       background-color: @linkbutton-white-bgcolor;

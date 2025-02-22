@@ -273,6 +273,9 @@
             messagerConfirmBtnIndex:{
                 default:['ok','cancel'],pure:['cancel','ok']
             },
+            messagerFocusBtnIndex:{
+                default:0,pure:1
+            },
             tabHeight:{
                 default: 36,pure:44
             },

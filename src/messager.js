@@ -232,7 +232,9 @@
             }
         });
         win.window("window").addClass("messager-window");
-        win.children("div.messager-button").children("a:first").focus();
+        var messagerFocusBtnIndex = $.hisui.getStyleCodeConfigValue("messagerFocusBtnIndex");
+        win.children("div.messager-button").children("a").eq(messagerFocusBtnIndex).focus();
+        // win.children("div.messager-button").children("a:first").focus();
         return win;
     };
     $.messager = {
