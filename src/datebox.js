@@ -123,7 +123,8 @@
 				var btn = opts.buttons[i];
 				// 加onclick属性，兼容血透调用病历界面，解决弹出空白界面问题
 				var t = $('<a href="javascript:void(0)" onclick="javascript:return false;"></a>').html($.isFunction(btn.text) ? btn.text(target) : btn.text).appendTo(td);
-				t.bind('click', {target: target, handler: btn.handler}, function(e){
+				//修改click -> mousedown，鼠标放在[今天]按钮上，一直按处左键时,会不触发click，不能选中今天日期
+				t.unbind("mousedown.datebox").bind('mousedown.datebox', {target: target, handler: btn.handler}, function(e){
 					e.data.handler.call(this, e.data.target);
 				});
 			}
