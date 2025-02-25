@@ -19,10 +19,10 @@
 				cpos.height = cpos.height - parseInt(_364parent.css("padding-top")) - parseInt(_364parent.css("padding-bottom"));
 			}
         }
-        _367(_isPanelVisible(_366.expandNorth) ? _366.expandNorth : _366.north, "n");
-        _367(_isPanelVisible(_366.expandSouth) ? _366.expandSouth : _366.south, "s");
-        _369(_isPanelVisible(_366.expandEast) ? _366.expandEast : _366.east, "e");
-        _369(_isPanelVisible(_366.expandWest) ? _366.expandWest : _366.west, "w");
+        _resizeNorthSouth(_isPanelVisible(_366.expandNorth) ? _366.expandNorth : _366.north, "n");
+        _resizeNorthSouth(_isPanelVisible(_366.expandSouth) ? _366.expandSouth : _366.south, "s");
+        _resizeWestEast(_isPanelVisible(_366.expandEast) ? _366.expandEast : _366.east, "e");
+        _resizeWestEast(_isPanelVisible(_366.expandWest) ? _366.expandWest : _366.west, "w");
         _366.center.panel("resize", cpos);
         resizeSubLayout(_366);
         function _36a(pp) {
@@ -33,7 +33,7 @@
             var opts = pp.panel("options");
             return Math.min(Math.max(opts.width, opts.minWidth), opts.maxWidth);
         };
-        function _367(pp, type) {
+        function _resizeNorthSouth(pp, type) {
             if (!pp.length || !_isPanelVisible(pp)) {
                 return;
             }
@@ -51,7 +51,7 @@
                 cpos.height++;
             }
         };
-        function _369(pp, type) {
+        function _resizeWestEast(pp, type) {
             if (!pp.length || !_isPanelVisible(pp)) {
                 return;
             }
