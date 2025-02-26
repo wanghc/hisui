@@ -95,6 +95,9 @@
         function _36f(cc) {
             cc.children("div").each(function () {
                 var opts = $.fn.layout.parsePanelOptions(this);
+                // 在options初始化赋值，发现HISStyleCode为undefined,在此再设置一次 [5467918]
+                opts.collapsedSize = $.hisui.getStyleCodeConfigValue("collapsedSize");
+                opts.collapsedHeight = $.hisui.getStyleCodeConfigValue("collapsedHeight");
                 if ("north,south,east,west,center".indexOf(opts.region) >= 0) {
                     _371(_36e, opts, this);
                 }
