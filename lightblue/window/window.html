@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>窗口</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'lightblue';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.lightblue.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,9 +16,7 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'lightblue';
-    </script>
+
 </head>
 <body>	
 	<h2>窗口</h2>
@@ -23,20 +24,17 @@
     <span>窗口（window）默认有四个工具：collapsible、minimizable、maximizable和closable。</span>
 	<h3>如：</h3>
 	<div style="width: 666px;height: 31px"></div>
-	<div class="demo-exp-code entry-content"> 
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint lang-html"> 
 	
-		<div class="hisui-window" title="完成接诊" style="width:400px;height:200px;top:10px;left:700px;" data-options="iconCls:'icon-w-save',resizable:true,modal:false">   
-			<div style="margin: 10px;padding: 10px;background-color: #ffffff;height: 123px;">
-			我是一个Window窗口
-			<code>hisui-window</code>  
+		<div class="hisui-window" title="完成接诊" style="width:400px;height:200px;top:10px;left:700px;padding:10px"	data-options="iconCls:'icon-w-save',resizable:true,modal:false">   
+			<div style="padding: 10px;background-color: #ffffff;height: 123px;">
+				我是一个Window窗口
+				<code>hisui-window</code>
 			</div>
 	
-		</div><pre class="prettyprint hide lang-html"><code>&lt;div class="hisui-window" title="完成接诊" style="width:400px;height:200px;top:10px;left:500px;padding:10px"	
-data-options="iconCls:'icon-w-save',resizable:true,modal:false,isTopZindex:true">
-		
-	我是一个Window窗口
-	&lt;code>hisui-window&lt;/code>
-&lt;/div&gt;</code></pre>
+		</div>
+		</div>
 	</div>
 	<table class="table">
 		<tr class="protitle">

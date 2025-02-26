@@ -2,6 +2,9 @@
 .window {
   min-width: 474px;
   min-height: 274px;
+  &.panel-status-collapse{
+    min-height: 0; /*折叠时不控制高度*/
+  }
   overflow: hidden;
   border-width: 1px;
   border-style: solid;
