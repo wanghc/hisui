@@ -15,7 +15,8 @@
 		/*在body内实现padding=10px的layout时,底部没有padding问题 by wanghc */
 		if (_364.tagName !== "BODY"){
 			var _364parent = $(_364).parent();
-			if (_364parent[0].tagName==="BODY"){
+            // 如果body不是border-box,则减去padding
+			if (_364parent[0].tagName==="BODY" && _364parent.css("box-sizing")!=="border-box"){
 				cpos.height = cpos.height - parseInt(_364parent.css("padding-top")) - parseInt(_364parent.css("padding-bottom"));
 			}
         }
