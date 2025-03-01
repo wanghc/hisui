@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-03-01
+- :lipstick: `lightblue`与`pure`下popover组件inverse样式修改 [5479338]
+
 ## 2025-02-28
 - 修复layout下边距问题
 
