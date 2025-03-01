@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2025-03-01
 - :lipstick: `lightblue`与`pure`下popover组件inverse样式修改 [5479338]
 - :lipstick: 解决纯净风格`window`窗口内的翻页条右端`页码文字`垂直居中问题 [5464555]
+- :lipstick: `纯净风格`表头文字样式修改 [5461229]
 
 ## 2025-02-28
 - 修复layout下边距问题
