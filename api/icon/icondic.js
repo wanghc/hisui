@@ -751,3 +751,10 @@ var iconDictionary={
     'icon-big-edit-pedigree-chart': '编辑谱系图',
     'icon-big-image-properties':"图片属性"
 };
+if (top.HISUIStyleCode && top.HISUIStyleCode=="pure"){
+    // 向head中写入样式
+    document.write('<style> .bigicon .icon::before{ font-size: 24px !important; }</style>');
+    $(function(){
+        $("#bigIconPanel").panel("setTitle","大图标(24*24)");
+    })
+}
