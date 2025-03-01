@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="352" height="352" viewBox="0 0 352 352">
+  <defs>
+    <clipPath id="clip-急诊">
+      <rect width="352" height="352"/>
+    </clipPath>
+  </defs>
+  <g id="急诊" clip-path="url(#clip-急诊)">
+    <rect width="352" height="352" fill="#fff"/>
+    <g id="组_218" data-name="组 218" transform="translate(-372 -1165)">
+      <rect id="矩形_46" data-name="矩形 46" width="352" height="352" transform="translate(372 1165)" fill="#ffe7d8"/>
+      <g id="组_217" data-name="组 217">
+        <g id="组_214" data-name="组 214">
+          <path id="矩形_47" data-name="矩形 47" d="M13.061,0h0A13.061,13.061,0,0,1,26.121,13.061V24.878a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V13.061A13.061,13.061,0,0,1,13.061,0Z" transform="translate(511.297 1256.301)" fill="#fc494f"/>
+          <rect id="矩形_48" data-name="矩形 48" width="43.259" height="5.39" transform="translate(501.502 1281.179)" fill="#fc494f"/>
+        </g>
+        <path id="路径_211" data-name="路径 211" d="M465.62,1286.569,449.2,1345.86l-37.29,11.455v52.605H472.4a28.793,28.793,0,1,1,56.346,0h72.536a28.792,28.792,0,1,1,56.345,0h26.46V1286.569Z" fill="#fff"/>
+        <path id="路径_212" data-name="路径 212" d="M475.839,1298.282l-12.024,47.578H516.99v-47.578Z" fill="#52c2ad"/>
+        <path id="路径_213" data-name="路径 213" d="M606.056,1336.178H582.793v-23.263H563.428v23.263H540.165v19.365h23.262v23.263h19.365v-23.263h23.263Z" fill="#fc494f"/>
+        <g id="组_215" data-name="组 215">
+          <circle id="椭圆_19" data-name="椭圆 19" cx="21.715" cy="21.715" r="21.715" transform="translate(478.867 1382.269)" fill="#101013"/>
+          <circle id="椭圆_20" data-name="椭圆 20" cx="11.371" cy="11.371" r="11.371" transform="translate(489.211 1392.613)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7.087"/>
+        </g>
+        <g id="组_216" data-name="组 216">
+          <circle id="椭圆_21" data-name="椭圆 21" cx="21.715" cy="21.715" r="21.715" transform="translate(607.957 1382.269)" fill="#101013"/>
+          <circle id="椭圆_22" data-name="椭圆 22" cx="11.371" cy="11.371" r="11.371" transform="translate(618.301 1392.613)" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="7.087"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

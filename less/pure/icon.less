@@ -339,11 +339,11 @@ tree-icon tree-file显示默认的文件图标
 	.c-pic(@name,replace(@name,"-","_",'gi'),@dir,@type,@suffix);
 }
 .picloop(@i,@arr,@pre) when(@i<length(@arr)+1){
-	.c-pic-onlyname(extract(@arr, @i),@pre,lite,png);
+	.c-pic-onlyname(extract(@arr, @i),@pre,pure,svg);
 	.picloop(1+@i,@arr,@pre);
 }
 .picloop2(@i,@arr,@pre) when(@i<length(@arr)+1){
-	.c-pic-onlyname(extract(@arr, @i),@pre,lite,extract(@arr, 1+@i));
+	.c-pic-onlyname(extract(@arr, @i),@pre,pure,extract(@arr, 1+@i));
 	.picloop2(2+@i,@arr,@pre);
 }
 @picpat:babyboy,babygirl,man,oldman,oldwoman,schoolboy,schoolgirl,woman,unknown-gender;

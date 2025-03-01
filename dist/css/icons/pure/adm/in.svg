@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="352" height="352" viewBox="0 0 352 352">
+  <defs>
+    <clipPath id="clip-住院">
+      <rect width="352" height="352"/>
+    </clipPath>
+  </defs>
+  <g id="住院" clip-path="url(#clip-住院)">
+    <rect width="352" height="352" fill="#fff"/>
+    <g id="组_213" data-name="组 213" transform="translate(-744 -1165)">
+      <rect id="矩形_23" data-name="矩形 23" width="352" height="352" transform="translate(744 1165)" fill="#d3f0ea"/>
+      <g id="组_212" data-name="组 212">
+        <rect id="矩形_24" data-name="矩形 24" width="81.024" height="135.956" rx="4" transform="translate(818.822 1322.333)" fill="#fff"/>
+        <g id="组_201" data-name="组 201">
+          <g id="组_200" data-name="组 200">
+            <rect id="矩形_25" data-name="矩形 25" width="18.145" height="17.879" transform="translate(830.596 1345.506)" fill="#2e91e6"/>
+            <rect id="矩形_26" data-name="矩形 26" width="18.145" height="17.879" transform="translate(830.596 1376.063)" fill="#2e91e6"/>
+            <rect id="矩形_27" data-name="矩形 27" width="18.145" height="17.879" transform="translate(830.596 1406.619)" fill="#2e91e6"/>
+          </g>
+        </g>
+        <g id="组_204" data-name="组 204">
+          <rect id="矩形_28" data-name="矩形 28" width="81.024" height="135.956" rx="4" transform="translate(1020.18 1458.288) rotate(-180)" fill="#fff"/>
+          <g id="组_203" data-name="组 203">
+            <g id="组_202" data-name="组 202">
+              <rect id="矩形_29" data-name="矩形 29" width="18.145" height="17.879" transform="translate(990.26 1345.506)" fill="#2e91e6"/>
+              <rect id="矩形_30" data-name="矩形 30" width="18.145" height="17.879" transform="translate(990.26 1376.063)" fill="#2e91e6"/>
+              <rect id="矩形_31" data-name="矩形 31" width="18.145" height="17.879" transform="translate(990.26 1406.619)" fill="#2e91e6"/>
+            </g>
+          </g>
+        </g>
+        <rect id="矩形_32" data-name="矩形 32" width="118.332" height="190.43" transform="translate(859.334 1267.859)" fill="#f5fbff"/>
+        <path id="路径_9972" data-name="路径 9972" d="M0,0H61.273V54.966H0Z" transform="translate(887.863 1403.323)" fill="#368fe8"/>
+        <rect id="矩形_34" data-name="矩形 34" width="142.032" height="39.584" rx="4" transform="translate(847.483 1231.396)" fill="#fff"/>
+        <g id="组_205" data-name="组 205">
+          <rect id="矩形_35" data-name="矩形 35" width="29.972" height="8.055" transform="translate(922.527 1236.965) rotate(90)" fill="#fc494f"/>
+          <rect id="矩形_36" data-name="矩形 36" width="29.972" height="8.055" transform="translate(903.513 1247.923)" fill="#fc494f"/>
+        </g>
+        <g id="组_211" data-name="组 211">
+          <g id="组_210" data-name="组 210">
+            <g id="组_206" data-name="组 206">
+              <rect id="矩形_37" data-name="矩形 37" width="18.145" height="17.879" transform="translate(889.133 1284.082)" fill="#2e91e6"/>
+              <rect id="矩形_38" data-name="矩形 38" width="18.145" height="17.879" transform="translate(929.416 1284.082)" fill="#2e91e6"/>
+            </g>
+            <g id="组_207" data-name="组 207">
+              <rect id="矩形_39" data-name="矩形 39" width="18.145" height="17.879" transform="translate(889.133 1313.762)" fill="#2e91e6"/>
+              <rect id="矩形_40" data-name="矩形 40" width="18.145" height="17.879" transform="translate(929.416 1313.762)" fill="#2e91e6"/>
+            </g>
+            <g id="组_208" data-name="组 208">
+              <rect id="矩形_41" data-name="矩形 41" width="18.145" height="17.879" transform="translate(889.133 1343.442)" fill="#2e91e6"/>
+              <rect id="矩形_42" data-name="矩形 42" width="18.145" height="17.879" transform="translate(929.416 1343.442)" fill="#2e91e6"/>
+            </g>
+            <g id="组_209" data-name="组 209">
+              <rect id="矩形_43" data-name="矩形 43" width="18.145" height="17.879" transform="translate(889.133 1373.123)" fill="#2e91e6"/>
+              <rect id="矩形_44" data-name="矩形 44" width="18.145" height="17.879" transform="translate(929.416 1373.123)" fill="#2e91e6"/>
+            </g>
+          </g>
+        </g>
+        <rect id="矩形_45" data-name="矩形 45" width="86.185" height="7.168" transform="translate(875.407 1403.035)" fill="#b5e0ff"/>
+      </g>
+    </g>
+  </g>
+</svg>
