@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-03-03
+- 纯净下插画修改
+- `popover`反色样式间距处理
+
 ## 2025-03-01
 - :lipstick: `lightblue`与`pure`下popover组件inverse样式修改 [5479338]
 - :lipstick: 解决纯净风格`window`窗口内的翻页条右端`页码文字`垂直居中问题 [5464555]
