@@ -84,7 +84,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite2def','min-css-lblue','min-css-pure','pic-en-css','pic-lite-en-css'],function(){
+gulp.task('min-css',['min-css-lite2def','min-css-lblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -165,8 +165,13 @@ gulp.task('pic-lite-en-css',function(){
     .pipe(gulp.dest("dist/css/locale"))
     .pipe(rename('hisui.lightblue.en.css'))      //淡蓝命名
     .pipe(gulp.dest("dist/css/locale"))
-    .pipe(rename('hisui.pure.en.css'))      //纯净命名
-    .pipe(gulp.dest("dist/css/locale"));
+})
+gulp.task('pic-pure-en-css',function(){
+    return gulp.src('less/pure/locale.en.less')
+    .pipe(less())                       //less编译
+    .pipe(minifycss())                  
+    .pipe(rename('hisui.pure.en.css'))      // 纯净命名
+    .pipe(gulp.dest("dist/css/locale"))
 })
 // gulp.task('lite2def',['min-js','min-css-lite2def']);
 
