@@ -47,6 +47,12 @@
         .clstext{
             word-break: break-all;text-align: center;
         }
+        .bgsize75{
+            background-size:75px;
+        }
+        .bgsize130{
+            background-size: 130px;
+        }
     </style>
     <h3>一、患者头像类插画</h3>
     <div class="demo-exp-code entry-content">
@@ -114,8 +120,13 @@
             var arr = ['e403','e404','e500','nodata','nodata-msg','nodata-region','timeout-relogon','welcome'];
             pre = 'pic-sysst-',html=[];
             for(var i=0;i<arr.length;i++){
-                html.push('<div class="conter"><div class="'+pre+arr[i]+'"/><div class="clstext">'+pre+arr[i]+'</div></div>');
+                if (arr[i]!='nodata-region'){
+                    html.push('<div class="conter"><div class="'+pre+arr[i]+'"/><div class="clstext">'+pre+arr[i]+'</div></div>');
+                }else{
+                    html.push('<div class="conter"><div class="'+pre+arr[i]+' bgsize130"/><div class="clstext">'+pre+arr[i]+'</div></div>');
+                }
             }
+            html.push('<div class="conter"><div class="pic-sysst-nodata-region bgsize75"/><div class="clstext">pic-sysst-nodata-region bgsize75</div></div>');
             $('.conter6').html(html.join(""));
             isChinese = true;
             var linkObj = null;
