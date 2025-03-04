@@ -199,7 +199,13 @@
             for (var i = 0; i < count; i++) {
                 if (!win.frames[i]) continue; //有可能undefined
                 var tmpWin = win.frames[i].window;
-                try { tmpWin.document;/*runqian corss*/ } catch (e) { return; }
+                try {
+                    var myParentPanel = tmpWin.frameElement.closest(".panel");
+					//$(t.frames[o].window.frameElement).parents('.panel').filter(":hidden");
+                    // 隐藏页签跳出处理
+					if (myParentPanel && $(myParentPanel).length>0 && $(myParentPanel).is(":hidden")) continue;
+                    tmpWin.document;/*runqian corss*/
+                } catch (e) { return; }
                 $.hisui.findObjectDom(options, tmpWin, toHide, trgt, hisuiCmpName);
                 /*
                 var tmpObjList = tmpWin.document.querySelectorAll('OBJECT');
