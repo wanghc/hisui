@@ -1,5 +1,38 @@
 (function ($) {
     var _362 = false;
+
+
+    function fixBodyPadding(ele){
+        
+        var $ele = $(ele);
+        var state=$.data(ele, "layout");
+        var opts=state.options;
+        if($ele.tagName=="BODY"){
+            // var paddingBottom = parseInt($ele.css("padding-bottom"));
+            // if(paddingBottom>0){
+            //     if($ele.find('.layout-body-fix-padding-proxy').length==0){
+            //         $ele.append('<div class="layout-body-fix-padding-proxy" style="background-color:transparent;"></div>');
+            //     }
+            //     $ele.find('.layout-body-fix-padding-proxy').height(paddingBottom);
+            // }else{
+            //     $ele.find('.layout-body-fix-padding-proxy').remove();
+            // }
+        }else if($ele.parent()[0].tagName==="BODY" && opts.fit){
+            var $par=$ele.parent();
+            var paddingBottom = parseInt($par.css("padding-bottom"));
+            if(paddingBottom>0){
+                if($par.find('.layout-body-fix-padding-proxy').length==0){
+                    $('<div class="layout-body-fix-padding-proxy" style="background-color:transparent;"></div>').insertAfter($ele);
+                }
+                $par.find('.layout-body-fix-padding-proxy').height(paddingBottom);
+            }else{
+                $par.find('.layout-body-fix-padding-proxy').remove();
+            }
+
+        }
+
+    }
+
     // layout.resize
     function _363(_364) {
         var _365 = $.data(_364, "layout");
@@ -11,7 +44,16 @@
         } else {
             opts.fit ? cc.css(cc._fit()) : cc._fit(false);
         }
-        var cpos = { top: 0, left: 0, width: cc.width(), height: cc.height() };
+
+        //自身容器的padding
+        var cpad={
+            top:parseInt(cc.css("padding-top")),
+            left:parseInt(cc.css("padding-left")),
+            right:parseInt(cc.css("padding-right")),
+            bottom:parseInt(cc.css("padding-bottom"))
+        }
+
+        var cpos = { top: (cpad.top>0?cpad.top:0), left: (cpad.left>0?cpad.left:0), width: cc.width(), height: cc.height() };
 		/*在body内实现padding=10px的layout时,底部没有padding问题 by wanghc */
 		if (_364.tagName !== "BODY"){
 			var _364parent = $(_364).parent();
@@ -20,10 +62,15 @@
 				cpos.height = cpos.height - parseInt(_364parent.css("padding-top")) - parseInt(_364parent.css("padding-bottom"));
 			}
         }
+
+
+        fixBodyPadding(_364);  //body上的边距 导致下面的元素本该显示不出来却显示出来了
+
         _resizeNorthSouth(_isPanelVisible(_366.expandNorth) ? _366.expandNorth : _366.north, "n");
         _resizeNorthSouth(_isPanelVisible(_366.expandSouth) ? _366.expandSouth : _366.south, "s");
         _resizeWestEast(_isPanelVisible(_366.expandEast) ? _366.expandEast : _366.east, "e");
         _resizeWestEast(_isPanelVisible(_366.expandWest) ? _366.expandWest : _366.west, "w");
+
         _366.center.panel("resize", cpos);
         resizeSubLayout(_366);
         function _36a(pp) {
@@ -40,7 +87,8 @@
             }
             var opts = pp.panel("options");
             var _36c = _36a(pp);
-            pp.panel("resize", { width: cc.width(), height: _36c, left: 0, top: (type == "n" ? 0 : cc.height() - _36c) });
+            //增加考虑layout容器padding
+            pp.panel("resize", { width: cc.width(), height: _36c, left: (cpad.left>0?cpad.left:0), top: (type == "n" ? (cpad.top>0?cpad.top:0) : cc.height() - _36c + (cpad.top>0?cpad.top:0)) });
             cpos.height -= _36c;
             if (type == "n") {
                 cpos.top += _36c;
@@ -58,7 +106,8 @@
             }
             var opts = pp.panel("options");
             var _36d = _36b(pp);
-            pp.panel("resize", { width: _36d, height: cpos.height, left: (type == "e" ? cc.width() - _36d : 0), top: cpos.top });
+            //增加考虑layout容器padding
+            pp.panel("resize", { width: _36d, height: cpos.height, left: (type == "e" ? cc.width() - _36d+(cpad.left>0?cpad.left:0) : (cpad.left>0?cpad.left:0)), top: cpos.top });
             cpos.width -= _36d;
             if (type == "w") {
                 cpos.left += _36d;
@@ -335,19 +384,26 @@
             var cc = $(_384);
             var _38e = layoutPanels.center.panel("options");
             var _38f = _388.collapsedSize;
+            var cpad={ //自身容器的padding  修正折叠时的位置问题
+                top:parseInt(cc.css("padding-top")),
+                left:parseInt(cc.css("padding-left")),
+                right:parseInt(cc.css("padding-right")),
+                bottom:parseInt(cc.css("padding-bottom"))
+            }
+
             if (_385 == "east") {
                 var ww = _38e.width + _388.width - _38f;
                 if (_388.split || !_388.border) {
                     ww++;
                 }
-                return { resizeC: { width: ww }, expand: { left: cc.width() - _388.width }, expandP: { top: _38e.top, left: cc.width() - _38f, width: _38f, height: _38e.height }, collapse: { left: cc.width(), top: _38e.top, height: _38e.height } };
+                return { resizeC: { width: ww }, expand: { left: cc.width() - _388.width + (cpad.left>0?cpad.left:0) }, expandP: { top: _38e.top, left: cc.width() - _38f + (cpad.left>0?cpad.left:0), width: _38f, height: _38e.height }, collapse: { left: cc.width(), top: _38e.top, height: _38e.height } };
             } else {
                 if (_385 == "west") {
                     var ww = _38e.width + _388.width - _38f;
                     if (_388.split || !_388.border) {
                         ww++;
                     }
-                    return { resizeC: { width: ww, left: _38f - 1 }, expand: { left: 0 }, expandP: { left: 0, top: _38e.top, width: _38f, height: _38e.height }, collapse: { left: -_388.width, top: _38e.top, height: _38e.height } };
+                    return { resizeC: { width: ww, left: _38f - 1 + (cpad.left>0?cpad.left:0) }, expand: { left: 0 + (cpad.left>0?cpad.left:0)}, expandP: { left: 0 + (cpad.left>0?cpad.left:0), top: _38e.top, width: _38f, height: _38e.height }, collapse: { left: -_388.width, top: _38e.top, height: _38e.height } };
                 } else {
                     if (_385 == "north") {
                         _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
@@ -355,8 +411,8 @@
                         if (!_isPanelVisible(layoutPanels.expandNorth)) {
                             hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
                         }
-                        layoutPanels.east.add(layoutPanels.west).add(layoutPanels.expandEast).add(layoutPanels.expandWest).panel("resize", { top: _38f - 1, height: hh });
-                        return { resizeC: { top: _38f - 1, height: hh }, expand: { top: 0 }, expandP: { top: 0, left: 0, width: cc.width(), height: _38f }, collapse: { top: -_388.height, width: cc.width() } };
+                        layoutPanels.east.add(layoutPanels.west).add(layoutPanels.expandEast).add(layoutPanels.expandWest).panel("resize", { top: _38f - 1 + (cpad.top>0?cpad.top:0), height: hh });
+                        return { resizeC: { top: _38f - 1 + (cpad.top>0?cpad.top:0), height: hh }, expand: { top: 0 + (cpad.top>0?cpad.top:0) }, expandP: { top: 0 + (cpad.top>0?cpad.top:0), left: 0 + (cpad.left>0?cpad.left:0), width: cc.width(), height: _38f }, collapse: { top: -_388.height, width: cc.width() } };
                     } else {
                         if (_385 == "south") {
                             _38f=_388.collapsedHeight ;  //cryze 2018-9-18 
@@ -365,7 +421,7 @@
                                 hh += _388.height - _38f + ((_388.split || !_388.border) ? 1 : 0);
                             }
                             layoutPanels.east.add(layoutPanels.west).add(layoutPanels.expandEast).add(layoutPanels.expandWest).panel("resize", { height: hh });
-                            return { resizeC: { height: hh }, expand: { top: cc.height() - _388.height }, expandP: { top: cc.height() - _38f, left: 0, width: cc.width(), height: _38f }, collapse: { top: cc.height(), width: cc.width() } };
+                            return { resizeC: { height: hh }, expand: { top: cc.height() - _388.height + (cpad.top>0?cpad.top:0) }, expandP: { top: cc.height() - _38f + (cpad.top>0?cpad.top:0), left: 0 + (cpad.left>0?cpad.left:0), width: cc.width(), height: _38f }, collapse: { top: cc.height(), width: cc.width() } };
                         }
                     }
                 }
