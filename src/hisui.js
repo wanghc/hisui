@@ -96,7 +96,7 @@ var Level = {
 	$.fn.datetimebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");;
 	$.fn.tabs.defaults.tabHeight = $.hisui.getStyleCodeConfigValue("tabHeight");;
 	$.fn.filebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");
-
+	$.fn.validatebox.defaults.height = $.hisui.getStyleCodeConfigValue("inputHeight");
 
     /*var cardHandler = function(){
         $(".panel-header.panel-header-card,.panel-header.panel-header-card-gray").each(function(){
