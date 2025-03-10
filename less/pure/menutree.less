@@ -31,20 +31,20 @@
 
 
 
-@menutree-search-bg:url('images/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
-@menutree-expanded-bg:url('images/menutree.png') -176px center no-repeat; /* 176-192 向左折叠*/
-@menutree-collapsed-bg:url('images/menutree.png') -192px center no-repeat; /* 192-208 向右展开*/
-@menutree-white-arrow-down:url('images/menutree.png') -256px center no-repeat; /* 256-272 白色下箭头*/
-@menutree-white-arrow-up:url('images/menutree.png') -272px center no-repeat; /* 272-288 白色上箭头*/
-@menutree-gray-arrow-down:url('images/menutree.png') -112px center no-repeat; /* 112-128 灰色下箭头*/
-@menutree-gray-arrow-up:url('images/menutree.png') -128px center no-repeat; /* 128-144 灰色上箭头*/
-@menutree-gray-little-arrow-right:url('images/menutree.png') -144px center no-repeat; /* 144-160 小灰色右箭头*/
-@menutree-gray-little-arrow-down:url('images/menutree.png') -160px center no-repeat; /* 160-176 小灰色上箭头*/
+@menutree-search-bg:url('images/pure/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
+@menutree-expanded-bg:url('images/pure/menutree.png') -176px center no-repeat; /* 176-192 向左折叠*/
+@menutree-collapsed-bg:url('images/pure/menutree.png') -192px center no-repeat; /* 192-208 向右展开*/
+@menutree-white-arrow-down:url('images/pure/menutree.png') -256px center no-repeat; /* 256-272 白色下箭头*/
+@menutree-white-arrow-up:url('images/pure/menutree.png') -272px center no-repeat; /* 272-288 白色上箭头*/
+@menutree-gray-arrow-down:url('images/pure/menutree.png') -112px center no-repeat; /* 112-128 灰色下箭头*/
+@menutree-gray-arrow-up:url('images/pure/menutree.png') -128px center no-repeat; /* 128-144 灰色上箭头*/
+@menutree-gray-little-arrow-right:url('images/pure/menutree.png') -144px center no-repeat; /* 144-160 小灰色右箭头*/
+@menutree-gray-little-arrow-down:url('images/pure/menutree.png') -160px center no-repeat; /* 160-176 小灰色上箭头*/
 
-@menutree-gray-thin-arrow-down:url('images/menutree.png') -224px center no-repeat; /* 224-240 细的灰色下箭头*/
-@menutree-gray-thin-arrow-up:url('images/menutree.png') -240px center no-repeat; /* 240-256 细的灰色上箭头*/
-@menutree-blue-little-arrow-right:url('images/menutree.png') -64px center no-repeat; /* 64-80 小蓝色右箭头*/
-@menutree-blue-little-arrow-down:url('images/menutree.png') -80px center no-repeat; /* 80-96 小蓝色上箭头*/
+@menutree-gray-thin-arrow-down:url('images/pure/menutree.png') -224px center no-repeat; /* 224-240 细的灰色下箭头*/
+@menutree-gray-thin-arrow-up:url('images/pure/menutree.png') -240px center no-repeat; /* 240-256 细的灰色上箭头*/
+@menutree-blue-little-arrow-right:url('images/pure/menutree.png') -64px center no-repeat; /* 64-80 小蓝色右箭头*/
+@menutree-blue-little-arrow-down:url('images/pure/menutree.png') -80px center no-repeat; /* 80-96 小蓝色上箭头*/
 
 .menutree-default-width{
   width: 200px;
@@ -86,21 +86,37 @@
 
   .menutree-collapse-wrap {
     height: 44px;
-    text-align: right;
+    position: relative;
     line-height: 44px;
     background-color: @menutree-collapse-wrap-bgcolor;
     border: 0;
     border-radius: 0 0 6px 6px ;
+
+    .menutree-tree-title{  //放到收起按钮的左边
+      display: block;
+      margin: 0px;
+      font-size: 14px;
+      color: #939393;
+      padding:8px 44px 8px 15px;
+      overflow: hidden;
+      height: 44px;
+      line-height: 28px;
+      background-color: transparent;
+
+    }
 
     .menutree-collapse {
       width: 28px;
       height: 28px;
       display: inline-block;
       text-align: center;
-      margin: 8px;
+      position: absolute;
+      top: 8px;
+      right: 8px;
       cursor: pointer;
       &:hover{
         background-color: @menutree-node-selected-bgcolor;
+        border-radius: 6px;
       }
 
     }
@@ -257,7 +273,7 @@
             .tree-indent {
               width: 10px;
               &.tree-indent-hit{
-                width: 1px;
+                width: 15px;
               }
             }
 
@@ -318,6 +334,10 @@
     .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
       padding-left: 4px;
       margin: 0 15px;
+
+      .tree-indent.tree-indent-hit{
+        width: 5px;;
+      }
     }
 
     &.menutree-tree-norootcollapse{  //根节点不允许折叠的
@@ -352,138 +372,13 @@
         }
       } 
     }
-
     &.menutree-tree-withtitle {  //有标题的
+      background-color: @menutree-min-wrap-bgcolor;
       .menutree-tree-title {
         display: none;
       }
-
-      .menutree-tree.tree {
-        border: 0px;
-  
-        &>li {
-          &>.tree-node { /*第一层节点 根节点*/
-            height: 44px;
-            background-color:@menutree-root-bgcolor;
-            line-height: 44px;
-            position: relative;
-            font-weight: bold;
-            color: @menutree-root-color;
-            position: relative;
-            border-bottom: 1px solid @panel-header-bdcolor;
-  
-            .tree-hit {
-              position: absolute;
-              height: 16px;
-              width: 16px;
-              top: 50%;
-              margin-top: -8px;
-              right: 10px;
-  
-              &.tree-collapsed {
-                background: @menutree-gray-thin-arrow-down;
-              }
-  
-              &.tree-expanded {
-                background: @menutree-gray-thin-arrow-up;
-              }
-  
-              &:hover {
-                background-color: rgba(255, 255, 255, 0.3);
-                -moz-border-radius: 2px;
-                -webkit-border-radius: 2px;
-                border-radius: 2px;
-              }
-            }
-  
-            .tree-title {
-              height: 44px;
-              line-height: 44px;
-              color: @menutree-root-color;
-              padding: 0 34px 0 10px;
-            }
-  
-            &.tree-node-hover {
-              background-color: @menutree-root-hover-bgcolor;
-            }
-            &.tree-node-selected {
-              background-color: @menutree-root-selected-bgcolor;
-            }
-          }
-
-  
-          &>ul {
-            background-color: transparent;
-            border-bottom: 1px solid @panel-header-bdcolor;
-  
-            .tree-node {
-              padding-left: 1px;
-              height: 38px;
-              line-height: 38px;
-              position: relative;
-  
-              &.tree-node-hover {
-                background-color:@menutree-node-hover-bgcolor;                
-                .tree-title {
-                  background: transparent;
-                }
-              }
-  
-              &.tree-node-selected {
-                background-color:@menutree-node-selected-bgcolor;
-                .tree-title {
-                  background: transparent;
-                }
-              }
-              .tree-title {
-                color: @menutree-node-color;
-              }
-            }
-          }
-          &:last-child>ul{
-            border: 0;
-          }
-        }
-
-        .menutree-tip-count {
-          background-color: #80b2ff;
-          color: #ffffff;
-        }
-        .tree-node-selected .menutree-tip-count,
-        .tree-node-hover .menutree-tip-count {
-          background-color: #80b2ff;
-          color: #ffffff;
-        }
-      }
-      .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
-        padding-left: 4px;
-      }
-
-      &.menutree-tree-collapsible{
-        .menutree-tree.tree>li>ul .tree-node{ 
-          padding-left: 1px;
-        }
-        .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
-          padding-left: 4px;
-        }
-        .menutree-tree.tree>li>.tree-node{
-          .tree-title{
-            padding-left: 6px;
-          }
-        } 
-      }
-
-      &.menutree-tree-norootcollapse{  //根节点不允许折叠的
-        .menutree-tree.tree { //
-          &>li>.tree-node {
-            .tree-hit.tree-expanded {
-              display: none;
-            }
-          }
-        }
-      }
-
     }
+    
 
   }
 }
@@ -499,7 +394,9 @@
   }
 
   .menutree-collapse-wrap {
-
+    .menutree-tree-title{  //收起按钮左边的title隐藏
+      display: none;
+    }
   }
 
   .menutree-searchbox-wrap {
