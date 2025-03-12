@@ -9,15 +9,12 @@
   text-align: left;
   overflow: hidden;
   line-height: 8px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
   user-select: none;
   vertical-align: middle;
   min-width: 66px;
   width:66px;
   background-color: #008fff;
+  color: #ffffff;
 }
 .has-switch.switch-mini {
   min-width: 40px;
@@ -50,34 +47,24 @@
 }
 .has-switch > div {
   display: inline-block;
-  width: 150%;
   position: relative;
   top: 0;
 }
 .has-switch > div.switch-animate {
-  -webkit-transition: left 0.5s;
-  -moz-transition: left 0.5s;
-  -o-transition: left 0.5s;
   transition: left 0.5s;
 }
 .has-switch > div.switch-off {
   background-color: #BACCE0;
-  left: -50%; /*-49->-50 */
   label {
     border:1px solid transparent;
     width: 24px;
     height: 24px;
-    margin: 2px 2px 2px 3px;
+    margin: 2px;
     border-radius: 12px;
     &.switch-mini{
       height: 16px;
       width: 16px;
     }
-  }
-  span.switch-gray{ // 开启状态- gray都透明 
-    background-color: transparent;
-    margin-right: -20px;
-    top: -1px;
   }
   span.switch-primary{
     color:transparent;
@@ -91,16 +78,12 @@
     border-radius: 12px; 
     width: 24px;
     height: 24px;
-    margin: 2px 8px 2px 7px;
+    margin: 2px;
     &.switch-mini{
       height: 16px;
-      margin: 2px 4px 2px 2px;
+      margin: 2px;
       width: 16px;
     }
-  }
-  span.switch-gray{ // 开启状态- gray都透明 
-    background-color: transparent;
-    color: transparent;
   }
 }
 .has-switch input[type=radio],
@@ -109,33 +92,82 @@
 }
 .has-switch span,
 .has-switch label {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
   display: inline-block;
-  height: 26px;
-  padding-bottom: 3px;
-  padding-top: 2px;
+}
+
+// .has-switch span.switch-mini,
+// .has-switch label.switch-mini {
+//   padding-bottom: 2px;
+//   padding-top: 2px;
+//   font-size: 10px;
+//   line-height: 12px;
+//   height:20px;
+// }
+.has-switch.switch-mini{
+  &>div{
+    width:~"calc(200% - 20px)"; /*让元素不折行 中间圆形开关28px宽度*/
+  }
+  &>div.switch-off{
+    left: ~"calc(-100% + 20px)"; /* 偏完元素,再回正圆开关, ~""写法告诉less不要解析成calc(-72%)*/
+  }
+  span.switch-mini{
+    font-size: 10px;
+    width: ~"calc((100% - 20px) / 2)";
+    padding-top: 2px;
+    line-height: 12px;
+    top: -2px;
+    &.switch-left{
+      padding-left: 4px;
+    }
+    &.switch-right{
+      padding-right: 4px;
+    }
+  }
+  label.switch-mini {
+    padding-top: 2px;
+    line-height: 12px;
+  }
+}
+.has-switch{
+  &.deactivate>div.switch-on{
+    background-color: #99d2ff;
+  }
+  &.deactivate>div.switch-off{
+    background-color: #e5e5e5;
+    span{
+      color:#b4b3b3;
+    }
+  }
+}
+.has-switch.switch-small{
   font-size: 14px;
-  line-height: 20px;
+  &>div{
+    width:~"calc(200% - 28px)"; /*让元素不折行 中间圆形开关28px宽度*/
+  }
+  &>div.switch-off{
+    left: ~"calc(-100% + 28px)"; /* 偏完元素,再回正圆开关, ~""写法告诉less不要解析成calc(-72%)*/
+  }
+  span.switch-small{
+    width: ~"calc((100% - 28px) / 2)";
+    padding-top: 2px;
+    line-height: 18px;
+    height: 26px;
+    &.switch-left{
+      padding-left: 4px;
+    }
+    &.switch-right{
+      padding-right: 4px;
+    }
+  }
+  label.switch-small {
+    padding-top: 2px;
+    line-height: 18px;
+  }
 }
-.has-switch span.switch-mini,
-.has-switch label.switch-mini {
-  padding-bottom: 4px;
-  padding-top: 2px;
-  font-size: 10px;
-  line-height: 12px;
-  height:20px;
-}
-.has-switch span.switch-small,
-.has-switch label.switch-small {
-  padding-bottom: 3px;
-  padding-top: 3px;
-  // font-size: 12px;
-  line-height: 18px;
-}
+
 .has-switch span.switch-large,
 .has-switch label.switch-large {
   padding-bottom: 9px;
@@ -150,12 +182,8 @@
   z-index: 100;
   width: 34%;
   color: #333333;
-  // text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border-radius: 4px;
   background-color: #fff;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 .has-switch label.disabled,
 .has-switch label[disabled] {
@@ -168,7 +196,6 @@
 }
 .has-switch label i {
   color: #000;
-  // text-shadow: 0 1px 0 #fff;
   line-height: 18px;
   pointer-events: none;
 }
@@ -178,162 +205,15 @@
   width: 33%;
 }
 .has-switch span.switch-left {
-  -webkit-border-top-left-radius: 4px;
-  -moz-border-radius-topleft: 4px;
   border-top-left-radius: 4px;
-  -webkit-border-bottom-left-radius: 4px;
-  -moz-border-radius-bottomleft: 4px;
   border-bottom-left-radius: 4px;
 }
 .has-switch span.switch-right {
   color: #fff;
-  position: relative;
-  top:0;
-  // text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-  background-color: #bdbdbd;
-  border-color: #ffffff #ffffff #d9d9d9;
-  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-  *background-color: #ffffff;
-  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
-
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-}
+ }
 .has-switch span.switch-right.disabled,
 .has-switch span.switch-right[disabled] {
 
   color: #b4b3b3;
   background-color: #e5e5e5;
 }
-
-.has-switch span.switch-primary,
-.has-switch span.switch-left {
-  color: #ffffff;
-  position: relative;
-  top:-1px;
-  left: 6px;
-}
-.has-switch.switch-mini span.switch-primary,
-.has-switch.switch-mini span.switch-left {
-  left: 3px;
-}
-.has-switch.switch-mini>div.switch-off span.switch-gray {
-  left: -3px;
-}
-
-.has-switch span.switch-info {
-  color: #ffffff;
-  // text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: transparent;
-  background-repeat: repeat-x;
-}
-.has-switch .switch-on span.switch-info{
-  color:transparent;
-}
-.has-switch span.switch-info:hover,
-.has-switch span.switch-info:focus,
-.has-switch span.switch-info:active,
-.has-switch span.switch-info.active,
-.has-switch span.switch-info.disabled,
-.has-switch span.switch-info[disabled] {
-  color: #ffffff;
-  background-color: transparent;
-}
-.has-switch span.switch-info:active,
-.has-switch span.switch-info.active {
-  background-color: transparent;
-}
-.has-switch span.switch-success {
-  color: #ffffff;
-  // text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: transparent;
-  background-repeat: repeat-x;
-}
-.has-switch span.switch-success:hover,
-.has-switch span.switch-success:focus,
-.has-switch span.switch-success:active,
-.has-switch span.switch-success.active,
-.has-switch span.switch-success.disabled,
-.has-switch span.switch-success[disabled] {
-  color: #ffffff;
-  background-color: transparent
-}
-.has-switch span.switch-success:active,
-.has-switch span.switch-success.active {
-  background-color: transparent;
-}
-.has-switch span.switch-warning {
-  color: #ffffff;
-  background-color: transparent;
-}
-.has-switch span.switch-warning:hover,
-.has-switch span.switch-warning:focus,
-.has-switch span.switch-warning:active,
-.has-switch span.switch-warning.active,
-.has-switch span.switch-warning.disabled,
-.has-switch span.switch-warning[disabled] {
-  color: #ffffff;
-  background-color: transparent;
-}
-.has-switch span.switch-warning:active,
-.has-switch span.switch-warning.active {
-  background-color: transparent;
-}
-.has-switch span.switch-danger {
-  color: #ffffff;
-  // text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: transparent;
-  background-repeat: repeat-x;
-}
-.has-switch span.switch-danger:hover,
-.has-switch span.switch-danger:focus,
-.has-switch span.switch-danger:active,
-.has-switch span.switch-danger.active,
-.has-switch span.switch-danger.disabled,
-.has-switch span.switch-danger[disabled] {
-  color: #ffffff;
-  background-color: transparent;
-}
-.has-switch span.switch-danger:active,
-.has-switch span.switch-danger.active {
-  background-color: transparent;
-}
-
-.has-switch span.switch-default:hover,
-.has-switch span.switch-default:focus,
-.has-switch span.switch-default:active,
-.has-switch span.switch-default.active,
-.has-switch span.switch-default.disabled,
-.has-switch span.switch-default[disabled] {
-  color: #333333;
-  background-color: #ffffff;
-  *background-color: #f2f2f2;
-}
-.has-switch span.switch-default:active,
-.has-switch span.switch-default.active {
-  background-color: #e6e6e6;
-}
-/*增加灰色 2018-6-28*/
-.has-switch span.switch-gray:hover,
-.has-switch span.switch-gray:focus,
-.has-switch span.switch-gray:active,
-.has-switch span.switch-gray.active,
-.has-switch span.switch-gray.disabled,
-.has-switch span.switch-gray[disabled] {
-  color: #ffffff;
-  background-color: #bdbdbd;
-}
-.has-switch span.switch-gray:active,
-.has-switch span.switch-gray.active {
-  background-color: #bdbdbd;
-}
-.has-switch.deactivate > div.switch-off {
-  background-color: #e5e5e5;
-}
-.has-switch.deactivate > div.switch-off span.switch-gray {
-  color:#b4b3b3;
-}
-// .switch-mini {
-//   div.switch-on label{
-//     margin: 1px 0px 1px 2px;
-//   }
-// }

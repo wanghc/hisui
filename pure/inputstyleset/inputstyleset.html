@@ -5,18 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>输入框样式集合</title>
-    
+	<script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="../jquery-tag-demo.js"></script>
     <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
     <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
-    <script type="text/javascript" src="../mock-min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../demo.css">
-    
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
+    <!-- <script type="text/javascript" src="../mock-min.js"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../demo.css"> -->
 	<script type="text/javascript" src="../../src/hisui.js"></script> 
 </head>
 
@@ -256,6 +254,36 @@
 					<td>
 						<input class="hisui-filebox hisui-inputclearbtn" name="file4" style="width:212px;"
 							data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" />
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">开关</td>
+					<td>
+						<div class="hisui-switchbox" data-options="onText:'开',offText:'关',size:'mini',animated:true,onClass:'primary',offClass:'gray'">
+						</div>						
+					</td>
+					<td>
+						<div class="hisui-switchbox" data-options="onText:'开启',offText:'关闭',size:'small',animated:true">
+						</div>
+					</td>
+					<td>
+						<div class="hisui-switchbox" style="width:200px;" data-options="onText:'母婴组合显示',offText:'母婴拆分显示',size:'small',animated:true">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="r-label">开关禁用</td>
+					<td>
+						<div class="hisui-switchbox" data-options="onText:'开',offText:'关',size:'mini',disabled:true,checked:false,animated:true">
+						</div>
+					</td>
+					<td>
+						<div class="hisui-switchbox" data-options="onText:'开启',offText:'关闭',size:'small',disabled:true,animated:true">
+						</div>
+					</td>
+					<td>
+						<div class="hisui-switchbox" data-options="onText:'开启',offText:'关闭',size:'small',disabled:true,checked:false,animated:true">
+						</div>
 					</td>
 				</tr>
 			</table>
