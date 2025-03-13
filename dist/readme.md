@@ -40,6 +40,7 @@ $("#btn").linkbutton("disable");
 - - 因为textbox的padding从5px扩大至10px，宽度要修改小才能保存与原来一样宽，与combo对齐
 - `pure`风格下confirm窗口提示内容右边距设置为60像素 [5524746]
 - `pure`风格下通过`dialog`,`window`打开弹窗位置偏右 [5526280]
+- `pure`风格`datagrid`文字发现下边显示不全，高度调试 [wqy]
 
 ## 2025-03-12
 - 开关切换支持指定长度，且文字不限 [5461634]
