@@ -41,6 +41,7 @@ $("#btn").linkbutton("disable");
 - `pure`风格下confirm窗口提示内容右边距设置为60像素 [5524746]
 - `pure`风格下通过`dialog`,`window`打开弹窗位置偏右 [5526280]
 - `pure`风格`datagrid`文字发现下边显示不全，高度调试 [wqy]
+- `pure`风格下window，dialog内容白色区域背景应该圆角 [5527853]
 
 ## 2025-03-12
 - 开关切换支持指定长度，且文字不限 [5461634]
