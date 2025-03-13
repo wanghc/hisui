@@ -47,6 +47,13 @@ $("#btn").linkbutton("disable");
 - 开关切换支持指定长度，且文字不限 [5461634]
 - `popover`箭头样式重写 [5469936]
 
+## 2025-03-10
+- 纯净版`menutree`组件，同级节点有子节点和无子节点没对齐问题
+- `menutree`组件增加`expandAllOnSearch`属性,为true时，有条件查询时，展开所有节点
+- `menutree`组件增加`collapseAllOnNoSearch`属性,为true时，无条件查询时，折叠所有节点
+- 纯净版`menutree`组件展开与收起菜单面板的图标修改
+- 纯净版`menutree`组件支持`title`属性，在底部显示标题
+
 ## 2025-03-07
 - 处理下拉框或放大镜输入汉字时不触发查询问题
 - 表格合计上分隔线颜色修改

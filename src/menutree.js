@@ -63,6 +63,8 @@
             }
         })
 
+        $(ele).addClass('menutree-f').hide();
+
 
         return {panel:p,subpanel:sp};
     };
@@ -140,6 +142,19 @@
 
             })
         }
+
+        if ($.hisui.getHisuiStyle()=='pure') { //纯净版title在折叠处
+            if(opts.title) {
+                var tt=cw.find('.menutree-tree-title');
+                if(tt.length==0) {
+                    tt=$('<div class="menutree-tree-title"></div>').prependTo(cw);
+                }
+                tt.html( $.hisui.getTrans(opts.title) );
+            }else{
+                cw.find('.menutree-tree-title').remove();
+            }
+        }
+
        
         if(opts.collapsible){
             cw.removeClass('menutree-hidden');
@@ -176,7 +191,16 @@
                     formatData(data,q,null,opts.searchFields);
                     var keepRoot=!opts.rootCollapsible;  //如果root菜单可折叠 则不keeproot
                     formatNode(data,q,true,keepRoot );
+
+                    var qChanged=(state._q!=q);
                     state._q=q;
+
+                    if(q && opts.expandAllOnSearch){ //搜索时展开所有
+                        t.tree('expandAll');
+                    }else if(!q && opts.collapseAllOnNoSearch){
+                        t.tree('collapseAll');
+                    }
+                    
                 }
 
             },
@@ -266,6 +290,10 @@
                 }
                 opts.onClick.call(this,node)
             },onBeforeExpand:function(node){  //菜单展开前 关闭其它 
+                if(opts.onBeforeExpand){ //onBeforeExpand事件
+                    var flag=opts.onBeforeExpand.call(ele,node);
+                    if(flag===false) return false;
+                }
                 var roots=t.tree('getRoots');
                 if(opts.onlyOneExpanded) {  //只允许一个打开  需要将同级已打开的关掉
                     var p=t.tree('getParent',node.target),bros=null;
@@ -276,8 +304,20 @@
                     }
 
                     $.each(bros,function(i,o){
-                        if(o.id!=node.id && o.state=='open') t.tree('collapse',o.target);
+                        if(o.id!=node.id && o.state=='open' && !(opts.expandAllOnSearch && state._q)) {  // 搜索展开所有且在搜索 不关闭
+                            t.tree('collapse',o.target);
+                        }
                     })
+                }
+
+            },onBeforeCollapse:function(node){
+                if(opts.onBeforeCollapse){ //onBeforeCollapse事件
+                    var flag=opts.onBeforeCollapse.call(ele,node);
+                    if(flag===false) return false;
+                }
+                if(!opts.rootCollapsible) { //根节点不允许折叠
+                    var p=t.tree('getParent',node.target);
+                    if(!p) return false;
                 }
 
             },onLoadSuccess:function(node,data){
@@ -670,8 +710,14 @@
                 });
                 state = $.data(this, "menutree");
             }
+
+            var hisuiStyle=$.hisui.getHisuiStyle();
+
             if (state.options.collapsible && !state.options.title) {  //如果是可折叠的
-                state.options.title='导航菜单';
+                if(hisuiStyle!='lite' && hisuiStyle!='liteblue' && hisuiStyle!='pure') {  //炫彩的样式才需要强制默认标题
+                    state.options.title='导航菜单';
+                }
+                
             }
 
             setCollapse(this);
@@ -719,6 +765,8 @@
         animate:true,
         onlyOneExpanded:true  //同级只允许展开一个菜单组
         ,searchFields:''  //除text字段外 用于查询过滤的字段
+        ,expandAllOnSearch:true  //搜索时是否展开所有
+        ,collapseAllOnNoSearch:true  //不搜索时是否折叠所有
         ,onMenuClick:function(node){ //菜单点击事件
 
         },onMenuGroupClick:function(node){ //菜单组点击事件
