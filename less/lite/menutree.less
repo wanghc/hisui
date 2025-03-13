@@ -72,6 +72,7 @@
     background-color: #f8f8f8;
     border: 1px solid #ddd;
     border-radius: 4px;
+    position: relative;
 
     .menutree-collapse {
       width: 16px;
@@ -87,6 +88,32 @@
       }
     }
 
+    &.menutree-collapse-wrap-withtitle{
+      
+      .menutree-collapse {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        top: 6px;
+        right: 6px;
+        margin: 0;
+      }
+
+      .menutree-tree-title{  //放到收起按钮的左边
+        display: block;
+        margin: 0px;
+        font-size: 14px;
+        color: #999999;
+        padding:0px 28px 0px 6px;
+        overflow: hidden;
+        height: 26px;
+        line-height: 26px;
+        background-color: transparent;
+        text-align: left;
+  
+      }
+    }
 
 
   }
@@ -464,7 +491,14 @@
   }
 
   .menutree-collapse-wrap {
-
+    &.menutree-collapse-wrap-withtitle{
+      .menutree-collapse {
+        right: 11px;
+      }
+      .menutree-tree-title{  //收起按钮左边的title隐藏
+        display: none;
+      }
+    }
   }
 
   .menutree-searchbox-wrap {
