@@ -296,6 +296,12 @@
             },
             collapsedHeight:{ /** layout折叠时南北面板高度 */
                 default: 38,pure: 56
+            },
+            windowMinWidth:{ /** 弹出窗口最小宽度 */
+                default:10,pure: 474
+            },
+            windowMinHeight:{ /** 弹出窗口最小高度 */
+                default:10,pure: 274
             }
         },
         getStyleCodeConfigValue : function(key){

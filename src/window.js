@@ -27,6 +27,9 @@
         var width = opts.width;
         if (isNaN(width)) {
             width = state.window._outerWidth();
+        }else{
+            // 当css中定义了min-width，opts.width小于min-width，此时弹出窗口宽实际是min-width，则取更大的宽度值
+            width = Math.max(width,$.hisui.getStyleCodeConfigValue("windowMinWidth"));
         }
         if (opts.inline) {
             var parent = state.window.parent();
@@ -44,6 +47,9 @@
         var height = opts.height;
         if (isNaN(height)) {
             height = state.window._outerHeight();
+        }else{
+            // 当css中定义了min-height，opts.height小于min-height，此时弹出窗口宽实际是min-height，则取更大的宽度值
+            height = Math.max(height,$.hisui.getStyleCodeConfigValue("windowMinHeight"));            
         }
         if (opts.inline) {
             var parent = state.window.parent();
