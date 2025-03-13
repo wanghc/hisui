@@ -1,4 +1,6 @@
 
+// node ./ns/genapi.js 来生成api下的所有页面
+// 
 // 上传lite目录到服务器上
 //  lite > scp -P 22 -r ./ root@hisui.cn:/usr/share/nginx/wordpress/lite/
 // 上传lightblue目录到服务器上
