@@ -143,15 +143,18 @@
             })
         }
 
-        if ($.hisui.getHisuiStyle()=='pure') { //纯净版title在折叠处
+        var styleCode=$.hisui.getHisuiStyle();
+        if (styleCode=='pure' || styleCode=='lite' || styleCode=='lightblue') { //纯净版title在折叠处  极简 浅蓝也在折叠处
             if(opts.title) {
                 var tt=cw.find('.menutree-tree-title');
+                cw.addClass('menutree-collapse-wrap-withtitle');
                 if(tt.length==0) {
                     tt=$('<div class="menutree-tree-title"></div>').prependTo(cw);
                 }
                 tt.html( $.hisui.getTrans(opts.title) );
             }else{
                 cw.find('.menutree-tree-title').remove();
+                cw.removeClass('menutree-collapse-wrap-withtitle');
             }
         }
 
@@ -714,7 +717,7 @@
             var hisuiStyle=$.hisui.getHisuiStyle();
 
             if (state.options.collapsible && !state.options.title) {  //如果是可折叠的
-                if(hisuiStyle!='lite' && hisuiStyle!='liteblue' && hisuiStyle!='pure') {  //炫彩的样式才需要强制默认标题
+                if(hisuiStyle!='lite' && hisuiStyle!='lightblue' && hisuiStyle!='pure') {  //炫彩的样式才需要强制默认标题
                     state.options.title='导航菜单';
                 }
                 
