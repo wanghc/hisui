@@ -613,6 +613,8 @@ var iconDictionary={
     'icon-implant':'植入物',
     'icon-tabs':'页签',
     'icon-panel-brand':'默认功能区块图标，手风琴/面板/页签首选图标',
+    'icon-temperature':"温度",
+    'icon-humidity':'湿度',
     'icon-b-compatibility-review':'配伍审核',
     'icon-b-dispensing-refusal':'配液拒绝',
     'icon-b-dispensing-batch':'配液排批',
