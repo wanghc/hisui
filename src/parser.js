@@ -547,6 +547,13 @@
                 }
             }
         }
+        if (this.hasClass("window") || this.hasClass("dialog")){  // window与dialog计算fit的宽度时,包含padding 20250313 [5534619]
+            if ($(p).css("box-sizing")=="border-box"){
+                return { width: $(p)._outerWidth(), height: $(p)._outerHeight() };
+            }else{
+                return { width: $(p)._outerWidth(), height: $(p).height() };
+            }            
+        }
         return { width: $(p).width(), height: $(p).height() };
     };
 })(jQuery);

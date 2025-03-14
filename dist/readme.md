@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-03-14
+- `window`与`dialog`fit时，宽与高包含父容器padding [5534619]
+- - 所有风格下都修改成些逻辑，`panel`与`layout`的fit时，宽高不包含父容器padding，只是适应内容宽高
+
 ## 2025-03-13
 - `lite`风格下能对齐的输入框在`pure`无法对齐 [5499755]
 - - 因为textbox的padding从5px扩大至10px，宽度要修改小才能保存与原来一样宽，与combo对齐
