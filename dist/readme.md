@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-03-21
+- 兼容`messager`的warning提示效果
+
 ## 2025-03-14
 - `window`与`dialog`fit时，宽与高包含父容器padding [5534619]
 - - 所有风格下都修改成些逻辑，`panel`与`layout`的fit时，宽高不包含父容器padding，只是适应内容宽高
