@@ -16,16 +16,20 @@
 			<a class="hisui-linkbutton" iconCls="icon-w-save" id="alert1">提示info</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-cancel" id="alert2">失败error</a>
 			<a class="hisui-linkbutton" iconCls="icon-w-ok" id="alert3">成功success</a>
+			<a class="hisui-linkbutton" iconCls="icon-w-card" id="alertWarning">警告warning</a>
 			<script>
 				$(function () {
 					$('#alert1').click(function () {
 						$.messager.alert("简单提示", "请求超出预计时间，可能网络异常,请检查网络或联系管理员。", 'info');
 					});
 					$('#alert2').click(function () {
-						$.messager.alert("简单提示", "数据请求失败，请根据以下提示来完成该操作。<p>检查网线是否与电脑正常连接</p><p>请进入网络和Internet界面检查电脑IP地址与网关是否设置正确</p><p>不解决联系管理员</p>", 'error');
+						$.messager.alert("错误提示", "数据请求失败，请根据以下提示来完成该操作。<p>检查网线是否与电脑正常连接</p><p>请进入网络和Internet界面检查电脑IP地址与网关是否设置正确</p><p>不解决联系管理员</p>", 'error');
 					});
 					$('#alert3').click(function () {
-						$.messager.alert("简单提示", "支付成功", 'success');
+						$.messager.alert("成功提示", "支付成功", 'success');
+					});
+					$('#alertWarning').click(function () {
+						$.messager.alert("警告提示", "当前药品库存不足", 'warning');
 					});
 				})
 			</script>
