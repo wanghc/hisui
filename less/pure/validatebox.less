@@ -96,15 +96,37 @@ input.numberbox.validatebox-invalid {
   background-color: #fff0f0;
   color:#fc494f;
 }
-.tooltip-right.tooltip-validatebox-invalid .tooltip-arrow{
+.tooltip-validatebox-invalid .tooltip-arrow{
   width: 6px;
   height: 6px;
   background: #fff0f0;
   transform: rotate(45deg);
-  border-right-color: transparent;
-  border-bottom: 1px solid red;
-  border-left: 1px solid red;
+}
+.tooltip-right.tooltip-validatebox-invalid .tooltip-arrow{
+  border-bottom: 1px solid #fc494f;
+  border-left: 1px solid #fc494f;
   border-top-width: 0px;
   border-right-width: 0px;
   margin: -3px 0 0 -4px;
+}
+.tooltip-top.tooltip-validatebox-invalid .tooltip-arrow{
+  border-bottom: 1px solid #fc494f;
+  border-right: 1px solid #fc494f;
+  border-left-width: 0px;
+  border-top-width: 0px;
+  margin: 0px -4px -4px 0;
+}
+.tooltip-bottom.tooltip-validatebox-invalid .tooltip-arrow{
+  border-top: 1px solid #fc494f;
+  border-left: 1px solid #fc494f;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  margin: -4px 0 0 -4px;
+}
+.tooltip-left.tooltip-validatebox-invalid .tooltip-arrow{
+  border-right: 1px solid #fc494f;
+  border-top: 1px solid #fc494f;
+  border-left-width: 0px;
+  border-bottom-width: 0px;
+  margin: -3px -4px 0px 0;
 }
