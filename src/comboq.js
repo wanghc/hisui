@@ -123,6 +123,9 @@
 		}).bind('blur.comboq',function(e){  //
 			if(opts.onBlur) opts.onBlur.call(this,target);
 		}).bind("keydown.comboq paste.comboq drop.comboq input.comboq compositionend.comboq", function (e) {
+            if (!opts.f112Enabled){
+                if (e.keyCode >= 112 && e.keyCode<=123) return ;
+            }
             // input.comboq在IE下,设置值时触发,造成进入有下拉框界面就弹出下拉panel,2018-10-17 增加return
             if (navigator.userAgent.indexOf('MWBrowser/2')==-1 && navigator.userAgent.indexOf('Electron/22.3')==-1 && "undefined" == typeof e.keyCode) { return; }
             //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
@@ -360,6 +363,7 @@
     
     $.fn.comboq.defaults = $.extend({}, $.fn.validatebox.defaults, {
         blurValidValue:false, /*2018-12-26 wanghc blur时验证组件是否有值,无则清空输入框*/
+        f112Enabled:false,/*20250327 wanghc 是否支持F1~F12键，默认不支持*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
         enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, isCombo:true,minQueryLen:0,
         panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, 
