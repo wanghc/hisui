@@ -42,6 +42,7 @@ $("#btn").linkbutton("disable");
 - `pure`默认字体修改 [5561986]
 - :sparkles: `comboq`类组件在输入框中按F1~F12键时不触发事件 [5604790]
 - `pure`的`linkbutton`最小宽度修改成76px [5536168]
+- `pure`的`messager.popover`弹出位置修改 [5560458]
 
 ## 2025-03-24
 - 验证框`invalid`状态下，四个方位的提示层的箭头样式处理 [5571747]
