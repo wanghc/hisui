@@ -1,5 +1,6 @@
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
 @main-font-size:14px;
+@main-font-color:#191919;
 @main-color:#40a2de;
 @main-hover-color:#378ec4; /*好多hover的颜色*/
 //@combo-img: url(images/combo_arrow.png) no-repeat center center;
@@ -39,7 +40,7 @@
 @icon-path:"icons/default";
 
 
-@btn-fcolor:#191919;
+@btn-fcolor:@main-font-color;
 @input-border-color:#cccccc;
 @input-bgcolor:#ffffff;
 @input-color:#000000;
@@ -445,10 +446,12 @@ body {
     font-size:@main-font-size;
     margin:0;
     background-color: @body-bgcolor;
+    color:@main-font-color;
 }
 body * {
     font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
     font-size:@main-font-size;
+    color:@main-font-color;
 }
 h2 {
     font-size:18px;
@@ -465,7 +468,7 @@ h2 {
 .r-label{
     text-align: right;
     padding-right: 10px;
-    color:#191919;
+    color:@main-font-color;
 }
 .required-label:before {
     content: '*';
