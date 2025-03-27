@@ -286,7 +286,7 @@
             opts.panelHeightFix = true;
         } else { opts.fit = true; }
         if (!isSelfGrid(state)){
-            var grid = $(target).comboq('createPanelBody',target.id?"z-q-lu-"+target.id:"");
+            var grid = $(target).comboq('createPanelBody',opts.lookupGridId?opts.lookupGridId:(target.id?"z-q-lu-"+target.id:""));
             if (!opts.columns && typeof opts.columnsLoader=="function") opts.columns=opts.columnsLoader(target); 
             // datagird中btoolbar属性是'#myid'时，第一次初始化后,body中#myid-div就没了，随着datagrid关闭,#myid-div就没有了
             // 第二次datagrid中就没有btoolbar条件了 [4068557]
@@ -413,6 +413,7 @@
         return $.extend({}, $.fn.comboq.parseOptions(target),$.fn.datagrid.parseOptions(target), $.parser.parseOptions(target, ["idField", "textField", "mode",{isCombo:"boolean",minQueryLen:'number'}]));
     };
     $.fn.lookup.defaults = $.extend({}, $.fn.comboq.defaults, $.fn.datagrid.defaults, {
+        lookupGridId:'',
         panelHeightFix: false, /*通过界面的可见高度来自适应放大镜的高度*/
         panelMaxHeight:500,
         panelMinHeight:160,

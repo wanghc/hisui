@@ -44,6 +44,7 @@ $("#btn").linkbutton("disable");
 - `pure`的`linkbutton`最小宽度修改成76px [5536168]
 - `pure`的`messager.popover`弹出位置修改 [5560458]
 - `pure`的`messager`弹窗口居中问题 [5560458]
+- `lookup`扩展`lookupGridId`属性来定义对应表格的id [5584071]
 
 ## 2025-03-24
 - 验证框`invalid`状态下，四个方位的提示层的箭头样式处理 [5571747]
