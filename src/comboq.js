@@ -339,14 +339,18 @@
             return jq.each(function () {
                 _setValue(this,val)
             });
-        }, createPanelBody:function(){
+        }, createPanelBody:function(jq,myCompId){
             var panel = $($.hisui.globalContainerSelector); /*全局固定div*/
             if (panel.length){
                 panel.empty();
             }else{
                 panel = $('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
             }
-            return $('<div></div>').appendTo(panel);
+            var compDiv = "<div></div>"
+            if (myCompId!=""){
+                compDiv = '<div id="'+myCompId+'"></div>';
+            }
+            return $(compDiv).appendTo(panel);
         }
     };
     $.fn.comboq.parseOptions = function (_898) {
