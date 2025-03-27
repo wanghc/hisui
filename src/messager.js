@@ -429,8 +429,12 @@
                 o.style.left = document.body.clientWidth/2-(t.width()/2)
             }
             if (o.style.top==''){
-                o.style.top = document.body.clientHeight/2-(t.height()/2)
-            }
+                if ("undefined" == typeof HISUIStyleCode || HISUIStyleCode!=='pure'){
+                    o.style.top = document.body.clientHeight/2-(t.height()/2);
+                }else{
+                    o.style.top = document.body.scrollTop + document.documentElement.scrollTop+10;
+                }
+            }            
             t.css(o.style);
             switch (o.showType) {
                 case null:
