@@ -103,6 +103,7 @@
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm2">confirm默认取消</a>
 		<!-- 2022-02-23 增加三选 -->
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm3">confirm三选</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm4">confirm警告</a>
 		<script type="text/javascript">
 			$(function () {
 				$('#confirm1').click(function () {
@@ -154,6 +155,20 @@
 					btns.children("a:eq(0)").addClass('white');
 					btns.children("a:eq(1)");
 					btns.children("a:eq(2)").addClass('green');
+				});
+				$('#confirm4').click(function () {
+					var c = $.messager.confirm("保存", "确定提交并保存?", function (r) {
+						if (r) {
+							$.messager.popover({ msg: "点击了确定", type: 'info' });
+						} else {
+							$.messager.popover({ msg: "点击了取消" });
+						}
+					});
+					var btns = c.children("div.messager-button");
+					btns.children("a:eq(1)");
+					btns.children("a:eq(0)").addClass('white');
+					c.closest('.messager-window').addClass('messager-window-warning');
+					c.find('.messager-icon').addClass('messager-warning');
 				});
 			})
 		</script>

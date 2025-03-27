@@ -137,16 +137,18 @@
             });
             //end 2018-10-09
         }
+        var messagerMinWidth = $.hisui.getStyleCodeConfigValue("messagerMinWidth");
         win.window({
             isTopZindex:true, //wanghc
             closable:false, //neer---不显示关闭按钮--事件监听问题
-            title: options.title, noheader: (options.title ? false : true), width: options.width||300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
+            title: options.title, noheader: (options.title ? false : true), width: options.width||messagerMinWidth, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");
                 }, 100);
             }
         });
         win.window("window").addClass("messager-window").addClass("messager-window-"+(options.icon||"info"));
+        win.window('center');  // 上面增加messager-window ,message-window-info/error/后高度发生变化了,重新居中显示
         win.children("div.messager-button").children("a:first").focus();
         return win;
     };
@@ -232,6 +234,7 @@
             }
         });
         win.window("window").addClass("messager-window");
+        win.window("center");
         var messagerFocusBtnIndex = $.hisui.getStyleCodeConfigValue("messagerFocusBtnIndex");
         win.children("div.messager-button").children("a").eq(messagerFocusBtnIndex).focus();
         // win.children("div.messager-button").children("a:first").focus();
@@ -350,6 +353,7 @@
             var messagerPromptBtnSort = $.hisui.getStyleCodeConfigValue('messagerPromptBtnIndex');
             var win = _createMessageWindow(_28b, _28c, _28d,messagerPromptBtnSort);
             win.find("input.messager-input").eq(0).focus();
+
             return win;
         }, prompt: function(_28b, msg, fn){ 
             return $.messager.promptSrcMsg(_28b, $.hisui.getTrans(msg), fn);

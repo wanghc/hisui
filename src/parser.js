@@ -302,6 +302,9 @@
             },
             windowMinHeight:{ /** 弹出窗口最小高度 */
                 default:10,pure: 274
+            },
+            messagerMinWidth:{ /** 消息窗口最小宽度 */
+                default:300,pure: 474
             }
         },
         getStyleCodeConfigValue : function(key){
