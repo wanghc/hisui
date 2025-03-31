@@ -29,27 +29,33 @@
 			<table cellpadding="0">
 				<tr>
 					<td></td>
-					<td><a class="hisui-popover" data-options="placement:'bottom-right',title:'关于',content:'haha',style:'inverse'" >下右</a></td>
-					<td><a class="hisui-popover" data-options="placement:'bottom',title:'关于',content:'haha'" >正下</a></td>
-					<td><a class="hisui-popover" data-options="placement:'bottom-left',title:'关于',content:'haha'" >下左</a></td>
+					<td><a class="hisui-popover" data-options="placement:'bottom-right',title:'关于',content:'这里是提示内容',style:'inverse'" >下右反色</a></td>
+					<td><a class="hisui-popover" data-options="placement:'bottom',title:'关于',content:'这里是提示内容'" >正下</a></td>
+					<td><a class="hisui-popover" data-options="placement:'bottom-left',title:'关于',content:'这里是提示内容'" >下左</a></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><a class="hisui-popover" data-options="placement:'top-right',title:'关于',content:'haha'" >上右</a></td>
-					<td><a class="hisui-popover" data-options="placement:'top',title:'关于',content:'haha'" >正上</a></td>
-					<td><a class="hisui-popover" data-options="placement:'top-left',title:'关于',content:'haha'" >上左</a></td>
+					<td><a class="hisui-popover" data-options="placement:'top-right',title:'关于',content:'这里是提示内容'" >上右</a></td>
+					<td><a class="hisui-popover" data-options="placement:'top',title:'关于',content:'这里是提示内容'" >正上</a></td>
+					<td><a class="hisui-popover" data-options="placement:'top-left',title:'关于',content:'这里是提示内容'" >上左</a></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><a class="hisui-popover" data-options="placement:'right-top',title:'关于',content:'haha'" >右上</a></td>
-					<td><a class="hisui-popover" data-options="placement:'right',title:'关于',content:'haha'" >正右</a></td>
-					<td><a class="hisui-popover" data-options="placement:'right-bottom',title:'关于',content:'haha'" >右下</a></td>
+					<td><a class="hisui-popover" data-options="placement:'right-top',title:'关于',content:'这里是提示内容'" >右上</a></td>
+					<td><a class="hisui-popover" data-options="placement:'right',title:'关于',content:'这里是提示内容'" >正右</a></td>
+					<td><a class="hisui-popover" data-options="placement:'right-bottom',title:'关于',content:'这里是提示内容'" >右下</a></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><a class="hisui-popover" data-options="placement:'left-top',title:'关于',content:'haha'" >左上</a></td>
-					<td><a class="hisui-popover" data-options="placement:'left',title:'关于',content:'haha'" >正左</a></td>
-					<td><a class="hisui-popover" data-options="placement:'left-bottom',title:'关于',content:'haha'" >左下</a></td>
+					<td><a class="hisui-popover" data-options="placement:'left-top',title:'关于',content:'这里是提示内容'" >左上</a></td>
+					<td><a class="hisui-popover" data-options="placement:'left',title:'关于',content:'这里是提示内容'" >正左</a></td>
+					<td><a class="hisui-popover" data-options="placement:'left-bottom',title:'关于',content:'这里是提示内容'" >左下</a></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><a class="hisui-popover" data-options="placement:'bottom-right',title:'',content:'无标题有间距',padding:true" >下右1</a></td>
+					<td><a class="hisui-popover" data-options="placement:'bottom',title:'',content:'无标题有间距',padding:true" >正下</a></td>
+					<td><a class="hisui-popover" data-options="placement:'bottom-left',title:'',content:'无标题有间距',padding:true" >下左1</a></td>
 				</tr>
                 <tr>
 					<td class="r-label required-label">序号验证框</td>
@@ -177,7 +183,7 @@
                 </tr>
                 <tr>
                     <td class="r-label">空组合</td>
-                    <td><input id="cocc" placeholder="空面板"></td>
+                    <td><input id="cocc" class="textbox" placeholder="空面板"></td>
                 <!--</tr>
                 <tr>-->
                     <td class="r-label">查询条件组合</td>
@@ -333,10 +339,7 @@
                 //$.messager.popover({msg: rec.text,type:'info',timeout: 2000,showType: 'show'});
             }
 			$(function(){
-				$(".hisui-popover").popover({
-					title:'HUI关于',
-					content:'统一常用前端组件库，统一开发界面风格'
-				});
+				$(".hisui-popover").popover({});
                 // 验证框
                 var valbox = $HUI.validatebox("#vapatno", {
 					required: true,

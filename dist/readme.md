@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-03-31
+- `pure`风格下`popover`无标题且配置`padding:true`时，无上边距问题处理 [5562042]
+
 ## 2025-03-27
 - :sparkles: `lookup`关联的`datagrid`增加`id`，以便`信创`实现列定义功能 [5584071]
 - 增加5个`输血`图标 [5571681]
