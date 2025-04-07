@@ -248,10 +248,12 @@
             header._outerWidth(opts.width).css("height", "");
             if (opts.showHeader) {
                 header.css("background-color", "");
+                header.removeClass("tabs-noheader");
                 wrap.css("height", "");
                 lrt.show();
             } else {
                 header.css("background-color", "transparent");
+                header.removeClass("tabs-noheader").addClass("tabs-noheader");
                 header._outerHeight(0);
                 wrap._outerHeight(0);
                 lrt.hide();
