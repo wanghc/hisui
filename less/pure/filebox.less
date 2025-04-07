@@ -19,19 +19,6 @@
     -webkit-border-radius: 0 @input-border-radius @input-border-radius 0;
     border-radius: @input-border-radius @input-border-radius @input-border-radius @input-border-radius;
   }
-  &:hover,&.filebox-hover{
-    background-color: @input-active-bgcolor;
-    border-color: #CCC;
-   
-    &.l-btn-text{
-      color: #008FFF;
-    }
-  }
-  &:hover{
-    .filebox-text{
-      background-color:#FFF;
-    }
-  }
   &.disabled{
     border-color:@main-disabled-border-color;
     background-color: @main-disabled-bgcolor;
@@ -50,6 +37,12 @@
     color:#939393;
     &:hover{
       color: #008FFF;
+      .l-btn-text{
+        color:#008FFF;
+      }
+      .l-btn-icon{
+        color:#008FFF;
+      }
     }
     &.l-btn-disabled:hover{
       color:#191919;

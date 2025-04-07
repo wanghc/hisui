@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2025-04-07
+- `pure`风格下`filebox`鼠标悬浮变色 [5619557]
 
 ## 2025-03-31
 - `pure`风格下`popover`无标题且配置`padding:true`时，无上边距问题处理 [5562042]
