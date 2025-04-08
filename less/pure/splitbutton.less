@@ -13,6 +13,10 @@
 .s-btn{
   &.l-btn-plain{
     color:@splitbutton-fcolor;
+    border: 1px solid transparent;
+    &:hover{
+      border: 1px solid #b7d2ff;
+    }
     .l-btn-left{
       display: flex;
       align-items: center;
@@ -25,7 +29,6 @@
     }
   }
   &.l-btn.s-btn-active{
-    background-color: @splitbutton-hover-bgcolor;
     border-color: @splitbutton-hover-border-color;
     .l-btn-text{
       color:#ffffff;
@@ -73,30 +76,16 @@
   line-height: 30px;
   min-width: 95px;
   &.s-btn-active{
-    border-color: #006EDB !important;
-    background-color: #006EDB !important;
     .l-btn-text{
       color: #FFF;
     }
   }
+  &.l-btn-plain:active{
+    border:1px solid #b7d2ff;
+  }
   &:active{
     border:1px solid #006EDB;
-  }
-  &.l-btn{
-    // background-color: #EDF6FF;
-    // border: 1px solid #A5D5FF;
-    // color: #008FFF;
-    &:hover{
-      //background-color: #007eed;
-      .l-btn-text{
-        color: #FFF;
-      }
-    }
-    &:active{
-      background-color: #006EDB;
-     
-    }
-    
+    background-color: #006EDB;
   }
   &.l-btn-waiting{
     background-color: #006EDB;

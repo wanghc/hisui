@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2025-04-08
+- `pure`的菜单按钮样式修改 [5565095]
+- `pure`的`switchbox`小开关的字号及位置修改 [5629540]
+
 ## 2025-04-07
 - `pure`风格下`filebox`鼠标悬浮变色 [5619557]
 - `pure`风格`tabs`配置showHeader:false时，去掉下2px间距 [5621742]
