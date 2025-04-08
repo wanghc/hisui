@@ -3,7 +3,11 @@
 <head>
 	<%- include('../../templates/hisui-header.ejs',{title:"按钮"}) %>
 </head>
-<body>
+<% if (themeCode=="pure") {%>
+    <body style="background-color: #FFFFFF;">
+<% }else{ %>
+    <body>
+<% } %>
     <h2>链接按钮</h2>
     <span>链接按钮（Link Button）是使用 &lt;a>元素来创建的，所以实际上一个链接按钮（Link Button）就是一个显示为按钮样式的 &lt;a>元素。</span>
 	<h3>如：</h3>
@@ -13,20 +17,18 @@
         -->
 <div class='use-prettyprint lang-html links'>
 <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
-<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
+<a href="#" class="hisui-linkbutton" id="btn1">点我提示</a>
 <a href="#" class="hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
-<a href="#" class="hisui-linkbutton" id="btn1">点我提示</a></div>
+<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a></div>
     </div>
     <!-- pure不再显示iconImg  -->
 <% if (themeCode!="pure") {%>
 <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html links'>
     <a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
-    <a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
     <a href="#" class="showicon hisui-linkbutton" data-options="iconImg:'update.png'">自定义图片按钮</a>
+    <a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a>
     <a href="#" class="showicon hisui-linkbutton" data-options="iconCls:'icon-w-edit'"></a></div>
 </div>
-
-
     <h3>深色可用类</h3>
     <span>如果需要鼠标悬浮时按钮变色更深，在class中加入<code>hover-dark</code>.如病人信息条.</span>
     <div class="demo-exp-code entry-content"><div class='use-prettyprint lang-html links'>
@@ -48,7 +50,6 @@
 <a href="#" class="hisui-linkbutton white">白色(white)按钮</a>
 <a href="#" class="hisui-linkbutton blue">蓝色(blue)按钮</a>
 <% } %>
-
 <a href="#" class="hisui-linkbutton green">绿色(green)按钮</a>
 <a href="#" class="hisui-linkbutton yellow">黄色(yellow)按钮</a>
 <a href="#" class="hisui-linkbutton red">红色(red)按钮</a></div>
