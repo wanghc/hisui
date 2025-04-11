@@ -16,6 +16,7 @@
         }*/
         var t = $(target).empty();
         var opts = $.data(target, 'switchbox').options;
+        t.width(opts.width);
         var rewriteWidth = false;
         if (opts.onText!="" && opts.offText!="") {
             var totalLength = parseInt(opts.onText.length) + parseInt(opts.offText.length);
@@ -169,6 +170,7 @@
         offText:'OFF', //'关',    // <i class='icon-remove'></i>
         onClass:'success', // primary info success warning danger 
         offClass:'warning',
+        width:null,
         onSwitchChange:function(event,value){}
 	};
 	
