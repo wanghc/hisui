@@ -588,7 +588,7 @@
             }
             e.stopPropagation();
         });
-        var _55e = _55d.find("div.datagrid-cell");
+        var _55e = _55d.find("div.datagrid-cell,div.datagrid-header-rownumber");
         _55e.closest("td").unbind(".datagrid").bind("mouseenter.datagrid", function () {
             if (_55b.resizing) {
                 return;
