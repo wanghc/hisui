@@ -41,15 +41,23 @@
     <span>按钮默认是蓝色，如果需要使用其它色系的按钮，在class中加入<code>white</code>、<code>blue</code>、<code>green</code>、<code>yellow</code>、或者<code>red</code>，按钮就会改变色系</span>
     <br><span>其中<code>green</code>表示通过，<code>yellow</code>表示警示，<code>red</code>表示拒绝</span>
     <div class="demo-exp-code entry-content">
-    <div class='use-prettyprint lang-html links' style="height: 40px;padding: 10px;">
+    <div class='use-prettyprint lang-html links' style="height: 80px;padding: 10px;">
 <a href="#" class="hisui-linkbutton white">白色(white)按钮</a>
 <a href="#" class="hisui-linkbutton blue">蓝色(blue)按钮</a>
 
 <a href="#" class="hisui-linkbutton green">绿色(green)按钮</a>
 <a href="#" class="hisui-linkbutton yellow">黄色(yellow)按钮</a>
-<a href="#" class="hisui-linkbutton red">红色(red)按钮</a></div>
+<a href="#" class="hisui-linkbutton red">红色(red)按钮</a>
+<div style="margin: 10px;"></div><br/>
+    
+    <a href="#" class="hisui-linkbutton white" disabled data-options="stopAllEventOnDisabled:true">白色(white)按钮</a>
+    <a href="#" class="hisui-linkbutton blue" disabled data-options="stopAllEventOnDisabled:true">蓝色(blue)按钮</a>
+    
+    <a href="#" class="hisui-linkbutton green" disabled>绿色(green)按钮</a>
+    <a href="#" class="hisui-linkbutton yellow" disabled>黄色(yellow)按钮</a>
+    <a href="#" class="hisui-linkbutton red" disabled>红色(red)按钮</a>
     </div>
-
+    </div>
     <h3>禁用 事件处理</h3>
     <span>原来按钮禁用后，通过jq绑定的事件，还是会被触发，现增加一属性<code>stopAllEventOnDisabled</code>,当为true时，阻止事件</span>
     <br><span>通过监听生成的子元素span的点击事件，当stopAllEventOnDisabled为true，且按钮被禁用时，阻止事件冒泡</span>
