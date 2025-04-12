@@ -2522,13 +2522,15 @@
             if(!opts.lazy && opts.url){   // lazy为true时  初始化不去远程访问数据  //cryze 2018-9-13  url未配置也不调用 
                 _577(this);
             }
-            
+            // 考虑第一列头是合并列头，或第一列是第二层列头, 且第一列不是checkbox的情况
+            // 目的是处理第一列头与左边加15px间距问题
+            $.data(this, "datagrid").panel.find('.datagrid-not-view1 .datagrid-view2 .datagrid-header td:first-child .datagrid-cell').eq(0).addClass('datagrid-header-first-datagrid-cell');
         });
     };
     var _651 = {
         text: {
             init: function (_652, _653) {
-                var _654 = $("<input type=\"text\" class=\"datagrid-editable-input\">").appendTo(_652);
+                var _654 = $("<input type=\"text\" class=\"datagrid-editable-input textbox\">").appendTo(_652);
                 return _654;
             }, getValue: function (_655) {
                 return $(_655).val();
