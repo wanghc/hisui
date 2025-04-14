@@ -3082,6 +3082,12 @@
                 _6a9.children("div.datagrid-mask-msg").remove();
                 _6a9.children("div.datagrid-mask").remove();
                 if (opts.refLinkButton && $(opts.refLinkButton).length>0) $(opts.refLinkButton).linkbutton('operationCompleted');
+                // 区分出有数据与无数据情况
+                if ($('.datagrid-view2 .datagrid-btable',_6a9).length==0){
+                    $('.datagrid-view2 .datagrid-body',_6a9).removeClass('datagrid-have-data').addClass('datagrid-no-data');
+                }else{
+                    $('.datagrid-view2 .datagrid-body',_6a9).removeClass('datagrid-no-data').addClass('datagrid-have-data');
+                }
             });
         }, fitColumns: function (jq) {
             return jq.each(function () {
