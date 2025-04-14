@@ -109,20 +109,20 @@
 				$('#confirm1').click(function () {
 					var oldOk = $.messager.defaults.ok;
 					var oldCancel = $.messager.defaults.cancel;
-					$.messager.defaults.ok = "同意";
-					$.messager.defaults.cancel = "拒绝";
-					var btns = $.messager.confirm("删除", "确定提交并保存?", function (r) {
+					$.messager.defaults.ok = "自费";
+					$.messager.defaults.cancel = "报销";
+					var btns = $.messager.confirm("确认", "[(甲类0%)维生素AD滴剂/(红伊可新胶丸)[CO*20]]?此药为医保限制用药，[限制类型]适应症，[限制内容]限制用药信息限制用药信息(必须有临床体征，实验室辅助检查证据和临床诊断依据)。请确定该项目是否医保报销!", function (r) {
 						if (r) {
-							$.messager.popover({ msg: "点击了确定", type: 'info' });
+							$.messager.popover({ msg: "点击了自费", type: 'info' });
 						} else {
-							$.messager.popover({ msg: "点击了取消" });
+							$.messager.popover({ msg: "点击了报销" });
 						}
 						/*要写在回调方法内,否则在旧版下可能不能回调方法*/
 						$.messager.defaults.ok = oldOk;
 						$.messager.defaults.cancel = oldCancel;
 					}).children("div.messager-button");
-					btns.children("a:eq(1)");
-					btns.children("a:eq(0)").addClass('white'); //修改成green2943195
+					btns.children("a:eq(1)").addClass('red');
+					btns.children("a:eq(0)").addClass('green'); //修改成green2943195
 				});
 				$('#confirm2').click(function () {
 					var btns = $.messager.confirm("保存", "确定提交并保存?", function (r) {

@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-04-14
 - `pure`下`popover`的背景色修改成纯白色 [5660143]
+- `pure`messager提示文字需要限制显示范围[5659152]
 
 ## 2025-04-12
 - `pure`风格下`switchbox`位置调整 [5629549]

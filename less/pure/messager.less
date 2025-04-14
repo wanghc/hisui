@@ -11,12 +11,6 @@
 .messager-button .l-btn {
   width: 70px;
 }
-.messager-icon {
-  float: left;
-  width: 32px;
-  height: 32px;
-  margin: 0 10px 10px 0;
-}
 .messager-progress {
   padding: 10px;
 }
@@ -50,8 +44,15 @@
 .messager-icon {
   float: left;
   width: 46px;
-  height: 46px;
-  margin: 0 20px 10px 50px;
+  margin: 0 20px 10px 60px;
+  height: 100%;
+  position: absolute;
+}
+.messager-icon+div{
+  margin-left: 126px!important;
+  position: relative;
+  min-height: 54px;
+  padding-right: 60px;
 }
 .messager-info {
   background: url('@{images-path}/messager_info.svg') no-repeat;
@@ -165,10 +166,6 @@
     .messager-icon{
       margin: 0 20px 0px 60px;
     }
-    div:nth-child(2){
-      min-height: 54px;
-      padding-right: 60px;
-    }
     .messager-progress{
       padding: 0px 60px 40px 60px;
       .messager-p-bar{
@@ -200,18 +197,6 @@
         background-color: #008FFF;
       }
     }
-    .messager-icon{
-      height: 100%;
-      position: absolute;
-    }
-    div:nth-child(2){
-      margin-left: 126px !important;
-      position: relative;
-      min-height: 54px;
-    }
-  }
-  div:nth-child(2) {
-    padding-right: 60px;
   }
 }
 
@@ -229,18 +214,6 @@
         background-color: #008FFF;
       }
     }
-    .messager-icon{
-      height: 100%;
-      position: absolute;
-    }
-    div:nth-child(2){
-      margin-left: 126px !important;
-      position: relative;
-      min-height: 54px;
-    }
-  }
-  div:nth-child(2) {
-    padding-right: 60px;
   }
 }
 .messager-window-success {
@@ -258,19 +231,6 @@
         background-color: #008FFF;
       }
     }
-    .messager-icon{
-      height: 100%;
-      position: absolute;
-    }
-
-    div:nth-child(2){
-      margin-left: 126px !important;
-      position: relative;
-      min-height: 54px;
-    }
-  }
-  div:nth-child(2) {
-    padding-right: 60px;
   }
 }
 .messager-window-warning {
