@@ -2524,7 +2524,7 @@
             }
             // 考虑第一列头是合并列头，或第一列是第二层列头, 且第一列不是checkbox的情况
             // 目的是处理第一列头与左边加15px间距问题
-            $.data(this, "datagrid").panel.find('.datagrid-not-view1 .datagrid-view2 .datagrid-header td:first-child .datagrid-cell').eq(0).addClass('datagrid-header-first-datagrid-cell');
+            //$.data(this, "datagrid").panel.find('.datagrid-not-view1 .datagrid-view2 .datagrid-header td:first-child .datagrid-cell').filter(':visible').eq(0).addClass('datagrid-header-first-datagrid-cell');
         });
     };
     var _651 = {
@@ -3082,12 +3082,6 @@
                 _6a9.children("div.datagrid-mask-msg").remove();
                 _6a9.children("div.datagrid-mask").remove();
                 if (opts.refLinkButton && $(opts.refLinkButton).length>0) $(opts.refLinkButton).linkbutton('operationCompleted');
-                // 区分出有数据与无数据情况
-                if ($('.datagrid-view2 .datagrid-btable',_6a9).length==0){
-                    $('.datagrid-view2 .datagrid-body',_6a9).removeClass('datagrid-have-data').addClass('datagrid-no-data');
-                }else{
-                    $('.datagrid-view2 .datagrid-body',_6a9).removeClass('datagrid-no-data').addClass('datagrid-have-data');
-                }
             });
         }, fitColumns: function (jq) {
             return jq.each(function () {
@@ -3379,10 +3373,12 @@
                  */
                 $(_6d1).find("td").tooltip('destroy');
                 //$(_6d1).html(_6d5.join("")); // IE中提升速度
-                $(_6d1)[0].innerHTML =_6d5.join(""); 
+                $(_6d1)[0].innerHTML =_6d5.join("");
+                $(_6d1).removeClass('datagrid-no-data').addClass('datagrid-have-data'); // 无数据标志
             }else{
                 // 增加判断,空数据增加滚动条 2018-12-20 wanghc
                 $(_6d1).html("<div style='width:"+_6d3.dc.view2.find(".datagrid-header-row").width()+"px;border:solid 0px;height:1px;'></div>");
+                $(_6d1).removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
             }
         }, renderFooter: function (_6da, _6db, _6dc) {
             var opts = $.data(_6da, "datagrid").options;

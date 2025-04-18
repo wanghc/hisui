@@ -91,6 +91,12 @@
             for (var i = 0; i < groups.length; i++) {
                 table.push(this.renderGroup.call(this, target, i, groups[i], frozen));
             }
+            debugger
+            if (groups && groups.length) {
+                $(container).closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');  // 有数据标志
+            }else{
+                $(container).closest('.datagrid-body').removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
+            }
             $(container).html(table.join(""));
         }, renderGroup: function (target, groupIndex, group, frozen) {
             var state = $.data(target, "datagrid");
