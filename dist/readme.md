@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-04-19
+- :sparkles: 时间微调器箭头图标修改 [5565184]
+
 ## 2025-04-18
 - :bug: 表格列头列尾最大宽度修改 [5653712]
 - :sparkles: `datagrid`,`treegrid`,`propertygrid`增加无数据图片显示 [5544254]
