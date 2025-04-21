@@ -224,10 +224,11 @@
             });
             //end 2018-10-09
         }
+        // width:300修改成Max(300,474)取最大值，解决window-shadow阴影高度大于弹窗口问题 [5678473]
         win.window({
             isTopZindex:true, //wanghc
             closable:false, //neer---不显示关闭按钮--事件监听问题
-            title: title, noheader: (title ? false : true), width: 300, height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
+            title: title, noheader: (title ? false : true), width: Math.max(300,$.hisui.getStyleCodeConfigValue("messagerMinWidth")), height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");
                 }, 100);
