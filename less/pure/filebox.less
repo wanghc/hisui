@@ -89,16 +89,18 @@
   }
   &.filebox-plain{
     &.filebox-no-txet{
-      .l-btn-icon-left{
-        .l-btn-text{
-          padding:0px !important;
-          width: 0px;
-        }
-        .l-btn-icon{
-          padding: 8px 6px !important;
-          margin-left: 0px !important;
-          background-image: none !important;
-          width: 16px!important;
+      .filebox-button{
+        .l-btn-icon-left{
+          .l-btn-text{
+            padding:0px !important;
+            width: 0px;
+          }
+          .l-btn-icon{
+            padding: 8px 6px !important;
+            margin-left: 0px !important;
+            background-image: none !important;
+            width: 16px!important;
+          }
         }
       }
     }
@@ -114,17 +116,17 @@
           }
         }
         .l-btn-icon{
-          background-color: transparent;
+          background-color: transparent!important;
           left: 13px;
           padding-left: 0px;
           position: relative;
           margin-right: 12px;
           margin-left: -100%;
-          background-repeat: no-repeat;
+          background-repeat: no-repeat!important;
           padding-right: 2px;
-          background-size: 1px 16px;
-          background-image: url(../css/images/pure/vline.png);
-          background-position: 24px;
+          background-size: 1px 16px!important;
+          background-image: url(../css/images/pure/vline.png)!important;
+          background-position: 24px!important;
           width: 24px;
         }
       }

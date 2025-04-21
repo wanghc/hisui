@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-04-21
 - :sparkles: `pure`风格下`messager`内容文字大小修改成16px,行高30px [5649325]
+- `filebox`选择按钮竖线处理 [5619557]
 
 ## 2025-04-19
 - :sparkles: 时间微调器箭头图标修改 [5565184]
