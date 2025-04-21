@@ -613,21 +613,6 @@ var iconDictionary={
     'icon-implant':'植入物',
     'icon-tabs':'页签',
     'icon-panel-brand':'默认功能区块图标，手风琴/面板/页签首选图标',
-    'icon-temperature':"温度",
-    'icon-humidity':'湿度',
-    'icon-send-blood':"发血",
-    'icon-cancel-blood':'取消发血',
-    'icon-history-blood':"历次发血，发血历史",
-    'icon-specal-blood':'转特殊配血',
-    'icon-multi-blood-match-mth':"多配血方法",
-    'icon-upload-img':"上传图片",
-    'icon-collect-img':"收集图片，拍照",
-    'icon-capture-img':"截屏，剪辑，剪裁，截取图片",
-    'icon-b-compatibility-review':'配伍审核',
-    'icon-b-dispensing-refusal':'配液拒绝',
-    'icon-b-dispensing-batch':'配液排批',
-    'icon-b-dispensing-execution':'配液状态执行',
-    'icon-b-bottle-drug':'用法用量',
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",
@@ -764,15 +749,5 @@ var iconDictionary={
     'icon-big-edit-picture': "编辑图片",
     'icon-big-creating-a-pedigree-map': "创建谱系图",
     'icon-big-edit-pedigree-chart': '编辑谱系图',
-    'icon-big-image-properties':"图片属性",
-    'icon-big-upload-img':"上传图片",
-    'icon-big-collect-img':"收集图片，拍照",
-    'icon-big-capture-img':"截屏，剪辑，剪裁，截取图片"
+    'icon-big-image-properties':"图片属性"
 };
-if (top.HISUIStyleCode && top.HISUIStyleCode=="pure"){
-    // 向head中写入样式
-    document.write('<style> .bigicon .icon::before{ font-size: 24px !important; }</style>');
-    $(function(){
-        $("#bigIconPanel").panel("setTitle","大图标(24*24)");
-    })
-}
