@@ -3514,6 +3514,8 @@
             _6f0.call(this, true); /** true表示number列 */
             _6f0.call(this, false); /**false表示内容列 */
             $(_6ec).datagrid("fixRowHeight", _6ed);
+            // 有人使用updateRow来自己写表格数据
+            $(_6ec).datagrid('getPanel').find('.datagrid-view2 .datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');;
         }, insertRow: function (_6f4, _6f5, row) {
             var _6f6 = $.data(_6f4, "datagrid");
             var opts = _6f6.options;

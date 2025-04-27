@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-04-27
+- 使用`datagrid`的`updateRow`方法写表格数据时，增加`datagrid-have-data`样式
+
 ## 2025-04-21
 - :sparkles: `pure`风格下`messager`内容文字大小修改成16px,行高30px [5649325]
 - `filebox`选择按钮竖线处理 [5619557]
