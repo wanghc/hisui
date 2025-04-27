@@ -1448,6 +1448,11 @@
         dc.body2.triggerHandler("scroll");
         _5af(_5a8);
         $(_5a8).datagrid("autoSizeColumn");
+        if (data.total>0) {
+            dc.body2.removeClass('datagrid-no-data').addClass('datagrid-have-data');
+        }else{
+            dc.body2.removeClass('datagrid-have-data').addClass('datagrid-no-data');
+        }
     };
     function _5af(_5b0) {
         var _5b1 = $.data(_5b0, "datagrid");
@@ -3374,11 +3379,9 @@
                 $(_6d1).find("td").tooltip('destroy');
                 //$(_6d1).html(_6d5.join("")); // IE中提升速度
                 $(_6d1)[0].innerHTML =_6d5.join("");
-                $(_6d1).removeClass('datagrid-no-data').addClass('datagrid-have-data'); // 无数据标志
             }else{
                 // 增加判断,空数据增加滚动条 2018-12-20 wanghc
                 $(_6d1).html("<div style='width:"+_6d3.dc.view2.find(".datagrid-header-row").width()+"px;border:solid 0px;height:1px;'></div>");
-                $(_6d1).removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
             }
         }, renderFooter: function (_6da, _6db, _6dc) {
             var opts = $.data(_6da, "datagrid").options;
@@ -3514,7 +3517,7 @@
             _6f0.call(this, true); /** true表示number列 */
             _6f0.call(this, false); /**false表示内容列 */
             $(_6ec).datagrid("fixRowHeight", _6ed);
-            // 有人使用updateRow来自己写表格数据
+            // 有人使用updateRow来自己写表
             $(_6ec).datagrid('getPanel').find('.datagrid-view2 .datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');;
         }, insertRow: function (_6f4, _6f5, row) {
             var _6f6 = $.data(_6f4, "datagrid");

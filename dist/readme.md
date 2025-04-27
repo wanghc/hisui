@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2025-04-27
-- 使用`datagrid`的`updateRow`方法写表格数据时，增加`datagrid-have-data`样式
+- 使用`datagrid`的`updateRow`方法写表格数据时，增加`datagrid-have-data`样式 [物流交接界面]
+- 使用`datagrid-detailsview`插件显示表格数据时，增加`datagrid-have-data`样式 [结算界面]
 - 增加三个无背景插图 [5713492]
 
 ## 2025-04-21
