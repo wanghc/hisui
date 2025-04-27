@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-04-27
 - 使用`datagrid`的`updateRow`方法写表格数据时，增加`datagrid-have-data`样式
+- 增加三个无背景插图 [5713492]
 
 ## 2025-04-21
 - :sparkles: `pure`风格下`messager`内容文字大小修改成16px,行高30px [5649325]
