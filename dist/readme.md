@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-04-28
+- 更新三张表背景插图
+- 还原表格类组件的第一列数据特殊间距值 [5633712]
+
 ## 2025-04-27
 - 使用`datagrid`的`updateRow`方法写表格数据时，增加`datagrid-have-data`样式 [物流交接界面]
 - 使用`datagrid-detailsview`插件显示表格数据时，增加`datagrid-have-data`样式 [结算界面]
