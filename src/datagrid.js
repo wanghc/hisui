@@ -3114,7 +3114,7 @@
                     //默认宽度是25,所以只有大于25的时候才进行fix
                     if (width > 25) {
                         //多加5个像素,保持一点边距
-                        $(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).width(width + 5);
+                        $(".datagrid-header .datagrid-header-rownumber, .datagrid-body .datagrid-cell-rownumber", panel).width(width + 5);
                         //修改了宽度之后,需要对容器进行重新计算,所以调用resize
                         $(this).datagrid("resize");
                         //一些清理工作
@@ -3122,7 +3122,8 @@
                         clone = null;
                     } else {
                         //还原成默认状态
-                        $(".datagrid-header-rownumber,.datagrid-cell-rownumber", panel).removeAttr("style");
+                        // 合计行号是隐藏状态，不应该影响
+                        $(".datagrid-header .datagrid-header-rownumber, .datagrid-body .datagrid-cell-rownumber", panel).removeAttr("style");
                     }
                 });
             },freezeRow: function (jq, _6ac) {
