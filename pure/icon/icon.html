@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>图标集</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
     
     <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
     <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
@@ -13,9 +16,6 @@
     <script type="text/javascript" src="../mock-min.js"></script>
     <link rel="stylesheet" type="text/css" href="../demo.css">
     
-    <script type="text/javascript">
-        var HISUIStyleCode = 'pure';
-    </script>
 
     <script src="../../api/icon/icondic.js" type="text/javascript"></script>
     <style>
@@ -58,7 +58,7 @@
             height: 28px;
             display: inline-block;
         }
-        .iconlist, .fontlist, .arrowlist, .bigiconlist, chinCharlist{
+        .iconlist, .fontlist, .arrowlist, .bigiconlist, .chinCharlist , .paneliconlist {
             display: inline-block;
         }
         .bigicon{
@@ -121,8 +121,11 @@
     <div class="hisui-panel" title="箭头图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
         <ul class="arrowlist"></ul>
     </div>
+    <div class="hisui-panel" title="面板图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
+        <ul class="paneliconlist"></ul>
+    </div>
     <!-- <div class='line'></div> -->
-    <div class="hisui-panel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
+    <div class="hisui-panel" id="bigIconPanel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
         <div class="bigiconlist"></div>
     </div>
     
@@ -233,7 +236,7 @@
             ,"herb-back","herb-pre","herb-next","herb-no","herb-ok","decoct-herb","decoct-change","paper-eye-r","paper-pre","no-dot","date",'verify','ca-green','ster-again','ster-bat','ster-bio','ster-cancel','ster-finish','ster-ok','alarm-key','align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue','valign-bottom-blue','valign-middle-blue','valign-top-blue','barcode-blue','qrcode-blue','line','move','table-blue','table-col'
 			,'close','cale-3day','paper-lightning','sure-readed','read-details','person-group','export-pdf','no1','no2','no3'
             ,'bag','bag-x','disp-x','disp-back','ca','outInstc-mgr','book-rep','book-rep-v1','book-pen','paper-settings','book-settings','eye-scan-box','org-frame','alert-pen-gray','paper-set-qus','bk-mgr','msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed','sound','needle-sticks','contact-with-fluid','paper-minus','fishbone-diagram','stamp-add','stamp-undo','video','share','share-no','paper-share','home-back','paper-plane-clock','file-open','file','paper-unlink','paper-print','shopping-cart-ok','person-ok','physics-monitor','change-x-virus','ice-water','circle-down','template-down','multi-del'
-            ,'insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','temperature','humidity'
+            ,'insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','temperature','humidity','send-blood','cancel-blood','history-blood','specal-blood','multi-blood-match-mth','upload-img','collect-img','capture-img'
 		];
 			
             //icons.sort();
@@ -248,7 +251,7 @@
                 'abort-order','cancel-order','copy-drug','copy-prn','copy-sos','exe-order','replace-order','stop-order','write-order'
                 ,'add-note','apply-adm','apply-check','apply-opr','check-reg','paper','paper-cfg','paper-tri','resort','save-tmpl'
                 ,'paper-stamp','paper-money','paper-arrow-down','paper-arrow-up','paper-link','paper-info','set-paper','red-cancel-paper'
-                ,'paper-ques','paper-key','paper-group','paper-clock-bue'
+                ,'paper-thumb','paper-adm-pen','message-diag','note-pen','paper-ques','paper-key','paper-group','paper-clock-bue'
             ];
             //icons.sort();
             for(var i=0;i<papericons.length;i++){
@@ -261,7 +264,8 @@
             //-----
             var fonticons=['lt-rt-19','lt-rt-28','lt-rt-37','lt-rt-46','lt-rt-55','lt-rt-64','lt-rt-73','lt-rt-82'
             ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation','unindent','align-justify'
-            ,'align-left','align-center','align-right','cut-blue','paste','paste-board','copy','internationalize'];
+            ,'align-left','align-center','align-right','cut-blue','paste','paste-board','copy','internationalize',
+            'stacked-diag','rose-diag','curve-diag','thermal-diag','bar-diag','bar-graph','cloud-chart','chart-pie','chart-bar','chart-doughnut','chart-radar'];
             for(var i=0;i<fonticons.length;i++){
                 $(
                     '<li>\
@@ -281,7 +285,7 @@
             //-----
             var chinCharicons=['inpatient','outpatient','emergency','disabler','produce','children','lung','high','spirit','old'
             ,'poor','sugar','free','out-poverty',"pregnant-woman",'make-oppointment','allergy-word','base-word','close-word'
-            ,'complex-word','list-word','private-word','public-word','text-word','translate-word','sort','out','change','macpw','macpworder','evaluate-red','evaluate-green','quality','mass-injury'];
+            ,'complex-word','list-word','private-word','public-word','text-word','translate-word','sort','out','change','macpw','macpworder','evaluate-red','evaluate-green','quality','mass-injury','gcp','implant'];
             for(var i=0;i<chinCharicons.length;i++){
                 $(
                     '<li>\
@@ -290,13 +294,22 @@
                 ).appendTo(".chinCharlist");
             }
             //----
-            var arrowicons=['arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back','arrow-le-bo-gray'];
+            var arrowicons=['right-arrow','left-arrow','arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back','arrow-le-bo-gray','page-first','page-prev','page-next','page-last'];
             for(var i=0;i<arrowicons.length;i++){
                 $(
                     '<li>\
                     <span class="icon icon-'+arrowicons[i]+'">icon-'+arrowicons[i]+'</span>\
                     </li>'
                 ).appendTo(".arrowlist");
+            }
+            //----
+            var panelicons=['home','tabs','panel-brand','b-compatibility-review','b-dispensing-refusal','b-dispensing-batch','b-dispensing-execution','b-bottle-drug'];
+            for(var i=0;i<panelicons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+panelicons[i]+'">icon-'+panelicons[i]+'</span>\
+                    </li>'
+                ).appendTo(".paneliconlist");
             }
             //----
             var bigicons = [
@@ -314,7 +327,8 @@
             ['paper-time','alert-yellow','pre-audit','paper-gray','msg','equi-cfg','med-equi','alert',"idcard","paid","pat-list","read-card",'search-pat','miss-img',
             'paper-yellow','mach-blue-red','first-second','clock-back-blue','clock-back-gree','person-green','report-yel-pen','two-pill-gray','paper-orange','blue-white-circle','three-blue-bar','blue-frame-ok','white-p-red','paper-box'],
 			['redlabel-refresh','paper-print','drug-ok','drug-paper','drug-x','drug-forbid','card-money','medibottle','drug-all-ok','drug-back','printer-refresh','medibottle-run'],
-            ['insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','ca','ca-green']
+            ['insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','ca','ca-green'],
+            ['upload-img','collect-img','capture-img']
         ];
             //bigicons.sort();
             for(var j=0;j<bigicons.length;j++){

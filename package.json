@@ -32,6 +32,8 @@
     "watch": "node ./ns/watch.js",
     "all": "gulp",
     "min-js": "gulp min-js",
-    "min-css": "gulp min-css"
+    "min-css": "gulp min-css",
+    "min-css-lite": "gulp min-css-lite",
+    "min-css-pure": "gulp min-css-pure"
   }
 }
