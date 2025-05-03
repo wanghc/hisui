@@ -47,7 +47,7 @@ gulp.task('auto', function () {
     // 监听文件修改，当文件被修改则执行 less 任务
     //gulp.watch('less/**.less', ['less'])
 });
-['zh_CN','zh_TC'].forEach(function(value){
+['zh_CN','zh_TC','pt'].forEach(function(value){
     gulp.task(value,function(){
         return gulp.src(`src/hisui-lang-${value}.js`)
         //.pipe(chinese2unicode())

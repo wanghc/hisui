@@ -189,3 +189,9 @@ if ($.fn.checkbox){
 if ($.fn.linkbutton){
 	$.fn.linkbutton.defaults.waitingAlert = 'The button has been clicked and the system is responding. Please wait';
 }
+if ($.fn.splitbutton){
+	$.fn.splitbutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
+}
+if ($.fn.menubutton){
+	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
+}
