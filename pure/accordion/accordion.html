@@ -82,6 +82,46 @@
           </div>
     </div>
     
+    <h4>使用panel实现类似手风琴效果</h4>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+            <div id="accordionByPanel" style="height: 440px;">
+                <div>
+                    <div class="hisui-panel accordion-by-panel" title="病人配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
+                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:false,collapsible:true,minimizable:false,maximizable:false">
+                        病人配置
+                    </div>
+                </div>
+                <div style="margin: 10px 0;">
+                    <div class="hisui-panel accordion-by-panel" title="诊断配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
+                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:true,collapsible:true,minimizable:false,maximizable:false">
+                        诊断配置
+                    </div>
+                </div>
+                <div>
+                    <div class="hisui-panel accordion-by-panel" title="医嘱配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
+                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:true,collapsible:true,minimizable:false,maximizable:false">
+                        医嘱配置
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function(){
+                    $(".accordion-by-panel").each(function(index,item){
+                        $(this).panel("options").onBeforeExpand = function(){
+                            var _t = this;
+                            var expandTitle = $(_t).panel('options').title;
+                            $(".accordion-by-panel").each(function(){
+                                var title =  $(this).panel('options').title;
+                                if (expandTitle!=title) $(this).panel('collapse',true);
+                            })
+                        };
+                    }) 
+                });
+            </script>
+        </div>
+    </div>
+    
   <prettyprint/>
 </body>
 </html>
