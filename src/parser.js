@@ -352,7 +352,17 @@
                     clearTimeout(state.offsettimer);
                     state.offsettimer = null;
                 }
-                state.offsettimer = setTimeout(arguments.callee, 60);
+                try{
+                    var tmpstate = $.data(document.getElementById($.hisui.globalContainerId), "data");
+                    if ('undefined'==typeof tmpstate.attr("id")){
+                        state.offsettimer = setTimeout(arguments.callee, 60);
+                    }else{
+                        // 闭包中srcTargetDom与当前是同一个才定位
+                        if (_t.attr("id")===$(tmpstate.srcTargetDom).attr("id")) state.offsettimer = setTimeout(arguments.callee, 60);
+                    }                    
+                }catch(ex){
+                    console.error(ex);
+                }
             }
         })();
         function getLeft() {
