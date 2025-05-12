@@ -79,7 +79,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css'],function(){
+gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css','pic-pt-css','pic-lite-pt-css','pic-pure-pt-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -122,6 +122,18 @@ gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-c
         .pipe(gulp.dest("dist/css/locale"));
         if (value=='lite'){
             return t.pipe(rename(`hisui.lightblue.en.css`)) // 极简源文件生成淡蓝
+            .pipe(gulp.dest("dist/css/locale"));
+        }
+        return t;
+    });
+    gulp.task(`pic${value?('-'+value):""}-pt-css`,()=>{
+        let t = gulp.src(`less${value?('/'+value):''}/locale.pt.less`)
+        .pipe(less())
+        .pipe(minifycss())                  
+        .pipe(rename(`hisui${value?('.'+value):''}.pt.css`))
+        .pipe(gulp.dest("dist/css/locale"));
+        if (value=='lite'){
+            return t.pipe(rename(`hisui.lightblue.pt.css`)) // 极简源文件生成淡蓝
             .pipe(gulp.dest("dist/css/locale"));
         }
         return t;
