@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-05-14
+- 只有配置了`className`与`queryName`的表格才可以双击弹出列定义界面 [5748227]
+
 ## 2025-05-12
 - :sparkles: `datagrid`无数据时,图片显示支持国际化 [5743354]
 

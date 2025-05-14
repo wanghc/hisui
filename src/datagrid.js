@@ -2355,7 +2355,7 @@
         return "";
     }
     var _handerColumns = function (opts,cfg,_64f) {
-            if (!!opts.queryName) {
+            if (!!opts.className && !!opts.queryName) {
                 if (null == opts.editColumnsGrantUrl) opts.editColumnsGrantUrl = $URL + "?ClassName=BSP.SYS.SRV.SSGroup&MethodName=CurrAllowColumnMgr";
                 if (null == opts.columnsUrl) opts.columnsUrl = $URL + "?ClassName=websys.Query&MethodName=ColumnDefJson&cn=" + opts.className + "&qn=" + opts.queryName;
                 if (null == opts.editColumnsPage) opts.editColumnsPage = '../csp/websys.component.customiselayout.csp?ID=1872&DHCICARE=2&CONTEXT=K' + opts.className + ":" + opts.queryName
