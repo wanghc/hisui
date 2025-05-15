@@ -354,7 +354,7 @@
                 }
                 try{
                     var tmpstate = $.data(document.getElementById($.hisui.globalContainerId), "data");
-                    if ('undefined'==typeof tmpstate.attr("id")){
+                    if ('undefined'==typeof $(tmpstate.srcTargetDom).attr("id")){
                         state.offsettimer = setTimeout(arguments.callee, 60);
                     }else{
                         // 闭包中srcTargetDom与当前是同一个才定位
