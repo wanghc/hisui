@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-05-27
+- :lipstick: tab带标题和图标的样式，图标需要跟标题对齐 [5785358]
+
 ## 2025-02-26
 - :sparkles: 增加法语翻译
 - :sparkles: `pure`风格下列头`序号`二字翻译
