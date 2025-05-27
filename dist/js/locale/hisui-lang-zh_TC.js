@@ -10,6 +10,7 @@ if ($.fn.datagrid){
 	$.fn.datagrid.defaults.advancedBtn = "\u9ad8\u7d1a";
 	$.fn.datagrid.defaults.advanced2Btn = "\u6536\u8d77";
 	$.fn.datagrid.defaults.like = "\u6a21\u7cca\u67e5\u8a62";
+	$.fn.datagrid.defaults.nocol = "\u5e8f\u865f";
 }
 if ($.fn.propertygrid) {
 	$.fn.propertygrid.defaults.findBtn = "\u67e5\u8a62";

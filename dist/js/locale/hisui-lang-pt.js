@@ -10,6 +10,7 @@ if ($.fn.datagrid){
 	$.fn.datagrid.defaults.advancedBtn = "Avançado";
 	$.fn.datagrid.defaults.advanced2Btn = "Ocultar";
 	$.fn.datagrid.defaults.like = "Pesquisa aproximada";
+	$.fn.datagrid.defaults.nocol = "Ordem";
 }
 if ($.fn.propertygrid) {
 	$.fn.propertygrid.defaults.findBtn = "Pesquisar";

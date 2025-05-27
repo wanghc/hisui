@@ -256,7 +256,7 @@
                 "lite":-1,"lightblue":-1,"default":0
             },
             datagridRowNumberHeaderTitle:{
-                "pure":'序号', "default":''
+                "pure":function(){return $.fn.datagrid.defaults.nocol;}, "default":''
             },
             dateTodayColor:{
                 default:"#449edd",pure:"#008FFF"
@@ -311,6 +311,9 @@
             if ("undefined" == typeof HISUIStyleCode ) return $.hisui.styleCodeConfig[key].default;
             if ("undefined" == typeof $.hisui.styleCodeConfig[key]) return "";
             if ("undefined" == typeof $.hisui.styleCodeConfig[key][HISUIStyleCode]) return $.hisui.styleCodeConfig[key].default;
+            if ("function" == typeof $.hisui.styleCodeConfig[key][HISUIStyleCode]){
+                return $.hisui.styleCodeConfig[key][HISUIStyleCode].call();
+            }
             return $.hisui.styleCodeConfig[key][HISUIStyleCode];
         }
     };

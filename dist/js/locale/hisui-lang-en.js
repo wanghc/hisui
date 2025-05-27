@@ -10,6 +10,7 @@ if ($.fn.datagrid){
 	$.fn.datagrid.defaults.advancedBtn = "Advance";
 	$.fn.datagrid.defaults.advanced2Btn = "Collapse";
 	$.fn.datagrid.defaults.like = "like";
+	$.fn.datagrid.defaults.nocol = "SN";
 }
 if ($.fn.treegrid && $.fn.datagrid){
 	$.fn.treegrid.defaults.loadMsg = $.fn.datagrid.defaults.loadMsg;

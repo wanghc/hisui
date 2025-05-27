@@ -10,6 +10,7 @@ if ($.fn.datagrid){
 	$.fn.datagrid.defaults.advancedBtn = "高级";
 	$.fn.datagrid.defaults.advanced2Btn = "收起";
 	$.fn.datagrid.defaults.like = "模糊查询";
+	$.fn.datagrid.defaults.nocol = "序号";
 }
 if ($.fn.propertygrid) {
 	$.fn.propertygrid.defaults.findBtn = "查询";
