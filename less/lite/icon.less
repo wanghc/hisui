@@ -83,7 +83,7 @@ tree-icon tree-file显示默认的文件图标
 'paper-thumb','618','paper-adm-pen','619','message-diag','620','note-pen','621',
 'home','1000','tabs','1001','panel-brand','1002','page-first','1008','page-prev','1009','page-next','1010','page-last','1011','page-load','1012',
 'b-compatibility-review','1013','b-dispensing-refusal','1014','b-dispensing-batch','1015','b-dispensing-execution','1016','b-bottle-drug','1017','temperature','625','humidity','626','send-blood','627','cancel-blood','628','history-blood','629','specal-blood','630','multi-blood-match-mth','631','upload-img','632','collect-img','633','capture-img','634','big-upload-img','632','big-collect-img','633','big-capture-img','634',
-'stacked-diag','636','rose-diag','637','curve-diag','638','thermal-diag','639','bar-diag','640','bar-graph','641','cloud-chart','642','chart-pie','594','chart-bar','592','chart-doughnut','596','chart-radar','597';
+'stacked-diag','636','rose-diag','637','curve-diag','638','thermal-diag','639','bar-diag','640','bar-graph','641','cloud-chart','642','chart-pie','594','chart-bar','592','chart-doughnut','596','chart-radar','597','measurement','644','filtering','645','gain','646','walking-speed','647';
 
 .wloop(@i) when (@i < length(@wlist)+1){
     .c-icon(extract(@wlist, @i),extract(@wlist,1+@i));
@@ -348,7 +348,7 @@ tree-icon tree-file显示默认的文件图标
 	.c-pic-onlyname(extract(@arr, @i),@pre,lite,extract(@arr, 1+@i));
 	.picloop2(2+@i,@arr,@pre);
 }
-@picpat:babyboy,babygirl,man,oldman,oldwoman,schoolboy,schoolgirl,woman,unknown-gender;
+@picpat:babyboy,babygirl,man,oldman,oldwoman,schoolboy,schoolgirl,woman,unknown-gender,man-no-bg,woman-no-bg,unknown-gender-no-bg;
 .picloop(1,@picpat,pat);
 @picusr:doctor,nurse,surgeon,clothing-worker,medi-worker,dep-director,hosp-director,doctor-woman;
 .picloop(1,@picusr,usr);
