@@ -1,7 +1,7 @@
 if ($.fn.pagination){
 	$.fn.pagination.defaults.beforePageText = 'Página';
 	$.fn.pagination.defaults.afterPageText = 'de {pages} páginas';
-	$.fn.pagination.defaults.displayMsg = 'Exibindo de {from} a {to}, total de {total} registros';
+	$.fn.pagination.defaults.displayMsg = '{from} - {to} / {total}';
 }
 if ($.fn.datagrid){
 	$.fn.datagrid.defaults.loadMsg = 'Processando, por favor aguarde...';
