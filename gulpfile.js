@@ -79,7 +79,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css','pic-pt-css','pic-lite-pt-css','pic-pure-pt-css'],function(){
+gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css','pic-pt-css','pic-lite-pt-css','pic-pure-pt-css','pic-fr-css','pic-lite-fr-css','pic-pure-fr-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){
@@ -113,30 +113,21 @@ gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-c
             .pipe(gulp.dest("dist/css"));
     });
 });
+// 生成task任务 如： pic-en-css,pic-pure-en-css, pic-pure-fr-css
 ['','lite','pure'].forEach((value,index)=>{
-    gulp.task(`pic${value?('-'+value):""}-en-css`,()=>{
-        let t = gulp.src(`less${value?('/'+value):''}/locale.en.less`)
-        .pipe(less())
-        .pipe(minifycss())                  
-        .pipe(rename(`hisui${value?('.'+value):''}.en.css`))
-        .pipe(gulp.dest("dist/css/locale"));
-        if (value=='lite'){
-            return t.pipe(rename(`hisui.lightblue.en.css`)) // 极简源文件生成淡蓝
+    ['en','pt','fr'].forEach((v,i)=>{
+        gulp.task(`pic${value?('-'+value):""}-${v}-css`,()=>{
+            let t = gulp.src(`less${value?('/'+value):''}/locale.${v}.less`)
+            .pipe(less())
+            .pipe(minifycss())                  
+            .pipe(rename(`hisui${value?('.'+value):''}.${v}.css`))
             .pipe(gulp.dest("dist/css/locale"));
-        }
-        return t;
-    });
-    gulp.task(`pic${value?('-'+value):""}-pt-css`,()=>{
-        let t = gulp.src(`less${value?('/'+value):''}/locale.pt.less`)
-        .pipe(less())
-        .pipe(minifycss())                  
-        .pipe(rename(`hisui${value?('.'+value):''}.pt.css`))
-        .pipe(gulp.dest("dist/css/locale"));
-        if (value=='lite'){
-            return t.pipe(rename(`hisui.lightblue.pt.css`)) // 极简源文件生成淡蓝
-            .pipe(gulp.dest("dist/css/locale"));
-        }
-        return t;
+            if (value=='lite'){
+                return t.pipe(rename(`hisui.lightblue.${v}.css`)) // 极简源文件生成淡蓝
+                .pipe(gulp.dest("dist/css/locale"));
+            }
+            return t;
+        });
     });
 });
 // gulp.task('lite2def',['min-js','min-css-lite2def']);
