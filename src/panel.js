@@ -19,6 +19,40 @@
         currentObj.remove();
         return width;
     }
+    /**
+     * 处理title内容，如果内容长度超出面板宽度，显示省略号且悬浮提示；否则正常显示。
+     * 考虑setTitle及拖动面板宽度
+     * @param {jQuery} pheader 
+     */
+    function _ellipsizeTitle(_pheader){
+        var panelTitleFontSize = $.hisui.getStyleCodeConfigValue('panelTitleFontSize');
+        var titleContentWidth = parseInt(GetCurrentStrWidth(_pheader.find(".panel-title").html(),'normal '+panelTitleFontSize+'px "Microsoft Yahei", verdana, helvetica, arial, sans-serif'));
+        if (_pheader.length>0){ 
+            var titleShowWidth = _pheader.find(".panel-tool").offset().left - _pheader.find(".panel-title").offset().left-16; // 40是文字右侧留白
+            //console.log(_pheader.find(".panel-title").text()+",titleContentWidth="+titleContentWidth+",titleShowWidth"+titleShowWidth);
+            if (titleContentWidth>titleShowWidth){
+                _pheader.find(".panel-title").width(titleShowWidth);
+                _pheader.tooltip({
+                    content:'',
+                    style:null,
+                    position:'bottom',
+                    tipWidth:Math.max($(_pheader).width()-40,100),
+                    onShow:function(){
+                        var content = $(this).children('.panel-title').html().trim();
+                        if(content==''){
+                            return $(this).tooltip('tip').hide();
+                        }
+                        $(this).tooltip('update',content.split(String.fromCharCode(10)).join('<br>')).tooltip('reposition');
+                    }
+                });
+            }else{
+                _pheader.children(".panel-title").width('auto');
+                if (_pheader.hasClass('tooltip-f')){
+                    _pheader.tooltip('destroy');
+                }
+            }
+        }
+    }
     // panel.resize
     function _1e3(_1e4, _1e5) {
         //$(this).lookup('panel').panel('resize',{width:1000});
@@ -30,8 +64,8 @@
         }
         var opts = $.data(_1e4, "panel").options;
         var _1e6 = $.data(_1e4, "panel").panel;
-        var _1e7 = _1e6.children("div.panel-header");
-        var _1e8 = _1e6.children("div.panel-body");
+        var _pheader = _1e6.children("div.panel-header");
+        var _pbody = _1e6.children("div.panel-body");
         if (_1e5) {
             $.extend(opts, { width: _1e5.width, height: _1e5.height, left: _1e5.left, top: _1e5.top });
         }
@@ -43,26 +77,27 @@
         } else {
             _1e6.width("auto");
         }
-        _1e7.add(_1e8)._outerWidth(_1e6.width());
+        _pheader.add(_pbody)._outerWidth(_1e6.width());
         //wanghc card--
         var mustCalcPanelHeaderCardTitleWidth = $.hisui.getStyleCodeConfigValue('mustCalcPanelHeaderCardTitleWidth');
         if (null!=opts.headerCls && "undefined"!=typeof opts.headerCls && opts.headerCls.indexOf("panel-header-card") > -1 && mustCalcPanelHeaderCardTitleWidth) { /*炫彩UI才设置width*/
             if (null!=opts.titleWidth && "undefined"!=typeof opts.titleWidth) {
-                _1e7.width(opts.titleWidth);
+                _pheader.width(opts.titleWidth);
             }else{
-                var headText = _1e7.find(".panel-title").text();
+                var headText = _pheader.find(".panel-title").text();
                 if (headText.length<=4){
-                    _1e7.width(80);
+                    _pheader.width(80);
                 } else {
-                    _1e7.width(40 + parseInt(GetCurrentStrWidth(headText,'normal 14px "Microsoft Yahei", verdana, helvetica, arial, sans-serif')));
+                    _pheader.width(40 + parseInt(GetCurrentStrWidth(headText,'normal 14px "Microsoft Yahei", verdana, helvetica, arial, sans-serif')));
                 }
             }
         }
+        _ellipsizeTitle(_pheader);        
         if (!isNaN(opts.height)) {
             _1e6._outerHeight(opts.height);
-            _1e8._outerHeight(_1e6.height() - _1e7._outerHeight());
+            _pbody._outerHeight(_1e6.height() - _pheader._outerHeight());
         } else {
-            _1e8.height("auto");
+            _pbody.height("auto");
         }
         _1e6.css("height", "");
         opts.onResize.apply(_1e4, [opts.width, opts.height]);
@@ -426,6 +461,7 @@
     function _220(_221, _222) {
         $.data(_221, "panel").options.title = _222;
         $(_221).panel("header").find("div.panel-title").html(  $.data(_221, "panel").options.notTrans?_222:$.hisui.getTrans(_222)  ); //add trans //up20230906 judge notTrans
+        _ellipsizeTitle($(_221).panel("header"));
     };
     var TO = false;
     var _223 = true;

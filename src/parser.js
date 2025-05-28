@@ -305,6 +305,9 @@
             },
             messagerMinWidth:{ /** 消息窗口最小宽度 */
                 default:300,pure: 474
+            },
+            panelTitleFontSize:{
+                default:14,pure:18
             }
         },
         getStyleCodeConfigValue : function(key){
