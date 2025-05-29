@@ -105,14 +105,14 @@
             解决在IE下，多选下拉框中选择元素后，再点击到普通INPUT框中，不能回删除值的问题，发现Backspace时，target为body而不是Input
             需求号：1228151
             */
-            if ($("body>div.combo-p>div.combo-panel:visible").length>0){   //增加判断条件,不然会导致：连续点击input框会多次进入focus事件，影响searchbox的赋值
+            if ($("body>div.combo-p>div.combo-panel").filter(":visible").length>0){   //增加判断条件,不然会导致：连续点击input框会多次进入focus事件，影响searchbox的赋值
                 /**2022-01-25
                  * 需求号：2144035
                  * 界面上存在combobox与textarea时，当下拉面板显示时，点击到textarea时，textarea滚动异常问题
                  * 增加判断 if (e.target.type && e.target.type.toLowerCase() == "text")
                  */
                 if (e.target.type && e.target.type.toLowerCase() == "text") $(e.target).focus();
-                $("body>div.combo-p>div.combo-panel:visible").panel("close");
+                $("body>div.combo-p>div.combo-panel").filter(":visible").panel("close");
             }
         });
         _85b.unbind(".combo");

@@ -37,6 +37,8 @@ $("#btn").linkbutton("disable");
 
 ## 2025-05-29
 - :lipstick: 增加优字图标 [5817354]
+- `linkbutton`未生成时,调用`disable`方法报错处理
+- `combo`关闭面板选择器修改
 
 ## 2025-05-28
 - :sparkles: `panel`及子组件的标题长度超时宽度时显示省略号且增加悬浮提示 [5780047]
