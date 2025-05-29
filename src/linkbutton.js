@@ -127,6 +127,7 @@
     };
     function setDisabled(target, disabled) {
         var state = $.data(target, "linkbutton");
+        if ('undefined'==typeof state) {return;}
         var opts = state.options;
         $(target).removeClass("l-btn-disabled l-btn-plain-disabled");
         if (disabled) {
