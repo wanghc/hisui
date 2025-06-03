@@ -1448,7 +1448,7 @@
         dc.body2.triggerHandler("scroll");
         _5af(_5a8);
         $(_5a8).datagrid("autoSizeColumn");
-        if (data.total>0) {
+        if (data.total>0 || (data.rows && data.rows.length>0)) {
             dc.body2.removeClass('datagrid-no-data').addClass('datagrid-have-data');
         }else{
             dc.body2.removeClass('datagrid-have-data').addClass('datagrid-no-data');

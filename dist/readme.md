@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-06-03
+- :sparkles: 表格有数据判断增加`rows`元素个数大于0 [5806709]
+
 ## 2025-05-29
 - :lipstick: 增加优字图标 [5817354]
 - `linkbutton`未生成时,调用`disable`方法报错处理
