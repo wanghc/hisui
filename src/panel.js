@@ -30,7 +30,7 @@
         if (_pheader.length>0){ 
             var titleShowWidth = _pheader.find(".panel-tool").offset().left - _pheader.find(".panel-title").offset().left-16; // 40是文字右侧留白
             //console.log(_pheader.find(".panel-title").text()+",titleContentWidth="+titleContentWidth+",titleShowWidth"+titleShowWidth);
-            if (titleContentWidth>titleShowWidth){
+            if (titleContentWidth>titleShowWidth && titleShowWidth>30){ // 显示区域大于30时，才是展开状态。
                 _pheader.find(".panel-title").width(titleShowWidth);
                 _pheader.tooltip({
                     content:'',
