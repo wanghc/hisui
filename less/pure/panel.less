@@ -133,7 +133,10 @@
 .panel-tool-expand {
   background: url('images/panel_tools.png') no-repeat -32px -16px;
 }
-.panel-title {  
+.panel-title { 
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden; 
   align-items: center; /* 垂直居中 */
   font-size: @panel-title-font-size;
   font-weight: bold;

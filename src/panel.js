@@ -27,7 +27,7 @@
     function _ellipsizeTitle(_pheader){
         var panelTitleFontSize = $.hisui.getStyleCodeConfigValue('panelTitleFontSize');
         var titleContentWidth = parseInt(GetCurrentStrWidth(_pheader.find(".panel-title").html(),'normal '+panelTitleFontSize+'px "Microsoft Yahei", verdana, helvetica, arial, sans-serif'));
-        if (_pheader.length>0){ 
+        if (_pheader.length>0 && _pheader.closest(".panel").css("display")!="none"){ // 有header且panel是显示状态时才进入
             var titleShowWidth = _pheader.find(".panel-tool").offset().left - _pheader.find(".panel-title").offset().left-16; // 40是文字右侧留白
             //console.log(_pheader.find(".panel-title").text()+",titleContentWidth="+titleContentWidth+",titleShowWidth"+titleShowWidth);
             if (titleContentWidth>titleShowWidth && titleShowWidth>30){ // 显示区域大于30时，才是展开状态。
@@ -295,6 +295,7 @@
             opts.maximized = true;
         }
         if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,true,_201);}
+        _ellipsizeTitle(_203.children("div.panel-header"));
         opts.onOpen.call(_201);
         if (opts.maximized == true) {
             opts.maximized = false;
