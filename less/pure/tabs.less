@@ -405,7 +405,7 @@
       -moz-border-radius: 0;
       -webkit-border-radius: 0;
       border-radius: 0;
-      color: #939393;
+      color: @main-font-color;
       background: @tabs-header-bgcolor;
       border-width: 0;
       border-bottom: 3px solid @tabs-header-bgcolor;
@@ -641,7 +641,6 @@
         border: 1px solid @tabs-header-gray-bgcolor;
         border-left: 3px solid @tabs-header-gray-bgcolor;  /*这里是背景色,只能选中才显示左竖线*/
         background-color: @tabs-header-gray-bgcolor;
-        color: @tabs-header-base-font-color;
         &:hover {
           background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
@@ -1058,16 +1057,10 @@
       .tabs-icon{
         left: 0px;
         top: 21px;
-        color: #ccc;
       }
       .tabs-close{
         right: 0px;
         top: 21px;
-      }
-      &.tabs-selected{
-        .tabs-icon {
-          color:#939393
-        }
       }
     }
   }
@@ -1162,20 +1155,11 @@
 .tabs-icon{
   color: #939393;
 }
-.tabs-first-icon{
-  li {
-    .tabs-icon{
-      color: #939393 !important;
-    }
-  }
-}
+
 .tabs-right-left{
   li {
     .tabs-title{
       font-size: 16px;
-    }
-    .tabs-icon{
-      color: #939393 !important;
     }
   }
 }
