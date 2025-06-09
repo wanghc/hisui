@@ -82,11 +82,21 @@
                 
             }
 			var myMenuData2=[];
-            for(var i=1;i<4;i++){
+            for(var i=1;i<15;i++){
                 var item={id:i+'',text:'一级菜单'+i,state:'open',iconCls:'icon-outInstc-mgr',children:[],attributes:{
 					engText:'Level1 Menu '+i
 				}}
-                for (var j=1;j<(7-i);j++){
+				var l2cnt=7-i; //二级菜单个数
+				if (l2cnt<2) {
+					l2cnt=2;
+				}
+				if(i==13){
+					l2cnt=15; //
+				}
+				if(i==14){
+					l2cnt=5; //
+				}
+                for (var j=1;j<l2cnt;j++){
 					var item2={
                         id:i+'-'+j,
                         text:'二级菜单'+i+'-'+j,
@@ -148,11 +158,26 @@
 								
 
 							}
-
-
-
 							item2.children.push(item3)
+
+
+
+							
 						} 
+						if(j==4){
+							for(var k=10;k<30;k++) {
+								var item3={
+									id:i+'-'+j+'-'+k,
+									text:'三级菜单'+i+'-'+j+'-'+k,
+									state:'open',
+									attributes:{
+										url:'./layout-query.html'
+									}
+								}
+								item2.children.push(item3)
+							}
+						}
+						
 						
 
 					}
