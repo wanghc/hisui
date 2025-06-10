@@ -139,7 +139,7 @@
   float: left;
 }
 .messager-window{
-  background-image: url('@{images-path}/messager_blue.png') ;
+  background-image: none;
   background-repeat: repeat-x;
   background-color: #FFF;
   min-width: 474px;
@@ -194,7 +194,6 @@
   }
 }
 .messager-window-error {
-  background-image: url('@{images-path}/messager_red.png') ;
   .messager-body{
     margin-top: 20px;
     min-width: 454px;
@@ -207,7 +206,6 @@
 }
 
 .messager-window-info {
-  background-image: url('@{images-path}/messager_blue.png') ;
   .messager-button{
     padding-top: 50px;
     padding-bottom: 40px;
@@ -223,7 +221,6 @@
   }
 }
 .messager-window-success {
-  background-image: url('@{images-path}/messager_green.png') ;
   //min-height: 274px !important;
   .messager-button{
     padding-top: 50px;
@@ -239,6 +236,20 @@
     }
   }
 }
+//  蓝色：#D7E9FF；红：#FFEFEF；黄：#FFF4DD；绿：#EEFFE6
+.messager-window-error {
+  // background-image: url('@{images-path}/messager_red.png') ;
+  background-image: linear-gradient(180deg, #FFEFEF 0, transparent 180px);
+}
+.messager-window-info {
+  // background-image: url('@{images-path}/messager_blue.png') ;
+  background-image: linear-gradient(180deg, #D7E9FF 0, transparent 180px);
+}
+.messager-window-success {
+  // background-image: url('@{images-path}/messager_green.png') ;
+  background-image: linear-gradient(180deg, #EEFFE6 0, transparent 180px);
+}
 .messager-window-warning {
-  background-image: url('@{images-path}/messager_yellow.png') ;
+  /*background-image: url('@{images-path}/messager_yellow.png') ;*/
+  background-image: linear-gradient(180deg, #FFF4DD 0, transparent 180px);
 }
