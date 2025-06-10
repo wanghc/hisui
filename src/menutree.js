@@ -428,14 +428,37 @@
             }
 
 
+            var partreewrap=$li.closest('.menutree-tree-wrap');
+            var partreewrapOffsetTop=partreewrap.offset().top;
+            var partreewrapHeight=partreewrap.outerHeight();
+            var bottomMaxHeight=partreewrapHeight-(liOffset.top-partreewrapOffsetTop)-1;  //底部剩下空间
+            
+            var canAutoMoveHeight=Math.floor(partreewrapHeight*0.4); //当底部剩余高度不足0.4时，允许自动移动子树到最佳位置
+            if (bottomMaxHeight<canAutoMoveHeight){
+                var sbumenuMaxHeight=canAutoMoveHeight; 
+            }else{
+                sbumenuMaxHeight=bottomMaxHeight; 
+            }
+
+            var subtreeWarp=sp.find('.menutree-tree-wrap');
+            subtreeWarp.css({
+                'maxHeight':sbumenuMaxHeight+'px',
+                'overflowY':'auto',
+                'overflowX':'hidden'
+            })
 
 
             sp.panel("resize", { width: opts.width, height: 'auto' });
+
+            autoMoveSubTreeToBestPosition(ele); //自动将子树移动到最佳位置
 
             $li.addClass('menutree-root-hover');
         }
 
     }
+
+
+
 
     function setTreeDataState(data,isRoot,onlyOneExpanded,rootCollapsible){
         var flag=false;
@@ -558,10 +581,12 @@
                 var maintree=state.tree;
                 var t=maintree.tree('find',node.id);
                 maintree.tree('expand',t.target);
+                debounced_onSubTreeContentHeightChange(ele); //延时处理子树内容高度变化
             },onCollapse:function(node){
                 var maintree=state.tree;
                 var t=maintree.tree('find',node.id);
                 maintree.tree('collapse',t.target);
+                debounced_onSubTreeContentHeightChange(ele); //延时处理子树内容高度变化
             },onSelect:function(node){
                 var maintree=state.tree;
                 var t=maintree.tree('find',node.id);
@@ -589,6 +614,34 @@
             }
         })
     }
+
+    //自动将子树移动到最佳位置
+    function autoMoveSubTreeToBestPosition(ele){
+        var state=$.data(ele, "menutree")
+        var opts = state.options;
+        var subpanel = state.subpanel;
+
+        var panel = state.panel;
+        var tw=panel.find('.menutree-tree-wrap');
+
+        var mainBottom=tw.offset().top+tw.outerHeight(); //主树底部位置
+        var subBottom = subpanel.offset().top + subpanel.outerHeight(); //子树底部位置
+
+        if(subBottom>mainBottom+2) { //子树底部超过主树底部
+            
+            var subHeight=subpanel.outerHeight();
+            var subTop=mainBottom-subHeight; //子树顶部位置
+            subpanel.panel('move',{top:subTop}); //移动到主树底部上方
+            //console.log('autoMoveSubTreeToBestPosition',subTop);
+        }
+
+    }
+
+    function onSubTreeContentHeightChange(ele,subpanel,subtree){
+        autoMoveSubTreeToBestPosition(ele);
+    
+    }
+    var debounced_onSubTreeContentHeightChange = $.hisui.debounce(onSubTreeContentHeightChange, 200);
 
 
     function treeNodeFormatter(node,search){
