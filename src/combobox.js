@@ -569,8 +569,8 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
                     loadData(this, data);
                 }
             }
-            if (state.options.data) {
-                loadData(this, state.options.data);
+            if (state.data) {
+                loadData(this, state.data);
             }
             request(this);
         });
