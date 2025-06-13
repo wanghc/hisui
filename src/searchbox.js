@@ -39,8 +39,15 @@
         var opts = _406.options;
         if (opts.menu) {
             _406.menu = $(opts.menu).menu({
+                minWidth: 60,
                 onClick: function (item) {
                     _407(item);
+                },onShow:function(){
+                    _406.searchbox.addClass('searchbox-plain-menu-open');
+                    // 菜单外层包裹了1px的边框,菜单left与查询框未对齐
+                    $(this).offset({left:_406.searchbox.offset().left});
+                },onHide:function(){
+                    _406.searchbox.removeClass('searchbox-plain-menu-open');
                 }
             });
             var item = _406.menu.children("div.menu-item:first");

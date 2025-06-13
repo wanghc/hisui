@@ -37,6 +37,27 @@ $("#btn").linkbutton("disable");
 
 ## 2025-06-13
 - :lipstick: `pure`下splitbutton按钮样式修改 [5794790]
+- :lipstick: `pure`下`searchbox`菜单样式修改 [5846605]
+```html
+<input id="ss2"/>
+<div id="mm" class="search-btn-menu">
+  <div data-options="name:'ALL'">所有</div>
+  <div data-options="name:'V'">核实</div>
+  <div data-options="name:'D'">停止</div>
+  <div data-options="name:'C'">作废</div>
+</div>
+<script type="text/javascript">
+$(function(){
+  $("#ss2").searchbox({
+    searcher:function(value,name){
+      alert(value+","+name);
+    },
+    menu:'#mm',
+    prompt:'请输入值',
+  });
+});
+</script>
+```
 
 ## 2025-06-11
 - :bug: `combobox`普通单选模式,在多次执行`$.parser.parse()`后大概率无法选择 [5803813]
