@@ -58,6 +58,7 @@ $(function(){
 });
 </script>
 ```
+- :lipstick: `pure`页签`brand`标题与页签之间增加竖线分割 [5799094]
 
 ## 2025-06-11
 - :bug: `combobox`普通单选模式,在多次执行`$.parser.parse()`后大概率无法选择 [5803813]
