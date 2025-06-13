@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-06-13
+- :lipstick: `pure`下splitbutton按钮样式修改 [5794790]
+
 ## 2025-06-11
 - :bug: `combobox`普通单选模式,在多次执行`$.parser.parse()`后大概率无法选择 [5803813]
 - - 当配置项没有data属性时，没有重新生成下拉面板，会出现此问题
