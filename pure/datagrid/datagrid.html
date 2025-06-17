@@ -50,7 +50,7 @@
 	<h3>如：默认表格(hisui-datagrid)</h3>	
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint hide lang-html">
-			<table class="hisui-datagrid" title="" style="width:800px;height:400px" data-options="fixRowNumber:true,striped:false,rownumbers:true,headerCls:'panel-header-gray',fitColumns:true,singleSelect:true,pagination:true">
+			<table class="hisui-datagrid" title="" style="width:800px;height:400px" data-options="fixRowNumber:true,striped:true,rownumbers:true,headerCls:'panel-header-gray',fitColumns:true,singleSelect:true,pagination:true">
 				<thead>   
 					<tr>   
 						<th data-options="field:'code',width:20">编码</th>   
@@ -91,7 +91,7 @@
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint hide lang-html">
 			<table id='mytb' class="hisui-datagrid" title="" style="width:600px;height:320px" 
-			data-options="autoSizeColumn:false,fitColumns:true,striped:false,headerCls:'panel-header-gray',
+			data-options="autoSizeColumn:false,fitColumns:true,striped:true,headerCls:'panel-header-gray',
 			singleSelect:true,
 			pagination:true,toolbar: [{
 				iconCls: 'icon-edit',
@@ -191,7 +191,7 @@
 					<div onclick="console.log('作废');">作废</div>     
 				</div>
 			</div>
-			<table id='mytb2' class="hisui-datagrid" title="" style="width:600px;height:140px" data-options="iconCls:'icon-panel-brand',headerCls:'panel-header-gray',pagination:true,striped:false,
+			<table id='mytb2' class="hisui-datagrid" title="" style="width:600px;height:140px" data-options="iconCls:'icon-panel-brand',headerCls:'panel-header-gray',pagination:true,striped:true,
 				toolbar:'#custtb',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
 				onDblClickRow:function(){console.log(arguments)}">   
 				<thead>   
@@ -255,7 +255,7 @@
 					//nowrap:false,
 					//autoSizeColumn:false,
 					//fitColumns:true,
-					striped:false,iconCls:'icon-panel-brand',
+					striped:true,iconCls:'icon-panel-brand',
 					
 					showFooter:true,
 					loadFilter:function(data){ 
@@ -391,7 +391,7 @@
 				title:'地区',
 				height:'400',width:900,
 				bodyCls:'table-splitline',
-				striped:false,iconCls:'icon-panel-brand',
+				striped:true,iconCls:'icon-panel-brand',
 				autoSizeColumn:true,fitColumns:true,
 				toolbar:[],
 				columns:[
@@ -436,7 +436,7 @@
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',
 					toolbar:[],
-					striped:false,iconCls:'icon-panel-brand',
+					striped:true,iconCls:'icon-panel-brand',
 					nowrap:false,  /*此处为false*/
 					columns:[[
 						{field:'ck',title:'sel',checkbox:true},
@@ -470,7 +470,7 @@
 					headerCls:'panel-header-gray',
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',titleNoWrap:false,/*表头自动折行*/
-					striped:false,iconCls:'icon-panel-brand',
+					striped:true,iconCls:'icon-panel-brand',
 					nowrap:false,
 					fontSize:12, /*表格上设置字体大小*/
 					lineHeight:12,
@@ -506,7 +506,7 @@
 						headerCls:'datagrid-header-blue',
 						rownumbers:true,width:650,height:300,
 						title:'属性列表',titleNoWrap:false,/*表头自动折行*/
-						striped:false,iconCls:'icon-panel-brand',
+						striped:true,iconCls:'icon-panel-brand',
 						nowrap:false,
 						fontSize:12, /*表格上设置字体大小*/
 						lineHeight:12,
@@ -535,7 +535,7 @@
 			<div class="use-prettyprint hide lang-html">
 				<table class="hisui-datagrid" title="" style="width:800px;height:400px" data-options="fixRowNumber:true,
 				
-					striped:false
+					striped:true
 					,iconCls:'icon-panel-brand'
 					
 						,rownumbers:true,bodyCls:'datagrid-body-border-gray',fitColumns:true,singleSelect:true,pagination:true">

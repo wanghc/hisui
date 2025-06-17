@@ -368,7 +368,7 @@
   color:@datagrid-row-select-color;
 }
 .datagrid-row-over{
-  background: #FEF5E5;
+  background: @datagrid-row-hover;
   color:@datagrid-row-select-color;
 }
 
@@ -536,6 +536,7 @@ td.datagrid-value-changed {
 .datagrid-header-row td, .datagrid-row td , .table-splitline .datagrid-row .datagrid-editable td{
   border-left:0px solid transparent;
   border-right:1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 .panel-header-line-gray-parent{
   .datagrid-header{

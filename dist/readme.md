@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-06-17
 - :bug: `combobox`的loadFilter方法返回`undefined`报错处理
+- :lipstick: `pure`下`datagrid`表格行样式修改 [5800605]
 
 ## 2025-06-13
 - :lipstick: `pure`下splitbutton按钮样式修改 [5794790]
