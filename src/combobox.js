@@ -187,7 +187,7 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
         var state = $.data(target, "combobox");
         if ('undefined'==typeof state) return ;
         var opts = state.options;
-        state.data = opts.loadFilter.call(target, data);
+        state.data = opts.loadFilter.call(target, data)||[];
         state.groups = [];
         data = state.data;
         var selected = $(target).combobox("getValues");
