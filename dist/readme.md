@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-06-18
+- 表格标题上下居中 [5561835]
+
 ## 2025-06-17
 - :bug: `combobox`的loadFilter方法返回`undefined`报错处理
 - :lipstick: `pure`下`datagrid`表格行样式修改 [5800605]
