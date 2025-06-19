@@ -2452,8 +2452,9 @@
             }
             if('function' == typeof opts.onInitBefore2) opts.onInitBefore2.call(this,opts);
             var _t = this;
-            if (opts.showFilterToolbar && (opts.toolbar == null || opts.toolbar == "")) {
+            if (opts.showFilterToolbar) {
                 addToolLoadFilter(_t);
+                var originToolbar  = opts.toolbar||undefined;
                 opts.toolbar = [{
                     type: 'input', class: 'textbox datagrid-toolbar-findbox', placeholder: opts.like, handler: function (ev) {
                         if (ev.keyCode == 13) {
@@ -2509,6 +2510,10 @@
                             }
                         }
                  },notTrans:true }];
+                 if (originToolbar && $.isArray(originToolbar) && originToolbar.length>0){
+                    opts.toolbar = opts.toolbar.concat(originToolbar);
+                    opts.showFilterToolbar = false;
+                 }
             };
             _545(this);
             _559(this);

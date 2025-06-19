@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-06-19
 - `switchbox`增加对文字的翻译功能 [5892841]
+- `datagrid`的`showFilterToolbar`配置成true时，增加可以追加`toolbar`信息功能 [5894525]
 
 ## 2025-06-18
 - 表格标题上下居中 [5561835]
