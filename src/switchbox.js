@@ -18,6 +18,8 @@
         var opts = $.data(target, 'switchbox').options;
         t.width(opts.width);
         var rewriteWidth = false;
+        opts.onText = $.hisui.getTrans(opts.onText);
+        opts.offText = $.hisui.getTrans(opts.offText);
         if (opts.onText!="" && opts.offText!="") {
             var totalLength = parseInt(opts.onText.length) + parseInt(opts.offText.length);
             if (opts.onText.length != opts.offText.length) { // [3149355] 字数不一样多时,导致switchbox换行显示。发现样式中使用了width:150%与width:33%来实现切换显示
@@ -126,11 +128,13 @@
         },
         setOnText:function(jq,value){
             return jq.each(function(){
+                value = $.hisui.getTrans(value);
                 $(this).bootstrapSwitch('setOnLabel',value);
             });
         },
         setOffText:function(jq,value){
             return jq.each(function(){
+                value = $.hisui.getTrans(value);
                 $(this).bootstrapSwitch('setOffLabel',value);
             });
         },
