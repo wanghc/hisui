@@ -38,7 +38,8 @@ $("#btn").linkbutton("disable");
 ## 2025-06-20
 - :bug: `panel`触发resize逻辑优化 [5888040]
 - - 宽高都为0时才可以触发面板的适应
-- confirm背景色修改
+- 纯净版`confirm`背景色修改
+- :lipstick: 纯净版列表`序号`位置向上移1px
 
 ## 2025-06-19
 - `switchbox`增加对文字的翻译功能 [5892841]
@@ -54,26 +55,27 @@ $("#btn").linkbutton("disable");
 ## 2025-06-13
 - :lipstick: `pure`下splitbutton按钮样式修改 [5794790]
 - :lipstick: `pure`下`searchbox`菜单样式修改 [5846605]
+
 ```html
-<input id="ss2"/>
-<div id="mm" class="search-btn-menu">
-  <div data-options="name:'ALL'">所有</div>
-  <div data-options="name:'V'">核实</div>
-  <div data-options="name:'D'">停止</div>
-  <div data-options="name:'C'">作废</div>
-</div>
+  <input id="ss2"/>
+  <div id="mm" class="search-btn-menu">
+    <div data-options="name:'ALL'">所有</div>
+    <div data-options="name:'V'">核实</div>
+    <div data-options="name:'D'">停止</div>
+    <div data-options="name:'C'">作废</div>
+  </div>
 ```
 
-```js
-$(function(){
-  $("#ss2").searchbox({
-    searcher:function(value,name){
-      alert(value+","+name);
-    },
-    menu:'#mm',
-    prompt:'请输入值',
+```javascript
+  $(function(){
+    $("#ss2").searchbox({
+      searcher:function(value,name){
+        alert(value+","+name);
+      },
+      menu:'#mm',
+      prompt:'请输入值',
+    });
   });
-});
 ```
 
 - :lipstick: `pure`页签`brand`标题与页签之间增加竖线分割 [5799094]
@@ -322,7 +324,8 @@ $(function(){
 
 ## 2025-01-14
 - :sparkles: 编辑表格内`combogrid`在懒加载时默认显示设置`oldHtml`文本
-```js
+
+```javascript
 // 解决lazy时，双击编辑时速度，且不触发数据查询
 editor:{
   type:'combogrid',
@@ -334,8 +337,6 @@ editor:{
   multiple:true,
   ...
 }
-
-
 ```
 
 ## 2024-12-31
