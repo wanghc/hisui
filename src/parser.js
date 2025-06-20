@@ -8,6 +8,25 @@
  *
  */
  (function ($) {
+    /**
+     * 用于替换:visible选择器，因为:visible不包含width=0,height=0的元素。
+     * 棉花【可见】及【width与height】都为0的元素
+     * @author wanghc
+     * @param {Node} elem 
+     * @returns boolean
+     */
+    $.expr.pseudos.visibleOrZeroSize = function(elem) {
+        // 判断自己不是 display: none
+        if ($(elem).css("display") === "none") {
+            return false;
+        }
+        // 检查所有祖先节点，是否有 display: none
+        var hasHiddenParent = $(elem).parents().filter(function() {
+            return $(this).css("display") === "none";
+        }).length > 0;
+        // 如果祖先中有隐藏的，则也不选中
+        return !hasHiddenParent;
+    };
     /*-----1.5.js--jquery.parser.js--method-----start---*/
     $.hisui = {
 		/**

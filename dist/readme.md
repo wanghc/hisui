@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-06-20
+- :bug: `panel`触发resize逻辑优化 [5888040]
+- - 宽高都为0时才可以触发面板的适应
+
 ## 2025-06-19
 - `switchbox`增加对文字的翻译功能 [5892841]
 - `datagrid`的`showFilterToolbar`配置成true时，增加可以追加`toolbar`信息功能 [5894525]

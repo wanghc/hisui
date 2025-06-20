@@ -102,12 +102,16 @@
         _1e6.css("height", "");
         opts.onResize.apply(_1e4, [opts.width, opts.height]);
         /*wanghc 2019-11-10 增加each . 否则只触发find->[0]对应的事件*/
-        $(_1e4).find(">div,>form>div").filter(":visible").each(function(){
-            $(this).triggerHandler("_resize");
-        });
-        // $(_1e4).find(">div:visible,>form>div:visible").each(function(){
-        //     $(this).triggerHandler("_resize");
-        // });
+        /* 浏览器窗口缩小，导致layout内的center宽高都为0，此时最大化浏览器，发现center内部fit-datagrid无法重新计算宽高 2025-06-20 [5888040]*/
+        if ($.expr.pseudos.visibleOrZeroSize){
+            $(_1e4).find(">div,>form>div").filter(":visibleOrZeroSize").each(function(){                
+                $(this).triggerHandler("_resize");
+            });
+        }else{
+            $(_1e4).find(">div,>form>div").filter(":visible").each(function(){                
+                $(this).triggerHandler("_resize");
+            });
+        }
     };
     function _1e9(_1ea, _1eb) {
         var opts = $.data(_1ea, "panel").options;
@@ -480,8 +484,9 @@
                 _224.layout("resize");
             } else {
                 /*wanghc 2019-11-10 增加each. 否则只执行children->[0]的_resize*/
-                /*宽度都大小0时才触发 :visible选择器*/
-                $("body").children("div.panel,div.accordion,div.tabs-container,div.layout").filter(":visible").each(function(){
+                /*宽高都大于0时才触发 :visible选择器*/
+                /* visible修改成visibleOrZeroSize, 宽高为0才触发_resize 20250620 */
+                $("body").children("div.panel,div.accordion,div.tabs-container,div.layout").filter(":visibleOrZeroSize").each(function(){
                     $(this).triggerHandler("_resize");
                 });
             }
