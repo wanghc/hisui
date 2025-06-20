@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2025-06-20
 - :bug: `panel`触发resize逻辑优化 [5888040]
 - - 宽高都为0时才可以触发面板的适应
+- confirm背景色修改
 
 ## 2025-06-19
 - `switchbox`增加对文字的翻译功能 [5892841]
@@ -61,7 +62,9 @@ $("#btn").linkbutton("disable");
   <div data-options="name:'D'">停止</div>
   <div data-options="name:'C'">作废</div>
 </div>
-<script type="text/javascript">
+```
+
+```js
 $(function(){
   $("#ss2").searchbox({
     searcher:function(value,name){
@@ -71,8 +74,8 @@ $(function(){
     prompt:'请输入值',
   });
 });
-</script>
 ```
+
 - :lipstick: `pure`页签`brand`标题与页签之间增加竖线分割 [5799094]
 
 ## 2025-06-11
