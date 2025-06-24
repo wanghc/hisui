@@ -588,7 +588,7 @@
             }
             e.stopPropagation();
         });
-        var _55e = _55d.find("div.datagrid-cell,div.datagrid-header-rownumber");
+        var _55e = _55d.find("div.datagrid-cell"); // _55d.find("div.datagrid-cell,div.datagrid-header-rownumber");
         _55e.closest("td").unbind(".datagrid").bind("mouseenter.datagrid", function () {
             if (_55b.resizing) {
                 return;
@@ -654,6 +654,18 @@
                     _55d.css("cursor", "");
                     $(this).css("height", "");
                     $(this)._outerWidth($(this)._outerWidth());
+                    // if ($(this).hasClass("datagrid-header-rownumber")){
+                    //     $(this)._outerWidth();
+                    //     $(".datagrid-header .datagrid-header-rownumber,.datagrid-body .datagrid-cell-rownumber",$(_55a).datagrid("getPanel")).width($(this)._outerWidth() + 5);
+                    //     //修改了宽度之后,需要对容器进行重新计算,所以调用resize
+                    //     $(_55a).datagrid("resize");
+                    //     _55b.proxy.remove();
+                    //     _55b.proxy = null;
+                    //     setTimeout(function () {
+                    //         _55b.resizing = false;
+                    //     }, 0);
+                    //     return ;
+                    // }
                     var _562 = $(this).parent().attr("field");
                     var col = _getColumnOption(_55a, _562);
                     col.width = $(this)._outerWidth();
@@ -3628,7 +3640,7 @@
         queryName:"",
         compContext:"",
         showChangedStyle:true, /*wanghc editor状态下,是否显示修改后的左上小红三角 */
-        fixRowNumber:false, /*wanghc 行号列是否自动适应 */
+        fixRowNumber:true, /*wanghc 行号列是否自动适应  20250624默认成true*/
         autoSizeColumn:true, /*wanghc 速度更新配置成false*/
         sharedStyleSheet: false, frozenColumns: undefined, columns: undefined, fitColumns: false, resizeHandle: "right", autoRowHeight: true, 
         btoolbar:null, /* bottom tool bar*/
