@@ -12,7 +12,13 @@
 
     //参数,中文字符串
     //返回值:拼音首字母串数组
-    function makePy(str) {
+    /**
+     * 
+     * @param {String} str 要获得拼音码的字符串 
+     * @param {Boolean} isFirstSpell 不考虑多单字，只获取常用拼音 
+     * @returns 
+     */
+    function makePy(str,isFirstSpell) {
         if (typeof (str) != "string")
             throw new Error(-1, "makePy parameter type must 'string'!");
         var arrResult = new Array(); //保存中间结果的数组
@@ -20,18 +26,42 @@
             //获得unicode码
             var ch = str.charAt(i);
             //检查该unicode码是否在处理范围之内,在则返回该码对映汉字的拼音首字母,不在则调用其它函数处理
-            arrResult.push(checkCh(ch));
+            arrResult.push(checkCh(ch,isFirstSpell));
+        }
+        /**
+         * 控制多音字的数量，防止数组长度指数暴增
+         */
+        var multiCount = 0;
+        for (var j = 0; j < arrResult.length; j++) {
+            if (arrResult[j].length>1){
+                multiCount++
+            }
+            if (multiCount>5){
+                arrResult[j] = arrResult[j].slice(0,1);
+            }
         }
         //处理arrResult,返回所有可能的拼音首字母串数组
         return mkRslt(arrResult);
     }
-    function checkCh(ch) {
+    /**
+     * 
+     * @param {Char} ch 
+     * @param {Boolean} isFirstSpell 
+     * @returns 
+     */
+    function checkCh(ch,isFirstSpell) {
         var uni = ch.charCodeAt(0);
         //如果不在汉字处理范围之内,返回原字符,也可以调用自己的处理函数
         if (uni > 40869 || uni < 19968)
             return ch; //dealWithOthers(ch);
         //检查是否是多音字,是按多音字处理,不是就直接在strChineseFirstPY字符串中找对应的首字母
-        return (oMultiDiff[uni] ? oMultiDiff[uni] : (strChineseFirstPY.charAt(uni - 19968)));
+        if (oMultiDiff[uni]){
+            if (isFirstSpell||false){
+                return oMultiDiff[uni].slice(0,1);
+            }
+            return oMultiDiff[uni];
+        }
+        return strChineseFirstPY.charAt(uni - 19968);
     }
     function mkRslt(arr) {
         var arrRslt = [""];
@@ -62,7 +92,7 @@
     function getPinyin(ss) {
         var str = $.trim(ss);
         if (str != "") {
-            var arrRslt = makePy(str);
+            var arrRslt = makePy(str,true);
             return arrRslt[0];
         } else { return ""; }
     }
