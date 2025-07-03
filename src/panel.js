@@ -271,7 +271,12 @@
         t.find(".s-btn").each(function () {
             $(this).splitbutton("destroy");
         });
-        t.find(".tooltip-f").each(function () {
+        // t.find(".tooltip-f").each(function () {
+        //     $(this).tooltip("destroy");
+        // });
+        // 标题过长时,生成tooltip在header上，旧逻辑是destroy清除panel-body内的tooltip组件，现在增加清除panel-header下的tooltip组件
+        // 即增加 t 修改成 t.closest(".panel")
+        t.closest(".panel").find(".tooltip-f").each(function () {
             $(this).tooltip("destroy");
         });
         t.children("div").each(function () {
@@ -330,7 +335,7 @@
         opts.closed = true;
         opts.onClose.call(_206);
     };
-    function _209(_20a, _20b) {
+    function _destroy(_20a, _20b) {
         var opts = $.data(_20a, "panel").options;
         var _20c = $.data(_20a, "panel").panel;
         if (_20b != true) {
@@ -546,7 +551,7 @@
             });
         }, destroy: function (jq, _22b) {
             return jq.each(function () {
-                _209(this, _22b);
+                _destroy(this, _22b);
             });
         }, refresh: function (jq, href) {
             return jq.each(function () {

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-07-03
+- :bug: `panel`销毁时清除标题的`tooltip`提示 [5913220]
+
 ## 2025-06-26
 - :lipstick: `numberbox`输入框有时右边间距消失
 
