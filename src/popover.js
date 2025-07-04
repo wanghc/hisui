@@ -37,6 +37,7 @@
             '<div class="webui-popover-inner">'+
                 '<h3 class="webui-popover-title">'+title+'</h3>'+
                 '<div class="webui-popover-content">'+content+'</div></div></div>').appendTo("body").width();
+            width = Math.ceil(width)+1;
             $(target).data().plugin_webuiPopover.options.template = htmlStr.replace("\"webui-popover-inner\"","\"webui-popover-inner\" style=\"width: "+width+"px\"");
             $("#tempPopover").remove();
         }
