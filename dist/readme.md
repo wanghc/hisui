@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-07-04
 - :sparkles:`popover`组件偶尔出现最后一个字显示成省略号问题 [5937243]
+- :sparkles:`switchbox`组件非中文描述时，宽度算法优化 [5895812]
 
 ## 2025-07-03
 - :bug: `panel`销毁时清除标题的`tooltip`提示 [5913220]

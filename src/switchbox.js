@@ -21,7 +21,24 @@
         opts.onText = $.hisui.getTrans(opts.onText);
         opts.offText = $.hisui.getTrans(opts.offText);
         if (opts.onText!="" && opts.offText!="") {
-            var totalLength = parseInt(opts.onText.length) + parseInt(opts.offText.length);
+            var onTextLength = 0,offTextLength = 0;
+            for (var i=0; i<opts.onText.length; i++){
+                var uni = opts.onText.charCodeAt(i);
+                if (uni > 40869 || uni < 19968) {
+                    onTextLength += 0.4;
+                }else{
+                    onTextLength += 1;
+                }
+            }
+            for (var i=0; i<opts.offText.length; i++){
+                var uni = opts.offText.charCodeAt(i);
+                if (uni > 40869 || uni < 19968) {
+                    offTextLength += 0.4;
+                }else{
+                    offTextLength += 1;
+                }
+            }
+            var totalLength = Math.ceil(onTextLength + offTextLength) ;//parseInt(opts.onText.length) + parseInt(opts.offText.length);
             if (opts.onText.length != opts.offText.length) { // [3149355] 字数不一样多时,导致switchbox换行显示。发现样式中使用了width:150%与width:33%来实现切换显示
                 rewriteWidth = true;
             };
