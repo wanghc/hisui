@@ -45,6 +45,29 @@
                 setSize(target);
             }
             return false;
+        }); 
+        // 添加滚轮事件监听
+        $(target).unbind('mousewheel DOMMouseScroll').bind('mousewheel DOMMouseScroll', function (e) {
+            e.preventDefault(); // 阻止默认行为
+            var delta = 0;
+            if (e.originalEvent.wheelDelta) {
+                delta = e.originalEvent.wheelDelta; // Chrome/Safari
+            } else if (e.originalEvent.detail) {
+                delta = -e.originalEvent.detail * 10; // Firefox
+            }
+            var datebox = $(this).parent().find('.datebox-common');
+            //var current = datebox.datebox('getValue');
+            //var date = current ? new Date(current) : new Date();
+            if (delta > 0) {
+                showMonth(target, -1);
+                // 向上滚动：切换至上个月
+                //date.setMonth(date.getMonth() - 1);
+            } else {
+                showMonth(target, 1);
+                // 向下滚动：切换至下个月
+                //date.setMonth(date.getMonth() + 1);
+            }
+            //datebox.datebox('setValue', date.toISOString().split('T')[0]); // 更新值
         });
     };
     function showMonth(target, delta) {
