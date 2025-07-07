@@ -37,6 +37,8 @@ $("#btn").linkbutton("disable");
 
 ## 2025-07-07
 - `calendar`相关控件支持鼠标滚动切换月份 [5909844]
+- `pure`版本的下拉菜单未指定宽度时,高度不加2 [5909505]
+- - `menu`通过appendItem方法添加右键子项，其生成的html存在多余的style='height: 36px;',导致菜单高度变成36px
 
 ## 2025-07-04
 - :sparkles:`popover`组件偶尔出现最后一个字显示成省略号问题 [5937243]

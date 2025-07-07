@@ -84,7 +84,11 @@
                 if (width < $(this)._outerWidth()) {
                     width = $(this)._outerWidth();
                 }
-                $(this).closest("div.menu-item")._outerHeight($(this)._outerHeight() + 2);
+                if ("pure"==HISUIStyleCode){
+                    // 纯净版本时,下拉菜单高度为34,不用+2 [5909505]
+                }else{
+                    $(this).closest("div.menu-item")._outerHeight($(this)._outerHeight() + 2);
+                }
             });
             width += 40;
         }
