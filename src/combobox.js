@@ -504,6 +504,14 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
                 if (opts.defaultHoverFirstRow===true) { // hover样式第一行
                     $(target).combo("panel").find('.combobox-item:visible:eq(0)').comboboxAddClass("combobox-item-hover");
                 }
+                var isAllSelected = true;
+                $(target).combo("panel").find(".combobox-item").each(function(index,item){
+                    if(!$(this).hasClass("combobox-item-selected")){
+                        isAllSelected = false;
+                        return false;
+                    }
+                });
+                if (isAllSelected) $(target).combo("panel").closest(".panel").find("div._hisui_combobox-selectall").addClass("checked");
             },
             onHidePanel:onHidePanelHandler
         }));
