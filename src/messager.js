@@ -333,7 +333,7 @@
         }, confirm3: function (title, msg, fn) {
             return $.messager.confirm3SrcMsg(title, $.hisui.getTrans(msg), fn);
         }, promptSrcMsg: function (_28b, msg, fn) {
-            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
+            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div class=\"messager-input-line\"><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
             _28d['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;

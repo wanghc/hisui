@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-07-09
+- :lipstick: prompt提示窗口样式修改,nth-child(5)去除 [5968481]
+
 ## 2025-07-08
 - :sparkles: `combobox`元素全选但全选勾未选 [5949378]
 
