@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-07-10
+- :lipstick: 纯净风格下多层表头增加下划线 [5918124]
+
 ## 2025-07-09
 - :lipstick: prompt提示窗口样式修改,nth-child(5)去除 [5968481]
 
