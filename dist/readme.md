@@ -41,6 +41,7 @@ $("#btn").linkbutton("disable");
 - :lipstick: 纯净风格下单选框文字高度增加1px [5918045]
 - :lipstick: 纯净风格下纵向步骤条标题左边距调整 [5915528]
 - :lipstick: 纯净风格下蓝色按钮禁用样式调整 [5915086]
+- :lipstick: 纯净风格下窗口标题上下居中 [5900209]
 
 ## 2025-07-09
 - :lipstick: prompt提示窗口样式修改,nth-child(5)去除 [5968481]
