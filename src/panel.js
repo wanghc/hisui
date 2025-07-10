@@ -360,16 +360,19 @@
             return;
         }
         tool.addClass("panel-tool-expand");
-        tool.closest('.panel').addClass("panel-status-collapse");
+        // `panel`收起时设置`panel-status-collapse`样式顺序调整 [5560640]
+        // tool.closest('.panel').addClass("panel-status-collapse");
         if (_20e == true) {
             body.slideUp("normal", function () {
                 opts.collapsed = true;
                 opts.onCollapse.call(_20d);
+                tool.closest('.panel').addClass("panel-status-collapse");
             });
         } else {
             body.hide();
             opts.collapsed = true;
             opts.onCollapse.call(_20d);
+            tool.closest('.panel').addClass("panel-status-collapse");
         }
     };
     function _210(_211, _212) {

@@ -42,6 +42,7 @@ $("#btn").linkbutton("disable");
 - :lipstick: 纯净风格下纵向步骤条标题左边距调整 [5915528]
 - :lipstick: 纯净风格下蓝色按钮禁用样式调整 [5915086]
 - :lipstick: 纯净风格下窗口标题上下居中 [5900209]
+- :sparkles: `panel`收起时设置`panel-status-collapse`样式顺序调整 [5560640]
 
 ## 2025-07-09
 - :lipstick: prompt提示窗口样式修改,nth-child(5)去除 [5968481]
