@@ -158,6 +158,7 @@
             } else {
                 _419 = $.data(this, "searchbox", { options: $.extend({}, $.fn.searchbox.defaults, $.fn.searchbox.parseOptions(this), _417), searchbox: init(this) });
             }
+            if (_419.options && _419.options.prompt) _419.options.prompt = $.hisui.getTrans(_419.options.prompt);
             _404(this);
             _413(this);
             _409(this);
