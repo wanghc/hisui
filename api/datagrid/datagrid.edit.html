@@ -50,6 +50,7 @@
 						options:{
 							valueField:'feetypeid',
 							textField:'feetypename',
+							defaultFilter:5,
 							method:'get',
 							url:'feetype.csp',
 							required:true,
@@ -58,7 +59,7 @@
 					}">费用类型combobox</th>
 			<th data-options="field:'feeprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">价格(numberbox)</th>
 			<th data-options="field:'feetotal',width:80,align:'right',editor:'numberbox'">数量numberbox</th>
-			<th data-options="field:'note',width:200,editor:{type:'textarea',options:{required:true,height:'60px'}}">说明(text)</th>
+			<th data-options="field:'note',width:200,editor:{type:'textarea',options:{required:true,height:'auto'}}">说明(text)</th>
 			<th data-options="field:'active',width:60,align:'center',editor:{type:'checkbox',options:{on:'Y',off:'N'}}">激活checkbox</th>
 			<th data-options="field:'active1',width:60,align:'center',editor:{type:'icheckbox',options:{on:'Y',off:'N'}}">激活icheckbox</th>
 			<th data-options="field:'active2',width:60,align:'center',editor:{type:'switchbox',options:{onClass:'primary',offClass:'gray',onText:'启用',offText:'禁用'}}">开关switchbox</th>
@@ -121,7 +122,7 @@
 			"feetypename":"自费",
 			"feeprice":1.9,
 			"feetotal":10,
-			"note":"此处写入说明",
+			"note":"此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明此处写入说f明",
 			"active":/[YN]/,
 			"active1":/[YN]/,
 			"active2":/禁用|启用/,
@@ -133,7 +134,7 @@
 		"total":10
 	})
 	Mock.mock("feetype.csp",
-		[{"feetypeid":1,'feetypename':'自费'},{"feetypeid":2,'feetypename':'职工'},{"feetypeid":3,'feetypename':'医保'}]
+		[{"feetypeid":1,'feetypename':'我职工'},{"feetypeid":2,'feetypename':'职工'},{"feetypeid":3,'feetypename':'医保'}]
 	);
 	</script>
 	<pre class="hide lang-html" id='mydg1codehtml'></pre>
