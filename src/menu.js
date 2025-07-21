@@ -84,7 +84,7 @@
                 if (width < $(this)._outerWidth()) {
                     width = $(this)._outerWidth();
                 }
-                if ("pure"==HISUIStyleCode){
+                if ("pure"==window.HISUIStyleCode){
                     // 纯净版本时,下拉菜单高度为34,不用+2 [5909505]
                 }else{
                     $(this).closest("div.menu-item")._outerHeight($(this)._outerHeight() + 2);

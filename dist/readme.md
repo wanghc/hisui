@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-07-21
 - :sparkles:`window`及子组件支持`constrain`属性  [5986363]
+- `HISUIStyleCode`变量未定义处理
 
 ## 2025-07-17
 - `searchbox`框内提示文字支持翻译 [5995966]
