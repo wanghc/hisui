@@ -154,63 +154,106 @@
             win.window("open");
         }
     };
+    function constrain(left, top, width, height){
+		var target = this;
+		var state = $.data(target, 'window');
+		var opts = state.options;
+		if (!opts.constrain){return {};}
+		if ($.isFunction(opts.constrain)){
+			return opts.constrain.call(target, left, top, width, height);
+		}
+		var win = $(target).window('window');
+		var parent = opts.inline ? win.parent() : $(window);
+		if (left < 0){left = 0;}
+		if (top < parent.scrollTop()){top = parent.scrollTop();}
+        if (left + width > parent.width()){
+			if (width == win.outerWidth()){	// moving
+				left = parent.width() - width;
+			} else {	// resizing
+				width = parent.width() - left;
+			}
+		}
+		if (top - parent.scrollTop() + height > parent.height()){
+			if (height == win.outerHeight()){	// moving
+				top = parent.height() - height + parent.scrollTop();
+			} else {	// resizing
+				height = parent.height() - top + parent.scrollTop();
+			}
+		}
+
+		return {
+			left:left,
+			top:top,
+			width:width,
+			height:height
+		};
+	}
     function setProperties(target) {
         var state = $.data(target, "window");
         state.window.draggable({
-            handle: ">div.panel-header>div.panel-title", disabled: state.options.draggable == false, onStartDrag: function (e) {
-                if (state.mask) {
-                    state.mask.css("z-index", $.fn.window.defaults.zIndex++);
-                }
-                if (state.shadow) {
-                    state.shadow.css("z-index", $.fn.window.defaults.zIndex++);
-                }
-                state.window.css("z-index", $.fn.window.defaults.zIndex++);
-                if (!state.proxy) {
-                    state.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(state.window);
-                }
-                state.proxy.css({ display: "none", zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top });
-                state.proxy._outerWidth(state.window._outerWidth());
-                state.proxy._outerHeight(state.window._outerHeight());
-                setTimeout(function () {
-                    if (state.proxy) {
-                        state.proxy.show();
-                    }
-                }, 500);
+            handle: ">div.panel-header>div.panel-title", disabled: state.options.draggable == false, 
+            onStartDrag: function (e) {
+                start1(e);
             }, onDrag: function (e) {
-                state.proxy.css({ display: "block", left: e.data.left, top: e.data.top });
+                proc1(e);
                 return false;
             }, onStopDrag: function (e) {
-                state.options.left = e.data.left;
-                state.options.top = e.data.top;
-                $(target).window("move");
-                state.proxy.remove();
-                state.proxy = null;
+                stop1(e,'move');
             }
         });
         state.window.resizable({
             disabled: state.options.resizable == false, onStartResize: function (e) {
-                state.pmask = $("<div class=\"window-proxy-mask\"></div>").insertAfter(state.window);
-                state.pmask.css({ zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top, width: state.window._outerWidth(), height: state.window._outerHeight() });
-                if (!state.proxy) {
-                    state.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(state.window);
-                }
-                state.proxy.css({ zIndex: $.fn.window.defaults.zIndex++, left: e.data.left, top: e.data.top });
-                state.proxy._outerWidth(e.data.width);
-                state.proxy._outerHeight(e.data.height);
+                start1(e);
             }, onResize: function (e) {
-                state.proxy.css({ left: e.data.left, top: e.data.top });
-                state.proxy._outerWidth(e.data.width);
-                state.proxy._outerHeight(e.data.height);
+                proc1(e);
                 return false;
             }, onStopResize: function (e) {
-                $.extend(state.options, { left: e.data.left, top: e.data.top, width: e.data.width, height: e.data.height });
-                setSize(target);
-                state.pmask.remove();
-                state.pmask = null;
-                state.proxy.remove();
-                state.proxy = null;
+                stop1(e,'resize');
             }
         });
+        function start1(e) { 
+            if(state.pmask){ state.pmask.remove();}
+            state.pmask = $("<div class=\"window-proxy-mask\"></div>").insertAfter(state.window);
+            state.pmask.css({
+                display:"none",
+                zIndex: $.fn.window.defaults.zIndex++, 
+                left: e.data.left, 
+                top: e.data.top, 
+                width: state.window._outerWidth(), 
+                height: state.window._outerHeight() 
+            });
+            if (state.proxy){ state.proxy.remove();}
+            state.proxy = $("<div class=\"window-proxy\"></div>").insertAfter(state.window);
+            state.proxy.css({ 
+                display:'none',
+                zIndex: $.fn.window.defaults.zIndex++, 
+                left: e.data.left, 
+                top: e.data.top 
+            });
+            state.proxy._outerWidth(e.data.width)._outerHeight(e.data.height);
+            state.proxy.hide();
+            setTimeout(function(){
+                if (state.pmask) {state.pmask.show();}
+                if (state.proxy) {state.proxy.show();}
+            }, 500);
+        }
+        function proc1(e){
+            $.extend(e.data,constrain.call(target,e.data.left,e.data.top,e.data.width,e.data.height));
+            state.pmask.show();
+            state.proxy.css({ display:'block', left: e.data.left, top: e.data.top });
+            state.proxy._outerWidth(e.data.width);
+            state.proxy._outerHeight(e.data.height);
+        }
+        function stop1(e,method) { 
+            $.extend(e.data,constrain.call(target,e.data.left,e.data.top,e.data.width+0.1,e.data.height+0.1));
+            $(target).window(method,e.data);
+            //$.extend(state.options, { left: e.data.left, top: e.data.top, width: e.data.width, height: e.data.height });
+            //setSize(target);
+            state.pmask.remove();
+            state.pmask = null;
+            state.proxy.remove();
+            state.proxy = null;
+        }
     };
     function getPageArea() {
         if (document.compatMode == "BackCompat") {
@@ -283,5 +326,5 @@
     $.fn.window.parseOptions = function (target) {
         return $.extend({}, $.fn.panel.parseOptions(target), $.parser.parseOptions(target, [{ draggable: "boolean", resizable: "boolean", shadow: "boolean", modal: "boolean", inline: "boolean" }]));
     };
-    $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false });
+    $.fn.window.defaults = $.extend({}, $.fn.panel.defaults, {zIndex: 9000, draggable: true, resizable: true, shadow: true, modal: false, inline: false, title: "New Window", collapsible: true, minimizable: true, maximizable: true, closable: true, closed: false,constrain:false });
 })(jQuery);
