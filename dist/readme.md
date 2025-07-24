@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-07-24
+- :sparkles: `linkbutton`大按钮悬浮背景色及文字间距调整 [5565107]
+
 ## 2025-07-21
 - :sparkles:`window`及子组件支持`constrain`属性  [5986363]
 - `HISUIStyleCode`变量未定义处理
