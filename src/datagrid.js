@@ -1462,8 +1462,10 @@
         $(_5a8).datagrid("autoSizeColumn");
         if (data.total>0 || (data.rows && data.rows.length>0)) {
             dc.body2.removeClass('datagrid-no-data').addClass('datagrid-have-data');
+            if (dc.body1) dc.body1.closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');
         }else{
             dc.body2.removeClass('datagrid-have-data').addClass('datagrid-no-data');
+            if (dc.body1) dc.body1.closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');
         }
     };
     function _5af(_5b0) {
