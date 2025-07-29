@@ -450,7 +450,8 @@
     };
     function _116(_117, ul, _118, _119) {
         var opts = $.data(_117, "tree").options;
-        _118 = _118 || {};
+//      _118 = _118 || {};
+	    opts=$.extend({},opts.queryParams,_118||{});
         var _11a = null;
         if (_117 != ul) {
             var node = $(ul).prev();
@@ -1184,7 +1185,7 @@
         }
     };
     $.fn.tree.defaults = {
-        url: null, method: "post", animate: false, checkbox: false, cascadeCheck: true, onlyLeafCheck: false, lines: false, dnd: false, data: null, formatter: function (node) {
+        url: null, method: "post", animate: false, checkbox: false, cascadeCheck: true, onlyLeafCheck: false, lines: false, dnd: false, data: null,queryParams:{}, formatter: function (node) {
             return node.text;
         },filter:function(q,node){
             var qq=[];
