@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-07-29
 - :sparkles: 树下的表格显示无数据图片问题 [6035708]
+- :sparkles: `tree`与`combobox`增加queryParams参数 [6014510]
 
 ## 2025-07-24
 - :sparkles: `linkbutton`大按钮悬浮背景色及文字间距调整 [5565107]

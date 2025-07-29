@@ -330,7 +330,8 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
         if (url) {
             opts.url = url;
         }
-        param = param || {};
+		param = $.extend({}, opts.queryParams, param||{});
+//      param = param || {};
         if (opts.onBeforeLoad.call(target, param) == false) {
             return;
         }
@@ -620,7 +621,15 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
             });
         }, reload: function (jq, url) {
             return jq.each(function () {
-                request(this, url);
+				if (typeof url == 'string'){
+					request(this, url);
+				} else {
+					if (url){
+						var opts = $(this).combobox('options');
+						opts.queryParams = url;
+					}
+					request(this);
+				}
             });
         }, select: function (jq, value) {
             return jq.each(function () {
@@ -665,7 +674,7 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
         };
     };
     $.fn.combobox.defaults = $.extend({}, $.fn.combo.defaults, {
-        forceValidValue:false,allowNull:false,selectAllBtnDesc:'select/unselect',defaultHoverFirstRow:false,
+        forceValidValue:false,allowNull:false,selectAllBtnDesc:'select/unselect',defaultHoverFirstRow:false,queryParams: {},
         allSelectButtonPosition:'top',rowStyle:'',valueField: "value", textField: "text", groupField: null, groupFormatter: function (group) {
             return group;
         }, mode: "local", method: "post", url: null, data: null, keyHandler: {
