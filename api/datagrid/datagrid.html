@@ -258,6 +258,12 @@ iconCls:'icon-paper' //默认小图标</code></pre>
 						console.log("onBeforeSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
 						//return false; //返回false则结束选中动作
 					},
+					onSelectAll:function(rows){
+						console.log("onSelectAll  arg1: " + JSON.stringify(rows));
+					},
+					onUnselectAll:function(rows){
+						console.log("onUnselectAll  arg1 = "+JSON.stringify(rows));
+					},
 					onSelect:function(rowIndex,rowData){
 						console.log("onSelect  arg1 = "+rowIndex + ",  arg2: " + JSON.stringify(rowData));
 					},
