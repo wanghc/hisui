@@ -24,14 +24,18 @@
      * 考虑setTitle及拖动面板宽度
      * @param {jQuery} pheader 
      */
-    function _ellipsizeTitle(_pheader){
+    function _ellipsizeTitle(_pheader,opts){
         var panelTitleFontSize = $.hisui.getStyleCodeConfigValue('panelTitleFontSize');
+        var oldTitleShowWidth = opts.titleShowWidth||0;
         var titleContentWidth = parseInt(GetCurrentStrWidth(_pheader.find(".panel-title").html(),'normal '+panelTitleFontSize+'px "Microsoft Yahei", verdana, helvetica, arial, sans-serif'));
         if (_pheader.length>0 && _pheader.closest(".panel").css("display")!="none"){ // 有header且panel是显示状态时才进入
             var titleShowWidth = _pheader.find(".panel-tool").offset().left - _pheader.find(".panel-title").offset().left-16; // 40是文字右侧留白
+            // 点击 诊疗 侧面板按钮切换左侧菜单时，会resize一下面板，宽度不改变，所以不执行[6012372]
+            if (Math.abs(oldTitleShowWidth-titleShowWidth)<3) return ;
             //console.log(_pheader.find(".panel-title").text()+",titleContentWidth="+titleContentWidth+",titleShowWidth"+titleShowWidth);
             if (titleContentWidth>titleShowWidth && titleShowWidth>30){ // 显示区域大于30时，才是展开状态。
                 _pheader.find(".panel-title").width(titleShowWidth);
+                opts.titleShowWidth = titleShowWidth;
                 _pheader.tooltip({
                     content:'',
                     style:null,
@@ -92,7 +96,7 @@
                 }
             }
         }
-        _ellipsizeTitle(_pheader);        
+        _ellipsizeTitle(_pheader,opts);        
         if (!isNaN(opts.height)) {
             _1e6._outerHeight(opts.height);
             _pbody._outerHeight(_1e6.height() - _pheader._outerHeight());
@@ -304,7 +308,7 @@
             opts.maximized = true;
         }
         if (opts.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(opts,window,true,_201);}
-        _ellipsizeTitle(_203.children("div.panel-header"));
+        _ellipsizeTitle(_203.children("div.panel-header"),opts);
         opts.onOpen.call(_201);
         if (opts.maximized == true) {
             opts.maximized = false;
@@ -474,7 +478,7 @@
     function _220(_221, _222) {
         $.data(_221, "panel").options.title = _222;
         $(_221).panel("header").find("div.panel-title").html(  $.data(_221, "panel").options.notTrans?_222:$.hisui.getTrans(_222)  ); //add trans //up20230906 judge notTrans
-        _ellipsizeTitle($(_221).panel("header"));
+        _ellipsizeTitle($(_221).panel("header"),$.data(_221, "panel").options);
     };
     var TO = false;
     var _223 = true;
@@ -605,6 +609,7 @@
     };
     $.fn.panel.defaults = {
         isTopZindex:false, //by wanghc 2018-6-21
+        titleShowWidth:0, // title能显示的宽度
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
             var opts = $(this).panel("options");
             if (!opts.href) {

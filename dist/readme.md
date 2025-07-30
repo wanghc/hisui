@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-07-30
+- :sparkles: `panel`内容超出时提示功能优化 [6012372]
+
 ## 2025-07-29
 - :sparkles: 树下的表格显示无数据图片问题 [6035708]
 - :sparkles: `tree`与`combobox`增加queryParams参数 [6014510]
