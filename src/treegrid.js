@@ -290,6 +290,29 @@
 			$("<tr class=\"treegrid-tr-tree\">" + "<td style=\"border:0px\" colspan=\"" + _4e + "\">" + "<div></div>" + "</td>" + "</tr>").insertAfter(tr);
 		};
     };
+	/**
+	 * 重新计算偶数行样式
+	 * @param {Document} target 
+	 */
+	function _recalcRowAltStyle(target) {
+		var state = $.data(target, "treegrid");
+		var opt = state.options;
+		if (opt.striped){
+			state.dc.body1.find("tr.datagrid-row").filter(':visible').each(function (i) {
+				$(this).removeClass("datagrid-row-alt");
+				if (i%2){
+					$(this).addClass("datagrid-row-alt");
+				}			
+			});
+			state.dc.body2.find("tr.datagrid-row").filter(':visible').each(function (i) {
+				$(this).removeClass("datagrid-row-alt");
+				if (i%2){
+					$(this).addClass("datagrid-row-alt");
+				}			
+			});
+		}
+
+	};
     ///cryze 2018-4-23 add 
     //同步checkedRows  删除子节点元素 要把checkedRows中的删掉
     function syncCheckedRows(el,pJq){
@@ -464,7 +487,7 @@
 		});
 		return _7d;
 	};
-	function _7f(_80, _81) {
+	function _collapse(_80, _81) {
 		var _82 = $.data(_80, "treegrid").options;
 		var row = _30(_80, _81);
 		var tr = _82.finder.getTr(_80, _81);
@@ -495,8 +518,9 @@
 			_16(_80, _81);
 			_82.onCollapse.call(_80, row);
 		}
+		_recalcRowAltStyle(_80);
 	};
-	function _83(_84, _85) {
+	function _expand(_84, _85) {
         //console.log("这个方法耗时啊"+new Date());  //cryze 2018-3-27
 		var _86 = $.data(_84, "treegrid").options;
 		var tr = _86.finder.getTr(_84, _85);
@@ -532,6 +556,7 @@
 				}
 			});
 		}
+		_recalcRowAltStyle(_84);
 		function _88(cc) {
 			row.state = "open";
 			if (_86.animate) {
@@ -553,9 +578,9 @@
 		var tr = _8c.finder.getTr(_8a, _8b);
 		var hit = tr.find("span.tree-hit");
 		if (hit.hasClass("tree-expanded")) {
-			_7f(_8a, _8b);
+			_collapse(_8a, _8b);
 		} else {
-			_83(_8a, _8b);
+			_expand(_8a, _8b);
 		}
 	};
 	function _8d(_8e, _8f) {
@@ -565,7 +590,7 @@
 			_91.unshift(_30(_8e, _8f));
 		}
 		for (var i = 0; i < _91.length; i++) {
-			_7f(_8e, _91[i][_90.idField]);
+			_collapse(_8e, _91[i][_90.idField]);
 		}
 	};
 	function _92(_93, _94) {
@@ -575,7 +600,7 @@
 			_96.unshift(_30(_93, _94));
 		}
 		for (var i = 0; i < _96.length; i++) {
-			_83(_93, _96[i][_95.idField]);
+			_expand(_93, _96[i][_95.idField]);
 		}
 	};
 	function _97(_98, _99) {
@@ -588,7 +613,7 @@
 			p = _3f(_98, id);
 		}
 		for (var i = 0; i < ids.length; i++) {
-			_83(_98, ids[i]);
+			_expand(_98, ids[i]);
 		}
 	};
 	function _9b(_9c, _9d) {
@@ -811,7 +836,7 @@
                     tr.next("tr.treegrid-tr-tree").remove();
                     
 					tr.find("span.tree-hit").removeClass("tree-expanded tree-expanded-hover").addClass("tree-collapsed");
-					_83(this, _ce.id);
+					_expand(this, _ce.id);
 				} else {
 					_15(this, null, _ce);
 				}
@@ -876,12 +901,12 @@
 		},
 		collapse : function (jq, id) {
 			return jq.each(function () {
-				_7f(this, id);
+				_collapse(this, id);
 			});
 		},
 		expand : function (jq, id) {
 			return jq.each(function () {
-				_83(this, id);
+				_expand(this, id);
 			});
 		},
 		toggle : function (jq, id) {
@@ -1048,6 +1073,7 @@
 					var _e6 = _e7.call(this, _e1, this.treeLevel, this.treeNodes);
 					$(_e0).append(_e6.join(""));
 					$(_e0).closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');  // 有数据标志
+					_recalcRowAltStyle(_df);
 				}else{
 					$(_e0).closest('.datagrid-body').removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
 				}
