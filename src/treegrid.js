@@ -688,9 +688,10 @@
 		});
 		$(_af).treegrid("showLines");
 	};
-	function _b4(_b5) {
+	function _showLines(_b5) {
 		var t = $(_b5);
 		var _b6 = t.treegrid("options");
+		_recalcRowAltStyle(_b5);
 		if (_b6.lines) {
 			t.treegrid("getPanel").addClass("tree-lines");
 		} else {
@@ -709,6 +710,7 @@
 		}
 		_b9(_b7);
 		_ba(_b7);
+		
 		function _b9(_bb) {
 			$.map(_bb, function (_bc) {
 				if (_bc.children && _bc.children.length) {
@@ -987,7 +989,7 @@
 		},
 		showLines : function (jq) {
 			return jq.each(function () {
-				_b4(this);
+				_showLines(this);
 			});
 		},
 		setSelectionState : function (jq) {
@@ -1073,7 +1075,6 @@
 					var _e6 = _e7.call(this, _e1, this.treeLevel, this.treeNodes);
 					$(_e0).append(_e6.join(""));
 					$(_e0).closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');  // 有数据标志
-					_recalcRowAltStyle(_df);
 				}else{
 					$(_e0).closest('.datagrid-body').removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
 				}
