@@ -239,6 +239,7 @@
                 // 
                 // pagingbar出现换行 + 30
                 var paddingPanelHeight = 36 + 18; // datagrid-header的高度
+                paddingPanelHeight += 18; // 再增加横向滚动条高度
                 var v2body = grd.datagrid('getPanel').find('.datagrid-view2 .datagrid-body');
                 if (v2body.length > 0 && v2body[0].scrollWidth != v2body[0].clientWidth) {
                     paddingPanelHeight += 18;  // 出现横向滚动条+16 
