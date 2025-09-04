@@ -27,10 +27,13 @@
         _842.insertAfter(_83f);
     };
     function init(_847) {
+        var status = $.data(_847, "combo");
+        var opts = status.options;
         $(_847).addClass("combo-f").hide();
         var span = $("<span class=\"combo\">" + "<input type=\"text\" class=\"combo-text\" autocomplete=\"off\">" + "<span><span class=\"combo-arrow\"></span></span>" + "<input type=\"hidden\" class=\"combo-value\">" + "</span>").insertAfter(_847);
         var _848 = $("<div class=\"combo-panel\"></div>").appendTo("body");
         _848.panel({
+            maxHeight: opts.panelMaxHeight||"",
             doSize: false, closed: true, cls: "combo-p", style: { position: "absolute", zIndex: 10 }, onOpen: function () {
                 var p = $(this).panel("panel");
                 if ($.fn.menu) {
@@ -416,8 +419,11 @@
             if (_893) {
                 $.extend(_893.options, _88f);
             } else {
+                _893 = $.data(this, "combo", { options: $.extend({}, $.fn.combo.defaults, $.fn.combo.parseOptions(this), _88f), previousValue: null });
                 var r = init(this);
-                _893 = $.data(this, "combo", { options: $.extend({}, $.fn.combo.defaults, $.fn.combo.parseOptions(this), _88f), combo: r.combo, panel: r.panel, previousValue: null });
+                _893.combo = r.combo;
+                _893.panel = r.panel;
+                // $.data(this,"combo",{combo: r.combo, panel: r.panel});
                 $(this).removeAttr("disabled");
             }
             _84a(this);
@@ -503,10 +509,11 @@
     };
     $.fn.combo.parseOptions = function (_898) {
         var t = $(_898);
-        return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["blurValidValue","width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
+        return $.extend({}, $.fn.validatebox.parseOptions(_898), $.parser.parseOptions(_898, ["blurValidValue","width", "height", "separator", "panelAlign", { panelWidth: "number", editable: "boolean", hasDownArrow: "boolean", delay: "number", selectOnNavigation: "boolean",panelMaxHeight:"number" }]), { panelHeight: (t.attr("panelHeight") == "auto" ? "auto" : parseInt(t.attr("panelHeight")) || undefined), multiple: (t.attr("multiple") ? true : undefined), disabled: (t.attr("disabled") ? true : undefined), readonly: (t.attr("readonly") ? true : undefined), value: (t.val() || undefined) });
     };
     
     $.fn.combo.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        panelMaxHeight:null,
         blurValidValue:false, /*2018-12-26 wanghc blur时验证组件是否有值,无则清空输入框*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
         enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19, keyHandler: {

@@ -103,6 +103,21 @@
         } else {
             _pbody.height("auto");
         }
+        // === 新增：处理 maxHeight ===
+        if (opts.maxHeight != null) {
+            var bodyHeight = _1e6.height() - _pheader._outerHeight();
+            var maxHeight = $.parser.parseValue("height", opts.maxHeight, $(_1e6).parent());
+            if (bodyHeight > maxHeight) {
+                bodyHeight = maxHeight;
+                _pbody._outerHeight(maxHeight);
+            }
+            _pbody.css('maxHeight', maxHeight + 'px');
+            // _pbody.css('overflowY', 'auto'); // 超出时显示滚动条
+        } else {
+            _pbody.css('maxHeight', ''); // 清除限制
+            // _pbody.css('overflowY', '');  // 恢复默认
+        }
+        // 清空内联 height，避免干扰后续的 fit 或 resize
         _1e6.css("height", "");
         opts.onResize.apply(_1e4, [opts.width, opts.height]);
         /*wanghc 2019-11-10 增加each . 否则只触发find->[0]对应的事件*/
@@ -605,9 +620,10 @@
     };
     $.fn.panel.parseOptions = function (_231) {
         var t = $(_231);
-        return $.extend({}, $.parser.parseOptions(_231, ["id", "width", "height", "left", "top", "title","titleWidth", "iconCls", "cls", "headerCls", "bodyCls", "tools", "href", "method", { cache: "boolean", fit: "boolean", border: "boolean", noheader: "boolean" }, { collapsible: "boolean", minimizable: "boolean", maximizable: "boolean" }, { closable: "boolean", collapsed: "boolean", minimized: "boolean", maximized: "boolean", closed: "boolean" }]), { loadingMessage: (t.attr("loadingMessage") != undefined ? t.attr("loadingMessage") : undefined) });
+        return $.extend({}, $.parser.parseOptions(_231, ["id", "width", "height", "left", "top", "title","titleWidth", "iconCls", "cls", "headerCls", "bodyCls", "tools", "href", "method", { cache: "boolean", fit: "boolean", border: "boolean", noheader: "boolean" ,maxHeight:'number'}, { collapsible: "boolean", minimizable: "boolean", maximizable: "boolean" }, { closable: "boolean", collapsed: "boolean", minimized: "boolean", maximized: "boolean", closed: "boolean" }]), { loadingMessage: (t.attr("loadingMessage") != undefined ? t.attr("loadingMessage") : undefined) });
     };
     $.fn.panel.defaults = {
+        maxHeight:null,
         isTopZindex:false, //by wanghc 2018-6-21
         titleShowWidth:0, // title能显示的宽度
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
