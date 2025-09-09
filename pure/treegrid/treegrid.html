@@ -35,7 +35,7 @@
 		<div class="hisui-layout" style="width:700px;height:500px;" >
 			<div region='center' data-options="border:false">
 				<table title="菜单管理" class='hisui-treegrid' id="treegrid2"
-					data-options="fit:true,idField:'id',headerCls:'panel-header-gray',iconCls:'icon-panel-brand',striped:false,treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,checkOnSelect: false, selectOnCheck: false,toolbar:[{
+					data-options="fit:true,idField:'id',headerCls:'panel-header-gray',iconCls:'icon-panel-brand',striped:true,treeField:'menuName',rownumbers:true,autoSizeColumn:false,checkbox:true,checkOnSelect: false, selectOnCheck: false,toolbar:[{
 						iconCls: 'icon-paper-table',text:'获得所有选中',
 						handler: function(){
 							var o = $('#treegrid2').treegrid('getCheckedNodes','checked');
@@ -183,8 +183,7 @@ $(function(){
 			showFooter: true,
 			idField: 'id',
 			treeField: 'region',
-			iconCls:'icon-panel-brand',striped:false
-		">
+			iconCls:'icon-panel-brand',striped:true">
 			<thead frozen="true">
 				<tr>
 					<th field="region" width="200">地区</th>
