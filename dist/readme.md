@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-09-09
+- 修改`switchbox`样式,最大宽度修改成51px [5629549]
+
 ## 2025-09-04
 - `combo`组件增加`panelMaxHeight`属性 [6132370]
 
