@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-09-11
+- 处理`datagrid-toolbar`内的`filebox`组件按钮位置偏移问题 [6089231]
+
 ## 2025-09-09
 - 修改`switchbox`样式,最大宽度修改成51px [5629549]
 
