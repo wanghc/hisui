@@ -23,10 +23,10 @@
 		/*td[field="desc"] div.datagrid-cell {
 			white-space: normal;
 		}*/
-		td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
-			text-overflow: ellipsis; /*2018-12-4 showTip*/
+		/* td[field="desc"] div.datagrid-cell, .datagrid-cell-group{
+			text-overflow: ellipsis;
 			padding: 0 8px;
-		}
+		} */
 	</style>
 </head>
 
@@ -273,7 +273,9 @@
 						
 						{field:'name',title:'描述',width:60,showTip:true,tipWidth:100,tipPosition:"right"},
 						{field:'price',title:'价格',width:60,align:'right'},
-						{field:'desc',title:'说明',width:332,showTip:true,tipWidth:450,tipTrackMouse:true} /*,formatter:function(value,row,index){
+						{field:'desc',title:'说明',width:332,showTip:true,tipWidth:450,tipTrackMouse:true,styler: function(value,row,index){
+								return 'text-overflow:ellipsis;';							
+						}} /*,formatter:function(value,row,index){
 							if (value) return '<span class="mytooltip" title="'+value+'">'+value+'</span>'
 						}*/
 					]],
