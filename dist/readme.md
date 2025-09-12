@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-09-12
+- :lipstick: 纯净版本`radio`与`checkbox`样式修改 [6093300]
+
 ## 2025-09-11
 - 处理`datagrid-toolbar`内的`filebox`组件按钮位置偏移问题 [6089231]
 

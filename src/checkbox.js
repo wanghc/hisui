@@ -65,7 +65,7 @@
             opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
             t.addClass('checkbox-f');                //在原dom增加类checkbox-f
             var inputCls = target.className.replace('hisui-checkbox','').replace('checkbox-f','') ;
-            var labelHtml = '<label class="checkbox '+inputCls;
+            var labelHtml = '<label for="'+opts.id+'" class="checkbox '+inputCls;
             if (opts.boxPosition=="right"){labelHtml +=' right';}
             if (opts.disabled){labelHtml += ' disabled'; }
             if (opts.checked){labelHtml += ' checked'; }
