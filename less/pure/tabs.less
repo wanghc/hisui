@@ -473,7 +473,9 @@
 .tabs-title {
   font-size: 16px;
 }
-
+.tabs-brand .tabs-title{
+  font-size: 18px;
+}
 .tabs-header-bottom .tabs li a.tabs-inner {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -905,9 +907,6 @@
 
 .tabs-keywords .tabs{
   li{
-    .tabs-title{
-      font-size: 16px;
-    }
     a.tabs-inner{
       color:@tabs-keywords-color;
       &:hover{
@@ -1005,9 +1004,6 @@
   border-bottom-color:#e4e4e4 ;
   li{
     overflow: hidden;
-    .tabs-title{
-      font-size: 16px;
-    }
     a.tabs-inner{
       color:@tabs-text-color;
     }
@@ -1156,13 +1152,6 @@
   color: #939393;
 }
 
-.tabs-right-left{
-  li {
-    .tabs-title{
-      font-size: 16px;
-    }
-  }
-}
 .tabs-container .tabs li.tabs-brand{
   margin-right: 0px;
 }
@@ -1170,4 +1159,10 @@
   content:"|";
   color:#E3E3E3;
   margin-left:15px;
+}
+.tabs-header-left .tabs-brand .tabs-inner::after{
+  content:" ";
+}
+.tabs-header-right .tabs-brand .tabs-inner::after{
+  content:" ";
 }

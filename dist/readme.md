@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 - :lipstick: 纯净版本`radio`与`checkbox`样式修改 [6093300]
 - :lipstick: 纯净版泡芙提示标题样式修改 [6102133]
 - :sparkles: 纯净版表格内容上下间距修改成7px [6083733]
+- :lipstick: `tabs`与`panel`样式修改 [6052224]
 
 ## 2025-09-11
 - 处理`datagrid-toolbar`内的`filebox`组件按钮位置偏移问题 [6089231]
