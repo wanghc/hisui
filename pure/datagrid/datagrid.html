@@ -427,6 +427,7 @@
 		</script>
 	</div>
 	<h3>七、行高适应示例(nowrap为false实现, false时性能下降)</h3>
+	配置<code>bodyCls:'datagrid-body-padding7'</code>可以为行上添加内边距
 	<div class="demo-exp-code entry-content"> 
 		<table id="mytable7"></table>
 		<script type="text/javascript" class="use-prettyprint hide lang-js">
@@ -435,6 +436,7 @@
 					autoSizeColumn:false,
 					fitColumns:true,idField:'id',
 					headerCls:'panel-header-gray',
+					bodyCls:'datagrid-body-padding7',
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',
 					toolbar:[],
@@ -470,6 +472,7 @@
 					autoSizeColumn:false,
 					fitColumns:true,idField:'id',
 					headerCls:'panel-header-gray',
+					bodyCls:'datagrid-body-padding7',
 					rownumbers:true,width:650,height:200,
 					title:'属性列表',titleNoWrap:false,/*表头自动折行*/
 					striped:true,iconCls:'icon-panel-brand',
@@ -480,7 +483,7 @@
 						{field:'ck',title:'sel',checkbox:true},
 						{field:'name',title:'属性名',width:100},
 						{field:'type',title:'类型',width:100},
-						{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}  /*列上设置字体大小*/
+						{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}
 					]],
 					data:{
 						rows:[
@@ -504,7 +507,7 @@
 					$HUI.datagrid('#mytable10',{
 						autoSizeColumn:false,
 						fitColumns:true,idField:'id',
-						bodyCls:'table-splitline-btm-hidden',
+						bodyCls:'table-splitline-btm-hidden datagrid-body-padding7',
 						headerCls:'datagrid-header-blue',
 						rownumbers:true,width:650,height:300,
 						title:'属性列表',titleNoWrap:false,/*表头自动折行*/

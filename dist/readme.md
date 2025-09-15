@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-09-15
+- :sparkles: 纯净版本表格默认上下间距还原成0,增加`datagrid-body-padding7`样式 [6083733]
+
 ## 2025-09-12
 - :lipstick: 纯净版本`radio`与`checkbox`样式修改 [6093300]
 - :lipstick: 纯净版泡芙提示标题样式修改 [6102133]
