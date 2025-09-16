@@ -70,7 +70,7 @@
             opts.originalValue = t.prop("checked");   //将初始状态值记录下来 cryze 2019-04-04
             var optRequiredSel = opts.requiredSel;
             t.addClass('radio-f');                //在原dom增加类radio-f
-            var labelHtml = '<label for="'+opts.id+'" class="radio';
+            var labelHtml = '<label class="radio'; // 增加for="'+opts.id+'"后，同一界面有相同id时，导致只有最后面一个id元素可以点击
             if (opts.boxPosition=="right"){labelHtml +=' right';}
             if (opts.radioClass){ labelHtml+=" hischeckbox_square-blue";}
             if (opts.disabled){ labelHtml += ' disabled';}
