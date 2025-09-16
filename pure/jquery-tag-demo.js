@@ -42,7 +42,10 @@
         }else{
             sel=$(sel);
         };
-        sel.addClass('hide prettyprint linenums').html("<code>"+h+"</code>");
+        if (!$(this).hasClass('open')){
+            sel.addClass('hide');
+        }
+        sel.addClass('prettyprint linenums').html("<code>"+h+"</code>");
     });
     $("pre.prettyprint").addClass("linenums");
     $("pre.prettyprint").each(function(e){
@@ -107,6 +110,9 @@ $(function(){
             _t.text("+显示"+_t.text().slice(3))
         }
     });
+    setTimeout(function(){
+        prettyPrint();
+    },500);
     $(".plain-anchor").linkbutton({
         plain:true
     }).click(function(){
