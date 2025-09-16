@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-19-16
+- :sparkles: `datagrid`的列属性`showTip`为true时,非空内容(trim)才弹出提示层 [6203451]
+
 ## 2025-09-15
 - :sparkles: 纯净版本表格默认上下间距还原成0,增加`datagrid-body-padding7`样式 [6083733]
 

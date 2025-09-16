@@ -794,6 +794,7 @@
                                     var row = opts.finder.getRow(_55a, rowIndex);
                                     tipCtt = cm[i][j].showTipFormatter.call(this, row, rowIndex);
                                 }
+                                tipCtt = $.trim(tipCtt);
                                 var tipWidth = cm[i][j].tipWidth||350;
                                 var tipPosition = cm[i][j].tipPosition||"bottom";
                                 var tipTrackMouse = cm[i][j].tipTrackMouse || false;
