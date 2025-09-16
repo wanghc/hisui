@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-19-16
 - :sparkles: `datagrid`的列属性`showTip`为true时,非空内容(trim)才弹出提示层 [6203451]
+- :lipstick: 纯净版页签标题与页签之间增加竖线分割样式修改 [5799094]
 
 ## 2025-09-15
 - :sparkles: 纯净版本表格默认上下间距还原成0,增加`datagrid-body-padding7`样式 [6083733]
