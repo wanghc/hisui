@@ -1,0 +1,118 @@
+/*common css*/
+.vstep-container {
+	font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Wenquanyi Micro Hei","Microsoft Yahei",Arial,sans-serif;
+    display: inline-block;
+    position: relative;
+	color: #939393;
+	height: 700px;
+	font-size: 18px;
+	ul.vstep-container-steps{
+		list-style: none;
+		position: absolute;
+		top: 2px;
+		z-index: 10;
+		li{
+			font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+			font-size: 14px;
+			font-weight: bold;
+			height: 85px;
+			*{
+				float: left;
+				margin: 5px 5px 0 0px;
+			}
+			.cnode{
+				background-image: url('@{images-path}/hstep.png');
+				background-repeat: no-repeat;
+				width: 20px;
+				height: 14px;
+				margin: 10px 0px 0px 10px;
+				text-align: center;
+				font-size: 12px;
+				cursor: pointer;
+				background-color: #ffffff;
+			}
+			.title{
+				margin-right: 20px;
+				margin-left:9px; /*[5915528]*/
+			}
+			&.done{
+				color: #666666; //[2941768]
+				.cnode{
+					background-position: 0px -60px;
+					background-color: #ffffff;
+				}	
+				.cntt{
+					color: #939393;
+				}
+			}
+			&.undone{
+				color: #939393; //[2941768]
+				.cnode{
+					background-position: 0px -80px;
+					background-color: #ffffff;
+				}
+				.cntt{
+					color: #939393;
+				}
+			}
+			&.active{
+				color: @main-font-color;
+				background-color: transparent;
+				.cnode{
+					
+					background-position: 0px -43px;
+					
+				}
+				.cntt {
+					color: #939393;
+				}
+			}
+			// &.hover{
+			// 	color:#339EFF;
+			// 	.cnode{
+			// 		margin-top: 6px;
+			// 		background-position: 0px -100px;
+			// 		margin-bottom: 4px;
+			// 	}
+			// 	.cntt{
+			// 		color:#339EFF;
+			// 	}
+			// }
+		}
+	}	
+	.vstep-progress-highlight{
+		background: #008fff;
+	}
+	.vstep-progress {
+		width: 2px;
+		height: 400px;
+		position: absolute;
+		top: 20px;
+		left: 17px;
+		float: left;
+		margin-right: 10px;
+		overflow: hidden;
+		.vstep-progress-bar {
+			width: 20px;
+			height: 400px;
+			background: #cccccc;
+			display: inline-block;
+			.vstep-progress-highlight {
+				height: 20px;
+				display: block;
+			}
+		}
+	}
+}
+.vstep-container ul,.vstep-container li,.vstep-container p {
+	margin: 0;
+	padding: 0;
+}
+.vstep-container .cnode::before{
+	content: ' ';
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin-top: -4px;
+    background-color: #fff;
+}

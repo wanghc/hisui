@@ -1,0 +1,136 @@
+@import "variables.less";
+
+.combo-arrow {
+  overflow: hidden;
+  vertical-align: top;
+}
+.combo-panel {
+  overflow: auto;
+  background-color: @combo-bgcolor;
+  .datagrid{
+    border-radius: 0;
+  }
+  .panel .panel-body.panel-body-noborder{
+    border-radius: 0;
+  }
+  .tree-icon{
+    margin-top:8px;
+  }
+}
+
+.combo-arrow-hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100);
+  background-color: #eaf2ff;
+}
+
+.combotree-f + .combo .combo-arrow::before {
+  content: "\f496";
+}
+
+.combo {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+  border-radius: @input-border-radius;
+  border-color: @input-border-color;
+  background-color: #FFF;
+  .combo-text {
+    font-size: @combo-font-size;
+    border:0; //px solid transparent;
+    line-height: 32px;
+    height: 32px;
+    padding: 0px 0px 0px @combo-padding-left;
+    *height:  @combo-input-line-height-ie8;
+    *line-height:  @combo-input-line-height-ie8;
+    _height: @combo-input-line-height-ie8;
+    _line-height: @combo-input-line-height-ie8;
+    vertical-align: baseline;
+  }
+  .combo-arrow:hover{
+    color: #008FFF;
+  }
+  .combo-arrow::before{
+    content: "\f624";
+    font-size: 14px;
+  }
+  &.combo-p-active.combo-p-bottom{
+    border-radius: @input-border-radius @input-border-radius 0 0 ;
+  }
+  &.combo-p-active.combo-p-top{
+    border-radius: 0 0 @input-border-radius @input-border-radius;
+  }
+  &.combo-p-active{
+    border-color: @input-active-border-color;
+    background-color: @input-active-bgcolor;
+    .combo-text{
+      background-color: @input-active-bgcolor;
+    }
+    .combo-arrow{
+      color:#008FFF;
+    }
+  }
+  &:hover,&.combo-hover{
+    border-color: @input-active-border-color;
+    background-color: @input-active-bgcolor;
+  }
+  &.disabled{
+    border-color: @main-disabled-border-color;
+    .combo-arrow{
+      background-color: @main-disabled-bgcolor;
+      color: @input-iconbtn-disabled-color;
+    }
+  }
+}
+
+/* focus-widthin--ie11也没支持，chrome可以
+.combo:focus-within{
+  border-color: @input-border-focus-color;
+}*/
+.combo-arrow.combo-arrow-hover {
+  opacity: @input-arrow-hover-opacity;
+  filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+  background-color: @input-arrow-hover-bgcolor;
+  color: @input-active-border-color;
+  ::before{
+    color: #008FFF;
+  }
+}
+
+.panel.combo-p > .combo-panel{
+  border-color: @combo-panel-border-color;
+}
+
+.panel.combo-p{
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+  &.combo-p-top{
+    border-radius: @input-border-radius @input-border-radius 0 0;
+    .combo-panel{
+      border-radius: @input-border-radius @input-border-radius 0 0;
+    }
+  }
+  &.combo-p-bottom{
+    border-radius: 0 0 @input-border-radius @input-border-radius;
+    .combo-panel{
+      border-radius: 0 0 @input-border-radius @input-border-radius;
+    }
+  }
+}
+/*新加样式*/
+.combo-invalid{
+  border-color:red;
+}
+/*老项目可能有人手动清空validatebox-invalid样式, 样式最好在validatebox-invalid上修改, 尽量不在combo-invalid上写*/
+.validatebox-invalid+span .combo-arrow{ 
+  background-color: #ffe9e9;
+}
+.combo-panel {
+  .tree-expanded{
+    margin-top: 8px;
+  }
+}

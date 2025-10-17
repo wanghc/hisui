@@ -95,7 +95,7 @@ gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-c
     .pipe(rename('hisui.min.css'))      //命名
     .pipe(gulp.dest("dist/css"));
 });
-['lite','lightblue','pure'].forEach((value,index)=>{
+['lite','lightblue','pure','vben'].forEach((value,index)=>{
     gulp.task(`min-css-${value}`,()=>{
         var lessPath = `less/${value}/`;
         var arr =[].concat(lessArr,['beautyscroll']);

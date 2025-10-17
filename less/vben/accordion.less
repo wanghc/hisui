@@ -1,0 +1,130 @@
+@import "variables.less";
+.accordion {
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+}
+.accordion .accordion-header {
+  border-width: 0 0 1px;
+  cursor: pointer;
+}
+.accordion .accordion-body {
+  border-width: 0 0 1px;
+}
+.accordion-noborder {
+  border-width: 0;
+}
+.accordion-noborder .accordion-header {
+  border-width: 0 0 1px;
+}
+.accordion-noborder .accordion-body {
+  border-width: 0 0 1px;
+}
+.accordion-collapse {
+  background: url('images/accordion_arrows.png') no-repeat 0 0;
+}
+.accordion-expand {
+  background: url('images/accordion_arrows.png') no-repeat -16px 0;
+}
+.accordion {
+  background: #f1f7fe;
+  border-color: #95B8E7;
+}
+.accordion .accordion-header {
+  background: #E0ECFF;
+  filter: none;
+}
+.accordion .accordion-header-selected {
+  background: #ffe48d;
+}
+.accordion .accordion-header-selected .panel-title {
+  color: #000000;
+}
+.accordion .accordion-header-selected {
+  background: @accordion-header-select-bgcolor;
+}
+.accordion .accordion-header-selected .panel-title {
+  color: @accordion-title-font-color;
+}
+.accordion {
+  border-radius: 6px;
+  &.accordion-noborder .panel:first-child .accordion-header{
+    border-radius: 4px 4px 0 0;
+  }
+  &.accordion-noborder .panel:last-child .accordion-header.accordion-header-selected{
+    border-radius: 0;
+    border-bottom: 0px
+  }
+  /* 展开时使用body的下边框, 收起时使用header的下边框*/
+  &.accordion-noborder .panel:last-child .accordion-body,&.accordion-noborder .panel:last-child .accordion-header{
+    border-radius: 0 0 4px 4px;
+    border-bottom: 1px solid @accordion-body-border; /* 奇怪这一像素不能显示*/
+  }
+  .accordion-body {
+    border-radius:0;
+    border: 1px solid @accordion-body-border;
+    border-bottom: 0px;
+    background-color: @accordion-body-bgcolor;
+    color: @accordion-body-color;
+  }
+  .accordion-header{
+    padding: 0px 5px !important;
+    height: 43px !important;
+    border-radius:0;
+    padding: 6px;
+    border: 1px @accordion-body-border solid;
+    border-bottom: 0px;
+    background: @accordion-header-bgcolor;
+    filter: none;
+    .panel-title{
+      font-size: 16px;
+      margin-left: 4px;
+      padding-left: 5px;
+      height: 44px;
+      color: @accordion-title-font-color;
+      font-weight: bold;
+    }
+    // .panel-with-icon{  //20230118 手风琴默认不带图标
+    //   padding-left: 31px;
+    // }
+    .panel-icon{
+      left: 10px;
+    }
+    .panel-tool{
+      margin-top: -11px;
+      height: 28px;
+      right: 8px;
+      top:18px !important;
+      a {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+        vertical-align: middle;
+        margin: 0;
+        &:hover {
+          opacity: 1;
+          filter: alpha(opacity=100);
+          -moz-border-radius: 3px 3px 3px 3px;
+          -webkit-border-radius: 3px 3px 3px 3px;
+          border-radius: 3px 3px 3px 3px;
+          color:#939393;
+          background-color: #D7E9FF;
+        }
+      }
+      .accordion-collapse{
+       
+      }
+      .accordion-collapse::before {
+        content: @content-up;
+        color: @tabs-header-hover-font-color;
+        //background: url(images/accordion_arrows-black.png) no-repeat -22px 0;
+      }
+      .accordion-expand::before {
+        content: @content-down;
+        color: @tabs-header-hover-font-color;
+        //background: url(images/accordion_arrows-black.png) no-repeat 0 0;
+      }
+    }
+  }
+}

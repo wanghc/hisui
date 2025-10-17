@@ -1,0 +1,156 @@
+@import "variables.less";
+
+.filebox {
+  height: 30px !important;
+  position: relative;
+  border: 1px solid @input-border-color;
+  background-color: #fff;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  -moz-border-radius: @input-border-radius 0 0 @input-border-radius;
+  -webkit-border-radius: @input-border-radius 0 0 @input-border-radius;
+  border-radius: @input-border-radius @input-border-radius @input-border-radius @input-border-radius;
+  &.filebox-left{
+    -moz-border-radius: 0 @input-border-radius @input-border-radius 0;
+    -webkit-border-radius: 0 @input-border-radius @input-border-radius 0;
+    border-radius: @input-border-radius @input-border-radius @input-border-radius @input-border-radius;
+  }
+  &.disabled{
+    border-color:@main-disabled-border-color;
+    background-color: @main-disabled-bgcolor;
+    .filebox-text{
+      background-color: @main-disabled-bgcolor;
+      color: @input-disabled-color;
+    }
+  }
+  .filebox-button{
+    position: absolute;
+    border: 0px;
+    // top: -1px;
+    padding: 0;
+    vertical-align: top;
+    border-radius: 0 0 0 0;
+    color:#939393;
+    &:hover{
+      color: #008FFF;
+      .l-btn-text{
+        color:#008FFF;
+      }
+      .l-btn-icon{
+        color:#008FFF;
+      }
+    }
+    &.l-btn-disabled:hover{
+      color:@main-font-color;
+    }
+    .l-btn-text{
+      min-width: 0px;
+      padding-right: 5px;
+      color:@main-font-color;
+    }
+    .l-btn-icon{
+      color:#666;
+    }
+    &.l-btn-disabled{
+      .l-btn-left{
+        .l-btn-text{
+          color:#939393;
+        }
+      }
+    }
+
+  }
+  .filebox-button-right{
+    right: 0;
+    top: -1px;
+  }
+  .filebox-button-left{
+    left: 0;
+  }
+  .filebox-text{
+    border: 0;
+    margin: 0;
+    padding: 0 0 0 10px;
+    white-space: normal;
+    vertical-align: top;
+    outline-style: none;
+    resize: none;
+    color: @main-font-color;
+  }
+  .filebox-value {
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    left: -5000px;
+  }
+  &.filebox-plain{
+    &.filebox-no-txet{
+      .filebox-button{
+        .l-btn-icon-left{
+          .l-btn-text{
+            padding:0px !important;
+            width: 0px;
+          }
+          .l-btn-icon{
+            padding: 8px 6px !important;
+            margin-left: 0px !important;
+            background-image: none !important;
+            width: 16px!important;
+          }
+        }
+      }
+    }
+    .filebox-button { 
+      background-color: transparent;
+      .l-btn-icon-left{
+        .l-btn-text{
+          padding-right: 6px;
+          padding-left: 6px;
+          background:transparent;
+          &.l-btn-empty{
+            background-color: transparent;
+          }
+        }
+        .l-btn-icon{
+          background-color: transparent!important;
+          left: 13px;
+          padding-left: 0px;
+          position: relative;
+          margin-right: 12px;
+          margin-left: -100%;
+          background-repeat: no-repeat!important;
+          padding-right: 2px;
+          background-size: 1px 16px!important;
+          background-image: url(../css/images/pure/vline.png)!important;
+          background-position: 24px!important;
+          width: 24px;
+        }
+      }
+      &.l-btn-disabled{
+        .l-btn-text{
+          background: #f1f1f1;
+        }
+        .l-btn-icon {
+          background-color: transparent;
+          opacity: 1;
+          filter: alpha(opacity=100);
+          color:@input-iconbtn-disabled-color;
+        }
+      }
+    }
+  }
+}
+.filebox-label {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}

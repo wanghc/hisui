@@ -1,0 +1,677 @@
+@import "variables.less";
+
+/**蓝色根节点**/
+@menutree-blueroot-bgcolor:@panel-body-bgcolor;
+@menutree-blueroot-root-bgcolor:transparent;  
+@menutree-blueroot-node-hover-bgcolor:transparent;  
+/**蓝色标题 灰色根节点**/
+@menutree-title-bgcolor:@panel-header-bgcolor;
+@menutree-root-bgcolor:#f1f7fe;
+@menutree-root-hover-bgcolor:#f1f7fe;
+@menutree-node-hover-bgcolor:#e4f0fe;;
+@menutree-min-root-hover-bgcolor:#f1f7fe;
+@menutree-node-selected-bgcolor:#d7e9ff;
+@menutree-min-root-selected-bgcolor:#f1f7fe;
+@menutree-root-selected-bgcolor:#f1f7fe;
+@menutree-wrap-bgcolor:#f1f7fe;
+@menutree-min-wrap-bgcolor:#f1f7fe;
+@menutree-root-color:#000000;
+@menutree-node-color:@main-font-color;
+
+/*子树*/
+@menutree-sub-wrap-bgcolor:#ffffff;
+@menutree-sub-root-bgcolor:#ffffff;
+@menutree-sub-root-hover-bgcolor:@menutree-sub-root-bgcolor;
+@menutree-sub-root-selected-bgcolor:@menutree-sub-root-bgcolor;
+@menutree-sub-node-bgcolor:#ffffff;
+@menutree-sub-node-hover-bgcolor:@menutree-node-hover-bgcolor;
+@menutree-sub-node-selected-bgcolor:@menutree-node-selected-bgcolor;
+
+@menutree-collapse-wrap-bgcolor:#f1f7fe;
+
+
+
+@menutree-search-bg:url('images/pure/menutree.png') -1px center no-repeat;  /*0-32 中间为白色搜索图标*/
+@menutree-expanded-bg:url('images/pure/menutree.png') -176px center no-repeat; /* 176-192 向左折叠*/
+@menutree-collapsed-bg:url('images/pure/menutree.png') -192px center no-repeat; /* 192-208 向右展开*/
+@menutree-white-arrow-down:url('images/pure/menutree.png') -256px center no-repeat; /* 256-272 白色下箭头*/
+@menutree-white-arrow-up:url('images/pure/menutree.png') -272px center no-repeat; /* 272-288 白色上箭头*/
+@menutree-gray-arrow-down:url('images/pure/menutree.png') -112px center no-repeat; /* 112-128 灰色下箭头*/
+@menutree-gray-arrow-up:url('images/pure/menutree.png') -128px center no-repeat; /* 128-144 灰色上箭头*/
+@menutree-gray-little-arrow-right:url('images/pure/menutree.png') -144px center no-repeat; /* 144-160 小灰色右箭头*/
+@menutree-gray-little-arrow-down:url('images/pure/menutree.png') -160px center no-repeat; /* 160-176 小灰色上箭头*/
+
+@menutree-gray-thin-arrow-down:url('images/pure/menutree.png') -224px center no-repeat; /* 224-240 细的灰色下箭头*/
+@menutree-gray-thin-arrow-up:url('images/pure/menutree.png') -240px center no-repeat; /* 240-256 细的灰色上箭头*/
+@menutree-blue-little-arrow-right:url('images/pure/menutree.png') -64px center no-repeat; /* 64-80 小蓝色右箭头*/
+@menutree-blue-little-arrow-down:url('images/pure/menutree.png') -80px center no-repeat; /* 80-96 小蓝色上箭头*/
+
+.menutree-default-width{
+  width: 200px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: -100px;;
+}
+.menutree-default-min-width{
+  width: 44px;
+  height: 1px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: -100px;;
+}
+
+/*menutree*/
+.menutree {
+  .tree-folder{
+    background: none;
+  }
+  .tree-folder-open{
+    background: none;
+  }
+  .tree-file{
+    background: none;
+  }
+  .menutree-hidden{ /*用于控制元素的隐藏*/
+    display: none;
+  }
+
+  &>.panel-body {
+    border-radius: 0;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .menutree-collapse-wrap {
+    height: 44px;
+    position: relative;
+    line-height: 44px;
+    background-color: @menutree-collapse-wrap-bgcolor;
+    border: 0;
+    border-radius: 0 0 6px 6px ;
+
+    .menutree-tree-title{  //放到收起按钮的左边
+      display: block;
+      margin: 0px;
+      font-size: 14px;
+      color: #939393;
+      padding:8px 44px 8px 15px;
+      overflow: hidden;
+      height: 44px;
+      line-height: 28px;
+      background-color: transparent;
+
+    }
+
+    .menutree-collapse {
+      width: 28px;
+      height: 28px;
+      display: inline-block;
+      text-align: center;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      cursor: pointer;
+      &:hover{
+        background-color: @menutree-node-selected-bgcolor;
+        border-radius: 6px;
+      }
+
+    }
+    .menutree-collapse.menutree-expanded::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin: 6px;
+      background: @menutree-expanded-bg;
+    }
+    .menutree-collapse.menutree-collapsed::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      margin: 6px;
+      background: @menutree-collapsed-bg;
+    }
+  }
+
+  .menutree-searchbox-wrap {
+    margin-bottom: 10px;
+    .searchbox-f{
+      border-color: transparent;
+    }
+    .searchbox{
+      border-color: transparent;
+      .searchbox-button{
+
+      }
+      .searchbox-button.searchbox-button-hover{
+
+      }
+    }
+  }
+
+  .menutree-tree-wrap {
+    border: 0px solid @panel-header-bdcolor;
+    border-radius: 6px;
+    background-color: #f1f7fe;
+    overflow: auto;
+    .menutree-tree.tree {
+      border: 0px solid @tree-border-color;
+
+      &>li {
+        &>.tree-node { /*第一层节点 根节点*/
+          height:44px;
+          background-color:#f1f7fe;
+          line-height: 44px;
+          position: relative;
+          font-weight: bold;
+          color: @menutree-root-color;
+          position: relative;
+          border-bottom: 1px solid @panel-header-bdcolor;
+
+          .tree-hit {
+            position: absolute;
+            height: 16px;
+            width: 16px;
+            top: 50%;
+            margin-top: -8px;
+            right: 10px;
+
+            &.tree-collapsed {
+              background: @menutree-gray-thin-arrow-down;
+            }
+
+            &.tree-expanded {
+              background: @menutree-gray-thin-arrow-up;
+            }
+
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.3);
+              -moz-border-radius: 2px;
+              -webkit-border-radius: 2px;
+              border-radius: 2px;
+            }
+          }
+
+          .tree-icon {
+            display: none;
+          }
+
+          .tree-title {
+            height: 44px;
+            line-height: 44px;
+            color: #000000;
+            padding: 0 34px 0 15px;
+            font-size: 16px;
+          }
+
+          &.tree-node-hover {
+            background-color: @menutree-blueroot-root-bgcolor;
+          }
+        }
+
+        &>ul {
+          background-color: transparent;
+          border-bottom: 1px solid @panel-header-bdcolor;
+
+          .tree-node {
+            padding-left: 1px;
+            height: 38px;
+            line-height: 38px;
+            position: relative;
+            margin: 0 15px;
+
+            &.tree-node-hover {
+              background-color:@menutree-node-hover-bgcolor;
+              .tree-title {
+                background: transparent;
+              }
+            }
+
+            &.tree-node-selected {
+              background-color: @menutree-node-selected-bgcolor;
+              .tree-title {
+                background: transparent;
+              }
+            }
+
+            .tree-hit {
+              width: 16px;
+              height: 16px;
+              margin-top: 9px;
+
+              &.tree-collapsed {
+                background: @menutree-gray-little-arrow-right;
+                &.tree-collapsed-hover {
+                  background: @menutree-blue-little-arrow-right;
+                }
+              }
+  
+              &.tree-expanded {
+                background: @menutree-gray-little-arrow-down;
+                &.tree-expanded-hover {
+                  background: @menutree-blue-little-arrow-down;
+                }
+              }
+
+            }
+
+            &.tree-node-selected,
+            &.tree-node-hover {
+              .tree-hit.tree-collapsed {
+                background: @menutree-blue-little-arrow-right;
+              }
+              .tree-hit.tree-expanded {
+                background: @menutree-blue-little-arrow-down;
+              }
+            }
+
+            .tree-indent {
+              width: 10px;
+              &.tree-indent-hit{
+                width: 15px;
+              }
+            }
+
+            &>span.tree-indent:first-child {
+              //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+              width: 0px;
+            }
+
+            .tree-icon {
+              display: none;
+            }
+
+            .tree-title {
+              height: 38px;
+              line-height: 38px;
+              color: @main-font-color;
+              padding: 0 10px 0 0;
+            }
+          }
+        }
+        &:last-child>ul{
+          border: 0;
+        }
+      }
+
+      .menutree-tip-count {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        width: auto;
+        padding-left: 5px;
+        padding-right: 5px;
+        height: 16px;
+        background-color: #80b2ff;
+        border-radius: 4px;
+        line-height: 16px;
+        text-align: center;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .tree-node-selected .menutree-tip-count,
+      .tree-node-hover .menutree-tip-count {
+        background-color: #80b2ff;
+        color: #ffffff;
+      }
+
+      .menutree-reg-word {
+        background-color: yellow;
+        color: #000;
+      }
+
+      .menutree-node-hidden {
+        display: none;
+      }
+      
+    }
+    .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+      padding-left: 4px;
+      margin: 0 15px;
+
+      .tree-indent.tree-indent-hit{
+        width: 5px;;
+      }
+    }
+
+    &.menutree-tree-norootcollapse{  //根节点不允许折叠的
+      .menutree-tree.tree { //
+        &>li>.tree-node {
+          .tree-hit.tree-expanded {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &.menutree-tree-collapsible{
+      border-radius: 6px 6px 0 0;  //可折叠 折叠在底部  此处底部不需要圆角
+      .menutree-tree.tree>li>ul .tree-node{ 
+        padding-left: 1px;
+      }
+      .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
+        padding-left: 4px;
+      }
+      .menutree-tree.tree>li>.tree-node{
+        .tree-icon{
+          display: inline-block;
+          height: 44px;
+          margin: 0;
+          width: 16px;
+          margin-left: 10px;
+          font-weight: normal;
+        }
+        .tree-title{
+          padding-left: 6px;
+        }
+      } 
+    }
+    &.menutree-tree-withtitle {  //有标题的
+      background-color: @menutree-min-wrap-bgcolor;
+      .menutree-tree-title {
+        display: none;
+      }
+    }
+    
+
+  }
+}
+
+
+
+
+.menutree.menutree-min {
+  &>.panel-body {
+    border-radius: 0;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .menutree-collapse-wrap {
+    .menutree-tree-title{  //收起按钮左边的title隐藏
+      display: none;
+    }
+  }
+
+  .menutree-searchbox-wrap {
+    display: block;
+    .searchbox{
+      display: none;
+    }
+
+    .menutree-searchbox-proxy {
+      width: 44px;
+      height: 32px;
+      border-radius: 6px;
+      background-color: #ffffff;
+      cursor: pointer;
+      text-align: center;
+      color: #666;
+      &::before{
+        font: normal normal normal 14px/1 Mw_mifonts;
+        content: "\f018";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        text-align: center;
+        margin-top: 8px;
+      }
+      &:hover{
+        color: #008FFF;
+      }
+    }
+  }
+  
+
+  .menutree-tree-wrap {
+    background-color: @menutree-min-wrap-bgcolor;
+    .menutree-tree.tree {
+      border: 0px;
+      &>li {
+        &>.tree-node { /*第一层节点 根节点*/
+          background-color: @menutree-min-wrap-bgcolor;
+          border: 0px;
+          .tree-hit {
+            &.tree-collapsed {
+              display: none;
+            }
+
+            &.tree-expanded {
+              display: none;
+            }
+          }
+          .tree-icon.tree-folder{
+            margin: 4px;
+            width: 36px;
+            height: 36px;
+            border-radius:6px;
+            text-align: center;
+            line-height: 36px;
+          }
+
+          .tree-title {
+            display: none;
+          }
+        }
+        &.menutree-root-hover>.tree-node { 
+          //background-color: @menutree-min-root-hover-bgcolor;
+          //color: #ffffff;
+          .tree-icon.tree-folder{
+            background-color: @menutree-node-hover-bgcolor!important;
+          }
+          &.tree-node-hover {
+            //background-color: @menutree-min-root-hover-bgcolor;
+            .tree-icon.tree-folder{
+              background-color: @menutree-node-hover-bgcolor!important;
+            }
+          }
+          &.tree-node-selected {
+            //background-color: @menutree-min-root-selected-bgcolor;
+            .tree-icon.tree-folder{
+              background-color: @menutree-node-selected-bgcolor!important;
+            }
+          }
+        }
+
+        &>ul {
+          background-color: @menutree-min-wrap-bgcolor;
+          position: absolute;
+          border: 0;
+          display: none!important;
+        }
+      }
+    }
+
+    &.menutree-tree-withtitle {  //有标题的
+      background-color: @menutree-min-wrap-bgcolor;
+      .menutree-tree-title {
+        display: none;
+      }
+
+      .menutree-tree.tree {
+        border: 0px;
+  
+        &>li {
+          &>.tree-node { /*第一层节点 根节点*/
+            background-color: @menutree-min-wrap-bgcolor;
+            border: 0px;
+            .tree-hit {
+              &.tree-collapsed {
+                display: none;
+              }
+  
+              &.tree-expanded {
+                display: none;
+              }
+            }
+            .tree-icon.tree-folder{
+              margin: 4px;
+              width: 36px;
+              height: 36px;
+              border-radius:6px;
+              text-align: center;
+              line-height: 36px;
+            }
+            .tree-title {
+              display: none;
+            }
+  
+            &.tree-node-hover {
+              //background-color:  @menutree-min-root-hover-bgcolor;
+              //color: #ffffff;
+              .tree-icon.tree-folder{
+                background-color: @menutree-node-hover-bgcolor!important;
+              }
+            }
+            &.tree-node-selected {
+              //background-color:  @menutree-min-root-selected-bgcolor;
+              //color: #ffffff;
+              .tree-icon.tree-folder{
+                background-color: @menutree-node-selected-bgcolor!important;
+              }
+            }
+
+            .tree-icon{
+              margin-left: 10px;
+            }
+
+          }
+  
+          &>ul {
+            border: 0px;
+            background-color: #ffffff;
+            display: none!important;
+            position: absolute;
+          }
+
+          &.menutree-root-hover>.tree-node { 
+            //background-color: @menutree-min-root-hover-bgcolor;
+            //color: #ffffff;
+            &.tree-node-hover {
+              background-color: @menutree-min-root-hover-bgcolor;
+            }
+            &.tree-node-selected {
+              background-color: @menutree-min-root-selected-bgcolor;
+            }
+          }
+        }
+        
+      }
+    }
+
+  }
+}
+
+
+/*折叠后 显示的子树*/
+.menutree.menutree-sp{
+  box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
+  &>.panel-body {
+    border-radius: 0;
+    background-color: transparent;
+    overflow: auto;
+  }
+  .menutree-tree-wrap{
+    background-color: @menutree-sub-wrap-bgcolor;
+      overflow: hidden;
+      .menutree-tree.tree {
+        &>li {
+          &>.tree-node { /*第一层节点 根节点*/
+            height:44px;
+            background-color:@menutree-sub-root-bgcolor;
+            line-height: 44px;
+            position: relative;
+            font-weight: normal;
+            color: @menutree-root-color;
+            position: relative;
+            border-bottom: 1px solid @panel-header-bdcolor;
+            font-weight: bold;
+  
+            .tree-hit {
+              &.tree-collapsed {
+                display: none
+              }
+  
+              &.tree-expanded {
+                display: none;
+              }
+            }
+  
+            .tree-title {
+              height: 44px;
+              line-height: 44px;
+              color: @menutree-root-color;
+              padding: 0 34px 0 10px;
+            }
+  
+            &.tree-node-hover {
+              background-color: @menutree-sub-root-hover-bgcolor;
+            }
+            &.tree-node-selected {
+              background-color: @menutree-sub-root-selected-bgcolor;
+            }
+          }
+          &>ul {
+            background-color: transparent;
+            border: 0px;
+  
+            .tree-indent {
+              width: 10px;
+              &.tree-indent-hit{
+                width: 16px;
+              }
+            }
+
+
+            &>span.tree-indent:first-child {
+              //把第一个tree-indent所占宽度去掉   发现如果不是叶子节点 会少生成一个tree-indent有一个.tree-hit
+              width: 0px;
+            }
+
+            .tree-node {
+              padding-left: 4px;
+              height: 38px;
+              line-height: 38px;
+              position: relative;
+              margin: 0 5px;
+  
+              &.tree-node-hover {
+                background-color:@menutree-sub-node-hover-bgcolor;                
+                .tree-title {
+                  background: transparent;
+                }
+              }
+  
+              &.tree-node-selected {
+                background-color:@menutree-sub-node-selected-bgcolor;
+                .tree-title {
+                  background: transparent;
+                }
+              }
+              .tree-title {
+                color: @menutree-node-color;
+              }
+            }
+          }
+          
+        }
+        .menutree-tip-count {
+          background-color: #80b2ff;
+          color: #ffffff;
+        }
+        .tree-node-selected .menutree-tip-count,
+        .tree-node-hover .menutree-tip-count {
+          background-color: #80b2ff;
+          color: #ffffff;
+        }
+      }
+  
+  }
+
+}

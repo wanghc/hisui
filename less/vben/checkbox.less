@@ -1,0 +1,46 @@
+label.checkbox,label.radio{
+  background: url('@{images-path}/checkbox_lite_v.png') no-repeat;
+  padding-left: 21px;
+  cursor:pointer;
+  line-height:21px;
+  height: 21px;
+  vertical-align:middle;
+  display:inline-block;
+  &.right{
+    padding-left: 0px;
+    padding-right: 24px;
+  }
+}
+label.radio{
+  background-position-x:-6px ;
+  background-position-y:-121px;  /*-2*/
+  &:hover{background-position-y:-145px;}
+  &.hover{background-position-y:-145px;}
+  &.checked {background-position-y:-169px;} 
+  &.disabled{background-position-y:-193px;}
+  &.checked.disabled{background-position-y:-217px;}
+  &.invalid{background-position-y:-265px;}
+  &.right{
+    background-position-x: right;
+  }
+}
+label.checkbox,label.hischeckbox_square-blue.radio {
+  background-position-x: -6px;
+  background-position-y: -1px;
+  &:hover{background-position-y:-25px;}
+  &.hover{background-position-y:-25px;}
+  &.checked {background-position-y:-49px;} 
+  &.disabled{background-position-y:-73px;}
+  &.checked.disabled{background-position-y:-97px;}
+  &.invalid{background-position-y:-241px;}
+  &.right {
+    background-position-x:right;
+  }
+}
+.datagrid-header-row label.checkbox{
+  margin-top: -4px;
+  margin-left: 2px;
+}
+.radio {
+  color: @main-font-color;
+}

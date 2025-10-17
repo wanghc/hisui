@@ -1,0 +1,133 @@
+@import "variables.less";
+.kw-chapter{
+    clear: both;
+    // font-size: 18px;
+    font-size: 16px;
+    font-weight: bold;
+    color: @keywords-chapter-color;
+    padding:15px 0 5px;
+    & a{
+        border-right: 5px @keywords-chapter-color solid ;
+        width: 0px;
+        height: 30px;
+        padding: 0px;
+        margin-right: 5px;
+    } 
+}
+.kw-line{
+    border-bottom: 1px #eeeeee solid;
+    margin: 5px 0;
+}
+.kw-section{
+    margin-bottom: 5px;
+    padding-top: 5px;
+    clear: both;
+}
+.kw-section-header{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.keywords li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ul.kw-section-list{
+    padding: 0px;
+    margin: 0px;
+    &::after{
+        content: "";
+        display: block;
+        clear: both;
+    }
+}
+.kw-section-list>li{
+    float: left;
+    margin:5px 10px 5px 0px;
+    & a{
+        border-radius: 6px;
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: @keywords-bgcolor;
+        color: @keywords-color;;
+        text-decoration: none;
+        padding: 0 9px;
+        border:1px solid @keywords-bgcolor;
+        &:hover{
+            cursor: pointer;
+            background:@keywords-hover-bgcolor;
+            color: @keywords-hover-color;
+            border: 1px solid transparent;
+        }
+    }
+    &.selected a{
+        background-color:@keywords-select-bgcolor;
+        // background-image: url(images/keywords_arrow.png);
+        // background-position: right 0 bottom 0;
+        // background-repeat: no-repeat;
+        color: @keywords-select-color;
+        border:1px solid @keywords-select-bdcolor;
+    }
+    &.disabled a{
+        background-color: @keywords-disabled-bgcolor;
+        color:@keywords-disabled-fcolor;
+        border: 1px solid @keywords-disabled-bgcolor;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
+}
+.keywords-labelred .kw-section-list>li{
+    & a{
+        background: @keywords-red-bgcolor;
+        color: @keywords-red-color;
+        border:1px solid transparent;
+        &:hover{
+            cursor: pointer;
+            background: @keywords-red-hover-bgcolor;
+            color:@keywords-red-hover-color
+        }
+    }
+    &.selected a{
+        background: @keywords-red-select-bgcolor;
+        color:@keywords-red-select-color;
+    }
+    &.disabled a{
+        background-color: @keywords-disabled-bgcolor;
+        color:@keywords-disabled-fcolor;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
+}
+.keywords-labeldarkblue .kw-section-list>li{    
+    margin:0px;
+    & a{
+        font-size: 16px;
+        background: @keywords-darkblue-bgcolor;
+        color: @keywords-darkblue-color;
+        border-width:0;
+        padding: 0px 15px;
+        &:hover{
+            cursor: pointer;
+            background: @keywords-darkblue-hover-bgcolor;
+            color:@keywords-darkblue-hover-color
+        }
+    }
+    &.selected a{
+        font-size: 16px;
+        font-weight: bold;
+        background: @keywords-darkblue-select-bgcolor;
+        color:@keywords-darkblue-select-color;
+    }
+    &.disabled a{
+        padding: 0px 15px;
+        background-color: #FFF;
+        color:@keywords-disabled-fcolor;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
+}

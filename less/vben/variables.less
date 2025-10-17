@@ -1,0 +1,557 @@
+body,[data-theme=bgliteblue] {
+    --body-bgcolor:"#CDE6FF";
+    --primary-font-color:#000000;
+    --primary-color : #008fff;
+    --primary-h:204;
+    --primary-s:100%;
+    --primary-l:50%;
+    --input-border-color:#cccccc;
+    --input-bgcolor:#ffffff;
+    --panel-title-font-color:#939393;
+    --panel-header-bgcolor:#ffffff;
+    --panel-body-bgcolor:#fcfdff;
+    --combobox-item-hove-bgcolor:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 32%))";
+    --combobox-item-select-bgcolor:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 38%))";
+}
+[data-theme=bgseablue] {
+    --body-bgcolor:"#CDE6FF";
+    --primary-font-color:#000000;
+    --primary-color:#3047A9;
+    --primary-h:229;
+    --primary-s:71.5%;
+    --primary-l:42.5%;
+    --input-border-color:#cccccc;
+    --input-bgcolor:#ffffff;
+    --panel-title-font-color:#939393;
+    --panel-header-bgcolor:#ffffff;
+    --panel-body-bgcolor:#f6f8fe;
+    --combobox-item-hove-bgcolor:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 32%))";
+    --combobox-item-select-bgcolor:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 38%))";
+}
+[data-theme=bgdrak] {
+    --body-bgcolor:"#000000";
+    --primary-font-color:#ffffff;
+    --primary-color:#000000;
+    --primary-h:0;
+    --primary-s:0%;
+    --primary-l:0%;
+    --input-border-color:#74748a;
+    --input-bgcolor:#000000;
+    --panel-title-font-color:#ffffff;
+    --panel-header-bgcolor:#32354d;
+    --panel-body-bgcolor:#32354d;
+    --combobox-item-hove-bgcolor:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 32%))";
+    --combobox-item-select-bgcolor:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 38%))";
+}
+
+@main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
+@main-font-size:14px;
+@main-font-color:~"var(--primary-font-color)";
+@main-color:~"var(--primary-color)";
+@main-hover-color:~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 0.25))";
+//@combo-img: url(images/combo_arrow.png) no-repeat center center;
+//@lookup-img: url(images/lookup_arrow.png) no-repeat center center;
+//@date-img:url(images/datebox_arrow_40a2de.png) no-repeat center center;
+//@date-hover-img:url(images/datebox_arrow_378ec4.png) no-repeat center center;
+//@date-disabled-img:url(images/datebox_arrow_bbbbbb.png) no-repeat center center;
+//== 字体
+@content-up:"\f264";
+@content-down:"\f265";
+@content-up2:"\f483";
+@content-down2:"\f481";
+@content-right2:"\f235";
+@content-left2:"\f482";
+
+@content-restore:"\f478";
+@content-max:"\f167";
+@content-min:"\f479";
+@content-close:"\f480";
+
+@content-upfill:"\f477";
+@content-downfill:"\f476";
+
+@content-pagination-first:"\f1008";
+@content-pagination-prev:"\f1009";
+@content-pagination-next:"\f1010";
+@content-pagination-last:"\f1011";
+@content-pagination-load:"\f1012";
+//==
+
+@body-bgcolor:~"var(--body-bgcolor)"; //2024.12-4 #ffF
+
+//== images 
+@images-path:"images/pure";
+//== icon
+@icon-path:"icons/default";
+
+@btn-fcolor:@main-font-color;
+@input-border-color:~"var(--input-border-color)";
+@input-bgcolor:~"var(--body-bgcolor)";
+@input-color:~"var(--primary-font-color)";
+@input-active-border-color:@main-color;
+@input-active-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.2)";
+@input-btn-hover-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.4)";
+@input-active-color:#000000;
+@input-disabled-border-color:#cccccc;
+@input-disabled-bgcolor:#f1f1f1;
+@input-disabled-color:#939393;
+@input-placeholder-color:#939393;
+@input-invalid-bgcolor:#fff0f0;
+@input-invalid-color:#fc494f;;
+@input-invalid-border-color:#ee0f0f;
+@input-invalid-placeholder-color:#fc494f;
+
+@input-arrow-opacity:1; /*0.7;*/
+@input-arrow-opacity-ie:100*@input-arrow-opacity;
+@input-border-radius:6px;
+
+
+//---------arrow-------//
+@input-arrow-hover-bgcolor:@input-hover-bgcolor;
+@input-arrow-hover-opacity:1;
+@input-arrow-hover-opacity-ie:100*@input-arrow-hover-opacity;
+@input-border-hover-color:@input-active-border-color;
+@input-hover-bgcolor:@input-active-bgcolor;
+//----------focus---------//
+@input-focus-bgcolor:#FFFFFF;
+@input-border-focus-color:@main-color;
+
+// 输入框小图标几种状态颜色//
+@input-iconbtn-color:#666666;
+@input-iconbtn-hover-color:@main-color;
+@input-iconbtn-disabled-color:#989898;
+
+//-------------disabled----------//
+@main-disabled-bgcolor:@input-disabled-bgcolor;
+@main-disabled-border-color:@input-disabled-border-color;
+//== linkbutton
+@linkbutton-font-size:14px;
+@linkbutton-height:28px;
+@icon-height:16px;
+@icon-width:16px;
+@linkbutton-bgcolor:@main-color;
+@linkbutton-font-color:#ffffff;
+@linkbutton-border-color:#A5D5FF;
+@linkbutton-padding-leftright:8px;
+@linkbutton-min-width:80px;
+@linkbutton-text-width:@linkbutton-min-width - (2 * @linkbutton-padding-leftright);
+@linkbutton-hover-bgcolor:#E1EDFF;
+@linkbutton-focus-bordercolor:transparent;
+@linkbutton-left-bgcolor:#007BE9;
+@linkbutton-hover-dark-bgcolor:#0063a7;
+@linkbutton-focus-outline-color:transparent;
+@linkbutton-focus-bgcolor:#0063a7;
+@linkbutton-plain-focus-bgcolor:#E0EEFF;
+
+@linkbutton-plain-color: @main-color;
+@linkbutton-plain-hover-bgcolor: ~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l)),0.3)";
+@linkbutton-plain-hover-color: @main-color;
+
+@linkbutton-border-hover-color:#b7d2ff;
+@linkbutton-border-radius:6px;
+@linkbutton-disabled-border-color:#EAEAEA;
+@linkbutton-disabled-bgcolor:#F4F4F4;
+@linkbutton-disabled-text-color:#C3C3C3;
+@linkbutton-disabled-icon-bgcolor:#D1D1D1;
+@linkbutton-disabled-icon-color:#C3C3C3;
+
+@linkbutton-white-border-color:#cccccc;
+@linkbutton-white-color:@btn-fcolor;
+@linkbutton-white-bgcolor:#ffffff;
+@linkbutton-white-hover-border-color:#cccccc;
+@linkbutton-white-hover-bgcolor:#f7f7fa;
+@linkbutton-white-click-bgcolor:#f2f3f7;
+@linkbutton-white-disabled-border-color:#EAEAEA;
+@linkbutton-white-disabled-bgcolor:#F4F4F4;
+@linkbutton-white-disabled-color:#C3C3C3;
+
+@linkbutton-blue-color:#FFFFFF;
+@linkbutton-blue-bgcolor:#008fff;
+@linkbutton-blue-hover-bgcolor:#007eed;
+@linkbutton-blue-click-bgcolor:#006edb;
+@linkbutton-blue-disabled-bgcolor:#F4F4F4;
+@linkbutton-blue-disabled-color:#C3C3C3;
+@linkbutton-blue-disabled-border-color:#EAEAEA;
+
+@linkbutton-green-color:#FFFFFF;
+@linkbutton-green-bgcolor:#38BA54;
+@linkbutton-green-hover-bgcolor:#30ac4f;
+@linkbutton-green-click-bgcolor:#289f4d;
+@linkbutton-green-disabled-bgcolor:#b0e2ba;
+@linkbutton-green-disabled-color:#ffffff;
+
+@linkbutton-red-color:#FFFFFF;
+@linkbutton-red-bgcolor:#FC494F;
+@linkbutton-red-hover-bgcolor:#ea404c;
+@linkbutton-red-click-bgcolor:#d83549;
+@linkbutton-red-disabled-bgcolor:#fdb6b8;
+@linkbutton-red-disabled-color:#ffffff;
+
+@linkbutton-yellow-color:#FFFFFF;
+@linkbutton-yellow-bgcolor:#FFAA00;
+@linkbutton-yellow-hover-bgcolor:#ed9a01;
+@linkbutton-yellow-click-bgcolor:#db8a00;
+@linkbutton-yellow-disabled-bgcolor:#ffdd99;
+@linkbutton-yellow-disabled-color:#ffffff;
+
+//== tooltip
+@tooltipFontColor:#ffffff;
+@tooltipArrowColor:#ffffff;
+@tooltipFontSize:14px;
+@tooltipPadding:10px;
+@tooltipBorderRadius:4px;
+@tooltipDefalutBorderColor:#4f75aa;
+@tooltipDefalutBorderWidth:0;
+@tooltipDefalutBgColor:rgba(0,0,0,0.7);
+
+@tooltipErrorBgColor:#ff5153;
+@tooltipErrorBgColor:#ff9683;
+
+//== validatebox
+@validatebox-border-width:1px;
+@validatebox-border-color:@input-border-color;
+@validatebox-border-type:solid;
+@validatebox-height:30px;
+@validatebox-padding-left:10px;
+@validatebox-font-color:@input-color;
+@validatebox-font-size:@main-font-size;
+@validatebox-focus-bgcolor:@input-active-bgcolor;
+@validatebox-hover-bgcolor:@input-hover-bgcolor;
+//==searchbox
+@searchbox-border-width:1px;
+@searchbox-border-color: @panel-header-bdcolor;
+@searchbox-border-type:solid;
+@searchbox-height:30px;
+@searchbox-width:30px;
+@searchbox-padding-left:5px;
+@searchbox-font-color:@input-color;
+@validatebox-font-size:@main-font-size;
+@searchbox-font-size:@main-font-size;
+@searchbox-bgcolor:@panel-body-bgcolor;
+@searchbox-arrow-bgcolor:@panel-body-bgcolor;
+@searchbox-hover-bgcolor:@input-active-bgcolor ;// #40a2dd;
+@searchbox-button-hover-bgcolor:@input-btn-hover-bgcolor; //#378ec4;
+
+//== panel
+@panel-title-height:26px;
+@panel-title-font-size:18px;
+@panel-title-font-color:~"var(--panel-title-font-color)";
+@panel-header-padding:3px 5px;  /*4px修改成3px，影响医嘱套维护界面。会多出多余的滚动条*/
+@panel-header-bgcolor:~"var(--panel-header-bgcolor)"; //#ffffff;
+@panel-header-bdcolor:transparent;
+@panel-border-color: transparent; // #E2E2E2; 
+@panel-border-card-color:~"hsl(var(--primary-h),calc(var(--primary-s) - 30%),calc(var(--primary-l) + 10%))";
+@panel-border-card-color-gray:#E3E3E3;
+@panel-header-blue-bgcolor:~"hsl(var(--primary-h),calc(var(--primary-s) - 20%),calc(var(--primary-l) + 30%))";
+@panel-shadow:0px 3px 6px rgba(0, 0, 0, 0.16);
+@panel-body-font-size:@main-font-size;
+@panel-body-bgcolor:~"var(--panel-body-bgcolor)";
+@panel-tool-a-color:#666;
+@panel-border-radius:6px;
+
+//== popover
+@popover-title-font-color:~"var(--primary-font-color)";
+@popover-title-bg-color:@panel-header-bgcolor;
+@popover-title-border-color:@panel-border-color;
+@popover-body-bgcolor:~"var(--input-bgcolor)";
+//== combo
+@combo-arrow-width:30px;
+@combo-arrow-height:30px;
+@combo-arrow-bgcolor:none; /*main-color*/;
+// @combo-arrow-color:#ffffff;
+@combo-arrow-hover-color:none; /*main-hover-color*/;
+@combo-border-color:@input-active-border-color;
+// @combo-select-row-bgcolor:#e5e5e5;
+@combo-font-size:@main-font-size;
+@combo-input-line-height:30px;
+@combo-input-line-height-ie8:26px;
+@combo-row-line-height:24px;
+@combo-bgcolor:~"var(--input-bgcolor)";
+@combo-padding-left:@validatebox-padding-left;
+@combo-panel-border-color:@combo-border-color;
+
+//== combobox 
+@combobox-item-font-size:@main-font-size;
+@combobox-item-padding:3px;
+@combobox-item-right-padding:0px;
+@combobox-item-left-padding:10px;
+@combobox-item-line-height:24px;
+@combobox-gitem-left-padding:10px;
+@combobox-item-hover-bgcolor:~"var(--combobox-item-hove-bgcolor)";
+@combobox-item-hover-font-color:~"var(--primary-font-color)";
+@combobox-item-select-bgcolor:~"var(--combobox-item-select-bgcolor)";
+@combobox-item-select-font-color:~"var(--primary-font-color)";
+
+//== datebox
+@datebox-button-font-size:12px;
+@datebox-button-bgcolor:#F4F4F4;
+@datebox-button-font-color:#444;
+
+
+//== accordion
+@accordion-header-bgcolor:#f1f7fe;
+@accordion-header-bgcolor-green:#e4f0fe;
+@accordion-header-select-bgcolor:#f1f7fe;
+@accordion-border-color: transparent;
+@accordion-title-font-color:#000000;
+@accordion-body-bgcolor:#f1f7fe;
+@accordion-body-color:#000000;
+@accordion-body-border:transparent;
+//==
+@accordion-tree-header-bgcolor:@panel-header-bgcolor;
+@accordion-tree-bgcolor:@panel-body-bgcolor;
+@accordion-tree-select-bgcolor:@panel-header-bgcolor;
+@accordion-tree-hover-bgcolor:@panel-header-bdcolor;
+//== tabs
+@tabs-header-height:36px;
+@tabs-header-bgcolor:@panel-header-bgcolor;
+@tabs-header-font-color:#000000;
+@tabs-header-base-font-color:@main-font-color;
+@tabs-system-blue-background-color:#F1F7FE;
+
+@tabs-header-hover-bgcolor:@panel-header-bgcolor;
+@tabs-header-hover-line-color:#008fff;
+@tabs-header-hover-font-color:@main-font-color;
+
+@tabs-brand-hover-bgcolor:@panel-header-bgcolor;
+
+@tabs-header-select-top-color:#008fff;
+@tabs-header-select-font-color:#000000;
+
+
+@tabs-title-font-size:18px;
+@tabs-header-arrow-hover-bgcolor:@tabs-header-select-top-color;
+@tabs-header-bdcolor:@panel-header-bdcolor;
+@tabs-shadow:@panel-shadow;
+
+/*tabs-gray*/
+@tabs-header-gray-bgcolor:#f1f7fe;
+@tabs-header-gray-select-top-color:#017BCE;
+@tabs-header-gray-font-color:#000000;
+@tabs-header-gray-select-bgcolor:#ffffff;
+@tabs-header-gray-select-font-color:#1584D2;
+@tabs-header-gray-border:#CCC;
+@tabs-header-gray-hover-bgcolor:#CCC;
+@tabs-header-gray-arrow-hover-bgcolor:#cccccc;
+@tabs-li-after-border-left-corlor:#2A72B0;
+@tabs-li-after-border-right-corlor:#70B5F1;
+/* 二级页签*/
+@tabs-keywords-color: @btn-fcolor;
+@tabs-keywords-hover-color:#008fff;
+@tabs-keywords-selected-bgcolor: #008fff;
+@tabs-keywords-selected-font-color:#ffffff;
+@tabs-keywords-hover-bgcolor:#d7e9ff;
+/* 文字页签*/
+@tabs-text-color: @btn-fcolor;
+@tabs-text-selected-bgcolor: #ffffff;
+@tabs-text-selected-font-color:#008fff;
+@tabs-text-hover-bgcolor:#ffffff;
+
+
+//== window
+@window-header-bgcolor:transparent;
+@window-body-bgcolor:transparent;
+@window-shadow:0px 0px 20px rgba(0, 0, 0, 0.4);
+@window-title-color:#000000;
+
+
+//== link-----<a/>
+@link-color:#008fff;
+@link-hover-color:#008fff;
+@link-click-color:#006edb;
+@link-disabled-color: #b4b3b3;
+
+//== dialog
+@dialog-body-bgcolor:@window-body-bgcolor;
+
+//==datagrid
+@datagrid-header-bgcolor:#f2f3f7;
+@datagrid-inner-border-color:#E2E2E2;
+@datagrid-border-color:#e4e4e4;
+@datagrid-row:#ffffff;
+@datagrid-row-color:#000000;
+@datagrid-row-hover:#FFF0D9 ;
+@datagrid-row-hover-color: #000000;
+@datagrid-row-select:#D7E9FF;
+@datagrid-row-select-color: #000000;
+@datagrid-cell-font-size:14px;
+@datagrid-toolbar-text-color:@linkbutton-plain-hover-color;
+@datagrid-toolbar-hover:@linkbutton-plain-hover-bgcolor;
+@datagrid-row-alt-bgcolor:#F5F5F5;
+@datagrid-toolbar-border-color: @datagrid-border-color;
+@datagrid-toolbar-bgcolor:@panel-body-bgcolor;
+
+@datagrid-header-blue-bgcolor:#f1f7fe;
+@datagrid-header-blue-hover-bgcolor:#d7e9ff;
+@datagrid-header-blue-select-bgcolor:#d7e9ff;
+
+@datagrid-pager-bgcolor:#ffffff;
+@page-btn-fcolor:@btn-fcolor;
+@page-btn-disabled-fcolor:#939393;
+@page-btn-disabled-bgcolor:#ffffff;
+@page-btn-hover-fcolor:#008fff;
+@page-btn-hover-bgcolor:#edf6ff;
+@page-btn-hover-radius:6px;
+
+//== layout
+@layout-split-border:transparent;
+
+//== spinner
+@spinner-line-height:30px;
+@spinner-line-height-min:26px;
+@spinner-font-size:14px;
+@spinner-arrow-bgcolor:none; /*main-hover-color*/;
+@spinner-arrow-hover-bgcolor:#EDF6FF;
+//== keywords 
+@keywords-bgcolor:#f2f3f7;
+@keywords-color:@btn-fcolor;
+@keywords-select-bgcolor:#d7e9ff;
+@keywords-select-color:#000000;
+@keywords-select-bdcolor:#d7e9ff;
+@keywords-hover-bgcolor:#f2f3f7;
+@keywords-hover-color:#008fff;
+@keywords-disabled-bgcolor:#f2f3f7;
+@keywords-disabled-fcolor:#b4b3b3;
+
+@keywords-red-color:@btn-fcolor;
+@keywords-red-bgcolor:#E5E5E5;
+@keywords-red-select-bgcolor: #FFE9DB;
+@keywords-red-select-color:#FF4401;
+@keywords-red-hover-bgcolor:#F1F1F1;
+@keywords-red-hover-color:#FF4401;
+
+@keywords-darkblue-color:@btn-fcolor;
+@keywords-darkblue-bgcolor:transparent;
+@keywords-darkblue-select-bgcolor: transparent;
+@keywords-darkblue-select-color:#008fff;
+@keywords-darkblue-hover-bgcolor:transparent;
+@keywords-darkblue-hover-color:#008FFF;
+
+@keywords-chapter-color:#339eff;
+@keywords-section-hover-color:#339eff; //#017bce;
+@keywords-section-bgcolor:#40a2de;
+
+//==menubutton
+@menubutton-blue-bgcolor: #ffffff;   
+@menubutton-blue-hover-fcolor:#008fff;
+@menubutton-blue-bgcolor-hover:#EDF6FF;
+@menubutton-blue-menu-item-bgcolor: #FFFFFF;
+@menubutton-blue-menu-item-fcolor: @linkbutton-white-color;
+@menubutton-blue-border-bottom-color:#FFFFFF;
+@menubutton-blue-menu-item-hover: #d7e9ff;
+
+@menubutton-hover-fcolor:#008fff;
+@menubutton-btn-hover-bgcolor:#EDF6FF;
+@menubutton-btn-plain-active-bgcolor:#EDF6FF;
+@menubutton-menu-item-bgcolor:#d7e9ff;
+@menubutton-menu-item-hover-bgcolor:#d7e9ff;
+
+//==menu
+@menu-active-border-color:#d7e9ff;
+@menu-active-bgcolor:#d7e9ff;
+@menu-border-color:#40a2de;
+@menu-shadow:@panel-shadow;
+@menu-body-bgcolor:@panel-body-bgcolor;
+@menu-sep-border-color:@panel-header-bdcolor;
+
+@splitbutton-bgcolor:#ffffff;
+@splitbutton-fcolor:#008fff;
+@splitbutton-hover-bgcolor:#EDF6FF;
+@splitbutton-hover-border-color:#A5D5FF;
+
+//==filebox
+@filebox-border-color:#40a2de;
+
+//tree
+@tree-border-color:#E5E5E5;
+@tree-node-bgcolor:#E5E5E5;
+@tree-node-hover-bgcolor:#d7e9ff;
+@tree-node-hover-font-color:#000000;
+@tree-node-selected-bgcolor:#d7e9ff;
+@tree-node-selected-font-color:#000000;
+//easyui
+@easyui-pagination-num-border-color:#95B8E7;
+//使用textbox样式类后长度,context-box的长度
+@textbox-width:144px;  /* 因为padding从5px扩大至10px,宽度要修改小才能保存与原来一样宽，与combo对齐[5499755]， 148px修改成144px */
+
+
+@scrollbar-bgcolor:#ffffff;
+
+@scrollbar-btn-bgcolor:rgba(66, 70, 86, 0.3);
+@scrollbar-btn-hover-bgcolor:rgba(66, 70, 86, 0.6);
+
+
+@messager-body-bgcolor: #ffffff;
+@messager-body-fcolor: @btn-fcolor;
+@messager-body-fsize: 16px;
+@messager-body-fweight:normal;
+
+/*variables-end*/
+body {
+    font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+    // padding:10px;
+    font-size:@main-font-size;
+    margin:0;
+    background-color: @body-bgcolor;
+    color:@main-font-color;
+}
+body * {
+    font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+    font-size:@main-font-size;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+	padding:0 0 12px 0;
+}
+.demo-tip{
+	display:none;
+}
+.r-label{
+    text-align: right;
+    padding-right: 10px;
+    color:@main-font-color;
+}
+.required-label:before {
+    content: '*';
+    color: #FF4451;
+    vertical-align: bottom;
+    line-height: 100%;
+}
+a{
+    color:@link-color;
+    text-decoration:none;
+    &:hover{
+        color:@link-hover-color;
+        text-decoration:underline;
+    }
+    &.a-disable{
+        color:@link-disabled-color;
+        cursor: not-allowed;
+        &:hover{
+            text-decoration:none;
+        }
+    }
+}
+
+/*chrome默认了outline*/
+input,textarea {
+    outline-width: 0;
+}
+#z-q-container{
+    position: absolute;
+    overflow: hidden;
+    background-color: @combo-bgcolor;
+    border: 1px solid @combo-panel-border-color;
+    z-index: 9000;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
+    border-radius: 0 0 4px 4px;
+}
+// [查询条件面板】左侧边距公共样式 [5474027]
+.hisuicom-leftpadding-container{
+    padding-left:15px
+}

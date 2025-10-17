@@ -1,0 +1,343 @@
+@import "variables.less";
+.m-btn.l-btn-plain{
+  color:@linkbutton-font-color;
+  .m-btn-downarrow{
+    color:@linkbutton-font-color;
+  }
+  &:hover{
+    background-color: @menubutton-blue-bgcolor-hover;
+    color:@menubutton-blue-hover-fcolor;
+    border-radius: 6px;
+  }
+}
+.m-btn-plain-active,.s-btn-plain-active{
+  background-color:@menubutton-btn-hover-bgcolor;
+  background-color: @menubutton-blue-bgcolor-hover;
+  color:@menubutton-blue-hover-fcolor;
+  border-radius: 6px;
+  .l-btn-left {
+    .l-btn-text,.l-btn-icon{
+      color:@menubutton-hover-fcolor;
+    }
+    .m-btn-downarrow{
+      color:@menubutton-hover-fcolor;
+    }
+  }
+}
+.m-btn-downarrow,
+.s-btn-downarrow {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 0;
+  top: 50%;
+  margin-top: -8px;
+}
+.m-btn-active,
+.s-btn-active {
+  background: #eaf2ff;
+  color: #000000;
+  border: 1px solid #b7d2ff;
+  filter: none;
+}
+
+.m-btn .l-btn-left .l-btn-text {
+  margin-right: 20px;
+}
+.m-btn .l-btn-icon-right .l-btn-text {
+  margin-right: 40px;
+}
+.m-btn .l-btn-icon-right .l-btn-icon {
+  right: 20px;
+}
+.m-btn .l-btn-icon-top .l-btn-text {
+  margin-right: 4px;
+  margin-bottom: 14px;
+}
+.m-btn .l-btn-icon-bottom .l-btn-text {
+  margin-right: 4px;
+  margin-bottom: 34px;
+}
+.m-btn .l-btn-icon-bottom .l-btn-icon {
+  top: auto;
+  bottom: 20px;
+}
+.m-btn .l-btn-icon-top .m-btn-downarrow,
+.m-btn .l-btn-icon-bottom .m-btn-downarrow {
+  top: auto;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -8px;
+}
+.m-btn-line {
+  display: inline-block;
+  position: absolute;
+  font-size: 1px;
+  display: none;
+}
+.m-btn .l-btn-left .m-btn-line {
+  right: 0;
+  width: 16px;
+  height: 500px;
+  border-style: solid;
+  border-color: #A5D5FF;
+  border-width: 0 0 0 1px;
+}
+.m-btn .l-btn-icon-top .m-btn-line,
+.m-btn .l-btn-icon-bottom .m-btn-line {
+  left: 0;
+  bottom: 0;
+  width: 500px;
+  height: 16px;
+  border-width: 1px 0 0 0;
+}
+.m-btn-large .l-btn-icon-right .l-btn-text {
+  margin-right: 56px;
+}
+.m-btn-large .l-btn-icon-bottom .l-btn-text {
+  margin-bottom: 50px;
+}
+
+.s-btn:hover .m-btn-line,
+.s-btn-active .m-btn-line,
+.s-btn-plain-active .m-btn-line {
+  display: inline-block;
+}
+.l-btn:hover .s-btn-downarrow,
+.s-btn-active .s-btn-downarrow,
+.s-btn-plain-active .s-btn-downarrow {
+  border-style: solid;
+  border-color: #aac5e7;
+  border-width: 0 0 0 1px;
+}
+
+.m-btn-downarrow, .s-btn-downarrow {
+  color:#ffffff;
+}
+.l-btn-plain .m-btn-downarrow,.l-btn-plain .s-btn-downarrow {
+  color:@linkbutton-plain-color;
+  font-size: 16px;
+}
+.l-btn.m-btn-active{
+  background: #006FD2;
+  border: 1px solid @linkbutton-white-hover-border-color;
+}
+.l-btn.l-btn-plain.m-btn-active{
+  background: #EFF9FF;
+  border: 1px solid #EFF9FF;
+}
+.m-btn {
+  .l-btn-text{
+    // color:#000000;
+    min-width:40px;
+    line-height: 28px;  //[2855848]  // [3791837] - 26px->28px
+  }
+  .l-btn-left{
+    .l-btn-text{
+      margin-right: 16px;
+      margin-left: 0px;
+      padding-left: 8px;
+    }
+    &.l-btn-icon-left .l-btn-text{
+      margin-right: 16px;
+      margin-left: 24px;
+      padding-right: 6px;
+      padding-left: 5px;
+    }
+    .m-btn-line {
+      width: 24px;
+    }
+  }
+}
+.l-btn .m-btn-downarrow,
+.l-btn .s-btn-downarrow {
+  width: @linkbutton-height;
+  height: @linkbutton-height;
+  &::before{
+    content: @content-downfill;
+  }
+}
+
+/*ie11加了兼容模式后,
+  内核成ie7
+  .menubutton-blue.l-btn.l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+  会选中 .l-btn-plain .l-btn-left .l-btn-icon{display:none;}
+
+*/
+.l-btn.l-btn-plain.menubutton-blue{
+  border: 0;
+  padding: 0;
+  background-color:@menubutton-blue-bgcolor;
+  &:hover{
+    background-color:@menubutton-blue-bgcolor-hover;
+    color:@menubutton-blue-hover-fcolor;
+  }
+  &.m-btn-plain-active{ /*展开时一直保持底色*/
+    background-color:@menubutton-blue-bgcolor-hover;
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      color: @linkbutton-plain-color;
+      margin-left: 0;
+      padding-left:10px;
+    }
+    .l-btn-icon{
+      display: none;
+    }
+    .m-btn-downarrow{
+      color:@linkbutton-plain-color;
+      &::before{
+        content: @content-downfill;
+      }
+      //background: url(images/arrow_down_white.png) center 8px no-repeat;
+    }
+  }
+}
+///不改原本之前的了 设计图上的蓝色的 在顶层有类 menubutton-blue
+  //菜单
+.menu.menubutton-blue{
+  border-radius: 0;
+  .menu-item{
+    background-color:@menubutton-blue-menu-item-bgcolor;
+    height: 30px;
+    border-bottom: 1px solid @menubutton-blue-border-bottom-color;
+    &:hover{
+      background-color:@menubutton-blue-menu-item-hover;
+    }
+    .menu-text{
+      color: @menubutton-blue-menu-item-fcolor;
+      padding-left: 10px;
+      line-height: 30px;
+    }
+    .menu-icon{
+      display: none;
+    }
+  }
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    display: none;
+  }
+}
+//按钮
+.l-btn.l-btn-plain.menubutton-toolbar{
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  &:hover{
+    background-color:@menubutton-btn-hover-bgcolor;
+  }
+  &.m-btn-plain-active{
+    background-color:@menubutton-btn-hover-bgcolor;
+    .l-btn-left .l-btn-text,.l-btn-icon{
+      color:@menubutton-hover-fcolor;
+    }
+    .m-btn-downarrow{
+      color:@menubutton-hover-fcolor;
+    }
+  }
+  .l-btn-left{
+    width: 100%;
+    text-align: left;
+    .l-btn-text{
+      line-height: 28px;
+      padding: 0 26px 0 31px;
+      margin: 0 0 0 ;
+      color: @linkbutton-font-color;
+    }
+    .l-btn-icon{
+      // left:4px;
+      height: 16px;
+      width: 16px;
+      line-height:16px;
+      padding:5px 5px 5px 10px
+    }
+    .m-btn-downarrow{
+      height: 16px;
+      width:  16px;
+      right: 10px;
+      &::before{
+        content: @content-downfill;
+      }
+    }
+  }
+}
+//toolbar 
+  //菜单
+.menu.menubutton-toolbar{
+  .menu-item{
+    background-color: #fff;
+    height: 34px; /*26px*/
+    border: 0px; 
+    &:hover{
+      background-color:@menubutton-menu-item-hover-bgcolor;
+    }
+    .menu-text{
+      color: @main-font-color;
+      padding-left: 10px; /*10px*/
+      line-height: 34px; /*26px*/
+    }
+    .menu-icon{
+      display: none;
+    }
+  }
+  .menu-item:last-child{
+    border-bottom:0px;
+  }
+  .menu-sep{
+    margin-left: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom:0px;
+  }
+}
+.l-btn-icon{
+  padding-left: 10px;
+}
+.m-btn-downarrow::before{
+
+  line-height: 18px;
+}
+.menubutton-toolbar{
+  .l-btn-icon-left{
+    .l-btn-text{
+      padding:0 24px 0 26px !important;
+    }
+    .l-btn-icon{
+      padding:6px 4px 8px 5px !important;
+    }
+    .m-btn-downarrow{
+      top:13px;
+      right: 6px !important;
+    }
+  }
+}
+.hisui-multi-menubutton{
+  .l-btn-icon-left{
+    .l-btn-text{
+      margin-right:18px !important;
+      margin-left:21px !important;
+    }
+    .l-btn-icon{
+      padding:6px 4px 8px 5px !important;
+    }
+    .m-btn-downarrow{
+      top:13px;
+    }
+  }
+}
+.hisui-no-icon-menubutton{
+  .l-btn-left{
+    .l-btn-text{
+      margin-right:18px !important;
+      padding:0px;
+    }
+    .m-btn-downarrow{
+      top:13px;
+    }
+  }
+}

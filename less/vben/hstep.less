@@ -1,0 +1,113 @@
+/*common css*/
+.hstep-container {
+	font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Wenquanyi Micro Hei","Microsoft Yahei",Arial,sans-serif;
+    display: inline-block;
+    position: relative;
+	color: #939393;
+	width: 700px;
+	height: 60px;
+	font-size: 18px;
+	ul.hstep-container-steps{
+		list-style: none;
+		position: absolute;
+		top: 2px;
+		z-index: 10;
+		li{
+			font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
+			font-size: 14px;
+			font-weight: bold;
+			float: left;
+			width: 100px;
+			height: 85px;
+			.cnode{
+				background-image: url('@{images-path}/hstep.png');
+				background-repeat: no-repeat;
+				width: 20px;
+				height: 20px;
+				margin: 10px 0px 0px 6px;
+				text-align: center;
+				font-size: 12px;
+				cursor: pointer;
+				background-color: #ffffff;
+			}
+			&.done{
+				color:#666666;
+				.cnode{
+					background-position: 2px -60px;
+				}	
+				.cntt {
+					color: #939393;
+					div:nth-child(1){
+						margin-bottom: 3px;
+					}
+				}
+			}
+			&.undone{
+				color: #939393;
+				.cnode{
+					background-position: 2px -80px;
+				}
+				.cntt {
+					color: #939393;
+					div:nth-child(1){
+						margin-bottom: 3px;
+					}
+				}
+			}
+			&.active{
+				color: @main-font-color;
+				background-color: transparent;
+				.cnode{
+					margin-top: 7px;
+					background-position: 2px -40px;
+					margin-bottom: 3px;
+				}
+				.cntt {
+					color: #939393;
+					div:nth-child(1){
+						margin-bottom: 3px;
+					}
+				}
+			}
+		
+			// &.hover{
+			// 	color:#339EFF;
+			// 	.cnode{
+			// 		margin-top: 6px;
+			// 		background-position: 0px -100px;
+			// 		margin-bottom: 4px;
+			// 	}
+			// 	.cntt{
+			// 		color:#339EFF;
+			// 	}
+			// }
+		}
+	}	
+	.hstep-progress-highlight{
+		background: #008fff;
+	}
+	.hstep-progress {
+		width: 400px;
+		height: 2px;
+		position: absolute;
+		top: 35px;
+		left: 15px;
+		float: left;
+		margin-right: 10px;
+		overflow: hidden;
+		.hstep-progress-bar {
+			width: 400px;
+			height: 20px;
+			background: #cccccc;
+			display: inline-block;
+			.hstep-progress-highlight {
+				height: 20px;
+				display: block;
+			}
+		}
+	}
+}
+.hstep-container ul,.hstep-container li,.hstep-container p {
+	margin: 0;
+	padding: 0;
+}

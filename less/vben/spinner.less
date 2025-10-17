@@ -1,0 +1,147 @@
+@import "variables.less";
+.spinner {
+  height: 30px !important;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.spinner .spinner-text {
+  font-size: 12px;
+  border: 0px;
+  line-height: 20px;
+  height: 20px;
+  margin: 0;
+  *margin-top: -1px;
+  *height: 18px;
+  *line-height: 18px;
+  _height: 18px;
+  _line-height: 18px;
+  vertical-align: baseline;
+}
+.spinner-arrow {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  margin: 0;
+  padding: 0;
+}
+.spinner-arrow-up,
+.spinner-arrow-down {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  display: block;
+  font-size: 1px;
+  width: 18px;
+  height: 10px;
+  &:hover{
+    color: #008FFF;
+  }
+}
+.spinner {
+  border-color: #95B8E7;
+}
+
+.spinner {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  border-width: 1px;
+  border-style: solid;
+  overflow: hidden;
+  vertical-align: middle;
+  -moz-border-radius: @input-border-radius;
+  -webkit-border-radius: @input-border-radius;
+  border-radius: @input-border-radius;
+  .spinner-arrow {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    background-color:#ffffff;
+    font-size: 14px;
+    color: @main-font-color;
+    .spinner-arrow-hover {
+      opacity: @input-arrow-hover-opacity;
+      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
+      color:#008FFF !important;
+      background-color: @spinner-arrow-hover-bgcolor;
+      ::before{
+        &:hover{
+          color:#008FFF !important;
+        }
+        
+      }
+      
+    }
+  }
+  &:focus input, &:active input{
+    background-color: @input-focus-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  &:hover,&.spinner-hover{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  /*20221010 disabled样式覆盖:hover样式*/
+  &.disabled{
+    background-color: @input-disabled-bgcolor;
+    border-color: @input-disabled-border-color;
+    .spinner-arrow {
+      background-color: @main-disabled-bgcolor;
+      .spinner-arrow-up {
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-iconbtn-disabled-color;
+ 
+      }
+      .spinner-arrow-down {
+        background-image: none; //url(images/spinner_arrows_disable.png);
+        color:@input-iconbtn-disabled-color;
+      }
+    }
+  }
+}
+
+.spinner .spinner-text {
+  font-size: @spinner-font-size;
+  border: 0px;
+  line-height: @spinner-line-height;
+  height: @spinner-line-height;
+  margin: 0;
+  *margin-top: -1px;
+  *height: @spinner-line-height-min;
+  *line-height: @spinner-line-height-min;
+  _height: @spinner-line-height-min;
+  _line-height: @spinner-line-height-min;
+  vertical-align: baseline;
+  &.timespinner-f{
+    text-align: right;
+    padding:0 0 0 10px ;
+  }
+}
+
+.spinner-arrow-up::before{
+  content: "\f635";
+  width: 16px;
+  height: 16px;
+}
+.spinner-arrow-down::before{
+  content: "\f624";
+  width: 16px;
+  height: 16px;
+}
+.spinner {
+  border-color: @input-border-color;
+}
+.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-up:before{color:#008FFF}
+.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-down:before{color:#008FFF}
+
+.hisui-timespinner{
+  padding:0 10px 0 0 !important;
+}

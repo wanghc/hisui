@@ -1,0 +1,129 @@
+@import "variables.less";
+input[type=text],textarea{
+  border-color: @input-border-color;
+  width:@textbox-width;/*websys.css-width:130px;*/
+}
+input::selection,textarea::selection {
+  background-color: #008FFF; /* 输入框中选中文本的背景色 */
+  color:#FFFFFF;
+}
+/*不增加type=text，当<input>定义时不带type时选择不到*/
+/*textbox[type=text] 覆盖老的选择器*/
+.textbox[type=text] {
+  border: 1px solid #95B8E7;
+  vertical-align: middle;
+}
+
+input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-text,input.validatebox-text {
+  width:@textbox-width; /*--2018-11-22*/
+  margin:0;
+  padding:0 0 0 @validatebox-padding-left;
+  box-sizing:content-box;
+  border-radius: 6px;
+  border: @validatebox-border-width @validatebox-border-type @input-border-color;
+  color:@main-font-color;
+  font-size:@validatebox-font-size;
+  &:active{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  &:hover{
+    background-color: @input-hover-bgcolor;
+    border-color: @input-active-border-color;
+  }
+  &:focus{
+    background-color: @input-active-bgcolor;
+    border-color: @input-active-border-color;
+  }
+}
+input.textbox{
+  line-height:30px;
+  height:30px;
+}
+.textbox:disabled,
+.textareabox-text:disabled,
+.validatebox-text:disabled,
+.searchbox-text:disabled,
+textarea:disabled, input:not([type]):disabled, input[type="text"]:disabled{
+  background-color: @input-disabled-bgcolor;
+  border-color: @input-disabled-border-color;
+  color: @input-disabled-color;
+  cursor: not-allowed;
+}
+.searchbox-text{
+  height: 32px;
+  line-height: 32px;
+}
+.checkbox.disabled ,.radio.disabled,.filebox.disabled input{
+  cursor: not-allowed;
+}
+.spinner .textbox{
+  width:151px;
+}
+.triggerbox .textbox{
+  width:151px;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color:@input-placeholder-color;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+  color:@input-placeholder-color;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+  color:@input-placeholder-color;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color:@input-placeholder-color;
+}
+.searchbox-button,.combo-arrow,.triggerbox-button{
+  background: none;
+  width: @combo-arrow-width;
+  height: @combo-arrow-height;
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
+  font: normal normal normal 14px/1 Mw_mifonts;
+  display: inline-block;
+  font-size: 14px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 30px;
+  color:@input-iconbtn-color;
+  cursor: pointer;
+}
+.spinner-arrow .spinner-arrow-down, .spinner-arrow .spinner-arrow-up,.tabs-icon,.tabs-close,.tabs-scroller-left, .tabs-scroller-right,
+.m-btn-downarrow{
+  background: none;
+  width: @combo-arrow-width;
+  height: 15px;
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
+  font: normal normal normal 13px/1 Mw_mifonts;
+  font-size: 13px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 15px;
+  color:@input-iconbtn-color;
+  text-decoration: none;
+}
+/*宽应该为16px，如果为30px会导致树父节点后移[2791549]*/
+/*只影响accordiontree，其它tree还是用图片 [2791392]*/
+.accordiontree .tree-hit{
+  background: none;
+  width: 16px;
+  height: 16px;
+  opacity: @input-arrow-opacity;
+  filter: alpha(opacity=@input-arrow-opacity-ie);
+  font: normal normal normal 13px/1 Mw_mifonts;
+  font-size: 13px;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  line-height: 16px;
+  color:@input-iconbtn-color;
+  text-decoration: none;
+}

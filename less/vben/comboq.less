@@ -1,0 +1,52 @@
+.comboq {
+  box-sizing: border-box;
+  height: 28px;
+}
+input.comboq::-ms-clear{
+  display: none;
+  width: 0px;
+  height: 0px;
+}
+.comboq.disabled {
+  background-image: url('images/combo_arrow_disable.png'); // no-repeat center center;
+  background-color: @main-disabled-bgcolor;
+  color:#ccc;
+}
+.comboq {
+  background-image: url(images/combo_arrow.png);
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-position-x: 96%\9;
+  background-position-y: 50%\9;
+}
+input.comboq.textbox{
+  padding-right: 30px;
+  width:@textbox-width - 30px; /*textbox样式为content-box, 减去附加的padding,保持与非q系统一样长*/
+}
+.comboq.bginone{
+  background-image: none;
+  padding-right: 0px;
+}
+#z-q-container.comboq-p-top{
+  border-radius: @input-border-radius @input-border-radius 0 0;
+}
+#z-q-container.comboq-p-bottom{
+  border-radius: 0 0 @input-border-radius @input-border-radius;
+}
+input.comboq-active{
+  background-color: @input-active-bgcolor;
+  border-color: @input-active-border-color; 
+}
+input.comboq-active.comboq-textbox-bottom{
+  border-radius: @input-border-radius @input-border-radius 0 0;
+}
+input.comboq-active.comboq-textbox-top{
+  border-radius: 0 0 @input-border-radius @input-border-radius;
+}
+// 去除弹出框的圆角
+.comboq-p-top .datagrid,
+.comboq-p-bottom .datagrid,
+.comboq-p-top .panel .panel-body.panel-body-noborder,
+.comboq-p-bottom .panel .panel-body.panel-body-noborder{
+  border-radius: 0px;
+}

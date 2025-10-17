@@ -1,0 +1,144 @@
+@import "variables.less";
+.window {
+  min-width: 474px;
+  min-height: 274px;
+  &.panel-status-collapse{
+    min-height: 0; /*折叠时不控制高度*/
+  }
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+  // background-image: url('@{images-path}/messager_blue.png') ;
+  background-image: linear-gradient(180deg, #D7E9FF 0, transparent 180px);
+  background-repeat: repeat-x;
+  background-color: #F1F7FE;
+
+  // background-color: #d7e9ff;
+  // background: linear-gradient(180deg,#d7e9ff 0%,#f1f7fe 100%);
+  // background-repeat: repeat-x;
+  padding: 0px;
+  border-bottom: 0px;
+  .panel-header-noborder{
+    border-width: 0 0 0 0;
+  }
+  .window-header {
+    border-color: @window-header-bgcolor;
+    //border-bottom: 1px solid @panel-header-bdcolor;
+    background:  @window-header-bgcolor;
+    padding: 0px 0px 6px 0px;
+    .panel-with-icon {
+      padding-left: 5px; /*18px*/
+    }
+    .panel-icon{
+      top: 50%;
+      margin-top: -11px;
+      left: 20px;
+      display: none;
+    }
+    .panel-tool {
+      top: 50%;
+      margin-top: -11px;
+      right: 18px;
+      .panel-tool-close,.panel-tool-max,.panel-tool-restore,.panel-tool-min,.panel-tool-collapse,.panel-tool-expand {
+        background-image: none;
+      }
+      .panel-tool-close{
+        background-image: none;
+        &:hover{
+          background-image: none;
+        }
+      }
+    }
+    // .panel-with-icon {
+    //   padding-left: 15px;
+    //   padding-top: 5px;
+    //   padding-bottom: 5px;
+    // }
+    .panel-title{
+      height: 48px;
+      line-height: 48px;
+      padding-left: 15px;
+    }
+  }
+  .window-body {
+    border-top-width: 0px;
+    border-width: 0px;
+    border-style: solid;
+    background-color:@window-body-bgcolor;
+  }
+  .window-body-noheader {
+    border-top-width: 1px;
+  }
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#d7e9ff,endColorstr=#d7e9ff,GradientType=0);
+
+}
+.window-proxy {
+  position: absolute;
+  overflow: hidden;
+  border: 1px dashed #95B8E7;
+}
+.window-proxy-mask {
+  position: absolute;
+  filter: alpha(opacity=5);
+  opacity: 0.05;
+}
+.window-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  filter: alpha(opacity=40);
+  opacity: 0.40;
+  font-size: 1px;
+  *zoom: 1;
+  overflow: hidden;
+}
+.window,
+.window-shadow {
+  position: absolute;
+  border-radius: 6px;
+}
+.window-shadow {
+  background: #ccc;
+  box-shadow:0px 3px 25px rgba(0, 0, 0, 0.4);
+  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
+}
+.window,.window .window-body {
+  border-color: transparent;
+}
+
+.window-proxy-mask,.window-mask {
+  background: #ccc;
+}
+.window,.window-shadow {
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+
+.window-shadow {
+  background: #666666;
+  -moz-box-shadow: @window-shadow;
+  -webkit-box-shadow: @window-shadow;
+  box-shadow: @window-shadow;
+}
+.window,.window .window-body {
+  border:none;
+}
+.window-proxy {
+  border: 1px dashed #cccccc;
+}
+.window-proxy-mask,.window-mask {
+  background: rgba(0, 0, 0, 0.75)
+}
+.window .window-header .panel-icon, .window .window-header .panel-tool {
+  top: 50%;
+  margin-top: -8px;
+}
+.window.panel>.panel-header>.panel-title{
+  color: @window-title-color;
+  font-weight: 700;
+  font-size: 18px;
+}

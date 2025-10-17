@@ -1,0 +1,219 @@
+.has-switch {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 14px;
+  height:28px;
+  border: none;
+  border-color:transparent;
+  position: relative;
+  text-align: left;
+  overflow: hidden;
+  line-height: 8px;
+  user-select: none;
+  vertical-align: middle;
+  min-width: 66px;
+  width:66px;
+  background-color: #008fff;
+  color: #ffffff;
+}
+.has-switch.switch-mini {
+  min-width: 40px;
+  width:40px;
+  max-width: 51px;
+  height:20px;
+}
+.has-switch.switch-mini i.switch-mini-icons {
+  height: 1.20em;
+  line-height: 9px;
+  vertical-align: text-top;
+  text-align: center;
+  transform: scale(0.6);
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+.has-switch.switch-small {
+  min-width: 66px;
+}
+.has-switch.switch-large {
+  min-width: 80px;
+}
+.has-switch.deactivate {
+  cursor: not-allowed;
+  background-color: #99d2ff;
+}
+.has-switch.deactivate label,
+.has-switch.deactivate span {
+  cursor: not-allowed;
+}
+.has-switch > div {
+  display: inline-block;
+  position: relative;
+  top: 0;
+}
+.has-switch > div.switch-animate {
+  transition: left 0.5s;
+}
+.has-switch > div.switch-off {
+  background-color: #BACCE0;
+  label {
+    border:1px solid transparent;
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    border-radius: 12px;
+    &.switch-mini{
+      height: 16px;
+      width: 16px;
+    }
+  }
+  span.switch-primary{
+    color:transparent;
+  }
+}
+
+.has-switch > div.switch-on {
+  left: 0%;
+  label{
+    border:1px solid transparent;
+    border-radius: 12px; 
+    width: 24px;
+    height: 24px;
+    margin: 2px;
+    &.switch-mini{
+      height: 16px;
+      margin: 2px;
+      width: 16px;
+    }
+  }
+}
+.has-switch input[type=radio],
+.has-switch input[type=checkbox] {
+  display: none;
+}
+.has-switch span,
+.has-switch label {
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+// .has-switch span.switch-mini,
+// .has-switch label.switch-mini {
+//   padding-bottom: 2px;
+//   padding-top: 2px;
+//   font-size: 10px;
+//   line-height: 12px;
+//   height:20px;
+// }
+.has-switch.switch-mini{
+  &>div{
+    width:~"calc(200% - 20px)"; /*让元素不折行 中间圆形开关28px宽度*/
+  }
+  &>div.switch-off{
+    left: ~"calc(-100% + 20px)"; /* 偏完元素,再回正圆开关, ~""写法告诉less不要解析成calc(-72%)*/
+  }
+  span.switch-mini{
+    font-size: 12px;
+    width: ~"calc((100% - 20px) / 2)";
+    padding-top: 2px;
+    line-height: 12px;
+    top: -2px;
+    &.switch-left{
+      padding-left: 5px;
+    }
+    &.switch-right{
+      padding-right: 5px;
+    }
+  }
+  label.switch-mini {
+    padding-top: 2px;
+    line-height: 12px;
+  }
+}
+.has-switch{
+  &.deactivate>div.switch-on{
+    background-color: #99d2ff;
+  }
+  &.deactivate>div.switch-off{
+    background-color: #e5e5e5;
+    span{
+      color:#b4b3b3;
+    }
+  }
+}
+.has-switch.switch-small{
+  font-size: 14px;
+  &>div{
+    width:~"calc(200% - 28px)"; /*让元素不折行 中间圆形开关28px宽度*/
+  }
+  &>div.switch-off{
+    left: ~"calc(-100% + 28px)"; /* 偏完元素,再回正圆开关, ~""写法告诉less不要解析成calc(-72%)*/
+  }
+  span.switch-small{
+    width: ~"calc((100% - 28px) / 2)";
+    padding-top: 2px;
+    line-height: 18px;
+    height: 26px;
+    &.switch-left{
+      padding-left: 5px;
+    }
+    &.switch-right{
+      padding-right: 5px;
+    }
+  }
+  label.switch-small {
+    padding-top: 2px;
+    line-height: 18px;
+  }
+}
+
+.has-switch span.switch-large,
+.has-switch label.switch-large {
+  padding-bottom: 9px;
+  padding-top: 9px;
+  font-size: 16px;
+  line-height: normal;
+}
+.has-switch label {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  z-index: 100;
+  width: 34%;
+  color: #333333;
+  border-radius: 4px;
+  background-color: #fff;
+}
+.has-switch label.disabled,
+.has-switch label[disabled] {
+  color: #ffffff;
+  background-color: #99d2ff;
+}
+.has-switch label:active,
+.has-switch label.active {
+  background-color: #cccccc;
+}
+.has-switch label i {
+  color: #000;
+  line-height: 18px;
+  pointer-events: none;
+}
+.has-switch span {
+  text-align: center;
+  z-index: 1;
+  width: 33%;
+}
+.has-switch span.switch-left {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.has-switch span.switch-right {
+  color: #fff;
+ }
+.has-switch span.switch-right.disabled,
+.has-switch span.switch-right[disabled] {
+
+  color: #b4b3b3;
+  background-color: #e5e5e5;
+}
