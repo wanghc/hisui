@@ -1,15 +1,17 @@
 .lookup {
-  background-image: url('@{images-path}/lookup_arrow_7E7E7E.png');
+  // background-image: url('@{images-path}/lookup_arrow_7E7E7E.png');
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%237E7E7E" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-position-x: 96%\9;
   background-position-y: 50%\9;
 }
 .lookup:hover,.lookup:focus {
-  background-image: url(images/lookup_arrow.png);
+  // background-image: url(images/lookup_arrow.png);
 }
 .lookup.disabled {
-  background-image: url('images/lookup_arrow_disable.png'); // no-repeat center center;
+  // background-image: url('images/lookup_arrow_disable.png'); // no-repeat center center;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%23cccccc" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
   background-color: @main-disabled-bgcolor;
   color:#ccc;
 }
@@ -17,5 +19,20 @@
 .panel-noscroll{
   .datagrid{
     border:0px;
+  }
+}
+[data-theme=bgliteblue]{
+  .lookup:hover,.lookup:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%23008fff" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
+  }
+}
+[data-theme=bgseablue]{
+  .lookup:hover,.lookup:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%233047A9" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
+  }
+}
+[data-theme=bgdrak]{
+  .lookup:hover,.lookup:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%23000000" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
   }
 }
