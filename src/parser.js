@@ -269,64 +269,64 @@
             /**增加不同版本风格相关变量 */
         styleCodeConfig : {
             mustCalcPanelHeaderCardTitleWidth:{
-                "default":true,"blue":true,"lite":false,"lightblue":false,pure:false
+                "default":true,"blue":true,"lite":false,"lightblue":false,pure:false,"vben":false
             },
             accordionBodyExHeight : {
                 "lite":-1,"lightblue":-1,"default":0
             },
             datagridRowNumberHeaderTitle:{
-                "pure":function(){return $.fn.datagrid.defaults.nocol;}, "default":''
+                "pure":function(){return $.fn.datagrid.defaults.nocol;},"vben":function(){return $.fn.datagrid.defaults.nocol;}, "default":''
             },
             dateTodayColor:{
-                default:"#449edd",pure:"#008FFF"
+                default:"#449edd",pure:"#008FFF","vben":"#008FFF"
             },
             dateCloseColor:{
-                default: "#ff2600",pure:"#939393"
+                default: "#ff2600",pure:"#939393","vben":"#939393"
             },
             dateOkColor:{
                 default: "#ff2600"
             },
             inputHeight:{
-                default: 30,pure:32
+                default: 30,pure:32,vben:32
             },
             messagerPromptBtnIndex:{
-                default:['ok','cancel'],pure:['cancel','ok']
+                default:['ok','cancel'],pure:['cancel','ok'],vben:['cancel','ok']
             },
             messagerConfirm3BtnIndex:{
-                default:['ok','no','cancel'],pure:['cancel','no','ok']
+                default:['ok','no','cancel'],pure:['cancel','no','ok'],vben:['cancel','no','ok']
             },
             messagerConfirmBtnIndex:{
-                default:['ok','cancel'],pure:['cancel','ok']
+                default:['ok','cancel'],pure:['cancel','ok'],vben:['cancel','ok']
             },
             messagerFocusBtnIndex:{
-                default:0,pure:1
+                default:0,pure:1,vben:1
             },
             tabHeight:{
-                default: 36,pure:44
+                default: 36,pure:44,vben:44
             },
             dateboxqPanelHeight:{
-                default: 202,pure: 210
+                default: 202,pure: 210,vben:210
             },
             datetimeboxPanelHeight:{
-                default: 232,pure: 248
+                default: 232,pure: 248,vben:248
             },
             collapsedSize:{  /** layout折叠时东西面板宽度 */
-                default: 28,pure: 56
+                default: 28,pure: 56,vben:56
             },
             collapsedHeight:{ /** layout折叠时南北面板高度 */
-                default: 38,pure: 56
+                default: 38,pure: 56,vben: 56
             },
             windowMinWidth:{ /** 弹出窗口最小宽度 */
-                default:10,pure: 474
+                default:10,pure: 474,vben:474
             },
             windowMinHeight:{ /** 弹出窗口最小高度 */
-                default:10,pure: 274
+                default:10,pure: 274,vben:274
             },
             messagerMinWidth:{ /** 消息窗口最小宽度 */
-                default:300,pure: 474
+                default:300,pure: 474,vben:474
             },
             panelTitleFontSize:{
-                default:14,pure:18
+                default:14,pure:18,vben:18
             }
         },
         getStyleCodeConfigValue : function(key){
