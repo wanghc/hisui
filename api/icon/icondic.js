@@ -787,7 +787,15 @@ var iconDictionary={
     'icon-big-image-properties':"图片属性",
     'icon-big-upload-img':"上传图片",
     'icon-big-collect-img':"收集图片，拍照",
-    'icon-big-capture-img':"截屏，剪辑，剪裁，截取图片"
+    'icon-big-capture-img':"截屏，剪辑，剪裁，截取图片",
+    'icon-big-font-size':"字体大小",
+    'icon-big-insert-spec':"插入标本",
+    'icon-big-prev-diag':"历次诊断",
+    'icon-big-molecular-order':"分子检测，分子医嘱",
+    'icon-big-tec-order':"技术检测，技术医嘱",
+    'icon-big-spec-clean':"标本清理",
+    'icon-big-print-slides':"玻片打印",
+    'icon-big-material-coll':"耗材收集，取材"
 };
 if (top.HISUIStyleCode && top.HISUIStyleCode=="pure"){
     // 向head中写入样式

@@ -35,7 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
-## 2025-19-16
+## 2025-10-20
+- 增加图标 [6255685]
+
+## 2025-10-16
 - :sparkles: `datagrid`的列属性`showTip`为true时,非空内容(trim)才弹出提示层 [6203451]
 - :lipstick: 纯净版页签标题与页签之间增加竖线分割样式修改 [5799094]
 - :sparkles: 还原`radio`与`checkbox`结构中for属性 [6093300]
