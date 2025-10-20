@@ -39,7 +39,7 @@
   width: 18px;
   height: 10px;
   &:hover{
-    color: #008FFF;
+    color: @combo-arrow-hover-color;
   }
 }
 .spinner {
@@ -69,16 +69,7 @@
     color: @main-font-color;
     .spinner-arrow-hover {
       opacity: @input-arrow-hover-opacity;
-      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-      color:#008FFF !important;
       background-color: @spinner-arrow-hover-bgcolor;
-      ::before{
-        &:hover{
-          color:#008FFF !important;
-        }
-        
-      }
-      
     }
   }
   &:focus input, &:active input{
@@ -139,9 +130,6 @@
 .spinner {
   border-color: @input-border-color;
 }
-.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-up:before{color:#008FFF}
-.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-down:before{color:#008FFF}
-
 .hisui-timespinner{
   padding:0 10px 0 0 !important;
 }

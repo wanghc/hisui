@@ -23,7 +23,7 @@
       .m-btn-downarrow{
         font-size: 16px;
         &::before{
-          color: #008FFF;
+          color: var(--primary-color);
         }
       }
     }
@@ -84,11 +84,11 @@
     border:1px solid #b7d2ff;
   }
   &:active{
-    border:1px solid #006EDB;
-    background-color: #006EDB;
+    border:1px solid @linkbutton-blue-hover-bgcolor;
+    background-color: @linkbutton-blue-hover-bgcolor;
   }
   &.l-btn-waiting{
-    background-color: #006EDB;
+    background-color: @linkbutton-blue-hover-bgcolor;
   }
   &.m-btn {
     .l-btn-left{
@@ -118,7 +118,7 @@
   color: #FFF;
   
   .menu-item {
-    background-color: #008FFF;
+    background-color: var(--primary-color);
     &.menu-active{
       background-color: #007eed;
     }
@@ -135,17 +135,17 @@
 }
 .splitbutton-light{
   .l-btn-left .m-btn-downarrow::before{
-    color:#008FFF;
+    color:var(--primary-color);
   }
   &.s-btn.l-btn.s-btn-active{
     background-color: #e1edff;
     .l-btn-text{
-      color: #008FFF;
+      color: var(--primary-color);
     }
   }
   &.l-btn{
     background-color: #edf6ff;
-    color: #008fff;
+    color: var(--primary-color);
     border-color: #a5d5ff;
     &:hover{
       background-color: #e1edff;

@@ -423,7 +423,7 @@ tree-icon tree-file显示默认的文件图标
         -moz-border-radius: 3px 3px 3px 3px;
         -webkit-border-radius: 3px 3px 3px 3px;
         border-radius: 3px 3px 3px 3px;
-        color:#008FFF;
+        color:var(--primary-color);
       }
     }
   }
@@ -971,7 +971,7 @@ input[type=text],textarea{
   width:@textbox-width;/*websys.css-width:130px;*/
 }
 input::selection,textarea::selection {
-  background-color: #008FFF; /* 输入框中选中文本的背景色 */
+  background-color: var(--primary-color); /* 输入框中选中文本的背景色 */
   color:#FFFFFF;
 }
 /*不增加type=text，当<input>定义时不带type时选择不到*/
@@ -1113,13 +1113,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     margin-top:8px;
   }
 }
-
-.combo-arrow-hover {
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  background-color: #eaf2ff;
-}
-
 .combotree-f + .combo .combo-arrow::before {
   content: "\f496";
 }
@@ -1148,9 +1141,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     _line-height: @combo-input-line-height-ie8;
     vertical-align: baseline;
   }
-  .combo-arrow:hover{
-    color: #008FFF;
-  }
+  // .combo-arrow:hover{
+  //   color: #008FFF;
+  // }
   .combo-arrow::before{
     content: "\f624";
     font-size: 14px;
@@ -1167,9 +1160,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     .combo-text{
       background-color: @input-active-bgcolor;
     }
-    .combo-arrow{
-      color:#008FFF;
-    }
+    // .combo-arrow{
+    //   color:#008FFF;
+    // }
   }
   &:hover,&.combo-hover{
     border-color: @input-active-border-color;
@@ -1193,9 +1186,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   filter: alpha(opacity=@input-arrow-hover-opacity-ie);
   background-color: @input-arrow-hover-bgcolor;
   color: @input-active-border-color;
-  ::before{
-    color: #008FFF;
-  }
 }
 
 .panel.combo-p > .combo-panel{
@@ -1282,11 +1272,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   padding-left:@combobox-gitem-left-padding;
 }
 .combobox-item-hover {
-  background-color:#d7e9ff;
+  background-color:@combobox-item-hover-bgcolor;
   color:@combobox-item-hover-font-color;
 }
 .combobox-item-selected {
-  background-color:#d7e9ff ;
+  background-color:@combobox-item-select-bgcolor ;
   color: @combobox-item-select-font-color;
 }
 
@@ -2266,144 +2256,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     }
   }
 }
-/*--tabs-gray--*/
-.tabs-container.tabs-gray {
-  .tabs-header-bottom { //灰色 底部
-    .tabs-scroller-left {
-      border-color: @tabs-header-gray-bgcolor;
-      background: none ; //@tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat 4px center; /*2018-6-27 UI建议修改 1px->4px*/
-      border-top: 1px solid #cccccc;
-      border-right: 1px solid #cccccc;
-    }
-
-    .tabs-scroller-right {
-      border-color: @tabs-header-gray-bgcolor;
-      background: none; //@tabs-header-gray-bgcolor url('images/tabs_icons_gray.png') no-repeat -12px center; /*2018-6-27 UI建议修改 -15px->-12px*/
-      border-top: 1px solid #cccccc;
-      border-left: 1px solid #cccccc;
-    }
-
-    &.tabs-header {
-      border: 1px solid @tabs-header-gray-border;
-      border-top: 0;
-
-      .tabs {
-        border: 0;
-        border-top: 1px solid @tabs-header-gray-border;
-      }
-    }
-
-    padding:0;
-
-    .tabs {
-      height: @tabs-header-height;
-      padding: 0;
-
-      li {
-        border: 0;
-        margin: 0;
-        height: 35px;
-        overflow: hidden;
-        border-right: 1px solid #cccccc;
-
-        &::after {
-          content: none;
-        }
-      }
-
-      li.tabs-selected {
-        height: 36px;
-        margin-top: -1px;
-
-        a.tabs-inner {
-          color: @tabs-header-gray-select-font-color;
-          background-color: @tabs-header-gray-select-bgcolor;
-          /*modify*/
-          border: 0 solid;
-          border-bottom-width: 3px;
-          border-color: @tabs-header-gray-select-top-color;
-
-          &:hover {
-            border-color: @tabs-header-gray-select-top-color;
-          }
-        }
-      }
-    }
-  }
-}
-
-.tabs-gray {
-  .tabs-header {
-    -moz-border-radius: 6px 6px 0 0;
-    -webkit-border-radius: 6px 6px 0 0;
-    border-radius: 6px 6px 0 0;
-    &.tabs-header-bottom{
-      -moz-border-radius: 0 0 6px 6px ;
-      -webkit-border-radius: 0 0 6px 6px ;
-      border-radius: 0 0 6px 6px ;
-      &.tabs-header-noborder{ /*border:false*/
-        border: 0;
-      }
-    }
-    &.tabs-header-left{
-      -moz-border-radius: 6px 0 0 6px ;
-      -webkit-border-radius: 6px 0 0 6px ;
-      border-radius: 6px 0 0 6px ;
-      background-color: @tabs-header-gray-bgcolor;
-      //border-color: @tabs-header-gray-bgcolor;
-      &.tabs-header-noborder{ /*border:false*/
-        border: 0;
-      }
-    }
-    &.tabs-header-right{
-      -moz-border-radius: 0 6px 6px 0 ;
-      -webkit-border-radius: 0 6px 6px 0 ;
-      border-radius:  0 6px 6px 0 ;
-      &.tabs-header-noborder{ /*border:false*/
-        border: 0;
-      }
-    }
-    &.tabs-header-noborder{ /*border:false*/
-      border: 0;
-    }
-  }
-  .tabs-panels{
-    -moz-border-radius: 0 0 6px 6px ;
-    -webkit-border-radius: 0 0 6px 6px ;
-    border-radius: 0 0 6px 6px ;
-    &.tabs-panels-noborder{ /*border:false*/
-      border: 0;
-    }
-    &.tabs-panels-top{
-      -moz-border-radius: 6px 6px 0 0;
-      -webkit-border-radius: 6px 6px 0 0;
-      border-radius: 6px 6px 0 0;
-      &.tabs-panels-noborder{ /*border:false*/
-        border: 0;
-      }
-    }
-    &.tabs-panels-right{
-      -moz-border-radius: 0 6px 6px 0 ;
-      -webkit-border-radius: 0 6px 6px 0 ;
-      border-radius:  0 6px 6px 0 ;
-      &.tabs-panels-noborder{ /*border:false*/
-        border: 0;
-      }
-    }
-    &.tabs-panels-left{
-      -moz-border-radius: 6px 0 0 6px ;
-      -webkit-border-radius: 6px 0 0 6px ;
-      border-radius: 6px 0 0 6px ;
-      &.tabs-panels-noborder{ /*border:false*/
-        border: 0;
-      }
-    }
-    &.tabs-panels-noborder{ /*border:false*/
-      border: 0;
-    }
-  }
-}
-
 .tabs-keywords .tabs{
   li{
     a.tabs-inner{
@@ -2635,7 +2487,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
           &.tabs-selected{
             a.tabs-inner{
               background-color:#FFF;
-              color: #008FFF;
+              color: var(--primary-color);
               font-weight: bold;
               border-radius: 0px;
               border-bottom: 0px;
@@ -2681,8 +2533,8 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   vertical-align: middle;
   background-repeat: repeat-x;
   color: #FFF;
-  background: #008FFF;
-  border: 1px solid #008FFF;
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: @linkbutton-border-radius;
   text-align: center;
   span {
@@ -2717,12 +2569,12 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     }
   }
   &:hover{
-    background: #006EDB;
+    background: @linkbutton-blue-hover-bgcolor;
     color:#FFF;
-    border: 1px solid #006EDB;
+    border: 1px solid @linkbutton-blue-hover-bgcolor;
     filter: none;
     .l-btn-icon{
-      background-color: #006EDB;
+      background-color: @linkbutton-blue-hover-bgcolor;
     }
     text-decoration: none;
   }
@@ -2888,7 +2740,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   width: @icon-height;
   height: @icon-width;
   position: absolute;
-  background-color: #008FFF;
+  background-color: var(--primary-color);
   top:0px;
   margin-top:0;
   @top-4IE8:-4px;
@@ -3145,7 +2997,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     }
     &.blue{
       background-color: #EDF6FF;
-      color:#008FFF;
+      color:var(--primary-color);
       border-color: #A5D5FF;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
@@ -3691,7 +3543,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
    // margin-right: 5px;
     border-radius: 6px;
     margin-bottom: 2px;
-    color:@linkbutton-font-color;
+    color:var(--primary-color);
     &:hover{
       background-color: @menubutton-blue-bgcolor-hover;
       border-radius: 6px;
@@ -3896,7 +3748,7 @@ td.datagrid-value-changed {
   }
 }
 .datagrid-cell .l-btn-plain:hover{
-  color:#008FFF;
+  color:var(--primary-color);
   background-color: #EDF7FF;
 }
 // .datagrid-toolbar:has(a){
@@ -4049,7 +3901,7 @@ td.datagrid-value-changed {
       color: @page-btn-hover-fcolor;
     }
     .l-btn-icon{
-      color: #008fff !important;
+      color: var(--primary-color) !important;
     }
    
   }
@@ -4095,7 +3947,7 @@ td.datagrid-value-changed {
 .pagination .l-btn-plain .l-btn-icon-left .l-btn-icon{
   color:#40444E ;
   &.hover{
-    color: #008fff !important;
+    color: var(--primary-color) !important;
   }
 }
 .pagination-last{
@@ -4274,10 +4126,10 @@ td.datagrid-value-changed {
   color: #0000ff;
 }
 .calendar-menu-year {
-  border-color: #008fff;
+  border-color: var(--primary-color);
 }
 .calendar {
-  border-color: #008fff;
+  border-color: var(--primary-color);
 }
 .calendar-header {
   background: #FFFFFF;
@@ -4293,11 +4145,11 @@ td.datagrid-value-changed {
 .calendar-hover,
 .calendar-nav-hover,
 .calendar-menu-hover {
-  //background-color: #008FFF;
+  //background-color: var(--primary-color);
   color: #000000;
 }
 .calendar-hover {
-  border: 1px solid #008FFF;
+  border: 1px solid var(--primary-color);
   padding: 0;
 }
 .calendar-selected {
@@ -4398,7 +4250,7 @@ input.numberbox,input.numberbox.textbox {
   width: 18px;
   height: 10px;
   &:hover{
-    color: #008FFF;
+    color: @combo-arrow-hover-color;
   }
 }
 .spinner {
@@ -4428,16 +4280,7 @@ input.numberbox,input.numberbox.textbox {
     color: @main-font-color;
     .spinner-arrow-hover {
       opacity: @input-arrow-hover-opacity;
-      filter: alpha(opacity=@input-arrow-hover-opacity-ie);
-      color:#008FFF !important;
       background-color: @spinner-arrow-hover-bgcolor;
-      ::before{
-        &:hover{
-          color:#008FFF !important;
-        }
-        
-      }
-      
     }
   }
   &:focus input, &:active input{
@@ -4498,9 +4341,6 @@ input.numberbox,input.numberbox.textbox {
 .spinner {
   border-color: @input-border-color;
 }
-.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-up:before{color:#008FFF}
-.spinner .spinner-arrow .spinner-arrow-hover.spinner-arrow-down:before{color:#008FFF}
-
 .hisui-timespinner{
   padding:0 10px 0 0 !important;
 }
@@ -4664,7 +4504,7 @@ input.numberbox,input.numberbox.textbox {
       }
       .m-btn-downarrow::before, .s-btn-downarrow::before{
         content:"\f635";
-        color:#008fff;
+        color:var(--primary-color);
       }
   }
   .l-btn-left .l-btn-text{
@@ -4687,7 +4527,7 @@ input.numberbox,input.numberbox.textbox {
 .search-btn-menu.menu{
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-  border:1px solid #008fff;
+  border:1px solid var(--primary-color);
   .menu-text{
     padding-left: 0px;
     margin-left: 10px;
@@ -5001,9 +4841,9 @@ input.numberbox,input.numberbox.textbox {
 }
 @import "variables.less";
 .m-btn.l-btn-plain{
-  color:@linkbutton-font-color;
+  color: @linkbutton-plain-color;
   .m-btn-downarrow{
-    color:@linkbutton-font-color;
+    color: @linkbutton-plain-color;
   }
   &:hover{
     background-color: @menubutton-blue-bgcolor-hover;
@@ -5367,7 +5207,7 @@ input.numberbox,input.numberbox.textbox {
       .m-btn-downarrow{
         font-size: 16px;
         &::before{
-          color: #008FFF;
+          color: var(--primary-color);
         }
       }
     }
@@ -5428,11 +5268,11 @@ input.numberbox,input.numberbox.textbox {
     border:1px solid #b7d2ff;
   }
   &:active{
-    border:1px solid #006EDB;
-    background-color: #006EDB;
+    border:1px solid @linkbutton-blue-hover-bgcolor;
+    background-color: @linkbutton-blue-hover-bgcolor;
   }
   &.l-btn-waiting{
-    background-color: #006EDB;
+    background-color: @linkbutton-blue-hover-bgcolor;
   }
   &.m-btn {
     .l-btn-left{
@@ -5462,7 +5302,7 @@ input.numberbox,input.numberbox.textbox {
   color: #FFF;
   
   .menu-item {
-    background-color: #008FFF;
+    background-color: var(--primary-color);
     &.menu-active{
       background-color: #007eed;
     }
@@ -5479,17 +5319,17 @@ input.numberbox,input.numberbox.textbox {
 }
 .splitbutton-light{
   .l-btn-left .m-btn-downarrow::before{
-    color:#008FFF;
+    color:var(--primary-color);
   }
   &.s-btn.l-btn.s-btn-active{
     background-color: #e1edff;
     .l-btn-text{
-      color: #008FFF;
+      color: var(--primary-color);
     }
   }
   &.l-btn{
     background-color: #edf6ff;
-    color: #008fff;
+    color: var(--primary-color);
     border-color: #a5d5ff;
     &:hover{
       background-color: #e1edff;
@@ -5700,7 +5540,7 @@ input.numberbox,input.numberbox.textbox {
     min-width: 454px;
     .l-btn-small{
       &:focus{
-        background-color: #008FFF;
+        background-color: var(--primary-color);
       }
     }
   }
@@ -5716,7 +5556,7 @@ input.numberbox,input.numberbox.textbox {
     min-width: 454px;
     .l-btn-small{
       &:focus{
-        background-color: #008FFF;
+        background-color: var(--primary-color);
       }
     }
   }
@@ -5732,7 +5572,7 @@ input.numberbox,input.numberbox.textbox {
     min-width: 454px;
     .l-btn-small{
       &:focus{
-        background-color: #008FFF;
+        background-color: var(--primary-color);
       }
     }
   }
@@ -6478,7 +6318,7 @@ label.checkbox,label.hischeckbox_square-blue.radio {
   vertical-align: middle;
   min-width: 66px;
   width:66px;
-  background-color: #008fff;
+  background-color: var(--primary-color);
   color: #ffffff;
 }
 .has-switch.switch-mini {
@@ -6720,12 +6560,12 @@ label.checkbox,label.hischeckbox_square-blue.radio {
     border-radius: 0 0 0 0;
     color:#939393;
     &:hover{
-      color: #008FFF;
+      color: var(--primary-color);
       .l-btn-text{
-        color:#008FFF;
+        color:var(--primary-color);
       }
       .l-btn-icon{
-        color:#008FFF;
+        color:var(--primary-color);
       }
     }
     &.l-btn-disabled:hover{
@@ -7120,17 +6960,19 @@ input.comboq-active.comboq-textbox-top{
   border-radius: 0px;
 }
 .lookup {
-  background-image: url('@{images-path}/lookup_arrow_7E7E7E.png');
+  // background-image: url('@{images-path}/lookup_arrow_7E7E7E.png');
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%237E7E7E" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
   background-repeat: no-repeat;
   background-position: right 8px center;
   background-position-x: 96%\9;
   background-position-y: 50%\9;
 }
 .lookup:hover,.lookup:focus {
-  background-image: url(images/lookup_arrow.png);
+  // background-image: url(images/lookup_arrow.png);
 }
 .lookup.disabled {
-  background-image: url('images/lookup_arrow_disable.png'); // no-repeat center center;
+  // background-image: url('images/lookup_arrow_disable.png'); // no-repeat center center;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%23cccccc" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
   background-color: @main-disabled-bgcolor;
   color:#ccc;
 }
@@ -7140,6 +6982,22 @@ input.comboq-active.comboq-textbox-top{
     border:0px;
   }
 }
+[data-theme=bgliteblue]{
+  .lookup:hover,.lookup:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%23008fff" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
+  }
+}
+[data-theme=bgseablue]{
+  .lookup:hover,.lookup:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%233047A9" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
+  }
+}
+[data-theme=bgdrak]{
+  .lookup:hover,.lookup:focus {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" color="%23000000" width="16px" height="16px" viewBox="0 0 512 512"><circle cx="256" cy="256" r="48" fill="currentColor"></circle><circle cx="416" cy="256" r="48" fill="currentColor"></circle><circle cx="96" cy="256" r="48" fill="currentColor"></circle></svg>');
+  }
+}
+
 @import "variables.less";
 .kw-chapter{
     clear: both;
@@ -7513,7 +7371,7 @@ input.datetimeboxq-f::-ms-clear{
 		}
 	}	
 	.hstep-progress-highlight{
-		background: #008fff;
+		background: var(--primary-color);
 	}
 	.hstep-progress {
 		width: 400px;
@@ -7623,7 +7481,7 @@ input.datetimeboxq-f::-ms-clear{
 		}
 	}	
 	.vstep-progress-highlight{
-		background: #008fff;
+		background: var(--primary-color);
 	}
 	.vstep-progress {
 		width: 2px;
@@ -8101,7 +7959,7 @@ input.timeboxq::-ms-clear{
         margin-top: 8px;
       }
       &:hover{
-        color: #008FFF;
+        color: var(--primary-color);
       }
     }
   }

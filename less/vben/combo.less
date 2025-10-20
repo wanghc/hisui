@@ -17,13 +17,6 @@
     margin-top:8px;
   }
 }
-
-.combo-arrow-hover {
-  opacity: 1.0;
-  filter: alpha(opacity=100);
-  background-color: #eaf2ff;
-}
-
 .combotree-f + .combo .combo-arrow::before {
   content: "\f496";
 }
@@ -52,9 +45,9 @@
     _line-height: @combo-input-line-height-ie8;
     vertical-align: baseline;
   }
-  .combo-arrow:hover{
-    color: #008FFF;
-  }
+  // .combo-arrow:hover{
+  //   color: #008FFF;
+  // }
   .combo-arrow::before{
     content: "\f624";
     font-size: 14px;
@@ -71,9 +64,9 @@
     .combo-text{
       background-color: @input-active-bgcolor;
     }
-    .combo-arrow{
-      color:#008FFF;
-    }
+    // .combo-arrow{
+    //   color:#008FFF;
+    // }
   }
   &:hover,&.combo-hover{
     border-color: @input-active-border-color;
@@ -97,9 +90,6 @@
   filter: alpha(opacity=@input-arrow-hover-opacity-ie);
   background-color: @input-arrow-hover-bgcolor;
   color: @input-active-border-color;
-  ::before{
-    color: #008FFF;
-  }
 }
 
 .panel.combo-p > .combo-panel{
