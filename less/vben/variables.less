@@ -9,6 +9,7 @@
     --input-border-color:#cccccc;
     --input-bgcolor:#ffffff;
     --input-active-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.2)";
+    --input-iconbtn-color:#666666;
     --input-btn-hover-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.4)";
     --panel-title-font-color:#939393;    
     --panel-header-bgcolor:#ffffff;
@@ -48,6 +49,7 @@ body,[data-theme=bgseablue] {
     --input-bgcolor:#ffffff;
     --acc-bgcolor:#111111;
     --input-active-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.2)";
+    --input-iconbtn-color::#666666;
     --input-btn-hover-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.4)";
     --panel-title-font-color:#939393;
     --panel-header-bgcolor:#ffffff;
@@ -85,8 +87,9 @@ body,[data-theme=bgseablue] {
     --primary-l:0%;
     --main-hover-color: ~"hsl(var(--primary-h),var(--primary-s),calc(var(--primary-l) + 0.25))";
     --input-border-color:#74748a;
-    --input-bgcolor:#000000;
+    --input-bgcolor:#3f3f56;
     --input-active-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.2)";
+    --input-iconbtn-color:#9fa1b1;
     --input-btn-hover-bgcolor:~"hsla(var(--primary-h),var(--primary-s),var(--primary-l),0.4)";
     --panel-title-font-color:#ffffff;
     --panel-header-bgcolor:#32354d;
@@ -157,7 +160,7 @@ body,[data-theme=bgseablue] {
 
 @btn-fcolor:@main-font-color;
 @input-border-color:var(--input-border-color);
-@input-bgcolor:var(--body-bgcolor);
+@input-bgcolor:var(--input-bgcolor);
 @input-color:var(--primary-font-color);
 @input-active-border-color:@main-color;
 @input-active-bgcolor:var(--input-active-bgcolor);
@@ -189,7 +192,7 @@ body,[data-theme=bgseablue] {
 @input-border-focus-color:@main-color;
 
 // 输入框小图标几种状态颜色//
-@input-iconbtn-color:#666666;
+@input-iconbtn-color:var(--input-iconbtn-color);
 @input-iconbtn-hover-color:@main-color;
 @input-iconbtn-disabled-color:#989898;
 
@@ -612,6 +615,7 @@ a{
 /*chrome默认了outline*/
 input,textarea {
     outline-width: 0;
+    background-color: @input-bgcolor;
 }
 #z-q-container{
     position: absolute;
