@@ -6,15 +6,15 @@
 @menutree-blueroot-node-hover-bgcolor:transparent;  
 /**蓝色标题 灰色根节点**/
 @menutree-title-bgcolor:@panel-header-bgcolor;
-@menutree-root-bgcolor:#f1f7fe;
-@menutree-root-hover-bgcolor:#f1f7fe;
+@menutree-root-bgcolor:@window-bgcolor;
+@menutree-root-hover-bgcolor:@window-bgcolor;
 @menutree-node-hover-bgcolor:#e4f0fe;;
-@menutree-min-root-hover-bgcolor:#f1f7fe;
+@menutree-min-root-hover-bgcolor:@window-bgcolor;
 @menutree-node-selected-bgcolor:#d7e9ff;
-@menutree-min-root-selected-bgcolor:#f1f7fe;
-@menutree-root-selected-bgcolor:#f1f7fe;
-@menutree-wrap-bgcolor:#f1f7fe;
-@menutree-min-wrap-bgcolor:#f1f7fe;
+@menutree-min-root-selected-bgcolor:@window-bgcolor;
+@menutree-root-selected-bgcolor:@window-bgcolor;
+@menutree-wrap-bgcolor:@window-bgcolor;
+@menutree-min-wrap-bgcolor:@window-bgcolor;
 @menutree-root-color:#000000;
 @menutree-node-color:@main-font-color;
 
@@ -27,7 +27,7 @@
 @menutree-sub-node-hover-bgcolor:@menutree-node-hover-bgcolor;
 @menutree-sub-node-selected-bgcolor:@menutree-node-selected-bgcolor;
 
-@menutree-collapse-wrap-bgcolor:#f1f7fe;
+@menutree-collapse-wrap-bgcolor:@window-bgcolor;
 
 
 
@@ -157,7 +157,7 @@
   .menutree-tree-wrap {
     border: 0px solid @panel-header-bdcolor;
     border-radius: 6px;
-    background-color: #f1f7fe;
+    background-color: @window-bgcolor;
     overflow: auto;
     .menutree-tree.tree {
       border: 0px solid @tree-border-color;
@@ -165,7 +165,7 @@
       &>li {
         &>.tree-node { /*第一层节点 根节点*/
           height:44px;
-          background-color:#f1f7fe;
+          background-color:@window-bgcolor;
           line-height: 44px;
           position: relative;
           font-weight: bold;
