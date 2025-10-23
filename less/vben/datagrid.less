@@ -232,18 +232,18 @@
 .datagrid-mask-msg {
   background: #ffffff url('@{images-path}/loading.gif') no-repeat scroll 5px center;
 }
-.datagrid-header,
-.datagrid-td-rownumber {
-  background-color: #efefef;
-  background: -webkit-linear-gradient(top,#F9F9F9 0,#efefef 100%);
-  background: -moz-linear-gradient(top,#F9F9F9 0,#efefef 100%);
-  background: -o-linear-gradient(top,#F9F9F9 0,#efefef 100%);
-  background: linear-gradient(to bottom,#F9F9F9 0,#efefef 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#efefef,GradientType=0);
-}
+// .datagrid-header,
+// .datagrid-td-rownumber {
+//   background-color: #efefef;
+//   background: -webkit-linear-gradient(top,#F9F9F9 0,#efefef 100%);
+//   background: -moz-linear-gradient(top,#F9F9F9 0,#efefef 100%);
+//   background: -o-linear-gradient(top,#F9F9F9 0,#efefef 100%);
+//   background: linear-gradient(to bottom,#F9F9F9 0,#efefef 100%);
+//   background-repeat: repeat-x;
+//   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F9F9F9,endColorstr=#efefef,GradientType=0);
+// }
 .datagrid-cell-rownumber {
-  color: #000000;
+  color: @main-font-color;
 }
 .datagrid-resize-proxy {
   background: #aac5e7;
@@ -254,9 +254,8 @@
 .datagrid-mask-msg {
   border-color: #95B8E7;
 }
-.datagrid-toolbar,
-.datagrid-pager {
-  background: #F4F4F4;
+.datagrid-toolbar{
+  background: @body-bgcolor;
 }
 .datagrid-header td,
 .datagrid-body td,
@@ -352,11 +351,11 @@
   background: @datagrid-header-bgcolor;
 }
 .datagrid-header:nth-child(1){
-  border-top:1px solid #f2f3f7;
-  border-bottom:1px solid #e4e4e4;
+  border-top:1px solid @datagrid-header-top-brdcolor;
+  border-bottom:1px solid @datagrid-header-buttom-brdcolor;
 }
 .datagrid-td-rownumber{
-  background: #FFF;
+  background: @body-bgcolor;
 }
 .datagrid-header td, .datagrid-body td, .datagrid-footer td{
   border-color:@datagrid-border-color;
@@ -426,7 +425,7 @@
 /*toolbar 一点改动*/
 .datagrid-toolbar {
   //padding-bottom: 10px; //加上后默认 默认高度10 改为margin 下划线又随着变化
-  background-color: #ffffff;
+  background-color:@body-bgcolor;
   //border-color:@datagrid-border-color;
   padding-left: 5px;
   //padding-bottom: 10px;
