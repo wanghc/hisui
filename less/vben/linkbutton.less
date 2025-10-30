@@ -9,8 +9,8 @@
   vertical-align: middle;
   background-repeat: repeat-x;
   color: #FFF;
-  background: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  background: @linkbutton-bgcolor;
+  border: 1px solid @linkbutton-border-color;
   border-radius: @linkbutton-border-radius;
   text-align: center;
   span {
@@ -185,7 +185,7 @@
 }
 .l-btn-plain:hover {
   background: #eaf2ff;
-  color: #000000;
+  color: @main-font-color;
   border: 1px solid #b7d2ff;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
