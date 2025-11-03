@@ -337,6 +337,73 @@
                 return $.hisui.styleCodeConfig[key][HISUIStyleCode].call();
             }
             return $.hisui.styleCodeConfig[key][HISUIStyleCode];
+        },
+        switchTheme:function(themeName){
+            if (themeName === 'dark'){
+                $("body").attr('data-theme','bgdrak');
+            }else{
+                $("body").attr('data-theme','');
+            }
+        },
+        switchPrimaryColor:function(colorValue){
+            $("body").removeClass('high-saturation medium-saturation low-saturation');
+            var o = $.hisui.hexToHsl(colorValue);
+            var body = document.body;
+            body.style.setProperty('--primary-color', colorValue);
+            body.style.setProperty('--primary-h', o.h);
+            body.style.setProperty('--primary-s', `${Math.round(o.s * 100)}%`);
+            body.style.setProperty('--primary-l', `${Math.round(o.l * 100)}%`);
+            if (o.s>=0.8){
+                $("body").addClass('high-saturation');
+            }else if (o.s>0.5 && o.s<0.8){
+                $("body").addClass('medium-saturation');
+            }else if (o.s<=0.5){
+                $("body").addClass('low-saturation');
+            }else{
+
+            }
+            if (o.l>0.8){
+                $("body").addClass('high-lightness');
+            }else{
+                $("body").removeClass('high-lightness');
+            }
+        },
+        hexToHsl : function (hex) {
+            if (!hex || typeof hex !== 'string') return '';
+            // 匹配 #RGB 或 #RRGGBB
+            const regex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+            if (!regex.test(hex)) {
+                console.error('无效的 HEX 颜色值:', hex);
+                return '';
+            }
+
+            let h, s, l;
+            let c = hex.substring(1); // 去掉 #
+            const isShort = c.length === 3;
+
+            const r = parseInt(isShort ? c[0] + c[0] : c.substring(0, 2), 16) / 255;
+            const g = parseInt(isShort ? c[1] + c[1] : c.substring(2, 4), 16) / 255;
+            const b = parseInt(isShort ? c[2] + c[2] : c.substring(4, 6), 16) / 255;
+
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            const delta = max - min;
+
+            l = (max + min) / 2;
+
+            if (delta === 0) {
+                h = s = 0; // 灰色
+            } else {
+                s = delta / (1 - Math.abs(2 * l - 1));
+                switch (max) {
+                    case r: h = (g - b) / delta + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / delta + 2; break;
+                    case b: h = (r - g) / delta + 4; break;
+                }
+                h = Math.round(h * 60);
+            }
+            return {h:h.toFixed(0), s:s.toFixed(2), l:l.toFixed(2)};
+            //return `hsl(${h}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
         }
     };
     $.hisui.globalContainerId = 'z-q-container';
