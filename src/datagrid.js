@@ -395,7 +395,7 @@
                 showPageList:opts.showPageList, // wanghc 2018-1-29
                 afterPageText:opts.afterPageText,// wanghc 2018-1-29
                 beforePageText:opts.beforePageText,// wanghc 2018-1-29
-                displayMsg:opts.displayMsg,// wanghc 2018-1-29
+                displayMsg: opts.displayMsg?$.hisui.getTrans(opts.displayMsg):opts.displayMsg,// wanghc 2018-1-29 -> add trans 20251103
                 pageSize: opts.pageSize, 
                 pageList: opts.pageList, 
                 onSelectPage: function (_54e, _54f) {
