@@ -211,6 +211,7 @@
   font-size: @linkbutton-font-size;
   padding: 0 10px;
   margin: 0px;
+  box-sizing: content-box; /* 2025-11-03 防止其它样式冲突 6336877*/
 }
 .l-btn-icon {
   width: @icon-height;
