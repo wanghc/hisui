@@ -339,6 +339,48 @@
             return $.hisui.styleCodeConfig[key][HISUIStyleCode];
         }
     };
+    /***
+     * 获得target元素相对于dlgWinow的绝对位置
+     * @param target DOM元素
+     * @param dlgWindow 可以为空, 为空时表示当前window
+     * 兼容IE11,chrome内核,但不兼容IE8,如果是老浏览器直接使用$.offset()方法返回
+     * */
+    $.hisui.offsetInDialogWindow = function(target,dlgWindow) {
+        if (!target.getBoundingClientRect){ return $(target).offset(); }
+        if (!target.ownerDocument.defaultView){return $(target).offset();}
+        if (!dlgWindow && window == target.ownerDocument.defaultView ){ return $(target).offset(); }
+        var totalLeft = 0;
+        var totalTop = 0;
+        // 获取当前窗口的滚动偏移（兼容 IE）
+        var currentWin = dlgWindow||window;
+        // var doc = currentWin.document.documentElement;
+        // var body = currentWin.document.body;
+        // var scrollX = currentWin.pageXOffset !== undefined ? currentWin.pageXOffset : (doc && doc.scrollLeft || body && body.scrollLeft || 0);
+        // var scrollY = currentWin.pageYOffset !== undefined ? currentWin.pageYOffset : (doc && doc.scrollTop || body && body.scrollTop || 0);
+        var srcTargetWin = target.ownerDocument.defaultView;
+        var rect = target.getBoundingClientRect();  // 子界面 位置忽略子界面滚动条位置
+        totalLeft += rect.left;
+        totalTop += rect.top;
+        var win = srcTargetWin;
+        while (win !== currentWin) {
+            var iframe = win.frameElement;
+            if (!iframe) {
+                // console.error('跨域或到top');
+                break;
+            }
+            // 获取 iframe 所在父窗口的滚动偏移
+            var parentWin = win.parent;
+            var pDoc = parentWin.document.documentElement;
+            var pBody = parentWin.document.body;
+            var pScrollX = parentWin.pageXOffset !== undefined ? parentWin.pageXOffset : (pDoc && pDoc.scrollLeft || pBody && pBody.scrollLeft || 0);
+            var pScrollY = parentWin.pageYOffset !== undefined ? parentWin.pageYOffset : (pDoc && pDoc.scrollTop || pBody && pBody.scrollTop || 0);
+            var iframeRect = iframe.getBoundingClientRect();
+            totalLeft += iframeRect.left + pScrollX;
+            totalTop += iframeRect.top + pScrollY;
+            win = parentWin;
+        }
+        return { left: Math.round(totalLeft), top: Math.round(totalTop) };
+    },
     $.hisui.globalContainerId = 'z-q-container';
     $.hisui.globalContainerSelector = '#'+$.hisui.globalContainerId;
     $.hisui.getLastSrcTargetDom = function(){
@@ -347,10 +389,11 @@
     /**fix panel top left width height */
     $.hisui.fixPanelTLWH = function(){
         var state = $.data(document.getElementById($.hisui.globalContainerId), "data");
+        if (!state) return;
         var target = state.srcTargetDom;
         var _t = $(target);
         var panel = $($.hisui.globalContainerSelector);
-        var offset = _t.offset();
+        // var offset = _t.offset();
         //panel.offset({top:offset.top+_t._outerHeight(),left:offset.left});
         /**清除上一次定时器,当调用renderRowSummary方法时,会多次触发fixPanelTLWH,不用多个定时器来计算位置 */
         if (state.offsettimer) {
@@ -362,7 +405,7 @@
             if (panel.is(":visible")) {
                 var myTop = parseInt(getTop());
                 /*20220923增加面板位置样式, 且面板覆盖处comboq下边或上边1px边框 2745948 2914190*/
-                if (myTop > _t.offset().top) {
+                if (myTop > $.hisui.offsetInDialogWindow(_t[0]).top) {
                     myTop--; 
                     panel.removeClass('comboq-p-top').addClass('comboq-p-bottom');
                     _t.removeClass('comboq-textbox-top').addClass('comboq-textbox-bottom');
@@ -391,7 +434,7 @@
             }
         })();
         function getLeft() {
-            var left = _t.offset().left;
+            var left = $.hisui.offsetInDialogWindow(_t[0]).left;
             if (left + panel._outerWidth() > $(window)._outerWidth() + $(document).scrollLeft()) {
                 left = $(window)._outerWidth() + $(document).scrollLeft() - panel._outerWidth();
             }
@@ -401,12 +444,13 @@
             return left;
         };
         function getTop() {
-            var top = _t.offset().top + _t._outerHeight();  //默认向下
+            var t1 = $.hisui.offsetInDialogWindow(_t[0]).top;
+            var top = t1 + _t._outerHeight();  //默认向下
             if (top + panel._outerHeight() > $(window)._outerHeight() + $(document).scrollTop()) {
-                top = _t.offset().top - panel._outerHeight(); //在上面显示
+                top = t1 - panel._outerHeight(); //在上面显示
             }
             if (top < $(document).scrollTop()) {
-                top = _t.offset().top + _t._outerHeight(); //向下显示 
+                top = t1 + _t._outerHeight(); //向下显示 
             }
             top = parseInt(top);
             return top;

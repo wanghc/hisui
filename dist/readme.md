@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2025-11-06
 - :lipstick: `datagrid`无数据背景图居中问题处理
+- :feature: `lookup`增加`dlgWindow`属性
 
 ## 2025-11-03
 - 为`datagrid`自定义的`displayMsg`属性值增加翻译 [6336881]

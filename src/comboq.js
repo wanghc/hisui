@@ -18,10 +18,24 @@
     function doResize(target,width){
         $(target)._outerWidth(width);
     }
-	function _hide(target){
-        var panel = $($.hisui.globalContainerSelector);
-        if (panel.length > 0 && $.data(panel[0], "data")) {
-            var dataState = $.data(panel[0], "data");
+    /**
+     * 此方法是在子界面上调用, 面板相关元素信息都应该使用dialogWindow处理
+     * @param {*} target  隐藏某放大镜对应 弹窗
+     * @param {*} myWindow 隐藏某window内的放大镜弹窗
+     * @returns 
+     */
+	function _hide(target,myWindow){
+        var win = myWindow||window;
+        if (myWindow){ // 指定了某个窗口,就不固定放大镜输入框了
+        }else if (target){
+            var state = $.data(target, 'comboq') || qState;
+            var opts = state.options;
+            win = opts.dlgWindow || window;
+        }
+        
+        var panel = win.$($.hisui.globalContainerSelector);
+        if (panel.length > 0 && win.$.data(panel[0], "data")) {
+            var dataState = win.$.data(panel[0], "data");
             var qState = dataState.qState;
             /**隐藏时,要把定时器清空*/
             clearTimeout(dataState.offsettimer);
@@ -30,7 +44,7 @@
                 target = dataState.srcTargetDom ;
             }
         }
-        if (panel.is(":visible")) {
+        if (panel.is(":visible") && target) {
             var state = $.data(target, 'comboq') || qState;
             if (state){
                 var opts = state.options;
@@ -38,7 +52,7 @@
                 opts.onHidePanel.call(this,target);
             }
             $(target).removeClass('comboq-active');
-            $($.hisui.globalContainerSelector).hide();
+            win.$($.hisui.globalContainerSelector).hide();
             return $(target);
         }
         if ("undefined" != typeof target) return $(target);
@@ -84,17 +98,6 @@
             _t.addClass('bginone');
         }
         _t.validatebox(opts);
-        $(document).unbind(".comboq").bind("mousedown.comboq", function (e) {
-            var input = $(e.target).closest('input.comboq');
-            // if (input.length>0) console.log(" document mousedown "+ $.data(input[0],'comboq').isShow );
-            if (input.length>0 && $.data(input[0],'comboq').isShow){ return ;/*点击自已输入框时不隐藏*/ }
-
-            var p = $(e.target).closest($.hisui.globalContainerSelector);
-            if (p.length) {
-                return; /*点击弹出层时不隐藏*/
-            }
-            if ($($.hisui.globalContainerSelector).is(":visible")) _hide();
-        });
 		_t.unbind('.comboq').bind('mousemove.comboq',function(e){
             if ($(this).hasClass('disabled')) return ;
             if ($(this).hasClass('readonly')) return ;
@@ -126,6 +129,7 @@
             if (!opts.f112Enabled){
                 if (e.keyCode >= 112 && e.keyCode<=123) return ;
             }
+            var win = opts.dlgWindow || window;
             // input.comboq在IE下,设置值时触发,造成进入有下拉框界面就弹出下拉panel,2018-10-17 增加return
             if (navigator.userAgent.indexOf('MWBrowser/2')==-1 && navigator.userAgent.indexOf('Electron/22.3')==-1 && "undefined" == typeof e.keyCode) { return; }
             //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
@@ -134,7 +138,7 @@
                     opts.keyHandler.up.call(target, e);
                     break;
                 case 40:
-                    if (!$($.hisui.globalContainerSelector).is(":visible")) {
+                    if (!win.$($.hisui.globalContainerSelector).is(":visible")) {
                         // showPanel返回false时，直接返回不运行查询方法
                         if (false==showPanel(this)) return ;  //下拉按钮时 
                     }
@@ -225,26 +229,27 @@
         var state = $.data(target,"comboq");
         var opts = state.options;
         if (opts.onBeforeShowPanel.call(target)===false) return false;
-        var panel = $($.hisui.globalContainerSelector);
+        var win = opts.dlgWindow||window;
+        var panel = win.$($.hisui.globalContainerSelector);
         if (panel.length>0){
 			panel.empty();
 		}else{
-            panel = $('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
+            panel = win.$('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
         }
         panel.height(opts.panelHeight);
-        panel.css("z-index",$.fn.window.defaults.zIndex++);
+        panel.css("z-index",win.$.fn.window.defaults.zIndex++);
         if (!opts.panelWidth) {opts.panelWidth = _t._outerWidth()}
         panel.width(opts.panelWidth);
         state.isShow = true;
         // console.log("showpanel "+state.isShow);
         panel.show();
-        $.data(document.getElementById($.hisui.globalContainerId), "data", {
+        win.$.data(win.document.getElementById($.hisui.globalContainerId), "data", {
             srcTargetDom : target,
             qState : state     // 医嘱录入界页，先删除行后，再隐藏放大镜，那时就拿不到放大镜上的options
         }); /*下拉层上记录住当前对应的target*/
         opts.onShowPanel.call(target);
         _t.addClass('comboq-active'); /*面板展开时输入框状态就为激活状态,需求号 2914060*/
-        $.hisui.fixPanelTLWH();
+        win.$.hisui.fixPanelTLWH();
     }
     $.fn.comboq = function (opts, param) {
         if (typeof opts == "string") {
@@ -272,7 +277,9 @@
         options: function (jq) {
             return $.data(jq[0], "comboq").options;
         }, panel: function (jq) { //下拉
-            return $($.hisui.globalContainerSelector);
+            var opts = $.data(jq[0], "comboq").options;
+            var win = opts.dlgWindow||window;
+            return win.$($.hisui.globalContainerSelector);
         }, textbox: function (jq) {
             return jq;
         }, destroy: function (jq) {
@@ -284,7 +291,7 @@
         }, showPanel: function (jq) {
             return showPanel(jq[0]);
         }, hidePanel: function (jq) {
-            return _hide();
+            return _hide(jq[0]);
         }, setDisabled:function(jq,value){
 			return jq.each(function () {
                 setDisabled(this, value);
@@ -343,11 +350,14 @@
                 _setValue(this,val)
             });
         }, createPanelBody:function(jq,myCompId){
-            var panel = $($.hisui.globalContainerSelector); /*全局固定div*/
+            var state = $.data(jq[0], "comboq");
+            var opts = state.options;
+            var win = opts.dlgWindow||window;
+            var panel = win.$($.hisui.globalContainerSelector); /*全局固定div*/
             if (panel.length){
                 panel.empty();
             }else{
-                panel = $('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
+                panel = win.$('<div id="'+$.hisui.globalContainerId+'"></div>').appendTo('body');
             }
             var compDiv = "<div></div>"
             if (myCompId!=""){
@@ -362,6 +372,7 @@
     };
     
     $.fn.comboq.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        dlgWindow:window, /*放大镜弹出到哪个窗口,默认当前界面*/
         blurValidValue:false, /*2018-12-26 wanghc blur时验证组件是否有值,无则清空输入框*/
         f112Enabled:false,/*20250327 wanghc 是否支持F1~F12键，默认不支持*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
@@ -383,8 +394,60 @@
         }
     });
     // 跨iframe下，点击其他页面，隐藏下拉框
-    $(window).on('blur',function(){
-        _hide();
+    // $(window).on('blur',function(){
+    //     console.log("window blur--- hide comboq");
+    //     _hide();
+    // });
+
+    $(document).unbind(".comboq").bind("mousedown.comboq", function (e) {
+        var input = $(e.target).closest('input.comboq');
+        // if (input.length>0) console.log(" document mousedown "+ $.data(input[0],'comboq').isShow );
+        if (input.length>0 && $.data(input[0],'comboq').isShow){ return ;/*点击自已输入框时不隐藏*/ }
+
+        var p = $(e.target).closest($.hisui.globalContainerSelector);
+        if (p.length) { return; /*点击弹出层时不隐藏*/}
+
+        console.log("mousedown.comboq --- hide comboq")
+        // 点击的当前窗口中有下拉框时,隐藏
+        if ($($.hisui.globalContainerSelector).is(":visible")) _hide();
+
+        function isSameOrigin(targetWindow) {
+            try {
+                // 访问 .document 会触发同源策略检查
+                return !!targetWindow && !!targetWindow.document;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        function getTopmostSameOriginParent() {
+            var current = window;
+            // 从当前窗口开始，尽可能向上找同源父窗口
+            while (current !== current.top) {
+                if (isSameOrigin(current.parent)) {
+                    current = current.parent;
+                } else {
+                    break; // 父窗口跨域，停止
+                }
+            }
+            return current; // 至少是 window 自身
+        }
+        function _hideIframes(ifrm){
+            if (ifrm) _hide(undefined,ifrm);
+            var len = ifrm.frames.length;
+            for(var i=0;i<len;i++){
+                try{ 
+                    if (ifrm.frames[i]) _hideIframes(ifrm.frames[i]);
+                }catch(e){}                    
+            }
+        }
+        try{
+            _hideIframes(getTopmostSameOriginParent());
+        }catch(e){
+
+        }
+        // 再循环把点击窗口的子iframe界面中的comboq隐藏
+
     });
     // if(document.all){
     //     document.getElementById("myframe").attachEvent("onblur",dothis);

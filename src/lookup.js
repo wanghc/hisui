@@ -158,6 +158,12 @@
     function isSelfGrid(state){
         var isShow = false;
         try{
+            if (!state){return false;}
+            if (!state.grid){return false;}
+            var el = state.grid[0];
+            var doc = el.ownerDocument || el.document || document;
+            var exists = $.contains(doc, el);
+            if (!exists) { state.grid = null;return false;}
             if (state.grid && state.grid.datagrid('options').lookup) isShow = true;
         }catch(e){}
         return isShow;
@@ -220,12 +226,14 @@
         var state = $.data(target, "lookup");
         var opts = state.options;
         var cont = $($.hisui.globalContainerSelector);
+        var win = opts.dlgWindow || window;
+        var cont = win.$($.hisui.globalContainerSelector);
         if (!cont.is(":visible")) return;
         var panelHeight = cont._outerHeight();
         if (opts.panelHeightFix) {
-            var ch = document.documentElement.clientHeight; /*可见高度*/
-            var _tOffset = t.offset();
-            var topBlankHeight = _tOffset.top - document.documentElement.scrollTop;
+            var ch = win.document.documentElement.clientHeight; /*可见高度*/
+            var _tOffset = $.hisui.offsetInDialogWindow(target,win); // t.offset();
+            var topBlankHeight = _tOffset.top - win.document.documentElement.scrollTop;
             var downBlankHeight = ch - topBlankHeight - t._outerHeight();
             if ( topBlankHeight > downBlankHeight) { //上面空间大于下面
                 panelHeight = topBlankHeight;
@@ -257,25 +265,26 @@
         return panelHeight;
     }
     function renderRowSummary(target,html,grd){
-        var cont = $($.hisui.globalContainerSelector);
+        var state = $.data(target, "lookup");
+        var opts = state.options;
+        var win = opts.dlgWindow || window;
+        var cont = win.$($.hisui.globalContainerSelector);
         if (cont.is(":visible")){
-            var state = $.data(target, "lookup");
-            var opts = state.options;
             if (opts.rowSummaryHeight>0 && cont.find('.lookup-rowSummary').length > 0) { // cont.find('.lookup-rowSummary').remove();
                 cont.find('.lookup-rowSummary').children().remove();
-                $(html).appendTo($('.lookup-rowSummary'));
+                win.$(html).appendTo(win.$('.lookup-rowSummary'));
             } else {
                 cont.find('.lookup-rowSummary').remove();
-                var myRowSummaryObj = $('<div class="lookup-rowSummary">' + html + '</div>').appendTo(cont);
+                var myRowSummaryObj = win.$('<div class="lookup-rowSummary">' + html + '</div>').appendTo(cont);
                 if (opts.rowSummaryHeight == 0) opts.rowSummaryHeight = myRowSummaryObj._outerHeight();                
-                $('.lookup-rowSummary').css('height', opts.rowSummaryHeight).css('overflow','auto');
+                win.$('.lookup-rowSummary').css('height', opts.rowSummaryHeight).css('overflow','auto');
             }
             //var rowSummaryHeight = $('<div class="lookup-rowSummary">' + html + '</div>').prependTo(cont)._outerHeight();
             var fixHeight = getFixContHeight(target, grd, opts.rowSummaryHeight);
             var grdHeight = fixHeight - opts.rowSummaryHeight;
             resizeGridAndCont(cont,grd,fixHeight,grdHeight);
             //cont._outerHeight(cont.children('.datagrid')._outerHeight()+rowSummaryHeight);
-            $.hisui.fixPanelTLWH();
+            win.$.hisui.fixPanelTLWH();
         }
         return;
     }
@@ -304,16 +313,18 @@
                 rownumbers:true,lazy:true,
                 border: false, singleSelect: (!opts.multiple), 
                 onBeforeLoad: function (param) {
-                    var cont = $($.hisui.globalContainerSelector);
+                    var win = opts.dlgWindow || window;
+                    var cont = win.$($.hisui.globalContainerSelector);
                     resizeGridAndCont(cont, grid);
                     // 重写返回值 [4753725]
                     return opts.onBeforeLoad.apply(target, arguments);
                 },
                 onLoadSuccess: function (data) {
                     if (state.panel.is(':visible')){
+                        var win = opts.dlgWindow || window;
                         if (opts.forceFocus) {$(target).focus();}
                         var fixHeight = getFixContHeight(target, grid, 0);
-                        resizeGridAndCont($($.hisui.globalContainerSelector), grid, fixHeight, fixHeight);
+                        resizeGridAndCont(win.$($.hisui.globalContainerSelector), grid, fixHeight, fixHeight);
                         // HISUI lookup插件当加载数据成功后高亮第一行时，需触发selectRowRender 事件 
                         // 需求号：2723790 调整顺序
                         grid.datagrid("highlightRow", 0);
