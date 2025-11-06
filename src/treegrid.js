@@ -1074,9 +1074,9 @@
 				if (this.treeNodes && this.treeNodes.length) {
 					var _e6 = _e7.call(this, _e1, this.treeLevel, this.treeNodes);
 					$(_e0).append(_e6.join(""));
-					$(_e0).closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');  // 有数据标志
+					$(_e0).closest('.datagrid').removeClass('datagrid-no-data').addClass('datagrid-have-data');  // 有数据标志
 				}else{
-					$(_e0).closest('.datagrid-body').removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
+					$(_e0).closest('.datagrid').removeClass('datagrid-have-data').addClass('datagrid-no-data');  // 有数据标志
 				}
 				function _e7(_e8, _e9, _ea) {
 					var _eb = $(_df).treegrid("getParent", _ea[0][_e2.idField]);

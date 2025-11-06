@@ -1462,11 +1462,9 @@
         _5af(_5a8);
         $(_5a8).datagrid("autoSizeColumn");
         if (data.total>0 || (data.rows && data.rows.length>0)) {
-            dc.body2.removeClass('datagrid-no-data').addClass('datagrid-have-data');
-            if (dc.body1) dc.body1.closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');
+            dc.body2.closest('.datagrid').removeClass('datagrid-no-data').addClass('datagrid-have-data')
         }else{
-            dc.body2.removeClass('datagrid-have-data').addClass('datagrid-no-data');
-            if (dc.body1) dc.body1.closest('.datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');
+            dc.body2.closest('.datagrid').removeClass('datagrid-have-data').addClass('datagrid-no-data');
         }
     };
     function _5af(_5b0) {
@@ -3539,7 +3537,7 @@
             _6f0.call(this, false); /**false表示内容列 */
             $(_6ec).datagrid("fixRowHeight", _6ed);
             // 有人使用updateRow来自己写表
-            $(_6ec).datagrid('getPanel').find('.datagrid-view2 .datagrid-body').removeClass('datagrid-no-data').addClass('datagrid-have-data');;
+            $(_6ec).datagrid('getPanel').closest('.datagrid').removeClass('datagrid-no-data').addClass('datagrid-have-data');
         }, insertRow: function (_6f4, _6f5, row) {
             var _6f6 = $.data(_6f4, "datagrid");
             var opts = _6f6.options;
