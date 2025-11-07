@@ -406,8 +406,6 @@
 
         var p = $(e.target).closest($.hisui.globalContainerSelector);
         if (p.length) { return; /*点击弹出层时不隐藏*/}
-
-        console.log("mousedown.comboq --- hide comboq")
         // 点击的当前窗口中有下拉框时,隐藏
         if ($($.hisui.globalContainerSelector).is(":visible")) _hide();
 
