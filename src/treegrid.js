@@ -35,13 +35,13 @@
 					_4.onSortColumn.call(_2, _9, _a);
 				},
 				onClickCell : function (_c, _d) {
-					_4.onClickCell.call(_2, _d, _30(_2, _c));
+					_4.onClickCell.call(_2, _d, findRowById(_2, _c));
 				},
 				onDblClickCell : function (_e, _f) {
-					_4.onDblClickCell.call(_2, _f, _30(_2, _e));
+					_4.onDblClickCell.call(_2, _f, findRowById(_2, _e));
 				},
 				onRowContextMenu : function (e, _10) {
-					_4.onContextMenu.call(_2, e, _30(_2, _10));
+					_4.onContextMenu.call(_2, e, findRowById(_2, _10));
 				}
 			}));
 		var _11 = $.data(_2, "datagrid").options;
@@ -105,13 +105,54 @@
 			}
 		};
 	};
+	function shiftCheckRow(target, id){
+		var state = $.data(target, "treegrid");
+		var opts = state.options;
+		if (opts.shiftCheck){
+			var currentTr = opts.finder.getTr(target, id,'body',1);
+			var table = currentTr.closest('.datagrid-body-inner');
+			var trs = table.find('.datagrid-row');
+			var myTopSelectRow = -1, willCheckedIdArr = [];
+			trs.each(function(index,item){
+				var tr = $(item);
+				var trId = tr.attr("node-id");				
+				if (trId == id){
+					return false;
+				}
+				if (opts.cascadeCheck && tr.next().hasClass('treegrid-tr-tree')){ // 级连选中，则父节点跳出
+					// 进入下一次循环
+					return;
+				}
+				if (tr.find(".tree-checkbox.tree-checkbox1").length>0){ // 有选中,就清空
+					myTopSelectRow = index;
+					willCheckedIdArr = [];
+				}
+				willCheckedIdArr.push(trId);
+			});
+			if (myTopSelectRow>-1){
+				for (var i = 0; i < willCheckedIdArr.length; i++){ 
+					_27(target, willCheckedIdArr[i], true, true);
+				}
+			}
+			
+		}
+	}
 	function _24(e) {		
 		var tt = $(e.target);
 		if (tt.hasClass("tree-hit")) {
-			_25(_26);
+			_25(_26); // 展开/收起
 		} else {
 			if (tt.hasClass("tree-checkbox")) {
 				_25(_27);
+				if (e.shiftKey) {
+					//e.stopPropagation();
+					//e.preventDefault();
+					//event.preventDefault();
+					if (window.getSelection) {
+						window.getSelection().removeAllRanges();
+					}
+					_25(shiftCheckRow);
+				}
 			} else {
 				//$.fn.datagrid.defaults.rowEvents.click(e);  wanghc--不能修改成treegrid--死循环
 			}
@@ -121,6 +162,7 @@
 			var _28 = tr.closest("div.datagrid-view").children(".datagrid-f")[0];
 			fn(_28, tr.attr("node-id"));
 		};
+
 	};
 	function _27(_29, _2a, _2b, _2c) {
 		var _2d = $.data(_29, "treegrid");
@@ -129,7 +171,7 @@
 		if (!_2f.checkbox) {
 			return;
 		}
-		var row = _30(_29, _2a);
+		var row = findRowById(_29, _2a);
 		if (!row.checkState) {
 			return;
 		}
@@ -174,23 +216,30 @@
 			_2f.onCheckNode.call(_29, row, _2b);
 		}
 	};
-	function _33(_34, row, _35) {
-		var _36 = $.data(_34, "treegrid");
+	/**
+	 * check row
+	 * @param {HTMLDocument} target 
+	 * @param {JsonObject} row 
+	 * @param {String||Number} checkStateInt 
+	 * @returns 
+	 */
+	function _33(target, row, checkStateInt) {
+		var _36 = $.data(target, "treegrid");
 		var _37 = _36.checkedRows;
 		var _38 = _36.options;
-		if (!row.checkState || _35 == undefined) {
+		if (!row.checkState || checkStateInt == undefined) {
 			return;
 		}
-		var tr = _38.finder.getTr(_34, row[_38.idField]);
+		var tr = _38.finder.getTr(target, row[_38.idField]);
 		var ck = tr.find(".tree-checkbox");
 		if (!ck.length) {
 			return;
 		}
-		row.checkState = ["unchecked", "checked", "indeterminate"][_35];
+		row.checkState = ["unchecked", "checked", "indeterminate"][checkStateInt];
 		row.checked = (row.checkState == "checked");
 		ck.removeClass("tree-checkbox0 tree-checkbox1 tree-checkbox2");
-		ck.addClass("tree-checkbox" + _35);
-		if (_35 == 0) {
+		ck.addClass("tree-checkbox" + checkStateInt);
+		if (checkStateInt == 0) {
 			$.hisui.removeArrayItem(_37, _38.idField, row[_38.idField]);
 		} else {
 			$.hisui.addArrayItem(_37, _38.idField, row);
@@ -205,13 +254,18 @@
 	};
 	function _32(_3c, row) {
 		var _3d = $.data(_3c, "treegrid").options;
-		var _3e = _3f(_3c, row[_3d.idField]);
+		var _3e = findParentRowById(_3c, row[_3d.idField]);
 		if (_3e) {
-			_33(_3c, _3e, _40(_3e));
+			_33(_3c, _3e, calcParentNodeCheckStateInt(_3e));
 			_32(_3c, _3e);
 		}
 	};
-	function _40(row) {
+	/**
+	 * 计算父节点checkState状态
+	 * @param {JsonObject} row 
+	 * @returns 0/1/2
+	 */
+	function calcParentNodeCheckStateInt(row) {
 		var len = 0;
 		var c0 = 0;
 		var c1 = 0;
@@ -247,7 +301,7 @@
 		if (!_45.checkbox) {
 			return;
 		}
-		var row = _30(_43, _44);
+		var row = findRowById(_43, _44);
 		var tr = _45.finder.getTr(_43, _44);
 		var ck = tr.find(".tree-checkbox");
 		if (_45.view.hasCheckbox(_43, row)) {
@@ -261,7 +315,7 @@
 				if (row.checkState == "unchecked") {
 					_27(_43, _44, false, true);
 				} else {
-					var _46 = _40(row);
+					var _46 = calcParentNodeCheckStateInt(row);
 					if (_46 === 0) {
 						_27(_43, _44, false, true);
 					} else {
@@ -336,7 +390,7 @@
 		var _56 = _55.options;
 		var dc = _55.dc;
 		_52 = _56.loadFilter.call(_50, _52, _51);
-		var _57 = _30(_50, _51);
+		var _57 = findRowById(_50, _51);
 		if (_57) {
 			var _58 = _56.finder.getTr(_50, _51, "body", 1);
 			var _59 = _56.finder.getTr(_50, _51, "body", 2);
@@ -415,7 +469,7 @@
 				order : _61.sortOrder
 			});
 		}
-		var row = _30(_5c, _5d);
+		var row = findRowById(_5c, _5d);
 		if (_61.onBeforeLoad.call(_5c, row, _63) == false) {
 			return;
 		}
@@ -449,10 +503,10 @@
 	function _6a(_6b) {
 		return $.data(_6b, "treegrid").data;
 	};
-	function _3f(_6c, _6d) {
-		var row = _30(_6c, _6d);
+	function findParentRowById(_6c, id) {
+		var row = findRowById(_6c, id);
 		if (row._parentId) {
-			return _30(_6c, row._parentId);
+			return findRowById(_6c, row._parentId);
 		} else {
 			return null;
 		}
@@ -460,7 +514,7 @@
 	function _1b(_6e, _6f) {
 		var _70 = $.data(_6e, "treegrid").data;
 		if (_6f) {
-			var _71 = _30(_6e, _6f);
+			var _71 = findRowById(_6e, _6f);
 			_70 = _71 ? (_71.children || []) : [];
 		}
 		var _72 = [];
@@ -475,8 +529,8 @@
 		var _78 = tr.children("td[field=\"" + _77.treeField + "\"]");
 		return _78.find("span.tree-indent,span.tree-hit").length;
 	};
-	function _30(_79, _7a) {
-		var _7b = $.data(_79, "treegrid");
+	function findRowById(target, _7a) {
+		var _7b = $.data(target, "treegrid");
 		var _7c = _7b.options;
 		var _7d = null;
 		$.hisui.forEach(_7b.data, true, function (_7e) {
@@ -489,7 +543,7 @@
 	};
 	function _collapse(_80, _81) {
 		var _82 = $.data(_80, "treegrid").options;
-		var row = _30(_80, _81);
+		var row = findRowById(_80, _81);
 		var tr = _82.finder.getTr(_80, _81);
 		var hit = tr.find("span.tree-hit");
 		if (hit.length == 0) {
@@ -525,7 +579,7 @@
 		var _86 = $.data(_84, "treegrid").options;
 		var tr = _86.finder.getTr(_84, _85);
 		var hit = tr.find("span.tree-hit");
-		var row = _30(_84, _85);
+		var row = findRowById(_84, _85);
 		if (hit.length == 0) {
 			return;
 		}
@@ -587,7 +641,7 @@
 		var _90 = $.data(_8e, "treegrid").options;
 		var _91 = _1b(_8e, _8f);
 		if (_8f) {
-			_91.unshift(_30(_8e, _8f));
+			_91.unshift(findRowById(_8e, _8f));
 		}
 		for (var i = 0; i < _91.length; i++) {
 			_collapse(_8e, _91[i][_90.idField]);
@@ -597,7 +651,7 @@
 		var _95 = $.data(_93, "treegrid").options;
 		var _96 = _1b(_93, _94);
 		if (_94) {
-			_96.unshift(_30(_93, _94));
+			_96.unshift(findRowById(_93, _94));
 		}
 		for (var i = 0; i < _96.length; i++) {
 			_expand(_93, _96[i][_95.idField]);
@@ -606,11 +660,11 @@
 	function _97(_98, _99) {
 		var _9a = $.data(_98, "treegrid").options;
 		var ids = [];
-		var p = _3f(_98, _99);
+		var p = findParentRowById(_98, _99);
 		while (p) {
 			var id = p[_9a.idField];
 			ids.unshift(id);
-			p = _3f(_98, id);
+			p = findParentRowById(_98, id);
 		}
 		for (var i = 0; i < ids.length; i++) {
 			_expand(_98, ids[i]);
@@ -639,7 +693,7 @@
 	function _a2(_a3, _a4) {
 		var ref = _a4.before || _a4.after;
 		var _a5 = $.data(_a3, "treegrid").options;
-		var _a6 = _3f(_a3, ref);
+		var _a6 = findParentRowById(_a3, ref);
 		_9b(_a3, {
 			parent : (_a6 ? _a6[_a5.idField] : null),
 			data : [_a4.data]
@@ -675,7 +729,7 @@
 	function _ae(_af, _b0) {
 		var _b1 = $.data(_af, "treegrid");
 		var _b2 = _b1.options;
-		var _b3 = _3f(_af, _b0);
+		var _b3 = findParentRowById(_af, _b0);
 		$(_af).datagrid("deleteRow", _b0);
 		$.hisui.removeArrayItem(_b1.checkedRows, _b2.idField, _b0);
 		_1f(_af);
@@ -874,7 +928,7 @@
 			return _6a(jq[0]);
 		},
 		getParent : function (jq, id) {
-			return _3f(jq[0], id);
+			return findParentRowById(jq[0], id);
 		},
 		getChildren : function (jq, id) {
 			return _1b(jq[0], id);
@@ -883,7 +937,7 @@
 			return _74(jq[0], id);
 		},
 		find : function (jq, id) {
-			return _30(jq[0], id);
+			return findRowById(jq[0], id);
 		},
 		isLeaf : function (jq, id) {
 			var _d2 = $.data(jq[0], "treegrid").options;
@@ -963,7 +1017,7 @@
 				var row = _d6.row;
 				_d7.view.updateRow.call(_d7.view, this, _d6.id, row);
 				if (row.checked != undefined) {
-					row = _30(this, _d6.id);
+					row = findRowById(this, _d6.id);
 					$.extend(row, {
 						checkState : row.checked ? "checked" : (row.checked === false ? "unchecked" : undefined)
 					});
@@ -1343,7 +1397,7 @@
 					};
 					_113(data, _111);
 				}
-				var node = _30(_110, _111);
+				var node = findRowById(_110, _111);
 				if (node) {
 					if (node.children) {
 						node.children = node.children.concat(data);

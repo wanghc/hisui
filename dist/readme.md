@@ -35,6 +35,12 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-11-12
+- :feature: `treegrid`增加`shiftCheck`属性 [5845820]
+
+## 2025-11-07
+- :lipstick: `datagrid`无数据背景图各语言问题处理
+
 ## 2025-11-06
 - :lipstick: `datagrid`无数据背景图居中问题处理
 - :feature: `lookup`增加`dlgWindow`属性
