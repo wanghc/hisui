@@ -18,6 +18,21 @@
                 };
                 _setValues(_903, _906, _904.remainText);
                 opts.onSelect = _907;
+                if (opts.paginationNoWrap){
+                    var _861 = $.data(_903, "combo");
+                    var co = _861.combo;
+                    var panelObj = _861.panel;
+                    var myWidth = opts.panelWidth ? opts.panelWidth : co.outerWidth();
+                    myWidth = Math.max(myWidth, 40 + panelObj.find('.pagination table').outerWidth() + panelObj.find('.pagination .pagination-info').outerWidth());
+                    // 如果界面有2000条记录，从1页翻页到200页时，（因为翻页条中“显示to到from，共toal条”数字变大，文字变多）面板应该宽度变大，
+                    // 但从200翻到1时，不用变小（减少界面闪动）。
+                    if (panelObj.find('.pagination').outerWidth()<myWidth){
+                        panelObj.panel("resize", { width: myWidth });
+                        if(panelObj.find(".datagrid").length>0){
+                            grid.datagrid("resize",{ width: myWidth})
+                        }
+                    }
+                }
                 opts.onLoadSuccess.apply(_903, arguments);
             }, onClickRow: _908, onSelect: function (_909, row) {
                 _90a();

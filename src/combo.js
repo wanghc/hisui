@@ -215,10 +215,15 @@
             panelObj.panel("open");
             //resize不在初始化时做, 提升首屏速度
             var co = _861.combo;
-            panelObj.panel("resize", { width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight });
-            if(panelObj.find(".datagrid").length>0){ 
+            var myWidth = opts.panelWidth ? opts.panelWidth : co.outerWidth()
+            // combogrid的onLoadSuccess中设置panelWidth了，但第一次显示时宽度也要处理。因为先触发loadsuccess，后触发showpanel事件
+            if (opts.paginationNoWrap){
+                myWidth = Math.max(myWidth, 40 + panelObj.find('.pagination table').outerWidth() + panelObj.find('.pagination .pagination-info').outerWidth());
+            }
+            panelObj.panel("resize", { width: myWidth, height: opts.panelHeight });
+            if(panelObj.find(".datagrid").length>0){
                 // datagrid--width=0,height=0
-                $.data(_860, "combogrid").grid.datagrid("resize",{ width: (opts.panelWidth ? opts.panelWidth : co.outerWidth()), height: opts.panelHeight })
+                $.data(_860, "combogrid").grid.datagrid("resize",{ width: myWidth, height: opts.panelHeight })
             }
             //---end 
             opts.onShowPanel.call(_860);
@@ -513,6 +518,7 @@
     };
     
     $.fn.combo.defaults = $.extend({}, $.fn.validatebox.defaults, {
+        paginationNoWrap:false, /* 翻页条是否能换行，设置此属性后，宽度在面板展开后，再次计算一次。兼容老模式,默认能换行 */
         panelMaxHeight:null,
         blurValidValue:false, /*2018-12-26 wanghc blur时验证组件是否有值,无则清空输入框*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */

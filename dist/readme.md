@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-11-13
+- :feature: `combogrid`增加`paginationNoWrap`属性 [6206977]
+
 ## 2025-11-12
 - :feature: `treegrid`增加`shiftCheck`属性 [5845820]
 
