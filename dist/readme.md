@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-11-14
+- :lipstick: `splitbutton`悬浮与点击时都不显示边框 [5794790]
+
 ## 2025-11-13
 - :feature: `combogrid`增加`paginationNoWrap`属性 [6206977]
 

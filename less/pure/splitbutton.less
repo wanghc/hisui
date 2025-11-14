@@ -81,7 +81,8 @@
     }
   }
   &.l-btn-plain:active{
-    border:1px solid #b7d2ff;
+    border:1px solid @menubutton-blue-bgcolor-active;
+    background-color: @menubutton-blue-bgcolor-active;
   }
   &:active{
     border:1px solid #006EDB;
@@ -89,6 +90,9 @@
   }
   &.l-btn-waiting{
     background-color: #006EDB;
+  }
+  &.l-btn-plain.l-btn-waiting{
+    background-color: @menubutton-blue-bgcolor-active;
   }
   &.m-btn {
     .l-btn-left{
