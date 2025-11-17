@@ -114,7 +114,7 @@ gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-c
     });
 });
 // 生成task任务 如： pic-en-css,pic-pure-en-css, pic-pure-fr-css
-['','lite','pure'].forEach((value,index)=>{
+['','lite','pure','vben'].forEach((value,index)=>{
     ['en','pt','fr'].forEach((v,i)=>{
         gulp.task(`pic${value?('-'+value):""}-${v}-css`,()=>{
             let t = gulp.src(`less${value?('/'+value):''}/locale.${v}.less`)
