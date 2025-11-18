@@ -24,12 +24,14 @@
         }
     };
     function _setSelectionByIdField(rows, idField, r) {
-        for (var i = 0, len = rows.length; i < len; i++) {
-            if (rows[i][idField] == r[idField]) {
-                return;
+        if (r){
+            for (var i = 0, len = rows.length; i < len; i++) {
+                if (rows[i] && (rows[i][idField] == r[idField])) {
+                    return;
+                }
             }
+            rows.push(r);
         }
-        rows.push(r);
     };
     // init
     function _506(_507) {
@@ -717,7 +719,7 @@
             } else {
                 var row = opts.finder.getRow(_55a, rowIndex);
                 var td = tt.closest("td[field]", tr);
-                if (td.length) {
+                if (row && td.length) { // 因为延迟触发,点击的是第三行rowIndex=3,loadData新数据只有1行时，row就为undefined
                     var _568 = td.attr("field");
                     opts.onClickCell.call(_55a, rowIndex, _568, row[_568]);
                 }
@@ -1414,6 +1416,9 @@
                 return r;
             });
         }
+        // dc.body2.closest('.datagrid').find('.tooltip-f').each(function() {
+        //     try { $(this).tooltip('destroy'); } catch(e) {}
+        // });
         if (opts.view.onBeforeRender) {
             opts.view.onBeforeRender.call(opts.view, _5a8, data.rows);
         }
@@ -1513,10 +1518,12 @@
             opts.onCheck = _5b4;
         }
         function _5b6(a, r) {
-            for (var i = 0; i < a.length; i++) {
-                if (a[i][opts.idField] == r[opts.idField]) {
-                    a[i] = r;
-                    return true;
+            if (r){
+                for (var i = 0; i < a.length; i++) {
+                    if (a[i] && ( a[i][opts.idField] == r[opts.idField] )) {
+                        a[i] = r;
+                        return true;
+                    }
                 }
             }
             return false;
@@ -1846,7 +1853,7 @@
         var dc = _5ef.dc;
         var _5f0 = dc.header1.add(dc.header2);
         _5f0.find("div.datagrid-header-check input[type=checkbox]")._propAttr("checked", false);
-        if (opts.idField) {
+        if (opts.idField && row) {
             _503(_5ef.checkedRows, opts.idField, row[opts.idField]);
         }
         opts.onUncheck.call(_5ec, _5ed, row);
@@ -3503,6 +3510,10 @@
                     _6ef = css["style"] || "";
                 }
             }
+            // 删除行上tooltip组件
+            // $(_6ec).datagrid('getPanel').find('.tooltip-f').each(function() {
+            //     try { $(this).tooltip('destroy'); } catch(e) {}
+            // });
             var _6ee = "datagrid-row " + (_6ed % 2 && opts.striped ? "datagrid-row-alt " : " ") + _6ee  ;
             function _6f0(_6f1) {
                 var _6f2 = $(_6ec).datagrid("getColumnFields", _6f1);
