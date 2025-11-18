@@ -203,12 +203,20 @@
         });
         state.window.resizable({
             disabled: state.options.resizable == false, onStartResize: function (e) {
+                // 当hisui-window的title区域不在主dom操作区，在其它iframe之上时,拖不宽问题处理,[6282360]
+                // 在头菜单弹出一hisui-window，title在中部居中（不在头菜单上），此时拖宽不了window; 把title拖到头菜单区域,此时可以拖宽window
+                // iframe 会拦截鼠标事件，主页面无法接收到 mousemove/mouseup 事件
+                try{$('iframe').css('pointer-events', 'none');}catch(e){}
                 start1(e);
             }, onResize: function (e) {
                 proc1(e);
                 return false;
             }, onStopResize: function (e) {
                 stop1(e,'resize');
+                // 当hisui-window的title区域不在主dom操作区，在其它iframe之上时,拖不宽问题处理,[6282360]
+                // 在头菜单弹出一hisui-window，title在中部居中（不在头菜单上），此时拖宽不了window; 把title拖到头菜单区域,此时可以拖宽window
+                // iframe 会拦截鼠标事件，主页面无法接收到 mousemove/mouseup 事件
+                try{$('iframe').css('pointer-events', 'auto');}catch(e){}
             }
         });
         function start1(e) { 
