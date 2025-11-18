@@ -1416,9 +1416,9 @@
                 return r;
             });
         }
-        // dc.body2.closest('.datagrid').find('.tooltip-f').each(function() {
-        //     try { $(this).tooltip('destroy'); } catch(e) {}
-        // });
+        dc.body2.closest('.datagrid').find('.tooltip-f').each(function() {
+            try { $(this).tooltip('destroy'); } catch(e) {}
+        });
         if (opts.view.onBeforeRender) {
             opts.view.onBeforeRender.call(opts.view, _5a8, data.rows);
         }
@@ -1687,7 +1687,7 @@
             _uncheckRow(target, rowIndex, true);
         }
         opts.finder.getTr(target, rowIndex).removeClass("datagrid-row-selected");  
-        if (opts.idField) {
+        if (opts.idField && row) {
             _503(_5d8, opts.idField, row[opts.idField]);
         }
         _handerMergeddRow(opts,target,rowIndex,"datagrid-merged-row-selected",false);
@@ -3510,10 +3510,6 @@
                     _6ef = css["style"] || "";
                 }
             }
-            // 删除行上tooltip组件
-            // $(_6ec).datagrid('getPanel').find('.tooltip-f').each(function() {
-            //     try { $(this).tooltip('destroy'); } catch(e) {}
-            // });
             var _6ee = "datagrid-row " + (_6ed % 2 && opts.striped ? "datagrid-row-alt " : " ") + _6ee  ;
             function _6f0(_6f1) {
                 var _6f2 = $(_6ec).datagrid("getColumnFields", _6f1);
@@ -3527,6 +3523,10 @@
                         changedFields.push($(this).attr("field"));
                     });
                 }
+                // 替换内容前，删除老行上tooltip组件 [6245838]
+                tr.find('.tooltip-f').each(function() {
+                    try { $(this).tooltip('destroy'); } catch(e) {}
+                });
                 //---end
                 tr.html(this.renderRow.call(this, _6ec, _6f2, _6f1, _6ed, rows[_6ed]));
                 //---start 加上样式
