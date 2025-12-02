@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>公共请求</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
+</head>
+<body>
+	<h2>数据访问</h2>
+	<h3>说明:</h3>
+	<span>通过ajax调用后台方法或Query,且会对特殊敏感关键词进行过过滤insert,select,delete,update,conut,chr,declare,truncate,from,having,base,object,param,script,noscript,alert,
+		confirm,prompt,onmouseleave,onmousewheel,location,eval,function,onabort,onblur,onchange,onclick,ondblclick,onerror,onfocus,onkeydown,onkeypress,onkeyup,onload,
+		onmousemove,onmouseover,onmouseout,onmousedown,onmouseup,onreset,onselect,onsubmit,onunload,当请求的值中包含这些关键词，且关键词前后有特殊字符时，当前请求值会被置换成空		
+	</span>
+	<h3>使用:</h3>
+	<span>先引入jQuery，再引入websys.jquery.js</span>
+	<pre class="prettyprint hide lang-html">
+<code>&lt;script type="text/javascript" src="../scripts_lib/jquery-easyui-1.3.2/jquery-1.8.0.min.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="../scripts/websys.jquery.js"&gt;&lt;/script&gt;</code></pre>
+	
+	<div class="demo-exp-code entry-content"> 
+		<h2>$cm(data[,success][,error])调用后台方法 </h2>
+		<table class="table">
+			<tr class="protitle">
+				<th>参数</th>
+				<th>类型</th>
+				<th></th>
+				<th>说明</th>
+			</tr>
+			<tr>
+				<td><div style="width: 60px;">data</div></td>
+				<td><div style="width: 140px;">{ Object }</div></td>
+				<td><div style="width: 80px;">必填项</div></td>
+				<td>
+					<table class="table" style="width:100%;">
+						<tr >
+							<th>属性</th>
+							<th>类型</th>
+							<th></th>
+							<th>说明</th>
+						</tr>
+						<tr>
+							<td><code>ClassName</code></td>
+							<td>{ String }</td>
+							<td>必需项</td>
+							<td>类名，即包名.类名</td>
+						</tr>
+						<tr>
+							<td><code>MethodName</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>后台类方法名或成员方法名</td>
+						</tr>
+						<tr>
+							<td><code>QueryName</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>后台Query名。如果配置了MethodName则QueryName无效</td>
+						</tr>
+						<tr>
+							<td><code>wantreturnval</code></td>
+							<td>{ Number }</td>
+							<td>可选</td>
+							<td>后台方法是否有返回值，1表示有，0表示无。<br/> 决定后台是以do还是set方式运行。默认为1</td>
+						</tr>
+						<tr>
+							<td><code>ResultSetType</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>
+								配置ResultSetType后，运行Query返回的数据格式
+								<br/>
+								值为<code>array</code>时返回值格式为:<code>[{},{},{}]</code>
+								<br/>不配置时返回格式为:<code>{"rows":[{},{},{}],"total":3}</code>
+								<br/>值为<code>Excel</code>时返回下载cvs链接，具体参考导出Excel菜单说明</code>
+								<br/>值为<code>ExcelPlugin</code>时会导出Excel到本地，具体参考导出Excel菜单说明</code>
+								
+							</td>
+						</tr>
+						<tr>
+							<td><code>totalFields</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>
+								配置totalFields后，会对totalFields中的列进入数值合计
+								<br/>
+								如：totalFields:<code>'amt,cost'</code>,返回格式为:
+								<br/>
+								{"rows":[...],<code>"footer":[{"amt":110,"cost":120}],</code>"total":3}
+							</td>
+						</tr>
+						<tr>
+							<td><code>totalFooter</code></td>
+							<td>{ String }</td>
+							<td>可选</td>
+							<td>
+								配置totalFooter后，会在数值合计后，拼接到数据json前。
+								<br/>
+								如：totalFooter:<code>'"colName":"押金合计"'</code>,返回格式为:
+								<br/>
+								{"rows":[...],"footer":[{<code>"colName":"押金合计",</code>"amt":1100}],"total":3} <code>20200224</code>
+								
+							</td>
+						</tr>
+						<tr>
+							<td><code>dataType</code></td>
+							<td>{String}</td>
+							<td>返回的数据类型，默认<code>"json"</code></td>
+							<td>见$.ajax的<code>dataType</code></td>
+						</tr>
+						<tr>
+							<td><code>type</code></td>
+							<td>{String}</td>
+							<td>请求类型，默认<code>"POST"</code></td>
+							<td>见$.ajax的<code>type</code><code>20190413</code><br/>
+								当ajax请求发生在界面卸载事件内，应使用type:"BEACON"来处理当前请求，在chrome49后此时情况下没有返回值<code>20230404</code><br/>
+							</td>
+						</tr>
+						<tr>
+							<td>其它</td>
+							<td></td>
+							<td>可选</td>
+							<td>对应后台方法或Query的入参名，可以为数组</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>success</td>
+				<td>{ Function | Boolean }</td>
+				<td>可选项</td>
+				<td>
+					<code>Function</code>类型 ajax成功时回调方法<code>function(json){}</code><br>
+					<!--当wantreturnval为1时 rtn为类方法中w输出的数据和方法返回值  <br>
+					当wantreturnval为0时 rtn为类方法中w输出的数据。<br/>-->
+					<code>Boolean</code>类型且值为false时，则表示发送同步请求
+				</td>
+			</tr>
+			<tr>
+				<td>error</td>
+				<td>{ Function }</td>
+				<td>可选项</td>
+				<td>
+					<code>Function</code>类型 ajax错误时回调方法<code>function(rtn){}</code>
+				</td>
+			</tr>
+		</table>
+	</div>
+		<h2>1.调用后台类方法示例：</h2>
+		<pre class="prettyprint hide lang-bash">
+//后台类代码
+<code >Class dhc.Test Extends %RegisteredObject 
+{
+	Classmethod getPatInfo(UserName)
+	{
+		q "{""name"":"""_UserName"""}"
+	}
+}</code></pre>
+<!--异步返回json数据-->
+<pre class="prettyprint hide lang-js">
+<code>//异步调用类方法，推荐
+$cm({
+	ClassName:"dhc.Test",
+	MethodName:"getPatInfo",
+	UserName:"张三"
+},function(jsonData){
+	console.dir(jsonData);  //{"name":"张三"}
+});</code></pre>
+<!--返回非json数据-->
+<pre class="prettyprint hide lang-js">
+<code>//异步调用类方法,且返回值非json数据时请用 $m(data[,success][,error]);
+$m({
+	ClassName:"dhc.Test",
+	MethodName:"getPatInfo",
+	UserName:"张三"
+},function(txtData){
+	console.dir(txtData);  //'{"name":"张三"}'
+});</code></pre>
+<!--同步例子-->
+<pre class="prettyprint hide lang-js">
+<code>//同步调用类方法 ,不建议使用
+var jsonData = $cm({
+	ClassName:"dhc.Test",
+	MethodName:"getPatInfo",
+	UserName:"张三"
+},false);
+console.dir(jsonData);  //{"name":"张三"}</code></pre>
+
+<h2>2.调用后台Query示例支持<code>%String,%Integer,%Float,%Boolean</code>：</h2>
+<pre class="prettyprint hide lang-bash">
+<code >Query LookUpActive(desc As %String) As %Library.SQLQuery(CONTAINID = 2, ROWSPEC = "Description:%String,HIDDEN:%Integer,Active:%Boolean")
+{
+	SELECT SSUSR_Name, SSUSR_RowID, SSUSR_Active
+	FROM	SQLUser.SS_User
+	WHERE	((%ALPHAUP SSUSR_Name [ %ALPHAUP :desc) OR (:desc IS NULL)) AND (SSUSR_Active = 'Y')
+	ORDER	BY SSUSR_Name
+}</code></pre>
+<pre class="prettyprint hide lang-js">
+<code >$cm({
+	ClassName:"web.SSUser",
+	QueryName:"LookUpActive",
+	//增加配置项 ResultSetType："array" //则rs为[{"Description":"王二","HIDDEN":"1","Active":true},,...]
+	page:1,    //可选项，页码，默认1
+	rows:20    //可选项，获取多少条数据，默认50
+},function(rs){
+	console.dir(rs);    //{"rows":[{"Description":"王二","HIDDEN":"1","Active":true},...],"total":110}
+	
+});
+</code></pre>
+
+<h2>3.数组入参示例：</h2>
+<pre class="prettyprint hide lang-bash">
+//后台M类
+<code >Class dhc.Test Extends %RegisteredObject {
+	//保存喜爱的水果列表
+	Classmethod saveFavFruitList(plist)	{
+		//下面前台$cm方法调用后plist值如下
+		//plist(1)="orange"
+		//plist(2)="apple"
+		//plist(3)="pear"
+		//plist(4)="banana"
+		quit "{}"
+	}
+}</code></pre>
+<!--异步返回json数据-->
+<pre class="prettyprint hide lang-js">
+<code>//数组入参调用js代码示例
+$cm({
+	ClassName:"dhc.Test",
+	MethodName:"saveFavFruitList",
+	plist:["orange","apple","pear","banana"]
+});</code></pre>
+
+
+<h2>4.对象或数组返回示例：</h2>
+<pre class="prettyprint hide lang-ruby">
+//后台M类
+<code >Class dhc.Test Extends %RegisteredObject {
+	Property Name As %String;
+	Property Sex As %String;
+	//返回对象或数组
+	Classmethod getInfo() As dhc.Test{
+		set obj = ##class(dhc.Test).%New()
+		set obj.Name="neer"
+		set obj.Sex="男"
+		quit obj
+	}
+}</code></pre>
+<pre class="prettyprint hide lang-js">
+<code>//数组入参调用js代码示例
+$cm({
+	ClassName:"dhc.Test",
+	MethodName:"getInfo"
+},function(rtn){
+	console.log(rtn); //{Name:"neer",Sex:"男"}
+});</code></pre>
+<prettyprint/>
+</body>
+</html>

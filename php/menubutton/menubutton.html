@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>菜单按钮</title>
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+
+</head>
+
+<body style="background-color:#FFFFFF;">
+
+    <h2>菜单按钮</h2>
+    <h3>说明:</h3>
+    <span>菜单按钮（menubutton）是下拉菜单的一部分。它与链接按钮（linkbutton）及菜单（menu）有关。显示链接按钮（linkbutton），隐藏菜单（menu）。当用户点击或移动鼠标到链接按钮（linkbutton）上时，将显示菜单（menu）以允许用户点击菜单。</span>
+   
+    <h3>一、多级菜单</h3>
+	<div class="demo-exp-code entry-content"> 
+        
+        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton hisui-multi-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改</a>
+        
+        <div id="mmedit" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'">撤销</div>
+            <div data-options="iconCls:'icon-redo'">撤回</div>
+            <div class="menu-sep"></div>
+            <div>剪切</div>
+            <div>复制</div>
+            <div>
+                <span>粘贴</span>
+                <div class='menu-no-icon'>
+                    <div>粘贴成文本</div>
+                    <div>粘贴成网页</div>
+                    <div>粘贴成表格</div>
+                </div>
+            </div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'icon-cancel'">删除</div>
+            <div>选择</div>
+        </div>
+		<pre class="prettyprint lang-html hide"><code>&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改&lt;/a>
+    &lt;div id="mmedit" style="width:150px;">
+        &lt;div data-options="iconCls:'icon-undo'">撤销&lt;/div>
+        &lt;div data-options="iconCls:'icon-redo'">撤回&lt;/div>
+        &lt;div class="menu-sep">&lt;/div>
+        &lt;div>剪切&lt;/div>
+        &lt;div>复制&lt;/div>
+        &lt;div>
+            &lt;span>粘贴&lt;/span>
+            &lt;div class='menu-no-icon'>
+                &lt;div>粘贴成文本&lt;/div>
+                &lt;div>粘贴成网页&lt;/div>
+                &lt;div>粘贴成表格&lt;/div>
+            &lt;/div>
+        &lt;/div>
+        &lt;div class="menu-sep">&lt;/div>
+        &lt;div data-options="iconCls:'icon-remove'">删除&lt;/div>
+        &lt;div>选择&lt;/div>
+    &lt;/div&gt;</code></pre>
+    </div>
+    <h3>二、无图标菜单(<code>menu-no-icon</code>) <code>2018-09-17</code></h3>
+	<div class="demo-exp-code entry-content"> 
+        
+        <a href="javascript:void(0)" class="hisui-menubutton hisui-no-icon-menubutton" data-options="menu:'#mm3'">操作</a>
+        
+        <div id="mm3" style="width:100px;" class='menu-no-icon'>   
+            <div onclick="console.log('停止');">停止</div>   
+            <div onclick="console.log('作废');">作废</div>
+        </div>
+        <pre class="prettyprint lang-html hide"><code>&lt;&lt;a href="javascript:void(0)" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-paper-info'">操作&lt;/a>
+            &lt;div id="mm3" style="width:100px;" class='menu-no-icon'>   &lt;!--menu-no-icon让菜单更紧凑-->
+                &lt;div onclick="console.log('停止');">停止&lt;/div>   
+                &lt;div onclick="console.log('作废');">作废&lt;/div>     
+            &lt;/div>
+        </code></pre>
+    </div>
+    
+    <h3>四、工具栏的MenuButton如：</h3>
+    
+	<div class="demo-exp-code entry-content"> 
+        <a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-paper-info'">操作</a>
+        <div id="mm-toolbar" style="width:100px;">   
+            <div onclick="console.log('停止');">停止</div>   
+            <div onclick="console.log('作废');">作废</div>
+        </div>
+
+        <a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-write-order',otherCls:'menubutton-toolbar'">修改</a>
+        <div id="mmedit-toolbar" style="width:150px;">
+            <div data-options="iconCls:'icon-undo'">撤销</div>
+            <div data-options="iconCls:'icon-redo'">撤回</div>
+            <div class="menu-sep"></div>
+            <div>剪切</div>
+            <div>复制</div>
+            <div>粘贴</div>
+            <div class="menu-sep"></div>
+            <div data-options="iconCls:'icon-cancel'">删除</div>
+            <div>选择</div>
+        </div>
+        <p>两种实现方式 &nbsp;&nbsp;&nbsp; a)为HTML元素增加类<code>menubutton-toolbar</code>  &nbsp;&nbsp;&nbsp; b) data-options增加<code>otherCls:'menubutton-toolbar'</code></p>
+        <p>此类型按钮显示图标，菜单不显示图标，菜单的宽度和按钮的宽度等同，可通过按钮的style属性控制宽度 </p>
+
+        <pre class="prettyprint lang-html hide"><code >&lt;a href="javascript:void(0)" id="menubtn-toolbar" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar',iconCls:'icon-paper-info'"&gt;操作&lt;/a&gt;
+&lt;div id="mm-toolbar" style="width:100px;"&gt;   
+    &lt;div onclick="console.log('停止');"&gt;停止&lt;/div&gt;   
+    &lt;div onclick="console.log('作废');"&gt;作废&lt;/div&gt;     
+    &lt;!-- data-options="iconCls:'icon-cancel'" --&gt;
+&lt;/div&gt;
+
+&lt;a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-write-order',otherCls:'menubutton-toolbar'"&gt;修改&lt;/a&gt;
+&lt;div id="mmedit-toolbar" style="width:150px;"&gt;
+    &lt;div data-options="iconCls:'icon-undo'"&gt;撤销&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-redo'"&gt;撤回&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div&gt;剪切&lt;/div&gt;
+    &lt;div&gt;复制&lt;/div&gt;
+    &lt;div&gt;粘贴&lt;/div&gt;
+    &lt;div class="menu-sep"&gt;&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-remove'"&gt;删除&lt;/div&gt;
+    &lt;div&gt;查询&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    </div>
+    <h3>表格中使用按钮 </h3>
+	<div class="demo-exp-code entry-content"> 
+		<div id="custtb2" >
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-add',plain:true">增加</a>
+			<a href="javascript:void(0)" class="hisui-linkbutton" data-options="iconCls:'icon-cancel',plain:true">删除</a>
+			<a href="javascript:void(0)" class="hisui-menubutton menubutton-toolbar"  data-options="menu:'#mm-toolbar2',iconCls:'icon-add-note'">其他</a>
+			<div id="mm-toolbar2" style="width:100px;">   
+				<div onclick="console.log('停止');">停止</div>   
+				<div onclick="console.log('作废');">作废</div>     
+			</div>
+		</div>
+		<table id='mytb2' class="hisui-datagrid" title="病人列表" style="width:600px;height:240px" data-options="iconCls:'icon-panel-brand',headerCls:'panel-header-gray',pagination:true,
+			toolbar:'#custtb2',onHeaderContextMenu:function(){alert(111);},onDblClickHeader:function(){console.log(arguments)},
+			onDblClickRow:function(){console.log(arguments)}">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'code'">编码</th>   
+					<th data-options="field:'name'">名称</th>   
+					<th data-options="field:'price'">价格</th>
+					<th data-options="field:'num'">数量</th>
+					<th data-options="field:'note'">描述</th>
+					<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
+					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
+				</tr>   
+			</thead>
+            <tbody>
+                <tr>
+                    <td>mycode</td>
+                    <td>mycaption</td>
+                    <td>myprice</td>
+                    <td>11</td>
+                    <td>mydesc</td>
+                    <td>2015-09-09</td>
+                    <td>2015-09-09 12:12:12</td>
+                </tr>
+            </tbody>   
+			<tbody>    
+			</tbody>   
+		</table> 
+    </div>
+    <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isTopZindex</td>
+			<td>是否覆盖在病历编辑器这上</td>
+			<td>false</td>
+			<td>可选值：<code>true|false</code></td>
+		</tr>
+	</table>
+    <prettyprint/>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>横向节点图</title>
+    
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.pure.min.css"></link>
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>	
+    <script type="text/javascript" src="../mock-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../demo.css">
+    
+    <script type="text/javascript">
+        var HISUIStyleCode = 'pure';
+    </script>
+</head>
+<body style="background-color: #FFFFFF;">
+<h2>横向节点图组件(<code>hstep</code>)</h2>
+<h3>说明：</h3>
+<span>可用于步骤图，流程图，闭环图等。</span>
+<h3>一.步骤图</h3>
+<div class="demo-exp-code entry-content">
+<div class="use-prettyprint lang-html">
+    <div id="hstp" style='height: 100px;'></div>
+    <a id="prevbtn" class="hisui-linkbutton" href="#" data-options='iconCls:"icon-w-arrow-left"'>上一步</a>
+    <a id="nextbtn" class="hisui-linkbutton" href="#" data-options='iconCls:"icon-w-arrow-right"'>下一步</a>
+</div>
+<script type="text/javascript" class="use-prettyprint">
+$(function(){
+    $('#prevbtn').click(function(){
+        $('#hstp').hstep('prevStep');
+    });
+    $('#nextbtn').click(function(){
+        $('#hstp').hstep('nextStep');
+    });
+    $("#hstp").hstep({
+        //showNumber:false,
+        stepWidth:200,
+        currentInd:3,
+        onSelect:function(ind,item){console.log(item);},
+        //titlePostion:'top',
+        items:[{
+                title:'挂号',
+                context:"<div class='cntt'><div>王二</div><div>2020-07-03 09:10</div></div>"
+            },{
+                title:'就诊',
+                context:"<div class='cntt'><div>张三</div><div>2020-07-03 10:10</div></div>"
+            },{
+                title:"收费", 
+                context:"<div class='cntt'><div>李四</div><div>2020-07-03 11:10</div></div>"
+            },{
+                title:"取药"
+            },{
+                title:"完成"
+            }]
+    });
+});
+</script>
+</div>
+
+    <table class="table">
+		<tr class="protitle">
+			<th>配置项</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th>其它</th>
+        </tr>
+        <tr>
+            <td>currentInd</td>
+            <td>当前所在节点</td>
+            <td>1</td>
+            <td></td>
+        </tr>
+		<tr>
+			<td>stepWidth</td>
+			<td>单步宽度</td>
+			<td>100</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>items</td>
+            <td>具体节点配置</td>
+            <td>Object</td>
+			<td>{
+                title:'title',
+                context:"html/text"
+            }</td>
+        </tr>
+        <tr class="mthtitle">
+            <th>方法名</th>
+            <th>说明</th>
+            <th>入参</th>
+            <th>返回值</th>
+        </tr>
+        
+        <tr>
+            <td>setStep</td>
+            <td>设置当前流程处于哪个节点</td>
+            <td>ind</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>getStep</td>
+            <td>获得当前流程处于哪个节点</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>getStepInd</td>
+            <td>获得当前流程处于的索引位置</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>prevStep</td>
+            <td>上一节点</td>
+            <td></td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>nextStep</td>
+            <td>下一节点</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="evttitle">
+            <th>事件名</th>
+            <th>说明</th>
+            <th>入参</th>
+            <th>类型</th>
+        </tr>
+        <tr>
+            <td>onSelect</td>
+            <td>当前选中对象</td>
+            <td>ind,item</td>
+            <td></td>
+        </tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>

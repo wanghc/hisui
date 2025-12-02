@@ -3,9 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>HIS UI</title>
-	<link rel="stylesheet" type="text/css" href="../dist/css/hisui.min。.css">
+	<link rel="stylesheet" type="text/css" href="../dist/css/hisui.vben.css">
 	<script type="text/javascript" src="../dist/js/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="../dist/js/jquery.hisui.min.js"></script>	
+	<script type="text/javascript" src="../dist/js/jquery.hisui.min.js"></script>
+	<script>
+		HISUIStyleCode = 'pure';
+	</script>	
 	<style>
 		code{
 			padding: .2rem .4rem;
@@ -22,35 +25,59 @@
 		}
 	</style>
 </head>
-<body>
-	<div id='Loading' style="position:absolute;z-index:1000;top:0px;left:0px;width:100%;height:100%;background:#DDDDDB;text-align:center;padding-top: 20%;">
-		<h1>
-			<image src='../dist/css/images/loading.gif' />
-			<font color="#15428B">加载中···</font>
-		</h1>
+<body data-theme="bgdrak">
+	<h2>按钮</h2>
+	<div style="width:800px;height:150px;">
+		<a id="btn" href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'"></a>
+		<a id="btn" href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+		<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">查询按钮</a>
+		<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">复制长期医嘱</a>		
+		<a href="#" class="hisui-linkbutton">确定</a>
+		<a href="#" class="hisui-linkbutton">确定提交</a>
+		<a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱</a>   
+		<div id="mm2" style="width:100px;">   
+			<div>停止</div>   
+			<div>作废</div>   
+		</div>
+		<a href="javascript:void(0)" id="sb" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单</a>
+		<div id="mm3" style="width:100px;">   
+			<div >停止</div>   
+			<div>作废</div>     
+			<!-- data-options="iconCls:'icon-cancel'" -->
+		</div>
+		<a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit</a>
+		<div id="mmedit" style="width:150px;">
+			<div data-options="iconCls:'icon-undo'">Undo</div>
+			<div data-options="iconCls:'icon-redo'">Redo</div>
+			<div class="menu-sep"></div>
+			<div>Cut</div>
+			<div>Copy</div>
+			<div>Paste</div>
+			<div class="menu-sep"></div>
+			<div data-options="iconCls:'icon-remove'">Delete</div>
+			<div>Select All</div>
+		</div>
+		<div style="margin: 10px;">
+			<a href="#" class="hisui-linkbutton blue" data-options="clickWaitingTime:1000">蓝色按钮</a>
+			<a href="#" class="hisui-linkbutton green" data-options="clickWaitingTime:1000">绿色按钮</a>
+			<a href="#" class="hisui-linkbutton yellow" data-options="clickWaitingTime:1000">黄色按钮</a>
+			<a href="#" class="hisui-linkbutton red" data-options="clickWaitingTime:1000">红色按钮</a>
+		</div>
+		<div style="margin: 10px;">
+			<a href="#" class="hisui-linkbutton" data-options="disabled:true">蓝色按钮</a>
+			<a href="#" class="hisui-linkbutton green" data-options="disabled:true">绿色按钮</a>
+			<a href="#" class="hisui-linkbutton yellow" data-options="disabled:true">黄色按钮</a>
+			<a href="#" class="hisui-linkbutton red" data-options="disabled:true">红色按钮</a>
+		</div>
 	</div>
 	<h2>提示(<code>hisui-tooltip</code>)</h2>
 	<a id="tt1" href="#" title="这是提示信息" class="hisui-tooltip" data-options="position:'right'">
-		鼠标移动到这(点击试试)
-	</a>
-	<div style="margin:20px 0"></div>
-	<a id="tt" href="javascript:void(0)">
 		鼠标移动到这
 	</a>
-	<div style="margin:20px 0"></div>
-	<script type="text/javascript">
-		$(function () {
-			var tt = $HUI.tooltip('#tt', {
-				content: '<span style="color:green">这是通过js提示的</span>',
-				position: 'bottom' 						//top , right, bottom, left
-			});
-
-			$("#tt1").click(function () {
-				tt.show();  //显示下面的提示
-			});
-
-		});
-	</script>
+	<a href="javascripts:void(0);" class="a-disable">
+		禁用状态
+	</a>
+	<div style="margin:20px 0;"></div>
 	<h2>基础验证框(<code>hisui-validatebox</code>)</h2>
 	<p>在输入框上加入简单的验证</p>
 	<div style="margin:20px 0;"></div>
@@ -150,7 +177,7 @@
 			</tr>
 			<tr>
 				<td>下拉框</td>
-				<td><select id="stateBox" class="hisui-combobox" name="state">
+				<td><select id="stateBox" class="hisui-combobox textbox" name="state">
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
@@ -477,44 +504,12 @@
 			//$('#tt2').tabs('disableTab', 0); 
 		});
 	</script>
-	<div style="float:left;width:1000px;height:150px;">
-		<h2>按钮</h2>
-		<a id="btn" href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'"></a>
-		<a id="btn" href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
-		<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">查询按钮</a>
-		<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'">复制长期医嘱</a>		
-		<a href="#" class="hisui-linkbutton">确定</a>
-		<a href="#" class="hisui-linkbutton">确定提交</a>
-		<a href="javascript:void(0)" id="sb" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-ok'">作废医嘱</a>   
-		<div id="mm2" style="width:100px;">   
-			<div>停止</div>   
-			<div>作废</div>   
-		</div>
-		<a href="javascript:void(0)" id="sb" class="hisui-menubutton" data-options="menu:'#mm3',iconCls:'icon-ok'">菜单</a>
-		<div id="mm3" style="width:100px;">   
-			<div >停止</div>   
-			<div>作废</div>     
-			<!-- data-options="iconCls:'icon-cancel'" -->
-		</div>
-		<a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">Edit</a>
-		<div id="mmedit" style="width:150px;">
-			<div data-options="iconCls:'icon-undo'">Undo</div>
-			<div data-options="iconCls:'icon-redo'">Redo</div>
-			<div class="menu-sep"></div>
-			<div>Cut</div>
-			<div>Copy</div>
-			<div>Paste</div>
-			<div class="menu-sep"></div>
-			<div data-options="iconCls:'icon-remove'">Delete</div>
-			<div>Select All</div>
-		</div>
-	</div>
-	<div id="dd1" class="hisui-window" title="完成接诊" style="width:400px;height:200px;top:10px;left:500px;padding:10px;"   
+	<div id="dd1" class="hisui-window" title="完成接诊" style="width:400px;height:200px;top:10px;left:900px;padding:10px;"   
 		data-options="iconCls:'icon-save',resizable:true,modal:false">   
 		我是一个Window窗口
 		<code>hisui-window</code>  
 	</div>
-	<div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:250px;left:500px;padding:10px;"   
+	<div id="dd2" class="hisui-dialog" title="完成接诊" style="width:400px;height:350px;top:250px;left:900px;padding:10px;"   
 		data-options="iconCls:'icon-save',resizable:true,modal:false,toolbar:[{
 			text:'编辑',
 			iconCls:'icon-edit',
