@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-12-02
+- :feature: `pagination`组件会把`pageSize`增加到`pageList`中 [6434616]
+
 ## 2025-11-18
 - `datagrid`点击行时,报错保护
 - `datagrid`在加载新数据前,清空旧行记录上`tiptool`提示 [6245838]

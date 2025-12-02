@@ -210,6 +210,13 @@
                 _a2 = $.extend({}, $.fn.pagination.defaults, $.fn.pagination.parseOptions(this), _a0);
                 $.data(this, "pagination", { options: _a2 });
             }
+            // pageSize不在pageList内时，增加到pageList内
+            if ($.inArray(_a2.pageSize, _a2.pageList) == -1) {
+                _a2.pageList.push(_a2.pageSize);
+                _a2.pageList.sort(function (a, b) {
+                    return a - b;
+                });
+            }
             _81(this);
             _92(this);
         });
