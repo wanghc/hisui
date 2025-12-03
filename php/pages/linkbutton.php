@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+
+    <body style="background-color: #FFFFFF;">
+
+    <h2>链接按钮</h2>
+    <span>链接按钮（Link Button）是使用 &lt;a>元素来创建的，所以实际上一个链接按钮（Link Button）就是一个显示为按钮样式的 &lt;a>元素。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content">
+        <!--<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true">查询</a>
+        <a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find',plain:true" disabled>禁用</a>
+        -->
+<div class='use-prettyprint lang-html links'>
+<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" disabled>禁用</a>
+<a href="#" class="hisui-linkbutton" id="btn1">点我提示</a>
+<a href="#" class="hisui-linkbutton" data-options="iconImg:'../pages/linkbutton/update.png'">自定义图片按钮</a>
+<a href="#" class="hisui-linkbutton" data-options="iconCls:'icon-w-find'" style="width:200px;">自定义宽度按钮</a></div>
+    </div>
+    <!-- pure不再显示iconImg  -->
+
+<h3>不同色系按钮</h3>
+
+    <span>按钮默认是蓝色，如果需要使用其它色系的按钮，在class中加入<code>white</code>、<code>blue</code>、<code>green</code>、<code>yellow</code>、或者<code>red</code>，按钮就会改变色系</span>
+    <br><span>其中<code>green</code>表示通过，<code>yellow</code>表示警示，<code>red</code>表示拒绝</span>
+    <div class="demo-exp-code entry-content">
+    <div class='use-prettyprint lang-html links' style="height: 80px;padding: 10px;">
+<a href="#" class="hisui-linkbutton white">白色(white)按钮</a>
+<a href="#" class="hisui-linkbutton blue">蓝色(blue)按钮</a>
+
+<a href="#" class="hisui-linkbutton green">绿色(green)按钮</a>
+<a href="#" class="hisui-linkbutton yellow">黄色(yellow)按钮</a>
+<a href="#" class="hisui-linkbutton red">红色(red)按钮</a>
+<div style="margin: 10px;"></div><br/>
+    
+    <a href="#" class="hisui-linkbutton white" disabled data-options="stopAllEventOnDisabled:true">白色(white)按钮</a>
+    <a href="#" class="hisui-linkbutton blue" disabled data-options="stopAllEventOnDisabled:true">蓝色(blue)按钮</a>
+    
+    <a href="#" class="hisui-linkbutton green" disabled>绿色(green)按钮</a>
+    <a href="#" class="hisui-linkbutton yellow" disabled>黄色(yellow)按钮</a>
+    <a href="#" class="hisui-linkbutton red" disabled>红色(red)按钮</a>
+    </div>
+    </div>
+    <h3>禁用 事件处理</h3>
+    <span>原来按钮禁用后，通过jq绑定的事件，还是会被触发，现增加一属性<code>stopAllEventOnDisabled</code>,当为true时，阻止事件</span>
+    <br><span>通过监听生成的子元素span的点击事件，当stopAllEventOnDisabled为true，且按钮被禁用时，阻止事件冒泡</span>
+    <div class="demo-exp-code entry-content">
+        <a href="#" id="event1" class="hisui-linkbutton " >上一步</a>  原本的事件会触发
+        <br><br>
+        <a href="#" id="event2" class="hisui-linkbutton " data-options="stopAllEventOnDisabled:true">下一步</a>  属性<code>stopAllEventOnDisabled</code>为true时，事件不会触发
+        <script type="text/javascript"> 
+            $.parser.onComplete = function(context){
+                $("#event1").click(function () {
+                   alert("jquery为按钮【上一步】点击事件");
+                });
+                $("#event2").click(function () {
+                   alert("jquery为按钮【下一步】点击事件");
+                });
+                $("#event1").linkbutton('disable');
+                $("#event2").linkbutton('disable');
+
+            };
+        </script> 
+        <pre class="prettyprint hide lang-html"><code></code>&lt;a href="#" id="event1" class="hisui-linkbutton " &gt;上一步&lt;/a&gt;  原本的事件会触发
+&lt;br&gt;&lt;br&gt;
+&lt;a href="#" id="event2" class="hisui-linkbutton " data-options="stopAllEventOnDisabled:true"&gt;下一步&lt;/a&gt;  属性&lt;code&gt;stopAllEventOnDisabled&lt;/code&gt;为true时，事件不会触发
+&lt;script type="text/javascript"&gt; 
+    $(function () {
+        $("#event1").click(function () {
+            alert("jquery为按钮【上一步】点击事件");
+        });
+        $("#event2").click(function () {
+            alert("jquery为按钮【下一步】点击事件");
+        });
+        $("#event1").linkbutton('disable');
+        $("#event2").linkbutton('disable');
+
+    });
+&lt;/script&gt;     </code></pre>
+    </div>
+
+
+    <script type="text/javascript"> 
+    $(function () {
+        $("#btn1").click(function (argument) {
+           alert("你确定？");
+        });
+    });
+    function goIconTab(){
+        parent.addTab("图标(icon)", "icon/icon.html")
+    }
+    </script>   
+    <h3>右侧图标与文字悬浮效果示例</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint">
+<a href="#" id="otherDownBtn" class="hisui-linkbutton showicon inner-text-hover" data-options="iconAlign:'right',plain:true,iconCls:'layout-button-down'">更多</a>
+<a href="#" id="otherUpBtn" class="hisui-linkbutton showicon inner-text-hover" data-options="iconAlign:'right',plain:true,iconCls:'layout-button-up'">更多</a></div>
+    </div>  
+    <h3>大图按钮</h3>
+    <span>
+        在<code class="atn">class</code>中加入<code class="atv">big</code>，
+        同时<code class="atn">data-options</code>中加入<code class="atv">plain:true</code>可实现大图按钮功能。
+        大图标定义请查看<a class="hisui-link" href="javascript:void(0);" onclick="goIconTab();">图标(icon)</a>界面
+    </span>
+    <h3>如：</h3>
+    <style>
+        .demo-big-test{
+            font-size: 0px;
+        }
+        .demo-big-test a{
+            margin-left: 10px;
+        }
+    </style>
+    <div class="demo-big-test demo-exp-code entry-content">
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-save',plain:true">保存</a>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-print',plain:true">打印</a>
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-del',plain:true">删除</a>
+        
+        <a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true">手工解锁</a>
+          
+		<a class="hisui-linkbutton big" disabled data-options="iconCls:'icon-big-ca',plain:true">禁用</a>
+		
+        <!--<a class="hisui-linkbutton big" data-options="iconImg:'unlock.png',plain:true">手工解锁</a>
+        <a href="#" class="hisui-linkbutton hover-dark showicon" data-options="plain:true,iconCls:'icon-w-find'">时间线查看</a>
+        -->
+        <pre class="prettyprint hide lang-html"><code>
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-save',plain:true"&gt;保存&lt;/a&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-print',plain:true"&gt;打印&lt;/a&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-del',plain:true"&gt;删除&lt;/a&gt;
+&lt;div class="datagrid-btn-separator big"&gt;&lt;/div&gt;
+&lt;a class="hisui-linkbutton big" data-options="iconCls:'icon-big-unlock',plain:true"&gt;手工解锁&lt;/a&gt;</code></pre>
+    </div>
+
+    <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>plain</td>
+			<td>是否素色</td>
+			<td>false</td>
+			<td>为true时,按钮素色</td>
+        </tr>
+        <tr>
+            <td>iconImg</td>
+            <td>图片地址</td>
+            <td>null</td>
+            <td>'unlock.png'</td>
+        </tr>
+        <tr>
+            <td>stopAllEventOnDisabled</td>
+            <td>在disabled时是否阻止按钮事件</td>
+            <td>false</td>
+            <td>通过监听生成的子元素span的点击事件，当stopAllEventOnDisabled为true，且按钮被禁用时，阻止事件冒泡。</td>
+        </tr>
+        <tr class="protitle">
+			<th>类</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+        <tr>
+            <td>showicon</td>
+            <td>显示图标</td>
+            <td>null</td>
+            <td>如：class='showicon hisui-linkbutton'可以强制显示按钮图标</td>
+        </tr>
+        <tr>
+            <td>notTrans</td>
+            <td>不自动翻译与否</td>
+            <td>false</td>
+            <td>默认自动翻译。true表示不翻译 <code>20230801</code></td>
+        </tr>
+        <tr>
+            <td>clickWaitingTime</td>
+            <td>点击后禁用时长(毫秒)</td>
+            <td>200</td>
+            <td>默认禁用200毫秒后激活; 点击后把按钮设置成waiting状态，禁用再次点击<code>20231211</code></td>  
+        </tr>
+        <tr>
+            <td>waitingAlert</td>
+            <td>waiting状态的按钮再次点击时提示内容</td>
+            <td>默认提示：'按钮已点击过,系统响应中,请等待...'</td>
+            <td>为空时不提示<code>20231211</code></td>  
+        </tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>

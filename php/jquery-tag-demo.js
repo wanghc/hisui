@@ -7,6 +7,8 @@
     try{
         if ($("prettyprint").length>0){
             $('body').append('<link rel="stylesheet" type="text/css" href="'+baseUrl+'/prettify.css"><script type="text/javascript" src="'+baseUrl+'/prettify.js"><\/script>');
+        }else{
+            return false;
         }
     }catch(e){}
     $(".use-prettyprint").each(function(i,item){
@@ -61,6 +63,7 @@
         var width = _pp_.parent().width();
         var jobj = $("<div class='toggle-prettyprint' style='padding-left:"+(width/2)+"px;width:120px;'>"+_desc_+"</div>").insertBefore($(this));
     });
+    return true;
 }
 (function(){
 	return;
@@ -97,7 +100,9 @@
 
 $(function(){
     /**实现通过源HTML生成示例。用法：class="use-prettyprint" prettyprintfor="#mypp"  by wanghc 2020-1-21*/
-    runPrettyPrint();
+    if (!runPrettyPrint()){
+        return false;
+    }
     $("body").on("click",".toggle-prettyprint",function(){
         var _t = $(this);
         if (window.onResizePretty){onResizePretty();}

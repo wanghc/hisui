@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+
+<body style="background-color: #cde6ff;">
+
+    <h2>手风琴</h2>
+    <h3>说明:</h3>
+    <span>折叠面板（Accordion）俗称手风琴，其包含一系列的面板（panel）。 所有面板（panel）的头部（header）都是可见的，但是一次仅仅显示一个面板（panel）的 body 内容。 当用户点击面板（panel）的头部（header）时，该面板（panel）的 body 内容将可见，同时其他面板（panel）的 body 内容将隐藏不可见。</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+            <div id="acc" class="hisui-accordion" style="width:200px;height:450px;float:left;"
+                data-options="border:false">   
+                <div title="等待区" style="overflow:auto;padding:9px 15px 15px 15px;">   
+                    content1
+                </div>
+                <div title="留观区" style="padding:9px 15px 15px 15px;">   
+                    content2    
+                </div>    
+                <div title="住院区" style="padding:9px 15px 15px 15px;">   
+                    <code>class="hisui-accordion"</code>
+                </div>   
+                <div title="出院区" style="padding:9px 15px 15px 15px;">   
+                    content4   
+                </div>   
+            </div>
+        </div>
+        <div style="height:300px;width:20px;float:left"></div>
+        <div style="height:300px;width:60px;float:left">
+            <a id="addBtn" href="#" >增加</a>
+        </div>
+            <!-- <div  style="height:300px;width:120px;float:left">&nbsp;&nbsp;</div> -->
+        <div style="height:300px;width:120px;float:left;margin-left: 20px;">
+            <a id="removeBtn" href="#" class="hisui-linkbutton">删除当前</a>
+        </div>
+        <div style="padding:2px ;clear: left"></div>
+        <div class="use-prettyprint lang-js">
+            <script type="text/javascript">
+            $(function(){
+                var accObj = $HUI.accordion("#acc");
+                $HUI.linkbutton("#addBtn",{
+                    onClick:function(){
+                        accObj.add({
+                            title:'新标题',
+                            //iconCls:'icon-w-add',
+                            content:'你点击按钮了，我就有了。',
+                            selected:true //,
+                            //style:{backgroundColor:'red',borderWidth:2}
+                        });
+                    }
+                });
+                $HUI.linkbutton("#removeBtn",{
+                    onClick:function(){
+                        // 删除当前选中的
+                        var p = accObj.getSelected();
+                        if (p){
+                            var index = accObj.getPanelIndex(p);
+                            accObj.remove(index);
+                        }
+                    }
+                })
+            });
+          </script>
+          </div>
+    </div>
+    
+    <h4>使用panel实现类似手风琴效果</h4>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+            <div id="accordionByPanel" style="height: 440px;">
+                <div>
+                    <div class="hisui-panel accordion-by-panel" title="病人配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
+                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:false,collapsible:true,minimizable:false,maximizable:false">
+                        病人配置
+                    </div>
+                </div>
+                <div style="margin: 10px 0;">
+                    <div class="hisui-panel accordion-by-panel" title="诊断配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
+                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:true,collapsible:true,minimizable:false,maximizable:false">
+                        诊断配置
+                    </div>
+                </div>
+                <div>
+                    <div class="hisui-panel accordion-by-panel" title="医嘱配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
+                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:true,collapsible:true,minimizable:false,maximizable:false">
+                        医嘱配置
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function(){
+                    $(".accordion-by-panel").each(function(index,item){
+                        $(this).panel("options").onBeforeExpand = function(){
+                            var _t = this;
+                            var expandTitle = $(_t).panel('options').title;
+                            $(".accordion-by-panel").each(function(){
+                                var title =  $(this).panel('options').title;
+                                if (expandTitle!=title) $(this).panel('collapse',true);
+                            })
+                        };
+                    }) 
+                });
+            </script>
+        </div>
+    </div>
+    
+  <prettyprint/>
+</body>
+</html>

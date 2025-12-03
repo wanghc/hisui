@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+<body style="background-color:#f1f7fe;">
+
+	<h2>布局</h2>
+	<h3>说明:</h3>
+    <span>五方布局（layout）提供五个区域：east、west、north、south、center。以下是一些通常用法：
+north 区域可以用来显示网站的标语，south 区域可以用来显示版权以及一些说明，west 区域可以用来显示导航菜单，
+east 区域可以用来显示一些推广的项目，center 区域可以用来显示主要的内容。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="use-prettyprint">
+			<div id="cc" class="hisui-layout" style="width:600px;height:400px;" data-options="clickExpand:true,isNormalPadding:true">   
+				<div data-options="region:'north',title:'北部',split:true,showCollapsedTitle:true,iconCls:'icon-panel-brand'" style="height:130px;padding:10px 15px 15px 15px;">
+					禁用收起功能：collapsible:false
+					收起显示标题：showCollapsedTitle:true
+					默认收起：data-options="collapsed:true"
+				</div>  
+				<div data-options="region:'south',title:'底部',split:true,showCollapsedTitle:true,iconCls:'icon-panel-brand'" style="height:130px;padding:10px 15px 15px 15px;">
+					底部
+				</div>
+				<div data-options="region:'east',title:'东部',split:true,collapsed:false,showCollapsedTitle:true,iconCls:'icon-panel-brand'" style="width:200px;padding:10px 15px 15px 15px;">
+						
+				</div>   
+				<div data-options="region:'west',title:'西部',split:true,showCollapsedTitle:true,iconCls:'icon-panel-brand'" style="width:200px;padding:10px 15px 15px 15px;">菜单</div>   
+				<div data-options="region:'center',title:'新氯化钠注射液[1g:10ml] 10ml Q8h 静脉滴注 ',split:true,showCollapsedTitle:true,iconCls:'icon-panel-brand'" style="padding:10px 15px 15px 15px;">
+					主要的内容
+				</div>   
+			</div>
+		</div>
+	</div>
+	<h3>布局组件的相关配置</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>clickExpand</td>
+			<td>点击展开与否。为true时，展开区域不再悬浮</td>
+			<td>false</td>
+			<td></td>
+		</tr>
+	</table>
+	<h3>区域面板配置</h3>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>showCollapsedTitle</td>
+			<td>在区域面板处于折叠状态的时候是否显示title</td>
+			<td>false</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>isNormalPadding</td>
+			<td>面板间显示正常间距, 纯净版本(10px)，与split产生的间距相同，但不能拖拽<code>20241119</code></td>
+			<td>false</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>isBigPadding</td>
+			<td>面板间显示大间距,纯净版本(15px)<code>20241119</code></td>
+			<td>false</td>
+			<td></td>
+		</tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>

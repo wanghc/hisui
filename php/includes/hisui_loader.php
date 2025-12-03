@@ -8,7 +8,7 @@ if (!function_exists('renderHisuiResources')) {
      * @param string $version 版本，如 'pure'
      * @return string HTML 资源字符串
      */
-    function renderHisuiResources($version ='') {
+    function renderHisuiResources($version = '',$title = 'HISUI') {
         static $alreadyRendered = false; // 防止多次调用重复输出
 
         if ($alreadyRendered) {
@@ -27,15 +27,16 @@ if (!function_exists('renderHisuiResources')) {
 	    $html .= '<link rel="bookmark" href="../favicon.ico"/>' . "\n";
         $html .= '<meta charset="UTF-8">' . "\n" ;
         $html .= '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />' . "\n" ;
+        $html .= '<title>' . $title .'-hisui'. '</title>' . "\n";
         $html .= '<script type="text/javascript">var HISUIStyleCode = "' . $version . '";</script>' . "\n";
         // CSS
         $html .= '<link rel="stylesheet" type="text/css" href="' . HISUI_CSS_PATH . 'hisui.' . ($version!="" ? $version."." : "") . 'min.css">' . "\n";
         $html .= '<script type="text/javascript" src="' . HISUI_JS_PATH . 'jquery-1.11.3.min.js"></script>' . "\n";
-        $html .= '<script type="text/javascript" src="jquery-tag-demo.js"></script>' . "\n";
+        $html .= '<script type="text/javascript" src="../jquery-tag-demo.js"></script>' . "\n";
         $html .= '<script type="text/javascript" src="' . HISUI_JS_PATH . 'jquery.hisui.min.js"></script>' . "\n";
         $html .= '<script type="text/javascript" src="' . HISUI_JS_PATH . 'locale/hisui-lang-zh_CN.js"></script>' . "\n";
-        $html .= '<script type="text/javascript" src="./mock-min.js"></script>' . "\n";
-        $html .= '<link rel="stylesheet" type="text/css" href="./demo.css">' . "\n";
+        $html .= '<script type="text/javascript" src="../mock-min.js"></script>' . "\n";
+        $html .= '<link rel="stylesheet" type="text/css" href="../demo.css">' . "\n";
 
         return $html;
     }

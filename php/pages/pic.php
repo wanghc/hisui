@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']) ?>
+</head>
+<body>
+    <h2>公共插画展示</h2>
+    为统一公共插画使用,定义一些常用的图片样式,类名都以<code>.pic-</code>开头
+    <style>
+        h3{
+            clear: both;
+            margin-top: 20px;
+        }
+        td{
+            text-align: center;
+        }
+        pd10 {
+            padding: 10px;
+        }
+        .conter{
+            width: 140px;
+            height:140px;
+            position: relative;
+            margin: 5px;
+            margin-bottom: 50px;
+            float: left;
+        }
+        .clearboth::after{
+            clear: both;
+            content: " ";
+            display: block;
+        }
+        .clstext{
+            word-break: break-all;text-align: center;
+        }
+        .bgsize75{
+            background-size:75px;
+        }
+        .bgsize130{
+            background-size: 130px;
+        }
+    </style>
+    <h3>一、患者头像类插画</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter1 clearboth"></div>
+    </div>
+
+    <h3>二、院方工作头像类插画</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter2 clearboth"></div>
+    </div>
+    <h3>三、就诊类型插画</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter3 clearboth"></div>
+    </div>
+    <h3>四、登录方式插画</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter4 clearboth"></div>
+    </div>
+    <h3>五、关于插画<a href="javascript:void(0);" id="langAboutBtn">切换语言</a></h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter5 clearboth"></div>
+    </div>
+    <h3>六、系统状态插画<a href="javascript:void(0);" id="langBtn">切换语言</a></h3>
+    <div class="demo-exp-code entry-content">
+        <div class="conter6 clearboth"></div>
+    </div>
+    <script type="text/javascript">
+        function init(){
+            // --患者--
+            var patArr = ['babyboy','babygirl','schoolboy','schoolgirl','man','woman','oldman','oldwoman','unknown-gender','man-no-bg','woman-no-bg','unknown-gender-no-bg'];
+            var pre = 'pic-pat-',html=[];
+            for(var i=0;i<patArr.length;i++){
+                html.push('<div class="conter"><div class="'+pre+patArr[i]+'"/><div class="clstext">'+pre+patArr[i]+'</div></div>');
+            }
+            $('.conter1').html(html.join(""));
+            // --院方人员--
+            var usrArr = ['doctor','nurse','surgeon','clothing-worker','medi-worker','dep-director','hosp-director','doctor-woman'];
+            pre = 'pic-usr-',html=[];
+            for(var i=0;i<usrArr.length;i++){
+                html.push('<div class="conter"><div class="'+pre+usrArr[i]+'"/><div class="clstext">'+pre+usrArr[i]+'</div></div>');
+            }
+            $('.conter2').html(html.join(""));
+            // --就诊方式--
+            var admArr = ['out','em','in'];
+            pre = 'pic-adm-',html=[];
+            for(var i=0;i<admArr.length;i++){
+                html.push('<div class="conter"><div class="'+pre+admArr[i]+'"/><div class="clstext">'+pre+admArr[i]+'</div></div>');
+            }
+            $('.conter3').html(html.join(""));
+            // --登录方式-
+            var logonArr = ['cert','default','face','phone','pin','sound','ukey'];
+            pre = 'pic-logon-',html=[];
+            for(var i=0;i<logonArr.length;i++){
+                html.push('<div class="conter"><div class="'+pre+logonArr[i]+'"/><div class="clstext">'+pre+logonArr[i]+'</div></div>');
+            }
+            $('.conter4').html(html.join(""));
+            // --关于方式-
+            var aboutArr = ['dhcc-digitalmed','doc','imedical-logo','vi'];
+            pre = 'pic-about-',html=[];
+            for(var i=0;i<aboutArr.length;i++){
+                html.push('<div class="conter"><div class="'+pre+aboutArr[i]+'"/><div class="clstext">'+pre+aboutArr[i]+'</div></div>');
+            }
+            $('.conter5').html(html.join(""));
+            // -- 系统状态 --
+            var arr = ['e403','e404','e500','nodata','nodata-msg','nodata-region','timeout-relogon','welcome'];
+            pre = 'pic-sysst-',html=[];
+            for(var i=0;i<arr.length;i++){
+                if (arr[i]!='nodata-region'){
+                    html.push('<div class="conter"><div class="'+pre+arr[i]+'"/><div class="clstext">'+pre+arr[i]+'</div></div>');
+                }else{
+                    html.push('<div class="conter"><div class="'+pre+arr[i]+' bgsize130"/><div class="clstext">'+pre+arr[i]+'</div></div>');
+                }
+            }
+            html.push('<div class="conter"><div class="pic-sysst-nodata-region bgsize75"/><div class="clstext">pic-sysst-nodata-region bgsize75</div></div>');
+            $('.conter6').html(html.join(""));
+            isChinese = true;
+            var linkObj = null;
+            $("#langBtn").click(function(){
+                if (isChinese){
+                    linkObj = $('<link>', {
+                        rel: 'stylesheet',
+                        type: 'text/css',
+                        href: '../../dist/css/locale/hisui.pure.en.css'
+                    }).appendTo('head');
+                }else{
+                    linkObj.remove();
+                }
+                isChinese = !isChinese;
+                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
+                $("#langAboutBtn").text('切换成'+(isChinese?'英文':'中文'));
+            });
+            $("#langAboutBtn").click(function(){
+                if (isChinese){
+                    linkObj = $('<link>', {
+                        rel: 'stylesheet',
+                        type: 'text/css',
+                        href: '../../dist/css/locale/hisui.pure.en.css'
+                    }).appendTo('head');
+                }else{
+                    linkObj.remove();
+                }
+                isChinese = !isChinese;
+                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
+                $("#langAboutBtn").text('切换成'+(isChinese?'英文':'中文'));
+            });  
+        }
+        $(function(){
+            init();
+        });
+    </script> 
+</body>
+</html>
