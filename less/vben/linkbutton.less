@@ -184,7 +184,7 @@
   filter: none;
 }
 .l-btn-plain:hover {
-  background: #eaf2ff;
+  background: @linkbutton-plain-hover-bgcolor;
   color: @main-font-color;
   border: 1px solid #b7d2ff;
   -moz-border-radius: 5px 5px 5px 5px;
@@ -351,9 +351,9 @@
 .l-btn.hover-dark.l-btn-waiting:hover ,
 .l-btn.hover-dark.l-btn-waiting{
   opacity: 1.0;
-  background:#99D2FF;
-  color:#FFF;
-  border-color: #99D2FF;
+  background:@linkbutton-disabled-bgcolor;
+  color:@linkbutton-disabled-text-color;
+  border-color: @linkbutton-disabled-border-color;
   cursor:no-drop;
   .l-btn-icon{
     background-color: @linkbutton-disabled-icon-bgcolor;
@@ -569,12 +569,12 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     margin-right: 6px !important; 
   }
 }
-.inner-text-hover{
-  &:focus,&:hover,&:active,&.l-btn-focus{
-    color:#007EED !important;
-    background-color: transparent !important;
-  }
-  .l-btn-icon{
-    color:#666666;
-  }
-}
+// .inner-text-hover{
+//   &:focus,&:hover,&:active,&.l-btn-focus{
+//     color:#007EED !important;
+//     background-color: transparent !important;
+//   }
+//   .l-btn-icon{
+//     color:#666666;
+//   }
+// }

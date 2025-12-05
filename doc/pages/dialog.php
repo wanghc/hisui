@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+
+    <body>
+
+	<h2>模态窗口</h2>
+	<h3>说明:</h3>
+    <span>对话框（Dialog）是一个特殊的窗口（window），可以包含在顶部的工具栏和在底部的按钮。默认情况下，对话框（Dialog）不能改变大小，但是用户可以设置 resizable 属性为 true，使其可以改变大小。</span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content"> 
+		<div class="use-prettyprint">
+			<div id="dd2" title="完成接诊" style="width:474px;height:274px;padding:0 20px;background: transparent;">   
+				<div class="hisui-panel" fit="true" style="padding:10px;">
+					这是一个模态操作框<code>hisui-dialog</code>
+				</div>
+			</div>
+		</div>
+		<script class="use-prettyprint">
+			$(function(){			
+				var btns = $("#dd2").dialog({
+					resizable:true,modal:true,constrain:true,buttons:[{
+						text:'取消',
+						handler:function(){$HUI.dialog('#dd2').close();}
+					},{
+						text:'确定',
+						handler:function(){}
+					}]
+				});
+				
+					btns.children("div.dialog-button").find("a:eq(0)").addClass('white');
+				
+			});
+		</script>
+	</div>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isTopZindex</td>
+			<td>是否覆盖控件界面</td>
+			<td>false</td>
+			<td>默认情况下会被病历控件遮盖，true时则可显示到最上层,但dom会复杂些。</td>
+		</tr>
+		<tr>
+			<td>closeKeyCode</td>
+			<td>弹出窗口后关闭快捷</td>
+			<td>Number类型，默认不响应事件</td>
+			<td>如：27表示Esc，113表示F2。<code>20230728</code></td>
+		</tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>

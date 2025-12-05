@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+    <body>
+	<style>
+		td {
+			padding: 5px 0;
+		}
+
+		td.label {
+			text-align: right;
+			padding-right: 10px;
+			color: #191919;
+		}
+	</style>
+	<h2>文件选择框</h2>
+	<h3>说明:</h3>
+	<span>用于选择客户端文件</span>
+
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="hisui-panel" title="文件上传" style="width:700px;padding:10px;"
+			data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',closable:false,collapsible:false,minimizable:false,maximizable:false">
+			<table cellpadding="0">
+				
+				
+				<tr>
+					<td class="label">多选文件</td>
+					<td>
+						<input class="hisui-filebox" name="file4" style="width:300px;"
+							data-options="multiple:true,plain:true,buttonIcon:'icon-folder',buttonText:'多选',prompt:'请选择文件(多选的哦..)'" />
+					</td>
+				</tr>	
+				
+				
+				<tr>
+					<td class="label">图标显示</td>
+					<td>
+						<input class="hisui-filebox" name="file9"
+							data-options="width:300,buttonText:'',buttonIcon:'icon-folder',plain:true" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="label">默认禁用</td>
+					<td>
+						<input id='f10' class="hisui-filebox" name="file10" disabled='true'
+							data-options="width:300,buttonText:'选择',plain:true" />
+					</td>
+					<td style="padding-left: 10px;">
+						<a href="#" onclick="$('#f10').filebox('enable')" class="hisui-linkbutton">启用</a>
+					</td>
+					<td style="padding-left: 10px;">
+						<a href="#" onclick="$('#f10').filebox('disable')" class="hisui-linkbutton">禁用</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+			$(function () {
+				// $('#f6').filebox({
+				// 	width: 400,
+				// 	prompt: '请选择文件',
+				// 	buttonText: '选择',
+				// 	buttonAlign: 'left',
+				// 	plain: true
+				// })
+
+				$HUI.filebox('#f7', {
+					width: 400,
+					plain: true
+				})
+
+			})
+		</script>
+		<pre class="prettyprint hide lang-html"><code>&lt;div class="hisui-panel" title="登记" style="width:700px;padding:10px;"
+	data-options="iconCls:'icon-paper',headerCls:'panel-header-gray',closable:false,collapsible:false,minimizable:false,maximizable:false"&gt;
+	&lt;table cellpadding="0"&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件1&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input class="hisui-filebox" name="file1" data-options="width:400,plain:true" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件2&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input class="hisui-filebox" name="file2"
+					data-options="width:400,buttonText:'选择',prompt:'excel文件：*.xls,*.xlsx',plain:true"
+					accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件3&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input class="hisui-filebox" name="file3" data-options="width:400,plain:true,buttonText:'选择',onClickButton:function(){alert('按钮点击');},
+				onChange:function(nv,ov){alert('改变:新:'+nv+',旧:'+ov);} " /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件4&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input class="hisui-filebox" name="file4" style="width:400px;"
+					data-options="multiple:true,plain:true,buttonText:'多选',prompt:'请选择文件(多选的哦..)'" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件5&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="f5" class="hisui-filebox" name="file5" style="width:400px;"
+					data-options="prompt:'请选择文件',plain:true" /&gt;
+			&lt;/td&gt;
+			&lt;td style="padding-left: 10px;"&gt;&lt;a href="#" id='btn' onclick="$('#f5').filebox('clear')"
+					class="hisui-linkbutton"&gt;清空&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件6&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="f6" name="f6" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件7&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="f7" name="f7" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件8&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input class="hisui-filebox" name="file8"
+					data-options="width:400,buttonText:'选择',buttonIcon:'icon-folder',plain:true" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件9&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input class="hisui-filebox" name="file9"
+					data-options="width:400,buttonText:'',buttonIcon:'icon-folder',plain:true" /&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class="label"&gt;文件10&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id='f10' class="hisui-filebox" name="file10" disabled='true'
+					data-options="width:400,buttonText:'选择',plain:true" /&gt;
+			&lt;/td&gt;
+			&lt;td style="padding-left: 10px;"&gt;
+				&lt;a href="#" onclick="$('#f10').filebox('enable')" class="hisui-linkbutton"&gt;启用&lt;/a&gt;
+			&lt;/td&gt;
+			&lt;td style="padding-left: 10px;"&gt;
+				&lt;a href="#" onclick="$('#f10').filebox('disable')" class="hisui-linkbutton"&gt;禁用&lt;/a&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</code></pre>
+		<pre class="prettyprint hide lang-js"><code>$(function () {
+	$('#f6').filebox({
+		width: 400,
+		prompt: '请选择文件',
+		buttonText: '选择',
+		buttonAlign: 'left',
+		plain: true
+	})
+
+	$HUI.filebox('#f7', {
+		width: 400,
+		plain: true
+	})
+
+})</code></pre>
+	</div>
+	<div class="demo-exp-code entry-content">
+		<table class="table">
+			<tr class="protitle">
+				<th>属性</th>
+				<th>说明</th>
+				<th>默认值</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>buttonText</td>
+				<td>按钮文字</td>
+				<td>'Choose File'</td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<td>buttonAlign</td>
+				<td>按钮位置</td>
+				<td>'right'</td>
+				<td>'right'|'left'</td>
+			</tr>
+			<tr>
+				<td>accept</td>
+				<td>规定能够通过文件上传进行提交的文件类型</td>
+				<td>''</td>
+				<td>w3cSchool:请避免使用该属性。应该在服务器端验证文件上传</td>
+			</tr>
+			<tr>
+				<td>capture</td>
+				<td>可以捕获到系统默认的设备</td>
+				<td>''</td>
+				<td>camera--照相机；camcorder--摄像机；microphone--录音</td>
+			</tr>
+			<tr>
+				<td>multiple</td>
+				<td>多选</td>
+				<td>false</td>
+				<td>true|false</td>
+			</tr>
+			<tr>
+				<td>separator</td>
+				<td>分隔符</td>
+				<td>','</td>
+				<td>多选时文件名分隔符</td>
+			</tr>
+			<tr>
+				<td>prompt</td>
+				<td>提示</td>
+				<td>''</td>
+				<td>未选择文件时提示文字</td>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>宽度</td>
+				<td>177</td>
+				<td>整体宽度</td>
+			</tr>
+			<tr>
+				<td>disabled</td>
+				<td>禁用</td>
+				<td>false</td>
+				<td>true|false</td>
+			</tr>		
+			<tr>
+				<td>buttonIcon</td>
+				<td>图标类</td>
+				<td>null</td>
+				<td>一般使用<code>buttonIcon:'icon-folder',plain:true</code></td>
+			</tr>
+			<tr>
+				<td>plain<code>2019-12-23</code></td>
+				<td>图标背景色是否透明</td>
+				<td>false</td>
+				<td>true|false</td>
+			</tr>
+			<tr class="evttitle">
+				<th>事件名</th>
+				<th>说明</th>
+				<th>入参</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>onClickButton</td>
+				<td>按钮点击事件</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>onChange</td>
+				<td>改变事件</td>
+				<td>newVal,oldVal</td>
+				<td></td>
+			</tr>
+			<tr class="mthtitle">
+				<th>方法名</th>
+				<th>说明</th>
+				<th>入参</th>
+				<th>返回值</th>
+			</tr>
+			<tr>
+				<td>options</td>
+				<td>拿到配置项对象</td>
+				<td></td>
+				<td>filebox的options对象</td>
+			</tr>
+			<tr>
+				<td>files</td>
+				<td>获取选定的文件列表对象</td>
+				<td></td>
+				<td>选定的文件列表对象</td>
+			</tr>
+			<tr>
+				<td>clear</td>
+				<td>清空</td>
+				<td></td>
+				<td>jq对象</td>
+			</tr>
+			<tr>
+				<td>reset</td>
+				<td>清空</td>
+				<td></td>
+				<td>jq对象</td>
+			</tr>
+			<tr>
+				<td>button</td>
+				<td>获取按钮jq对象</td>
+				<td></td>
+				<td>返回按钮jq对象</td>
+			</tr>
+			<tr>
+				<td>enable</td>
+				<td>启用</td>
+				<td></td>
+				<td>jq对象</td>
+			</tr>
+			<tr>
+				<td>disable</td>
+				<td>禁用</td>
+				<td></td>
+				<td>jq对象</td>
+			</tr>
+		</table>
+	</div>
+
+	<prettyprint />
+</body>
+
+</html>

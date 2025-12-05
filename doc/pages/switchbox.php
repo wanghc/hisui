@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+    <body>
+    <h2>开/关。源自Bootstrap的<a href="http://www.bootcss.com/p/bootstrap-switch/" target="_blank">switch插件</a>。</h2>
+    <h3>说明:</h3>
+    <span>切换开关</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint lang-html">
+<div id="switch1" class="hisui-switchbox" data-options="onText:'开启',offText:'关闭',
+size:'small',animated:true,onClass:'primary',offClass:'gray',onSwitchChange:function(event,obj){console.log(event);console.log(obj);}">
+</div>
+        </div>
+    </div>
+    <h3>用js生成</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint">
+<div id="switch2"></div>
+<script>
+    $(function(){
+        $HUI.switchbox('#switch2',{        
+            onClass:'primary',
+            offClass:'gray',
+            onSwitchChange:function(e,obj){
+                console.log(e);
+                console.log(obj);
+            }
+        })
+    }); 
+</script>
+        </div>
+    </div>
+    <h3>禁用效果</h3>
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint">
+<div id="switch1d" class="hisui-switchbox" data-options="onText:'开启',offText:'关闭',disabled:true,checked:false,
+size:'small',animated:true,onClass:'primary',offClass:'gray'"></div>
+<div id="switch2d" ></div>
+<script type="text/javascript">
+    $(function(){
+        $('#switch2d').switchbox({
+            onClass:'primary',
+            offClass:'gray',
+            disabled:true,
+            onSwitchChange:function(e,obj){
+                console.log(e);
+                console.log(obj);
+            }
+        })
+    })  
+</script></div>
+    </div>
+    <div>
+        <h3>单选组件的相关配置、事件、方法</h3>
+        <table class="table">
+            <tr class="protitle">
+                <th>属性</th>
+                <th>说明</th>
+                <th>默认值</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>switchbox的名字</td>
+                <td>''</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>onText</td>
+                <td>开状态时显示的文本。</td>
+                <td>'开'</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>offText</td>
+                <td>关状态时显示的文本。</td>
+                <td>'关'</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>disabled</td>
+                <td>是否禁用。默认可用</td>
+                <td>false</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>checked</td>
+                <td>是否选中。默认开启</td>
+                <td>true</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>animated</td>
+                <td>是否启用动画效果</td>
+                <td>false</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td>开关大小配置，可选范围 'mini' ｜ 'small' | 'large'。默认'mini'
+                </td>
+                <td>'mini'</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>onClass</td>
+                <td>开状态时类样式，可选范围 'primary' | 'info' | 'success' | 'warning' | 'danger'|'gray'。默认'success'</td>
+                <td>'success'</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>offClass</td>
+                <td>开状态时类样式，可选范围 'primary' | 'info' | 'success' | 'warning' | 'danger'|'gray'。默认'warning'</td>
+                <td>'warning'</td>
+                <td></td>
+            </tr>
+            <tr class="evttitle">
+                <th>事件名</th>
+                <th>说明</th>
+                <th>入参</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>onSwitchChange</td>
+                <td>选中改变事件</td>
+                <td>e,obj</td>
+                <td></td>
+            </tr>
+            <tr class="mthtitle">
+                <th>方法名</th>
+                <th>说明</th>
+                <th>入参</th>
+                <th>返回值</th>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td>拿到配置项对象</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>toggleActivation</td>
+                <td>切换禁用与可用状态</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>isActive</td>
+                <td>判断当前开关是否启用</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>setActive</td>
+                <td>禁用或启用开关</td>
+                <td>false|true</td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>toggle</td>
+                <td>切换开与关状态</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>setValue</td>
+                <td>设置值,同时是否要触发切换事件,skipOnChange为可选参数</td>
+                <td>false|true[,skipOnChange]</td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>getValue</td>
+                <td>获得值</td>
+                <td>false|true</td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>setOnText</td>
+                <td>设置开状态对应的文本</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>setOffText</td>
+                <td>设置关状态对应的文本</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>setOnClass</td>
+                <td>设置开状态的样式类</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>setOffClass</td>
+                <td>设置关状态的样式类</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+            <tr>
+                <td>destroy</td>
+                <td>销毁开关</td>
+                <td></td>
+                <td>jquery对象</td>
+            </tr>
+        </table>
+    </div>
+    <prettyprint/>
+</body>
+</html>

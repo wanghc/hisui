@@ -338,35 +338,63 @@
             }
             return $.hisui.styleCodeConfig[key][HISUIStyleCode];
         },
-        switchTheme:function(themeName){
-            if (themeName === 'dark'){
-                $("body").attr('data-theme','bgdrak');
+        switchVersion:function(version){ 
+            window.HISUIStyleCode = version;
+        },
+        switchLightDrak:function(HISUILightDrak){
+            if (typeof HISUILightDrak != 'undefined'){
+                $("body").attr('data-theme',HISUILightDrak?'bgdrak' : '');
+                window.HISUILightDrak = HISUILightDrak;
             }else{
-                $("body").attr('data-theme','');
+                if ($("body").attr('data-theme')=='bgdrak'){
+                    $("body").attr('data-theme','');
+                    window.HISUILightDrak = '';
+                }else{
+                    $("body").attr('data-theme','bgdrak');
+                    window.HISUILightDrak = 1;
+                }
             }
+            // 把iframe子界面的颜色也切换
+            $("iframe").each(function(){
+                try{
+                    if (this.contentWindow && this.contentWindow.document && this.contentWindow.document.body){
+                        this.contentWindow.$.hisui.switchLightDrak(HISUILightDrak);
+                    }
+                }catch(e){}
+            });
         },
         switchPrimaryColor:function(colorValue){
+            if (!colorValue){return ;}
             $("body").removeClass('high-saturation medium-saturation low-saturation');
+            if (colorValue.indexOf('#')==-1){ colorValue = "#"+colorValue;}
             var o = $.hisui.hexToHsl(colorValue);
+            window.HISUIColorRGB = colorValue.slice(1);
             var body = document.body;
             body.style.setProperty('--primary-color', colorValue);
             body.style.setProperty('--primary-h', o.h);
             body.style.setProperty('--primary-s', `${Math.round(o.s * 100)}%`);
             body.style.setProperty('--primary-l', `${Math.round(o.l * 100)}%`);
-            if (o.s>=0.8){
-                $("body").addClass('high-saturation');
-            }else if (o.s>0.5 && o.s<0.8){
+            if (o.s>0.5 && o.s<0.8){
                 $("body").addClass('medium-saturation');
             }else if (o.s<=0.5){
                 $("body").addClass('low-saturation');
             }else{
-
+                $("body").addClass('high-saturation');  // 默认是高 o.s>=0.8
             }
             if (o.l>0.8){
                 $("body").addClass('high-lightness');
             }else{
-                $("body").removeClass('high-lightness');
+                $("body").removeClass('high-lightness'); // 默认是低亮
             }
+            // 把iframe子界面的颜色也切换
+            $("iframe").each(function(){
+                try{
+                    if (this.contentWindow && this.contentWindow.document && this.contentWindow.document.body){
+                        this.contentWindow.$.hisui.switchPrimaryColor(colorValue);
+                    }
+                }catch(e){}
+            });
+            
         },
         hexToHsl : function (hex) {
             if (!hex || typeof hex !== 'string') return '';
