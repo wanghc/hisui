@@ -6,8 +6,10 @@ if (!function_exists('renderHisuiResources')) {
     http_response_code(500); // 或 403、503 等
     die('系统错误: 缺少必要renderHisuiResources组件,无法加载页面。');
 }
+// index.php/vben/layout
+// echo $_SERVER['PATH_INFO'] ?? '/';
 $page = trim($_GET['page'] ?? 'home');
-$version = in_array($_GET['version'] ?? '', HISUI_VERSIONS) ? $_GET['version'] : '';
+$version = in_array($_GET['version'] ?? '', HISUI_VERSIONS) ? ($_GET['version']??'') : '';
 // 安全过滤 page 名称
 if (!preg_match('/^[a-zA-Z0-9\/._-]+$/', $page) || strpos($page, '..') !== false) {
     $page = 'home';
