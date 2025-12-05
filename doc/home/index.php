@@ -1,5 +1,11 @@
 <?php 
+// 统一入口, 统一定义变量,其它界面检查必要参数
+define('ACCESS_FROM_INDEX', true);
 require_once('../includes/hisui_loader.php');
+if (!function_exists('renderHisuiResources')) {
+    http_response_code(500); // 或 403、503 等
+    die('系统错误: 缺少必要renderHisuiResources组件,无法加载页面。');
+}
 $page = trim($_GET['page'] ?? 'home');
 $version = in_array($_GET['version'] ?? '', HISUI_VERSIONS) ? $_GET['version'] : '';
 // 安全过滤 page 名称
