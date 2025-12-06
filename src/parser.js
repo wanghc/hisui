@@ -341,8 +341,10 @@
         switchVersion:function(version){ 
             window.HISUIStyleCode = version;
         },
-        switchLightDrak:function(HISUILightDrak){
+        // 0或空表示默认-light,1表示dark
+        switchLightDrak:function(HISUILightDrak){            
             if (typeof HISUILightDrak != 'undefined'){
+                HISUILightDrak = HISUILightDrak=="0"?"":HISUILightDrak;
                 $("body").attr('data-theme',HISUILightDrak?'bgdrak' : '');
                 window.HISUILightDrak = HISUILightDrak;
             }else{
