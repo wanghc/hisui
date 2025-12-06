@@ -1,0 +1,146 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+
+    <body>
+
+	<script type="text/javascript" src="../../dist/plugin/datagrid-scrollview.js"></script>
+	<h2>数据网格-滚动加载</h2>
+	<h3>说明:</h3>
+	<span>当用户不希望使用翻页条时,且加载数据记录大量条数时，可以使用些插件</span>
+	<pre class="prettyprint hide lang-html"><code>//引入hisui后再引入插件
+&lt;script type="text/javascript" src="../../dist/plugin/datagrid-scrollview.js"&gt;&lt;/script&gt;</code></pre>
+	<h3>本地数据。一次加载所有数据，拉动时渲染要显示的行数据</h3>
+	<div class="demo-exp-code entry-content use-prettyprint" prettyprintfor="#mydg1codehtml"> 
+	
+		<table id="dg" class="hisui-datagrid" title="病人列表" style="width:800px;height:300px" 
+		data-options="url:null,toolbar:[],idField:'no',fitColumns:true,iconCls:'icon-panel-brand',striped:true,
+		view:scrollview,rownumbers:true,singleSelect:false,autoRowHeight:false,pageSize:50,pagination:true">   
+
+
+			<thead>   
+				<tr>
+					<th data-options="field:'checkOrd',checkbox:'true',align:'center',width:30,auto:false">选择</th> 
+					<th data-options="field:'no',width:20">编码</th>   
+					<th data-options="field:'name',width:20">姓名</th>   
+					<th data-options="field:'loc',width:20">科室</th>
+					<th data-options="field:'diag',width:20">诊断</th>
+					<th data-options="field:'code',width:20">代码</th>
+					<th data-options="field:'stdate',width:20">日期</th>   
+				</tr>   
+			</thead>  
+		</table>
+		
+	</div>
+	<script type="text/javascript" class="use-prettyprint" prettyprintfor="#mydg1codejs">
+		$.parser.onComplete = function(){
+			
+			var rows = [];
+			for(var i=1; i<=8002; i++){
+				var amount = Math.floor(Math.random()*1000);
+				var price = Math.floor(Math.random()*1000);
+				rows.push({
+					no: 'NO '+i,
+					name: '张 '+i,
+					loc: '内'+i+'科',
+					diag:'diag '+i,
+					code: i,
+					stdate: $.fn.datebox.defaults.formatter(new Date())
+				});
+			}
+			/*$('#dg').datagrid({
+				detailFormatter:function(rowIndex, rowData){
+					return '<table><tr>' +
+						'<td style="border:0;padding-right:10px">' +
+						'<p>姓名: ' + rowData.name + '</p>' +
+						'<p>科室: ' + rowData.loc + '</p>' +
+						'</td>' +
+						'<td style="border:0">' +
+						'<p>日期: ' + rowData.stdate + '</p>' +
+						'<p>序号: ' + rowData.no + '</p>' +
+						'</td>' +
+						'</tr></table>';
+				}	
+			})*/
+			$("#dg").datagrid('loadData', rows);
+		};
+	</script>
+	<pre class="hide lang-html" id='mydg1codehtml'></pre>
+	<pre class="hide lang-js" id='mydg1codejs'></pre>
+	<h3>远程数据。拉动时一次加载一页数据，渲染要显示的行数据</h3>
+	<div class="demo-exp-code entry-content use-prettyprint" prettyprintfor="#mydg2codehtml"> <!--,view:scrollview-->
+		<table id="dg1" title="病人列表" style="width:800px;height:300px" class="hisui-datagrid"
+		data-options="url:'getpatdata.jsp',toolbar:[],view:scrollview,fitColumns:true,
+			iconCls:'icon-panel-brand',striped:true,		
+		rownumbers:true,singleSelect:true,autoRowHeight:false,pageSize:50,pagination:false">   
+			<thead>   
+				<tr>   
+					<th data-options="field:'no',width:20">编码</th>   
+					<th data-options="field:'name',width:20">姓名</th>   
+					<th data-options="field:'loc',width:20">科室</th>
+					<th data-options="field:'diag',width:20">诊断</th>
+					<th data-options="field:'code',width:20">代码</th>
+					<th data-options="field:'stdate',width:20">日期</th>   
+				</tr>   
+			</thead>  
+		</table>
+	</div>
+	<script type="text/javascript" class="use-prettyprint" prettyprintfor="#mydg2codejs">
+		$(function(){
+			$('#dg1').datagrid({
+				detailFormatter:function(rowIndex, rowData){
+					return '<table><tr>' +
+						'<td style="border:0;padding-right:10px">' +
+						'<p>姓名: ' + rowData.name + '</p>' +
+						'<p>科室: ' + rowData.loc + '</p>' +
+						'</td>' +
+						'<td style="border:0">' +
+						'<p>就诊日期: ' + rowData.stdate + '</p>' +
+						'<p>序号: ' + rowData.no + '</p>' +
+						'</td>' +
+						'</tr></table>';
+				}	
+			})
+		});
+		Mock.setup({
+			timeout: '100-300' //后台时间
+		})
+		Mock.mock('getpatdata.jsp',{
+			'rows|50':[{  //重复50次
+				'no|+1':1, //从1开始,每次加1
+				'name':/[赵钱孙李吴郑王张周汪韩苏辛][志三亮会强子祥云四土秀士二章隆财明勇艳][志三亮会强子秀祥云四土士二艳书轩章财明勇]/,
+				'loc':/内[一二三]科/,
+				'diag':'diag '+'@no',
+				'code':/[A-Z][A-Z][A-Z][1-9][1-9][1-9]/, //占位符
+				'stdate':/(2016|2017|2018)-(1[0-2]|0[1-9])-(2[0-9]|1[0-9]|0[1-9])/
+			}],"total":8000
+		});
+	</script>
+	<pre class="hide lang-html" id='mydg2codehtml'></pre>
+	<pre class="hide lang-js" id='mydg2codejs'></pre>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>detailFormatter</td>
+			<td>定义格式显示行数据函数。function(rowIndex, rowData){return html;}</td>
+			<td>null</td>
+			<td></td>
+		</tr>
+	</table>
+	<prettyprint />	
+</body>
+</html>

@@ -1,0 +1,165 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+    <style>
+        td.l-value{
+            text-align: left;
+            padding-right: 20px;
+        }
+        .layout-panel-north.panel .panel-body.panel-body-noborder{
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+        }
+    </style>
+    <script src="../pages/layout/data.js" type="text/javascript"></script>
+</head>
+<body class="hisui-layout">
+    <div data-options="region:'north',border:false,isNormalPadding:true" style="padding: 5px 14px;height:109px;">
+        <table cellspacing="0" cellpadding="0" broder="0">
+            <tr style="height: 42px;">
+                <td class="r-label">条件</td>
+                <td class="l-value"><input type="text" class="textbox" id="arg1" style="width:193px;"></td>
+                <td class="r-label">条件</td>
+                <td class="l-value"><input type="text" class="textbox" id="arg2"></td>
+                <td class="r-label">条件</td>
+                <td class="l-value"><input type="text" class="textbox" id="arg3"></td>
+                <td class="l-value" style="padding-right: 0;font-size: 0;">
+                    <input class="hisui-radio" type="radio" name="arg4" label="单选条件" id="arg4-1" />
+                    <input class="hisui-radio"type="radio" name="arg4" checked label="单选条件" id="arg4-2" />
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="hisui-linkbutton" id="btn-find">查询</a>
+                </td>
+            </tr>
+            <tr style="height: 42px;">
+                <td class="r-label">条件</td>
+                <td class="l-value"><input type="text" class="textbox" id="arg5" style="width:193px;"></td>
+                <td class="r-label">条件</td>
+                <td class="l-value"><input type="text" class="textbox" id="arg6"></td>
+                <td class="r-label">条件</td>
+                <td class="l-value"><input type="text" class="textbox" id="arg7"></td>
+                <td class="l-value" style="padding-right: 0;font-size: 0;">
+                    <input class="hisui-checkbox" type="checkbox" label="复选条件" id="arg8" />
+                    <input class="hisui-checkbox" type="checkbox" checked label="复选条件" id="arg9" />
+                </td>
+                <td>
+                    <a href="javascript:void(0);" class="hisui-linkbutton blue" id="btn-clear">清屏</a>
+                </td>
+            </tr>
+        </table>
+    </div> <!--end layout-north-->
+    <div data-options="region:'center',border:true">
+        <table id="tbl-main"></table>
+    </div> <!--end layout-center-->
+
+    <script type="text/javascript">
+        $(function(){
+            var myTblMainData=[]
+            for(var i=1;i<156;i++){
+                myTblMainData.push({
+                    name:'测试'+i,
+                    content:'三级医师未填写备注('+i+')',
+                    date:'2017.08.29',
+                    time:'10:27:09 AM',
+                    doctor:'闫静东',
+                    condition:'条件内容',
+                    date2:'2017.08.29',
+                    time2:'10:27:09'
+                })
+            }
+            Mock.mock("getTblMainData", function( options ){
+                console.log("getTblMainData请求开始了",options);
+                var obj=getData(options,myTblMainData);
+                console.log("getTblMainData请求结束了，结果",obj);
+                return obj;
+
+            })
+
+            $('#arg2').combobox({width:200,data:allLoc,valueField:'HIDDEN',textField:'Description'})
+            $('#arg3').combobox({width:200,data:allGroup,valueField:'HIDDEN',textField:'Description'})
+            $('#arg6').combobox({width:200,data:allUser,valueField:'HIDDEN',textField:'Description'})
+            $('#arg7').combobox({width:200,data:allLoc,valueField:'HIDDEN',textField:'Description'})
+
+            $('#tbl-main').datagrid({
+                border:false,
+                fit:true,
+                fitColumns:true,
+                rownumbers:true,
+		        striped:true,
+                frozenColumns:[[
+                    {field:'ck',checkbox:true,width:50},
+                    {field:'op',title:'操作',formatter:function(val,row,ind){
+                        return '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op1" data-ind="'+ind+'" iconCls="icon-copy" title="复制"></a>'+
+                        '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op2" data-ind="'+ind+'" iconCls="icon-cancel" title="删除"></a>';
+                    },width:100,align:'center'}
+                ]],
+                columns:[[
+                    
+                    {field:'name',title:'姓名',width:100},
+                    {field:'content',title:'质控消息内容',width:300},
+                    {field:'date',title:'质控日期',width:180,formatter:function(val,row,ind){
+                        return val+' '+row['time']
+                    }},
+                    {field:'doctor',title:'质控医师',width:100},
+                    {field:'condition',title:'条件',width:100},
+                    {field:'date2',title:'质控日期',width:180,formatter:function(val,row,ind){
+                        return row['date']+' '+row['time']
+                    }}
+                ]],
+                url:'getTblMainData', //采用mockjs 模拟数据
+                onLoadSuccess:function(){
+                    $('.tbl-main-cell-op').off('click').on('click',function(){
+                        var op=$(this).data('op');
+                        var ind=$(this).data('ind');
+                        var row= $('#tbl-main').datagrid('getRows')[ind];
+                        $.messager.popover({msg:'点击了'+(ind+1)+'行的'+op+'按钮' ,type:'info' })
+
+                    })
+                    $('.tbl-main-cell-op').linkbutton({plain:true}).tooltip({position:'bottom'})
+                },
+                pagination: true,pageSize:20,
+                toolbar:[
+                    {text:'新增',iconCls:'icon-add',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }},
+                    {text:'修改',iconCls:'icon-edit',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }},
+
+                    {text:'删除',iconCls:'icon-cancel',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }},
+                    '-',
+                    {text:'剪切',iconCls:'icon-cut',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }},
+                    {text:'复制',iconCls:'icon-copy',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }},
+                    '-',
+                    {text:'禁用',iconCls:'icon-cut',disabled:true,id:'tbl-main-tb-dis1',handler:function(){
+                        var text=$(this).text();
+                        $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
+                    }}
+                ]
+                                    
+            })
+
+        })
+
+    </script>
+</body>
+</html>

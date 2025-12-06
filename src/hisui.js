@@ -288,6 +288,14 @@ $(function(){
 	// 		$($.hisui.globalContainerSelector).hide();
 	// 	}
 	// });
+	if ('string'==typeof HISUIColorRGB && HISUIColorRGB!="") {
+		var rgb = HISUIColorRGB.indexOf('#')>-1 ? HISUIColorRGB.substring(1) : HISUIColorRGB;
+		$.hisui.switchPrimaryColor("#"+rgb);
+	}
+	if ('string'==typeof HISUILightDrak && HISUILightDrak!=""){
+		$.hisui.switchLightDrak(HISUILightDrak);
+	}
+
 	$(document.body).on('keydown',function(e){
 		var keycode = e.keyCode;
 		try{

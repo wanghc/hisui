@@ -1,0 +1,270 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+<body>
+	<style>
+		td {
+			padding: 5px 0;
+		}
+	</style>
+	<h2>事件触发框</h2>
+	<h3>说明:</h3>
+	<span>触发框（triggerbox）用于自定义功能，图标可以自定义。<code>2019-01-03</code></span>
+	<h3>如：</h3>
+	<div class="demo-exp-code entry-content">
+		<div class="hisui-panel" title="触发框示例" style="width:500px;padding:10px 10px 10px 10px"
+			data-options="headerCls:'panel-header-gray',iconCls:'icon-paper-info'">
+			<table>
+				<tr>
+					<td class='r-label'>默认触发框</td>
+					<td>
+						<input name="default" class="hisui-triggerbox textbox" data-options="handler:msg" />
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class='r-label'>图片触发框</td>
+					<td>
+						<input id="img" name="img" class="hisui-triggerbox textbox"
+							data-options="icon:'icon-img-blue',handler:msg,plain:true" />
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class='r-label'>卡触发框</td>
+					<td>
+						<input id="card" name="card" class="hisui-triggerbox textbox"
+							data-options="icon:'icon-card',handler:msg,plain:true" />
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class='r-label'>复制触发框</td>
+					<td>
+						<input id="copy" name="copy" class="hisui-triggerbox textbox"
+							data-options="icon:'icon-copy-blue',handler:msg,plain:true" />
+					</td>
+					<td style="padding-left: 10px;font-size: 0;">
+						<a class="hisui-linkbutton" id="btn-disable">禁用</a>
+						<a class="hisui-linkbutton" id="btn-enable" style="margin-left: 10px;">启用</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<script type="text/javascript">
+			function msg(value, name) {
+				var title = "点击了name=" + name + "触发组件的按钮,value=" + value;
+				$.messager.popover({
+					type: "info",
+					msg: title
+				});
+				if (name == "copy") {
+					var v = $("#card").triggerbox('getValue');
+					$("#copy").triggerbox('setValue', v);
+				}
+			}
+			$(function () {
+				$('#btn-disable').click(function () {
+					$('#copy').triggerbox('disable')
+				})
+				$('#btn-enable').click(function () {
+					$('#copy').triggerbox('enable')
+				})
+			})
+		</script>
+		<pre class="prettyprint lang-html hide"><code>&lt;div class="hisui-panel" title="触发框示例" style="width:500px;padding:10px 30px 20px 30px"
+	data-options="headerCls:'panel-header-gray',iconCls:'icon-paper-info'"&gt;
+	&lt;table&gt;
+		&lt;tr&gt;
+			&lt;td class='r-label'&gt;默认触发框&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input name="default" class="hisui-triggerbox textbox" data-options="handler:msg" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class='r-label'&gt;图片触发框&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="img" name="img" class="hisui-triggerbox textbox"
+					data-options="icon:'icon-img-blue',handler:msg,plain:true" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class='r-label'&gt;卡触发框&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="card" name="card" class="hisui-triggerbox textbox"
+					data-options="icon:'icon-card',handler:msg,plain:true" /&gt;
+			&lt;/td&gt;
+			&lt;td&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td class='r-label'&gt;复制触发框&lt;/td&gt;
+			&lt;td&gt;
+				&lt;input id="copy" name="copy" class="hisui-triggerbox textbox"
+					data-options="icon:'icon-copy-blue',handler:msg,plain:true" /&gt;
+			&lt;/td&gt;
+			&lt;td style="padding-left: 10px;font-size: 0;"&gt;
+				&lt;a class="hisui-linkbutton" id="btn-disable"&gt;禁用&lt;/a&gt;
+				&lt;a class="hisui-linkbutton" id="btn-enable" style="margin-left: 10px;"&gt;启用&lt;/a&gt;
+			&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/div&gt;</code></pre>
+		<pre class="prettyprint lang-js hide"><code>function msg(value, name) {
+	var title = "点击了name=" + name + "触发组件的按钮,value=" + value;
+	$.messager.popover({
+		type: "info",
+		msg: title
+	});
+	if (name == "copy") {
+		var v = $("#card").triggerbox('getValue');
+		$("#copy").triggerbox('setValue', v);
+	}
+}
+$(function () {
+	$('#btn-disable').click(function () {
+		$('#copy').triggerbox('disable')
+	})
+	$('#btn-enable').click(function () {
+		$('#copy').triggerbox('enable')
+	})
+})</code></pre>
+	</div>
+	<div class="demo-exp-code entry-content">
+		<table class="table">
+			<tr class="protitle">
+				<th>属性</th>
+				<th>说明</th>
+				<th>默认值</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>icon</td>
+				<td>可配置按钮显示的图标</td>
+				<td>'icon-w-trigger-box'</td>
+				<td>见【基础】-【图标(icon)】界面</td>
+			</tr>
+			<tr>
+				<td>prompt</td>
+				<td>为空时的提示值</td>
+				<td>''</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>value</td>
+				<td>初值</td>
+				<td>''</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>disabled</td>
+				<td>是否禁用</td>
+				<td>false</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>plain<code>2019-12-23<code</td>
+				<td>图标背景是否透明</td>
+				<td>false</td>
+				<td>当未指定icon且未指定plain时。自动修改配置项<code>icon:'icon-trigger-box',plain:true</code></td>
+			</tr>
+			<tr class="mthtitle">
+				<th>方法</th>
+				<th>说明</th>
+				<th>入参</th>
+				<th>返回值</th>
+			</tr>
+			<tr>
+				<td>getValue</td>
+				<td>获得组件的值</td>
+				<td>无</td>
+				<td>组件值</td>
+			</tr>
+			<tr>
+				<td>setValue</td>
+				<td>给组件赋值</td>
+				<td>val</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr>
+				<td>disable</td>
+				<td>禁用组件</td>
+				<td>无</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr>
+				<td>enable</td>
+				<td>启用组件</td>
+				<td>无</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr>
+				<td>options</td>
+				<td>获取组件配置项</td>
+				<td>无</td>
+				<td>配置项</td>
+			</tr>
+			<tr>
+				<td>textbox</td>
+				<td>获取组件输入框jq对象</td>
+				<td>无</td>
+				<td>输入框jq对象</td>
+			</tr>
+			<tr>
+				<td>clear</td>
+				<td>清空值</td>
+				<td>无</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr>
+				<td>reset</td>
+				<td>还原初值</td>
+				<td>无</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr>
+				<td>getName</td>
+				<td>获取Name属性</td>
+				<td>无</td>
+				<td>Name属性</td>
+			</tr>
+			<tr>
+				<td>destroy</td>
+				<td>销毁组件</td>
+				<td>无</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr>
+				<td>resize</td>
+				<td>调整宽度</td>
+				<td>width</td>
+				<td>当前jq对象</td>
+			</tr>
+			<tr class="evttitle">
+				<th>事件</th>
+				<th>说明</th>
+				<th>入参</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>handler</td>
+				<td>点击按钮时触发事件</td>
+				<td>value,name</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<prettyprint />
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+<body>
+	<h2>数字验证框</h2>
+	<h3>说明:</h3>
+    <span>数字验证框（numberbox）用来验证数字表单，在输入框上加入简单的验证 。</span>
+	<h3>如：</h3>
+	<style>td{
+		padding:5px 0;
+	}</style>
+	<div class="demo-exp-code entry-content"> 
+		<div class="hisui-panel use-prettyprint" title="登记" style="width:400px;padding:10px 10px 10px 10px" data-options="iconCls:'icon-paper',closable:true,collapsible:true,minimizable:true,maximizable:true,headerCls:'panel-header-gray'">
+			<table>
+			<tbody>
+				<tr>
+					<td class="r-label"><span style="line-height: 14px;vertical-align: top;display: inline-block;">温度</span></td>
+					<td class="r-label">
+						<input class="hisui-numberbox textbox" data-options="placeholder:'输入35到42间的数字',precision:2,forcePrecisionZoer:false,fix:false,max:42,min:35">
+					</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="r-label"><span style="line-height: 14px;display: inline-block;">数字</span></td>
+					<td class="r-label">
+						<input class="hisui-numberbox textbox" data-options="isKeyupChange:true" id="nb">
+					</td>
+					<td><span style="line-height: 14px;display: inline-block;">值即时变化</span></td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+		<script type="text/javascript"  class="use-prettyprint">
+			$(function(){
+				$("#nb").on('keyup',function(e){
+					console.log("numberbox value = "+$(this).numberbox('getValue'));
+					if (e.keyCode==13){
+						console.log("numberbox value enterkey ="+$(this).numberbox('getValue'));
+					}
+				});
+			})
+		</script>
+	</div>
+	<table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>默认值</th>
+			<th>说明</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>isKeyupChange</td>
+			<td>默认值false</td>
+			<td>值为false时blur时改变组件的值。为true时则keyup时改变组件的值<code>2019-4-18</code></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>keyupChangeDelay</td>
+			<td>默认值0</td>
+			<td>当isKeyupChange为true时，keyup改变组件值延迟时间 <code>2023-08-24</code><br>用于解决当值范围为5-10000时，想要输入123却变成523问题 </td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>fix</td>
+			<td>默认值true</td>
+			<td>true时强制转换值为min或max，值为false时只给出提示<code>2020-1-21</code></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>forcePrecisionZoer</td>
+			<td>默认值true</td>
+			<td>true强制按有效数字配置补齐,false时不强制补0<code>2022-5-22</code></td>
+			<td></td>
+		</tr>
+	</table>
+	<prettyprint/>	
+</body>
+</html>

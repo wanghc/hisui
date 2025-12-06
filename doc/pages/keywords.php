@@ -1,0 +1,211 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>    
+</head>
+<body>
+<h2>关键字集组件(<code>keywords</code>)</h2>
+<h3>说明：</h3>
+<span>可以用于关键字多选，或切换关键字功能。</span>
+<h3>一.多选关键字</h3>
+<div class="demo-exp-code entry-content">
+    <a href="#" onclick="javascript:void(0);" id="btn" class="hisui-linkbutton">获得选中元素-再清除所有选中</a>
+    <div id="kw"></div>
+    <pre class="prettyprint lang-html hide"><code>&lt;div id="kw">&lt;/div></code></pre>
+    <script type="text/javascript" class="use-prettyprint">
+        $(function(){
+            $("#kw").keywords({
+                onClick:function(v){console.log("点击->"+v.text)},
+                onUnselect:function(v){console.log("取消选择->"+v.text);},
+                onSelect:function(v){console.log("选择->"+v.text);},
+                items:[{
+                        text:"诊断",
+                        type:"chapter",
+                        items:[
+                            {
+                                text:'西医诊断',type:"section",items:[
+                                    {text:'上呼吸道感染',id:"x1"},{text:'接触性皮炎',id:"x2"},{text:'过敏性皮炎',id:'x3'},{text:'神经性皮炎',id:'x4'},
+                                    {text:'腰间盘突出',id:'x5',disabled:true},{text:'腰肌老损',id:'x6'},{text:'急性病毒性肝炎',id:'x7'},{text:'中风后遗症',id:'x8'},{text:'高血压脑病',id:'x9'},{text:'过敏性休克',id:'x10'},
+                                    {text:'急性酒精中毒',id:'x11',selected:true},{text:'神经性脑鸣',id:'x12'},{text:'偏头痛',id:'x13'},{text:'血管性神经头痛',id:'x14'},{text:'面神经麻痹',id:'x15'}
+                                ]
+                            },
+                            {
+                                text:"中医诊断",type:'section',items:[
+                                    {text:'肝热病',id:"z1"},{text:'白喉',id:"z2"},{text:'麻疹',id:'z3'},{text:'中恶',id:'z4'},
+                                    {text:'百日咳',id:'z5'},{text:'吸虫病',id:'z6'}
+                                ]
+                            }
+                        ]
+                    },{
+                        text:"病历",    /*无段落*/ 
+                        type:"chapter",
+                        items:[
+                            {text:"住院病历"},
+                            {text:"门诊病历"}
+                        ]
+                    },{
+                        text:"过敏药品", /*无章节情况*/
+                        type:"section",
+                        items:[
+                            {text:"青霉素"},{text:"链霉素"},
+                            {text:"磺胺药"},{text:"阿司匹林"},
+                            {text:"痢特灵"},{text:"保泰松"},{text:"巴比妥类药普鲁卡因"},
+                        ]
+                    },{
+                        text:"高质", /*text:""时章节名称为空时不显示蓝条,但有横线*/
+                        type:"chapter",
+                        items:[{
+                            text:"高质耗材", 
+                            type:"section",
+                            items:[
+                                {text:"透析管路"},{text:"心脏起搏器"},{text:"人工关节"},
+                                {text:"人工瓣膜"},{text:"人工补片"},{text:"人工血管"}
+                            ]
+                        }]
+                    }]
+            });
+        });
+    </script>
+</div>
+
+
+<h3 style="clear: both;">三.二级标签页(<code>labelCls:'darkblue'</code>)</h3>
+<div class="demo-exp-code entry-content">
+    <div id="darkbluekw"></div>
+    <script type="text/javascript" class="use-prettyprint">
+        $(function(){
+            $("#darkbluekw").keywords({
+                singleSelect:true,
+                onClick:function(v){console.log("点击->"+v.text)},
+                onUnselect:function(v){console.log("取消选择->"+v.text);},
+                onSelect:function(v){console.log("选择->"+v.text);},
+                labelCls:'darkblue',
+                items:[
+                    {text:'知识库',id:'red1'},
+                    {text:'医嘱',id:'red2',disabled:true},
+                    {text:'中草药',id:'red3'},
+                    {text:'检查',id:'red4',selected:true},
+                    {text:'生命体征',id:'red6'},
+                    {text:'诊断',id:'red7'},
+                    {text:'病理',id:'red8'}
+                ]
+            });
+        })
+    </script>
+</div>
+
+
+    <table class="table">
+		<tr class="protitle">
+			<th>配置项</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th>其它</th>
+        </tr>
+        <tr>
+            <td>items</td>
+            <td>具体元素数组。元素属性包括：text,id,selected,disabled</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>text</td>
+            <td>null</td>
+            <td>标签文本。必需项</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>id</td>
+            <td>null</td>
+            <td>标签id。可选项</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>selected</td>
+            <td>false</td>
+            <td>选中当前标签。可选项</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>disabled</td>
+            <td>false</td>
+            <td>禁用当前标签。可选项<code>20230822</code></td>
+        </tr>
+		<tr>
+			<td>singleSelect</td>
+			<td>当前是否为单选模式</td>
+			<td>false</td>
+			<td>true时为单选</td>
+		</tr>
+		<tr>
+			<td>labelCls</td>
+			<td>选择块样式名</td>
+			<td>'blue'</td>
+			<td>可选项<code>'red'</code>,<code>'blue'</code></td>
+        </tr>
+        <tr class="mthtitle">
+            <th>方法名</th>
+            <th>说明</th>
+            <th>入参</th>
+            <th>返回值</th>
+        </tr>
+        <tr>
+            <td>select</td>
+            <td>选中对象,入参为元素的id</td>
+            <td>id</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>getSelected</td>
+            <td>获得所有已选对象</td>
+            <td>无</td>
+            <td>Array</td>
+        </tr>
+        <tr>
+            <td>switchById</td>
+            <td>切换元素的选中状态,入参为元素的id</td>
+            <td>id</td>
+            <td>无</td>
+        </tr>
+        <tr>
+            <td>clearAllSelected</td>
+            <td>清除所有选中</td>
+            <td>无</td>
+            <td>无返回值.不触发事件.<code>20180822</code></td>
+        </tr>
+        <tr class="evttitle">
+            <th>事件名</th>
+            <th>说明</th>
+            <th>入参</th>
+            <th>类型</th>
+        </tr>
+        <tr>
+            <td>onClick</td>
+            <td>当前点击对象</td>
+            <td>item</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>onUnselect</td>
+            <td>当前取消选中对象</td>
+            <td>item</td>
+            <td>单选时不会触发onUnselect事件</td>
+        </tr>
+        <tr>
+            <td>onSelect</td>
+            <td>当前选中对象</td>
+            <td>item</td>
+            <td>单选，多选都会触发<code>20220124</code></td>
+        </tr>
+	</table>
+	<prettyprint/>
+</body>
+</html>

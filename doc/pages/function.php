@@ -1,0 +1,367 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+<body>
+    <h2>hisui中的一些公共方法</h2>
+    <h3>$.hisui.indexOfArray 获取元素索引</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.hisui.indexOfArray</code>(<code class="param">a</code>,<code class="param">o</code>,<code class="param">id</code>)</h3>
+        获取元素在数组中的位置，不存在返回-1；主要应用根据id值和id字段名获取在数组中的索引
+        <table class='table'>
+            <tr class="protitle">
+                <th>参数</th>
+                <th>说明</th>
+                <th>默认值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>a</td>
+                <td>数组</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>o</td>
+                <td>目标元素或字段名</td>
+                <td></td>
+                <td>目标元素或字段名</td>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>目标字段值</td>
+                <td>undefined</td>
+                <td>
+                    不传id时，获取是数组a中元素为o的索引值, 传了id<br>
+                    获取的是数组a中元素的o字段值为id的元素索引值
+                </td>
+            </tr>
+        </table>
+        <script>
+            console.log('test $.hisui.indexOfArray');
+            var item={id:'2',name:'李四'};
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            console.log($.hisui.indexOfArray(arr,{id:'2',name:'李四'})); //-1 对象类型 不是同一引用就不是
+
+            console.log($.hisui.indexOfArray(arr,item)); //1 对象类型 同一引用
+
+            console.log($.hisui.indexOfArray(arr,'id',2)); //1 根据id字段获取
+            console.log($.hisui.indexOfArray(arr,'id',3)); //2
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.indexOfArray');
+var item={id:'2',name:'李四'};
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+console.log($.hisui.indexOfArray(arr,{id:'2',name:'李四'})); //-1 对象类型 不是同一引用就不是
+
+console.log($.hisui.indexOfArray(arr,item)); //1 对象类型 同一引用
+
+console.log($.hisui.indexOfArray(arr,'id',2)); //1 根据id字段获取
+console.log($.hisui.indexOfArray(arr,'id',3)); //2</code></pre>
+    </div>
+    
+    <!--******************************************华丽的分割线******************************************************-->
+    <h3>$.hisui.removeArrayItem 移除元素</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.hisui.removeArrayItem</code>(<code class="param">a</code>,<code class="param">o</code>,<code class="param">id</code>)</h3>
+        移除数组中的某元素；主要应用根据id值和id字段名移除在数组中的元素
+        <table class='table'>
+            <tr class="protitle">
+                <th>参数</th>
+                <th>说明</th>
+                <th>默认值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>a</td>
+                <td>数组</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>o</td>
+                <td>目标元素或字段名</td>
+                <td></td>
+                <td>如果o是元素对象，移除数组中的此对象<br>
+                    如果o是字段名,移除数组中元素此字段值为id参数的元素
+                </td>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>目标字段值</td>
+                <td>undefined</td>
+                <td>o为string类型，此参数才生效</td>
+            </tr>
+        </table>
+        <script>
+            console.log('test $.hisui.removeArrayItem');
+            var item={id:'2',name:'李四'};
+
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.removeArrayItem(arr,{id:'2',name:'李四'});
+            console.log(arr); //删不掉 对象类型 不是同一引用就不是
+
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.removeArrayItem(arr,item);
+            console.log(arr); //可以删掉 同一引用
+
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.removeArrayItem(arr,'id',2);
+            console.log(arr); //可以删掉 根据id字段名
+
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.removeArrayItem');
+var item={id:'2',name:'李四'};
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.removeArrayItem(arr,{id:'2',name:'李四'});
+console.log(arr); //删不掉 对象类型 不是同一引用就不是
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.removeArrayItem(arr,item);
+console.log(arr); //可以删掉 同一引用
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.removeArrayItem(arr,'id',2);
+console.log(arr); //可以删掉 根据id字段名</code></pre>
+    </div>
+<!--******************************************华丽的分割线******************************************************-->
+    <h3>$.hisui.addArrayItem 增加或更新元素</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.hisui.addArrayItem</code>(<code class="param">a</code>,<code class="param">o</code>,<code class="param">r</code>)</h3>
+        为数组增加元素，如果存在则替换 ；主要应用根据id字段判断数组中是否有id字段一致的元素，无则增加，有则替换
+        <table class='table'>
+            <tr class="protitle">
+                <th>参数</th>
+                <th>说明</th>
+                <th>默认值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>a</td>
+                <td>数组</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>o</td>
+                <td>元素或字段名</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>r</td>
+                <td>元素</td>
+                <td></td>
+                <td>
+                    1.不传r,o为要增加的元素，判断o在数组是否存在，不存在增加，存在则替换 <br>
+                    2.传r,o为字段名，r为要增加的元素，判断数组中是否存在字段和r[o]相等的元素，不存在增加，存在则替换
+                </td>
+            </tr>
+        </table>
+        <script>
+            console.log('test $.hisui.addArrayItem');
+            var item={id:'2',name:'李四'};
+
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.addArrayItem(arr,{id:'2',name:'李四'});
+            console.log(arr); //引用不一致判断为不存在，会增加一个新的 
+
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.addArrayItem(arr,item);
+            console.log(arr); //引用一致判断存在 会替换 但是没啥意义
+
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.addArrayItem(arr,'id',{id:'2',name:'李四（新）'});
+            console.log(arr); //根据id字段判断存在进行替换 这个才有实际使用意义
+            
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            $.hisui.addArrayItem(arr,'id',{id:'4',name:'麻子'});
+            console.log(arr); //根据id字段判断不存在 增加
+
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.addArrayItem');
+var item={id:'2',name:'李四'};
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.addArrayItem(arr,{id:'2',name:'李四'});
+console.log(arr); //引用不一致判断为不存在，会增加一个新的 
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.addArrayItem(arr,item);
+console.log(arr); //引用一致判断存在 会替换 但是没啥意义
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.addArrayItem(arr,'id',{id:'2',name:'李四（新）'});
+console.log(arr); //根据id字段判断存在进行替换 这个才有实际使用意义
+
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+$.hisui.addArrayItem(arr,'id',{id:'4',name:'麻子'});
+console.log(arr); //根据id字段判断不存在 增加</code></pre>
+    </div>
+<!--******************************************华丽的分割线******************************************************-->
+
+
+
+    <h3>$.hisui.getArrayItem 获取元素</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.hisui.getArrayItem</code>(<code class="param">a</code>,<code class="param">o</code>,<code class="param">id</code>)</h3>
+        获取数组中某字段为某值的元素,不存在返回null
+        <table class='table'>
+            <tr class="protitle">
+                <th>参数</th>
+                <th>说明</th>
+                <th>默认值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>a</td>
+                <td>数组</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>o</td>
+                <td>字段名</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>id</td>
+                <td>目标字段值</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <script>
+            console.log('test $.hisui.getArrayItem');
+            var item={id:'2',name:'李四'};
+            var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+            console.log($.hisui.getArrayItem(arr,'id',2)); // 根据id字段获取
+            console.log($.hisui.getArrayItem(arr,'id',3)); 
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.getArrayItem');
+var item={id:'2',name:'李四'};
+var arr=[{id:'1',name:'张三'},item,{id:'3',name:'王二'}];
+console.log($.hisui.getArrayItem(arr,'id',2)); // 根据id字段获取
+console.log($.hisui.getArrayItem(arr,'id',3)); </code></pre>
+    </div>
+    <!--******************************************华丽的分割线******************************************************-->
+
+
+    <h3>$.hisui.getChineseSpellArray 汉字转拼音 (<code class="param">2018-08-27</code>)</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.hisui.getChineseSpellArray</code>(<code class="param">str</code>)</h3>
+        获取字符串拼音首字母，返回简拼数组
+        <script>
+            console.log('test $.hisui.getChineseSpellArray');
+            console.log($.hisui.getChineseSpellArray('你好')) 
+            console.log($.hisui.getChineseSpellArray('你好,hello')) //只处理中文
+            console.log($.hisui.getChineseSpellArray('俱往矣数风流人物还看今朝朝')) //多音字  多音字实际可以考虑语义、词库，但是这儿显然不可能
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.getChineseSpellArray');
+console.log($.hisui.getChineseSpellArray('你好')) 
+console.log($.hisui.getChineseSpellArray('你好,hello')) //英文字符不处理
+console.log($.hisui.getChineseSpellArray('俱往矣数风流人物还看今朝朝')) //多音字  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
+    </div>
+    <!--******************************************华丽的分割线******************************************************-->
+
+    <h3>$.hisui.toChineseSpell 汉字转拼音(<code class="param">2018-08-27</code>)</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.hisui.toChineseSpell</code>(<code class="param">str</code>)</h3>
+        获取字符串拼音首字母，返回简拼，多音字只返回一个
+        <script>
+            console.log('test $.hisui.toChineseSpell');
+            console.log($.hisui.toChineseSpell('你好')) 
+            console.log($.hisui.toChineseSpell('你好,hello')) //只处理中文
+            console.log($.hisui.toChineseSpell('俱往矣数风流人物还看今朝朝')) //多音字多音字只取第一个结果  多音字实际可以考虑语义、词库，但是这儿显然不可能
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.hisui.toChineseSpell');
+console.log($.hisui.toChineseSpell('你好')) 
+console.log($.hisui.toChineseSpell('你好,hello')) //英文字符不处理
+console.log($.hisui.toChineseSpell('俱往矣数风流人物还看今朝朝')) //多音字只取第一个结果  多音字实际可以考虑语义、词库，但是这儿显然不可能</code></pre>
+    </div>
+    <!--******************************************华丽的分割线******************************************************--> 
+
+    <h3>$.fn.datebox.defaults.formatter 日期格式化</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.fn.datebox.defaults.formatter</code>(<code class="param">date</code>)</h3>
+        hisui默认的日期格式话方法，在his中通过重写此方法实现控制日期格式
+        <table class='table'>
+            <tr class="protitle">
+                <th>参数</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>日期(Date对象)</td>
+            </tr>
+            <tr class="protitle">
+                <th>返回值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>ret</td>
+                <td>格式化后的日期字符串</td>
+            </tr>
+        </table>
+        <script>
+            console.log('test $.fn.datebox.defaults.formatter');
+            console.log($.fn.datebox.defaults.formatter(new Date())) 
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.fn.datebox.defaults.formatter');
+console.log($.fn.datebox.defaults.formatter(new Date())) </code></pre>
+    </div>
+    <!--******************************************华丽的分割线******************************************************-->
+
+    <h3>$.fn.datebox.defaults.parser 日期解析</h3>
+    <div class="demo-exp-code entry-content">
+        <h3><code class="fun">$.fn.datebox.defaults.parser</code>(<code class="param">s</code>)</h3>
+        hisui默认的日期解析方法，把日期字符串解析为日期(Date)对象，应和formatter对应
+        <table class='table'>
+            <tr class="protitle">
+                <th>参数</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>s</td>
+                <td>格式化的日期字符串</td>
+            </tr>
+            <tr class="protitle">
+                <th>返回值</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>ret</td>
+                <td>日期(Date)对象</td>
+            </tr>
+        </table>
+        <script>
+            console.log('test $.fn.datebox.defaults.parser');
+            var date=new Date();
+            console.log(date);
+            var datestr=$.fn.datebox.defaults.formatter(date);
+            console.log(datestr);
+            console.log($.fn.datebox.defaults.parser(datestr)) ;
+        </script>
+<pre class="prettyprint hide lang-js"><code>console.log('test $.fn.datebox.defaults.parser');
+var date=new Date();
+console.log(date);
+var datestr=$.fn.datebox.defaults.formatter(date);
+console.log(datestr);
+console.log($.fn.datebox.defaults.parser(datestr)) ;</code></pre>
+    </div>
+    <!--******************************************华丽的分割线******************************************************--> 
+
+    <prettyprint/>
+
+</body>
+
+</html>

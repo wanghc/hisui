@@ -1,0 +1,506 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+    <script src="../pages/icon/icondic.js" type="text/javascript"></script>
+    <style>
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            clear: both;
+        }
+        ul>li {
+            line-height: 30px;
+            height: 30px;
+            width:180px;
+            padding: 0 5px 0 15px;
+            float: left;
+        }
+        ul.whitelist>li{
+            padding-top:5px;
+        }
+        ul.whitelist>li .l-btn-text{
+            font-size: 12px;
+        }
+        ul>li>a {
+            text-decoration: none;
+            color:#000000;
+        }
+        ul.iconlist>li:hover,ul.fontlist>li:hover,ul.arrowlist>li:hover,.bigiconlist li:hover {
+            background-color: #E3E3E3;
+        }
+        .icon{
+            padding-left: 20px;
+            background-position: left 0px center;
+            display: inline-block;
+            font-size: 12px;
+            word-break: break-all;
+            white-space: nowrap;
+        }
+        ul>li span{
+            height: 30px;
+            display: inline-block;
+        }
+        .iconlist, .fontlist, .arrowlist, .bigiconlist, chinCharlist{
+            display: inline-block;
+        }
+        .bigicon{
+            height: 40px;
+            line-height: 40px;
+        }
+        .bigicon .icon{
+            padding-left: 30px;
+        }
+        .line{
+            margin: 5px;
+            border-bottom: 1px dashed #e5e5e5;
+        }
+        .cntt-splitline{
+            height: 10px;
+            border-top: 1px dotted #cccccc;
+        }
+        .panel-header, .panel-body {
+            border-color: #ffffff;
+        }
+        .panel-header-card + .panel-body {
+            border-top: 1px dashed #e5e5e5;
+        }
+        .bigicon-tr td{
+            line-height: 30px;
+        }
+        .bigicon-tr .icon{
+            padding-left:30px;
+        }
+        .wicon-tr .icon{
+            background-color: #378ec4;
+            background-position: left 3px center;
+        }
+        span.iconpopover {
+            display: block;
+            padding-left: 10px;
+        }
+        span.icon.icon-gcp {
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h2>图标列表</h2>
+    <h3>所有图标：</h3>
+    <div class="hisui-panel" title="白色(16*16)" data-options="headerCls:'panel-header-card',titleWidth:80" style="padding:10px;margin-bottom:10px;">    
+        <ul class="whitelist"></ul>
+    </div>    
+    <div class="hisui-panel" title="图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:80" style="padding:10px;margin-bottom:10px;">    
+        <ul class="iconlist"></ul>
+    </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="编辑/文字处理(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
+        <ul class="fontlist"></ul>
+    </div>
+    <div class="hisui-panel" title="黑色线条图标-常用于侧菜单图标" data-options="headerCls:'panel-header-card',titleWidth:260" style="padding:10px;margin-bottom:10px;">    
+        <ul class="blacklist"></ul>
+    </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="汉字图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:160" style="padding:10px;margin-bottom:10px;">    
+        <ul class="chinCharlist"></ul>
+    </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="箭头图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="arrowlist"></ul>
+    </div>
+    <div class="hisui-panel" title="纸张图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="paperlist"></ul>
+    </div>
+    <div class="hisui-panel" title="医疗图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="medlist"></ul>
+    </div>
+    <div class="hisui-panel" title="费用图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="feelist"></ul>
+    </div>
+    <div class="hisui-panel" title="消息类图标(16*16)" data-options="headerCls:'panel-header-card',titleWidth:120" style="padding:10px;margin-bottom:10px;">
+        <ul class="msglist"></ul>
+    </div>
+    <!-- <div class='line'></div> -->
+    <div class="hisui-panel" title="大图标(28*28)" data-options="headerCls:'panel-header-card',titleWidth:100" style="padding:10px;margin-bottom:10px;">
+        <div class="bigiconlist"></div>
+    </div>
+    
+    <h3>说明:</h3>
+    <span>各种小图标，可用到按钮(linkbutton),菜单(menu),工具栏(toolbar)</span>
+    <h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+        <a href="#" class="hisui-linkbutton" iconCls="icon-w-clean">清屏</a>
+        <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton" iconCls="icon-w-clear"&gt;清屏&lt;/a&gt;</code></pre>
+    </div>
+    <div class="demo-exp-code entry-content"> 
+        <a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note">操作</a>
+        <div id="mm">
+            <div data-options="iconCls:'icon-undo'">撤销</div>
+            <div data-options="iconCls:'icon-redo'">恢复</div>
+        </div>
+<pre class="prettyprint hide lang-html">
+&lt;a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note"&gt;操作&lt;/a&gt;
+&lt;div id="mm"&gt;
+    &lt;div data-options="iconCls:'icon-undo'"&gt;撤销&lt;/div&gt;
+    &lt;div data-options="iconCls:'icon-redo'"&gt;恢复&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+    </div>
+    <div class="demo-exp-code entry-content"> 
+            <table class="hisui-datagrid" title="医嘱列表" style="width:400px;height:150px" 
+            data-options="rownumbers:true,singleSelect:true,pagination:false,toolbar:[{
+                    iconCls: 'icon-stop-order',
+                    text:'停止医嘱',
+                    handler: function(){alert('停止医嘱')}
+                },{
+                    iconCls: 'icon-cancel-order',
+                    text:'撤销医嘱'
+                },{
+                    iconCls: 'icon-abort-order',
+                    text:'作废医嘱'
+                },'-',{
+                    iconCls: 'icon-tip'
+                }]"> 
+            </table>
+            <pre class="prettyprint hide lang-js">
+        toolbar: [{
+            iconCls: 'icon-edit',
+            text:'停止医嘱',
+            handler: function(){alert('停止医嘱')}
+        },{
+            iconCls: 'icon-save',
+            text:'撤销医嘱'
+        },{
+            iconCls: 'icon-remove',
+            text:'作废医嘱'
+        },'-',{
+            iconCls: 'icon-tip'
+        }]</pre>
+    </div>
+    <div>
+        <h3>常用图标说明</h3>
+        <table class="table" id="iconnotelist">
+            <tr class="protitle">
+                <th width=44px>图标</th>
+                <th width=190px>类</th>
+                <th>说明</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+    <div class="mytooltip"></div>
+    <script type="text/javascript">
+        $(function(){
+            
+            var wicons = ['add','close','find','edit','update','save','arrow-down','arrow-up','arrow-left','arrow-right','back','cal','cancel','card','clean','config',
+            'epr','file','file-open','home','list','new','other','paper','plus','print','switch','import','export','star','msg','copy',
+            'stamp','batch-cfg','inv','batch-add','eye','calc','submit','clock','rent','run','line-key','takes','key','img','setting','ok','filter','predrug',"trigger-box",
+            "paid","zoom","book","upload","pen-paper","volume-up","download","reset","pause-circle","skip-no","ca",'ster-bd','ster-leak','scan-code','canceldrug','camera','stop'
+        ];
+            for(var i=0;i<wicons.length;i++){
+                //<span class="icon icon-w-'+wicons[i]+'">icon-w-'+wicons[i]+'</span>\
+                $(
+                    '<li>\
+                    <a href="#" iconCls="icon-w-'+wicons[i]+'" style="width:180px;text-align:left;font-size:10px">icon-w-'+wicons[i]+'</a>\
+                    </li>'
+                ).appendTo(".whitelist").find("a").linkbutton();
+            }
+            var cw = Math.floor($('.hisui-panel').width()-40); //document.documentElement.clientWidth;
+            /*--------------------------------*/
+            var icons = [
+            'add','add-item','ok',''
+            ,'cancel','remove','dustbin-red','clear-screen',''
+            ,'search',''
+            ,'edit','blue-edit','gray-edit','paper-pen-blue',''
+            ,'save','save-to','save-sure','paper-save','save-tmpl',''
+            ,'accept','run','submit','pause','radio','other','no','unuse','pause-red','circle-down','face-red','submit-gray','done',''
+            
+            ,'print','print-box','reprint-inv','print-inv','print-arr-bo','print-arr-bo-gray','paper-print',''
+            
+            ,'paper-plane','undo-paper-plane','paper-plane-clock',''
+            ,'funnel-eye','funnel-half','funnel-empty','funnel-on',''
+            ,'eye','green-line-eye','eye-deepgrade','show-set',''
+            ,'clock','clock-blod','clock-record','clock-black','clock-orange',''
+            ,'star-orange-body','star-yellow','star-light-yellow','star','star-half','star-empty','star-orange-border',''
+            
+            ,'qua-pro-sort','qua-pro-dis','qua-pro-blue','select-grant','cancel-select-grant','refuse-select-grant','ca-green',''
+            
+            ,'patient','outhosp-patient','trans-pat','patient-info','pat-opr'
+            ,'pat-alert-red','pat-alert-yellow','pat-house','person','person-key-yel','person-ok','pat-add-red','pat-write','doctor','doctor-green-no','chg-doctor-grant','doctor-green-pen','nurse-pen','person-seal','doc-caseload','user-black','user',''
+            ,'house','house-maint','house-posi-maint','pat-house-switch','home-back','change-loc','home-black','home-gray',''
+                        
+            ,'img','insert-local-image','image-properties','edit-picture','miss-img',''
+            ,'alert-pen','alert-red','alert','alarm','alarm-key',''
+            ,'key','muti-key','key-switch','lock','unlock',''
+            ,'stamp','stamp-cancel','stamp-pass','audit-x',''
+            ,'book','book-green','open-book','knw-submit','book-blue','book-gray',''
+            ,'export','import','import-reset','upload','download','excel','import-xls','export-data','export-paper','export-all',''
+            ,'compu-torus','compu-torus-gray','compu-run','compu-run-gray','green-chart','gray-chart','analysis','sample-stat',''
+            ,'wax-stat','wax-tat-stat','two-recta-gear','two-recta-gear-gray','three-cuboid-green','set-col','split','skip-no','paper-arrow',"compare","compare-no","compare-yes"
+            ,'slice-stat','slice-tat-stat','slice-only','paper-arrow-down','template','template-down','all-select',''
+            ,'batch-cfg','gear-gray','attachment','barbell','location','nail','scanning','cancel-ref','ref','tel','sound','camera','video','track'
+            ,'tooth','minus','fishbone-diagram','share','share-no','forbid','ignore','re-ignore','wrench-blue','target-arrow','ip-cfg',''
+                        
+            ,'base-info','adjust-inventory','gen','check','checkbox','snowflake-blue','icd',"no-dot",'emr-cri','date','cale-3day','cal-pen'
+            ,'double-quotes','other-yellow','verify','chart-year','max-no','set-zero','return','yellow-qa'
+            ,'dsh-water','water-drop','ice-water'
+            ,'price-maint','ga-maint','bed','uncheckin','checkin'
+            //,'mini-add','mini-edit','mini-refresh' /*2018-06-28 去除mini图标*/
+            //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'            
+            ,'ster-bio','all-unselect','batch-add','multi-del','bag','bag-x','disp-x','disp-back','physics-monitor'
+            ,'have-son-node','rectangle-flow','creating-a-pedigree-map','edit-pedigree-chart','read-card','box-red-add'
+            ,'box-red-add-gray','fire'            
+        ];
+            //icons.sort();
+            for(var i=0;i<icons.length;i++){
+                if (icons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".iconlist");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+icons[i]+'">icon-'+icons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".iconlist");
+                }
+            }
+            var papericons = [
+                'paper','write-order','cancel-order','abort-order','stop-order','write-order','paper-tri','paper-stamp','set-paper','paper-link',''
+                ,'paper-eye','paper-bed','paper-chart','paper-new','paper-no','paper-ok','paper-opr-record','paper-x','h24-stat'
+                ,'stat','paper-pen','pat-info','rebill','paper-eye-r','paper-minus','paper-info','red-cancel-paper','paper-ques'
+                ,'paper-key','paper-arrow-up','paper-group','paper-clock-bue','paper-cfg','apply-adm','apply-check','apply-opr'
+                ,'check-reg','paper-pen-gray',''
+                ,'paper-table','paper-pre','paper-money','paper-lightning','paper-unlink','board-alert','export-report','add-report'
+                ,'report-eye','paper-share','report-switch','report-blue-shie-key','paper-blue-line','finish-report','take-report'
+                ,'paper-stat','paper-blue-add','paper-submit','report-eye-gray','paper-blue-add-gray','report-check-black',''
+                ,'mtpaper-add','mtpaper-arrw-lftp','mtpaper-redo','mtpaper-undo','mutpaper-tri','mutpaper-x','copy-prn','copy-sos','replace-order','resort'
+                ,'paper-link-pen','find-fee-itm','paper-upgrade-add','exe-order','add-note','table-col','paper-upgrade','mater-info','paper-switch'
+            ];
+            //icons.sort();
+            for(var i=0;i<papericons.length;i++){
+                if (papericons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".paperlist");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+papericons[i]+'">icon-'+papericons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".paperlist");
+                }
+            }
+            //-----
+            var fonticons=['lt-rt-19','lt-rt-37','lt-rt-46','lt-rt-55','lt-rt-64','lt-rt-73'
+            ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation','unindent','align-justify'
+            ,'format-line','format-line-dott','format-line-num'
+            ,'align-left','align-center','align-right','mttext','text','fx','sum','chart-sum','contain','no-conatin','omega'
+            ,'help','tip','tip-blue','filter','cut','cut-blue','paste','paste-board','copy','internationalize',''
+            ,'align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue'
+            ,'valign-bottom-blue','valign-middle-blue','valign-top-blue','gen-barcode','barcode-blue','qrcode-blue','line','move','table-blue'];
+            for(var i=0;i<fonticons.length;i++){
+                if (fonticons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".fontlist");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+fonticons[i]+'">icon-'+fonticons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".fontlist");
+                }
+            }
+            //-----黑色线条图标,炫彩与极简相同，可以使用在侧菜单
+            var blackIcons=['outInstc-mgr','book-rep','book-rep-v1','book-pen','paper-settings','book-settings','eye-scan-box','org-frame','alert-pen-gray','paper-set-qus','bk-mgr','pc','pc-v1','pc-v2','ecg-adm','key2','data-stat','user-settings','pda-execution-rate'];
+            for(var i=0;i<blackIcons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+blackIcons[i]+'">icon-'+blackIcons[i]+'</span>\
+                    </li>'
+                ).appendTo(".blacklist");
+            }
+            //-----
+            var chinCharicons=['inpatient','outpatient','emergency','disabler','produce','children','lung','high','spirit','old'
+            ,'poor','sugar','free','out-poverty',"pregnant-woman",'make-oppointment','allergy-word','base-word','close-word'
+            ,'complex-word','list-word','private-word','public-word','text-word','translate-word','sort','out','change','macpw','macpworder','evaluate-red','evaluate-green','quality','mass-injury','gcp','priority'];
+            for(var i=0;i<chinCharicons.length;i++){
+                $(
+                    '<li>\
+                    <span class="icon icon-'+chinCharicons[i]+'">icon-'+chinCharicons[i]+'</span>\
+                    </li>'
+                ).appendTo(".chinCharlist");
+            }
+            //----
+            
+            var arrowicons=[
+            'arrow-left-top','back','arrow-left-top-gray','arrow-right-top','undo','arrow-le-bo-gray','redo',
+            'arrow-top','arrow-bottom','arrow-right','arrow-left','top-green','down-blue','arrow-top-gray',
+            'up','down','move-up-most','cancel-top','move-left-most',
+            
+            'trian-recta-left','triangle-green-left','triangle-green-right','trian-recta-right',
+            'trian-recta-left-gray','triangle-gray-left','triangle-gray-right','trian-recta-right-gray','',
+            'big-switch','transfer','reload','refresh-gray','reset','init','wating','clock-pen','clock-pen-gray','',
+            'update','upload-cloud','unload-cloud','',
+            'arrow-up','down-arrow-box','up-gray','down-gray','right-arrow','run-red','arrow-blue','submit','submit-gray','circle-down','other','arrow-zoom','arrow-shrink','switch','all-screen','blue-move',''
+            ];
+            for(var i=0;i<arrowicons.length;i++){
+                if (arrowicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".arrowlist");
+                }else{
+                    $(
+                        '<li>\
+                        <span class="icon icon-'+arrowicons[i]+'">icon-'+arrowicons[i]+'</span>\
+                        </li>'
+                    ).appendTo(".arrowlist");
+                }
+            }
+            //----医疗,药品,医疗用器类
+            var medicons=['end-adm','del-diag','add-diag','adm-add','adm-same','stethoscope','find-adm',''
+            ,'bottle-drug','tube','ster-bat','tube-add','tube-del','speci-mt','injector','injector-water',''
+            ,'drug','drug-arrow-red','drug-audit','drug-clock','drug-link','blue-drug-ok','durg-freq','durg-ref','paper-drug','copy-drug','repeat-drug','drug-eye','drug-eye-gray',''
+            ,'herb-back','herb-pre','herb-next','herb-no','herb-ok','decoct-herb','decoct-change',''
+            ,'virus','virus-drug','change-x-virus','ster-again','ster-cancel','ster-finish','ster-ok'
+            ,''];
+            for(var i=0;i<medicons.length;i++){
+                if (medicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".medlist");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+medicons[i]+'">icon-'+medicons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".medlist");
+                }
+            }
+            //----费用类
+            var feeicons=['fee','fee-arrow','int-bill','cancel-int-bill','line-paid',
+            'pat-fee-det','cancel-money','accept-money','money-down'
+            ,'paid','change-pay-way','return-paid'
+            ,'find-ord-det','inv-search','paper-pay','paper-pay-gray'
+            ,'find-paid-det','mnypaper-cfg','mnypaper-run','mnypaper-ok','mnypaper-no','mnypaper-down','mnypaper-down2','shopping-cart-ok',''];
+            for(var i=0;i<feeicons.length;i++){
+                if (feeicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".feeList");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+feeicons[i]+'">icon-'+feeicons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".feelist");
+                }
+            }
+            //----消息类，可标识消息状态的图标
+            var msgicons=['msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed',''
+            ,'file-open','file','file-gray','stamp-mess','stamp-add','stamp-switch','stamp-undo','sure-readed','read-details',''
+            ,'ring-blue','bell-blue','bell-blue-no','bell-yellow','have-message','send-msg'];
+            for(var i=0;i<msgicons.length;i++){
+                if (msgicons[i]==""){
+                    $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".msgiList");
+                }else{
+                    $(
+                    '<li>\
+                    <span class="icon icon-'+msgicons[i]+'">icon-'+msgicons[i]+'</span>\
+                    </li>'
+                    ).appendTo(".msglist");
+                }
+            }
+            //----
+            var bigicons = [
+            ['doctor-green','doctor-adm','favorite','favorite-add','img','position','print','refresh','unlock'
+            ,'book-arrow','book-eye','book-ref','book-arrow-rt','book-arrow-ok','book-to-book','del','save','clear',
+            'ring-blue','ring','skip-no','paper-search','paper-pen','paper-arrow','fee-arrow','card-reader','home','stamp','tooth','open-eye','close-eye',
+            'stop','start','return','meterage','maint','inspect','disuse','change-account','card','bar','eye-deepgrade'
+            ],
+            ['lt-rt-19','lt-rt-28','lt-rt-37','lt-rt-46','lt-rt-55','lt-rt-64','lt-rt-73','lt-rt-82'],
+            ['delete-col','delete-row','delete-table','insert-col','insert-row','insert-table','split-cells'],
+            ['help','paper','question','tip','rad','balance','open-file','waxblock-return','cells-smear','slide-filed',
+            'slide-send','dyeing','slide-add','embed','slide-made',
+            'slide-return','book-yellow','med-bag','next','pre','print-box','save-add','save-next','print-run'],
+            ['cardiogram','conical-bottle','patient-mach','movie-mach','chopsticks-bowl','rectangle-tree','message-clock','message-cate','message-colum','message-pen'],
+            ['paper-time','alert-yellow','pre-audit','paper-gray','msg','equi-cfg','med-equi','alert',"idcard","paid","pat-list","read-card",'search-pat','miss-img',
+            'paper-yellow','mach-blue-red','first-second','clock-back-blue','clock-back-gree','person-green','report-yel-pen','two-pill-gray','paper-orange','blue-white-circle','three-blue-bar','blue-frame-ok','white-p-red','paper-box'],
+            ['ca-green','redlabel-refresh','paper-print','drug-ok','drug-paper','drug-x','drug-forbid','card-money','medibottle','drug-all-ok','drug-back','printer-refresh','medibottle-run'],
+            ['insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties']
+            ];
+
+            //bigicons.sort();
+            for(var j=0;j<bigicons.length;j++){
+                var ulObj = $("<ul></ul>").appendTo(".bigiconlist");
+                for(var i=0;i<bigicons[j].length;i++){
+                    $(
+                    '<li class="bigicon">\
+                    <span class="icon icon-big-'+bigicons[j][i]+'">icon-big-'+bigicons[j][i]+'</span>\
+                    </li>'
+                    ).appendTo(ulObj);
+                }
+            }
+            /*-------------------------------------------------*/
+            var allicondesclist={};
+            var alliconlist=[].concat(icons,papericons,fonticons,arrowicons,chinCharicons);
+            
+            for(var i=0;i<wicons.length;i++){
+                $('<tr class="wicon-tr"><td><span class="icon icon-w-'+wicons[i]+'">&nbsp</span></td><td>icon-w-'+
+                    wicons[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-w-'+wicons[i]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+                
+            }
+            for(var i=0;i<alliconlist.length;i++){
+                $('<tr><td><span class="icon icon-'+alliconlist[i]+'">&nbsp</span></td><td>icon-'+
+                    alliconlist[i]+'</td><td contenteditable="true">'+(iconDictionary['icon-'+alliconlist[i]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+            }
+            for(var i=0;i<bigicons.length;i++){
+                for(var j=0;j<bigicons[i].length;j++){
+                $('<tr class="bigicon-tr"><td><span class="icon icon-big-'+bigicons[i][j]+'">&nbsp</span></td><td>icon-big-'+
+                    bigicons[i][j]+'</td><td contenteditable="true">'+(iconDictionary['icon-big-'+bigicons[i][j]]||"")
+                        +'</td><td></td></tr>')
+                    .appendTo('#iconnotelist');
+                }
+            }
+
+        });
+        $("body").on('mouseenter','ul li',function(){
+            var _t =$(this);
+            var cls = _t.text().trim();
+            var txt = '无';
+            if (_t.hasClass('cntt-splitline')){
+                return ;
+            }
+            $.each(iconDictionary,function(k){
+                if(cls==k) txt = iconDictionary[cls];
+                if (txt!='无') {
+                    txt = txt.split('，').join('</span><span class="iconpopover">');
+                    txt = '<span class="iconpopover">'+txt+'</span>';
+                    return false;
+                }
+            });
+            _t.popover({
+                style:'inverse',
+                trigger:'hover',
+                placement:'bottom',
+                title:'用途说明',
+                content:txt,
+                cache:true
+            }).popover('show');
+        })
+        function genallicondesclist(){
+                var myallicondesclist={};
+                $('#iconnotelist tr').each(function(){
+                    var cls=$(this).find('td').eq(1).text();
+                    var desc=$(this).find('td').eq(2).text();
+                    if(cls) myallicondesclist[cls]=desc;
+                    
+                })
+                console.log("var iconDictionary="+JSON.stringify(myallicondesclist,null,4)+";");
+            }
+        console.log("点击说明可以进行编辑\n在控制台调用 genallicondesclist(); \n将输出的信息拷贝至icondic.js");
+    </script>
+    <prettyprint/>
+</body>
+</html>

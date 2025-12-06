@@ -1,0 +1,46 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+</head>
+
+    <body style="background-color: #FFFFFF;">
+
+	<h2>弹出层快速框</h2>
+    <h3>说明:</h3>
+	<span>弹出层快速框是所有q系统的父组件,可以在IE下快速呈现。</span>
+	<br>
+	<h3>如：</h3>
+    <div class="demo-exp-code entry-content">
+		<input class='hisui-comboq textbox' placeholder="快速下拉框">
+	</div>	
+    <table class="table">
+		<tr class="protitle">
+			<th>属性</th>
+			<th>说明</th>
+			<th>默认值</th>
+			<th></th>
+		</tr>
+		<tr>
+			<td>enterNullValueClear</td>
+			<td>默认值true。当为false时，在输入框内回车，没有匹配值不清空输入框。</td>
+			<td>true</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>placeholder</td>
+			<td>默认值""</td>
+			<td>当不为空时，在输入框显示placeholder,<code>IE9+</code>,<code>chrome</code>支持。</td>
+			<td></td>
+		</tr>
+	</table>
+  <prettyprint/>
+</body>
+</html>

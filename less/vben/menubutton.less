@@ -5,15 +5,14 @@
     color: @linkbutton-plain-color;
   }
   &:hover{
-    background-color: @menubutton-blue-bgcolor-hover;
-    color:@menubutton-blue-hover-fcolor;
+    background-color: @linkbutton-plain-hover-bgcolor;
+    color:@linkbutton-plain-hover-color;
     border-radius: 6px;
   }
 }
 .m-btn-plain-active,.s-btn-plain-active{
-  background-color:@menubutton-btn-hover-bgcolor;
-  background-color: @menubutton-blue-bgcolor-hover;
-  color:@menubutton-blue-hover-fcolor;
+  background-color:@linkbutton-plain-hover-bgcolor;
+  color:@linkbutton-plain-hover-color;
   border-radius: 6px;
   .l-btn-left {
     .l-btn-text,.l-btn-icon{
@@ -120,7 +119,7 @@
   font-size: 16px;
 }
 .l-btn.m-btn-active{
-  background: #006FD2;
+  background: @menubutton-blue-bgcolor-hover;
   border: 1px solid @linkbutton-white-hover-border-color;
 }
 .l-btn.l-btn-plain.m-btn-active{
@@ -229,15 +228,15 @@
   padding: 0;
   background-color: transparent;
   &:hover{
-    background-color:@menubutton-btn-hover-bgcolor;
+    background-color:@linkbutton-plain-hover-bgcolor;
   }
   &.m-btn-plain-active{
-    background-color:@menubutton-btn-hover-bgcolor;
+    background-color:@linkbutton-plain-hover-bgcolor;
     .l-btn-left .l-btn-text,.l-btn-icon{
-      color:@menubutton-hover-fcolor;
+      color:@linkbutton-plain-hover-color;
     }
     .m-btn-downarrow{
-      color:@menubutton-hover-fcolor;
+      color:@linkbutton-plain-hover-color;
     }
   }
   .l-btn-left{
