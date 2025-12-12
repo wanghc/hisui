@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2025-12-12
+- `DropDropRadio`兼容老的`Onchange`事件
+
 ## 2025-12-02
 - :feature: `pagination`组件会把`pageSize`增加到`pageList`中 [6434616]
 

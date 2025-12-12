@@ -328,7 +328,7 @@
             var defaults = {
                 //required: false,
                 //editable: false,
-                onChange: function () { },
+                onChange: function () { }
                 //multiple: false
                 //   , valueField: "id"
                 //  , textField: "text"
@@ -359,7 +359,9 @@
 						var val = rec[endOptions.valueField];
 						var RadioId = getRadioId(id, val);
 						$("#" + RadioId).prop('checked', true);
-
+                        if (endOptions.Onchange) {
+							endOptions.Onchange(rec);
+						}
 						if (endOptions.oldonSelect) {
 							endOptions.oldonSelect(rec);
 						}
