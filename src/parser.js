@@ -374,8 +374,8 @@
             var body = document.body;
             body.style.setProperty('--primary-color', colorValue);
             body.style.setProperty('--primary-h', o.h);
-            body.style.setProperty('--primary-s', `${Math.round(o.s * 100)}%`);
-            body.style.setProperty('--primary-l', `${Math.round(o.l * 100)}%`);
+            body.style.setProperty('--primary-s', Math.round(o.s * 100)+'%');
+            body.style.setProperty('--primary-l', Math.round(o.l * 100)+'%');
             if (o.s>0.5 && o.s<0.8){
                 $("body").addClass('medium-saturation');
             }else if (o.s<=0.5){
