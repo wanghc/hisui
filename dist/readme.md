@@ -36,6 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2025-12-12
+- `pure`风格下处理表格空白图片居中问题
 - `DropDropRadio`兼容老的`Onchange`事件
 
 ## 2025-12-02
