@@ -173,9 +173,11 @@
                 state.options.onHide.call(target);
             }
         }
-        if (state.options.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(state.options,window,false,target,"menu");}
-        //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
-        $.data(target,"changeIdStr",{NPAPIIdStr:""});
+        if (navigator.userAgent.indexOf("Chrome/49.")>-1){
+            if (state.options.isTopZindex){windowNPAPITotal=200;$.hisui.findObjectDom(state.options,window,false,target,"menu");}
+            //如果是先【关闭病历】页签，上面方法不会清空标志，在此清空标志。如【诊疗与病历】双击切换病人
+            $.data(target,"changeIdStr",{NPAPIIdStr:""});
+        }
         return false;
     };
     function showMenu(target, param) {

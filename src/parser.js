@@ -209,8 +209,8 @@
          * @param {String} hisuiCmpName  源对象组件名称。如panel,menu
          */
         ,findObjectDom:function(options,win,toHide,trgt,hisuiCmpName){ /*Chrome系处理病历控件*/
-            
             if (!!window.ActiveXObject || "ActiveXObject" in window) return ;
+            if (navigator.userAgent.indexOf("Chrome/49.")==-1){/*不是医为浏览器1版本,跳出*/return ;}
             if (windowNPAPITotal<0) return ;
             hisuiCmpName = hisuiCmpName||"panel";
             windowNPAPITotal--;
