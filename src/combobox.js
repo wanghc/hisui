@@ -207,7 +207,7 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
             }
             return sum;
         }
-        strFontWidth = function(str,font) {
+        var strFontWidth = function(str,font) {
             var f = font || '14px Microsoft Yahei',
             o = $('<div>' + str + '</div>')
                 .css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': f})
