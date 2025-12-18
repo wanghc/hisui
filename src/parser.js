@@ -341,13 +341,34 @@
         switchVersion:function(version){ 
             window.HISUIStyleCode = version;
         },
-        switchTheme:function(theme){ 
-            if (typeof theme != 'undefined'){
-                $("body").attr('data-theme',theme);
-                window.HISUITheme = theme;
+        switchTheme:function(theme){
+            var mycss = "";
+            if (typeof HISUIStyleCode == 'undefined' || HISUIStyleCode=="blue"){
+                mycss = '';
             }else{
-                window.HISUITheme = '';
-                $("body").attr('data-theme','');
+                mycss = HISUIStyleCode+".";
+                if (typeof theme != 'undefined' && theme!="" && HISUIStyleCode=='vben'){
+                    $("body").attr('data-theme',theme);
+                    window.HISUITheme = theme;
+                }else{
+                    window.HISUITheme = '';
+                    $("body").attr('data-theme','');
+                }
+            }
+            if (window.HISUIJsPath){
+                var cssBasePath = window.HISUIJsPath.replace(/\/js\/$/, '/css/'); // 替换 /js/ 为 /css/
+                // 移除已有的主题 link（可选）
+                var existingLink = document.getElementById('hisui-css-theme');
+                if (existingLink) {
+                    existingLink.parentNode.removeChild(existingLink);
+                }
+                // 创建新的 link
+                var link = document.createElement('link');
+                link.id = 'hisui-css-theme';
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = cssBasePath + 'hisui.' + mycss + 'min.css';
+                document.head.appendChild(link);
             }
             // 把iframe子界面的也切换
             $("iframe").each(function(){

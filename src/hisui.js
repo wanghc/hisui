@@ -279,6 +279,21 @@ var Level = {
         $("#Loading").fadeOut("fast");
         //ShowDHCMessageCount();
     }*/
+    // 获取当前 JS 文件的路径（基于最后一个加载的 script 标签）
+    function getScriptPath() {
+		try{
+			var scripts = document.getElementsByTagName('script');
+			var currentScript = scripts[scripts.length - 1]; // 当前正在执行的脚本通常是最后一个
+			var src = currentScript.src;
+			if (src) {
+				// 提取目录路径（去掉文件名）
+				return src.substring(0, src.lastIndexOf('/') + 1);
+			}
+        }catch(e){
+        }        
+        return '';
+    }
+    window.HISUIJsPath = getScriptPath(); // e.g., "http://example.com/app/dist/js/"
 })(window, jQuery);
 $(function(){
 	// $('body').click(function(e){
