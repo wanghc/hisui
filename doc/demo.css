@@ -47,15 +47,15 @@ table {
     margin-bottom: 20px;
 }
 .mthtitle{
-    background-color: var(--combobox-item-select-bgcolor,#e0dcdc);
+    background-color: var(--combobox-item-hover-bgcolor,#e0dcdc);
     text-shadow: 0 1px 0 #fff;
 }
 .evttitle{
-    background-color: var(--combobox-item-select-bgcolor,#e0dcdc);
+    background-color: var(--combobox-item-hover-bgcolor,#e0dcdc);
     text-shadow: 0 1px 0 #fff;
 }  
 .protitle{
-    background-color: var(--combobox-item-select-bgcolor,#e0dcdc);
+    background-color: var(--combobox-item-hover-bgcolor,#e0dcdc);
     text-shadow: 0 1px 0 #fff;
 }
 .table th,
@@ -87,7 +87,7 @@ table {
     background-color: #ffffff;
 }
 .table tr:hover{
-    background-color: var(--datagrid-row-hover-bgcolor,#f7f7f7);
+    background-color: var(--combobox-item-hover-bgcolor,#f7f7f7);
 }
 
 .toggle-prettyprint{

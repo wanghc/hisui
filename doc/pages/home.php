@@ -149,6 +149,11 @@ if (!defined('ACCESS_FROM_INDEX')) {
         <div data-version="lightblue">浅蓝</div>
         <div data-version="vben">扁平</div>
     </div>
+    <div id="themeMenu" class="hisui-menu" style="width:120px;">
+        <div data-theme="">深蓝</div>
+        <div data-theme="bgliteblue">天蓝</div>
+        <div data-theme="bgdark">夜间</div>
+    </div>
     <!-- 隐藏的 color input，用于触发选色器 -->
     <input type="color" id="colorPicker" style="opacity:0;position: relative;width: 16px;height: 16px;top:10px;left:136px;" />
     <script type='text/javascript'>
@@ -163,7 +168,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 top: btn.offset().top + btn.outerHeight()
             });
         }
-        // 为菜单项绑定点击事件
         $('#versionMenu').menu({
             onClick: function(item) {
                 var version = $(item.target).data('version');
@@ -174,6 +178,22 @@ if (!defined('ACCESS_FROM_INDEX')) {
         function switchTheme(versionName) {
             location.href = `index.php?version=${versionName}`
         }
+        function showThemeMenu(){
+            // 显示下拉菜单，位置在工具按钮下方
+            var panel = $('body').layout('panel','west');
+            var toolBtn = panel.panel('header'); // 获取工具区域
+            var btn = toolBtn.find('.icon-w-list').closest('a'); // 找到当前按钮
+            $('#themeMenu').menu('show', {
+                left: btn.offset().left,
+                top: btn.offset().top + btn.outerHeight()
+            });
+        }
+        $('#themeMenu').menu({
+            onClick: function(item) {
+                var theme = $(item.target).data('theme');
+                $.hisui.switchTheme(theme);
+            }
+        });
         function showColorPicker(){
             var panel = $('body').layout('panel','west');
             var toolBtn = panel.panel('header');
@@ -196,7 +216,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
         }
     </script>
     <div region="west" border="true" split="false" collapsible="false" title="HISUI" 
-    data-options="tools:[{iconCls:'icon-w-switch',handler:showVersionMenu}<?php if ($PAGE_CONTEXT['version']=='vben') echo ',{iconCls:\'icon-w-list\',handler:showColorPicker},{iconCls:\'icon-w-clock\',handler:showDarkTheme}' ?>]"  style="width:200px;padding:0px;">
+    data-options="tools:[{iconCls:'icon-w-switch',handler:showVersionMenu}<?php if ($PAGE_CONTEXT['version']=='vben') echo ',{iconCls:\'icon-w-list\',handler:showThemeMenu}' ?>]"  style="width:200px;padding:0px;">
         <div id="accd" class="hisui-accordion  accordion-gray" fit="true" data-options="border:false">
             <div title="基础" id="baseCtt"></div>
             <div title="布局" id="layoutCtt"></div>
@@ -475,7 +495,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 var href = $this.attr('src');
                 var title = $this.text();
                 var target=$this.attr('target');
-                var myhref = `index.php?version=${HISUIStyleCode}&page=${href}&colorRGB=${HISUIColorRGB}&lightDrak=${HISUILightDrak}`;
+                var myhref = `index.php?version=${HISUIStyleCode}&page=${href}&theme=${HISUITheme}`;
                 $("#accd .menu-item").each(function(){
                     $(this).removeClass('menu-select');
                 });

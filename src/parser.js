@@ -341,18 +341,35 @@
         switchVersion:function(version){ 
             window.HISUIStyleCode = version;
         },
+        switchTheme:function(theme){ 
+            if (typeof theme != 'undefined'){
+                $("body").attr('data-theme',theme);
+                window.HISUITheme = theme;
+            }else{
+                window.HISUITheme = '';
+                $("body").attr('data-theme','');
+            }
+            // 把iframe子界面的也切换
+            $("iframe").each(function(){
+                try{
+                    if (this.contentWindow && this.contentWindow.document && this.contentWindow.document.body){
+                        this.contentWindow.$.hisui.switchTheme(HISUITheme);
+                    }
+                }catch(e){}
+            });
+        },
         // 0或空表示默认-light,1表示dark
         switchLightDrak:function(HISUILightDrak){            
             if (typeof HISUILightDrak != 'undefined'){
                 HISUILightDrak = HISUILightDrak=="0"?"":HISUILightDrak;
-                $("body").attr('data-theme',HISUILightDrak?'bgdrak' : '');
+                $("body").attr('data-theme',HISUILightDrak?'bgdark' : '');
                 window.HISUILightDrak = HISUILightDrak;
             }else{
-                if ($("body").attr('data-theme')=='bgdrak'){
+                if ($("body").attr('data-theme')=='bgdark'){
                     $("body").attr('data-theme','');
                     window.HISUILightDrak = '';
                 }else{
-                    $("body").attr('data-theme','bgdrak');
+                    $("body").attr('data-theme','bgdark');
                     window.HISUILightDrak = 1;
                 }
             }

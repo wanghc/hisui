@@ -21,8 +21,7 @@ if (!function_exists('renderHisuiResources')) {
         }
         // 转义版本名，防止 XSS 或路径注入
         $version = htmlspecialchars($version, ENT_QUOTES, 'UTF-8');
-        $colorRGB = htmlspecialchars($GLOBALS['CURRENT_HISUI_colorRGB'], ENT_QUOTES, 'UTF-8');
-        $isDrak = htmlspecialchars($GLOBALS['CURRENT_PAGE_DRAK'], ENT_QUOTES, 'UTF-8');
+        $theme = htmlspecialchars($GLOBALS['CURRENT_HISUI_THEME'], ENT_QUOTES, 'UTF-8');
         $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
         $html = '';
         $html .= '<link rel="shortcut icon" href="../favicon.ico"/>' . "\n";
@@ -31,7 +30,7 @@ if (!function_exists('renderHisuiResources')) {
         $html .= '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />' . "\n" ;
         $html .= '<title>' . $title . '</title>' . "\n";
         $html .= '<script type="text/javascript">' . "\n";
-        $html .= 'var HISUIStyleCode = ' . json_encode($version) . ',HISUIColorRGB='. json_encode($colorRGB) . ',HISUILightDrak='. json_encode($isDrak) . ';';
+        $html .= 'var HISUIStyleCode = ' . json_encode($version) . ',HISUITheme='. json_encode($theme) . ';';
         $html .= '</script>' . "\n";
         // CSS
         $html .= '<link rel="stylesheet" type="text/css" href="' . HISUI_CSS_PATH . 'hisui.' . ($version!="" ? $version."." : "") . 'min.css">' . "\n";

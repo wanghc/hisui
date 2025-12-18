@@ -37,7 +37,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                         text:'二级菜单'+i+'-'+j,
                         state:'open',
                         attributes:{
-                            url:'index.php?page=layout-query-inside&version='+HISUIStyleCode+'&colorRGB='+HISUIColorRGB+"&lightDrak="+HISUILightDrak,
+                            url:'index.php?page=layout-query-inside&version='+HISUIStyleCode+'&theme='+HISUITheme,
                             count:(i==1&&j<=2)?j:0
                         }
                     })

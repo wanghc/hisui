@@ -25,7 +25,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		}
 	</style>
 </head>
-<body data-theme="bgdrak">
+<body data-theme="bgdark">
 	<h2>按钮</h2>
 	<div style="width:800px;height:150px;">
 		<a id="btn" href="#" class="hisui-linkbutton" data-options="iconCls:'icon-search'"></a>
