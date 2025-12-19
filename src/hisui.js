@@ -310,7 +310,7 @@ $(function(){
 	// if ('string'==typeof HISUILightDrak && HISUILightDrak!=""){
 	// 	$.hisui.switchLightDrak(HISUILightDrak);
 	// }
-	if ('string'==typeof HISUITheme && HISUITheme!=""){
+	if ( window.HISUIStyleCode=='vben' && 'string'==typeof window.HISUITheme && window.HISUITheme!=""){
 		$.hisui.switchTheme(HISUITheme);
 	}
 	$(document.body).on('keydown',function(e){

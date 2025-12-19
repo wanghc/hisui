@@ -358,10 +358,17 @@
             if (window.HISUIJsPath){
                 var cssBasePath = window.HISUIJsPath.replace(/\/js\/$/, '/css/'); // 替换 /js/ 为 /css/
                 // 移除已有的主题 link（可选）
-                var existingLink = document.getElementById('hisui-css-theme');
-                if (existingLink) {
-                    existingLink.parentNode.removeChild(existingLink);
+                var links = document.getElementsByTagName('link');
+                for (var i = 0; i < links.length; i++) {
+                    var link = links[i];
+                    if (link.href.indexOf(cssBasePath+"hisui.") > -1) {
+                        link.parentNode.removeChild(link);
+                    }
                 }
+                // var existingLink = document.getElementById('hisui-css-theme');
+                // if (existingLink) {
+                //     existingLink.parentNode.removeChild(existingLink);
+                // }
                 // 创建新的 link
                 var link = document.createElement('link');
                 link.id = 'hisui-css-theme';

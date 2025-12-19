@@ -34,6 +34,16 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2025-12-19
+- 增加`$.hisui.switchTheme`方法切换风格
+```
+$.hisui.switchVersion('pure');
+或
+$.hisui.switchVersion('vben');
+$.hisui.switchTheme('bgdark');
+```
+
 ## 2025-12-14
 - 只有1版本医为浏览器才考虑3版本病历覆盖界面问题,优化内存GC
 
