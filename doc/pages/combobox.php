@@ -16,9 +16,20 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		}
 	</style>
 	<style>
-		.icon-ok{
-			color:#008FFF;
+		/* .icon-ok{
+			color:var(--primary-color);
 			margin-top: 6px;
+		} */
+		/* 或分别给样式 */
+		.icon-ok {
+			color:#3047a9;
+			margin-top: 6px;
+		}
+		body[data-theme=bgliteblue] .icon-ok{
+			color:#008fff;
+		}
+		body[data-theme=bgdrak] .icon-ok {
+			color:#008fff;
 		}
 	</style>
 </head>

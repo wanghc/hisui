@@ -358,11 +358,17 @@
             if (window.HISUIJsPath){
                 var cssBasePath = window.HISUIJsPath.replace(/\/js\/$/, '/css/'); // 替换 /js/ 为 /css/
                 // 移除已有的主题 link（可选）
+                var isvben2vben = false;
                 var links = document.getElementsByTagName('link');
                 for (var i = 0; i < links.length; i++) {
                     var link = links[i];
                     if (link.href.indexOf(cssBasePath+"hisui.") > -1) {
-                        link.parentNode.removeChild(link);
+                        if (window.HISUIStyleCode=='vben' && link.href.indexOf('hisui.vben.')>-1){
+                            // vben下只是切换色系，不删除
+                            isvben2vben = true;
+                        }else{
+                            link.parentNode.removeChild(link);
+                        }
                     }
                 }
                 // var existingLink = document.getElementById('hisui-css-theme');
@@ -370,17 +376,20 @@
                 //     existingLink.parentNode.removeChild(existingLink);
                 // }
                 // 创建新的 link
-                var link = document.createElement('link');
-                link.id = 'hisui-css-theme';
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = cssBasePath + 'hisui.' + mycss + 'min.css';
-                document.head.appendChild(link);
+                if (!isvben2vben){
+                    var link = document.createElement('link');
+                    link.id = 'hisui-css-theme';
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.href = cssBasePath + 'hisui.' + mycss + 'min.css';
+                    document.head.appendChild(link);
+                }
             }
             // 把iframe子界面的也切换
             $("iframe").each(function(){
                 try{
                     if (this.contentWindow && this.contentWindow.document && this.contentWindow.document.body){
+                        this.contentWindow.$.hisui.switchVersion(HISUIStyleCode);
                         this.contentWindow.$.hisui.switchTheme(HISUITheme);
                     }
                 }catch(e){}

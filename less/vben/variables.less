@@ -28,9 +28,18 @@ body {
     --input-border-color:#cccccc;
     --input-bgcolor: #ffffff;
     --input-iconbtn-color:#666666;
+    --input-disabled-bgcolor:#EBEBEB;
+    --input-disabled-bdcolor:#CCCCCC;
     --primary-link-disabled-color:#b0afaf;
-    --popover-body-bgcolor:#FFFFFF;
     --datagrid-no-data-opacity:1;
+    --checkbox-bgimg-v-url: url('images/vben/checkbox_lite_v_seablue.png');
+    --checkbox-bgimg-url: url('images/vben/checkbox_seablue.png');
+    --hstep-bgimg-url: url('images/vben/hstep_seablue.png');
+    --messager-window-error-top-bgcolor:#FFEFEF;
+    --messager-window-info-top-bgcolor:#D7E9FF;
+    --messager-window-success-top-bgcolor:#EEFFE6;
+    --messager-window-warning-top-bgcolor:#FFF4DD;
+    --messager-window-bottom-bgcolor:#ffffff;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -61,9 +70,18 @@ body[data-theme=bgliteblue] {
     --input-border-color:#cccccc;
     --input-bgcolor: #ffffff;
     --input-iconbtn-color:#666666;
+    --input-disabled-bgcolor:#EBEBEB;
+    --input-disabled-bdcolor:#CCCCCC;
     --primary-link-disabled-color:#b0afaf;
-    --popover-body-bgcolor:#FFFFFF;
     --datagrid-no-data-opacity:1;
+    --checkbox-bgimg-v-url: url('images/pure/checkbox_lite_v.png');
+    --checkbox-bgimg-url: url('images/pure/checkbox.png');
+    --hstep-bgimg-url: url('images/pure/hstep.png');
+    --messager-window-error-top-bgcolor:#FFEFEF;
+    --messager-window-info-top-bgcolor:#D7E9FF;
+    --messager-window-success-top-bgcolor:#EEFFE6;
+    --messager-window-warning-top-bgcolor:#FFF4DD;
+    --messager-window-bottom-bgcolor:#ffffff;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -94,9 +112,18 @@ body[data-theme=bgdark] {
     --input-border-color:#64647b;
     --input-bgcolor: #404057;
     --input-iconbtn-color:#a1a3b3;
+    --input-disabled-bgcolor:#58596b;
+    --input-disabled-bdcolor:#636477;
     --primary-link-disabled-color:#b4b3b3;
-    --popover-body-bgcolor:#404057;
     --datagrid-no-data-opacity:0.7;
+    --checkbox-bgimg-v-url: url('images/pure/checkbox_lite_v.png');
+    --checkbox-bgimg-url: url('images/pure/checkbox.png');
+    --hstep-bgimg-url: url('images/pure/hstep.png');
+    --messager-window-error-top-bgcolor:#20243e;
+    --messager-window-info-top-bgcolor:#20243e;
+    --messager-window-success-top-bgcolor:#20243e;
+    --messager-window-warning-top-bgcolor:#20243e;
+    --messager-window-bottom-bgcolor:#32354d;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -147,8 +174,8 @@ body[data-theme=bgdark] {
 @input-active-bgcolor:var(--input-hover-bgcolor);
 @input-btn-hover-bgcolor:var(--input-hover-bgcolor);
 @input-active-color:#000000;
-@input-disabled-border-color:#cccccc;
-@input-disabled-bgcolor:#f1f1f1;
+@input-disabled-border-color:var(--input-disabled-bdcolor);
+@input-disabled-bgcolor:var(--input-disabled-bgcolor);
 @input-disabled-color:#939393;
 @input-placeholder-color:#939393;
 @input-invalid-bgcolor:#fff0f0;
@@ -221,11 +248,15 @@ body[data-theme=bgdark] {
 @linkbutton-white-disabled-color:var(--secondary-disabled-color);
 
 
-@linkbutton-blue-hover-bgcolor: var(--link-click-color); //var(--primary-hover-color) ; //#007eed;
+@linkbutton-blue-hover-bgcolor: var(--primary-btn-hover-bgcolor); //var(--primary-hover-color) ; //#007eed;
 
 @linkbutton-blue-disabled-bgcolor:var(--secondary-disabled-bgcolor);
 @linkbutton-blue-disabled-color:var(--secondary-disabled-color);
 @linkbutton-blue-disabled-border-color:var(--secondary-disabled-bdcolor);
+@secondary-btn-bgcolor:var(--secondary-btn-bgcolor);
+@secondary-btn-bdcolor:var(--secondary-btn-bdcolor);
+@secondary-btn-text-color:var(--secondary-btn-text-color);
+@secondary-btn-hover-bgcolor:var(--secondary-btn-hover-bgcolor);
 
 @linkbutton-green-color:#FFFFFF;
 @linkbutton-green-bgcolor:#38BA54;
@@ -298,9 +329,9 @@ body[data-theme=bgdark] {
 
 //== popover
 @popover-title-font-color:var(--default-font-color);
-@popover-title-bgcolor:var(--popover-body-bgcolor);
+@popover-title-bgcolor:var(--input-bgcolor);
 @popover-title-border-color:@panel-border-color;
-@popover-body-bgcolor:var(--popover-body-bgcolor);
+@popover-body-bgcolor:var(--input-bgcolor);
 //== combo 
 @combo-arrow-width:30px;
 @combo-arrow-height:30px;
@@ -330,7 +361,7 @@ body[data-theme=bgdark] {
 
 //== datebox
 @datebox-button-font-size:12px;
-@datebox-button-bgcolor:#F4F4F4;
+@datebox-button-bgcolor:var(--input-bgcolor);
 @datebox-button-font-color:#444;
 
 
@@ -396,8 +427,8 @@ body[data-theme=bgdark] {
 //== window
 @window-bgcolor-linear-gra:var(--window-bgcolor-linear-gra) ;
 @window-bgcolor:var(--body-bgcolor) ;
-@window-header-bgcolor:transparent;
-@window-body-bgcolor:transparent;
+@window-header-bgcolor:var(--body-bgcolor);
+@window-body-bgcolor:var(--body-bgcolor);
 @window-shadow:0px 0px 20px rgba(0, 0, 0, 0.4);
 @window-title-color:var(--default-font-color); // #000000;
 
@@ -453,9 +484,9 @@ body[data-theme=bgdark] {
 //== keywords 
 @keywords-bgcolor:var(--secondary-btn-bgcolor) ; //#f2f3f7;
 @keywords-color:@btn-fcolor;
-@keywords-select-bgcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
+@keywords-select-bgcolor:var(--datagrid-row-select-bgcolor); //#d7e9ff;
 @keywords-select-color: var(--default-font-color);
-@keywords-select-bdcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
+@keywords-select-bdcolor:var(--datagrid-row-select-bgcolor); //#d7e9ff;
 @keywords-hover-bgcolor:@keywords-bgcolor;
 @keywords-hover-color: var(--primary-color);
 @keywords-disabled-bgcolor:@keywords-bgcolor;
@@ -499,7 +530,7 @@ body[data-theme=bgdark] {
 @menu-active-bgcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
 @menu-border-color:var(--combobox-item-hover-bgcolor); //#40a2de;
 @menu-shadow:@panel-shadow;
-@menu-body-bgcolor:@panel-body-bgcolor;
+@menu-body-bgcolor:var(--input-bgcolor);
 @menu-sep-border-color:@panel-header-bdcolor;
 @menu-select-bgcolor:var(--combobox-item-hover-bgcolor);
 
@@ -510,8 +541,8 @@ body[data-theme=bgdark] {
 @splitbutton-plain-arrow-color:var(--primary-color);
 
 @splitbutton-main-bgcolor:var(--combobox-item-hover-bgcolor);
-@splitbutton-main-item-hover-bgcolor:var(--combobox-item-hover-bgcolor);
-@splitbutton-main-item-active-bgcolor:var(--combobox-item-hover-bgcolor);
+@splitbutton-main-item-hover-bgcolor:var(--primary-btn-hover-bgcolor);
+@splitbutton-main-item-active-bgcolor:var(--primary-btn-click-bgcolor);
 //==filebox
 // @filebox-border-color:var(--menu-border-color); //#40a2de;
 
@@ -533,12 +564,24 @@ body[data-theme=bgdark] {
 @scrollbar-btn-bgcolor:rgba(66, 70, 86, 0.3);
 @scrollbar-btn-hover-bgcolor:rgba(66, 70, 86, 0.6);
 
+@mesager-popover-bgcolor:var(--input-bgcolor);
 
-@messager-body-bgcolor: @body-bgcolor;
+@messager-body-bgcolor: transparent;
+@messager-header-bgcolor:transparent;
 @messager-body-fcolor: @main-font-color;
 @messager-body-fsize: 16px;
 @messager-body-fweight:normal;
+@messager-window-error-bgcolor:var(--messager-window-error-top-bgcolor);
+@messager-window-info-bgcolor:var(--messager-window-info-top-bgcolor);
+@messager-window-success-bgcolor:var(--messager-window-success-top-bgcolor);
+@messager-window-warning-bgcolor:var(--messager-window-warning-top-bgcolor);
+@messager-window-bottom-bgcolor:var(--messager-window-bottom-bgcolor);
 
+/* checkbox */
+@checkbox-bgimg-v-url : var(--checkbox-bgimg-v-url);
+@checkbox-bgimg-url : var(--checkbox-bgimg-url);
+@hstep-bgimg-url : var(--hstep-bgimg-url);
+@calendar-body-bgcolor: var(--input-bgcolor);
 /*variables-end*/
 body {
     font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;

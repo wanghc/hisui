@@ -147,10 +147,10 @@ if (!defined('ACCESS_FROM_INDEX')) {
         <div data-version="blue">炫彩</div>
         <div data-version="lite">极简</div>
         <div data-version="lightblue">浅蓝</div>
-        <div data-version="vben">扁平</div>
+        <div data-version="vben">iHOS</div>
     </div>
     <div id="themeMenu" class="hisui-menu" style="width:120px;">
-        <div data-theme="">深蓝</div>
+        <div data-theme="">海蓝</div>
         <div data-theme="bgliteblue">天蓝</div>
         <div data-theme="bgdark">夜间</div>
     </div>

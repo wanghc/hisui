@@ -473,9 +473,9 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       }
     }
     &.blue{
-      background-color: #EDF6FF;
-      color:var(--primary-color);
-      border-color: #A5D5FF;
+      background-color: @secondary-btn-bgcolor;
+      color:@secondary-btn-text-color;
+      border-color: @secondary-btn-bdcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
         color:@linkbutton-blue-disabled-color;
@@ -483,8 +483,8 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       }
     }
     &.blue:hover,&.blue.l-btn-focus{
-      background-color: #D7E9FF;
-      border-color: #A5D5FF;
+      background-color: @secondary-btn-hover-bgcolor;
+      border-color: @secondary-btn-bdcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
         border-color: @linkbutton-blue-disabled-border-color;
