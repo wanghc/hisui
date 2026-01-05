@@ -648,6 +648,8 @@ var iconDictionary={
     'icon-dbl-user':'患者列表，多个用户，用户群',
     'icon-paper-pen-black':'诊断/医嘱/病历录入',
     'icon-pen-black':'文书助手，书写',
+    'icon-reorder':"排列，重新排序",
+    'icon-bed-allocated':'已预约床位',
     "icon-big-open-file":"资料归档，文件打开",
     "icon-big-waxblock-return":"蜡块归档",
     "icon-big-cells-smear":"细胞学涂片",

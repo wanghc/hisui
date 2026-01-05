@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2026-01-05
+- 修改翻页图标 [6440587]
+- 增加`icon-reorder`图标 [6530935]
+- 增加`icon-bed-allocated`图标 [6538514]
 
 ## 2025-12-19
 - 增加`$.hisui.switchTheme`方法切换风格

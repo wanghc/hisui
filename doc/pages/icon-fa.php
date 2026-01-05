@@ -228,7 +228,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             ,"herb-back","herb-pre","herb-next","herb-no","herb-ok","decoct-herb","decoct-change","paper-eye-r","paper-pre","no-dot","date",'verify','ca-green','ster-again','ster-bat','ster-bio','ster-cancel','ster-finish','ster-ok','alarm-key','align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue','valign-bottom-blue','valign-middle-blue','valign-top-blue','barcode-blue','qrcode-blue','line','move','table-blue','table-col'
 			,'close','cale-3day','paper-lightning','sure-readed','read-details','person-group','export-pdf','no1','no2','no3'
             ,'bag','bag-x','disp-x','disp-back','ca','outInstc-mgr','book-rep','book-rep-v1','book-pen','paper-settings','book-settings','eye-scan-box','org-frame','alert-pen-gray','paper-set-qus','bk-mgr','msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed','sound','needle-sticks','contact-with-fluid','paper-minus','fishbone-diagram','stamp-add','stamp-undo','video','share','share-no','paper-share','home-back','paper-plane-clock','file-open','file','paper-unlink','paper-print','shopping-cart-ok','person-ok','physics-monitor','change-x-virus','ice-water','circle-down','template-down','multi-del'
-            ,'insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','temperature','humidity','send-blood','cancel-blood','history-blood','specal-blood','multi-blood-match-mth','upload-img','collect-img','capture-img','measurement','filtering','gain','walking-speed'
+            ,'insert-local-image','edit-picture','creating-a-pedigree-map','edit-pedigree-chart','image-properties','temperature','humidity','send-blood','cancel-blood','history-blood','specal-blood','multi-blood-match-mth','upload-img','collect-img','capture-img','measurement','filtering','gain','walking-speed','reorder','bed-allocated',
 		];
 			
             //icons.sort();
@@ -286,7 +286,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 ).appendTo(".chinCharlist");
             }
             //----
-            var arrowicons=['right-arrow','left-arrow','arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back','arrow-le-bo-gray','page-first','page-prev','page-next','page-last'];
+            var arrowicons=['right-arrow','left-arrow','arrow-left-top','arrow-right-top','arrow-top','arrow-bottom','arrow-right','arrow-left','undo','redo','back','arrow-le-bo-gray','page-first','page-prev','page-next','page-last','page-load'];
             for(var i=0;i<arrowicons.length;i++){
                 $(
                     '<li>\
