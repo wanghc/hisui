@@ -135,10 +135,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <h3>说明:</h3>
     <span>各种小图标，可用到按钮(linkbutton),菜单(menu),工具栏(toolbar)</span>
     <h3>如：</h3>
+    <?php if ($PAGE_CONTEXT['version']=="" || $PAGE_CONTEXT['version']=="blue"): ?>
     <div class="demo-exp-code entry-content">
         <a href="#" class="hisui-linkbutton" iconCls="icon-w-clean">清屏</a>
         <pre class="prettyprint hide lang-html"><code>&lt;a href="#" class="hisui-linkbutton" iconCls="icon-w-clear"&gt;清屏&lt;/a&gt;</code></pre>
     </div>
+    <?php endif;?>
     <div class="demo-exp-code entry-content"> 
         <a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note">操作</a>
         <div id="mm">
