@@ -347,13 +347,11 @@
                 mycss = '';
             }else{
                 mycss = HISUIStyleCode+".";
-                if (typeof theme != 'undefined' && theme!="" && HISUIStyleCode=='vben'){
-                    $("body").attr('data-theme',theme);
-                    window.HISUITheme = theme;
-                }else{
-                    window.HISUITheme = '';
-                    $("body").attr('data-theme','');
+                if ((typeof theme == 'undefined' || theme=="") && HISUIStyleCode=='vben'){
+                    window.HISUITheme = 'bgseablue';
                 }
+                $("body").attr('data-theme',theme);
+                window.HISUITheme = theme;
             }
             if (window.HISUIJsPath){
                 var cssBasePath = window.HISUIJsPath.replace(/\/js\/$/, '/css/'); // 替换 /js/ 为 /css/

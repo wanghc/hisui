@@ -310,8 +310,8 @@ $(function(){
 	// if ('string'==typeof HISUILightDrak && HISUILightDrak!=""){
 	// 	$.hisui.switchLightDrak(HISUILightDrak);
 	// }
-	if ( window.HISUIStyleCode=='vben' && 'string'==typeof window.HISUITheme && window.HISUITheme!=""){
-		$.hisui.switchTheme(HISUITheme);
+	if ( window.HISUIStyleCode=='vben'){
+		$.hisui.switchTheme(window.HISUITheme);
 	}
 	$(document.body).on('keydown',function(e){
 		var keycode = e.keyCode;
