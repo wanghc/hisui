@@ -11,6 +11,17 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
     <script src="../pages/icon/icondic.js" type="text/javascript"></script>
     <style>
+        body{
+            --line-border-color : #cccccc;
+            --icon-li-hover:#E3E7FA;
+        }
+        body[data-theme="bgliteblue"]{
+            --icon-li-hover:#D7E9FF;
+        }
+        body[data-theme="bgdark"]{
+            --line-border-color: #64647b;
+            --icon-li-hover:#4B4C61;
+        }
         ul {
             list-style: none;
             margin: 0;
@@ -35,7 +46,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             color:#000000;
         }
         ul.iconlist>li:hover,ul.fontlist>li:hover,ul.arrowlist>li:hover,.bigiconlist li:hover {
-            background-color: #E3E3E3;
+            background-color: var(--icon-li-hover);
         }
         .icon{
             background-position: left 0px center;
@@ -62,13 +73,13 @@ if (!defined('ACCESS_FROM_INDEX')) {
         }
         .line{
             margin: 5px;
-            border-bottom: 1px dashed #e5e5e5;
+            border-bottom: 1px dashed var(--line-border-color);
         }
         .panel-header, .panel-body {
-            border-color: #ffffff;
+            border-color: transparent;
         }
         .panel-header-card + .panel-body {
-            border-top: 1px dashed #e5e5e5;
+            border-top: 1px dashed var(--line-border-color);
         }
         .bigicon-tr td{
             line-height: 28px;
