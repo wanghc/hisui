@@ -17,7 +17,7 @@
     padding:0px;
     text-align:left;
     white-space:normal;
-    background-color:#fff;
+    background-color:transparent;
     background-clip:padding-box;
     border:1px solid @popover-title-border-color;
     border-radius:6px;
@@ -107,7 +107,7 @@
     overflow:auto;
     display:none;
     color: @main-font-color;
-    border-radius: 6px;    
+    border-radius: 0 0 6px 6px;    
 }
   /*inverse时，一般无title，content内容居中，把title下边距设置成0,content上设置成15px*/
 .webui-popover-inverse .webui-popover-content{
@@ -172,7 +172,7 @@
     height: 16px;
     border-width: 0;
     position:absolute;
-    background:#ffffff;
+    background: @popover-body-bgcolor;
 }
 .webui-popover-inverse >.webui-arrow{
     background:#333

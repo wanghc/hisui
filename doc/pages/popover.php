@@ -18,7 +18,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<h3>如：</h3>
     <div class="demo-exp-code entry-content">
 		<div class="use-prettyprint lang-html">
-			点击<a id="pp" style="cursor: pointer;text-decoration-line: underline;">关于</a>显示HISUI说明
+			点击<a id="pp" style="cursor: pointer;">关于</a>显示HISUI说明
 		</div>
 		<script type="text/javascript" class="use-prettyprint">
 			$(function(){
@@ -30,7 +30,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<h3>手动触发提示</h3>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint lang-html">
-			点击弹出按钮,<a id="manualpp" style="cursor:pointer;text-decoration-line:underline;">关于</a>显示HISUI说明
+			点击弹出按钮,<a id="manualpp" style="cursor:pointer;">关于</a>显示HISUI说明
 			<a id="showPP" class="hisui-linkbutton">弹出</a>
 			<a id="hidePP" class="hisui-linkbutton">隐藏</a>
 		</div>
