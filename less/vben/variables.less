@@ -41,6 +41,9 @@ body {
     --messager-window-warning-top-bgcolor:#FFF4DD;
     --messager-window-bottom-bgcolor:#ffffff;
     --keywords-select-fcolor:#1F3599;
+    --switchbox-off-bgcolor:#CCCCCC;
+    --switchbox-disable-off-bgcolor:#EBEBEB;
+    --switchbox-disable-circle-bgcolor:#FFFFFF;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -84,6 +87,9 @@ body[data-theme=bgliteblue] {
     --messager-window-warning-top-bgcolor:#FFF4DD;
     --messager-window-bottom-bgcolor:#ffffff;
     --keywords-select-fcolor:#007EED;
+    --switchbox-off-bgcolor:#CCCCCC;
+    --switchbox-disable-off-bgcolor:#EBEBEB;
+    --switchbox-disable-circle-bgcolor:#FFFFFF;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -127,6 +133,9 @@ body[data-theme=bgdark] {
     --messager-window-warning-top-bgcolor:#20243e;
     --messager-window-bottom-bgcolor:#32354d;
     --keywords-select-fcolor:#FFFFFF;
+    --switchbox-off-bgcolor:#8E8F99;
+    --switchbox-disable-off-bgcolor:#64647B;
+    --switchbox-disable-circle-bgcolor:#B2B2BE;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -361,6 +370,13 @@ body[data-theme=bgdark] {
 @combobox-item-hover-font-color:var(--default-font-color);
 @combobox-item-select-bgcolor:var(--datagrid-row-select-bgcolor);
 @combobox-item-select-font-color:var(--default-font-color);
+
+@switchbox-on-bgcolor:var(--primary-color);
+@switchbox-off-bgcolor:var(--switchbox-off-bgcolor);
+@switchbox-disable-on-bgcolor:var(--primary-btn-disable-bgcolor);
+@switchbox-disable-off-bgcolor:var(--switchbox-disable-off-bgcolor);
+@switchbox-disable-fcolor:#B4B3B3;
+@switchbox-disable-circle-bgopacity:var(--switchbox-disable-circle-bgcolor);  /*禁用状态的滑块背景色*/
 
 //== datebox
 @datebox-button-font-size:12px;

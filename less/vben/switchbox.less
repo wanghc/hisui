@@ -54,7 +54,7 @@
   transition: left 0.5s;
 }
 .has-switch > div.switch-off {
-  background-color: #BACCE0;
+  background: @switchbox-off-bgcolor;
   label {
     border:1px solid transparent;
     width: 24px;
@@ -133,12 +133,12 @@
 }
 .has-switch{
   &.deactivate>div.switch-on{
-    background-color: #99d2ff;
+    background-color: @switchbox-disable-on-bgcolor;
   }
   &.deactivate>div.switch-off{
-    background-color: #e5e5e5;
+    background-color: @switchbox-disable-off-bgcolor;
     span{
-      color:#b4b3b3;
+      color:@switchbox-disable-fcolor;
     }
   }
 }
