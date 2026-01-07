@@ -22,7 +22,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<span>点击勾选，常用于多项选择。</span>
 	<h3>一.各种状态例子</h3>
 	<div class="demo-exp-code entry-content"> 
-		<div class="use-prettyprint fs0" style="color: #191919;">
+		<div class="use-prettyprint fs0">
 			<input class='hisui-checkbox' type="checkbox" data-options="onChecked:function(event,val){console.log('checked='+val);},
 			onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="checkbox1"/>
 			<input class='hisui-checkbox' type="checkbox" data-options="checked:true" label="<span style='color:red'>勾选</span>" id="cb2"/>
@@ -32,7 +32,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		</div>
    </div>
    <h3>二. 框在文本右边(<code>right</code>)</h3>
-	<div class="demo-exp-code entry-content" style="color: #191919;"> 
+	<div class="demo-exp-code entry-content"> 
 		<div class="use-prettyprint fs0">
 			<input class='hisui-checkbox' type="checkbox" data-options="boxPosition:'right',onChecked:function(event,val){console.log('checked='+val);},onUnchecked:function(event,val){console.log('uncheck='+val)},onCheckChange:function(event,value){console.log(value)}" label="正常" id="cb11"/>
 			<input class='hisui-checkbox' type="checkbox" data-options="checked:true,boxPosition:'right'" label="勾选" id="cb12"/>
@@ -42,7 +42,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		</div>
    </div>
    <h3>三、必选功能</h3>
-   <div class="demo-exp-code entry-content" style="color: #191919;">
+   <div class="demo-exp-code entry-content">
 		<a href="#" onclick="setSexRequired();" class="hisui-linkbutton">切换必选功能</a>
 		<span id="requiredMsg" style="line-height: 30px;vertical-align: bottom;"></span> 
 		<div class="use-prettyprint lang-html" style="margin-top: 10px;">

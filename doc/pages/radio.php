@@ -11,6 +11,11 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
 </head>
 <body>
+    <style>
+        .links a{
+            margin-right: 20px;
+        }
+    </style>
     <h2>单选框, 通过图片得到蓝色系勾选框</h2>
     <h3>说明:</h3>
     <span>用于多选一的业务场情。</span>
