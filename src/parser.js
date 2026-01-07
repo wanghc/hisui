@@ -348,7 +348,7 @@
             }else{
                 mycss = HISUIStyleCode+".";
                 if ((typeof theme == 'undefined' || theme=="") && HISUIStyleCode=='vben'){
-                    window.HISUITheme = 'bgseablue';
+                    theme = 'bgseablue';
                 }
                 $("body").attr('data-theme',theme);
                 window.HISUITheme = theme;
