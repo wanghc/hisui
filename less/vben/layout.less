@@ -102,7 +102,7 @@
 /*改为只控制其子级panel-header 的panel-tool  不让其影响放在layout区域下面的panel cryze 2018-10-20*/
 .layout-panel>.panel-header,.layout-expand>.panel-header{ 
   .panel-tool a:hover{
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: transparent;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
@@ -150,7 +150,7 @@
 }
 
 .layout>.panel.layout-panel>.panel-header{
-    padding: 4px 5px;
+    padding: 3px 5px; /* 4px->3px [6549148]*/
 }
 .layout>.panel.layout-panel>.panel-header .panel-icon {
   margin-top: -8px;

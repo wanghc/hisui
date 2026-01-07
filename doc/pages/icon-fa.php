@@ -11,17 +11,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
     <script src="../pages/icon/icondic.js" type="text/javascript"></script>
     <style>
-        body{
-            --line-border-color : #cccccc;
-            --icon-li-hover:#E3E7FA;
-        }
-        body[data-theme="bgliteblue"]{
-            --icon-li-hover:#D7E9FF;
-        }
-        body[data-theme="bgdark"]{
-            --line-border-color: #64647b;
-            --icon-li-hover:#4B4C61;
-        }
         ul {
             list-style: none;
             margin: 0;
@@ -142,7 +131,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     </div>
     <?php endif;?>
     <div class="demo-exp-code entry-content"> 
-        <a href="#" class="hisui-menubutton" menu='#mm', iconCls="icon-add-note">操作</a>
+        <a href="#" class="hisui-menubutton hisui-multi-menubutton" menu='#mm', iconCls="icon-add-note">操作</a>
         <div id="mm">
             <div data-options="iconCls:'icon-undo'">撤销</div>
             <div data-options="iconCls:'icon-redo'">恢复</div>
@@ -156,8 +145,8 @@ if (!defined('ACCESS_FROM_INDEX')) {
 </pre>
     </div>
     <div class="demo-exp-code entry-content"> 
-            <table class="hisui-datagrid" title="医嘱列表" style="width:400px;height:150px" 
-            data-options="rownumbers:true,singleSelect:true,pagination:false,toolbar:[{
+            <table class="hisui-datagrid" title="医嘱列表" style="width:400px;height:300px" 
+            data-options="iconCls:'icon-panel-brand',rownumbers:true,singleSelect:true,pagination:false,toolbar:[{
                     iconCls: 'icon-stop-order',
                     text:'停止医嘱',
                     handler: function(){alert('停止医嘱')}
@@ -167,7 +156,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 },{
                     iconCls: 'icon-abort-order',
                     text:'作废医嘱'
-                },'-',{
+                },{
                     iconCls: 'icon-tip'
                 }]"> 
             </table>
@@ -182,7 +171,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
         },{
             iconCls: 'icon-remove',
             text:'作废医嘱'
-        },'-',{
+        },{
             iconCls: 'icon-tip'
         }]</pre>
     </div>

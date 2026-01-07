@@ -228,7 +228,7 @@ body[data-theme=bgdark] {
 @linkbutton-focus-bgcolor:var(--primary-btn-hover-bgcolor);//#0063a7;
 
 @linkbutton-plain-focus-bgcolor: var(--secondary-btn-bgcolor); //#E0EEFF;
-@linkbutton-plain-color: var(--secondary-btn-text-color);
+@linkbutton-plain-color: var(--primary-color);
 @linkbutton-plain-hover-bgcolor: var(--secondary-btn-bgcolor);
 @linkbutton-plain-hover-color: @linkbutton-plain-color;
 
@@ -319,7 +319,7 @@ body[data-theme=bgdark] {
 //== panel
 @panel-title-height:26px;
 @panel-title-font-size:18px;
-@panel-title-font-color:@main-font-color;
+@panel-title-font-color:#939393;
 @panel-header-padding:3px 5px;  /*4px修改成3px，影响医嘱套维护界面。会多出多余的滚动条*/
 @panel-header-bgcolor:transparent; //#ffffff;
 @panel-header-bdcolor:transparent;
@@ -327,8 +327,8 @@ body[data-theme=bgdark] {
 @panel-shadow:0px 3px 6px rgba(0, 0, 0, 0.16);
 @panel-body-font-size:@main-font-size;
 @panel-body-bgcolor:transparent;
-@panel-tool-a-color:#666;
-@panel-border-radius:6px;
+@panel-tool-a-color:#939393;
+@panel-border-radius:0px;
 
 //== popover
 @popover-title-font-color:var(--default-font-color);
@@ -468,6 +468,7 @@ body[data-theme=bgdark] {
 @datagrid-header-top-brdcolor:var(--datagrid-pager-border-color);
 @datagrid-header-buttom-brdcolor:var(--datagrid-pager-border-color);
 @datagrid-no-data-opacity: var(--datagrid-no-data-opacity);
+@datagrid-border-radius:0px;
 // @datagrid-pager-bgcolor:@body-bgcolor;
 @page-btn-fcolor:@btn-fcolor;
 @page-btn-disabled-fcolor:#939393;
@@ -515,6 +516,8 @@ body[data-theme=bgdark] {
 @keywords-section-bgcolor:transparent; //#40a2de;
 
 //==menubutton
+@menubutton-plain-color:var(--primary-color);
+@menubutton-plain-hover-fcolor:var(--primary-color);
 @menubutton-blue-bgcolor: var(--primary-color); // #FFFFFF;
 @menubutton-blue-hover-fcolor:var(--primary-color);
 @menubutton-blue-bgcolor-hover:var(--primary-btn-hover-bgcolor);

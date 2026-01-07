@@ -1,3 +1,14 @@
+body{
+    --line-border-color : #cccccc;
+    --icon-li-hover:#E3E7FA;
+}
+body[data-theme="bgliteblue"]{
+    --icon-li-hover:#D7E9FF;
+}
+body[data-theme="bgdark"]{
+    --line-border-color: #64647b;
+    --icon-li-hover:#4B4C61;
+}
 body {
     font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
     padding:20px;
@@ -58,13 +69,12 @@ table {
     background-color: var(--secondary-btn-bgcolor,#e0dcdc);
     /* text-shadow: 0 1px 0 #fff; */
 }
-.table th,
-.table td {
+.table th,.table td {
     padding: 8px;
     line-height: 20px;
     text-align: left;
     vertical-align: top;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid var(--line-border-color);
 }
 .table th {
     font-weight: bold;

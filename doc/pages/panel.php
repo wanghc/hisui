@@ -14,7 +14,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			background-color: #e3e3e3; 
 			height: 100%;
 			width: 100%; 
-			border-radius: 6px;
+			border-radius: 0px;
 			display: grid;
 			place-items: center;
 		}
