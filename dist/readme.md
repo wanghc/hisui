@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 ## 2026-01-08
 - `validatebox`组件样式修改 [6548007]
 - `searchbox`组件样式修改 [6548009]
+- `keywords`组件样式修改 [6543276]
 
 ## 2026-01-07
 - `switchbox`组件样式修改 [6543258]

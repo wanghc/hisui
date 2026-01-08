@@ -48,6 +48,8 @@ body {
     --input-invalid-tooltip-bgcolor:#fff0f0;
     --input-invalid-tooltip-color:#fc494f;
     --input-invalid-tooltip-bdcolor:#fc494f;
+    --keywords-disable-color:#b4b3b3;
+    --keywords-disable-bgcolor:#EFEFEF;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -98,6 +100,8 @@ body[data-theme=bgliteblue] {
     --input-invalid-tooltip-bgcolor:#fff0f0;
     --input-invalid-tooltip-color:#fc494f;
     --input-invalid-tooltip-bdcolor:#fc494f;
+    --keywords-disable-color:#b4b3b3;
+    --keywords-disable-bgcolor:#EFEFEF;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -148,6 +152,8 @@ body[data-theme=bgdark] {
     --input-invalid-tooltip-bgcolor:#C0434E;
     --input-invalid-tooltip-color:#FFFFFF;
     --input-invalid-tooltip-bdcolor:#c0434E;
+    --keywords-disable-color:#b4b3b3;
+    --keywords-disable-bgcolor:#58596b;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -526,8 +532,8 @@ body[data-theme=bgdark] {
 @keywords-select-bdcolor:var(--datagrid-row-select-bgcolor); //#d7e9ff;
 @keywords-hover-bgcolor:@keywords-bgcolor;
 @keywords-hover-color: var(--primary-color);
-@keywords-disabled-bgcolor:@keywords-bgcolor;
-@keywords-disabled-fcolor:var(--primary-link-disabled-color); // #b4b3b3 - 三风格都一样 
+@keywords-disabled-bgcolor:var(--keywords-disable-bgcolor);
+@keywords-disabled-fcolor:var(--keywords-disable-color); // #b4b3b3 - 三风格都一样 
 
 @keywords-red-color:@btn-fcolor;
 @keywords-red-bgcolor:#E5E5E5;
