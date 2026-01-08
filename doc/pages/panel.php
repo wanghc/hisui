@@ -62,16 +62,13 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		</div>
 	</div>
 	
-		<h3>三、蓝色面板</h3>
+		<h3>三、带底色面板</h3>
 		<div>
 			<div class="use-prettyprint">
 				<div style="padding: 10px;">
 					<div>
-						<div class="hisui-panel" title="蓝色面板" style="width:500px;height: 300px;padding:10px 14px 14px 14px;" 
+						<div class="hisui-panel" title="带底色面板" style="width:500px;height: 300px;padding:10px 14px 14px 14px;" 
 						data-options="iconCls:'icon-panel-brand',headerCls:'panel-header-blue',closable:false,minimizable:false,maximizable:false">
-							<div class="my-demo-content">
-								iconCls:'panel-header-blue'
-							</div>
 						</div>
 					</div>
 				</div>
