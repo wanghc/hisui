@@ -14,7 +14,7 @@ input::selection,textarea::selection {
   vertical-align: middle;
 }
 
-input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-text,input.validatebox-text {
+input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-text,input.validatebox-text,textarea{
   width:@textbox-width; /*--2018-11-22*/
   margin:0;
   padding:0 0 0 @validatebox-padding-left;
@@ -29,7 +29,7 @@ input.textbox,.textbox[type=text],textarea.textbox,select.textbox,.textareabox-t
   }
   &:hover{
     background-color: @input-hover-bgcolor;
-    border-color: @input-active-border-color;
+    border-color: @input-border-hover-color;
   }
   &:focus{
     background-color: @input-active-bgcolor;

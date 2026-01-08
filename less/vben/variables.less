@@ -44,6 +44,10 @@ body {
     --switchbox-off-bgcolor:#CCCCCC;
     --switchbox-disable-off-bgcolor:#EBEBEB;
     --switchbox-disable-circle-bgcolor:#FFFFFF;
+    --input-invalid-bgcolor: #fff0f0;
+    --input-invalid-tooltip-bgcolor:#fff0f0;
+    --input-invalid-tooltip-color:#fc494f;
+    --input-invalid-tooltip-bdcolor:#fc494f;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -90,6 +94,10 @@ body[data-theme=bgliteblue] {
     --switchbox-off-bgcolor:#CCCCCC;
     --switchbox-disable-off-bgcolor:#EBEBEB;
     --switchbox-disable-circle-bgcolor:#FFFFFF;
+    --input-invalid-bgcolor: #fff0f0;
+    --input-invalid-tooltip-bgcolor:#fff0f0;
+    --input-invalid-tooltip-color:#fc494f;
+    --input-invalid-tooltip-bdcolor:#fc494f;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -136,6 +144,10 @@ body[data-theme=bgdark] {
     --switchbox-off-bgcolor:#8E8F99;
     --switchbox-disable-off-bgcolor:#64647B;
     --switchbox-disable-circle-bgcolor:#B2B2BE;
+    --input-invalid-bgcolor: #32354D;
+    --input-invalid-tooltip-bgcolor:#C0434E;
+    --input-invalid-tooltip-color:#FFFFFF;
+    --input-invalid-tooltip-bdcolor:#c0434E;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -183,17 +195,21 @@ body[data-theme=bgdark] {
 @input-bgcolor:var(--input-bgcolor);
 @input-color:var(--default-font-color);
 @input-active-border-color:@main-color;
-@input-active-bgcolor:var(--input-hover-bgcolor);
+@input-active-bgcolor:var(--input-bgcolor);
 @input-btn-hover-bgcolor:var(--input-hover-bgcolor);
 @input-active-color:#000000;
 @input-disabled-border-color:var(--input-disabled-bdcolor);
 @input-disabled-bgcolor:var(--input-disabled-bgcolor);
 @input-disabled-color:#939393;
 @input-placeholder-color:#939393;
-@input-invalid-bgcolor:#fff0f0;
+@input-invalid-bgcolor:var(--input-invalid-bgcolor);
 @input-invalid-color:#fc494f;;
-@input-invalid-border-color:#ee0f0f;
+@input-invalid-border-color:#FC494F;
 @input-invalid-placeholder-color:#fc494f;
+
+@input-invalid-tooltip-bgcolor:var(--input-invalid-tooltip-bgcolor);
+@input-invalid-tooltip-color:var(--input-invalid-tooltip-color);
+@input-invalid-tooltip-bdcolor:var(--input-invalid-tooltip-bdcolor);
 
 @input-arrow-opacity:1; /*0.7;*/
 @input-arrow-opacity-ie:100*@input-arrow-opacity;
@@ -204,10 +220,10 @@ body[data-theme=bgdark] {
 @input-arrow-hover-bgcolor:@input-hover-bgcolor;
 @input-arrow-hover-opacity:1;
 @input-arrow-hover-opacity-ie:100*@input-arrow-hover-opacity;
-@input-border-hover-color:@input-active-border-color;
-@input-hover-bgcolor:@input-active-bgcolor;
+@input-border-hover-color:@main-color;
+@input-hover-bgcolor:var(--input-hover-bgcolor);
 //----------focus---------//
-@input-focus-bgcolor:var(--input-hover-bgcolor);//#FFFFFF;
+@input-focus-bgcolor:var(--input-bgcolor);//#FFFFFF;
 @input-border-focus-color:@main-color;
 
 // 输入框小图标几种状态颜色//
@@ -299,7 +315,7 @@ body[data-theme=bgdark] {
 @tooltipBorderRadius:4px;
 @tooltipDefalutBorderColor:#000000;//#4f75aa;
 @tooltipDefalutBorderWidth:0;
-@tooltipDefalutBgColor:#000000; // rgba(0,0,0,0.7)
+@tooltipDefalutBgColor:rgba(0,0,0,0.7);
 //== validatebox
 @validatebox-border-width:1px;
 @validatebox-border-color:@input-border-color;
@@ -322,7 +338,7 @@ body[data-theme=bgdark] {
 @searchbox-font-size:@main-font-size;
 @searchbox-bgcolor:@panel-body-bgcolor;
 @searchbox-arrow-bgcolor:@panel-body-bgcolor;
-@searchbox-hover-bgcolor:@input-active-bgcolor ;// #40a2dd;
+@searchbox-hover-bgcolor:@input-hover-bgcolor ;// #40a2dd;
 @searchbox-button-hover-bgcolor:@input-btn-hover-bgcolor; //#378ec4;
 
 //== panel
@@ -639,7 +655,7 @@ h2 {
 }
 .required-label:before {
     content: '*';
-    color: #FF4451;
+    color: #FC494F;
     vertical-align: bottom;
     line-height: 100%;
 }

@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2026-01-08
+- `validatebox`组件样式修改 [6548007]
+
 ## 2026-01-07
 - `switchbox`组件样式修改 [6543258]
 - `popover`组件样式修改[6543259]

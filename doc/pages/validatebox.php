@@ -34,28 +34,28 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				<tr>
 					<td class="r-label required-label">序号</td>
 					<td>
-						<input id="patno" class="textbox">
+						<input id="patno" class="textbox" autocomplete="off" >
 					</td>
 					<td style="padding-left: 10px;">
-						<a id="btn1" href="#" class="hisui-linkbutton">赋值</a><a id="btn" href="#" class="hisui-linkbutton" style="margin-left: 10px;">验证序号</a>
+						<a id="btn1" href="#" class="hisui-linkbutton">赋值</a><a id="btn" href="#" class="hisui-linkbutton" style="margin-left: 20px;">验证序号</a>
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label required-label">患者姓名</td>
 					<td>
-						<input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'">
+						<input class="hisui-validatebox textbox" data-options="required:true,validType:'length[3,10]'" autocomplete="off" >
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label required-label">邮箱</td>
 					<td>
-						<input class="hisui-validatebox textbox" data-options="required:true,validType:'email'">
+						<input class="hisui-validatebox textbox" data-options="required:true,validType:'email'" autocomplete="off" >
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label required-label">URL</td>
 					<td>
-						<input id="urlVx" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
+						<input id="urlVx" autocomplete="off" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 					</td>
 					<td  style="padding-left: 10px;"> 
 						<a id="btn2" href="#" class="hisui-linkbutton">禁用URL</a>
@@ -64,7 +64,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				<tr>
 					<td class="r-label required-label">身份证</td>
 					<td>
-						<input class="hisui-validatebox textbox" data-options="required:true,validType:'idcard'">
+						<input class="hisui-validatebox textbox" data-options="required:true,validType:'idcard'" autocomplete="off" >
 					</td>
 					<td>
 						
@@ -73,7 +73,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				<tr>
 					<td class="r-label required-label">手机号</td>
 					<td>
-						<input class="hisui-validatebox textbox" data-options="required:true,validType:'mobilephone'">
+						<input class="hisui-validatebox textbox" data-options="required:true,validType:'mobilephone'" autocomplete="off" >
 					</td>
 					<td>
 						12位手机号时，会自动去除首位的0
@@ -82,25 +82,25 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				<tr>
 					<td class="r-label">数字</td>
 					<td>
-						<input class="hisui-numberbox textbox">
+						<input class="hisui-numberbox textbox" autocomplete="off" >
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label">数字</td>
 					<td>
-						<input class="hisui-numberspinner textbox">
+						<input class="hisui-numberspinner textbox" autocomplete="off" >
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label">生日</td>
 					<td>
-						<input class="hisui-datebox textbox">
+						<input class="hisui-datebox textbox" autocomplete="off" >
 					</td>
 				</tr>
 				<tr>
 					<td class="r-label required-label" style="vertical-align: top;padding-top: 12px;">备注</td>
 					<td>
-						<textarea id="notett" class="textbox hisui-validatebox" placeholder="必填项" data-options="required:true" size=12 rows="2" style="height:45px;"></textarea>
+						<textarea id="notett" class="textbox hisui-validatebox" placeholder="必填项" autocomplete="off"  data-options="required:true" size=12 rows="2" style="height:45px;"></textarea>
 					</td>
 				</tr>
 				<tr>

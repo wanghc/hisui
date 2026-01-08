@@ -64,13 +64,13 @@ input.validatebox-invalid {
     color: @input-invalid-placeholder-color;
   }
 }
-textarea.validatebox-text.validatebox-invalid{
+textarea.validatebox-invalid{
   background-position: right 10px bottom 10px;
   background-position-x: 90%\9;
   background-position-y: 50%\9;
-  border-color: #ee0f0f;
-  background-color: #fff0f0;
-  color: #fc494f;
+  border-color: @input-invalid-border-color;
+  background-color: @input-invalid-bgcolor;
+  color: @input-invalid-color;
 }
 input[type=text]::-ms-clear{
   display:none;
@@ -92,40 +92,40 @@ input.numberbox.validatebox-invalid {
   background-image: none;
 }
 .tooltip.tooltip-validatebox-invalid{
-  border:1px solid #fc494f;
-  background-color: #fff0f0;
-  color:#fc494f;
+  border:1px solid @input-invalid-tooltip-bdcolor;
+  background-color: @input-invalid-tooltip-bgcolor;
+  color:@input-invalid-tooltip-color;
 }
 .tooltip-validatebox-invalid .tooltip-arrow{
   width: 6px;
   height: 6px;
-  background: #fff0f0;
+  background: @input-invalid-tooltip-bgcolor;
   transform: rotate(45deg);
 }
 .tooltip-right.tooltip-validatebox-invalid .tooltip-arrow{
-  border-bottom: 1px solid #fc494f;
-  border-left: 1px solid #fc494f;
+  border-bottom: 1px solid @input-invalid-tooltip-bdcolor;
+  border-left: 1px solid @input-invalid-tooltip-bdcolor;
   border-top-width: 0px;
   border-right-width: 0px;
   margin: -3px 0 0 -4px;
 }
 .tooltip-top.tooltip-validatebox-invalid .tooltip-arrow{
-  border-bottom: 1px solid #fc494f;
-  border-right: 1px solid #fc494f;
+  border-bottom: 1px solid @input-invalid-tooltip-bdcolor;
+  border-right: 1px solid @input-invalid-tooltip-bdcolor;
   border-left-width: 0px;
   border-top-width: 0px;
   margin: 0px -4px -4px 0;
 }
 .tooltip-bottom.tooltip-validatebox-invalid .tooltip-arrow{
-  border-top: 1px solid #fc494f;
-  border-left: 1px solid #fc494f;
+  border-top: 1px solid @input-invalid-tooltip-bdcolor;
+  border-left: 1px solid @input-invalid-tooltip-bdcolor;
   border-right-width: 0px;
   border-bottom-width: 0px;
   margin: -4px 0 0 -4px;
 }
 .tooltip-left.tooltip-validatebox-invalid .tooltip-arrow{
-  border-right: 1px solid #fc494f;
-  border-top: 1px solid #fc494f;
+  border-right: 1px solid @input-invalid-tooltip-bdcolor;
+  border-top: 1px solid @input-invalid-tooltip-bdcolor;
   border-left-width: 0px;
   border-bottom-width: 0px;
   margin: -3px -4px 0px 0;
