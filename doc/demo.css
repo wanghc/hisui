@@ -31,7 +31,7 @@ h2 {
 .demo-exp-code{
     margin: 10px 0;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--line-border-color);
     border-radius: 5px;
     position: relative;
 }

@@ -34,6 +34,11 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2025-01-09
+- `linkbutton`组件样式修改 [6547996]
+- `label`组件示例界面修改 [6547995]
+
 ## 2026-01-08
 - `validatebox`组件样式修改 [6548007]
 - `searchbox`组件样式修改 [6548009]
