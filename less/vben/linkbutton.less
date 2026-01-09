@@ -464,7 +464,15 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
         border-color: @linkbutton-white-disabled-border-color;
       }
     }
-    &.white:hover,&.white.l-btn-focus{
+    &.white.l-btn-focus,&.white.l-btn-focus:hover{
+      background-color: @linkbutton-white-click-bgcolor;
+      border-color: @linkbutton-white-border-color;
+      &.l-btn-disabled,&.l-btn-waiting {
+        background:@linkbutton-white-disabled-bgcolor;
+        border-color: @linkbutton-white-disabled-border-color;
+      }
+    }
+    &.white:hover{
       background-color: @linkbutton-white-hover-bgcolor;
       border-color: @linkbutton-white-hover-border-color;
       &.l-btn-disabled,&.l-btn-waiting {
@@ -482,8 +490,16 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
         border-color: @linkbutton-blue-disabled-border-color;
       }
     }
-    &.blue:hover,&.blue.l-btn-focus{
+    &.blue:hover{
       background-color: @secondary-btn-hover-bgcolor;
+      border-color: @secondary-btn-bdcolor;
+      &.l-btn-disabled,&.l-btn-waiting {
+        background:@linkbutton-blue-disabled-bgcolor;
+        border-color: @linkbutton-blue-disabled-border-color;
+      }
+    }
+    &.blue.l-btn-focus,&.blue.l-btn-focus:hover{
+      background-color: @secondary-btn-click-bgcolor;
       border-color: @secondary-btn-bdcolor;
       &.l-btn-disabled,&.l-btn-waiting {
         background:@linkbutton-blue-disabled-bgcolor;
