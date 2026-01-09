@@ -36,7 +36,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					<td>
 						<input id="patno" class="textbox" autocomplete="off" >
 					</td>
-					<td style="padding-left: 10px;">
+					<td style="padding-left: 15px;">
 						<a id="btn1" href="#" class="hisui-linkbutton">赋值</a><a id="btn" href="#" class="hisui-linkbutton" style="margin-left: 20px;">验证序号</a>
 					</td>
 				</tr>
@@ -57,7 +57,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					<td>
 						<input id="urlVx" autocomplete="off" class="hisui-validatebox textbox" data-options="required:true,validType:'url'">
 					</td>
-					<td  style="padding-left: 10px;"> 
+					<td  style="padding-left: 15px;"> 
 						<a id="btn2" href="#" class="hisui-linkbutton">禁用URL</a>
 					</td>
 				</tr>
