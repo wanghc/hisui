@@ -404,7 +404,7 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
       width: 24px;
       font-size: 24px;
       padding:0;
-      color:#666666;
+      color:@linkbutton-plain-big-icon-color;
     }
    .l-btn-text{
       padding: 34px 0 0px;
@@ -417,11 +417,11 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
   &:hover{
     border: 0;
     padding: 0;
-    background:#EDF6FF;
+    background:@linkbutton-plain-hover-bgcolor;
     border-radius: 6px;
   }
   &:active{
-    background:#E0EEFF;
+    background:@linkbutton-plain-big-click-bgcolor;
   }
   &.l-btn-plain-disabled{
     &:hover{
@@ -586,12 +586,17 @@ wanghc 20180516 .big后移，在ie7下这种选择器会变成最后一个类选
     margin-right: 6px !important; 
   }
 }
-// .inner-text-hover{
-//   &:focus,&:hover,&:active,&.l-btn-focus{
-//     color:#007EED !important;
-//     background-color: transparent !important;
-//   }
-//   .l-btn-icon{
-//     color:#666666;
-//   }
-// }
+.inner-text-hover{
+  &:focus,&:hover,&:active,&.l-btn-focus{
+    color: @link-hover-color !important;;
+    background-color: transparent !important;
+    .l-btn-icon{
+      color:@link-color;
+    }
+  }
+  color:@main-font-color;
+  .l-btn-icon{
+    color:@input-iconbtn-color;
+    padding:7px 4px 8px 8px;
+  }
+}
