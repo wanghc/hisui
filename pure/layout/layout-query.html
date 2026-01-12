@@ -34,10 +34,10 @@
     <script src="../mock-min.js" type="text/javascript"></script>
     <script src="./data.js" type="text/javascript"></script>
 </head>
-<body style="padding:10px;box-sizing: border-box;">
+<body style="padding:15px;box-sizing: border-box;">
     <div class="hisui-panel" data-options="fit:true,title:'',border:false">
         <div class="hisui-layout" fit="true" style="background-color:#CDE6FF;">
-            <div data-options="region:'north',border:true,title:'面板标题',iconCls:'icon-panel-brand',isNormalPadding:true,collapsible:false " style="height: 153px;padding: 5px 14px; ">
+            <div data-options="region:'north',border:true,title:'面板标题',iconCls:'icon-panel-brand',isNormalPadding:true,collapsible:false " style="height: 157px;padding: 5px 14px; ">
                 <table cellspacing="0" cellpadding="0" broder="0">
                     <tr style="height: 42px;">
                         <td class="r-label">条件</td>
@@ -291,7 +291,6 @@
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
-                    '-',
                     {text:'剪切',iconCls:'icon-cut',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
