@@ -362,6 +362,10 @@ tree-icon tree-file显示默认的文件图标
 	.c-pic-onlyname(extract(@arr, @i),@pre,pure,extract(@arr, 1+@i));
 	.picloop2(2+@i,@arr,@pre);
 }
+.picloopvben(@i,@arr,@pre) when(@i<length(@arr)+1){
+	.c-pic-onlyname(extract(@arr, @i),@pre,vben,extract(@arr, 1+@i));
+	.picloopvben(2+@i,@arr,@pre);
+}
 @picpat:babyboy,babygirl,man,oldman,oldwoman,schoolboy,schoolgirl,woman,unknown-gender,man-no-bg,woman-no-bg,unknown-gender-no-bg;
 .picloop(1,@picpat,pat);
 @picusr:doctor,nurse,surgeon,clothing-worker,medi-worker,dep-director,hosp-director,doctor-woman;
@@ -372,5 +376,7 @@ tree-icon tree-file显示默认的文件图标
 .picloop(1,@piclogon,logon);
 @picabout:dhcc-digitalmed,doc,imedical-logo,vi;
 .picloop(1,@picabout,about);
-@picsysst:e403,gif,e404,gif,e500,gif,nodata,svg,nodata-region,svg,nodata-msg,gif,timeout-relogon,gif,welcome,gif;
+@picsysst:e403,gif,e404,gif,e500,gif,nodata,svg,nodata-region,svg,timeout-relogon,gif;
 .picloop2(1,@picsysst,sysst);
+@picsysstvben:nodata-msg,png,welcome,png;
+.picloopvben(1,@picsysstvben,sysst);
