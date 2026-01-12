@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-01-12
 - 纯净版本`splitbutton`样式修改 [5794797]
 - 纯净版本`splitbutton`样式修改 [5864535]
+- `dialog`组件背景色修改成透明
 
 ## 2026-01-09
 - `linkbutton`组件样式修改 [6547996]
