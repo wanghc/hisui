@@ -39,7 +39,8 @@ body {
     --messager-window-info-top-bgcolor:#E3E7FA;
     --messager-window-success-top-bgcolor:#EEFFE6;
     --messager-window-warning-top-bgcolor:#FFF4DD;
-    --messager-window-bottom-bgcolor:#ffffff;
+    --messager-window-bottom-bgcolor:transparent;
+    --messager-window-bgcolor:#ffffff;
     --keywords-select-fcolor:#1F3599;
     --switchbox-off-bgcolor:#CCCCCC;
     --switchbox-disable-off-bgcolor:#EBEBEB;
@@ -98,6 +99,7 @@ body[data-theme=bgliteblue] {
     --messager-window-success-top-bgcolor:#EEFFE6;
     --messager-window-warning-top-bgcolor:#FFF4DD;
     --messager-window-bottom-bgcolor:transparent;
+    --messager-window-bgcolor:#ffffff;
     --keywords-select-fcolor:#007EED;
     --switchbox-off-bgcolor:#CCCCCC;
     --switchbox-disable-off-bgcolor:#EBEBEB;
@@ -155,7 +157,8 @@ body[data-theme=bgdark] {
     --messager-window-info-top-bgcolor:#20243e;
     --messager-window-success-top-bgcolor:#20243e;
     --messager-window-warning-top-bgcolor:#20243e;
-    --messager-window-bottom-bgcolor:#32354d;
+    --messager-window-bottom-bgcolor:transparent; //#32354d;
+    --messager-window-bgcolor:#32354d;
     --keywords-select-fcolor:#FFFFFF;
     --switchbox-off-bgcolor:#8E8F99;
     --switchbox-disable-off-bgcolor:#64647B;
@@ -638,6 +641,7 @@ body[data-theme=bgdark] {
 @messager-body-fcolor: @main-font-color;
 @messager-body-fsize: 16px;
 @messager-body-fweight:normal;
+@messager-window-bgcolor:var(--messager-window-bgcolor);
 @messager-window-error-bgcolor:var(--messager-window-error-top-bgcolor);
 @messager-window-info-bgcolor:var(--messager-window-info-top-bgcolor);
 @messager-window-success-bgcolor:var(--messager-window-success-top-bgcolor);
