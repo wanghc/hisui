@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-01-13
+- iHOS风格`datagrid-toolbar`背景色修改成透明
+
 ## 2026-01-12
 - 纯净版本`splitbutton`样式修改 [5794797]
 - 纯净版本`splitbutton`样式修改 [5864535]
