@@ -266,7 +266,7 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
                 
                 var myPanelJObj = $(target).combo("panel");
                 myPanelJObj.closest('.combo-p').children('._hisui_combobox-selectall').remove();
-                var myPanelWidth = myPanelJObj.width() - 5; //5是padding-left
+                var myPanelWidth = myPanelJObj.width() - $.hisui.getStyleCodeConfigValue('comboboxSelectallPaddingLeft'); //5是padding-left
                 var myallselJObj = $('<div style="width:'+myPanelWidth+'px" class="_hisui_combobox-selectall"><span class="combobox-checkbox"></span>'+opts.selectAllBtnDesc+'</div>')
                 .bind('mouseenter',function(e){
                     $(e.target).closest("div._hisui_combobox-selectall").comboboxAddClass("combobox-selectall-hover");

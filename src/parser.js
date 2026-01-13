@@ -327,6 +327,9 @@
             },
             panelTitleFontSize:{
                 default:14,pure:18,vben:18
+            },
+            comboboxSelectallPaddingLeft:{
+                default: 5,pure: 10,vben:10
             }
         },
         getStyleCodeConfigValue : function(key){

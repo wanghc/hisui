@@ -40,6 +40,7 @@ $("#btn").linkbutton("disable");
 - iHOS风格插画修改
 - iHOS风格`messager`组件修改 [6543437]
 - iHOS风格`menubutton`组件修改 [6548000]
+- 纯净风格`comboxbox`全选条宽度问题 [6578382]
 
 ## 2026-01-12
 - 纯净版本`splitbutton`样式修改 [5794797]
