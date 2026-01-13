@@ -20,7 +20,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <h3>一、多级菜单</h3>
 	<div class="demo-exp-code entry-content"> 
         
-        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton hisui-multi-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改</a>
+        <a href="javascript:void(0)" id="mbedit" class="hisui-menubutton hisui-multi-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">修改</a>
         
         <div id="mmedit" style="width:150px;">
             <div data-options="iconCls:'icon-undo'">撤销</div>

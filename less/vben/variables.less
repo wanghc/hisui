@@ -597,10 +597,10 @@ body[data-theme=bgdark] {
 @menubutton-btn-plain-active-bgcolor:var(--secondary-btn-bgcolor); // #EDF6FF;
 @menubutton-menu-item-bgcolor:var(--secondary-btn-hover-bgcolor); //#d7e9ff;
 @menubutton-menu-item-hover-bgcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
-
+@menubutton-btn-focus-bgcolor:var(--secondary-btn-hover-bgcolor);
 //==menu
-@menu-active-border-color:var(--combobox-item-hover-bgcolor); //#d7e9ff;
-@menu-active-bgcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
+@menu-active-border-color:var(--datagrid-row-select-bgcolor); //#d7e9ff;
+@menu-active-bgcolor:var(--datagrid-row-select-bgcolor); //#d7e9ff;
 @menu-border-color:var(--combobox-item-hover-bgcolor); //#40a2de;
 @menu-shadow:@panel-shadow;
 @menu-body-bgcolor:var(--input-bgcolor);
@@ -715,7 +715,7 @@ a{
 input,textarea {
     outline-width: 0;
     background-color: @input-bgcolor;
-    color:@main-font-color
+    color:@main-font-color;
 }
 #z-q-container{
     position: absolute;
