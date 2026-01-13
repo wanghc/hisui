@@ -79,7 +79,7 @@ gulp.task('min-js',function(){
     .pipe(gulp.dest('dist/js'));
 });
 // 20201104 min-css前生成lite样式css
-gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css','pic-pt-css','pic-lite-pt-css','pic-pure-pt-css','pic-fr-css','pic-lite-fr-css','pic-pure-fr-css'],function(){
+gulp.task('min-css',['min-css-lite','min-css-lightblue','min-css-pure','pic-en-css','pic-lite-en-css','pic-pure-en-css','pic-vben-en-css','pic-pt-css','pic-lite-pt-css','pic-pure-pt-css','pic-vben-pt-css','pic-fr-css','pic-lite-fr-css','pic-pure-fr-css','pic-vben-fr-css'],function(){
     var lessPath = "less/";
     var arr = lessArr;
     arr.forEach(function(value,index){

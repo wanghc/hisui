@@ -128,7 +128,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                     linkObj = $('<link>', {
                         rel: 'stylesheet',
                         type: 'text/css',
-                        href: '../../dist/css/locale/hisui.pure.en.css'
+                        href: '../../dist/css/locale/hisui.'+HISUIStyleCode+'.en.css'
                     }).appendTo('head');
                 }else{
                     linkObj.remove();
@@ -142,7 +142,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                     linkObj = $('<link>', {
                         rel: 'stylesheet',
                         type: 'text/css',
-                        href: '../../dist/css/locale/hisui.pure.en.css'
+                        href: '../../dist/css/locale/hisui.'+HISUIStyleCode+'.en.css'
                     }).appendTo('head');
                 }else{
                     linkObj.remove();
