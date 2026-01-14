@@ -40,7 +40,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             <div data-options="iconCls:'icon-cancel'">删除</div>
             <div>选择</div>
         </div>
-		<pre class="prettyprint lang-html hide"><code>&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-write-order'">修改&lt;/a>
+		<pre class="prettyprint lang-html hide"><code>&lt;a href="javascript:void(0)" id="mbedit" class="hisui-menubutton" data-options="menu:'#mmedit',iconCls:'icon-edit'">修改&lt;/a>
     &lt;div id="mmedit" style="width:150px;">
         &lt;div data-options="iconCls:'icon-undo'">撤销&lt;/div>
         &lt;div data-options="iconCls:'icon-redo'">撤回&lt;/div>
@@ -86,7 +86,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             <div onclick="console.log('作废');">作废</div>
         </div>
 
-        <a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-write-order',otherCls:'menubutton-toolbar'">修改</a>
+        <a href="javascript:void(0)" id="mbedit-toolbar" class="hisui-menubutton"  data-options="menu:'#mmedit-toolbar',iconCls:'icon-edit',otherCls:'menubutton-toolbar'">修改</a>
         <div id="mmedit-toolbar" style="width:150px;">
             <div data-options="iconCls:'icon-undo'">撤销</div>
             <div data-options="iconCls:'icon-redo'">撤回</div>
