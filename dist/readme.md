@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-01-14
+- iHOS风格`menubutton`组件样式修改 [6548001]
+
 ## 2026-01-13
 - iHOS风格`datagrid-toolbar`背景色修改成透明
 - iHOS风格插画修改

@@ -272,11 +272,11 @@
   //菜单
 .menu.menubutton-toolbar{
   .menu-item{
-    background-color: #fff;
+    background-color: @menubutton-toolbar-item-bgcolor;
     height: 34px; /*26px*/
-    border: 0px; 
-    &:hover{
-      background-color:@menubutton-menu-item-hover-bgcolor;
+    border: 0px;
+    &.menu-active{
+      background-color: @menu-active-bgcolor;
     }
     .menu-text{
       color: @main-font-color;
