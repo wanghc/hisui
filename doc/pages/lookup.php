@@ -32,17 +32,16 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				$("#group").lookup({
 					width:200,
 					lookupGridId:"lookupGridId",
-					panelWidth:800,
-					striped:false,
-					
+					panelWidth:560,
+					striped:true,				
 					url:'getGroup',
 					mode:'remote',
 					idField:'HIDDEN',
 					textField:'Description',
 					columns:[[  
-						{field:'Description',title:'安全组名称',width:200},  
+						{field:'Description',title:'安全组名称',width:150},  
 						{field:'HIDDEN',title:'安全组ID',width:100} ,
-						{field:'Other',title:'其他信息',width:400,formatter:function(val,row){
+						{field:'Other',title:'其他信息',width:250,formatter:function(val,row){
 							return row['Description']+'：分配人数'+Math.floor(Math.random()*500)
 						}} 
 					]],
@@ -85,7 +84,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					textField:'Description',
 					columns:[[  
 						{field:'Code',title:'科室代码',width:150},  
-						{field:'Description',title:'科室描述',width:200},  
+						{field:'Description',title:'科室描述',width:230},  
 						{field:'HIDDEN',title:'科室ID',width:50}  
 					]],
 					pagination:true,
@@ -124,14 +123,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					columnsLoader:function(){
 						return [[  
 							{field:'Code',title:'工号',width:150},  
-							{field:'Description',title:'姓名',width:150},  
+							{field:'Description',title:'姓名',width:236},  
 							{field:'HIDDEN',title:'用户ID',width:100}  
 						]];
 					},
-					pagination:true,
-					
-					panelWidth:550,
-					
+					pagination:true,					
+					panelWidth:550,					
 				});
 				$('.op-btn').linkbutton({
 					onClick:function(){
@@ -160,16 +157,14 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		<script type='text/javascript' class='use-prettyprint'>
 			$(function(){
 				$("#group2").lookup({
-					width:200,
-					
-					panelWidth:500,
-					
+					width:200,					
+					panelWidth:500,					
 					url:'getGroup',
 					mode:'remote',
 					idField:'HIDDEN',
 					textField:'Description',
 					columns:[[  
-						{field:'Description',title:'安全组名称',width:300},  
+						{field:'Description',title:'安全组名称',width:340},  
 						{field:'HIDDEN',title:'安全组ID',width:100}  
 					]],
 					pagination:true,
@@ -204,16 +199,14 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					}
 				});
 				$("#group3").lookup({
-					width:200,
-					
-					panelWidth:500,
-					
+					width:200,					
+					panelWidth:500,					
 					url:'getGroup',
 					mode:'remote',
 					idField:'HIDDEN',
 					textField:'Description',
 					columns:[[  
-						{field:'Description',title:'安全组名称',width:300},  
+						{field:'Description',title:'安全组名称',width:340},  
 						{field:'HIDDEN',title:'安全组ID',width:100}  
 					]],
 					pagination:true,
@@ -223,11 +216,11 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					selectRowRender:function(row){
 						console.log('selectRowRender',row);
 						if (!row)  return '<p style="margin:0;padding:10px;">无提示信息</p>';
-						if (row.Description.length>12){ //安全组名字长于10 显示提示信息
+						if (row.Description.length>120){ //安全组名字长于10 显示提示信息
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过12字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。</span>';
-						}if (row.Description.length==5){ //安全组名字长于10 显示提示信息
+						}if (row.Description.length==50){ //安全组名字长于10 显示提示信息
 							return '<p style="margin:0;padding:10px;display:block;height:40px;overflow:auto;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符为5字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符为5字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。,此安全组字符超过为5字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题。</span>';
-						}else if (row.Description.length>10){ //安全组名字长于10 显示提示信息
+						}else if (row.Description.length>100){ //安全组名字长于10 显示提示信息
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+',此安全组字符超过10字符，这里可以显示当前行记录的说明信息。此处也测试超长时滚动条问题</span>';
 						}else if(row.Description.length>8){
 							return '<p style="margin:0;padding:10px;"><span style="font-weight:bold;"></sapn>安全组<span style="color:red;">'+row.Description+'</span>';

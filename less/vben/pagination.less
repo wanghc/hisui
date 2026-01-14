@@ -69,12 +69,6 @@
 .pagination-loading {
   background: url('@{images-path}/loading.gif') no-repeat center center;
 }
-.pagination-page-list,
-.pagination .pagination-num {
-  //border-color: #95B8E7;
-  border-color: #e4e4e4;
-  color:@input-color;
-}
 .datagrid-footer-inner, .datagrid-header, .datagrid-pager{
   border-color: @datagrid-toolbar-border-color;
 }
@@ -141,7 +135,9 @@
   }
 
 }
-.pagination .pagination-num{ //[3241479]
+.pagination-page-list,.pagination .pagination-num{ //[3241479]
+  border-color: @input-border-color;
+  color:@input-color;
   &:active,&:focus,&:hover{
     background-color: @validatebox-focus-bgcolor;
     border-color: @input-active-border-color;
