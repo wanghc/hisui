@@ -58,6 +58,7 @@ body {
     --white-btn-disabled-bdcolor:#dddddd;
     --secondary-btn-click-bgcolor:#cfd5f5;
     --progressbar-text-bgcolor:#ffe48d;
+    --datagrid-row-hover-bgcolor:#FFF0D9;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -118,6 +119,7 @@ body[data-theme=bgliteblue] {
     --white-btn-disabled-bdcolor:#dddddd;
     --secondary-btn-click-bgcolor:#cce3ff;
     --progressbar-text-bgcolor:#ffe48d;
+    --datagrid-row-hover-bgcolor:#FFF0D9;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -178,6 +180,7 @@ body[data-theme=bgdark] {
     --white-btn-disabled-bdcolor:#636477;
     --secondary-btn-click-bgcolor:#32354d;
     --progressbar-text-bgcolor:rgba(255,228,141,0.7);
+    --datagrid-row-hover-bgcolor:#585A6D;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -282,7 +285,7 @@ body[data-theme=bgdark] {
 @linkbutton-focus-outline-color:transparent;
 @linkbutton-focus-bgcolor:var(--primary-btn-click-bgcolor);//#0063a7;
 
-@linkbutton-plain-focus-bgcolor: var(--secondary-btn-bgcolor); //#E0EEFF;
+@linkbutton-plain-focus-bgcolor: var(--secondary-btn-hover-bgcolor); //#E0EEFF;
 @linkbutton-plain-color: var(--primary-color);
 @linkbutton-plain-hover-bgcolor: var(--secondary-btn-bgcolor);
 @linkbutton-plain-hover-color: @linkbutton-plain-color;
@@ -517,7 +520,7 @@ body[data-theme=bgdark] {
 @datagrid-inner-border-color:#E2E2E2;
 @datagrid-border-color:#e4e4e4;
 @datagrid-row-color:var(--default-font-color);
-@datagrid-row-hover: var(--combobox-item-hover-bgcolor);
+@datagrid-row-hover: var(--datagrid-row-hover-bgcolor);
 @datagrid-row-hover-color: var(--default-font-color);
 @datagrid-row-select:var(--datagrid-row-select-bgcolor);
 @datagrid-row-select-color: var(--default-font-color);

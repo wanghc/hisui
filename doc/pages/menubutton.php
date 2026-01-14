@@ -141,7 +141,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					<th data-options="field:'code'">编码</th>   
 					<th data-options="field:'name'">名称</th>   
 					<th data-options="field:'price'">价格</th>
-					<th data-options="field:'num'">数量</th>
+					<th data-options="field:'num',align:'right'">数量</th>
 					<th data-options="field:'note'">描述</th>
 					<th data-options="field:'re',editor:{type:'datebox'}">日期</th>   
 					<th data-options="field:'datetime',editor:{type:'datetimebox'}">日期与时间</th>   
