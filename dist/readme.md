@@ -39,6 +39,7 @@ $("#btn").linkbutton("disable");
 - iHOS风格`menubutton`组件样式修改 [6548001]
 - iHOS风格`datagrid-toolbar`上按钮背景色修改 [6548002]
 - iHOS风格`lookup`样式修改 [6550059]
+- pure风格`splitbutton`组件的`splitbutton-light`风格按钮点击色修改
 
 ## 2026-01-13
 - iHOS风格`datagrid-toolbar`背景色修改成透明
