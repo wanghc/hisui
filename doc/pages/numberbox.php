@@ -32,7 +32,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				<tr>
 					<td class="r-label"><span style="line-height: 14px;display: inline-block;">数字</span></td>
 					<td class="r-label">
-						<input class="hisui-numberbox textbox" data-options="isKeyupChange:true" id="nb">
+						<input class="hisui-numberbox textbox" autocomplete="off" data-options="isKeyupChange:true" id="nb">
 					</td>
 					<td><span style="line-height: 14px;display: inline-block;">值即时变化</span></td>
 				</tr>
