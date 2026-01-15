@@ -48,6 +48,7 @@ $('xxx').combogridmult('setValuesJson',[{id:1,text:'lisi'},{id:2,text:'zhangsan'
 $('xxx').combogridmult('getText').split(','); // 得到text数组
 $('xxx').combogridmult('getValues');  // 得到值数组
 ```
+- 修改`checkbox`,`radio`在无描述时的宽度 [6422954]
 
 ## 2026-01-14
 - iHOS风格`menubutton`组件样式修改 [6548001]
