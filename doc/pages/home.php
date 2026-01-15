@@ -217,7 +217,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     </script>
     <div region="west" border="true" split="false" collapsible="false" title="HISUI" 
     data-options="tools:[{iconCls:'icon-w-switch',handler:showVersionMenu}<?php if ($PAGE_CONTEXT['version']=='vben') echo ',{iconCls:\'icon-w-list\',handler:showThemeMenu}' ?>]"  style="width:200px;padding:0px;">
-        <div id="accd" class="hisui-accordion  accordion-gray" fit="true" data-options="border:false">
+        <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
             <div title="基础" id="baseCtt"></div>
             <div title="布局" id="layoutCtt"></div>
             <div title="表单" id="formCtt">
