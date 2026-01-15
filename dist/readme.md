@@ -35,6 +35,20 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-01-15
+- 添加`combogridmult`组件 [6103929]
+```js
+$('xxx').combogridmult({
+  multiple:true,
+  itemWordSize:4, // 此配置值大于0时,选中项的文字长度超过此值时,显示省略号
+  // 与combogrid属性一致
+});
+// 此组件会远程翻页,所以初始化后,使用setValuesJson方法设置值
+$('xxx').combogridmult('setValuesJson',[{id:1,text:'lisi'},{id:2,text:'zhangsan'}]);
+$('xxx').combogridmult('getText').split(','); // 得到text数组
+$('xxx').combogridmult('getValues');  // 得到值数组
+```
+
 ## 2026-01-14
 - iHOS风格`menubutton`组件样式修改 [6548001]
 - iHOS风格`datagrid-toolbar`上按钮背景色修改 [6548002]
