@@ -40,10 +40,10 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					<input id="db" class="hisui-datebox textbox" data-options='onSelect:onSelect'/>
 				</td>
 				<td class='r-label'>
-					<a class="hisui-linkbutton" id="setDateDisBtn">限定可选日期</a>
+					<a class="hisui-linkbutton" id="setDateDisBtn" style="margin-left: 10px;">限定可选日期</a>
 				</td>
 				<td class='r-label'>
-					<a class="hisui-linkbutton" id="dbBtn">获取值</a>
+					<a class="hisui-linkbutton" id="dbBtn" style="margin-left: 10px;">获取值</a>
 				</td>
 			</tr>
 			<tr>
