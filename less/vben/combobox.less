@@ -29,7 +29,7 @@
   color: @main-font-color;
 }
 ._hisui_combobox-selectall{
-  background: #f6f6f6;
+  background: @combobox-all-select-bgcolor;
   cursor: pointer;
   border-left:1px @combo-panel-border-color solid;
   border-right: 1px @combo-panel-border-color solid;
@@ -106,5 +106,11 @@
 .combo{
   .validatebox-text{
     border-radius:0px;
+  }
+}
+.combo-p-active .combo-arrow{
+  color:@input-border-hover-color;
+  &::before{
+    content: "\f635";
   }
 }

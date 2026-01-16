@@ -59,6 +59,9 @@ body {
     --secondary-btn-click-bgcolor:#cfd5f5;
     --progressbar-text-bgcolor:#ffe48d;
     --datagrid-row-hover-bgcolor:#FFF0D9;
+    --combobox-all-select-bgcolor:#f6f6f6;
+    --scrollbar-thumb-bgcolor:rgba(66, 70, 86, 0.3);
+    --scrollbar-thumb-hover-bgcolor:rgba(66, 70, 86, 0.6);
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -120,6 +123,9 @@ body[data-theme=bgliteblue] {
     --secondary-btn-click-bgcolor:#cce3ff;
     --progressbar-text-bgcolor:#ffe48d;
     --datagrid-row-hover-bgcolor:#FFF0D9;
+    --combobox-all-select-bgcolor:#f6f6f6;
+    --scrollbar-thumb-bgcolor:rgba(66, 70, 86, 0.3);
+    --scrollbar-thumb-hover-bgcolor:rgba(66, 70, 86, 0.6);
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -174,13 +180,16 @@ body[data-theme=bgdark] {
     --keywords-disable-color:#b4b3b3;
     --keywords-disable-bgcolor:#58596b;
     --linkbutton-disabled-fcolor:#ffffff99; //rgba(255,255,255,0.6)
-    --white-btn-bgcolor:#46485C;
-    --white-btn-hover-bgcolor:#404057;
+    --white-btn-bgcolor:#404057;
+    --white-btn-hover-bgcolor:#2C2D47;
     --white-btn-click-bgcolor:#32354D;
     --white-btn-disabled-bdcolor:#636477;
     --secondary-btn-click-bgcolor:#32354d;
     --progressbar-text-bgcolor:rgba(255,228,141,0.7);
     --datagrid-row-hover-bgcolor:#585A6D;
+    --combobox-all-select-bgcolor:#58596B;
+    --scrollbar-thumb-bgcolor:rgba(255, 255, 255, 0.12);
+    --scrollbar-thumb-hover-bgcolor:rgba(255, 255, 255, 0.18);
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -423,6 +432,7 @@ body[data-theme=bgdark] {
 @combobox-item-hover-font-color:var(--default-font-color);
 @combobox-item-select-bgcolor:var(--datagrid-row-select-bgcolor);
 @combobox-item-select-font-color:var(--default-font-color);
+@combobox-all-select-bgcolor:var(--combobox-all-select-bgcolor);
 
 @switchbox-on-bgcolor:var(--primary-color);
 @switchbox-off-bgcolor:var(--switchbox-off-bgcolor);
@@ -638,8 +648,8 @@ body[data-theme=bgdark] {
 
 @scrollbar-bgcolor:var(----primary-btn-click-bgcolor);
 
-@scrollbar-btn-bgcolor:rgba(66, 70, 86, 0.3);
-@scrollbar-btn-hover-bgcolor:rgba(66, 70, 86, 0.6);
+@scrollbar-btn-bgcolor:var(--scrollbar-thumb-bgcolor);
+@scrollbar-btn-hover-bgcolor:var(--scrollbar-thumb-hover-bgcolor);
 
 @mesager-popover-bgcolor:var(--input-bgcolor);
 

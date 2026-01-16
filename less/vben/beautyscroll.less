@@ -17,6 +17,10 @@ height可以改变下边滚动条的高度
     background-color: transparent;
     background-repeat: no-repeat;
 }
+[data-theme=bgdark] *::-webkit-scrollbar-button{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAeBAMAAAAhnga6AAAAIVBMVEVHcEz///////////////////////////////////////+PBM77AAAAC3RSTlMARigMe44xYx9Mnzg7tt8AAAFDSURBVHic3ZLPSsNAEIeH5hA9DmohNxklemxzML0qJDkLuSS3pnkAsXvxJvUFDBJ8grynM7MpSsmWBtFD55DAt8z+md8H8I+1IHqT/x3i6hDuEdcM4AQRg9e9PF7LN6I6pSuAObYFnn03RNKgnEu5ZzLeADZhkle3AMug7Jopg8+Z9yLcVGEmPGmCfKoHZEaOoDpPUgLAtisLZGDWcSY8SetceFm0nXDngmsj99GOqw4+7kOIv3cYdnw8tok0DIxV+eVvgjuKWti38eNWB3HPTk+s/CnrEI/f5csBPXM+EtC95nOquUF0o7nB/Hybm2ee5McKPLABosCjGuCrGbC5VjNgebE1I7YLLFnFjolkDdqN9AgK1T3AoHcPLBdbSReYY7+TclKJAbG3293gOxr8sVca/ejRY90JaLKjvYuPV+Ov6gsmn3qqp+1PEQAAAABJRU5ErkJggg==);
+}
+    
 // 纵向滚动条
 ::-webkit-scrollbar-button:vertical:decrement {
     width: 6px;
@@ -56,7 +60,7 @@ height可以改变下边滚动条的高度
 corner角落的意思，可以改变Y滚动条与X滚动条交叉的右下角的样式
 */
 ::-webkit-scrollbar-corner {
-    background-color: #ffffff;
+    background-color: @messager-window-bgcolor; //#ffffff
     border-radius: 1px;
 }
 

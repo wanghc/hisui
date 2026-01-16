@@ -22,14 +22,8 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		} */
 		/* 或分别给样式 */
 		.icon-ok {
-			color:#3047a9;
+			color:var(--primary-color);
 			margin-top: 6px;
-		}
-		body[data-theme=bgliteblue] .icon-ok{
-			color:#008fff;
-		}
-		body[data-theme=bgdrak] .icon-ok {
-			color:#008fff;
 		}
 	</style>
 </head>
@@ -49,7 +43,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			<option value="ND">North Dakota</option>
 			<option value="OH" selected>Ohio</option>
 			<option value="WY">Wyoming</option>
-		</select><a href='#' id="cboxbtn1" class="hisui-linkbutton" style="margin-left:10px ;">获取选择的值(getValues)</a>
+		</select><a href='#' id="cboxbtn1" class="hisui-linkbutton" style="margin-left:20px ;">获取选择的值(getValues)</a>
 		<pre class="prettyprint lang-html hide"><code>&lt;select id="stateBox" class="hisui-combobox" name="state" style="width:200px;" data-options="enterNullValueClear:false,onSelect:selectHandler,blurValidValue:true">
 	&lt;option value="AK">Alaska&lt;/option>
 	&lt;option value="CT">Connecticut&lt;/option>
@@ -67,7 +61,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <h3>二、通过配置项<code>rowStyle</code>生成带勾选框的多选下拉框</h3>
     <div class="demo-exp-code entry-content">
 	  	<select id="cbox" style="width:200px;">
-		</select><a href='#' id="cboxbtn" class="hisui-linkbutton" style="margin-left:10px ;">获取选择的值(getValues)</a><a href='#' id="cboxselbtn" class="hisui-linkbutton" style="margin-left:10px ;">选中所有(setValues)</a>
+		</select><a href='#' id="cboxbtn" class="hisui-linkbutton" style="margin-left:20px ;">获取选择的值(getValues)</a><a href='#' id="cboxselbtn" class="hisui-linkbutton" style="margin-left:20px ;">选中所有(setValues)</a>
 		<pre class="prettyprint lang-html hide"><code><style></style>&lt;select id="cbox" style="width:200px;">&lt;/select></code></pre>
 		<pre class="prettyprint lang-js hide">
 $(function(){
