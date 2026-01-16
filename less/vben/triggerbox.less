@@ -14,15 +14,6 @@
   border-radius: @input-border-radius;
   border-color: @input-border-color;
   background-color: @searchbox-bgcolor;
-  &.disabled{
-    border-color: @main-disabled-border-color;
-    background-color: @main-disabled-bgcolor;
-    .triggerbox-button{
-      background-color: transparent;
-      cursor: not-allowed;
-      color:@input-iconbtn-disabled-color;
-    }
-  }
   /*hover bgcolor*/
   &:hover{ 
     input,span>span{
@@ -37,6 +28,15 @@
   &:hover,&.triggerbox-hover{
     background-color: @input-active-bgcolor;
     border-color: @input-active-border-color;
+  }
+  &.disabled{
+    border-color: @main-disabled-border-color;
+    background-color: @main-disabled-bgcolor;
+    .triggerbox-button{
+      background-color: transparent;
+      cursor: not-allowed;
+      color:@input-iconbtn-disabled-color;
+    }
   }
   .triggerbox-text {
     font-size: @searchbox-font-size;
@@ -98,6 +98,10 @@
     font-size: @searchbox-font-size;
     color: #ccc;
   }
+}
+.triggerbox.disabled .triggerbox-text:active+span>span{
+      background-color: transparent;
+      color:@input-iconbtn-disabled-color;
 }
 .triggerbox-button-hover {
   opacity: 1.0;

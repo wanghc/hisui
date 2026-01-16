@@ -53,9 +53,9 @@ if (!defined('ACCESS_FROM_INDEX')) {
 						<input id="copy" name="copy" class="hisui-triggerbox textbox"
 							data-options="icon:'icon-copy-blue',handler:msg,plain:true" />
 					</td>
-					<td style="padding-left: 10px;font-size: 0;">
+					<td style="padding-left: 20px;font-size: 0;">
 						<a class="hisui-linkbutton" id="btn-disable">禁用</a>
-						<a class="hisui-linkbutton" id="btn-enable" style="margin-left: 10px;">启用</a>
+						<a class="hisui-linkbutton" id="btn-enable" style="margin-left: 20px;">启用</a>
 					</td>
 				</tr>
 			</table>

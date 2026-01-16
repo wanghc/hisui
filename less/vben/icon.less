@@ -70,7 +70,7 @@ tree-icon tree-file显示默认的文件图标
 	@var:~`@{name}.split(",").join(":before,.icon-")`;  //使用字符串插值。~避免编译,可去name双引号
 	/*在列上显示icon-xx时图标时,不显示图标,且不居中问题 2911539*/
 	@var2:~`@{name}.split(",").join(",.icon-")`;  //使用字符串插值。~避免编译,可去name双引号
-	.icon-@{var2}{text-align: center;background: none!important;}
+	.icon-@{var2}{text-align: center;background: none;}
 	.icon-@{var}:before{font-family: Mw_mifonts;content: "\f@{cntt}";} 
 }
 /*white icon*/
