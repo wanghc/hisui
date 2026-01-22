@@ -14,7 +14,7 @@
     // data-container='body' data-toggle='popover' data-placement='top' data-title='' data-content='' data-trigger='hover'
     var stepHtml = "<li class='vstep-step undone'></li>";
 	function _getStep(target){
-		var ind = getStepInd(target)-1;
+		var ind = getStepInd(target);
 		var status = $.data(target,'vstep');
 		var opts = status.options;
 		if (ind>0) return opts.items[ind-1];
