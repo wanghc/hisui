@@ -36,7 +36,7 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-01-17
-- :bug: `vstep`的getStep方法返回值错位问题
+- :bug: `vstep`的getStep方法返回值错位问题 [6616586]
 
 ## 2026-01-16
 - 夜间滚动条样式修改
