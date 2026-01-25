@@ -35,6 +35,7 @@ body {
     --checkbox-bgimg-v-url: url('images/vben/checkbox_lite_v_seablue.png');
     --checkbox-bgimg-url: url('images/vben/checkbox_seablue.png');
     --hstep-bgimg-url: url('images/vben/hstep_seablue.png');
+    --vstep-bgimg-url: url('images/vben/hstep_seablue.png');
     --messager-window-error-top-bgcolor:#FFEFEF;
     --messager-window-info-top-bgcolor:#E3E7FA;
     --messager-window-success-top-bgcolor:#EEFFE6;
@@ -62,6 +63,7 @@ body {
     --combobox-all-select-bgcolor:#f6f6f6;
     --scrollbar-thumb-bgcolor:rgba(66, 70, 86, 0.3);
     --scrollbar-thumb-hover-bgcolor:rgba(66, 70, 86, 0.6);
+    --calendar-selected-bgcolor:#CFD5F5;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -99,6 +101,7 @@ body[data-theme=bgliteblue] {
     --checkbox-bgimg-v-url: url('images/pure/checkbox_lite_v.png');
     --checkbox-bgimg-url: url('images/pure/checkbox.png');
     --hstep-bgimg-url: url('images/pure/hstep.png');
+    --vstep-bgimg-url: url('images/pure/hstep.png');
     --messager-window-error-top-bgcolor:#FFEFEF;
     --messager-window-info-top-bgcolor:#E6F1FF;
     --messager-window-success-top-bgcolor:#EEFFE6;
@@ -126,6 +129,7 @@ body[data-theme=bgliteblue] {
     --combobox-all-select-bgcolor:#f6f6f6;
     --scrollbar-thumb-bgcolor:rgba(66, 70, 86, 0.3);
     --scrollbar-thumb-hover-bgcolor:rgba(66, 70, 86, 0.6);
+    --calendar-selected-bgcolor:#d7e9ff;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -163,6 +167,7 @@ body[data-theme=bgdark] {
     --checkbox-bgimg-v-url: url('images/vben/checkbox_lite_v_dark.png');
     --checkbox-bgimg-url: url('images/vben/checkbox_dark.png');
     --hstep-bgimg-url: url('images/pure/hstep.png');
+    --vstep-bgimg-url: url('images/pure/hstep.png');
     --messager-window-error-top-bgcolor:#20243e;
     --messager-window-info-top-bgcolor:#20243e;
     --messager-window-success-top-bgcolor:#20243e;
@@ -190,6 +195,7 @@ body[data-theme=bgdark] {
     --combobox-all-select-bgcolor:#58596B;
     --scrollbar-thumb-bgcolor:rgba(255, 255, 255, 0.12);
     --scrollbar-thumb-hover-bgcolor:rgba(255, 255, 255, 0.18);
+    --calendar-selected-bgcolor:#2567B3
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -417,7 +423,7 @@ body[data-theme=bgdark] {
 @combo-input-line-height:30px;
 @combo-input-line-height-ie8:26px;
 @combo-row-line-height:24px;
-@combo-bgcolor:var(--body-bgcolor);
+@combo-bgcolor:var(--input-bgcolor);
 @combo-padding-left:@validatebox-padding-left;
 @combo-panel-border-color:@combo-border-color;
 
@@ -672,7 +678,9 @@ body[data-theme=bgdark] {
 @checkbox-fcolor: var(--default-font-color);
 
 @hstep-bgimg-url : var(--hstep-bgimg-url);
+@vstep-bgimg-url : var(--vstep-bgimg-url);
 @calendar-body-bgcolor: var(--input-bgcolor);
+@calendar-selected-bgcolor: var(--calendar-selected-bgcolor);
 /*variables-end*/
 body {
     font-family:"Microsoft Yahei",verdana,helvetica,arial,sans-serif;
@@ -734,7 +742,7 @@ input,textarea {
 #z-q-container{
     position: absolute;
     overflow: hidden;
-    background-color: @combo-bgcolor;
+    background-color: @body-bgcolor;
     border: 1px solid @combo-panel-border-color;
     z-index: 9000;
     box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
