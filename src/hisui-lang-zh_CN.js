@@ -114,7 +114,7 @@ if ($.fn.datebox){
 		var ch ='', newStr = '',special=false;
 		for(var i=0;i<s.length;i++){
 			ch = s.charAt(i);
-			if ('1234567890/-'.indexOf(ch)==-1){  //特殊字符
+			if ('1234567890/- :'.indexOf(ch)==-1){  //特殊字符 考虑空格与冒号 30/12/2026 00:00:00->
 				if (!special && i!=0 && i!=s.length-1) newStr +='-'
 				special = true;
 			}else{
