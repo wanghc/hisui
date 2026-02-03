@@ -89,6 +89,19 @@
             _1cf.tip = tip;
             _1d0(_1ce);
         }
+        if ((opts.position=="top" || opts.position=="bottom") && !opts.tipWidth){ // [6570113]宽度自适应
+            // 看[原dom]与左边或右边距离多少，然后设置宽度
+            var bw = parseInt($(window).width());
+            var tl = $(_1ce).offset();
+            var maxWidth = tip._outerWidth();
+            var srcLinkDomWidth = parseInt($(_1ce)._outerWidth());
+            if (tl.left<200){  // 非常靠右
+                maxWidth = parseInt(tl.left)*2 + srcLinkDomWidth - 10;
+            }else if (tl.left>(bw-200)){ // 非常靠左
+                maxWidth = (bw - parseInt(tl.left) - srcLinkDomWidth)*2 + srcLinkDomWidth - 10;
+            }
+            tip.css('maxWidth',maxWidth+"px");
+        }
         if (opts.tipWidth) tip.css('width',opts.tipWidth);
         tip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right").addClass("tooltip-" + opts.position);
         _1c8(_1ce);
