@@ -97,10 +97,11 @@
             var srcLinkDomWidth = parseInt($(_1ce)._outerWidth());
             if (tl.left<200){  // 非常靠右
                 maxWidth = parseInt(tl.left)*2 + srcLinkDomWidth - 10;
+                tip.css('maxWidth',maxWidth+"px");
             }else if (tl.left>(bw-200)){ // 非常靠左
                 maxWidth = (bw - parseInt(tl.left) - srcLinkDomWidth)*2 + srcLinkDomWidth - 10;
-            }
-            tip.css('maxWidth',maxWidth+"px");
+                tip.css('maxWidth',maxWidth+"px");
+            }            
         }
         if (opts.tipWidth) tip.css('width',opts.tipWidth);
         tip.removeClass("tooltip-top tooltip-bottom tooltip-left tooltip-right").addClass("tooltip-" + opts.position);
