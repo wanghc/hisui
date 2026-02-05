@@ -1,5 +1,4 @@
 .dateboxq {
-  
   background-image: url('@{images-path}/datebox_arrow_7E7E7E.png');
   background-repeat: no-repeat;
   background-position: right 8px center;
@@ -9,6 +8,19 @@
 }
 .dateboxq:hover,.dateboxq:focus {
   background-image: url('@{images-path}/datebox_arrow.png');
+}
+[data-theme="bgseablue"] {
+  .dateboxq:hover,.dateboxq:focus {
+    background-image: url('images/vben/datebox_arrow_3047A9.png');
+  }
+}
+[data-theme="bgdark"] {
+  .dateboxq {
+    background-image: url('images/vben/datebox_arrow_A1A3B3.png');
+  }
+  .dateboxq:hover,.dateboxq:focus {
+    background-image: url('@{images-path}/datebox_arrow.png');
+  }
 }
 /*disabled应该覆盖hover效果,移到:hover后面*/
 .dateboxq.disabled {
