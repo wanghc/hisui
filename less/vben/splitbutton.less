@@ -15,7 +15,7 @@
     color:@splitbutton-fcolor;
     border: 1px solid transparent;
     &:hover{
-      border: 1px solid #EDF6FF;
+      border: 1px solid transparent;
     }
     .l-btn-left{
       display: flex;
@@ -81,14 +81,17 @@
     }
   }
   &.l-btn-plain:active{
-    border:1px solid #b7d2ff;
+    border:1px solid transparent;
   }
   &:active{
     border:1px solid @linkbutton-blue-hover-bgcolor;
-    background-color: @linkbutton-blue-hover-bgcolor;
+    // background-color: @linkbutton-blue-hover-bgcolor;
+  }
+  &.l-btn-plain.l-btn-waiting .l-btn-left{
+    color:@btn-fcolor;
   }
   &.l-btn-waiting{
-    background-color: @linkbutton-blue-hover-bgcolor;
+    // background-color: @linkbutton-blue-hover-bgcolor;
   }
   &.m-btn {
     .l-btn-left{

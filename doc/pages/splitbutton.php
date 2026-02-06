@@ -17,7 +17,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<h3>透明色按钮</h3>
 	<div class="demo-exp-code entry-content"> 
     <div style="width: 533px;border: 1px solid transparent;padding: 1px" class="use-prettyprint lang-html">		
-        <a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-abort-order',onClick:function(){
+        <a href="javascript:void(0)" id="sb1" class="hisui-splitbutton" data-options="menu:'#mm2',iconCls:'icon-paper-adm-pen',onClick:function(){
             $.messager.popover({msg:'按钮自己',type:'info'});
         }">医嘱处理</a>   
         <div id="mm2" style="width:140px;" class="menu-no-icon">   
