@@ -36,6 +36,7 @@ body {
     --checkbox-bgimg-url: url('images/vben/checkbox_seablue.png');
     --hstep-bgimg-url: url('images/vben/hstep_seablue.png');
     --vstep-bgimg-url: url('images/vben/hstep_seablue.png');
+    --filebox-vline-url : url('images/pure/vline.png');
     --messager-window-error-top-bgcolor:#FFEFEF;
     --messager-window-info-top-bgcolor:#E3E7FA;
     --messager-window-success-top-bgcolor:#EEFFE6;
@@ -63,7 +64,7 @@ body {
     --combobox-all-select-bgcolor:#f6f6f6;
     --scrollbar-thumb-bgcolor:rgba(66, 70, 86, 0.3);
     --scrollbar-thumb-hover-bgcolor:rgba(66, 70, 86, 0.6);
-    --calendar-selected-bgcolor:#CFD5F5;
+    --calendar-selected-bgcolor:var(--datagrid-row-select-bgcolor);
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -102,6 +103,7 @@ body[data-theme=bgliteblue] {
     --checkbox-bgimg-url: url('images/pure/checkbox.png');
     --hstep-bgimg-url: url('images/pure/hstep.png');
     --vstep-bgimg-url: url('images/pure/hstep.png');
+    --filebox-vline-url : url('images/pure/vline.png');
     --messager-window-error-top-bgcolor:#FFEFEF;
     --messager-window-info-top-bgcolor:#E6F1FF;
     --messager-window-success-top-bgcolor:#EEFFE6;
@@ -129,7 +131,7 @@ body[data-theme=bgliteblue] {
     --combobox-all-select-bgcolor:#f6f6f6;
     --scrollbar-thumb-bgcolor:rgba(66, 70, 86, 0.3);
     --scrollbar-thumb-hover-bgcolor:rgba(66, 70, 86, 0.6);
-    --calendar-selected-bgcolor:#d7e9ff;
+    --calendar-selected-bgcolor:var(--datagrid-row-select-bgcolor);
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -168,6 +170,7 @@ body[data-theme=bgdark] {
     --checkbox-bgimg-url: url('images/vben/checkbox_dark.png');
     --hstep-bgimg-url: url('images/pure/hstep.png');
     --vstep-bgimg-url: url('images/pure/hstep.png');
+    --filebox-vline-url : url('images/vben/vline_dark.png');
     --messager-window-error-top-bgcolor:#20243e;
     --messager-window-info-top-bgcolor:#20243e;
     --messager-window-success-top-bgcolor:#20243e;
@@ -195,7 +198,7 @@ body[data-theme=bgdark] {
     --combobox-all-select-bgcolor:#58596B;
     --scrollbar-thumb-bgcolor:rgba(255, 255, 255, 0.12);
     --scrollbar-thumb-hover-bgcolor:rgba(255, 255, 255, 0.18);
-    --calendar-selected-bgcolor:#2567B3;
+    --calendar-selected-bgcolor:var(--datagrid-row-select-bgcolor);
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -640,7 +643,8 @@ body[data-theme=bgdark] {
 @splitbutton-main-item-active-bgcolor:var(--primary-btn-click-bgcolor);
 //==filebox
 // @filebox-border-color:var(--menu-border-color); //#40a2de;
-
+@filebox-disabled-text-fcolor:#B4B3B3;
+@filebox-vline-url: var(--filebox-vline-url);
 //tree
 @tree-border-color:#E5E5E5;
 @tree-node-bgcolor:#E5E5E5;

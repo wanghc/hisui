@@ -58,14 +58,14 @@
     &.l-btn-disabled{
       .l-btn-left{
         .l-btn-text{
-          color:#939393;
+          color:@filebox-disabled-text-fcolor;
         }
       }
     }
 
   }
   .filebox-button-right{
-    right: 0;
+    right: 2px;
     top: -1px;
   }
   .filebox-button-left{
@@ -99,7 +99,8 @@
             padding: 8px 6px !important;
             margin-left: 0px !important;
             background-image: none !important;
-            width: 16px!important;
+            width: 14px!important;
+            height: 14px!important;
           }
         }
       }
@@ -125,14 +126,14 @@
           background-repeat: no-repeat!important;
           padding-right: 2px;
           background-size: 1px 16px!important;
-          background-image: url(../css/images/pure/vline.png)!important;
+          background-image: @filebox-vline-url;
           background-position: 24px!important;
           width: 24px;
         }
       }
       &.l-btn-disabled{
         .l-btn-text{
-          background: #f1f1f1;
+          background: @input-disabled-bgcolor;
         }
         .l-btn-icon {
           background-color: transparent;
@@ -153,4 +154,10 @@
   left: 0;
   top: 0;
   z-index: 10;
+}
+.filebox .icon-folder:before{
+  font-size: 14px;
+}
+[data-theme=bgdark] .filebox .icon-folder::before{
+  color:#A1A3B3;
 }

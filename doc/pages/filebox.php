@@ -19,7 +19,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		td.label {
 			text-align: right;
 			padding-right: 10px;
-			color: #191919;
 		}
 	</style>
 	<h2>文件选择框</h2>
@@ -56,10 +55,10 @@ if (!defined('ACCESS_FROM_INDEX')) {
 						<input id='f10' class="hisui-filebox" name="file10" disabled='true'
 							data-options="width:300,buttonText:'选择',plain:true" />
 					</td>
-					<td style="padding-left: 10px;">
+					<td style="padding-left: 20px;">
 						<a href="#" onclick="$('#f10').filebox('enable')" class="hisui-linkbutton">启用</a>
 					</td>
-					<td style="padding-left: 10px;">
+					<td style="padding-left: 20px;">
 						<a href="#" onclick="$('#f10').filebox('disable')" class="hisui-linkbutton">禁用</a>
 					</td>
 				</tr>
