@@ -135,6 +135,13 @@
     border-radius: 4px;
     background-color: @menutree-blueroot-bgcolor;
     overflow: auto;
+    &.menutree-tree-accordion{
+      overflow-y: hidden;
+
+      .menutree-tree.tree>li>ul{
+        overflow-y: auto;
+      }
+    }
     .menutree-tree.tree {
       border: 0px solid @tree-border-color;
 

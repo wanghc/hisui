@@ -6,28 +6,31 @@
 @menutree-blueroot-node-hover-bgcolor:transparent;  
 /**蓝色标题 灰色根节点**/
 @menutree-title-bgcolor:@panel-header-bgcolor;
-@menutree-root-bgcolor:@window-bgcolor;
-@menutree-root-hover-bgcolor:@window-bgcolor;
-@menutree-node-hover-bgcolor:#e4f0fe;;
-@menutree-min-root-hover-bgcolor:@window-bgcolor;
-@menutree-node-selected-bgcolor:#d7e9ff;
-@menutree-min-root-selected-bgcolor:@window-bgcolor;
-@menutree-root-selected-bgcolor:@window-bgcolor;
-@menutree-wrap-bgcolor:@window-bgcolor;
-@menutree-min-wrap-bgcolor:@window-bgcolor;
-@menutree-root-color:#000000;
-@menutree-node-color:@main-font-color;
+@menutree-root-bgcolor:var(--menutree-bgcolor);
+@menutree-root-hover-bgcolor:var(--menutree-bgcolor);
+@menutree-node-hover-bgcolor:var(--menutree-node-hover-bgcolor);
+@menutree-min-root-hover-bgcolor:var(--menutree-bgcolor);
+@menutree-node-selected-bgcolor:var(--menutree-node-select-bgcolor);
+@menutree-min-root-selected-bgcolor:var(--menutree-bgcolor);
+@menutree-root-selected-bgcolor:var(--menutree-bgcolor);
+@menutree-wrap-bgcolor:var(--menutree-bgcolor);
+@menutree-tree-wrap-bgcolor:var(--menutree-bgcolor);
+@menutree-min-wrap-bgcolor:var(--menutree-bgcolor);
+@menutree-root-color:var(--menutree-root-font-color);
+@menutree-node-color:var(--menutree-node-font-color);
+@menutree-searcher-bgcolor:var(--menutree-searcher-bgcolor);
+@menutree-icon-color:var(--menutree-icon-color);
 
 /*子树*/
-@menutree-sub-wrap-bgcolor:#ffffff;
-@menutree-sub-root-bgcolor:#ffffff;
+@menutree-sub-wrap-bgcolor:var(--menutree-sub-bgcolor);
+@menutree-sub-root-bgcolor:transparent;
 @menutree-sub-root-hover-bgcolor:@menutree-sub-root-bgcolor;
 @menutree-sub-root-selected-bgcolor:@menutree-sub-root-bgcolor;
-@menutree-sub-node-bgcolor:#ffffff;
+@menutree-sub-node-bgcolor:transparent;
 @menutree-sub-node-hover-bgcolor:@menutree-node-hover-bgcolor;
 @menutree-sub-node-selected-bgcolor:@menutree-node-selected-bgcolor;
 
-@menutree-collapse-wrap-bgcolor:@window-bgcolor;
+@menutree-collapse-wrap-bgcolor:var(--menutree-bgcolor);
 
 
 
@@ -90,7 +93,7 @@
     line-height: 44px;
     background-color: @menutree-collapse-wrap-bgcolor;
     border: 0;
-    border-radius: 0 0 6px 6px ;
+    border-radius: 0 ;
 
     .menutree-tree-title{  //放到收起按钮的左边
       display: block;
@@ -140,60 +143,99 @@
 
   .menutree-searchbox-wrap {
     margin-bottom: 10px;
+    background-color: @menutree-searcher-bgcolor;
     .searchbox-f{
       border-color: transparent;
     }
     .searchbox{
+      border: 0;
+      border-radius: 0;
+      position: relative;
       border-color: transparent;
-      .searchbox-button{
-
+      &>span{
+        position: absolute;
+        left: 0;
+        top:0;
       }
-      .searchbox-button.searchbox-button-hover{
-
+      &>.searchbox-text{
+        margin-left: 30px;
       }
     }
   }
 
   .menutree-tree-wrap {
     border: 0px solid @panel-header-bdcolor;
-    border-radius: 6px;
-    background-color: @window-bgcolor;
+    border-radius: 0px;
+    background-color: @menutree-tree-wrap-bgcolor;
     overflow: auto;
+    &.menutree-tree-accordion{
+      overflow-y: hidden;
+
+      .menutree-tree.tree>li>ul{
+        overflow-y: auto;
+      }
+    }
     .menutree-tree.tree {
       border: 0px solid @tree-border-color;
 
       &>li {
         &>.tree-node { /*第一层节点 根节点*/
           height:44px;
-          background-color:@window-bgcolor;
+          background-color:@menutree-tree-wrap-bgcolor;
           line-height: 44px;
           position: relative;
-          font-weight: bold;
+          font-weight: normal;
           color: @menutree-root-color;
           position: relative;
-          border-bottom: 1px solid @panel-header-bdcolor;
+          border-bottom: 0px solid @panel-header-bdcolor;
+
+          .tree-icon{
+            color: @menutree-icon-color;
+          }
 
           .tree-hit {
             position: absolute;
-            height: 16px;
-            width: 16px;
+            height: 28px;
+            width: 28px;
             top: 50%;
-            margin-top: -8px;
-            right: 10px;
+            margin-top: -14px;
+            right: 9px;
+            font-family: Mw_mifonts;
+            line-height: 28px;
+            text-align: center;
+            color:var(--menutree-btn-color);
+            font-weight: 400;
 
             &.tree-collapsed {
-              background: @menutree-gray-thin-arrow-down;
+              background: transparent;
+            }
+            &.tree-collapsed::before{
+              content: "\f624";
+              display: inline-block;
+              font-size: 16px;
+              text-rendering: auto;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
             }
 
             &.tree-expanded {
-              background: @menutree-gray-thin-arrow-up;
+              background: transparent;
+            }
+            &.tree-expanded::before{
+              transform: rotate(180deg);
+              content: "\f624";
+              display: inline-block;
+              font-size: 16px;
+              text-rendering: auto;
+              -webkit-font-smoothing: antialiased;
+              -moz-osx-font-smoothing: grayscale;
             }
 
             &:hover {
-              background-color: rgba(255, 255, 255, 0.3);
-              -moz-border-radius: 2px;
-              -webkit-border-radius: 2px;
-              border-radius: 2px;
+              background-color: @menutree-node-hover-bgcolor;
+              -moz-border-radius: 6px;
+              -webkit-border-radius: 6px;
+              border-radius: 6px;
             }
           }
 
@@ -204,7 +246,7 @@
           .tree-title {
             height: 44px;
             line-height: 44px;
-            color: #000000;
+            color: @menutree-root-color;
             padding: 0 34px 0 15px;
             font-size: 16px;
           }
@@ -219,7 +261,7 @@
           border-bottom: 1px solid @panel-header-bdcolor;
 
           .tree-node {
-            padding-left: 1px;
+            padding-left: 12px;
             height: 38px;
             line-height: 38px;
             position: relative;
@@ -229,6 +271,7 @@
               background-color:@menutree-node-hover-bgcolor;
               .tree-title {
                 background: transparent;
+                color: @menutree-root-color;
               }
             }
 
@@ -236,26 +279,48 @@
               background-color: @menutree-node-selected-bgcolor;
               .tree-title {
                 background: transparent;
+                color: @menutree-root-color;
               }
             }
 
             .tree-hit {
               width: 16px;
-              height: 16px;
-              margin-top: 9px;
+              height: 38px;
+              line-height: 38px;
+              margin: 0;
+              font-family: Mw_mifonts;
+              text-align: center;
+              color:var(--menutree-btn-color);
+              font-weight: 400;
 
               &.tree-collapsed {
-                background: @menutree-gray-little-arrow-right;
+                background: transparent;
                 &.tree-collapsed-hover {
-                  background: @menutree-blue-little-arrow-right;
+                  background: transparent;
                 }
               }
-  
+              &.tree-collapsed::before{
+                content: "\f476";
+                transform: rotate(270deg);
+                display: inline-block;
+                font-size: 16px;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+              }
               &.tree-expanded {
-                background: @menutree-gray-little-arrow-down;
+                background: transparent;
                 &.tree-expanded-hover {
-                  background: @menutree-blue-little-arrow-down;
+                  background: transparent;
                 }
+              }
+              &.tree-expanded::before{
+                content: "\f476";
+                display: inline-block;
+                font-size: 16px;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
               }
 
             }
@@ -263,17 +328,18 @@
             &.tree-node-selected,
             &.tree-node-hover {
               .tree-hit.tree-collapsed {
-                background: @menutree-blue-little-arrow-right;
+                background: transparent;
               }
               .tree-hit.tree-expanded {
-                background: @menutree-blue-little-arrow-down;
+                background: transparent;
               }
             }
 
             .tree-indent {
+              margin:0;
               width: 10px;
               &.tree-indent-hit{
-                width: 15px;
+                width: 16px;
               }
             }
 
@@ -289,7 +355,7 @@
             .tree-title {
               height: 38px;
               line-height: 38px;
-              color: @main-font-color;
+              color: @menutree-node-color;
               padding: 0 10px 0 0;
             }
           }
@@ -297,6 +363,18 @@
         &:last-child>ul{
           border: 0;
         }
+      }
+
+      .menutree-li-level1>.tree-node.menutree-child-selected,
+      .menutree-li-level2>.tree-node.menutree-child-selected{
+        font-weight: 700;
+        &>.tree-title{
+          color: @menutree-root-color;
+        }
+      }
+      .menutree-li-level1>.tree-node:hover,
+      .menutree-li-level2>.tree-node:hover{
+        font-weight: 700;
       }
 
       .menutree-tip-count {
@@ -331,18 +409,25 @@
       }
       
     }
-    .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
-      padding-left: 4px;
-      margin: 0 15px;
+    .menutree-tree.menutree-tree-nox.tree>li>ul {
+      .menutree-li-level2>.tree-node:hover{
+        font-weight: normal;
+      }
 
-      .tree-indent.tree-indent-hit{
-        width: 5px;;
+      .tree-node{ 
+        padding-left: 10px;
+        margin: 0 15px;
+
+        .tree-indent.tree-indent-hit{
+          width: 5px;;
+        }
       }
     }
 
     &.menutree-tree-norootcollapse{  //根节点不允许折叠的
       .menutree-tree.tree { //
         &>li>.tree-node {
+          font-weight: 700;
           .tree-hit.tree-expanded {
             display: none;
           }
@@ -351,12 +436,12 @@
     }
 
     &.menutree-tree-collapsible{
-      border-radius: 6px 6px 0 0;  //可折叠 折叠在底部  此处底部不需要圆角
+      border-radius:  0;  //可折叠 折叠在底部  此处底部不需要圆角
       .menutree-tree.tree>li>ul .tree-node{ 
-        padding-left: 1px;
+        padding-left: 12px;
       }
       .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
-        padding-left: 4px;
+        padding-left: 10px;
       }
       .menutree-tree.tree>li>.tree-node{
         .tree-icon{
@@ -364,11 +449,11 @@
           height: 44px;
           margin: 0;
           width: 16px;
-          margin-left: 10px;
+          margin-left: 15px;
           font-weight: normal;
         }
         .tree-title{
-          padding-left: 6px;
+          padding-left: 9px;
         }
       } 
     }
@@ -408,8 +493,8 @@
     .menutree-searchbox-proxy {
       width: 44px;
       height: 32px;
-      border-radius: 6px;
-      background-color: #ffffff;
+      border-radius: 0px;
+      background-color: transparent;
       cursor: pointer;
       text-align: center;
       color: #666;
@@ -457,6 +542,18 @@
 
           .tree-title {
             display: none;
+          }
+        }
+        .tree-node { 
+          &.tree-node-hover {
+            .tree-icon.tree-folder{
+              color: @menutree-root-color;
+            }
+          }
+          &.tree-node-selected {
+            .tree-icon.tree-folder{
+              color: @menutree-root-color;
+            }
           }
         }
         &.menutree-root-hover>.tree-node { 
@@ -572,8 +669,9 @@
 /*折叠后 显示的子树*/
 .menutree.menutree-sp{
   box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
   &>.panel-body {
-    border-radius: 0;
+    border-radius: 6px;
     background-color: transparent;
     overflow: auto;
   }
@@ -607,7 +705,7 @@
               height: 44px;
               line-height: 44px;
               color: @menutree-root-color;
-              padding: 0 34px 0 10px;
+              padding: 0 0px 0 15px;
             }
   
             &.tree-node-hover {
@@ -620,6 +718,10 @@
           &>ul {
             background-color: transparent;
             border: 0px;
+
+            .menutree-li-level2>.tree-node:hover{
+              font-weight: normal;
+            }
   
             .tree-indent {
               width: 10px;
@@ -635,16 +737,17 @@
             }
 
             .tree-node {
-              padding-left: 4px;
+              padding-left: 15px;
               height: 38px;
               line-height: 38px;
               position: relative;
-              margin: 0 5px;
+              margin: 0 15px;
   
               &.tree-node-hover {
                 background-color:@menutree-sub-node-hover-bgcolor;                
                 .tree-title {
                   background: transparent;
+                  color: @menutree-root-color;
                 }
               }
   
@@ -652,6 +755,7 @@
                 background-color:@menutree-sub-node-selected-bgcolor;
                 .tree-title {
                   background: transparent;
+                  color: @menutree-root-color;
                 }
               }
               .tree-title {
@@ -672,6 +776,41 @@
         }
       }
   
+  }
+
+}
+
+.panel .panel-body.panel-body-noheader.panel-body-noborder.menutree-wrap{
+  border-radius: 0;
+  background-color: @menutree-wrap-bgcolor;
+}
+.menutree.menutree-sp.panel .panel-body.panel-body-noheader.panel-body-noborder.menutree-wrap {
+  border-radius: 6px;
+  background-color: @menutree-sub-wrap-bgcolor;
+  padding-bottom: 10px;
+}
+.searchbox.menutree-searchbox-searchbox{
+  border: 0;
+  height: 32px!important;
+
+  .searchbox-text{
+    line-height: 32px;
+    padding-left: 0;
+    &:focus-visible{
+      outline: none;
+    }
+  }
+  .searchbox-button{
+    line-height: 32px;
+  }
+
+  input:hover {
+    background-color: transparent;
+  }
+
+  &:hover .searchbox-button {
+    background-color: transparent;
+    color:var(--input-iconbtn-color);
   }
 
 }

@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-02-06
+- iHOS风格`menutree`样式修改
+- `menutree`增加支持accordion配置项
+
 ## 2026-02-05
 - iHOS风格`lookup`样式修改 [6550060]
 
