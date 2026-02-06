@@ -72,9 +72,9 @@ if ($.fn.calendar){
 	$.fn.calendar.defaults.months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 }
 if ($.fn.datebox){
-	$.fn.datebox.defaults.currentText = '<span style="color:'+$.hisui.getStyleCodeConfigValue("dateTodayColor")+';font-size:12px;">Aujourd\'hui</span>';
-	$.fn.datebox.defaults.closeText = '<span style="color:'+$.hisui.getStyleCodeConfigValue("dateCloseColor")+';font-size:12px;">Fermer</span>';
-	$.fn.datebox.defaults.okText = '<span style="color:'+$.hisui.getStyleCodeConfigValue("dateOkColor")+';font-size:12px;">OK</span>';
+	$.fn.datebox.defaults.currentText = '<span class="date-today-btn">Aujourd\'hui</span>';
+	$.fn.datebox.defaults.closeText = '<span class="date-close-btn">Fermer</span>';
+	$.fn.datebox.defaults.okText = '<span class="date-ok-btn">Ok</span>';
 	$.fn.datebox.defaults.missingMessage = 'Ce champ est obligatoire';
 	$.fn.datebox.defaults.rules.datebox.message = 'Date invalide, format correct : 2019-01-06';
 	$.fn.datebox.defaults.rules.minMaxDate.messageMax = 'La date doit être inférieure ou égale à {1}';

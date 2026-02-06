@@ -59,9 +59,9 @@ if ($.fn.calendar){
 	$.fn.calendar.defaults.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 }
 if ($.fn.datebox){
-	$.fn.datebox.defaults.currentText = '<span style="color:#449edd;font-size:12px;">Today</span>';
+	$.fn.datebox.defaults.currentText = '<span class="date-today-btn">Today</span>';
 	$.fn.datebox.defaults.closeText = 'Close';
-	$.fn.datebox.defaults.okText = '<span style="color:#ff2600;font-size:12px;">Ok</span>';
+	$.fn.datebox.defaults.okText = '<span class="date-ok-btn">Ok</span>';
 	$.fn.datebox.defaults.missingMessage = 'This field is required.';
 	$.fn.datebox.defaults.rules.datebox.message = 'Illegal date, Correct format:2019-01-06';
 	$.fn.datebox.defaults.rules.minMaxDate.messageMax = 'Date must be less than{1}';

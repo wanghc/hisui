@@ -17,7 +17,11 @@
 .calendar table th {
   font-size: 12px;
   color: @main-font-color;
-  font-weight: r;
+  font-weight: normal;
+  &.calendar-disabled{
+    opacity: 1;
+    color:#B4B3B3;
+  }
 }
 .calendar-noborder {
   border: 0;
@@ -197,7 +201,7 @@
   padding: 0;
 }
 .calendar-selected {
-  background-color: #d7e9ff;
+  background-color: @calendar-selected-bgcolor;
   color: #000000;
   //border: 1px solid #ffab3f;
   padding: 0;

@@ -72,10 +72,9 @@ if ($.fn.calendar){
 	$.fn.calendar.defaults.months = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
 }
 if ($.fn.datebox){;
-	$.fn.datebox.defaults.currentText = '<span style="color:'+$.hisui.getStyleCodeConfigValue("dateTodayColor")+';font-size:12px;">今天</span>';
-	$.fn.datebox.defaults.closeText = '<span style="color:'+$.hisui.getStyleCodeConfigValue("dateCloseColor")+';font-size:12px;">關閉</span>';
-	$.fn.datebox.defaults.okText = '<span style="color:'+$.hisui.getStyleCodeConfigValue("dateOkColor")+';font-size:12px;">確定</span>';
-
+	$.fn.datebox.defaults.currentText = '<span class="date-today-btn">今天</span>';
+	$.fn.datebox.defaults.closeText = '<span class="date-close-btn">關閉</span>';
+	$.fn.datebox.defaults.okText = '<span class="date-ok-btn">確定</span>';
 	$.fn.datebox.defaults.missingMessage = '該輸入項為必輸項';
 	$.fn.datebox.defaults.rules.datebox.message = '非法日期,正確格式:2019-01-06';
 	$.fn.datebox.defaults.rules.minMaxDate.messageMax = '日期必須小於或等於{1}';

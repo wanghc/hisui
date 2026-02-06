@@ -195,7 +195,7 @@ body[data-theme=bgdark] {
     --combobox-all-select-bgcolor:#58596B;
     --scrollbar-thumb-bgcolor:rgba(255, 255, 255, 0.12);
     --scrollbar-thumb-hover-bgcolor:rgba(255, 255, 255, 0.18);
-    --calendar-selected-bgcolor:#2567B3
+    --calendar-selected-bgcolor:#2567B3;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -451,7 +451,9 @@ body[data-theme=bgdark] {
 @datebox-button-font-size:12px;
 @datebox-button-bgcolor:var(--input-bgcolor);
 @datebox-button-font-color:#444;
-
+@datebox-today-button-fcolor:var(--primary-color);
+@datebox-close-button-fcolor:#939393;
+@datebox-ok-button-fcolor:#FC494F;
 
 //== accordion
 @accordion-header-bgcolor:var(--panel-header-bgcolor);
@@ -501,7 +503,7 @@ body[data-theme=bgdark] {
 /* 二级页签*/
 @tabs-keywords-color: @btn-fcolor;
 @tabs-keywords-hover-color:var(--primary-color);
-@tabs-keywords-selected-bgcolor: var(--primary-color);
+@tabs-keywords-selected-bgcolor: transparent;
 @tabs-keywords-selected-font-color:@main-font-color;
 @tabs-keywords-hover-bgcolor:var(--secondary-btn-hover-bgcolor);
 /* 文字页签*/
@@ -734,6 +736,9 @@ a{
 }
 
 /*chrome默认了outline*/
+input:focus-visible{
+    outline: none;
+}
 input,textarea {
     outline-width: 0;
     background-color: @input-bgcolor;

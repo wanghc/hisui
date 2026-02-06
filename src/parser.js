@@ -277,15 +277,6 @@
             datagridRowNumberHeaderTitle:{
                 "pure":function(){return $.fn.datagrid.defaults.nocol;},"vben":function(){return $.fn.datagrid.defaults.nocol;}, "default":''
             },
-            dateTodayColor:{
-                default:"#449edd",pure:"#008FFF","vben":"#008FFF"
-            },
-            dateCloseColor:{
-                default: "#ff2600",pure:"#939393","vben":"#939393"
-            },
-            dateOkColor:{
-                default: "#ff2600"
-            },
             inputHeight:{
                 default: 30,pure:32,vben:32
             },
