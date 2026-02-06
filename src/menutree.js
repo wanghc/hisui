@@ -6,7 +6,7 @@
 
     function create(ele){
 
-        if($.hisui.getHisuiStyle()=='pure'){
+        if($.hisui.getHisuiStyle()=='pure' || $.hisui.getHisuiStyle()=='vben'){
             var p=$('<div class="menutree-wrap"><div class="menutree-searchbox-wrap"><div class="menutree-searchbox-proxy"></div></div><div class="menutree-tree-wrap"></div><div class="menutree-collapse-wrap"></div></div>').insertAfter(ele);
         }else{
             var p=$('<div class="menutree-wrap"><div class="menutree-collapse-wrap"></div><div class="menutree-searchbox-wrap"></div><div class="menutree-tree-wrap"></div></div>').insertAfter(ele);
@@ -104,7 +104,7 @@
         if(s.length>0) s.searchbox('resize',opts.width);
         var treeHeight=opts.height-(tw.offset().top-tw.parent().offset().top);
 
-        if($.hisui.getHisuiStyle()=='pure' && opts.collapsible){
+        if(($.hisui.getHisuiStyle()=='pure' || $.hisui.getHisuiStyle()=='vben' )&& opts.collapsible){
             treeHeight=treeHeight-cw.outerHeight();
         }
         tw._outerHeight(treeHeight);
@@ -144,7 +144,7 @@
         }
 
         var styleCode=$.hisui.getHisuiStyle();
-        if (styleCode=='pure' || styleCode=='lite' || styleCode=='lightblue') { //纯净版title在折叠处  极简 浅蓝也在折叠处
+        if (styleCode=='pure' || styleCode=='lite' || styleCode=='lightblue' || styleCode=='vben') { //纯净版title在折叠处  极简 浅蓝也在折叠处
             if(opts.title) {
                 var tt=cw.find('.menutree-tree-title');
                 cw.addClass('menutree-collapse-wrap-withtitle');
@@ -198,7 +198,7 @@
                     var qChanged=(state._q!=q);
                     state._q=q;
 
-                    if(q && opts.expandAllOnSearch){ //搜索时展开所有
+                    if(q && opts.expandAllOnSearch && !opts.accordion){ //搜索时展开所有   手风琴模式不能展开所有
                         t.tree('expandAll');
                     }else if(!q && opts.collapseAllOnNoSearch){
                         t.tree('collapseAll');
@@ -207,8 +207,10 @@
                 }
 
             },
-            prompt:opts.prompt
+            prompt:opts.prompt,
+            height:$.hisui.getHisuiStyle()=='vben'?32:$.fn.searchbox.defaults.height
         })
+        s.next('.searchbox').addClass('menutree-searchbox-searchbox');
 
         if(opts.searchable){
             sw.removeClass('menutree-hidden');
@@ -252,6 +254,24 @@
         
     }
 
+    function setTreeAccordion($tree){
+        var rootHeight=0;
+        $tree.find('.menutree-li-level1>.tree-node').each(function(){
+            rootHeight+=$(this).outerHeight();
+        })
+        var parentHeight=$tree.closest('.menutree-tree-wrap').height();
+        
+        $tree.find('.menutree-li-level1>ul').each(function(){
+            $(this).outerHeight(parentHeight-rootHeight);
+        })
+
+        $tree.closest('.menutree-tree-wrap').addClass('menutree-tree-accordion')
+
+
+
+
+    }
+
     function setTree(ele){
         var state=$.data(ele, "menutree")
         var opts = state.options;
@@ -279,6 +299,11 @@
                                 bros=roots;
                             }
 
+                            $.each(bros,function(i,o){
+                                if(o.id!=node.id && o.state=='open') t.tree('collapse',o.target);
+                            })
+                        }else if(opts.accordion && isRoot && node.state=='closed'){
+                            var bros=roots;
                             $.each(bros,function(i,o){
                                 if(o.id!=node.id && o.state=='open') t.tree('collapse',o.target);
                             })
@@ -311,6 +336,16 @@
                             t.tree('collapse',o.target);
                         }
                     })
+                }else if(opts.accordion){
+                    var p=t.tree('getParent',node.target),bros=null;
+                    if(!p){
+                        bros=t.tree('getRoots');
+                        $.each(bros,function(i,o){
+                            if(o.id!=node.id && o.state=='open' && !(opts.expandAllOnSearch && state._q)) {  // 搜索展开所有且在搜索 不关闭
+                                t.tree('collapse',o.target);
+                            }
+                        })
+                    }
                 }
 
             },onBeforeCollapse:function(node){
@@ -327,11 +362,26 @@
                 opts.onLoadSuccess.call(ele,node,data);
                 addTreeLiCls(t)  //为树各级节点的li元素增加样式类
                 //setTreeDataState(data,!node,opts.onlyOneExpanded,opts.rootCollapsible);
+                if(opts.accordion){
+                    setTreeAccordion(t);
+                }
             },loadFilter:function(data,par){
                 var tdata=opts.loadFilter.call(ele,data,par);
-                setTreeDataState(tdata,!par,opts.onlyOneExpanded,opts.rootCollapsible);
+                setTreeDataState(tdata,!par,opts.onlyOneExpanded,opts.rootCollapsible,opts.accordion);
                 return tdata;
             },
+            onSelect:function(node){
+                if (t.tree('isLeaf',node.target)) {
+                    t.find('.menutree-child-selected').removeClass('menutree-child-selected');
+
+                    var tempNode=$(node.target).parent().parent().prev('.tree-node');
+                    while(tempNode.length>0) {
+                        tempNode.addClass('menutree-child-selected');
+                        tempNode=tempNode.parent().parent().prev('.tree-node');
+                    }
+                }
+                opts.onSelect.call(t[0],node);
+            }
         })
         t.tree(treeOpts);
 
@@ -460,7 +510,7 @@
 
 
 
-    function setTreeDataState(data,isRoot,onlyOneExpanded,rootCollapsible){
+    function setTreeDataState(data,isRoot,onlyOneExpanded,rootCollapsible,accordion){
         var flag=false;
         for (var i=0;i<data.length;i++) {
             var item=data[i];
@@ -469,7 +519,7 @@
                     if(rootCollapsible) { //根节点可折叠情况下 
                         if(item.state!='closed'){
                             if(flag) {
-                                if(onlyOneExpanded) item.state='closed';  //只能一个展开
+                                if(onlyOneExpanded || accordion) item.state='closed';  //只能一个展开
                             }else{
                                 flag=true;
                             }
@@ -770,7 +820,7 @@
             var hisuiStyle=$.hisui.getHisuiStyle();
 
             if (state.options.collapsible && !state.options.title) {  //如果是可折叠的
-                if(hisuiStyle!='lite' && hisuiStyle!='lightblue' && hisuiStyle!='pure') {  //炫彩的样式才需要强制默认标题
+                if(hisuiStyle!='lite' && hisuiStyle!='lightblue' && hisuiStyle!='pure' && hisuiStyle!='vben') {  //炫彩的样式才需要强制默认标题
                     state.options.title='导航菜单';
                 }
                 
@@ -823,6 +873,7 @@
         ,searchFields:''  //除text字段外 用于查询过滤的字段
         ,expandAllOnSearch:true  //搜索时是否展开所有
         ,collapseAllOnNoSearch:true  //不搜索时是否折叠所有
+        ,accordion:false //是否是手风琴 
         ,onMenuClick:function(node){ //菜单点击事件
 
         },onMenuGroupClick:function(node){ //菜单组点击事件

@@ -159,6 +159,13 @@
     border-radius: 6px;
     background-color: #f1f7fe;
     overflow: auto;
+    &.menutree-tree-accordion{
+      overflow-y: hidden;
+
+      .menutree-tree.tree>li>ul{
+        overflow-y: auto;
+      }
+    }
     .menutree-tree.tree {
       border: 0px solid @tree-border-color;
 
@@ -219,7 +226,7 @@
           border-bottom: 1px solid @panel-header-bdcolor;
 
           .tree-node {
-            padding-left: 1px;
+            padding-left: 12px;
             height: 38px;
             line-height: 38px;
             position: relative;
@@ -242,7 +249,9 @@
             .tree-hit {
               width: 16px;
               height: 16px;
+	      margin: 0;
               margin-top: 9px;
+		
 
               &.tree-collapsed {
                 background: @menutree-gray-little-arrow-right;
@@ -271,9 +280,10 @@
             }
 
             .tree-indent {
+              margin:0;
               width: 10px;
               &.tree-indent-hit{
-                width: 15px;
+                width: 16px;
               }
             }
 
@@ -332,7 +342,7 @@
       
     }
     .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
-      padding-left: 4px;
+      padding-left: 10px;
       margin: 0 15px;
 
       .tree-indent.tree-indent-hit{
@@ -353,10 +363,10 @@
     &.menutree-tree-collapsible{
       border-radius: 6px 6px 0 0;  //可折叠 折叠在底部  此处底部不需要圆角
       .menutree-tree.tree>li>ul .tree-node{ 
-        padding-left: 1px;
+        padding-left: 12px;
       }
       .menutree-tree.menutree-tree-nox.tree>li>ul .tree-node{ 
-        padding-left: 4px;
+        padding-left: 10px;
       }
       .menutree-tree.tree>li>.tree-node{
         .tree-icon{
@@ -364,11 +374,11 @@
           height: 44px;
           margin: 0;
           width: 16px;
-          margin-left: 10px;
+          margin-left: 15px;
           font-weight: normal;
         }
         .tree-title{
-          padding-left: 6px;
+          padding-left: 9px;
         }
       } 
     }
@@ -607,7 +617,7 @@
               height: 44px;
               line-height: 44px;
               color: @menutree-root-color;
-              padding: 0 34px 0 10px;
+              padding: 0 0px 0 15px;
             }
   
             &.tree-node-hover {
@@ -635,7 +645,7 @@
             }
 
             .tree-node {
-              padding-left: 4px;
+              padding-left: 9px;
               height: 38px;
               line-height: 38px;
               position: relative;
