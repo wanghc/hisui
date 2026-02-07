@@ -83,8 +83,12 @@
   &.l-btn-plain:active{
     border:1px solid transparent;
   }
+  &.s-btn.l-btn.s-btn-active{
+    border-color:@linkbutton-focus-bgcolor;
+  }
   &:active{
-    border:1px solid @linkbutton-blue-hover-bgcolor;
+    border:1px solid @linkbutton-focus-bgcolor;
+    background-color: @linkbutton-focus-bgcolor;
     // background-color: @linkbutton-blue-hover-bgcolor;
   }
   &.l-btn-plain.l-btn-waiting .l-btn-left{
@@ -121,7 +125,7 @@
   color: #FFF;
   
   .menu-item {
-    background-color: var(--primary-color);
+    background-color: var(--input-bgcolor);
     &.menu-active{
       background-color: @splitbutton-main-item-hover-bgcolor;
     }
@@ -132,7 +136,7 @@
       background-color: @splitbutton-main-item-active-bgcolor;
     }
     .menu-text{
-      color: #FFF;
+      color: @main-font-color;
     }
   }
 }
