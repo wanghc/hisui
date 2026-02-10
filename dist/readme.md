@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-02-10
+- `calendar`箭头样式修改
+
 ## 2026-02-07
 - iHOS风格下`splitbutton-blue`按钮风格样式修改 [6548004]
 
