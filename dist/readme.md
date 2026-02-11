@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-02-11
 - `dateboxq`组件样式修改[6550062]
 - `menutree`组件样式修改
+- :lipstick: 解决有些字体图标宽度超出16问题
 
 ## 2026-02-10
 - `calendar`箭头样式修改
