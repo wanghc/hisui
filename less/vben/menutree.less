@@ -685,7 +685,6 @@
             background-color:@menutree-sub-root-bgcolor;
             line-height: 44px;
             position: relative;
-            font-weight: normal;
             color: @menutree-root-color;
             position: relative;
             border-bottom: 1px solid @panel-header-bdcolor;
@@ -719,9 +718,7 @@
             background-color: transparent;
             border: 0px;
 
-            .menutree-li-level2>.tree-node:hover{
-              font-weight: normal;
-            }
+
   
             .tree-indent {
               width: 10px;
@@ -737,7 +734,7 @@
             }
 
             .tree-node {
-              padding-left: 15px;
+              padding-left: 12px;
               height: 38px;
               line-height: 38px;
               position: relative;
@@ -764,6 +761,17 @@
             }
           }
           
+        }
+        &.menutree-tree-nox{
+          &>li >ul{
+            .tree-node {
+              padding-left: 10px;
+            }
+
+            .menutree-li-level2>.tree-node:hover{
+              font-weight: normal;
+            }
+          }
         }
         .menutree-tip-count {
           background-color: #80b2ff;

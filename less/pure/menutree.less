@@ -249,7 +249,7 @@
             .tree-hit {
               width: 16px;
               height: 16px;
-	      margin: 0;
+	            margin: 0;
               margin-top: 9px;
 		
 
@@ -308,7 +308,10 @@
           border: 0;
         }
       }
-
+      .menutree-li-level1>.tree-node.menutree-child-selected,
+      .menutree-li-level2>.tree-node.menutree-child-selected{
+        font-weight: 700;
+      }
       .menutree-tip-count {
         display: block;
         position: absolute;
@@ -582,6 +585,7 @@
 /*折叠后 显示的子树*/
 .menutree.menutree-sp{
   box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
   &>.panel-body {
     border-radius: 0;
     background-color: transparent;
@@ -645,7 +649,7 @@
             }
 
             .tree-node {
-              padding-left: 9px;
+              padding-left:22px;
               height: 38px;
               line-height: 38px;
               position: relative;
@@ -671,6 +675,13 @@
           }
           
         }
+        &.menutree-tree-nox{
+          &>li >ul{
+            .tree-node {
+              padding-left: 20px;
+            }
+          }
+        }
         .menutree-tip-count {
           background-color: #80b2ff;
           color: #ffffff;
@@ -684,4 +695,10 @@
   
   }
 
+}
+
+.menutree.menutree-sp.panel .panel-body.panel-body-noheader.panel-body-noborder.menutree-wrap {
+  border-radius: 6px;
+  background-color: @menutree-sub-wrap-bgcolor;
+  padding-bottom: 10px;
 }

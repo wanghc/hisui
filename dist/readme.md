@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-02-11
 - `dateboxq`组件样式修改[6550062]
+- `menutree`组件样式修改
 
 ## 2026-02-10
 - `calendar`箭头样式修改

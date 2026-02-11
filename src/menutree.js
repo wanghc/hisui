@@ -249,6 +249,8 @@
 
         if(level==1 && jq.find('li.menutree-li-levelx').length==0) {
             jq.addClass('menutree-tree-nox');
+        }else{
+            jq.removeClass('menutree-tree-nox');
         }
 
         
@@ -639,8 +641,21 @@
                 debounced_onSubTreeContentHeightChange(ele); //延时处理子树内容高度变化
             },onSelect:function(node){
                 var maintree=state.tree;
-                var t=maintree.tree('find',node.id);
-                maintree.tree('select',t.target);
+                var mainNode=maintree.tree('find',node.id);
+                maintree.tree('select',mainNode.target);
+
+                //给父级增加类menutree-child-selected
+                if (t.tree('isLeaf',node.target)) {
+                    t.find('.menutree-child-selected').removeClass('menutree-child-selected');
+
+                    var tempNode=$(node.target).parent().parent().prev('.tree-node');
+                    while(tempNode.length>0) {
+                        tempNode.addClass('menutree-child-selected');
+                        tempNode=tempNode.parent().parent().prev('.tree-node');
+                    }
+                }
+                
+
             },loadFilter:function(data,par){
                 var tdata=opts.loadFilter.call(ele,data,par);
                 setTreeDataState(tdata,!par,opts.onlyOneExpanded,opts.rootCollapsible);
