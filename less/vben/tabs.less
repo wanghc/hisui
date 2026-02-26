@@ -243,7 +243,7 @@
 }
 .tabs-header-right .tabs li a.tabs-inner {
   display: block;
-  text-align: left;
+  text-align: right;
   border-radius: 0 5px 5px 0;
 }
 .tabs-panels-right {
@@ -621,27 +621,33 @@
   }
   .tabs {
     padding: 0px;
-    border-right: 1px solid @tabs-header-bdcolor;
+    border-right-width: 0px;
     li {
       height: 36px;/*wanghc 2018-3-19  win7-ie11*/
       float: left;
       margin: 0px;
       &.tabs-brand{
-        border-bottom: 1px solid @tabs-header-gray-bgcolor;
-        a.tabs-inner:hover{
-            background: @tabs-header-gray-bgcolor;
+        border-bottom: 1px solid @tabs-header-leftright-bgcolor;
+        a.tabs-inner{
+          text-overflow: inherit;
+          &:hover{
+            background: @tabs-header-leftright-bgcolor;
             color:#939393;
             border: 1px solid transparent;
             border-left: 3px solid transparent;
+          }
         }
       }
       &::after {
         content: none;
       }
       a.tabs-inner {
-        border: 1px solid @tabs-header-gray-bgcolor;
-        border-left: 3px solid @tabs-header-gray-bgcolor;  /*这里是背景色,只能选中才显示左竖线*/
-        background-color: @tabs-header-gray-bgcolor;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 1px solid @tabs-header-leftright-bgcolor;
+        border-left: 3px solid @tabs-header-leftright-bgcolor;  /*这里是背景色,只能选中才显示左竖线*/
+        background-color: @tabs-header-leftright-bgcolor;
         &:hover {
           background: @tabs-header-bgcolor;
           color: @tabs-header-select-font-color;
@@ -650,6 +656,7 @@
         }
         .tabs-icon {
           margin-left:14px;
+          margin-top: -7px;
         }
       }
       &.tabs-selected{
@@ -658,8 +665,8 @@
           border-left: 3px solid @tabs-header-select-top-color;
           border-top: 1px solid @tabs-header-bdcolor;
           border-bottom: 1px solid @tabs-header-bdcolor;
-          border-right: 1px solid transparent;
-          background: #ffffff;
+          border-right: 1px solid @tabs-header-leftright-select-bgcolor;
+          background: @tabs-header-leftright-select-bgcolor;
           color:@tabs-header-select-font-color;
         }
       }
@@ -676,27 +683,33 @@
   }
   .tabs {
     padding: 0px;
-    border-left: 1px solid @tabs-header-bdcolor;
+    border-left-width: 0px;
     li {
       height: 36px;/*wanghc 2018-3-19  win7-ie11*/
       float: right;
       margin: 0px;
       &.tabs-brand{
-        border-bottom: 1px solid @tabs-header-gray-bgcolor;
-        a.tabs-inner:hover{
-            background: @tabs-header-gray-bgcolor;
+        border-bottom: 1px solid @tabs-header-leftright-bgcolor;
+        a.tabs-inner{ 
+          text-overflow: inherit;
+          &:hover{
+            background: @tabs-header-leftright-bgcolor;
             color: #939393;
             border: 1px solid transparent;
             border-right: 3px solid transparent;
+          }
         }
       }
       &::after {
         content: none;
       }
       a.tabs-inner {
-        border: 1px solid @tabs-header-gray-bgcolor;
-        border-right: 3px solid @tabs-header-gray-bgcolor;
-        background-color: @tabs-header-gray-bgcolor;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 1px solid @tabs-header-leftright-bgcolor;
+        border-right: 3px solid @tabs-header-leftright-bgcolor;
+        background-color: @tabs-header-leftright-bgcolor;
         &:hover {
           background: @tabs-header-hover-bgcolor;
           color: @tabs-header-select-font-color;
@@ -705,6 +718,7 @@
         }
         .tabs-icon {
           margin-left: 14px;
+          margin-top:-7px;
         }
       }
       &.tabs-selected{
@@ -714,7 +728,7 @@
           border-top: 1px solid @tabs-header-bdcolor;
           border-bottom: 1px solid @tabs-header-bdcolor;
           border-left: 1px solid  @tabs-header-bgcolor;
-          background: #ffffff;
+          background: @tabs-header-leftright-select-bgcolor;
         }
       }
     }
@@ -932,8 +946,10 @@
 
 .tabs-gray{
   .tabs-header-left{
-    border: 1px solid #FFF;
-    border-color:#FFF;
+    border: 1px solid transparent;
+    border-right-width: 0px;
+    border-color:transparent;
+    background-color: @tabs-header-leftright-bgcolor;
     .tabs-wrap{
       .tabs{
 
@@ -960,9 +976,10 @@
     }
   }
   .tabs-header-right{
-    border: 1px solid #FFF;
-    border-color:#FFF;
-    background-color: @window-bgcolor;
+    border: 1px solid transparent;
+    border-left-width: 0px;
+    border-color:transparent;
+    background-color: @tabs-header-leftright-bgcolor;
     .tabs-wrap{
       .tabs{
 
@@ -971,12 +988,13 @@
           margin: 0px;
           .tabs-inner{
             .tabs-title{
-              margin-left: 14px;
+              margin-right: 14px;
+              padding-right: 0px;
             }
 
           }
           .tabs-close{
-            right: 10px;
+            left: 10px;
           }
 
           &.tabs-brand{

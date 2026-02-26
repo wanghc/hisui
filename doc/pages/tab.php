@@ -114,7 +114,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 				<option value="right">Right</option>
 			</select>
 		</div>
-		<div id="tt3" class="hisui-tabs tabs-gray tabs-right-left"  data-options="tabPosition:'left',isBrandTabs:true,headerWidth:130,height:200,width:500">   
+		<div id="tt3" class="hisui-tabs tabs-gray tabs-right-left"  data-options="tabPosition:'left',isBrandTabs:true,headerWidth:126,height:200,width:500">   
 			<div title="电子病历"  data-options="iconCls:'icon-panel-brand'" style="padding:15px;" >   
 				<code id="tabPosition">tabPosition:'left'</code><br>
 				<code>headerWidth:100</code><br>
