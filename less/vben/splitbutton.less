@@ -142,24 +142,33 @@
 }
 .splitbutton-light{
   .l-btn-left .m-btn-downarrow::before{
-    color:var(--primary-color);
+    color:var(--secondary-btn-text-color);
   }
   &.s-btn.l-btn.s-btn-active{
-    background-color: #e1edff;
+    background-color: @splitbutton-light-hover-bgcolor;
+    border-color: @splitbutton-light-hover-bdcolor;
     .l-btn-text{
-      color: var(--primary-color);
+      color: var(--secondary-btn-text-color);
     }
   }
   &.l-btn{
-    background-color: #edf6ff;
-    color: var(--primary-color);
-    border-color: #a5d5ff;
+    background-color: @splitbutton-light-bgcolor;
+    color: var(--secondary-btn-text-color);
+    border-color: @splitbutton-light-bdcolor;
     &:hover{
-      background-color: #e1edff;
+      background-color: @splitbutton-light-hover-bgcolor;
+      border-color: @splitbutton-light-hover-bdcolor;
+    }
+    &.l-btn-focus{
+      background-color: @splitbutton-light-click-bgcolor;
+      border-color: @splitbutton-light-click-bdcolor;
     }
   }
+  .menu-active{
+    background-color: @splitbutton-light-item-hover-bgcolor;
+  }
   &.menu{
-    background-color: #ffffff;
+    background-color: @splitbutton-light-menu-bgcolor;
     box-shadow:0px 3px 10px rgba(0, 0, 0, 0.2);
   }
 }
