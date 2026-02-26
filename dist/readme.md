@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-02-26
-- `splitbutton-light`样式修改 [6548006]
+- iHOS风格`splitbutton-light`样式修改 [6548006]
+- iHOS风格`tabs`横向滚动条样式修改 [6549138]
 
 ## 2026-02-13
 - 字体图标国际化 [6677050]

@@ -8,7 +8,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title'],$PAGE_CONTEXT['colorRGB']); ?> 
+	<?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?> 
 	<style>
 		.demo-exp-code{
 			border-color:transparent;

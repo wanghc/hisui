@@ -281,8 +281,6 @@
   background: transparent;
 }
 .tabs-header,
-.tabs-scroller-left,
-.tabs-scroller-right,
 .tabs-tool,
 .tabs,
 .tabs-panels,
@@ -334,8 +332,8 @@
 .tabs-scroller-right,.tabs-scroller-left{
   &.tabs-scroller-over{
     opacity: 1;
-    background-color: #ffffff;
-    color:#339EFF;
+    background-color: transparent;
+    color:@main-color;
   }
   width: 20px;
   font-size: 12px;
@@ -518,14 +516,16 @@
 }
 
 .tabs-header,
-.tabs-scroller-left,
-.tabs-scroller-right,
 .tabs-tool,
 .tabs-panels,
 .tabs-header-bottom .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-left .tabs li.tabs-selected a.tabs-inner,
 .tabs-header-right .tabs li.tabs-selected a.tabs-inner {
   border-color: #ffffff;
+}
+.tabs-scroller-left,
+.tabs-scroller-right{
+  border-color: transparent;
 }
 .tabs-scroller-left{
   border-left-width:0px ;
