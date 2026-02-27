@@ -27,8 +27,8 @@
   background: url('images/accordion_arrows.png') no-repeat -16px 0;
 }
 .accordion {
-  background: @window-bgcolor;
-  border-color: #95B8E7;
+  background: @accordion-bgcolor;
+  border-color: @accordion-bgcolor;
 }
 .accordion .accordion-header {
   background: #E0ECFF;
@@ -43,9 +43,7 @@
 .accordion .accordion-header-selected {
   background: @accordion-header-select-bgcolor;
 }
-.accordion .accordion-header-selected .panel-title {
-  color: @accordion-title-font-color;
-}
+
 .accordion {
   border-radius: 6px;
   &.accordion-noborder .panel:first-child .accordion-header{
@@ -82,7 +80,7 @@
       padding-left: 5px;
       height: 44px;
       color: @accordion-title-font-color;
-      font-weight: bold;
+      font-weight: normal;
     }
     // .panel-with-icon{  //20230118 手风琴默认不带图标
     //   padding-left: 31px;
@@ -109,7 +107,7 @@
           -webkit-border-radius: 3px 3px 3px 3px;
           border-radius: 3px 3px 3px 3px;
           color:#939393;
-          background-color: #D7E9FF;
+          background-color: @accordion-tool-hover-bgcolor;
         }
       }
       .accordion-collapse{
@@ -117,14 +115,14 @@
       }
       .accordion-collapse::before {
         content: @content-up;
-        color: @tabs-header-hover-font-color;
-        //background: url(images/accordion_arrows-black.png) no-repeat -22px 0;
       }
       .accordion-expand::before {
         content: @content-down;
-        color: @tabs-header-hover-font-color;
-        //background: url(images/accordion_arrows-black.png) no-repeat 0 0;
       }
     }
   }
+}
+.accordion .accordion-header-selected .panel-title {
+  color: @accordion-title-font-color;
+  font-weight: bold;
 }
