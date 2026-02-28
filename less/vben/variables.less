@@ -76,6 +76,8 @@ body {
     --menutree-root-font-color:#000000;
     --menutree-node-font-color:#000000;
     --menutree-icon-color:#666666;
+    --tabs-brand-split-line-color:#E3E3E3;
+    --panel-tool-a-color:#939393;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -154,6 +156,8 @@ body[data-theme=bgliteblue] {
     --menutree-root-font-color:#000000;
     --menutree-node-font-color:#000000;
     --menutree-icon-color:#666666;
+    --tabs-brand-split-line-color:#E3E3E3;
+    --panel-tool-a-color:#939393;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -232,6 +236,8 @@ body[data-theme=bgdark] {
     --menutree-root-font-color:#ffffff;
     --menutree-node-font-color:#d9d9d9;
     --menutree-icon-color:#a1a3b3;
+    --tabs-brand-split-line-color:#64647B;
+    --panel-tool-a-color:#A1A3B3;
 }
 
 @main-font-family:"Microsoft Yahei",verdana,helvetica,arial,"sans-serif";
@@ -439,7 +445,7 @@ body[data-theme=bgdark] {
 @panel-shadow:0px 3px 6px rgba(0, 0, 0, 0.16);
 @panel-body-font-size:@main-font-size;
 @panel-body-bgcolor:transparent;
-@panel-tool-a-color:#939393;
+@panel-tool-a-color:var(--panel-tool-a-color);
 @panel-border-radius:0px;
 @panel-header-blue-title-bgcolor:var(--leftmenu-bgcolor);
 @panel-header-blue-body-bgcolor:var(--leftmenu-bgcolor);
@@ -495,6 +501,7 @@ body[data-theme=bgdark] {
 @accordion-bgcolor:var(--leftmenu-bgcolor);
 @accordion-header-bgcolor:var(--panel-header-bgcolor);
 @accordion-header-select-bgcolor:var(--panel-header-bgcolor);
+@accordion-arrow-color:var(--panel-tool-a-color);
 @accordion-border-color: transparent;
 @accordion-title-font-color:var(--default-font-color); //#000000;
 @accordion-tool-hover-bgcolor:var(--combobox-item-hover-bgcolor);
@@ -509,6 +516,7 @@ body[data-theme=bgdark] {
 //== tabs
 @tabs-header-height:36px;
 @tabs-header-bgcolor:@panel-header-bgcolor;
+@tabs-brand-split-line-color:var(--tabs-brand-split-line-color);
 @tabs-header-font-color:var(--default-font-color);
 @tabs-header-base-font-color:@main-font-color;
 @tabs-system-blue-background-color:@window-bgcolor;

@@ -337,7 +337,7 @@
             $(this).unbind(".layout");
         });
         function _38a(dir) {
-            var icon;
+            var icon, iconCls="";
             if (dir == "east") {
                 icon = "layout-button-left";
             } else {
@@ -346,9 +346,11 @@
                 } else {
                     if (dir == "north") {
                         icon = "layout-button-down";
+                        iconCls = _388.iconCls;
                     } else {
                         if (dir == "south") {
                             icon = "layout-button-up";
+                            iconCls = _388.iconCls;
                         }
                     }
                 }
@@ -357,7 +359,7 @@
             if (_388.title!="" && _388.showCollapsedTitle){
                 if (dir == "east" || dir == "west") {
                     // 2023-02-14 收起后纵向显示增加翻译 [3202370] 。 panel的content内容是不会自动翻译的，所以手动在layout中翻译
-                    p_content=$.hisui.getTrans(_388.title).split("").join('</div><div>');
+                    p_content="<div class='"+_388.iconCls+"'></div>" + $.hisui.getTrans(_388.title).split("").join('</div><div>');
                     p_content='<div class="layout-expand-body-title"><div>'+p_content+'</div></div>';
                 }else{
                     p_title=_388.title;
@@ -366,6 +368,7 @@
 
             var p = $("<div></div>").appendTo(_384);
             p.panel($.extend({}, $.fn.layout.paneldefaults, {
+                iconCls:iconCls,
                 cls: ("layout-expand layout-expand-" + dir), title: p_title,content:p_content,headerCls:_388.headerCls,bodyCls:_388.bodyCls, closed: true, minWidth: 0, minHeight: 0, doSize: false, tools: [{
                     iconCls: icon, handler: function () {
                         _390(_384, _385);
