@@ -66,7 +66,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             </div> <!--end layout-center-->
         </div><!--end layout-->
         <div id="dialog2" title="完成接诊" style="width:400px;height:350px;padding:0 20px;display: none;">   
-            <div style="padding:10px;">
+            <div style="padding: 10px;border-radius: 6px;    background-color: #FFFFFF;    height: 90%;    width: 95%;">
                 
             </div>
         </div>
