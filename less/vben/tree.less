@@ -82,15 +82,26 @@
 .tree-loading {
   background: url('images/loading.gif') no-repeat center center;
 }
-.tree-checkbox0 {
-  background: url('@{images-path}/tree_icons.png') no-repeat -208px -18px;
+// .tree-checkbox0 {
+//   background: url('@{images-path}/tree_icons.png') no-repeat -208px -18px;
+// }
+// .tree-checkbox1 {
+//   background: url('@{images-path}/tree_icons.png') no-repeat -224px -18px;
+// }
+// .tree-checkbox2 {
+//   background: url('@{images-path}/tree_icons.png') no-repeat -240px -18px;
+// }
+.tree-checkbox0 { /**未勾*/
+  background: @checkbox-bgimg-v-url no-repeat -6px -2px;
 }
-.tree-checkbox1 {
-  background: url('@{images-path}/tree_icons.png') no-repeat -224px -18px;
+.tree-checkbox1 { /*勾中*/
+  background: @checkbox-bgimg-v-url no-repeat -6px -50px;
 }
-.tree-checkbox2 {
-  background: url('@{images-path}/tree_icons.png') no-repeat -240px -18px;
+.tree-checkbox2 { /**勾半选*/
+  background: @checkbox-bgimg-v-url no-repeat -6px -290px;
 }
+
+
 .tree-title {
   font-size: 12px;
   display: inline-block;
