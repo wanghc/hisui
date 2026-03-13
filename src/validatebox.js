@@ -213,6 +213,11 @@
             return jq.each(function () {
                 _41f(this);
             });
+        },setValue:function(jq,value){
+            return jq.each(function () {
+                $(this).val(value);
+                _42e(this);
+            });
         }, validate: function (jq) {
             return jq.each(function () {
                 _42e(this);

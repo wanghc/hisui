@@ -126,7 +126,8 @@
 					placeholder:"序号必填"
 				});
 				$("#btn1").click(function(){
-					$("#patno").val("12345678").validatebox("validate");
+					$("#patno").validatebox("setValue",'12345678');
+					//$("#patno").val("12345678").validatebox("validate");
 				});
 				$("#btn").click(function () {
 					//$("#patno").data("validatebox").validating=true;
@@ -198,6 +199,12 @@
 			<td>改变disabled属性的值</td>
 			<td>false/true</td>
 			<td>jquery对象</td>
+		</tr>
+		<tr>
+			<td>setValue</td>
+			<td>赋值且验证</td>
+			<td></td>
+			<td>jquery对象<code>2026-03-13</code></td>
 		</tr>
 	</table>
 	<prettyprint/>	

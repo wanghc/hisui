@@ -192,6 +192,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			<td>false/true</td>
 			<td>jquery对象</td>
 		</tr>
+		<tr>
+			<td>setValue</td>
+			<td>赋值且验证</td>
+			<td></td>
+			<td>jquery对象<code>2026-03-13</code></td>
+		</tr>
 	</table>
 	<prettyprint/>	
 </body>

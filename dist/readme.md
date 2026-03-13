@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-03-13
+- `validatebox`组件增加`setValue`方法 [6727411]
+
 ## 2026-03-12
 - iHOS风格下`tree`的勾选框样式修改
 - iHOS风格下`checkbox`与`radio`必填项样式修改
