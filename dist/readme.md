@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-03-18
-- `hisui-timespinner textbox`的输入框长度修改 [6716530]
+- iHOS与纯净风格下`hisui-timespinner textbox`的输入框长度修改 [6716530]
+- 纯净风格下勾选框必填项样式修改
 
 ## 2026-03-13
 - `validatebox`组件增加`setValue`方法 [6727411]
