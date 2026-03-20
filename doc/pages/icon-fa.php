@@ -298,7 +298,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             }
             //----
             var panelicons=['home','tabs','panel-brand','b-compatibility-review','b-dispensing-refusal','b-dispensing-batch','b-dispensing-execution','b-bottle-drug',
-                'volume-up', 'right-black','dbl-user', 'paper-pen-black','pen-black'
+                'volume-up', 'right-black','dbl-user', 'paper-pen-black','pen-black','three-slices'
             ];
             for(var i=0;i<panelicons.length;i++){
                 $(
