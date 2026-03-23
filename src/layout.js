@@ -320,6 +320,9 @@
                             if (_362 == true) {
                                 return;
                             }
+                            if (_388.onBeforeCollapseForMouseLeave.call(p,e) == false) {
+                                return;
+                            }
                             _383(_384, e.data.region);
                         });
                     });
