@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-03-31
+- :lipstick: 纯净与iHOS风格`popover`标题样式处理 [6773684]
+
 ## 2026-03-23
 - `layout`组件增加`onBeforeCollapseForMouseLeave`事件 [6762669]
 - - 当点击东/南/西/北面板悬浮展开后，鼠标移开东/南/西/北面板时，进入此事件
