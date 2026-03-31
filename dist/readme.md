@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-03-31
 - :lipstick: 纯净与iHOS风格`popover`标题样式处理 [6773684]
 - :lipstick: iHOS风格下夜间插画样式修改
+- :lipstick: 对最新版chrome浏览器下输入框激活默认时的边框样式处理
 
 ## 2026-03-23
 - `layout`组件增加`onBeforeCollapseForMouseLeave`事件 [6762669]
