@@ -187,6 +187,7 @@
                     return;
                 }
             }
+            if (opts.minQueryLen>0 && $(target).val().length<opts.minQueryLen) return;
             doQuery(target, $(target).lookup("getText"),e)           
         } else {
             // 医嘱录入--规格放大镜没隐藏时，光标跳到频次再回车时,应该先隐藏上一个规格放大镜

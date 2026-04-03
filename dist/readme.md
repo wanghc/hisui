@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-03
+- :sparkles: `lookup`配置`minQueryLen`属性后,解决全部查询时不能回车选行问题 [6817099]
+
 ## 2026-03-31
 - :lipstick: 纯净与iHOS风格`popover`标题样式处理 [6773684]
 - :lipstick: iHOS风格下夜间插画样式修改

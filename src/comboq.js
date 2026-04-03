@@ -166,7 +166,7 @@
                             if (state.timer) {
                                 clearTimeout(state.timer);
                             }
-                            if (opts.minQueryLen>0 && _t.val().length<opts.minQueryLen) return;
+                            // if (opts.minQueryLen>0 && _t.val().length<opts.minQueryLen) return; // 点击...查询出全部,此时选中行,回车应该选中行记录
                             state.timer = setTimeout(function () {
                                 if (!state.isShow) {
                                     var rtn = $(target).comboq("showPanel");
