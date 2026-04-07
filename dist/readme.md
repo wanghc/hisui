@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-07
+- :lipstick:`iHOS`风格下下拉表单必填下拉箭头背景色值修改 [6734538]
+
 ## 2026-04-03
 - :sparkles: `lookup`配置`minQueryLen`属性后,解决全部查询时不能回车选行问题 [6817099]
 

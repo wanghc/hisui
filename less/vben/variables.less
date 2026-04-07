@@ -52,6 +52,7 @@ body {
     --input-invalid-tooltip-bgcolor:#fff0f0;
     --input-invalid-tooltip-color:#fc494f;
     --input-invalid-tooltip-bdcolor:#fc494f;
+    --combo-invalid-arrow-bgcolor:#ffe9e9;
     --keywords-disable-color:#b4b3b3;
     --keywords-disable-bgcolor:#EFEFEF;
     --linkbutton-disabled-fcolor:#FFFFFF;
@@ -132,6 +133,7 @@ body[data-theme=bgliteblue] {
     --input-invalid-tooltip-bgcolor:#fff0f0;
     --input-invalid-tooltip-color:#fc494f;
     --input-invalid-tooltip-bdcolor:#fc494f;
+    --combo-invalid-arrow-bgcolor:#ffe9e9;
     --keywords-disable-color:#b4b3b3;
     --keywords-disable-bgcolor:#EFEFEF;
     --linkbutton-disabled-fcolor:#FFFFFF;
@@ -212,6 +214,7 @@ body[data-theme=bgdark] {
     --input-invalid-tooltip-bgcolor:#C0434E;
     --input-invalid-tooltip-color:#FFFFFF;
     --input-invalid-tooltip-bdcolor:#c0434E;
+    --combo-invalid-arrow-bgcolor:#32354D;
     --keywords-disable-color:#b4b3b3;
     --keywords-disable-bgcolor:#58596b;
     --linkbutton-disabled-fcolor:#ffffff99; //rgba(255,255,255,0.6)
@@ -468,6 +471,7 @@ body[data-theme=bgdark] {
 @combo-bgcolor:var(--input-bgcolor);
 @combo-padding-left:@validatebox-padding-left;
 @combo-panel-border-color:@combo-border-color;
+@combo-invalid-arrow-bgcolor:var(--combo-invalid-arrow-bgcolor);
 
 //== combobox 
 @combobox-item-font-size:@main-font-size;
