@@ -37,6 +37,11 @@ $("#btn").linkbutton("disable");
 
 ## 2026-04-07
 - :lipstick:`iHOS`风格下下拉表单必填下拉箭头背景色值修改 [6734538]
+- :lipstick: `iHOS`与`pure`增加透明背景与透明边框公共样式 [5664638]
+```html
+<div class="hui-none-bgcolor"></div>
+<div class="hui-tran-border"></div>
+```
 
 ## 2026-04-03
 - :sparkles: `lookup`配置`minQueryLen`属性后,解决全部查询时不能回车选行问题 [6817099]
