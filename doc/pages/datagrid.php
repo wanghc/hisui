@@ -367,7 +367,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	
 	<h3>六、列头高度自定义及显示分割线<code>table-splitline</code></h3>
 	<style>
-		.dg6-header-row0{ height: 32px;} .dg6-header-row1{ height: 32px;} .dg6-header-row2{ height: 40px;}
+		.dg6-header-row0{ height: 33px;} .dg6-header-row1{ height: 33px;} .dg6-header-row2{ height: 33px;}
 	</style>
 	<div class="demo-exp-code entry-content">
 		<div>
