@@ -526,6 +526,11 @@ input,textarea {
 .window-body.hui-none-bgcolor>.panel>.panel-body {
     background: none !important;
 }
+// bgcolor2 表示header与body都无背景色
+.hui-none-bgcolor2,
+.panel-header:has(+.hui-none-bgcolor2) {
+  background: none !important;
+}
 // 透明边框
 .hui-tran-border {
 	border-color:transparent!important ;

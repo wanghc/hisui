@@ -36,6 +36,12 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-04-07
+- :lipstick: `iHOS`与`pure`增加header与body都透明样式 [5664638]
+```html
+<div class="hui-none-bgcolor2"></div>
+```
+
+## 2026-04-07
 - :lipstick:`iHOS`风格下下拉表单必填下拉箭头背景色值修改 [6734538]
 - :lipstick: `iHOS`与`pure`增加透明背景与透明边框公共样式 [5664638]
 ```html
