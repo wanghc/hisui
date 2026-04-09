@@ -39,7 +39,7 @@ $("#btn").linkbutton("disable");
 - :sparkles: 纯净与iHOS风格`vstep`与`hstep`增加悬浮与点击样式 [6527705]
 - :sparkles: iHOS风格日期输入框高度修改 [6550145]
 - :lipstick: iHOS风格菜单按钮展开背景色修改 [6550147]
-
+- :lipstick: iHOS风格表格线条颜色修改及示例checkbox修改成icheckbox [6550148]
 ## 2026-04-07
 - :lipstick: `iHOS`与`pure`增加header与body都透明样式 [5664638]
 ```html

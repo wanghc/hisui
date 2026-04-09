@@ -18,6 +18,9 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			text-overflow: ellipsis;
 			padding: 0 8px;
 		} */
+			label.radio, label.checkbox{
+				margin-right:0px;
+			}
 	</style>
 </head>
     <body>
@@ -224,14 +227,18 @@ if (!defined('ACCESS_FROM_INDEX')) {
 							return false;
 						} 
 					},
-					onBeforeUncheck:function(ind,row){
-						console.log('onBeforeUncheck',ind,row)
-						if(ind==1) {
-							$.messager.popover({msg:'第二行不能取消选中',type:'error'})
-							return false;
-						} 
-					},
+					// onBeforeUncheck:function(ind,row){
+					// 	console.log('onBeforeUncheck',ind,row)
+					// 	if(ind==1) {
+					// 		$.messager.popover({msg:'第二行不能取消选中',type:'error'})
+					// 		return false;
+					// 	} 
+					// },
 					onLoadSuccess:function(data){
+						$.each(data.rows,function(i,row){
+							$("#mytable3").datagrid('beginEdit',i);
+						});
+						
 						//$(this).datagrid('columnMoving');
 						/*$('.mytooltip').tooltip({
 							trackMouse:true,
@@ -254,7 +261,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 						return data;
 					},
 					frozenColumns:[[
-						{field:'ck',title:'ckbox',checkbox:true},	
+						{field:'ck',title:'选择',editor:{type:'icheckbox'},align:'center'},
 						{field:'id',title:'ID',width:40},
 						{field:'code',title:'代码',width:80,showTip:true,tipWidth:100,tipPosition:"top"},
 					]],
@@ -291,7 +298,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					width:650,
 					height:300,
 					title:'水果单价表',
-					toolbar:[],
+					toolbar:[],editable:true,
 					shiftCheck:true
 				})
 			})		
