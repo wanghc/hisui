@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-04-09
-- :vispark: 纯净与iHOS风格`vstep`与`hstep`增加悬浮与点击样式 [6527705]
+- :sparkles: 纯净与iHOS风格`vstep`与`hstep`增加悬浮与点击样式 [6527705]
+- :sparkles: iHOS风格日期输入框高度修改 [6550145]
 
 ## 2026-04-07
 - :lipstick: `iHOS`与`pure`增加header与body都透明样式 [5664638]
