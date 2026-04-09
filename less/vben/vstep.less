@@ -32,9 +32,16 @@
 				background-color: @body-bgcolor;
 			}
 			.title{
-				margin-right: 20px;
-				margin-left:9px; /*[5915528]*/
+				//margin-right: 20px;
+				//margin-left:9px; /*[5915528]*/ 
+				margin: 0 10px 0 0; // ��margin�޸ĳ�padding, ʵ��hover����ɫ���� 11px+9px=20px
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-radius: 6px;
 			}
+
 			&.done{
 				color: #666666; //[2941768]
 				.cnode{
@@ -115,4 +122,14 @@
     height: 4px;
     margin-top: -4px;
     background-color: @body-bgcolor;
+}
+ul.vstep-container-steps li:hover{
+	.title { //,.title+span,.title+div{
+		background-color: @vhstep-node-hover-bgcolor;
+	}
+}
+ul.vstep-container-steps li.clicked{
+	.title { //,.title+span,.title+div{
+		background-color: @vhstep-node-selected-bgcolor;
+	}
 }

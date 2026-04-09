@@ -30,6 +30,11 @@
 				cursor: pointer;
 				background-color: @body-bgcolor;
 			}
+			.title{
+				margin-left:-10px;
+				padding: 5px 10px;
+				border-radius: 6px;
+			}
 			&.done{
 				color:#666666;
 				.cnode{
@@ -110,4 +115,14 @@
 .hstep-container ul,.hstep-container li,.hstep-container p {
 	margin: 0;
 	padding: 0;
+}
+ul.hstep-container-steps li:hover{
+	.title {
+		background-color: @vhstep-node-hover-bgcolor;
+	}
+}
+ul.hstep-container-steps li.clicked{
+	.title {
+		background-color: @vhstep-node-selected-bgcolor;
+	}
 }

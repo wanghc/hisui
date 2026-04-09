@@ -32,8 +32,14 @@
 				background-color: #ffffff;
 			}
 			.title{
-				margin-right: 20px;
-				margin-left:9px; /*[5915528]*/
+				//margin-right: 20px;
+				//margin-left:9px; /*[5915528]*/ 
+				margin: 0 10px 0 0; // 把margin修改成padding, 实现hover背景色美观 11px+9px=20px
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border-radius: 6px;
 			}
 			&.done{
 				color: #666666; //[2941768]
@@ -115,4 +121,16 @@
     height: 4px;
     margin-top: -4px;
     background-color: #fff;
+}
+// 悬浮效果
+ul.vstep-container-steps li:hover{
+	.title { //,.title+span,.title+div{
+		background-color: #e4f0fe;
+	}
+}
+// 点击后效果
+ul.vstep-container-steps li.clicked{
+	.title { //,.title+span,.title+div{
+		background-color: #d7e9ff;
+	}
 }

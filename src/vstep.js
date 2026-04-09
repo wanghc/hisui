@@ -99,8 +99,8 @@
 	_setStep(target,opts.currentInd);
 	$(target).unbind('.vstep').bind('click.vstep',function(e){
 		var $li = $(e.target).closest('li');
-		$li.closest('.vstep-container-steps').children('li').removeClass('hover');
-		$li.addClass('hover');
+		$li.closest('.vstep-container-steps').children('li').removeClass('hover clicked');
+		$li.addClass('hover clicked');
 		if($li.length>0 && opts.onSelect){
 			var _item = opts.items[$li.attr('ind')-1];
 			_item.state = $li.hasClass('done')?"done":($li.hasClass('active')?"active":'undone');

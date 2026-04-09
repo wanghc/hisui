@@ -30,6 +30,11 @@
 				cursor: pointer;
 				background-color: #ffffff;
 			}
+			.title{
+				margin-left:-10px;
+				padding: 5px 10px;
+				border-radius: 6px;
+			}
 			&.done{
 				color:#666666;
 				.cnode{
@@ -110,4 +115,16 @@
 .hstep-container ul,.hstep-container li,.hstep-container p {
 	margin: 0;
 	padding: 0;
+}
+// 悬浮效果
+ul.hstep-container-steps li:hover{
+	.title { //,.title+span,.title+div{
+		background-color: #e4f0fe;
+	}
+}
+// 点击后效果
+ul.hstep-container-steps li.clicked{
+	.title { //,.title+span,.title+div{
+		background-color: #d7e9ff;
+	}
 }

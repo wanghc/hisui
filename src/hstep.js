@@ -84,7 +84,7 @@
 	arrayLength = items.length;
 	for(var i=0;i<arrayLength;i++){
 		var _s = items[i];
-		$stepHtml.css("width",opts.stepWidth).attr('ind',1+parseInt(i)).text(_s.title).append('<div class="cnode">'+(opts.showNumber?(i+1):"")+'</div>');
+		$stepHtml.css("width",opts.stepWidth).attr('ind',1+parseInt(i)).append('<span class="title">'+_s.title+'</span>').append('<div class="cnode">'+(opts.showNumber?(i+1):"")+'</div>');
 		if (_s.context) $stepHtml.append(_s.context);
 		$hstepContainerSteps.append($stepHtml);
 		$stepHtml = $(stepHtml); //重置步骤，拿到源生step
@@ -96,8 +96,8 @@
 	_setStep(target,opts.currentInd);
 	$(target).unbind('.hstep').bind('click.hstep',function(e){
 		var $li = $(e.target).closest('li');
-		$li.closest('.hstep-container-steps').children('li').removeClass('hover');
-		$li.addClass('hover');
+		$li.closest('.hstep-container-steps').children('li').removeClass('hover clicked');
+		$li.addClass('hover clicked');
 		if($li.length>0 && opts.onSelect){
 			var _item = opts.items[$li.attr('ind')-1];
 			_item.state = $li.hasClass('done')?"done":($li.hasClass('active')?"active":'undone');
