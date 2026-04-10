@@ -1,14 +1,106 @@
 (function ($) {
+    /**
+     * 创建溢出下拉菜单按钮（overflowMenu 模式）
+     * 在 tabs-header 右侧注入一个 panel-tool 风格的按钮，
+     * 同时初始化一个隐藏的 menu 容器挂在 body 上。
+     */
+    function createOverflowMenuBtn(container) {
+        var state = $.data(container, "tabs");
+        if (state.overflowMenuBtn) {
+            return; // 已创建
+        }
+        var header = $(container).children("div.tabs-header");
+        // 创建按钮
+        var btn = $('<div class="tabs-overflow-btn"><a href="javascript:void(0)" class="tabs-overflow-btn-icon icon-paper-arrow-down"></a></div>').appendTo(header);
+        // 创建 menu 容器
+        var menuEl = $('<div class="tabs-overflow-menu"></div>').appendTo("body");
+        menuEl.menu({
+            onClick: function(item) {
+                // item.name 存储了页签 index
+                selectTab(container, parseInt(item.name, 10));
+            }
+        });
+        state.overflowMenuBtn = btn;
+        state.overflowMenuEl = menuEl;
+
+        btn.on("click.tabs-overflow", function(e) {
+            e.stopPropagation();
+            updateOverflowMenu(container);
+            menuEl.menu("show", {
+                left: btn.offset().left + btn.outerWidth() - menuEl.outerWidth(),
+                top: btn.offset().top + btn.outerHeight()
+            });
+        });
+    }
+
+    /**
+     * 销毁溢出菜单按钮（当切回普通模式时）
+     */
+    function destroyOverflowMenuBtn(container) {
+        var state = $.data(container, "tabs");
+        if (state.overflowMenuBtn) {
+            state.overflowMenuBtn.off("click.tabs-overflow").remove();
+            state.overflowMenuBtn = null;
+        }
+        if (state.overflowMenuEl) {
+            state.overflowMenuEl.menu("destroy");
+            state.overflowMenuEl = null;
+        }
+    }
+
+    /**
+     * 根据当前可见区域，重新生成溢出菜单中的页签列表。
+     * 超出 wrap 可视区域的 li 对应的页签会出现在菜单里。
+     */
+    function updateOverflowMenu(container) {
+        var state  = $.data(container, "tabs");
+        var menuEl = state.overflowMenuEl;
+        if (!menuEl) { return; }
+
+        // 收集旧菜单项，再逐个删除（避免迭代时 DOM 变化）
+        var oldItems = menuEl.children("div.menu-item").toArray();
+        for (var k = 0; k < oldItems.length; k++) {
+            menuEl.menu("removeItem", oldItems[k]);
+        }
+
+        var header = $(container).children("div.tabs-header");
+        var wrap   = header.children("div.tabs-wrap");
+        var wrapLeft  = wrap.offset().left;
+        var wrapRight = wrapLeft + wrap.outerWidth();
+
+        $("ul.tabs li", header).each(function(i) {
+            var li = $(this);
+            var liLeft  = li.offset().left;
+            var liRight = liLeft + li.outerWidth();
+            // li 整体在 wrap 可见区域之外
+            if (liRight > wrapRight || liLeft < wrapLeft) {
+                var tab    = state.tabs[i];
+                var title  = tab ? tab.panel("options").title : "";
+                var iconCls = tab ? tab.panel("options").iconCls : "";
+                menuEl.menu("appendItem", {
+                    text: title,
+                    iconCls: iconCls || undefined,
+                    name: String(i)
+                });
+            }
+        });
+
+        // 菜单为空时显示一条提示
+        if (!menuEl.children("div.menu-item").length) {
+            menuEl.menu("appendItem", { text: "（无隐藏页签）", disabled: true, name: "-1" });
+        }
+    }
+
     function setScrollers(container) {
         var opts = $.data(container, "tabs").options;
         if (opts.tabPosition == "left" || opts.tabPosition == "right" || !opts.showHeader) {
             return;
         }
         var header = $(container).children("div.tabs-header");
-        var tool = header.children("div.tabs-tool");
-        var sLeft = header.children("div.tabs-scroller-left");
+        var tool   = header.children("div.tabs-tool");
+        var sLeft  = header.children("div.tabs-scroller-left");
         var sRight = header.children("div.tabs-scroller-right");
-        var wrap = header.children("div.tabs-wrap");
+        var wrap   = header.children("div.tabs-wrap");
         var tHeight = header.outerHeight();
         if (opts.plain) {
             tHeight -= tHeight - header.height();
@@ -19,23 +111,57 @@
             tabsWidth += $(this).outerWidth(true);
         });
         var cWidth = header.width() - tool._outerWidth();
-        if (tabsWidth > cWidth) {
-            sLeft.add(sRight).show()._outerHeight(tHeight);
-            if (opts.toolPosition == "left") {
-                tool.css({ left: sLeft.outerWidth(), right: "" });
-                wrap.css({ marginLeft: sLeft.outerWidth() + tool._outerWidth(), marginRight: sRight._outerWidth(), width: cWidth - sLeft.outerWidth() - sRight.outerWidth() });
+
+        if (opts.overflowMenu) {
+            // ---- overflowMenu 模式 ----
+            // 确保左右箭头始终隐藏
+            sLeft.add(sRight).hide();
+            createOverflowMenuBtn(container);
+            var btn = $.data(container, "tabs").overflowMenuBtn;
+            // 按钮固定宽 20px（与 CSS 保持一致），避免 display:none 时 outerWidth 返回 0
+            var btnW = 20;
+            if (tabsWidth > cWidth) {
+                // 超出：显示按钮，缩短 wrap
+                btn.show()._outerHeight(tHeight);
+                if (opts.toolPosition == "left") {
+                    tool.css({ left: btnW, right: "" });
+                    wrap.css({ marginLeft: btnW + tool._outerWidth(), marginRight: 0, width: cWidth - btnW });
+                } else {
+                    tool.css({ left: "", right: btnW });
+                    wrap.css({ marginLeft: 0, marginRight: btnW + tool._outerWidth(), width: cWidth - btnW });
+                }
             } else {
-                tool.css({ left: "", right: sRight.outerWidth() });
-                wrap.css({ marginLeft: sLeft.outerWidth(), marginRight: sRight.outerWidth() + tool._outerWidth(), width: cWidth - sLeft.outerWidth() - sRight.outerWidth() });
+                // 未超出：隐藏按钮，wrap 正常
+                btn.hide();
+                if (opts.toolPosition == "left") {
+                    tool.css({ left: 0, right: "" });
+                    wrap.css({ marginLeft: tool._outerWidth(), marginRight: 0, width: cWidth });
+                } else {
+                    tool.css({ left: "", right: 0 });
+                    wrap.css({ marginLeft: 0, marginRight: tool._outerWidth(), width: cWidth });
+                }
             }
         } else {
-            sLeft.add(sRight).hide();
-            if (opts.toolPosition == "left") {
-                tool.css({ left: 0, right: "" });
-                wrap.css({ marginLeft: tool._outerWidth(), marginRight: 0, width: cWidth });
+            // ---- 原有左右箭头模式 ----
+            destroyOverflowMenuBtn(container);
+            if (tabsWidth > cWidth) {
+                sLeft.add(sRight).show()._outerHeight(tHeight);
+                if (opts.toolPosition == "left") {
+                    tool.css({ left: sLeft.outerWidth(), right: "" });
+                    wrap.css({ marginLeft: sLeft.outerWidth() + tool._outerWidth(), marginRight: sRight._outerWidth(), width: cWidth - sLeft.outerWidth() - sRight.outerWidth() });
+                } else {
+                    tool.css({ left: "", right: sRight.outerWidth() });
+                    wrap.css({ marginLeft: sLeft.outerWidth(), marginRight: sRight.outerWidth() + tool._outerWidth(), width: cWidth - sLeft.outerWidth() - sRight.outerWidth() });
+                }
             } else {
-                tool.css({ left: "", right: 0 });
-                wrap.css({ marginLeft: 0, marginRight: tool._outerWidth(), width: cWidth });
+                sLeft.add(sRight).hide();
+                if (opts.toolPosition == "left") {
+                    tool.css({ left: 0, right: "" });
+                    wrap.css({ marginLeft: tool._outerWidth(), marginRight: 0, width: cWidth });
+                } else {
+                    tool.css({ left: "", right: 0 });
+                    wrap.css({ marginLeft: 0, marginRight: tool._outerWidth(), width: cWidth });
+                }
             }
         }
     };
@@ -821,11 +947,11 @@
         }
     };
     $.fn.tabs.parseOptions = function (target) {
-        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean" }]));
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean", overflowMenu: "boolean" }]));
     };
     /*单独引入tabs.js时,页签头高度不对,所以tabHeight高度27修改成36。hisui.js中也有写*/
     $.fn.tabs.defaults = {
-        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, onLoad: function (panel) {
+        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, overflowMenu: false, onLoad: function (panel) {
         }, onSelect: function (title, index) {
         }, onUnselect: function (title, index) {
         }, onBeforeClose: function (title, index) {

@@ -1171,3 +1171,30 @@
 .tabs-header-right .tabs-brand .tabs-inner::after{
   content:" ";
 }
+/* 溢出页签下拉按钮（overflowMenu 模式） */
+.tabs-overflow-btn {
+  position: absolute;
+  top: auto;
+  bottom: 0px;
+  right: 0px;
+  width: 20px;
+  display: none;
+  cursor: pointer;
+  z-index: 1;
+  box-sizing: border-box;
+  background-color: @tabs-header-bgcolor;
+  border-left: 1px solid @tabs-header-hover-bgcolor;
+  &:hover {
+    background-color: @tabs-header-arrow-hover-bgcolor;
+  }
+  a.tabs-overflow-btn-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 0 2px;
+    vertical-align: middle;
+    cursor: pointer;
+    opacity: 0.8;
+    &:hover { opacity: 1; }
+  }
+}
