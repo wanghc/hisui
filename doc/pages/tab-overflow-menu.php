@@ -1,0 +1,90 @@
+<?php
+// 防止直接访问
+if (!defined('ACCESS_FROM_INDEX')) {
+    http_response_code(403);
+    die('Direct access forbidden.');
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php echo renderHisuiResources($PAGE_CONTEXT['version'],$PAGE_CONTEXT['title']); ?>
+    <style>
+        body { padding: 20px; font-family: Microsoft YaHei, sans-serif; }
+        h3 { margin-top: 30px; }
+        .tip { color: #666; font-size: 13px; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <h2>Tabs — overflowMenu 下拉溢出页签</h2>
+
+    <h3>1. overflowMenu=true（页签过多时右侧显示下拉按钮）</h3>
+    <p class="tip">宽度 500px，页签超出时右侧出现 ▼ 按钮，点击展开隐藏的页签列表。</p>
+    <div id="tt1" class="hisui-tabs" style="width:500px;height:150px;"
+         data-options="overflowMenu:true, border:true">
+        <div title="电子病历" style="padding:10px;">电子病历内容</div>
+        <div title="诊断录入" data-options="closable:true" style="padding:10px;">诊断录入内容</div>
+        <div title="医嘱录入" data-options="closable:true" style="padding:10px;">医嘱录入内容</div>
+        <div title="检查列表" data-options="closable:true" style="padding:10px;">检查列表内容</div>
+        <div title="检验申请" data-options="closable:true" style="padding:10px;">检验申请内容</div>
+        <div title="手术申请" data-options="closable:true" style="padding:10px;">手术申请内容</div>
+        <div title="护理记录" data-options="closable:true" style="padding:10px;">护理记录内容</div>
+        <div title="出院小结" data-options="closable:true" style="padding:10px;">出院小结内容</div>
+        <div title="输液管理" data-options="closable:true" style="padding:10px;">输液管理内容</div>
+        <div title="会诊申请" data-options="closable:true" style="padding:10px;">会诊申请内容</div>
+    </div>
+
+    <h3>2. overflowMenu=false（默认行为，左右箭头滚动）</h3>
+    <p class="tip">保持原有行为不变。</p>
+    <div id="tt2" class="hisui-tabs" style="width:500px;height:150px;"
+         data-options="overflowMenu:false, border:true">
+        <div title="电子病历" style="padding:10px;">电子病历内容</div>
+        <div title="诊断录入" data-options="closable:true" style="padding:10px;">诊断录入内容</div>
+        <div title="医嘱录入" data-options="closable:true" style="padding:10px;">医嘱录入内容</div>
+        <div title="检查列表" data-options="closable:true" style="padding:10px;">检查列表内容</div>
+        <div title="检验申请" data-options="closable:true" style="padding:10px;">检验申请内容</div>
+        <div title="手术申请" data-options="closable:true" style="padding:10px;">手术申请内容</div>
+        <div title="护理记录" data-options="closable:true" style="padding:10px;">护理记录内容</div>
+        <div title="出院小结" data-options="closable:true" style="padding:10px;">出院小结内容</div>
+        <div title="输液管理" data-options="closable:true" style="padding:10px;">输液管理内容</div>
+        <div title="会诊申请" data-options="closable:true" style="padding:10px;">会诊申请内容</div>
+    </div>
+
+    <h3>3. 动态添加页签（overflowMenu=true）</h3>
+    <p class="tip">点击按钮动态添加页签，测试按钮是否按需出现。</p>
+    <div style="margin-bottom:8px;">
+        <button onclick="addTab()">添加页签</button>
+        <button onclick="removeLastTab()">移除最后页签</button>
+    </div>
+    <div id="tt3" class="hisui-tabs" style="width:500px;height:150px;"
+         data-options="overflowMenu:true, border:true">
+        <div title="页签A" style="padding:10px;">页签A内容</div>
+        <div title="页签B" style="padding:10px;">页签B内容</div>
+        <div title="页签C" style="padding:10px;">页签C内容</div>
+    </div>
+
+    <script>
+        $(function() {
+            $('#tt1').tabs();
+            $('#tt2').tabs();
+            $('#tt3').tabs();
+        });
+
+        var tabCount = 4;
+        function addTab() {
+            $('#tt3').tabs('add', {
+                title: '页签' + String.fromCharCode(64 + tabCount),
+                content: '动态页签 ' + tabCount + ' 内容',
+                closable: true
+            });
+            tabCount++;
+        }
+        function removeLastTab() {
+            var tabs = $('#tt3').tabs('tabs');
+            if (tabs.length > 1) {
+                $('#tt3').tabs('close', tabs.length - 1);
+            }
+        }
+    </script>
+</body>
+</html>
