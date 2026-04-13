@@ -11,7 +11,7 @@
         }
         var header = $(container).children("div.tabs-header");
         // 创建按钮
-        var btn = $('<div class="tabs-overflow-btn"><a href="javascript:void(0)" class="tabs-overflow-btn-icon icon-paper-arrow-down"></a></div>').appendTo(header);
+        var btn = $('<div class="tabs-overflow-btn"><a href="javascript:void(0)" class="tabs-overflow-btn-icon"></a></div>').appendTo(header);
         // 创建 menu 容器
         var menuEl = $('<div class="tabs-overflow-menu"></div>').appendTo("body");
         menuEl.menu({
@@ -46,11 +46,15 @@
             state.overflowMenuEl.menu("destroy");
             state.overflowMenuEl = null;
         }
+        // 恢复所有可能被隐藏的 li（切回左右箭头模式时需要全部显示）
+        var header = $(container).children("div.tabs-header");
+        $("ul.tabs li", header).show();
     }
 
     /**
-     * 根据当前可见区域，重新生成溢出菜单中的页签列表。
-     * 超出 wrap 可视区域的 li 对应的页签会出现在菜单里。
+     * 根据当前隐藏的 li，重新生成溢出菜单中的页签列表。
+     * 溢出的 li 被 setScrollers 设置为 display:none，以此为判断依据。
+     * 若页签设置了 closable:true，菜单项右侧显示 × 关闭按钮。
      */
     function updateOverflowMenu(container) {
         var state  = $.data(container, "tabs");
@@ -64,29 +68,49 @@
         }
 
         var header = $(container).children("div.tabs-header");
-        var wrap   = header.children("div.tabs-wrap");
-        var wrapLeft  = wrap.offset().left;
-        var wrapRight = wrapLeft + wrap.outerWidth();
+        var hasItem = false;
 
         $("ul.tabs li", header).each(function(i) {
             var li = $(this);
-            var liLeft  = li.offset().left;
-            var liRight = liLeft + li.outerWidth();
-            // li 整体在 wrap 可见区域之外
-            if (liRight > wrapRight || liLeft < wrapLeft) {
-                var tab    = state.tabs[i];
-                var title  = tab ? tab.panel("options").title : "";
-                var iconCls = tab ? tab.panel("options").iconCls : "";
+            // 只处理被隐藏的 li（即溢出的 tab）
+            if (li.css("display") === "none") {
+                var tab      = state.tabs[i];
+                var title    = tab ? tab.panel("options").title : "";
+                var iconCls  = tab ? tab.panel("options").iconCls : "";
+                var closable = tab ? tab.panel("options").closable : false;
+                var isSelected = li.hasClass("tabs-selected");
                 menuEl.menu("appendItem", {
                     text: title,
                     iconCls: iconCls || undefined,
                     name: String(i)
                 });
+                hasItem = true;
+                var addedItem = menuEl.children("div.menu-item").last();
+                // 若是当前选中页签，给菜单项加选中样式
+                if (isSelected) {
+                    addedItem.addClass("tabs-overflow-menu-selected");
+                }
+                // 若 closable，在菜单项右侧插入关闭按钮
+                if (closable) {
+                    var closeBtn = $('<a href="javascript:void(0)" class="tabs-overflow-menu-close"></a>');
+                    addedItem.append(closeBtn);
+                    // 用立即执行函数捕获当前 tab 引用，避免闭包共享问题
+                    (function(tabRef) {
+                        closeBtn.on("click.tabs-overflow-close", function(e) {
+                            e.stopPropagation();
+                            //menuEl.menu("hide");
+                            // 重建菜单（此时 tab li 还在 DOM 里），关闭按钮的事件绑定也会重建                            
+                            closeTab(container, tabRef.panel("options").title);
+                            updateOverflowMenu(container);
+                            menuEl.menu("show", {});
+                        });
+                    })(tab);
+                }
             }
         });
 
         // 菜单为空时显示一条提示
-        if (!menuEl.children("div.menu-item").length) {
+        if (!hasItem) {
             menuEl.menu("appendItem", { text: "（无隐藏页签）", disabled: true, name: "-1" });
         }
     }
@@ -119,20 +143,47 @@
             createOverflowMenuBtn(container);
             var btn = $.data(container, "tabs").overflowMenuBtn;
             // 按钮固定宽 20px（与 CSS 保持一致），避免 display:none 时 outerWidth 返回 0
-            var btnW = 20;
-            if (tabsWidth > cWidth) {
-                // 超出：显示按钮，缩短 wrap
-                btn.show()._outerHeight(tHeight);
+            var btnW = 28;
+
+            // 先恢复所有 li 可见（重新计算）
+            var allLi = $("ul.tabs li", header);
+            allLi.show();
+
+            // 重新计算在 overflowMenu 模式下，wrap 可用宽度
+            var availWidth = cWidth - btnW;  // 保留按钮位置
+            var accumulated = 0;
+            var hasOverflow = false;
+            allLi.each(function() {
+                accumulated += $(this).outerWidth(true);
+                if (accumulated > availWidth) {
+                    hasOverflow = true;
+                }
+            });
+
+            if (hasOverflow) {
+                // 超出：显示按钮，隐藏放不下的 li
+                btn.show()._outerHeight(28);
                 if (opts.toolPosition == "left") {
                     tool.css({ left: btnW, right: "" });
-                    wrap.css({ marginLeft: btnW + tool._outerWidth(), marginRight: 0, width: cWidth - btnW });
+                    wrap.css({ marginLeft: btnW + tool._outerWidth(), marginRight: 0, width: availWidth });
                 } else {
                     tool.css({ left: "", right: btnW });
-                    wrap.css({ marginLeft: 0, marginRight: btnW + tool._outerWidth(), width: cWidth - btnW });
+                    wrap.css({ marginLeft: 0, marginRight: btnW + tool._outerWidth(), width: availWidth });
                 }
+                // 顺序累加，超出 availWidth 的 li 隐藏（归入下拉菜单）
+                var accumulated2 = 0;
+                allLi.each(function() {
+                    var liW = $(this).outerWidth(true);
+                    if (accumulated2 + liW > availWidth) {
+                        $(this).hide();
+                    } else {
+                        accumulated2 += liW;
+                    }
+                });
             } else {
-                // 未超出：隐藏按钮，wrap 正常
+                // 未超出：隐藏按钮，wrap 正常，所有 li 可见
                 btn.hide();
+                allLi.show();
                 if (opts.toolPosition == "left") {
                     tool.css({ left: 0, right: "" });
                     wrap.css({ marginLeft: tool._outerWidth(), marginRight: 0, width: cWidth });
@@ -947,11 +998,11 @@
         }
     };
     $.fn.tabs.parseOptions = function (target) {
-        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean", overflowMenu: "boolean" }]));
+        return $.extend({}, $.parser.parseOptions(target, ["width", "height", "tools", "toolPosition", "tabPosition", { fit: "boolean", border: "boolean", plain: "boolean", headerWidth: "number", tabWidth: "number", tabHeight: "number", selected: "number", showHeader: "boolean", overflowMenu: "boolean",overflowMenuWidth:"number" }]));
     };
     /*单独引入tabs.js时,页签头高度不对,所以tabHeight高度27修改成36。hisui.js中也有写*/
     $.fn.tabs.defaults = {
-        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, overflowMenu: false, onLoad: function (panel) {
+        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, overflowMenu: false,overflowMenuWidth:140, onLoad: function (panel) {
         }, onSelect: function (title, index) {
         }, onUnselect: function (title, index) {
         }, onBeforeClose: function (title, index) {

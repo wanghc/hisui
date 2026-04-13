@@ -242,7 +242,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     </div>
     <!--   tabs//-->
     <div region="center" border=true split=true title="">
-        <div class="hisui-tabs" data-options="border:false,split:true,fit:true" id="tabs">
+        <div class="hisui-tabs" data-options="border:false,split:true,fit:true,overflowMenu:true" id="tabs">
             <div title="首页" style="padding:20px;" border=true>
                 <iframe scrolling="auto" frameborder="0"  src="https://wanghc.github.io/hisui/dist/" style="width:100%;height:100%;"></iframe>
             </div>  

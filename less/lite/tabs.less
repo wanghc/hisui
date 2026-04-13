@@ -682,29 +682,80 @@
   }
 }
 /* 溢出页签下拉按钮（overflowMenu 模式） */
+.tabs-overflow-menu.menu{
+  padding: 10px;
+  .menu-item{
+    padding: 0px 10px;
+    border-radius: 6px;
+    &.tabs-overflow-menu-selected{ /* 溢出菜单中当前选中页签的菜单项高亮 */
+      background-color: #d7e9ff;
+    }
+  }
+  .menu-text{
+    padding-left: 0px;
+    padding-right:26px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .menu-active{
+    background-color: #e4f0fe;
+    border-color:#e4f0fe ;
+  }
+}
+/* 溢出页签下拉按钮（overflowMenu 模式） */
 .tabs-overflow-btn {
   position: absolute;
-  top: auto;
-  bottom: 0px;
-  right: 0px;
-  width: 20px;
+  top: 4px;
+  bottom: 0;
+  right: 4px;
+  width: 28px;
   display: none;
+  border-radius: 6px;
   cursor: pointer;
   z-index: 1;
   box-sizing: border-box;
-  background-color: @tabs-header-bgcolor;
-  border-left: 1px solid @tabs-header-hover-bgcolor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
-    background-color: @tabs-header-arrow-hover-bgcolor;
+    background-color: #d7e9ff;
   }
   a.tabs-overflow-btn-icon {
     display: inline-block;
+    color:#666666;
     width: 16px;
     height: 16px;
-    margin: 0 2px;
-    vertical-align: middle;
     cursor: pointer;
     opacity: 0.8;
+    margin: 1px 6px 6px 6px;
     &:hover { opacity: 1; }
+    &:before {
+      font-family: Mw_mifonts;
+      content: "\f195";
+    }
+  }
+}
+/* 溢出菜单中的关闭按钮 */
+.tabs-overflow-menu-close {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 10px;
+  margin-top: 10px;
+  color: #939393;
+  text-decoration: none;
+  opacity: 0.6;
+  font-family: Mw_mifonts;
+  position: absolute;
+  right: 10px;
+  &::before {
+    content: "\f480";
+  }
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+    color: #FC494F;
   }
 }

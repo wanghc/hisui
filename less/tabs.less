@@ -9,33 +9,6 @@
   cursor: pointer;
   border:none; /*去边框---下面定义*/
 }
-/* 溢出页签下拉按钮（overflowMenu 模式） */
-.tabs-overflow-btn {
-  position: absolute;
-  top: auto;
-  bottom: 0px;
-  right: 0px;
-  width: 20px;
-  display: none;
-  cursor: pointer;
-  z-index: 1;
-  box-sizing: border-box;
-  background-color: @tabs-header-bgcolor;
-  border-left: 1px solid @tabs-header-hover-bgcolor;
-  &:hover {
-    background-color: @tabs-header-arrow-hover-bgcolor;
-  }
-  a.tabs-overflow-btn-icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    margin: 0 2px;
-    vertical-align: middle;
-    cursor: pointer;
-    opacity: 0.8;
-    &:hover { opacity: 1; }
-  }
-}
 
 
 .tabs-header {
@@ -730,5 +703,83 @@
     &:hover{
       background: url(images/tabs_icons_2.png) no-repeat -36px 0;
     }
+  }
+}
+
+.tabs-overflow-menu.menu{
+  padding: 10px;
+  .menu-item{
+    padding: 0px 10px;
+    border-radius: 6px;
+    &.tabs-overflow-menu-selected{ /* 溢出菜单中当前选中页签的菜单项高亮 */
+      background-color: #d7e9ff;
+    }
+  }
+  .menu-text{
+    padding-left: 0px;
+    padding-right:26px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .menu-active{
+    background-color: #e4f0fe;
+    border-color:#e4f0fe ;
+  }
+}
+/* 溢出页签下拉按钮（overflowMenu 模式） */
+.tabs-overflow-btn {
+  position: absolute;
+  top: 5px;
+  bottom: 0;
+  right: 4px;
+  width: 28px;
+  display: none;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: #017BCE;
+  }
+  a.tabs-overflow-btn-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: url(icons/white/other.png) center center no-repeat;
+    &:hover { opacity: 1; }
+  }
+}
+
+.tabs-container.tabs-gray .tabs-overflow-btn:hover{
+  background-color:#cccccc;
+}
+.tabs-container.tabs-gray .tabs-overflow-btn a.tabs-overflow-btn-icon{
+  background: url(icons/format_line.png) center center no-repeat
+}
+/* 溢出菜单中的关闭按钮 */
+.tabs-overflow-menu-close {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+  color: #939393;
+  text-decoration: none;
+  opacity: 0.6;
+  position: absolute;
+  right: 10px;
+  &::before {
+    content: "x";
+  }
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+    color: #FC494F;
   }
 }
