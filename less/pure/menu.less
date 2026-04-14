@@ -65,14 +65,8 @@
 }
 .menu-shadow {
   position: absolute;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
   background: #ccc;
-  -moz-box-shadow: 2px 2px 3px #cccccc;
-  -webkit-box-shadow: 2px 2px 3px #cccccc;
-  box-shadow: 2px 2px 3px #cccccc;
-  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2,MakeShadow=false,ShadowOpacity=0.2);
 }
 .menu-rightarrow {
   background: url('@{images-path}/menu_arrows.png') no-repeat -32px center;
@@ -168,20 +162,8 @@
 .menu-text span {
   font-size: 14px;
 }
-/*.menu-shadow {
-  position: absolute;
-  -moz-border-radius: 5px 5px 5px 5px;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  background: #ccc;
-  -moz-box-shadow: 2px 2px 3px #cccccc;
-  -webkit-box-shadow: 2px 2px 3px #cccccc;
-  box-shadow: 2px 2px 3px #cccccc;
-  filter: progid:DXImageTransform.Microsoft.Blur(pixelRadius=2, MakeShadow=false, ShadowOpacity=0.2); 
-}*/
+
 .menu-shadow {
-  -moz-box-shadow: @menu-shadow;
-  -webkit-box-shadow: @menu-shadow;
   box-shadow: @menu-shadow;
 }
 
