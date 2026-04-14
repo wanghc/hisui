@@ -433,13 +433,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					fitColumns:true,idField:'id',
 					headerCls:'panel-header-gray',
 					bodyCls:'datagrid-body-padding7',
-					rownumbers:true,width:650,height:200,
+					rownumbers:true,width:650,height:400,
 					title:'属性列表',
 					toolbar:[],
 					striped:true,iconCls:'icon-panel-brand',
 					nowrap:false,  /*此处为false*/
-					columns:[[
-						{field:'ck',title:'sel',checkbox:true},
+					columns:[[						
 						{field:'code',title:'工号',width:50},
 						{field:'name',title:'属性名',width:100,wordBreak:"break-all"},
 						{field:'type',title:'类型',width:100},
@@ -469,14 +468,13 @@ if (!defined('ACCESS_FROM_INDEX')) {
 					fitColumns:true,idField:'id',
 					headerCls:'panel-header-gray',
 					bodyCls:'datagrid-body-padding7',
-					rownumbers:true,width:650,height:200,
+					rownumbers:true,width:650,height:300,
 					title:'属性列表',titleNoWrap:false,/*表头自动折行*/
 					striped:true,iconCls:'icon-panel-brand',
 					nowrap:false,
 					fontSize:12, /*表格上设置字体大小*/
 					lineHeight:12,
 					columns:[[
-						{field:'ck',title:'sel',checkbox:true},
 						{field:'name',title:'属性名',width:100},
 						{field:'type',title:'类型',width:100},
 						{field:'desc',title:'说明',width:200,fontSize:10,lineHeight:14}
