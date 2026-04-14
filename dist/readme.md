@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-04-14
-- :lipstick: tabs超出的页签菜单样式修改
+- :lipstick: `tabs`超出的页签菜单样式修改
+- :lipstick: `popover`关闭按钮样式修改 [6828934]
 
 ## 2026-04-13
 - tabs增加overflowMenu配置属性 [5905641]

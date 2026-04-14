@@ -37,7 +37,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		<script type="text/javascript" class="use-prettyprint">
 			$(function(){
 				$("#manualpp").popover({
-					trigger:'manual',placement:'top',title:'HUI关于',
+					trigger:'manual',placement:'top',title:'HUI关于',closeable:true,
 					content:'HISUI是一款前端组件类库',//backdrop:true,
 					delay:{show: null,hide:500}
 				});
