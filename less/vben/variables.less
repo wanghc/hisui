@@ -79,7 +79,7 @@ body {
     --menutree-icon-color:#666666;
     --tabs-brand-split-line-color:#E3E3E3;
     --panel-tool-a-color:#666666;
-    --menubutton-btn-plain-active-bgcolor:#E3E7FA;
+    --menubutton-btn-plain-active-bgcolor:#DCE1FA;
 }
 body[data-theme=bgliteblue] {
     --primary-color: #008FFF;
@@ -161,7 +161,7 @@ body[data-theme=bgliteblue] {
     --menutree-icon-color:#666666;
     --tabs-brand-split-line-color:#E3E3E3;
     --panel-tool-a-color:#666666;
-    --menubutton-btn-plain-active-bgcolor:#E6F1FF;
+    --menubutton-btn-plain-active-bgcolor:#D7E9FF;
 }
 body[data-theme=bgdark] {
     --primary-color: #008FFF;
@@ -590,6 +590,12 @@ body[data-theme=bgdark] {
 
 //==datagrid
 @datagrid-header-bgcolor:var(--secondary-btn-bgcolor) ;// #f2f3f7;
+@datagrid-header-over-bgcolor:var(--secondary-click-bgcolor);
+@datagrid-header-blue-bgcolor:@window-bgcolor;
+@datagrid-header-blue-select-bgcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
+@datagrid-header-top-brdcolor:var(--datagrid-pager-border-color);
+@datagrid-header-buttom-brdcolor:var(--datagrid-pager-border-color);
+
 @datagrid-inner-border-color:#E2E2E2;
 @datagrid-border-color:var(--datagrid-pager-border-color);
 @datagrid-row-color:var(--default-font-color);
@@ -604,11 +610,7 @@ body[data-theme=bgdark] {
 @datagrid-toolbar-border-color: @datagrid-border-color;
 @datagrid-toolbar-bgcolor:@panel-body-bgcolor;
 
-@datagrid-header-blue-bgcolor:@window-bgcolor;
-@datagrid-header-blue-select-bgcolor:var(--combobox-item-hover-bgcolor); //#d7e9ff;
 @datagrid-pager-border-color:var(--datagrid-pager-border-color);
-@datagrid-header-top-brdcolor:var(--datagrid-pager-border-color);
-@datagrid-header-buttom-brdcolor:var(--datagrid-pager-border-color);
 @datagrid-no-data-opacity: var(--datagrid-no-data-opacity);
 @datagrid-border-radius:0px;
 // @datagrid-pager-bgcolor:@body-bgcolor;
