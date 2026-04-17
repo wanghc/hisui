@@ -29,7 +29,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
 
 			<thead>   
 				<tr>
-					<th data-options="field:'checkOrd',checkbox:'true',align:'center',width:30,auto:false">选择</th> 
 					<th data-options="field:'no',width:20">编码</th>   
 					<th data-options="field:'name',width:20">姓名</th>   
 					<th data-options="field:'loc',width:20">科室</th>
