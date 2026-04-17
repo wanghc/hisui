@@ -494,7 +494,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	</div>
 	
 		<h3>九、蓝色表格演示(headerCls:'datagrid-header-blue')</h3>
-		<div class="demo-exp-code entry-content">
+		<div class="demo-exp-code entry-content" <?php if($PAGE_CONTEXT['version']=="vben") {echo "style=\"border-color:transparent;\""; } ?> >
 			<table id="mytable10"></table>
 			<script type="text/javascript" class="use-prettyprint hide lang-js">
 				$(function(){
