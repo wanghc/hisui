@@ -219,10 +219,17 @@
   background: url('@{images-path}/datagrid_icons.png') no-repeat -32px center;
 }
 .datagrid-row-over .datagrid-row-collapse {
-  background: url('@{images-path}/datagrid_icons.png') no-repeat -96px center;
+  //background: none no-repeat -96px center;
+  background-position-x: -96px;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-image: @datagrid-row-expand-hover;
 }
 .datagrid-row-over .datagrid-row-expand {
-  background: @datagrid-row-expand-hover no-repeat -80px center;
+  background-position-x: -80px;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-image: @datagrid-row-expand-hover;
 }
 .datagrid-mask-msg {
   background: #ffffff url('@{images-path}/loading.gif') no-repeat scroll 5px center;
