@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-17
+- :lipstick: iHOS风格`datagrid`线条样式修改
+
 ## 2026-04-15
 - iHOS风格datagrid列头悬浮背景色修改
 - iHOS风格菜单按钮展开时背景色修改
