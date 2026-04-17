@@ -312,7 +312,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<h3>四、定制翻页条</h3>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint hide lang-html">
-			<table class="hisui-datagrid" style="width:600px;height:100px" 
+			<table class="hisui-datagrid" style="width:600px;height:250px" 
 			data-options="
 			showPageList:false,
 			showRefresh:false,
