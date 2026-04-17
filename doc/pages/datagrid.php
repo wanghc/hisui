@@ -21,6 +21,11 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			label.radio, label.checkbox{
 				margin-right:0px;
 			}
+			<?php 
+			if($PAGE_CONTEXT['version']=="vben") {
+				echo "#index9h,#index9c,#index10h,#index10c{display:none;}"; 
+			}
+			?>
 	</style>
 </head>
     <body>
@@ -492,9 +497,9 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			})		
 		</script>
 	</div>
-	
-		<h3>九、蓝色表格演示(headerCls:'datagrid-header-blue')</h3>
-		<div class="demo-exp-code entry-content" <?php if($PAGE_CONTEXT['version']=="vben") {echo "style=\"border-color:transparent;\""; } ?> >
+
+		<h3 id="index9h">九、蓝色表格演示(headerCls:'datagrid-header-blue')</h3>
+		<div id="index9c" class="demo-exp-code entry-content">
 			<table id="mytable10"></table>
 			<script type="text/javascript" class="use-prettyprint hide lang-js">
 				$(function(){
@@ -529,8 +534,8 @@ if (!defined('ACCESS_FROM_INDEX')) {
 			</script>
 		</div>
 
-		<h3>十、白色背景灰边框表格(<code>bodyCls:'datagrid-body-border-gray'</code>)</h3>
-		<div class="demo-exp-code entry-content" style="background-color: white;">
+		<h3 id="index10h">十、白色背景灰边框表格(<code>bodyCls:'datagrid-body-border-gray'</code>)</h3>
+		<div id="index10c" class="demo-exp-code entry-content" style="background-color: white;">
 			<div class="use-prettyprint hide lang-html">
 				<table class="hisui-datagrid" title="" style="width:800px;height:400px" data-options="fixRowNumber:true,
 				

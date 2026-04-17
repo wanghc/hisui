@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-04-17
 - :lipstick: iHOS风格`datagrid`线条样式修改
+- :lipstick: iHOS风格`datagrid`下`datagrid-body-border-gray`不加表格边框
 
 ## 2026-04-15
 - iHOS风格datagrid列头悬浮背景色修改
