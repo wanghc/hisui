@@ -137,13 +137,26 @@
 .datagrid-view1 .datagrid-body {
   overflow: hidden;
 }
-.datagrid-view {
-  background-image: url('../css/icons/vben/sysst/nodata_region_grid.svg');
-  background-repeat:no-repeat;
-  background-position: center center;
-  opacity: @datagrid-no-data-opacity;
+.datagrid-view::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../css/icons/vben/sysst/nodata_region_grid.svg');
+    opacity: @datagrid-no-data-opacity;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
-.datagrid-have-data .datagrid-view{
+// .datagrid-view {
+//   background-image: url('../css/icons/vben/sysst/nodata_region_grid.svg');
+//   background-repeat:no-repeat;
+//   background-position: center center;
+//   opacity: @datagrid-no-data-opacity;
+// }
+.datagrid-have-data .datagrid-view::before{
   background-image: none;
 }
 .datagrid-footer {

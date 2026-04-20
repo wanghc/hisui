@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-20
+- :lipstick: iHOS风格`datagrid`无数据时背景透明问题处理
+
+
 ## 2026-04-17
 - :lipstick: iHOS风格`datagrid`线条样式修改
 - :lipstick: iHOS风格`datagrid`下`datagrid-body-border-gray`不加表格边框
