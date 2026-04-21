@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-21
+- :lipstick: 日历下拉面板选中色值修改 [6550156]
+
 ## 2026-04-20
 - :lipstick: iHOS风格`datagrid`无数据时背景透明问题处理
 
