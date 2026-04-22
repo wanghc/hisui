@@ -61,7 +61,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 						</thead>
 					</table>
 			</div>
-			<div data-options="region:'south',title:'控制台',split:true,headerCls:'panel-header-gray',iconCls:'icon-panel-brand'" style="height:100px">
+			<div data-options="region:'south',title:'控制台',split:true,headerCls:'panel-header-gray',iconCls:'icon-panel-brand',showCollapsedTitle:true" style="height:100px">
 				<div style="padding:0 15px 0px 15px;" >
 					<code id="logspan"></code>
 				</div>
