@@ -12,7 +12,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 </head>
     <body>
 	<style>
-		label.radio, label.checkbox{margin: 0px;}
+		label.radio, label.checkbox{margin: 0px;padding-right:10px;}
 		/* label.checkbox, label.hischeckbox_square-blue.radio {
     		background-position-x: -2px;
 		} */
@@ -28,7 +28,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<h3>一、数据列表编辑-基于已有编辑类型</h3>
 	<div class="use-prettyprint" prettyprintfor="#mydg1codehtml">
 		
-		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:1162px;height:300px"
+		<table id="dg" class="hisui-datagrid" title="点击编辑列表" style="width:1112px;height:300px"
 
 			
 				data-options="toolbar:[],singleSelect: true,onClickRow: onClickRow,iconCls:'icon-panel-brand',url:'data.csp',striped:true">
@@ -140,7 +140,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 
 	<h3>二、数据列表编辑-实现自己的编辑器(<code>20180830</code>)</h3>
 	<div class="use-prettyprint" prettyprintfor="#mydg2codehtml">
-		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:340px;height:300px"
+		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:310px;height:300px"
 		
 		data-options="iconCls:'icon-panel-brand',singleSelect: true,url:'data2.csp',striped:true,
 		
