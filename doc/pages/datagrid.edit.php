@@ -140,14 +140,14 @@ if (!defined('ACCESS_FROM_INDEX')) {
 
 	<h3>二、数据列表编辑-实现自己的编辑器(<code>20180830</code>)</h3>
 	<div class="use-prettyprint" prettyprintfor="#mydg2codehtml">
-		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:310px;height:300px"
+		<table id="dg2" class="hisui-datagrid" title="点击编辑列表" style="width:360px;height:300px"
 		
 		data-options="iconCls:'icon-panel-brand',singleSelect: true,url:'data2.csp',striped:true,
 		
 		method: 'get',rownumbers:true,onClickRow: onClickRow2,toolbar:[]">
 		<thead>
 		<tr>	
-			<th data-options="field:'grantBtnGroup',align:'center',width:250,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
+			<th data-options="field:'grantBtnGroup',align:'center',width:300,editor:{type:'mybtns',options:{on:'1',off:'0'}},formatter:function(value,row){
 				var valArr = value.split('#');
 				var rtnArr = [];
 				$.each(valArr,function(i,item){
