@@ -15,7 +15,8 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <h3>说明:</h3>
     <span>组合网格（combogrid）把可编辑的文本框和下拉数据网格面板结合起来，用户可以从下拉数据网格面板中快速查找和选择。组合网格（combogrid）提供了选择某个项目的键盘导航支持。</span>
     <h3>如：</h3>
-    <div class="demo-exp-code entry-content"> 
+    <div class="demo-exp-code entry-content">
+        <div class="use-prettyprint">
         <select class="hisui-combogrid" id="combogrid" style="width:250px" data-options="
             panelWidth: 500,
             blurValidValue:true,
@@ -29,13 +30,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 {field:'listprice',title:'List Price',width:80,align:'right'},
                 {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
                 {field:'attr1',title:'Attribute',width:200},
-                {field:'status',title:'Status',width:60,align:'center'}
+                {field:'status',title:'Status',width:70,align:'center'}
             ]],
             fitColumns: true
             //,required:true
-        ">
-    </select>
-    <script type="text/javascript">
+        "></select></div>
+        <script type="text/javascript" class="use-prettyprint">
         $.parser.onComplete = function(cxt){
             if (cxt) return ;
             var trObj = $HUI.combogrid("#combogrid");
@@ -45,41 +45,11 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 {"itemid":"EST-10","productname":"Dalmation","listprice":18.50,"unitcost":12.00,"attr1":"Spotted Adult Female","status":"P"},
                 {"itemid":"EST-11","productname":"Rattlesnake","listprice":38.50,"unitcost":12.00,"attr1":"Venomless","status":"P"},
                 {"itemid":"EST-12","productname":"Rattlesnake","listprice":26.50,"unitcost":12.00,"attr1":"Rattleless","status":"P"},
-                {"itemid":"EST-13","productname":"Iguana","listprice":35.50,"unitcost":12.00,"attr1":"Green Adult","status":"P"}
+                {"itemid":"EST-13","productname":"Iguana","listprice":35.50,"unitcost":12.00,"attr1":"Green Adult","status":"P"},
+                {"itemid":"EST-14","productname":"Iguana","listprice":25.50,"unitcost":16.00,"attr1":"Green Adult","status":"P"}
             ]});
-        };
-    </script>
-  
-   <pre class="prettyprint lang-html hide"><code>&lt;select class="hisui-combogrid" id="combogrid" style="width:250px" data-options="
-            panelWidth: 500,
-            blurValidValue:true,
-            idField: 'itemid',
-            textField: 'productname',
-            method: 'get',
-            columns: [[
-                {field:'itemid',title:'Item ID',width:80},
-                {field:'productname',title:'Product',width:120},
-                {field:'listprice',title:'List Price',width:80,align:'right'},
-                {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
-                {field:'attr1',title:'Attribute',width:200},
-                {field:'status',title:'Status',width:60,align:'center'}
-            ]],
-            fitColumns: true
-        ">    
-&lt;/select&gt;</code></pre><pre class="prettyprint lang-js hide">&lt;script type="text/javascript"&gt;
-    $(function(){
-        var trObj = $HUI.combogrid("#combogrid");
-        var grid = trObj.grid();
-        grid.datagrid("loadData",{"total":5,"rows":[
-            {"itemid":"EST-1","productname":"Koi","listprice":36.50,"unitcost":10.00,"attr1":"Large","status":"P"},
-            {"itemid":"EST-10","productname":"Dalmation","listprice":18.50,"unitcost":12.00,"attr1":"Spotted Adult Female","status":"P"},
-            {"itemid":"EST-11","productname":"Rattlesnake","listprice":38.50,"unitcost":12.00,"attr1":"Venomless","status":"P"},
-            {"itemid":"EST-12","productname":"Rattlesnake","listprice":26.50,"unitcost":12.00,"attr1":"Rattleless","status":"P"},
-            {"itemid":"EST-13","productname":"Iguana","listprice":35.50,"unitcost":12.00,"attr1":"Green Adult","status":"P"}
-        ]});
-    });
-&lt;/script&gt;    
-    </pre>  </div>
+        };</script></div>
+    
     <table class="table">
 		<tr class="protitle">
 			<th>属性</th>
