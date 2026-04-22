@@ -18,10 +18,10 @@ if (!defined('ACCESS_FROM_INDEX')) {
     <script src="../pages/layout/data.js" type="text/javascript"></script>
 </head>
 <body class="hisui-layout">
-    <div data-options="region:'west',border:false" style="width:200px;padding:15px 0 15px 15px;<?php if($GLOBALS['CURRENT_HISUI_VERSION']=='pure') echo 'background-color: #cde6ff;' ?>" >
+    <div data-options="region:'west',border:false" style="width:200px;<?php if($GLOBALS['CURRENT_HISUI_VERSION']=='pure') echo 'padding:15px 0 15px 15px;background-color: #cde6ff;' ?>" >
         <div id="mm"></div>
     </div>
-    <div data-options="region:'center',border:false" style="padding: 15px;<?php if($GLOBALS['CURRENT_HISUI_VERSION']=='pure') echo 'background-color: #cde6ff;' ?>">
+    <div data-options="region:'center',border:false" style="<?php if($GLOBALS['CURRENT_HISUI_VERSION']=='pure') echo 'padding: 15px;background-color: #cde6ff;' ?>">
         <div class="hisui-tabs" id="menu-tabs" data-options="fit:true,simpleContextMenu:true" >
             <div title="首页" data-options="iconCls:'icon-home'" style="padding: 10px 15px 15px 15px;">首页内容</div>
         </div>

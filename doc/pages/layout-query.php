@@ -147,6 +147,9 @@ if (!defined('ACCESS_FROM_INDEX')) {
             .about-val{
                 color: #191919;
             }
+            td[field="ck"] label.checkbox{
+                margin-right:0px
+            }
         </style>
         <div id="dialog3" title="产品服务支持" style="width:973px;height:680px;padding:0 20px 20px;background-color: transparent; display: none;overflow: hidden;">
             <div class="aboutMiddle">
@@ -229,7 +232,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 rownumbers:true,
 		        striped:true,
                 frozenColumns:[[
-                    {field:'ck',checkbox:true,width:50},
+                    {field:'ck',title:'选择',align:"center",editor:{type:"icheckbox"},width:50},
                     {field:'op',title:'操作',formatter:function(val,row,ind){
                         return '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op1" data-ind="'+ind+'" iconCls="icon-copy" title="复制"></a>'+
                         '<a class="tbl-main-cell-op" href="javascript:void(0);" data-op="op2" data-ind="'+ind+'" iconCls="icon-cancel" title="删除"></a>';
@@ -249,7 +252,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                     }}
                 ]],
                 url:'getTblMainData', //采用mockjs 模拟数据
-                onLoadSuccess:function(){
+                onLoadSuccess:function(data){
                     $('.tbl-main-cell-op').off('click').on('click',function(){
                         var op=$(this).data('op');
                         var ind=$(this).data('ind');
@@ -257,7 +260,10 @@ if (!defined('ACCESS_FROM_INDEX')) {
                         $.messager.popover({msg:'点击了'+(ind+1)+'行的'+op+'按钮' ,type:'info' })
 
                     })
-                    $('.tbl-main-cell-op').linkbutton({plain:true}).tooltip({position:'bottom'})
+                    $('.tbl-main-cell-op').linkbutton({plain:true}).tooltip({position:'bottom'});
+                    $.each(data.rows,function(i,row){
+                        $("#tbl-main").datagrid('beginEdit',i);
+                    });
                 },
                 pagination: true,pageSize:20,
                 toolbar:[
@@ -274,7 +280,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
-                    '-',
                     {text:'剪切',iconCls:'icon-cut',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
