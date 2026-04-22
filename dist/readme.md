@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-04-22
 - :lipstick: iHOS风格下表格线条样式修改 [6550160]
+- :lipstick: iHOS风格`tee`选中与悬浮样式修改 [6550163]
 
 ## 2026-04-21
 - :lipstick: 日历下拉面板选中色值修改 [6550156]

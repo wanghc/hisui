@@ -173,19 +173,20 @@
   line-height: 34px;
   padding:  0 5px; /*2942057*/
 }
-.tree-node-selected{
-  background: @tree-node-hover-bgcolor;
-  color: @tree-node-selected-font-color;
-  border-radius: 6px;
-}
 .tree-node-hover{
-  background: #E4F0FE;
+  background: @tree-node-hover-bgcolor;
   color: @tree-node-hover-font-color;
   border-radius: 6px;
 }
+.tree-node-selected{
+  background: @tree-node-selected-bgcolor;
+  color: @tree-node-selected-font-color;
+  border-radius: 6px;
+}
+
 /*增加.tree>li>ul解决 大节点也变色背景问题 */
 .tree>li>ul .tree-node-selected .tree-title{
-  background: @tree-node-hover-bgcolor;
+  background: transparent;
   border-radius:6px;
 }
 .tree-checkbox, .tree-collapsed, .tree-expanded, .tree-file, .tree-folder, .tree-indent {
@@ -316,7 +317,7 @@
         padding: 0 34px 0 15px;
       }
       &.tree-node-hover{
-        background-color:#E4F0FE;
+        background-color:@tree-node-hover-bgcolor;
       }
     }
     &>ul{
@@ -327,12 +328,12 @@
         line-height: 36px;
         position: relative;
         &.tree-node-hover{
-          background-color: #E4F0FE;
+          background-color: @tree-node-hover-bgcolor;
         }
         &.tree-node-selected{
           background-color: @accordion-tree-select-bgcolor;
-          .tree-title{ /*2019-12-12 解决选中行变黄底色问题 */
-            background: @accordion-tree-select-bgcolor;
+          .tree-title{
+            background: transparent;
           }
         }
         .tree-hit{
@@ -362,16 +363,16 @@
 .treegrid-tr-tree-div-hidden{
   display:none;
 }
-.hisui-tree{
-  .tree-node{
-    &.tree-node-hover{
-      background-color: #e4f0fe;
-    }
-    &.tree-node-selected{
-      background-color: #d7e9ff;
-    }
-  }
-}
+// .hisui-tree{
+//   .tree-node{
+//     &.tree-node-hover{
+//       background-color: @tree-node-hover-bgcolor;
+//     }
+//     &.tree-node-selected{
+//       background-color: @tree-node-selected-bgcolor;
+//     }
+//   }
+// }
 // .tree-lines{
 //   .tree-expanded-hover {
 //     margin-top: 7px;

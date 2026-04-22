@@ -16,7 +16,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	<span>树形菜单（Tree）可从标记创建，也可定义在 &lt;ul> 元素中。无序列表的 &lt;ul> 元素提供一个基础的树（Tree）结构。每一个 &lt;li> 元素将产生一个树节点，子 &lt;ul> 元素将产生一个父树节点。</span>
 	<h3>一、无线条树(<code>lines:false</code>)</h3>
 	
-	<div class="demo-exp-code entry-content" style="background-color: #f1f7fe;">
+	<div class="demo-exp-code entry-content" style="background-color: transparent;">
 	
 		<div class="use-prettyprint">
 			<ul class="hisui-tree" data-options="lines:false">
@@ -106,7 +106,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 	</div>
 	<h3>二、有线条树(<code>lines:true</code>)</h3>
 	
-	<div class="demo-exp-code entry-content" style="background-color: #f1f7fe;">
+	<div class="demo-exp-code entry-content" style="background-color: transparent;">
 	
 		<div class="use-prettyprint">
 			<ul class="hisui-tree" data-options="lines:true">
@@ -195,7 +195,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
 		</div>
 	</div>
 	<h3>三、formatter实现节点自定义格式</h3>
-	<div class="demo-exp-code entry-content" style="background-color: #f1f7fe;">
+	<div class="demo-exp-code entry-content" style="background-color: transparent;">
 		
 		<p>formatter返回的html高度不定，需要为tree增加配置项<code>autoNodeHeight:true,lines:true</code>;原文件夹或文件图标会替换成线条<p>
 		<div class="use-prettyprint">
