@@ -38,7 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-04-23
 - :lipstick: 修改`menutree`图标颜色 [6598293]
 - :lipstick: 修改滚动条样式
-
+- :lipstick: iHOS风格`tree`图标颜色修改
 
 ## 2026-04-22
 - :lipstick: iHOS风格下表格线条样式修改 [6550160]
