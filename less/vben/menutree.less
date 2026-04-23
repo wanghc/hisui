@@ -19,7 +19,7 @@
 @menutree-root-color:var(--menutree-root-font-color);
 @menutree-node-color:var(--menutree-node-font-color);
 @menutree-searcher-bgcolor:var(--menutree-searcher-bgcolor);
-@menutree-icon-color:var(--menutree-icon-color);
+@menutree-icon-color:var(--input-iconbtn-color);
 
 /*子树*/
 @menutree-sub-wrap-bgcolor:var(--menutree-sub-bgcolor);
@@ -203,7 +203,7 @@
             font-family: Mw_mifonts;
             line-height: 28px;
             text-align: center;
-            color:var(--menutree-btn-color);
+            color:@menutree-icon-color;
             font-weight: 400;
 
             &.tree-collapsed {
@@ -290,7 +290,7 @@
               margin: 0;
               font-family: Mw_mifonts;
               text-align: center;
-              color:var(--menutree-btn-color);
+              color:@menutree-icon-color;
               font-weight: 400;
 
               &.tree-collapsed {

@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-23
+- :sparkles: 修改`menutree`图标颜色 [6598293]
+
+
 ## 2026-04-22
 - :lipstick: iHOS风格下表格线条样式修改 [6550160]
 - :lipstick: iHOS风格`tee`选中与悬浮样式修改 [6550163]
