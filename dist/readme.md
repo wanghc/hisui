@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-04-23
-- :sparkles: 修改`menutree`图标颜色 [6598293]
+- :lipstick: 修改`menutree`图标颜色 [6598293]
+- :lipstick: 修改滚动条样式
 
 
 ## 2026-04-22
