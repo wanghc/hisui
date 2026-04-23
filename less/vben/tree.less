@@ -34,50 +34,80 @@
   overflow: hidden;
 }
 .tree-expanded {
-  background: url('@{images-path}/tree_icons.png') no-repeat -18px 0px;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -18px 0px;
 }
 .tree-expanded-hover {
-  background: url('@{images-path}/tree_icons.png') no-repeat -50px 0px;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -50px 0px;
 }
 .tree-collapsed {
-  background: url('@{images-path}/tree_icons.png') no-repeat 0px 0px;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
 }
 .tree-collapsed-hover {
-  background: url('@{images-path}/tree_icons.png') no-repeat -32px 0px;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -32px 0px;
 }
 .tree-lines .tree-expanded,
 .tree-lines .tree-root-first .tree-expanded {
-  background: url('@{images-path}/tree_icons.png') no-repeat -144px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -144px 0px;
+
 }
 .tree-lines .tree-collapsed,
 .tree-lines .tree-root-first .tree-collapsed {
-  background: url('@{images-path}/tree_icons.png') no-repeat -128px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -128px 0px;
+
 }
 .tree-lines .tree-node-last .tree-expanded,
 .tree-lines .tree-root-one .tree-expanded {
-  background: url('@{images-path}/tree_icons.png') no-repeat -80px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -80px 0px;
 }
 .tree-lines .tree-node-last .tree-collapsed,
 .tree-lines .tree-root-one .tree-collapsed {
-  background: url('@{images-path}/tree_icons.png') no-repeat -64px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -64px 0px;
 }
 .tree-line {
-  background: url('@{images-path}/tree_icons.png') no-repeat -176px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -176px 0px;
 }
 .tree-join {
-  background: url('@{images-path}/tree_icons.png') no-repeat -192px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -192px 0px;
 }
 .tree-joinbottom {
-  background: url('@{images-path}/tree_icons.png') no-repeat -160px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -160px 0px;
 }
 .tree-folder {
-  background: url('@{images-path}/tree_icons.png') no-repeat -208px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -208px 0px;
 }
 .tree-folder-open {
-  background: url('@{images-path}/tree_icons.png') no-repeat -224px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -224px 0px;
 }
 .tree-file {
-  background: url('@{images-path}/tree_icons.png') no-repeat -240px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -240px 0px;
 }
 .tree-loading {
   background: url('images/loading.gif') no-repeat center center;
@@ -92,13 +122,21 @@
 //   background: url('@{images-path}/tree_icons.png') no-repeat -240px -18px;
 // }
 .tree-checkbox0 { /**未勾*/
-  background: @checkbox-bgimg-v-url no-repeat -6px -2px;
+  background-image: @checkbox-bgimg-url;
+  background-repeat: no-repeat;
+  background-position: -6px -2px;
+
 }
 .tree-checkbox1 { /*勾中*/
-  background: @checkbox-bgimg-v-url no-repeat -6px -50px;
+  background-image: @checkbox-bgimg-v-url;
+  background-repeat: no-repeat;
+  background-position: -6px -50px;
+
 }
 .tree-checkbox2 { /**勾半选*/
-  background: @checkbox-bgimg-v-url no-repeat -6px -290px;
+  background-image: @checkbox-bgimg-v-url;
+  background-repeat: no-repeat;
+  background-position: -6px -290px;
 }
 
 
@@ -130,10 +168,14 @@
   margin-top: -9px;
 }
 .tree-dnd-yes {
-  background: url('images/tree_icons.png') no-repeat -256px 0;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -256px 0px;
 }
 .tree-dnd-no {
-  background: url('images/tree_icons.png') no-repeat -256px -18px;
+  background-image: @tree-icons-img-url;
+  background-repeat: no-repeat;
+  background-position: -256px -18px;
 }
 .tree-node-top {
   border-top: 1px dotted red;
@@ -223,49 +265,73 @@
     height: 34px;
   }
   .tree-line {
-    background: url('@{images-path}/tree_lines.png') no-repeat -113px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -113px center;
   }
   .tree-join {
-    background: url('@{images-path}/tree_lines.png') no-repeat -129px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -129px center;
   }
   .tree-expanded{
-    background: url('@{images-path}/tree_lines.png') no-repeat -81px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -81px center;
     &.hover{
-      background: url('@{images-path}/tree_icons.png') no-repeat -50px 0px;
+      background-image: @tree-lines-img-url;
+      background-repeat: no-repeat;
+      background-position: -50px 0px;
     }
   }
   .tree-collapsed {
-    background: url('@{images-path}/tree_lines.png') no-repeat -65px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -65px center;
   }
   .tree-root-first{
     .tree-expanded{
-      background: url('@{images-path}/tree_lines.png') no-repeat -200px center;
+      background-image: @tree-lines-img-url;
+      background-repeat: no-repeat;
+      background-position: -200px center;
     }
     .tree-collapsed {
-      background: url('@{images-path}/tree_lines.png') no-repeat -184px center;
+      background-image: @tree-lines-img-url;
+      background-repeat: no-repeat;
+      background-position: -184px center;
     }
   }
   .tree-node-last,.tree-root-one{
     .tree-expanded{
-      background: url('@{images-path}/tree_lines.png') no-repeat -17px center;
+      background-image: @tree-lines-img-url;
+      background-repeat: no-repeat;
+      background-position: -17px center;
     }
     .tree-collapsed {
-      background: url('@{images-path}/tree_lines.png') no-repeat -1px center;
+      background-image: @tree-lines-img-url;
+      background-repeat: no-repeat;
+      background-position: -1px center;
     }
   }
   .tree-joinbottom {
-    background: url('@{images-path}/tree_lines.png') no-repeat -129px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -129px center;
   }
 
   /*高度不固定时  tree-folder tree-file tree-folder-open   都加了一个类 tree-icon-lines*/
   .tree-folder.tree-folder-open.tree-icon-lines{
     margin: 0;
-    background: url('@{images-path}/tree_lines.png') no-repeat -151px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -151px center;
   }
   .tree-folder.tree-icon-lines,
   .tree-file.tree-icon-lines{
     margin: 0;
-    background: url('@{images-path}/tree_lines.png') no-repeat -167px center;
+    background-image: @tree-lines-img-url;
+    background-repeat: no-repeat;
+    background-position: -167px center;
   }
 
 }
