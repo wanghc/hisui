@@ -17,7 +17,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     </style>
     <script src="../pages/layout/data.js" type="text/javascript"></script>
 </head>
-<body style="padding:10px;box-sizing: border-box;">
+<body style="box-sizing: border-box;">
     <div class="hisui-panel" data-options="fit:true,title:'',border:false">
         <div class="hisui-layout" fit="true">
             <div data-options="region:'north',border:true,title:'面板标题',iconCls:'icon-panel-brand',isNormalPadding:true,collapsible:false " style="height: 153px;padding: 5px 14px; ">
