@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-28
+- :lipstick: iHOS风格下`datagrid`无数据图片显示重复
+- :lipstick: iHOS风格下`datagrid`背景修改成透明 [6864835]
+
 ## 2026-04-23
 - :lipstick: 修改`menutree`图标颜色 [6598293]
 - :lipstick: 修改滚动条样式

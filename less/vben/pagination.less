@@ -73,7 +73,7 @@
   border-color: @datagrid-toolbar-border-color;
 }
 .datagrid-pager {
-  background: @body-bgcolor;
+  background: @datagrid-bgcolor;
   border-top: 1px solid @datagrid-pager-border-color;
 }
 .pagination span.l-btn-text.l-btn-empty {
@@ -138,6 +138,7 @@
 .pagination-page-list,.pagination .pagination-num{ //[3241479]
   border-color: @input-border-color;
   color:@input-color;
+  background-color: @datagrid-bgcolor;
   &:active,&:focus,&:hover{
     background-color: @validatebox-focus-bgcolor;
     border-color: @input-active-border-color;
@@ -158,3 +159,6 @@
 .pagination-last{
   margin-right: 5px;
 }
+//  input.pagination-num, select.pagination-page-list{
+//   background-color: @datagrid-bgcolor;
+// }

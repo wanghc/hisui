@@ -280,9 +280,7 @@
   color: @main-font-color;
   border-collapse: separate;
 }
-.datagrid-row-alt {
-  background: #FAFAFC;
-}
+
 .datagrid-row-over,
 .datagrid-header td.datagrid-header-over {
   background: @datagrid-header-over-bgcolor;
@@ -322,7 +320,7 @@
   background: #E0ECFF;
 }
 .datagrid-row {
-  background: @body-bgcolor;
+  background: @datagrid-bgcolor;
 }
 .datagrid-row-alt {
   background: @datagrid-row-alt-bgcolor;
@@ -372,7 +370,7 @@
   border-bottom:1px solid @datagrid-header-buttom-brdcolor;
 }
 .datagrid-td-rownumber{
-  background: @body-bgcolor;
+  background: @datagrid-bgcolor;
 }
 .datagrid-header td, .datagrid-body td, .datagrid-footer td{
   border-color:@datagrid-border-color;
@@ -391,7 +389,6 @@
   background: @datagrid-row-hover;
   color:@datagrid-row-select-color;
 }
-
 .datagrid-cell, .datagrid-cell-group{
   /*text-overflow: ellipsis;*/ /*2018-12-4 showTip*/
   padding: 0px 8px;
@@ -672,3 +669,4 @@ td.datagrid-value-changed {
 //     height: 20px;
 //   }
 // }
+

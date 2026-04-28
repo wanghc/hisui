@@ -288,7 +288,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
                     }},
-                    '-',
                     {text:'禁用',iconCls:'icon-cut',disabled:true,id:'tbl-main-tb-dis1',handler:function(){
                         var text=$(this).text();
                         $.messager.popover({msg:'点击了工具按钮：'+text,type:'info'})
