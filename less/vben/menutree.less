@@ -65,7 +65,10 @@
   position: absolute;
   top: -100px;;
 }
-
+.menutree-collapse,.menutree-expanded{
+  color:@tree-node-iconbtn-color;
+  font-family: 'Mw_mifonts';
+}
 /*menutree*/
 .menutree {
   .tree-folder{
@@ -124,20 +127,25 @@
 
     }
     .menutree-collapse.menutree-expanded::before {
-      content: "";
+      content: "\f204";
       width: 16px;
       height: 16px;
+      line-height: 16px;
       display: inline-block;
-      margin: 6px;
-      background: @menutree-expanded-bg;
+      top: 6px;
+      left: 6px;
+      position: absolute;
     }
     .menutree-collapse.menutree-collapsed::before {
-      content: "";
+      content: "\f204";
       width: 16px;
       height: 16px;
+      line-height: 16px;
       display: inline-block;
-      margin: 6px;
-      background: @menutree-collapsed-bg;
+      top: 6px;
+      left: 6px;
+      position: absolute;
+      transform: rotate(180deg);
     }
   }
 

@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-04-29
+- :lipstick: iHOS风格下`menutree`的收展按钮样式修改
+
 ## 2026-04-28
 - :lipstick: iHOS风格下`datagrid`无数据图片显示重复
 - :lipstick: iHOS风格下`datagrid`背景修改成透明 [6864835]
