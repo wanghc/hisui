@@ -394,7 +394,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 }
             }
             //----消息类，可标识消息状态的图标
-            var msgicons=['msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed',''
+            var msgicons=['msg-unread','msg-unread-unprocessed','msg-read','msg-read-unprocessed','msg-read-processed','msg-processed',''
             ,'file-open','file','file-gray','stamp-mess','stamp-add','stamp-switch','stamp-undo','sure-readed','read-details',''
             ,'ring-blue','bell-blue','bell-blue-no','bell-yellow','have-message','send-msg'];
             for(var i=0;i<msgicons.length;i++){

@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-05-11
 - :lipstick: `treegrid`界面中勾选框样式处理 [6925277]
+- :sparkles: 增加消息已处理图标,优化图标代码 [6903458]
 
 ## 2026-04-29
 - :lipstick: iHOS风格下`menutree`的收展按钮样式修改

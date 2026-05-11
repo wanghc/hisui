@@ -588,6 +588,7 @@ var iconDictionary={
     'icon-msg-read':'消息已读',
     'icon-msg-read-unprocessed':'消息已读未处理',
     'icon-msg-read-processed': '消息已读已处理',
+    'icon-msg-processed': '消息已处理',
     'icon-sound': '语音',
     'icon-evaluate-red': '评价，点评',
     'icon-evaluate-green':'评价，点评',
