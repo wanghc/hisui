@@ -122,6 +122,14 @@ if (!defined('ACCESS_FROM_INDEX')) {
             line-height: 18px;
         }
     </style>
+    <!-- 不同主题，使用不同样式 -->
+    <?php 
+    if ($PAGE_CONTEXT['version']!=""){
+        echo '<link rel="stylesheet" type="text/css" href="../css/home.' . $PAGE_CONTEXT['version'] . '.css">';
+    }else{
+        echo '<link rel="stylesheet" type="text/css" href="../css/home.blue.css">';
+    }
+    ?>
 </head>
 <body class="hisui-layout">
     <!--<div id="themediv">

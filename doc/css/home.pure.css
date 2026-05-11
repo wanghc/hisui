@@ -1,0 +1,12 @@
+.hisui-accordion .menu-text {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color:#000000;
+}
+.hisui-accordion .menu-active{    
+    background-color: #e4f0fe;
+}
+.hisui-accordion .menu-select{
+    background-color: #d7e9ff;
+}
