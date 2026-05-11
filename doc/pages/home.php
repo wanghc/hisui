@@ -484,8 +484,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 let id = item.id;
                 for (var j=0; j<PAGELISTDATA.length; j++){
                     if (id==PAGELISTDATA[j].parentName){
+                        var text = `${PAGELISTDATA[j].title}(${PAGELISTDATA[j].compName||PAGELISTDATA[j].name})`;
+                        if (PAGELISTDATA[j].name=="layout-query" || PAGELISTDATA[j].name=="layout-menu"){
+                            text = PAGELISTDATA[j].title;
+                        }
                         html += `<div class="menu-item" src="${PAGELISTDATA[j].name}" text="${PAGELISTDATA[j].title}" target="${PAGELISTDATA[j].target||""}">
-                            <div class="menu-text">${PAGELISTDATA[j].title}(${PAGELISTDATA[j].compName||PAGELISTDATA[j].name})</div>
+                            <div class="menu-text">${text}</div>
                         </div>`;
                     }
                 }
