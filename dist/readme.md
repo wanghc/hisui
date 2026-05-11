@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-05-11
+- :lipstick: `treegrid`界面中勾选框样式处理 [6925277]
+
 ## 2026-04-29
 - :lipstick: iHOS风格下`menutree`的收展按钮样式修改
 
