@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-05-12
+-- 图标新增患者基本信息`patient-information`图标 [6884093]
+
 ## 2026-05-11
 - :lipstick: `treegrid`界面中勾选框样式处理 [6925277]
 - :sparkles: 增加消息已处理图标,优化图标代码 [6903458]

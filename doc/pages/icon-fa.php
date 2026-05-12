@@ -208,7 +208,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             //,'large-picture','large-clipart','large-shapes','large-smartart','large-chart','large-report'
             ,'bed','house','house-maint','house-posi-maint','person','person-key-yel','key-switch','big-switch','report-switch','report-blue-shie-key','patient','outhosp-patient','stethoscope'
             ,'uncheckin','checkin','end-adm','change-loc','doctor','clear-screen','read-card','update','upload-cloud','unload-cloud','reset'
-            ,'other','patient-info','del-diag','add-diag','emr-cri'
+            ,'other','patient-info','patient-information','del-diag','add-diag','emr-cri'
             ,'funnel-eye','funnel-half','funnel-empty','funnel-on','eye','green-line-eye','export','import','download','omega','eye-deepgrade'
             ,'fee-arrow','fee'
             ,'star-yellow','star-light-yellow','star','star-half','star-empty','star-orange-border','star-orange-body','book','all-select','all-unselect'

@@ -326,6 +326,7 @@ var iconDictionary={
     "icon-unload-cloud": "下载",
     "icon-reset": "重置",
     "icon-patient-info": "病人信息",
+    "icon-patient-information": "病人信息",
     "icon-del-diag": "删除诊断",
     "icon-add-diag": "增加诊断",
     "icon-emr-cri": "病程",
