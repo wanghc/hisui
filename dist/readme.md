@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-05-12
--- 图标新增患者基本信息`patient-information`图标 [6884093]
+- 图标新增患者基本信息`patient-information`图标 [6884093]
+- iHOS风格插画logo、产品名称、夜间模式下无数据图片及样式修改 [6891154]
 
 ## 2026-05-11
 - :lipstick: `treegrid`界面中勾选框样式处理 [6925277]

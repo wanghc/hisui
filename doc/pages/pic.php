@@ -103,7 +103,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
             }
             $('.conter4').html(html.join(""));
             // --关于方式-
-            var aboutArr = ['dhcc-digitalmed','doc','imedical-logo','vi'];
+            var aboutArr = ['doc','imedical-logo','vi'];
             pre = 'pic-about-',html=[];
             for(var i=0;i<aboutArr.length;i++){
                 html.push('<div class="conter"><div class="'+pre+aboutArr[i]+'"/><div class="clstext">'+pre+aboutArr[i]+'</div></div>');
