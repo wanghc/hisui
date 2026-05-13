@@ -15,6 +15,12 @@ if (!defined('ACCESS_FROM_INDEX')) {
             padding-right: 20px;
         }
     </style>
+        <!-- 不同主题，使用不同样式 -->
+    <?php 
+    if ($PAGE_CONTEXT['version']=="vben" || $PAGE_CONTEXT['version']=="pure"){
+        echo '<link rel="stylesheet" type="text/css" href="../css/layout-query.' . $PAGE_CONTEXT['version'] . '.css">';
+    }
+    ?>
     <script src="../pages/layout/data.js" type="text/javascript"></script>
 </head>
 <body style="box-sizing: border-box;">
@@ -71,12 +77,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
             </div>
         </div>
         <style>
-            .panel-body .aboutMiddle{
-                border-radius:6px;
-                background-color: #FFFFFF;
-                width: 933px;
-                height: 602px;
-            }
             .panel-body .aboutbody ul>li{
                 margin-top:0px;
                 line-height: 40px;
@@ -110,16 +110,6 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 font-size:8px;
                 font-family: 'MicrosoftYaHei';
             }
-            .panel-body .aboutMiddle-bottom{
-                float: left;
-                width: 327px;
-                height: 16px;
-                margin: 68px 0px 0px 0px;
-                /*imedical R*/
-                background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAOCAYAAACvtwvjAAAABHNCSVQICAgIfAhkiAAABTJJREFUWEfFWM1uGzcQ5lAK0FscoKf2kJXRe9UnqP0EkaxjD5ZvRWwg8rGnyE8QGbWDAkUR+QFkKU9Q+QmiHHoqYG/uLSr3WMucfsNdrihqfwQjTRcwIFFczvCbbz5+NG0fXbJKH3y4ujnb22kcXU4xlI3Lz6TU++uzvZ6bGz0fN0nzK/c9W8PwRfy6MwzHH/od+Q2QyNfufeS36+cs48gL6f13D+L9Bji+kgis6A/k8GUYbfto1Le/M0VEao5Pc1PXg3jQxmfglwd0uJEkgJojwBMXIFmYXq5vj0+uzzo26Md4pOhA8Vu3loD6yYE+HP2uiBKgWf15c773ucsn6o236I4HC3P/S61e03b8jj5YcGs84HvqxT+1YySdVEIeY1QsbMwDOvmdvolft2fyOQRgCeqnAHqZs8T9mIXNI8d2CdDSccBlqLTaIsV9/E3B+hb++qqupijCEIVpUXQ03lGEOslzT7cCZBHQKOfx9XlnIFOzOcy3qPbjIqBlfc1mn4kiywhFEyRw4VrK31g69xnmNt08WvAkZPRKzlgg/nHvyq0jDFMLtQ9qbWUEYo7VI3qbG/P7caRr5oXEtCzEXEP6Ij5rT937VUCLpNrcldmRokfPR12tqSnjQmSz0MNK6RDddht1Gp4syr9a4FhdQJP284BuHF4OV39LZokMsaFd1x22Q3LmYu3Ybp6ULZI8ZdKRbvCNXzz3OYnJx/75UTYfGxuCVAfyfhHQkRSpbroWXGACNr8kRWA072J/PdkfxltYYl4JNGA58bU42ehSn43hA1TP21wiHdJSCPAib9MZ2AtIEfRLkkHhxkVz/fEioEtB8xYwCgUGW32ylMQ9tawskA7pHr3gvmM0uqELsGfojpaYirRIPXTIbCOg0caoVnIgSaKJFqXfF9TQdb5ZJssn0iorY5AXBOtCQiLQM3Mq0g3Qr26o9zKOZIeIM0CczHGUMbpxOIqJ6KnLIwMU7kiTmS7lLSECYs7CtUPAnQEokw7JXUD1pUPG0D1D6R7pVNnjRkCj1+ceQKeOqcz84ea8E61qOjpgdb7oyzGK1YRHfIrN2UpbVkMakEQjPBNMnZ6InqaM+auK0SYotiuge0+sqC9Ta+umRACLUCwzCQsGgvxc6DqSbtyxB6IyiNMZOtDFXEgOMrYR0Mboidb8bq3iKSPXgLYTl9ZP2IVkJ6uHZrJaKAUOfBdrE3tn10/PjLSEpRYzlA139thWD2xrmnsh0PKOyBaKA6eh3iiGtavxY83cA+GunHnYCGiruYcjYbXnLsTu8cG6HcxhtFKnzgKFxRK9DNf2LyB5v611QBWj5UBC+8GCzcXjyrkQ3B/mjPNCfabmemFwKVsjSSnQFmxxO/+YltYqskw2eipx3H43Bhpag5ZSz3ygpGXDpOXwzO0A5gGkQ5J4G94c1x0H9U1dneo78wrF7VZJhxTG12jrMBS13aEHrR9Dsqzdc3JXrNGrh/8mjA7Jk/d9Y6DBrN7qQZboc9Juy2u8AF3lOvyLj2WDZxerki50HRs6FwAnBZgUx/yfgZYDxddp/8DJA1oAK/HR73FS2wtCpsW5PppxlaWZ30kP9dGg8q1hBW+7/D+MtYSk0GmrF66HSEcVQSj9B5Kdh/aaiSf0x5xNscAl/2yyD1pzIMxYG09tjZtnjTz8pcgGXorFZ7oDIkxO/DTmtmSu5AL30cctryk3Ljc3tWZZHjLuPKvtDk8rs/XhgswjPSy5GbbE+6b76vvx7K2uZn4AOl9YjIj/Rg7fVQEb/v4vUPcmmBW757sAAAAASUVORK5CYII=");
-                background-repeat:no-repeat;
-                background-position: 0px 0px;
-            }
             .panel-body .aboutfooter{
                 margin: -3px 0px 0px 90px;
                 font-size: 12px;
@@ -132,8 +122,8 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
                 border-top:1px solid transparent;
-                height: 12px;
-                line-height: 12px;
+                height: 16px;
+                line-height: 16px;
                 padding-left:5px;
             }
             .panel-body .abouBottom{
@@ -156,7 +146,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
                 <div class="aboutMiddle-left-top"></div>
                 <div class="aboutMiddle-left-mid"></div>
                 <div class="aboutbody">
-                    <div class="pic-about-dhcc-digitalmed" style="width: 256px;height: 42px;background-position-x: left;"></div>
+                    <div class="pic-about-dhcc-digitalmed" style="width: 256px;height: 42px;margin-bottom: 20px;"></div>
                     <ul class="aboutul">
                         <li><span class="about-key">产品名称：</span><span class="about-val">xxxx</span></li>
                         <li><span class="about-key">产品版本：</span><span class="about-val">xxxx</span></li>
