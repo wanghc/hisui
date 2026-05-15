@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-05-15 
 - :lipstick: 处理iHOS风格下四字按钮与两字按钮的宽度不一致问题 [6941781]
 - :lipstick: iHOS方格下五方布局中伸缩箭头与面板标题上下对齐 [6949939]
+- :feature: 如果`datagrid`对应的请求数据data，存在`data.code`且不存在`data.rows`时，保留返回值格式
 
 ## 2026-05-13
 - 修改iHOS风格下的插画 [6855534]

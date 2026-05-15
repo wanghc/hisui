@@ -3675,7 +3675,9 @@
                         if (data.code == '4001') {
                             $.messager.popover({ msg: data.msg, type: 'error' });
                         }
-                        var rowData = {total: 0, rows: [] };
+                        var rowData = data;//{total: 0, rows: [] };
+                        rowData.total = 0;
+                        rowData.rows = [];
                         if (data.data!=null && 'object' == typeof data.data) {
                             rowData = data.data;
                             if ($.isArray(data.data.records)){ // HOS是使用records作为数组的键名
