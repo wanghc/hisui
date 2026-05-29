@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>横向多面板图标对齐</title>
+	<script type="text/javascript">
+    var HISUIStyleCode = "vben",HISUITheme="bgseablue";
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/hisui.vben.min.css">
+    <script type="text/javascript" src="../../dist/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../jquery-tag-demo.js"></script>
+    <script type="text/javascript" src="../../dist/js/jquery.hisui.min.js"></script>
+    <script type="text/javascript" src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+    <script>
+    function InitGridRecord() {
+        var columns = [
+            [
+                {
+                    field: 'record',
+                    title: '值'
+                }
+            ]
+        ];
+        var dataGridOption = {
+            url: '',
+            toolbar: [],
+            exportXls: false,
+            pagination: true,
+            pageList: [999],
+            pageSize: 999,
+            columns: columns,
+            fitColumns: false,
+            rownumbers: false,
+            showFooter: false,
+            showHeader: false,
+            border: true,
+            fit: true,
+            title: '扫描记录',
+            iconCls: 'icon-panel-brand'
+        };
+        $("#gridRecord").datagrid(dataGridOption);
+    }
+    $(function () { 
+        InitGridRecord();
+
+    })
+    </script>
+</head>
+
+<body>
+    <div class="hisui-layout" fit="true">
+        <div data-options="region:'center',border:false">
+            <div class="hisui-layout" fit="true">
+                <div data-options="region:'west',title:'扫描记录',split:true,showCollapsedTitle:true,iconCls:'icon-panel-brand'" style="width:470px">
+                    <span>
+                        五方布局图标不对齐问题，其中一个图标在表格得初始化里面定义，未在layout布局定义
+                        问题原因：在layout自己的panel-header的高度是48px( padding:4px 5px;),而在layout下的datagrid的panel-header高度是46px(padding:3px 5px;)，导致图标与文字对不齐。
+                        修改办法：因为panel组件的panel-header的padding是3px 5px，把layout内的panel-header的paddding:4px 5px;修改为3px 5px; 同步成更低值
+                        同时优化其它组件对应.panel.lookup-p,.panel.combo-p,.panel.window,.layout>.panel,.accordion>.panel,.tabs-panels>.panel的padding
+                    </span>
+                </div>
+                <div data-options="region:'center',title:'',border:false,split:true,iconCls:'icon-panel-brand'" id="layoutCenter">
+                    <table id="gridRecord"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

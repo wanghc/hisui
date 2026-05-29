@@ -32,9 +32,9 @@
   .panel-header{
     background-color: @body-bgcolor;
   }
-  .panel-icon{
-    margin-top: -8px;
-  }
+  // .panel-icon{
+  //   margin-top: -8px;
+  // }
 }
 .layout-expand.layout-expand-north{
   border-bottom: 10px solid transparent;
@@ -63,7 +63,7 @@
 .layout-expand .panel-body {
   overflow: hidden;
 }
-.layout-expand .panel-header,.layout-expand .panel-body {
+.layout-expand .panel-body {
   border-width: 0px;
 }
 .layout-expand .panel-title{
@@ -152,12 +152,12 @@
   content: @content-down2;
 }
 
-.layout>.panel.layout-panel>.panel-header{
-    padding: 4px 5px; /* 4px->3px [6549148]*/
-}
-.layout>.panel.layout-panel>.panel-header .panel-icon {
-  margin-top: -8px;
-}
+// .layout>.panel.layout-panel>.panel-header{
+//     padding: 4px 5px; /* 4px->3px [6549148]*/ 保持和panel的高度一样，否则会对不齐[6997750]
+// }
+// .layout>.panel.layout-panel>.panel-header .panel-icon {
+//   margin-top: -8px;
+// }
 .layout-panel .panel-header .panel-tool a,.layout-expand .panel-header .panel-tool a{
   margin:3px 0 0 10px;
 }
