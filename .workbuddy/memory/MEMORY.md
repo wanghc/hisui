@@ -10,3 +10,7 @@
 - **文档目录**: `api/`（HTML格式的API文档）
 - **组件列表**: datagrid、dialog、tree、form、combo系列、layout、tabs、datebox、pagination 等30+个组件
 - **多主题**: lightblue、lite、pure 三套主题/版本
+
+## 工作约定
+
+- **临时分析文件统一放在 `.workbuddy/tmp/` 下**，不落地到项目根目录，避免污染 git 工作区。分析完成后主动清理。
