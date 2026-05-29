@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-05-29
 - :lipstick: iHOS风格下tab-tool的白色边框需要去掉 [6967379]
+- :lipstick: iHOS风格下`layout`上图标与文字上下对齐
 
 ## 2026-05-18
 - :lipstick: 步骤节点在夜间样式修改
