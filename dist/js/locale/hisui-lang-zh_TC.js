@@ -223,3 +223,22 @@ if ($.fn.splitbutton){
 if ($.fn.menubutton){
 	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
 }
+if ($.fn.tabs){
+	$.fn.tabs.defaults.noHiddenTabs = "\uff08\u7121\u96b1\u85cf\u9801\u7c3d\uff09";
+	$.fn.tabs.defaults.refreshText = "\u5237\u65b0";
+	$.fn.tabs.defaults.closeText = "\u95dc\u9589";
+	$.fn.tabs.defaults.closeOtherText = "\u95dc\u9589\u5176\u4ed6";
+	$.fn.tabs.defaults.closeAllText = "\u95dc\u9589\u5168\u90e8";
+	$.fn.tabs.defaults.closeLeftText = "\u95dc\u9589\u5de6\u5074";
+	$.fn.tabs.defaults.closeRightText = "\u95dc\u9589\u53f3\u5074";
+}
+if ($.fn.menutree){
+	$.fn.menutree.defaults.title = "\u5c0e\u822a\u83dc\u55ae";
+}
+if ($.fn.combogridmult){
+	$.fn.combogridmult.defaults.columns = [[
+		{field:'id',title:'id',width:60},
+		{field:'text',title:'\u63cf\u8ff0',width:220},
+		{field:'code',title:'\u4ee3\u78bc',width:150}
+	]];
+}

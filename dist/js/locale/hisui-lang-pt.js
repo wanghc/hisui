@@ -222,3 +222,22 @@ if ($.fn.splitbutton){
 if ($.fn.menubutton){
 	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
 }
+if ($.fn.tabs){
+	$.fn.tabs.defaults.noHiddenTabs = "Sem abas ocultas";
+	$.fn.tabs.defaults.refreshText = "Atualizar";
+	$.fn.tabs.defaults.closeText = "Fechar";
+	$.fn.tabs.defaults.closeOtherText = "Fechar outros";
+	$.fn.tabs.defaults.closeAllText = "Fechar tudo";
+	$.fn.tabs.defaults.closeLeftText = "Fechar \u00e0 esquerda";
+	$.fn.tabs.defaults.closeRightText = "Fechar \u00e0 direita";
+}
+if ($.fn.menutree){
+	$.fn.menutree.defaults.title = "Menu de navega\u00e7\u00e3o";
+}
+if ($.fn.combogridmult){
+	$.fn.combogridmult.defaults.columns = [[
+		{field:'id',title:'id',width:60},
+		{field:'text',title:'Descri\u00e7\u00e3o',width:220},
+		{field:'code',title:'C\u00f3digo',width:150}
+	]];
+}

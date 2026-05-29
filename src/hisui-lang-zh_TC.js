@@ -223,3 +223,22 @@ if ($.fn.splitbutton){
 if ($.fn.menubutton){
 	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
 }
+if ($.fn.tabs){
+	$.fn.tabs.defaults.noHiddenTabs = "（無隱藏頁簽）";
+	$.fn.tabs.defaults.refreshText = "刷新";
+	$.fn.tabs.defaults.closeText = "關閉";
+	$.fn.tabs.defaults.closeOtherText = "關閉其他";
+	$.fn.tabs.defaults.closeAllText = "關閉全部";
+	$.fn.tabs.defaults.closeLeftText = "關閉左側";
+	$.fn.tabs.defaults.closeRightText = "關閉右側";
+}
+if ($.fn.menutree){
+	$.fn.menutree.defaults.title = "導航菜單";
+}
+if ($.fn.combogridmult){
+	$.fn.combogridmult.defaults.columns = [[
+		{field:'id',title:'id',width:60},
+		{field:'text',title:'描述',width:220},
+		{field:'code',title:'代碼',width:150}
+	]];
+}

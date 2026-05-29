@@ -449,7 +449,6 @@
             // 匹配 #RGB 或 #RRGGBB
             const regex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
             if (!regex.test(hex)) {
-                console.error('无效的 HEX 颜色值:', hex);
                 return '';
             }
 

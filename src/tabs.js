@@ -111,7 +111,7 @@
 
         // 菜单为空时显示一条提示
         if (!hasItem) {
-            menuEl.menu("appendItem", { text: "（无隐藏页签）", disabled: true, name: "-1" });
+            menuEl.menu("appendItem", { text: state.options.noHiddenTabs, disabled: true, name: "-1" });
         }
     }
 
@@ -245,13 +245,13 @@
         var opts=state.options;
         if(opts.simpleContextMenu){
             var ctxmenu=$('<div class="tabs-ctx-menu">'
-                            +'<div class="tabs-ctx-menu-refresh" >刷新</div>'
+                            +'<div class="tabs-ctx-menu-refresh" >'+opts.refreshText+'</div>'
                             +'<div class="menu-sep" ></div>'
-                            +'<div class="tabs-ctx-menu-close" >关闭</div>'
-                            +'<div class="tabs-ctx-menu-closeother" >关闭其他</div>'
-                            +'<div class="tabs-ctx-menu-closeall" >关闭全部</div>'
-                            +'<div class="tabs-ctx-menu-closeleft" >关闭左侧</div>'
-                            +'<div class="tabs-ctx-menu-closeright">关闭右侧</div>'
+                            +'<div class="tabs-ctx-menu-close" >'+opts.closeText+'</div>'
+                            +'<div class="tabs-ctx-menu-closeother" >'+opts.closeOtherText+'</div>'
+                            +'<div class="tabs-ctx-menu-closeall" >'+opts.closeAllText+'</div>'
+                            +'<div class="tabs-ctx-menu-closeleft" >'+opts.closeLeftText+'</div>'
+                            +'<div class="tabs-ctx-menu-closeright">'+opts.closeRightText+'</div>'
                         +'</div>').appendTo('body');
             ctxmenu.menu({})
             state.ctxmenu=ctxmenu;
@@ -1002,7 +1002,15 @@
     };
     /*单独引入tabs.js时,页签头高度不对,所以tabHeight高度27修改成36。hisui.js中也有写*/
     $.fn.tabs.defaults = {
-        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, overflowMenu: false,overflowMenuWidth:140, onLoad: function (panel) {
+        width: "auto", height: "auto", headerWidth: 150, tabWidth: "auto", tabHeight: 36, selected: 0, showHeader: true, plain: false, fit: false, border: true, tools: null, toolPosition: "right", tabPosition: "top", scrollIncrement: 100, scrollDuration: 400, overflowMenu: false,overflowMenuWidth:140,
+        noHiddenTabs: "No hidden tabs",
+        refreshText: "Refresh",
+        closeText: "Close",
+        closeOtherText: "Close Others",
+        closeAllText: "Close All",
+        closeLeftText: "Close Left",
+        closeRightText: "Close Right",
+        onLoad: function (panel) {
         }, onSelect: function (title, index) {
         }, onUnselect: function (title, index) {
         }, onBeforeClose: function (title, index) {

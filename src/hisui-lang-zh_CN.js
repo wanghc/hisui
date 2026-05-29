@@ -225,3 +225,22 @@ if ($.fn.splitbutton){
 if ($.fn.menubutton){
 	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
 }
+if ($.fn.tabs){
+	$.fn.tabs.defaults.noHiddenTabs = "（无隐藏页签）";
+	$.fn.tabs.defaults.refreshText = "刷新";
+	$.fn.tabs.defaults.closeText = "关闭";
+	$.fn.tabs.defaults.closeOtherText = "关闭其他";
+	$.fn.tabs.defaults.closeAllText = "关闭全部";
+	$.fn.tabs.defaults.closeLeftText = "关闭左侧";
+	$.fn.tabs.defaults.closeRightText = "关闭右侧";
+}
+if ($.fn.menutree){
+	$.fn.menutree.defaults.title = "导航菜单";
+}
+if ($.fn.combogridmult){
+	$.fn.combogridmult.defaults.columns = [[
+		{field:'id',title:'id',width:60},
+		{field:'text',title:'描述',width:220},
+		{field:'code',title:'代码',width:150}
+	]];
+}

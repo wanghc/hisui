@@ -225,3 +225,22 @@ if ($.fn.splitbutton){
 if ($.fn.menubutton){
 	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
 }
+if ($.fn.tabs){
+	$.fn.tabs.defaults.noHiddenTabs = "Aucun onglet cach\u00e9";
+	$.fn.tabs.defaults.refreshText = "Rafra\u00eechir";
+	$.fn.tabs.defaults.closeText = "Fermer";
+	$.fn.tabs.defaults.closeOtherText = "Fermer les autres";
+	$.fn.tabs.defaults.closeAllText = "Fermer tout";
+	$.fn.tabs.defaults.closeLeftText = "Fermer \u00e0 gauche";
+	$.fn.tabs.defaults.closeRightText = "Fermer \u00e0 droite";
+}
+if ($.fn.menutree){
+	$.fn.menutree.defaults.title = "Menu de navigation";
+}
+if ($.fn.combogridmult){
+	$.fn.combogridmult.defaults.columns = [[
+		{field:'id',title:'id',width:60},
+		{field:'text',title:'Description',width:220},
+		{field:'code',title:'Code',width:150}
+	]];
+}

@@ -836,7 +836,7 @@
 
             if (state.options.collapsible && !state.options.title) {  //如果是可折叠的
                 if(hisuiStyle!='lite' && hisuiStyle!='lightblue' && hisuiStyle!='pure' && hisuiStyle!='vben') {  //炫彩的样式才需要强制默认标题
-                    state.options.title='导航菜单';
+                    state.options.title=$.fn.menutree.defaults.title;
                 }
                 
             }

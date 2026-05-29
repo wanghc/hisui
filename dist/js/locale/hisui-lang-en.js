@@ -196,3 +196,22 @@ if ($.fn.splitbutton){
 if ($.fn.menubutton){
 	$.fn.menubutton.defaults.waitingAlert = $.fn.linkbutton.defaults.waitingAlert;
 }
+if ($.fn.tabs){
+	$.fn.tabs.defaults.noHiddenTabs = "No hidden tabs";
+	$.fn.tabs.defaults.refreshText = "Refresh";
+	$.fn.tabs.defaults.closeText = "Close";
+	$.fn.tabs.defaults.closeOtherText = "Close Others";
+	$.fn.tabs.defaults.closeAllText = "Close All";
+	$.fn.tabs.defaults.closeLeftText = "Close Left";
+	$.fn.tabs.defaults.closeRightText = "Close Right";
+}
+if ($.fn.menutree){
+	$.fn.menutree.defaults.title = "Navigation Menu";
+}
+if ($.fn.combogridmult){
+	$.fn.combogridmult.defaults.columns = [[
+		{field:'id',title:'id',width:60},
+		{field:'text',title:'Description',width:220},
+		{field:'code',title:'Code',width:150}
+	]];
+}
