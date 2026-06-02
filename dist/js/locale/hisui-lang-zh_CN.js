@@ -91,6 +91,7 @@ if ($.fn.datebox){
 		/*t-n , t+n */
 		/* 2\u56de\u8f66 \u89e3\u6790\u6210\u5f53\u524d\u6708\u4efd2\u65e5 */
 		if (!s) return new Date();
+		if (s=='NaN-NaN-NaN') return new Date();
 		function ConvertTDate(dt) {
 			var xdays = 0;
 			var today=new Date();
@@ -162,7 +163,7 @@ if ($.fn.datebox){
 			}
 		}
 
-		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d) && y>=1900 && y<=2900){
 			return new Date(y,m-1,d);
 		}else{
 			var nowDate = new Date();

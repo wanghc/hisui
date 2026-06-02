@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-02
+- :sparkles: 添加`date`类组件输入大年份时显示错误问题,如201126-06-02 [6934608]
+
 ## 2026-05-29
 - :lipstick: iHOS风格下tab-tool的白色边框需要去掉 [6967379]
 - :lipstick: iHOS风格下`layout`上图标与文字上下对齐

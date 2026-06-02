@@ -134,7 +134,7 @@ if ($.fn.datebox){
 				return new Date(y,m-1,1);
 			}
 		}
-		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d) && y>=1900 && y<=2900){
 			return new Date(y,m-1,d);
 		}else{
 			var nowDate = new Date();

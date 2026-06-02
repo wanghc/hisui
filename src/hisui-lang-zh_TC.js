@@ -90,6 +90,7 @@ if ($.fn.datebox){;
 	$.fn.datebox.defaults.parser = function(s){
 		/*t-n , t+n*/
 		if (!s) return new Date();
+		if (s=='NaN-NaN-NaN') return new Date();
 		function ConvertTDate(dt) {
 			var xdays = 0;
 			var today=new Date();
@@ -160,7 +161,7 @@ if ($.fn.datebox){;
 				return new Date(y,m-1,1);
 			}
 		}
-		if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+		if (!isNaN(y) && !isNaN(m) && !isNaN(d) && y>=1900 && y<=2900){
 			return new Date(y,m-1,d);
 		}else{
 			var nowDate = new Date();
