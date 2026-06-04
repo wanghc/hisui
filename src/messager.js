@@ -434,10 +434,11 @@
                 o.style.left = document.body.clientWidth/2-(t.width()/2)
             }
             if (o.style.top==''){
-                if ("undefined" == typeof HISUIStyleCode || HISUIStyleCode!=='pure'){
+                var pos = $.hisui.getStyleCodeConfigValue('popoverPosition');
+                if (pos=='top'){
+                    o.style.top = document.body.scrollTop + document.documentElement.scrollTop + 10;
+                }else {
                     o.style.top = document.body.clientHeight/2-(t.height()/2);
-                }else{
-                    o.style.top = document.body.scrollTop + document.documentElement.scrollTop+10;
                 }
             }            
             t.css(o.style);

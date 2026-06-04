@@ -321,6 +321,9 @@
             },
             comboboxSelectallPaddingLeft:{
                 default: 5,pure: 10,vben:10
+            },
+            popoverPosition:{ /** popover弹出位置 */
+                default:'center',pure:'top',vben:'top'
             }
         },
         getStyleCodeConfigValue : function(key){

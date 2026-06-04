@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-04
+- :sparkles: `pure`与`iHOS`的`messager-popover`弹出位置居上 [7001666]
+
 ## 2026-06-02
 - :sparkles: 处理`date`类组件输入大年份时显示错误问题,如201126-06-02 [6934608]
 - :lipstick: iHOS表头高度与纯净保持一致 [6935052]
