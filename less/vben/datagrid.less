@@ -50,12 +50,7 @@
   display: none;
 }
 .datagrid-sort-icon {
-  padding: 0;
-  flex-shrink: 0; /* 防止被压缩消失 */
-  width: 13px;
-  height: 19px;
-  background-position-y: center;
-  background-repeat: no-repeat;
+  padding:0;
 }
 .datagrid-toolbar {
   height: auto;
@@ -115,11 +110,13 @@
 }
 .datagrid-header .datagrid-cell {
   height: auto;
-  display: flex;
+  // display: flex;
   align-items: center;
   // padding-bottom: 3px; // [5561835]
   span:first-child{
     line-height: 14px;
+    display: inline-block;
+    padding-bottom: 2px;
   }
 }
 .datagrid-header .datagrid-header-rownumber{
@@ -225,6 +222,10 @@
   padding: 0;
 }
 .datagrid-sort .datagrid-sort-icon{
+  display: inline;
+  padding: 0 13px 0 0;
+  background-position-y: center;
+  background-repeat: no-repeat;
   background-image : @datagrid-icons-url;
   background-position-x: -64px;
   // background: url('@{images-path}/datagrid_icons.png') no-repeat -64px center;
