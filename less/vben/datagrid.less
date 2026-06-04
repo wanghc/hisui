@@ -51,6 +51,11 @@
 }
 .datagrid-sort-icon {
   padding: 0;
+  flex-shrink: 0; /* 防止被压缩消失 */
+  width: 13px;
+  height: 19px;
+  background-position-y: center;
+  background-repeat: no-repeat;
 }
 .datagrid-toolbar {
   height: auto;
@@ -112,17 +117,15 @@
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
-  justify-items: center;
   // padding-bottom: 3px; // [5561835]
+  span:first-child{
+    line-height: 14px;
+  }
 }
 .datagrid-header .datagrid-header-rownumber{
   // padding-bottom: 1px;
   line-height: 14px;
   height:auto;
-}
-.datagrid-header .datagrid-cell span{
-  line-height: 14px;
 }
 .datagrid-cell-group {
   text-align: center;
@@ -222,17 +225,19 @@
   padding: 0;
 }
 .datagrid-sort .datagrid-sort-icon{
-  display: inline;
-  padding: 0 13px 0 0;
-  background: url('@{images-path}/datagrid_icons.png') no-repeat -64px center;
+  background-image : @datagrid-icons-url;
+  background-position-x: -64px;
+  // background: url('@{images-path}/datagrid_icons.png') no-repeat -64px center;
 }
 .datagrid-sort-desc .datagrid-sort-icon {
-  padding: 0 13px 0 0;
-  background: url('@{images-path}/datagrid_icons.png') no-repeat -16px center;
+  background-position-x: -16px;
+  background-image: @datagrid-icons-url;
+  // background: url('@{images-path}/datagrid_icons.png') no-repeat -16px center;
 }
 .datagrid-sort-asc .datagrid-sort-icon {
-  padding: 0 13px 0 0;
-  background: url('@{images-path}/datagrid_icons.png') no-repeat 0px center;
+  // background: url('@{images-path}/datagrid_icons.png') no-repeat 0px center;
+  background-position-x: 0px;
+  background-image: @datagrid-icons-url;
 }
 .datagrid-row-collapse {
   background: url('@{images-path}/datagrid_icons.png') no-repeat -48px center;

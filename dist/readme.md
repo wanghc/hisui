@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-06-04
 - :sparkles: `pure`与`iHOS`的`messager-popover`弹出位置居上 [7001666]
+- :lipstick: `iHOS`风格下`datagird`排序时，表头上的排序按钮颜色需修改 [6957417]
 
 ## 2026-06-02
 - :sparkles: 处理`date`类组件输入大年份时显示错误问题,如201126-06-02 [6934608]
