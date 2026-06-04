@@ -4,6 +4,7 @@ if (!defined('ACCESS_FROM_INDEX')) {
     http_response_code(403);
     die('Direct access forbidden.');
 }
+$PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 ?>
 <!DOCTYPE html>
 <html>
