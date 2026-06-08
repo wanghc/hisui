@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-08
+- :sparkles: `iHOS`风格下`popover`关闭按钮样式修改 [7021223]
+
 ## 2026-06-04
 - :sparkles: `pure`与`iHOS`的`messager-popover`弹出位置居上 [7001666]
 - :lipstick: `iHOS`风格下`datagird`排序时，表头上的排序按钮颜色需修改 [6957417]
