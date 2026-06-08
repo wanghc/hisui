@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-06-08
 - :sparkles: `iHOS`风格下`popover`关闭按钮样式修改 [7021223]
+- :sparkles: `pure`风格下`popover`关闭按钮样式修改 [7021222]
 
 ## 2026-06-04
 - :sparkles: `pure`与`iHOS`的`messager-popover`弹出位置居上 [7001666]
