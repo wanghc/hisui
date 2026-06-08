@@ -57,10 +57,6 @@
   margin-left: 18px;
   margin-right: 18px;
 }
-.tabs-disabled {
-  opacity: 0.3;
-  filter: alpha(opacity=30);
-}
 .tabs {
   list-style-type: none;
   height: 26px;
@@ -71,6 +67,22 @@
   border-style: solid;
   border-width: 0 0 1px 0;
   li  {
+    &.tabs-disabled {
+      a{
+        &.tabs-inner:hover
+        {
+          color: #B4B3B3;
+          border-bottom-color:transparent;
+        }
+        cursor:not-allowed;
+        &.tabs-inner {
+          color: #B4B3B3;
+        }
+        &.tabs-close {
+          color:#939393;
+        }
+      }
+    }
     float: left;
     display: inline-block;
     margin: 0 4px -1px 0;
@@ -1148,6 +1160,9 @@
 }
 .tabs-icon{
   color: #939393;
+}
+.tabs-disabled .tabs-icon{
+  color:#B4B3B3;
 }
 
 .tabs-container .tabs li.tabs-brand{

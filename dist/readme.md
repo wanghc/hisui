@@ -40,6 +40,7 @@ $("#btn").linkbutton("disable");
 - :sparkles: `pure`风格下`popover`关闭按钮样式修改 [7021222]
 - :lipstick: `iHOS`风格下弹出窗口标题高度修改
 - :sparkles: `iHOS`风格下禁用页签样式编写 [7021177]
+- :sparkles: `pure`风格下禁用页签样式编写 [7021200]
 
 ## 2026-06-04
 - :sparkles: `pure`与`iHOS`的`messager-popover`弹出位置居上 [7001666]
