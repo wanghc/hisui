@@ -64,6 +64,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 		<div class="use-prettyprint lang-js">
 			<script type="text/javascript">
 				$(function(){
+					$("#tt").tabs("disableTab","医嘱录入");
 					$HUI.tabs("#tt2",{
 						onSelect:function(title){
 							$.messager.popover({type:'info',msg:'切换到【'+title+'】'}); //alert('你确定要切换到【'+title+'】');					

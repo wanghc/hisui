@@ -502,13 +502,13 @@
                     $(container).tabs("scrollBy", opts.scrollIncrement);
                 } else {
                     var li = $(e.target).closest("li");
-                    if (li.hasClass("tabs-disabled")) {
-                        return;
-                    }
                     var a = $(e.target).closest("a.tabs-close");
                     if (a.length) {
                         closeTab(container, getLiIndex(li));
                     } else {
+                        if (li.hasClass("tabs-disabled")) {
+                            return;
+                        }
                         if (li.length) {
                             var index = getLiIndex(li);
                             var popts = state.tabs[index].panel("options");
