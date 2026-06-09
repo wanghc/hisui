@@ -54,6 +54,9 @@
         }).bind("blur.linkbutton", function () {
             $(this).removeClass("l-btn-focus");
         }).bind("click.linkbutton", function () {
+            if (!target){return;}
+            if ($(target).length==0){return;}
+            if (!$.data(target,"linkbutton")){return ;}
             _operationStart(target);
             // 立即调用
             opts.debouncedClickFun.call(this,target);

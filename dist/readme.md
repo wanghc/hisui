@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-09
+- :sparkles: `linkbutton`点击事件增加按钮存在性校验 [7016269]
+
 ## 2026-06-08
 - :sparkles: `iHOS`风格下`popover`关闭按钮样式修改 [7021223]
 - :sparkles: `pure`风格下`popover`关闭按钮样式修改 [7021222]
