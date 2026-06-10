@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-10
+- :sparkles: `pure`风格下`accordion`增加面板风格 [5928528]
+
 ## 2026-06-09
 - :sparkles: `linkbutton`点击事件增加按钮存在性校验 [7016269]
 - :lipstick: `iHOS`风格下`datagird`排序时，表头上的排序按钮颜色需修改 [6957417]

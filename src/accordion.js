@@ -32,6 +32,8 @@
         */
         if (cc.hasClass('accordion-gray')){
             bodyHeight -= 4 * (headers.length-1)+1;  // totalHeight - margin-top * (accordionCount-1)
+        }else if (cc.hasClass('accordion-panel-plain')){
+            bodyHeight -= 10 * (headers.length-1)+1;  // totalHeight - margin-top * (accordionCount-1)
         }
         _resize(true, bodyHeight - _resize(false) + 1);
         function _resize(collapsible, height) {

@@ -74,46 +74,33 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
           </script>
           </div>
     </div>
-    
-    <h4>使用panel实现类似手风琴效果</h4>
-    <div class="demo-exp-code entry-content">
-        <div class="use-prettyprint lang-html">
-            <div id="accordionByPanel" style="height: 440px;">
-                <div>
-                    <div class="hisui-panel accordion-by-panel" title="病人配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
-                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:false,collapsible:true,minimizable:false,maximizable:false">
-                        病人配置
+    <?php 
+        if ($PAGE_CONTEXT['version'] == 'vben' || $PAGE_CONTEXT['version'] == 'pure'){
+            echo <<<EOF
+                <h4>面板手风琴效果(accordion-panel-plain)<code>20260610</code></h4>
+                <div class="demo-exp-code entry-content">
+                    <div class="use-prettyprint lang-html">
+                        <div id="acc" class="hisui-accordion accordion-panel-plain" style="width:400px;height:450px;float:left;"
+                            data-options="border:false">   
+                            <div title="等待区" data-options="iconCls:'icon-panel-brand'" style="overflow:auto;padding:9px 15px 15px 15px;">   
+                                content1
+                            </div>
+                            <div title="留观区" data-options="iconCls:'icon-panel-brand'" style="padding:9px 15px 15px 15px;">   
+                                content2    
+                            </div>    
+                            <div title="住院区" data-options="iconCls:'icon-panel-brand'" style="padding:9px 15px 15px 15px;">   
+                                <code>class="hisui-accordion"</code>
+                            </div>   
+                            <div title="出院区" data-options="iconCls:'icon-panel-brand'" style="padding:9px 15px 15px 15px;">   
+                                content4   
+                            </div>   
+                        </div>
                     </div>
                 </div>
-                <div style="margin: 10px 0;">
-                    <div class="hisui-panel accordion-by-panel" title="诊断配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
-                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:true,collapsible:true,minimizable:false,maximizable:false">
-                        诊断配置
-                    </div>
-                </div>
-                <div>
-                    <div class="hisui-panel accordion-by-panel" title="医嘱配置" style="height:300px;width:500px;padding:10px 14px 14px 14px;" 
-                    data-options="iconCls:'icon-panel-brand',closable:false,collapsed:true,collapsible:true,minimizable:false,maximizable:false">
-                        医嘱配置
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                $(function(){
-                    $(".accordion-by-panel").each(function(index,item){
-                        $(this).panel("options").onBeforeExpand = function(){
-                            var _t = this;
-                            var expandTitle = $(_t).panel('options').title;
-                            $(".accordion-by-panel").each(function(){
-                                var title =  $(this).panel('options').title;
-                                if (expandTitle!=title) $(this).panel('collapse',true);
-                            })
-                        };
-                    }) 
-                });
-            </script>
-        </div>
-    </div>
+            EOF;
+        }
+
+    ?>
     
   <prettyprint/>
 </body>
