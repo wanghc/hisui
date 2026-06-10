@@ -126,3 +126,40 @@
   color: @accordion-title-font-color;
   font-weight: bold;
 }
+
+// accordion-panel-plain: 让手风琴外观与独立面板风格一致 [5928528]
+.accordion-panel-plain.accordion {
+  border-color: transparent;
+  background-color: transparent;
+  .panel {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .accordion-header {
+    border: 1px solid @panel-header-bdcolor;
+    border-top: 0;
+    border-radius: 4px 4px 0 0;
+    padding:3px 5px!important;
+    height: 38px !important;
+    .panel-title { 
+      height: 38px;
+      padding-left: 27px;
+      margin-left: 0px;
+    }
+    .panel-tool {
+      margin-top: -11px;
+      height: 28px;
+      right: 8px;
+      top: 18px !important;
+      a:hover{
+        background-color: transparent;
+        &::before { 
+          color : var(--primary-color);
+        }
+      }
+    }
+  }
+}

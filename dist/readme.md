@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-06-10
 - :sparkles: `pure`风格下`accordion`增加面板风格 [5928528]
+- :sparkles: `iHOS`风格下`accordion`增加面板风格 [5928528]
 
 ## 2026-06-09
 - :sparkles: `linkbutton`点击事件增加按钮存在性校验 [7016269]
