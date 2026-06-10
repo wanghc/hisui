@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-06-09
 - :sparkles: `linkbutton`点击事件增加按钮存在性校验 [7016269]
+- :lipstick: `iHOS`风格下`datagird`排序时，表头上的排序按钮颜色需修改 [6957417]
 
 ## 2026-06-08
 - :sparkles: `iHOS`风格下`popover`关闭按钮样式修改 [7021223]
