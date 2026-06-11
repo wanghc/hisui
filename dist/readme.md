@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-11
+- :lipstick: `iHOS`风格下`datagrid`翻页条样式修改
+
 ## 2026-06-10
 - :sparkles: `pure`风格下`accordion`增加面板风格 [5928528]
 - :sparkles: `iHOS`风格下`accordion`增加面板风格 [5928528]
