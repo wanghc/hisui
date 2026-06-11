@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-06-11
 - :lipstick: `iHOS`风格下`datagrid`翻页条样式修改
+- :lipstick: `popover`关闭按钮右边距修改 [7021223]
 
 ## 2026-06-10
 - :sparkles: `pure`风格下`accordion`增加面板风格 [5928528]
