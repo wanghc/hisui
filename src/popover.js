@@ -136,7 +136,7 @@
         arrow:true,//show arrow or not
         title:'',//the popover title, if title is set to empty string,title bar will auto hide
         content:'',//content of the popover,content can be function
-        closeable:true,//display close button or not
+        closeable:false,//display close button or not
         direction:'', // direction of the popover content default is ltr ,values:'rtl';
         padding:true,//content padding
         type:'html',//content type, values:'html','iframe','async'

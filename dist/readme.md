@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-06-16
+- :sparkles: `popover`关闭按钮默认不显示
+
 ## 2026-06-11
 - :lipstick: `iHOS`风格下`datagrid`翻页条样式修改
 - :lipstick: `popover`关闭按钮右边距修改 [7021223]
