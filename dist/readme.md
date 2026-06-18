@@ -34,6 +34,8 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2026-06-17
+- :lipstick: `iHOS`风格下`tabs`禁用样式下字体透明度为0.6
 
 ## 2026-06-16
 - :sparkles: `popover`关闭按钮默认不显示
