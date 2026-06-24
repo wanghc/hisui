@@ -34,6 +34,9 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+## 2026-06-24
+- :sparkles: pure与iHOS风格下`datagrid`无数据时图标样式修改
+
 ## 2026-06-17
 - :lipstick: `iHOS`风格下`tabs`禁用样式下字体透明度为0.6
 
