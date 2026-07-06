@@ -34,6 +34,10 @@ $("#btn").linkbutton("disable");
 点击[HISUI]下载最新的HISUI库
 
 # 更新日志 #
+
+## 2026-07-06
+- `popover`提示四角显示成圆角
+
 ## 2026-06-24
 - :sparkles: pure与iHOS风格下`datagrid`无数据时图标样式修改
 
