@@ -36,7 +36,8 @@ $("#btn").linkbutton("disable");
 # 更新日志 #
 
 ## 2026-07-06
-- `popover`提示四角显示成圆角
+- :lipstick: `popover`提示四角显示成圆角
+- :lipstick: `hstep`与`vstep`节点背景颜色修改
 
 ## 2026-06-24
 - :sparkles: pure与iHOS风格下`datagrid`无数据时图标样式修改
