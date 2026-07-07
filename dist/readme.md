@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-07-07
+- :lipstick: 纯净下`popover`提示四角显示成圆角
+
 ## 2026-07-06
 - :lipstick: `popover`提示四角显示成圆角
 - :lipstick: `hstep`与`vstep`节点背景颜色修改
