@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-07-23
+- 增加`.hui-r-label`,`.hui-l-value`,`.hui-form-row-h`公共样式
+
 ## 2026-07-07
 - :lipstick: 纯净下`popover`提示四角显示成圆角
 
