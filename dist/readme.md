@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-07-28
+- 修改HISUI使用vben样式,默认色系时报错问题
+
 ## 2026-07-23
 - 增加`.hui-r-label`,`.hui-l-value`,`.hui-form-row-h`公共样式
 
