@@ -153,7 +153,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('../css/icons/vben/sysst/nodata_region_grid.svg');
+    background-image: url('../css/icons/pure/sysst/nodata_region_grid.svg');
     opacity: @datagrid-no-data-opacity;
     z-index: -1;
     background-repeat: no-repeat;
@@ -685,3 +685,6 @@ td.datagrid-value-changed {
 //   }
 // }
 
+body[data-theme=bgdark] .datagrid-view::before{
+  opacity: 0.7;
+}
