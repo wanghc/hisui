@@ -47,7 +47,7 @@ gulp.task('auto', function () {
     // 监听文件修改，当文件被修改则执行 less 任务
     //gulp.watch('less/**.less', ['less'])
 });
-['zh_CN','zh_TC','pt'].forEach(function(value){
+['zh_CN','zh_TC'].forEach(function(value){
     gulp.task(value,function(){
         return gulp.src(`src/hisui-lang-${value}.js`)
         //.pipe(chinese2unicode())
@@ -57,6 +57,15 @@ gulp.task('auto', function () {
         .pipe(gulp.dest('dist/js/locale'));
     });
 });
+gulp.task("bod",function(){
+    return gulp.src(`src/hisui-lang-bod.js`)
+    // 将藏文字符（U+0F00–U+0FFF）转换为 \\uXXXX 转义序列
+    .pipe(replace(/([\u0F00-\u0FFF])/g, function (s) {
+        return '\\u' + s.charCodeAt(0).toString(16).padStart(4, '0');
+    }))
+    .pipe(gulp.dest('dist/js/locale'));
+});
+
 gulp.task('min-js',function(){
     var arr = jsArr;
     var prefix = "jquery.hisui" ;
@@ -143,4 +152,4 @@ gulp.task('stylelint', function () {
   });
 // dist -> default
 // dist目录下的js全修改成min, 不留源代码
-gulp.task('default',['min-js','min-css','zh_CN','zh_TC']);
+gulp.task('default',['min-js','min-css','zh_CN','zh_TC','bod']);
