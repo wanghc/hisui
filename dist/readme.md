@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-08-02
+- `tooltip`增加notTrans配置项,true时不自动翻译内容，默认为false
+- `datagrid`的列增加showTip后，弹出的tip不自动翻译,显示的和单元格一样的内容不用翻译
+
 ## 2026-08-01
 - 增加藏文支持 [7216604]
 

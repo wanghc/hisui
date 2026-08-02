@@ -806,6 +806,7 @@
                                     position:tipPosition,
                                     trackMouse:tipTrackMouse,
                                     tipWidth:tipWidth,
+                                    notTrans:true,
                                     onShow:function(){
                                         var _o = this;
                                         (function(){
