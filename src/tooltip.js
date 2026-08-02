@@ -140,7 +140,11 @@
             return;
         }
         var cc = typeof opts.content == "function" ? opts.content.call(_1d6) : opts.content;
-        _1d8.tip.children(".tooltip-content").html($.hisui.getTrans(cc)); //add trans
+        if (opts.notTrans){
+            _1d8.tip.children(".tooltip-content").html(cc);
+        }else{
+            _1d8.tip.children(".tooltip-content").html($.hisui.getTrans(cc)); //add trans
+        }        
         opts.onUpdate.call(_1d6, cc);
     };
     function _1d9(_1da) {
@@ -215,7 +219,7 @@
         return opts;
     };
     $.fn.tooltip.defaults = {
-        tipWidth:undefined,
+        tipWidth:undefined,notTrans:false,
         position: "bottom", content: null, trackMouse: false, deltaX: 0, deltaY: 0, showEvent: "mouseenter", hideEvent: "mouseleave", showDelay: 200, hideDelay: 100, onShow: function (e) {
         }, onHide: function (e) {
         }, onUpdate: function (_1e1) {
