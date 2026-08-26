@@ -131,7 +131,9 @@
             }
             var win = opts.dlgWindow || window;
             // input.comboq在IE下,设置值时触发,造成进入有下拉框界面就弹出下拉panel,2018-10-17 增加return
-            if (navigator.userAgent.indexOf('MWBrowser/2')==-1 && navigator.userAgent.indexOf('Electron/22.3')==-1 && "undefined" == typeof e.keyCode) { return; }
+            //  发现Qaxbrowser浏览器也有此问题，是Chrome/102版本 汕头眼科 20260826
+            var nu = navigator.userAgent;
+            if (nu.indexOf('MWBrowser/2')==-1 && nu.indexOf('Electron/22.3')==-1 && nu.indexOf('Qaxbrowser')==-1 && "undefined" == typeof e.keyCode) { return; }
             //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
             switch (e.keyCode) {
                 case 38:

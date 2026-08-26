@@ -136,7 +136,9 @@
                 测试最新版chrome（114)没有此问题
                 医为浏览器109版，userAgent是MWBrowser/2.0.x，固合并二次的判断=> 包含'MWBrowser/2'作为新浏览器判断
                 */
-                if ( navigator.userAgent.indexOf('MWBrowser/2')==-1 && navigator.userAgent.indexOf('Electron/22.3')==-1 && "undefined" == typeof e.keyCode) { return; }
+                //  发现Qaxbrowser浏览器也有此问题，是Chrome/102版本 汕头眼科 20260826
+                var nu = navigator.userAgent;
+                if (nu.indexOf('MWBrowser/2')==-1 && nu.indexOf('Electron/22.3')==-1 && nu.indexOf('Qaxbrowser')==-1 && "undefined" == typeof e.keyCode) { return; }
                 //  wanghc 2018-10-08 add bind("input.combo")--firefox下在汉字输入汉字不能即时查询增加input.combo
                 switch (e.keyCode) {
                     case 38:
