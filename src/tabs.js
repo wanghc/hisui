@@ -985,7 +985,8 @@
                 var opts = $(this).tabs("options");
                 var wrap = $(this).find(">div.tabs-header>div.tabs-wrap");
                 var pos = Math.min(wrap._scrollLeft() + deltaX, getMaxScrollWidth());
-                wrap.animate({ scrollLeft: pos }, opts.scrollDuration);
+                //连续点击左右箭头时,先结束未完成的滚动动画并清空队列,避免动画排队导致滚动迟滞
+                wrap.stop(true, true).animate({ scrollLeft: pos }, opts.scrollDuration);
                 function getMaxScrollWidth() {
                     var w = 0;
                     var ul = wrap.children("ul");
