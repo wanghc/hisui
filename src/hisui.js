@@ -295,6 +295,9 @@ var Level = {
     }
     window.HISUIJsPath = getScriptPath(); // e.g., "http://example.com/app/dist/js/"
 })(window, jQuery);
+/* 闭包捕获打包时的 jQuery：宿主页面若在 DOM ready 前二次加载 jQuery 覆盖全局 $，
+   下方 ready 回调里 $.hisui 会变成 undefined（switchTheme 报错） */
+(function($){
 $(function(){
 	// $('body').click(function(e){
 	// 	/*点击其它非弹出层时隐藏*/
@@ -311,7 +314,8 @@ $(function(){
 	// 	$.hisui.switchLightDrak(HISUILightDrak);
 	// }
 	if ( window.HISUIStyleCode=='vben' && window.HISUITheme){
-		$.hisui.switchTheme(window.HISUITheme);
+		/* 双重保护：闭包 $ 已指向正确 jQuery，再判空防部分加载异常 */
+		if ($.hisui && $.hisui.switchTheme) $.hisui.switchTheme(window.HISUITheme);
 	}
 	$(document.body).on('keydown',function(e){
 		var keycode = e.keyCode;
@@ -343,3 +347,4 @@ $(function(){
 		return true;
 	});
 });
+})(jQuery);

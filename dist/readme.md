@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-09-22
+- :bug: 页面二次加载jQuery覆盖全局`$`后，vben风格下DOMReady时`$.hisui.switchTheme`报错问题修复[7446901]
+- - ready回调改为闭包捕获打包时的jQuery，并对`$.hisui`判空保护
+
 ## 2026-09-19
 - :bug: `tabs`多页滚动按钮连续点击卡慢问题修复
 - `ihos`风格下表格无数据插图样式修改 [7234838]
