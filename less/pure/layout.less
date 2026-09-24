@@ -153,8 +153,17 @@
 }
 
 .layout>.panel.layout-panel>.panel-header{
-    padding: 4px 5px;
+    /* 4px修改成3px，五方布局面板标题高度展开/折叠统一成46px，与iHOS风格及panel自身高度保持一致 20260924 */
+    padding: 3px 5px;
 }
 .layout>.panel.layout-panel>.panel-header .panel-icon {
-  margin-top: -8px;
+  /* -8px修改成-9px，标题padding调整后保持图标与标题文字垂直居中 20260924 */
+  margin-top: -9px;
+}
+.layout>.panel.layout-panel>.panel-header .panel-tool {
+  /* -8px修改成-9px，标题padding调整后保持图标与标题文字垂直居中 20260924 */
+  margin-top: -9px;
+}
+.layout>.panel.layout-expand>.panel-header .panel-tool{
+  margin-top: -9px;
 }

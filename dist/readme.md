@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-09-24
+- :lipstick: 五方布局面板标题高度统一：`iHOS`风格折叠状态标题高度44px修改成46px，与展开状态一致
+- :lipstick: `pure`风格五方布局面板标题高度展开48px、折叠46px统一修改成46px，与`iHOS`风格保持一致
+
 ## 2026-09-22
 - :bug: 页面二次加载jQuery覆盖全局`$`后，vben风格下DOMReady时`$.hisui.switchTheme`报错问题修复[7446901]
 - - ready回调改为闭包捕获打包时的jQuery，并对`$.hisui`判空保护
