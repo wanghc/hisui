@@ -30,7 +30,8 @@
         var status = $.data(_847, "combo");
         var opts = status.options;
         $(_847).addClass("combo-f").hide();
-        var span = $("<span class=\"combo\">" + "<input type=\"text\" class=\"combo-text\" autocomplete=\"off\">" + "<span><span class=\"combo-arrow\"></span></span>" + "<input type=\"hidden\" class=\"combo-value\">" + "</span>").insertAfter(_847);
+        // 无障碍：下拉箭头按钮加 role/aria-label [a11y]
+        var span = $("<span class=\"combo\">" + "<input type=\"text\" class=\"combo-text\" autocomplete=\"off\">" + "<span><span class=\"combo-arrow\" role=\"button\" aria-label=\"" + opts.arrowText + "\"></span></span>" + "<input type=\"hidden\" class=\"combo-value\">" + "</span>").insertAfter(_847);
         var _848 = $("<div class=\"combo-panel\"></div>").appendTo("body");
         _848.panel({
             maxHeight: opts.panelMaxHeight||"",
@@ -524,7 +525,11 @@
         panelMaxHeight:null,
         blurValidValue:false, /*2018-12-26 wanghc blur时验证组件是否有值,无则清空输入框*/
         /*enterNullValueClear控制 回车时是否清空输入框里的值。by wanghc */
-        enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19, keyHandler: {
+        enterNullValueClear:true,width: "auto", height: 22, panelWidth: null, panelHeight: 200, panelAlign: "left", multiple: false, selectOnNavigation: true, separator: ",", editable: true, disabled: false, readonly: false, hasDownArrow: true, value: "", delay: 200, deltaX: 19,
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        arrowText: "Toggle dropdown",   // 展开/收起下拉面板
+        clearText: "Clear",             // 清空
+        keyHandler: {
             up: function (e) {
             }, down: function (e) {
             }, left: function (e) {

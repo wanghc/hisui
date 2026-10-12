@@ -17,12 +17,14 @@
 		}
 		var clearBtn = $('.z-q-clearbtn');
 		if (clearBtn.length == 0) {
-			clearBtn = $('<span class="z-q-clearbtn"><i class="z-q-clearbtnicon">&nbsp;</i></span>').appendTo('body');
+			// 无障碍：清除按钮加 role/aria-label [a11y]
+			clearBtn = $('<span class="z-q-clearbtn" role="button" aria-label="' + opts.clearText + '"><i class="z-q-clearbtnicon">&nbsp;</i></span>').appendTo('body');
 			$(document.body).delegate('input.inputclearbtn-f', 'mouseenter.inputclearbtn focus.inputclearbtn', function (e) {
 				if ("" !== e.target.value) {
 					var btn = $('.z-q-clearbtn');
 					if (btn.length == 0) {
-						btn = $('<span class="z-q-clearbtn"><i class="z-q-clearbtnicon">&nbsp;</i></span>').appendTo('body');
+						// 无障碍：清除按钮加 role/aria-label [a11y]
+						btn = $('<span class="z-q-clearbtn" role="button" aria-label="' + $.fn.inputclearbtn.defaults.clearText + '"><i class="z-q-clearbtnicon">&nbsp;</i></span>').appendTo('body');
 					}
 					var srct = e.target;
 					var _input = $(srct);
@@ -142,6 +144,8 @@
         clearCls: 'default',
         clearBtnRight: 10,
         clearBtnTop: 20,
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        clearText: 'Clear', // 清除
         onClearBefore: null,
         onClearAfter:null
 	});

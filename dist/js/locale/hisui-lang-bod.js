@@ -245,3 +245,49 @@ if ($.fn.combogridmult){
 		{field:'code',title:'\u0f68\u0f44\u0f0b\u0f62\u0f9f\u0f42\u0f66\u0f0d',width:150}
 	]];
 }
+
+/* ==================== 無障礙按鈕標籤（aria-label） ==================== */
+(function () {
+	/* panel 工具按鈕：折疊/展開/最小化/最大化/還原/關閉（window、dialog、messager 共用） */
+	var panelA11y = {
+		collapseText: '\u0f56\u0f66\u0fa1\u0f74\u0f0b\u0f56\u0f0d', expandText: '\u0f62\u0f92\u0fb1\u0f0b\u0f66\u0f90\u0fb1\u0f7a\u0f51\u0f0d',
+		minimizeText: '\u0f46\u0f74\u0f44\u0f0b\u0f64\u0f7c\u0f66\u0f0b\u0f66\u0f74\u0f0b\u0f56\u0f5f\u0f7c\u0f0b\u0f56\u0f0d', maximizeText: '\u0f46\u0f7a\u0f0b\u0f64\u0f7c\u0f66\u0f0b\u0f66\u0f74\u0f0b\u0f56\u0f5f\u0f7c\u0f0b\u0f56\u0f0d',
+		restoreText: '\u0f66\u0fb3\u0f62\u0f0b\u0f42\u0f66\u0f7c\u0f0d', closeText: '\u0f41\u0f0b\u0f62\u0f92\u0fb1\u0f42'
+	};
+	['panel', 'window', 'dialog', 'datagrid', 'propertygrid', 'treegrid'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, panelA11y);
+	});
+	if ($.fn.layout && $.fn.layout.paneldefaults) $.extend($.fn.layout.paneldefaults, panelA11y);
+
+	/* combo 下拉箭頭 / 清空按鈕 */
+	var comboA11y = { arrowText: '\u0f50\u0f7c\u0f53\u0f0b\u0f62\u0f72\u0f66\u0f0b\u0f55\u0fb1\u0f7a\u0f0b\u0f56\u0f60\u0f58\u0f0b\u0f56\u0f66\u0fa1\u0f74\u0f0b\u0f56\u0f0d', clearText: '\u0f56\u0f66\u0f74\u0f56\u0f0b\u0f54\u0f0d' };
+	['combo', 'combobox', 'combotree', 'combogrid', 'combogridmult', 'datebox', 'datetimebox',
+	 'comboq', 'dateboxq', 'datetimeboxq', 'lookup', 'triggerbox'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, comboA11y);
+	});
+
+	/* spinner 上下箭頭 */
+	var spinnerA11y = { spinUpText: '\u0f60\u0f55\u0f7a\u0f63\u0f0b\u0f56\u0f0d', spinDownText: '\u0f60\u0f56\u0fb2\u0f72\u0f0b\u0f56\u0f0d' };
+	['spinner', 'numberspinner', 'timespinner'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, spinnerA11y);
+	});
+
+	/* tabs 滾動箭頭、溢出菜單按鈕、頁簽關閉按鈕 */
+	if ($.fn.tabs) {
+		$.extend($.fn.tabs.defaults, {
+			closeText: '\u0f41\u0f0b\u0f62\u0f92\u0fb1\u0f42', scrollLeftText: '\u0f42\u0f61\u0f7c\u0f53\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f66\u0f74\u0f0b\u0f56\u0f66\u0f90\u0f7c\u0f62\u0f0b\u0f56\u0f0d',
+			scrollRightText: '\u0f42\u0f61\u0f66\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f66\u0f74\u0f0b\u0f56\u0f66\u0f90\u0f7c\u0f62\u0f0b\u0f56\u0f0d', overflowBtnText: '\u0f64\u0f7c\u0f42\u0f0b\u0f41\u0f0b\u0f58\u0f44\u0f0b\u0f56\u0f0d'
+		});
+	}
+	/* layout 區域收起/展開按鈕 */
+	if ($.fn.layout) {
+		$.extend($.fn.layout.defaults, {
+			collapseNorthText: '\u0f42\u0f7c\u0f44\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f56\u0f66\u0fa1\u0f74\u0f0b\u0f56\u0f0d', collapseSouthText: '\u0f60\u0f7c\u0f42\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f56\u0f66\u0fa1\u0f74\u0f0b\u0f56\u0f0d',
+			collapseEastText: '\u0f42\u0f61\u0f66\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f56\u0f66\u0fa1\u0f74\u0f0b\u0f56\u0f0d', collapseWestText: '\u0f42\u0f61\u0f7c\u0f53\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f56\u0f66\u0fa1\u0f74\u0f0b\u0f56\u0f0d',
+			expandNorthText: '\u0f42\u0f7c\u0f44\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f62\u0f92\u0fb1\u0f0b\u0f66\u0f90\u0fb1\u0f7a\u0f51\u0f0d', expandSouthText: '\u0f60\u0f7c\u0f42\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f62\u0f92\u0fb1\u0f0b\u0f66\u0f90\u0fb1\u0f7a\u0f51\u0f0d',
+			expandEastText: '\u0f42\u0f61\u0f66\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f62\u0f92\u0fb1\u0f0b\u0f66\u0f90\u0fb1\u0f7a\u0f51\u0f0d', expandWestText: '\u0f42\u0f61\u0f7c\u0f53\u0f0b\u0f55\u0fb1\u0f7c\u0f42\u0f66\u0f0b\u0f62\u0f92\u0fb1\u0f0b\u0f66\u0f90\u0fb1\u0f7a\u0f51\u0f0d'
+		});
+	}
+	if ($.fn.searchbox) $.fn.searchbox.defaults.searchText = '\u0f60\u0f5a\u0f7c\u0f63\u0f0b\u0f5e\u0f72\u0f56\u0f0d';
+	if ($.fn.inputclearbtn) $.fn.inputclearbtn.defaults.clearText = '\u0f56\u0f66\u0f74\u0f56\u0f0b\u0f54\u0f0d';
+})();

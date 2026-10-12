@@ -3,7 +3,8 @@
         $(_3fc).addClass("searchbox-f").hide();
         var span = $("<span class=\"searchbox\"></span>").insertAfter(_3fc);
         var _3fd = $("<input type=\"text\" class=\"searchbox-text\">").appendTo(span);
-        $("<span><span class=\"searchbox-button\"></span></span>").appendTo(span);
+        // 无障碍：搜索按钮加 role/aria-label [a11y]
+        $("<span><span class=\"searchbox-button\" role=\"button\" aria-label=\"" + $.fn.searchbox.defaults.searchText + "\"></span></span>").appendTo(span);
         var name = $(_3fc).attr("name");
         if (name) {
             _3fd.attr("name", name);
@@ -230,7 +231,10 @@
     };
     //wanghc searchbox height:22-->30
     $.fn.searchbox.defaults = {
-        width: "auto", height: 30, prompt: "", value: "", menu: null, disabled: false, searcher: function (_41d, name) {
+        width: "auto", height: 30, prompt: "", value: "", menu: null, disabled: false,
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        searchText: "Search",   // 搜索
+        searcher: function (_41d, name) {
         }
     };
 })(jQuery);

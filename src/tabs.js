@@ -10,8 +10,8 @@
             return; // 已创建
         }
         var header = $(container).children("div.tabs-header");
-        // 创建按钮
-        var btn = $('<div class="tabs-overflow-btn"><a href="javascript:void(0)" class="tabs-overflow-btn-icon"></a></div>').appendTo(header);
+        // 创建按钮（无障碍：加 role/aria-label [a11y]）
+        var btn = $('<div class="tabs-overflow-btn"><a href="javascript:void(0)" class="tabs-overflow-btn-icon" role="button" aria-label="' + state.options.overflowBtnText + '"></a></div>').appendTo(header);
         // 创建 menu 容器
         var menuEl = $('<div class="tabs-overflow-menu"></div>').appendTo("body");
         menuEl.menu({
@@ -90,9 +90,9 @@
                 if (isSelected) {
                     addedItem.addClass("tabs-overflow-menu-selected");
                 }
-                // 若 closable，在菜单项右侧插入关闭按钮
+                // 若 closable，在菜单项右侧插入关闭按钮（无障碍：标签 =【页签标题 + 关闭】 [a11y]）
                 if (closable) {
-                    var closeBtn = $('<a href="javascript:void(0)" class="tabs-overflow-menu-close"></a>');
+                    var closeBtn = $('<a href="javascript:void(0)" class="tabs-overflow-menu-close" role="button" aria-label="' + (title || "") + state.options.closeText + '"></a>');
                     addedItem.append(closeBtn);
                     // 用立即执行函数捕获当前 tab 引用，避免闭包共享问题
                     (function(tabRef) {
@@ -470,7 +470,9 @@
             pp[0].appendChild(this);
         });
         cc[0].appendChild(pp[0]);
-        $("<div class=\"tabs-header\">" + "<div class=\"tabs-scroller-left\"></div>" + "<div class=\"tabs-scroller-right\"></div>" + "<div class=\"tabs-wrap\">" + "<ul class=\"tabs\"></ul>" + "</div>" + "</div>").prependTo(container);
+        // 无障碍：左右滚动箭头加 role/aria-label [a11y]
+        var tabsOpts = $.data(container, "tabs").options;
+        $("<div class=\"tabs-header\">" + "<div class=\"tabs-scroller-left\" role=\"button\" aria-label=\"" + tabsOpts.scrollLeftText + "\"></div>" + "<div class=\"tabs-scroller-right\" role=\"button\" aria-label=\"" + tabsOpts.scrollRightText + "\"></div>" + "<div class=\"tabs-wrap\">" + "<ul class=\"tabs\"></ul>" + "</div>" + "</div>").prependTo(container);
         cc.children("div.tabs-panels").children("div").each(function (i) {
             var opts = $.extend({}, $.parser.parseOptions(this), { selected: ($(this).attr("selected") ? true : undefined) });
             var pp = $(this);
@@ -668,7 +670,8 @@
         tab.find("a.tabs-close").remove();
         if (opts.closable) {
             s_title.addClass("tabs-closable");
-            $("<a href=\"javascript:void(0)\" class=\"tabs-close\"></a>").appendTo(tab);
+            // 无障碍：页签关闭按钮，标签 =【页签标题 + 关闭】，读作"页签一 关闭"，便于分辨关闭的是哪个页签 [a11y]
+            $("<a href=\"javascript:void(0)\" class=\"tabs-close\" role=\"button\" aria-label=\"" + (opts.title || "") + $.data(container, "tabs").options.closeText + "\"></a>").appendTo(tab);
         } else {
             s_title.removeClass("tabs-closable");
         }
@@ -1011,6 +1014,10 @@
         closeAllText: "Close All",
         closeLeftText: "Close Left",
         closeRightText: "Close Right",
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        scrollLeftText: "Scroll left",   // 向左滚动
+        scrollRightText: "Scroll right", // 向右滚动
+        overflowBtnText: "More tabs",    // 更多页签（溢出菜单按钮）
         onLoad: function (panel) {
         }, onSelect: function (title, index) {
         }, onUnselect: function (title, index) {

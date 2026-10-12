@@ -243,3 +243,53 @@ if ($.fn.combogridmult){
 		{field:'code',title:'\u4ee3\u78bc',width:150}
 	]];
 }
+
+/* ==================== \u7121\u969c\u7919\u6309\u9215\u6a19\u7c64\uff08aria-label\uff09 ====================
+   \u5716\u6a19\u6309\u9215\u6c92\u6709\u6587\u5b57\uff0c\u8b80\u5c4f\u5668\u4f9d\u8cf4 aria-label \u6717\u8b80\u3002
+   \u6ce8\u610f\uff1a\u6d3e\u751f\u7d44\u4ef6\uff08window/dialog/datagrid \u7e7c\u627f panel\uff1bcombobox/datebox \u7e7c\u627f combo\uff1b
+   numberspinner \u7e7c\u627f spinner\uff09\u7684 defaults \u662f\u7236\u7d44\u4ef6【\u52a0\u8f09\u6642\u7684\u5feb\u7167】\uff0c
+   \u8a9e\u8a00\u5305\u5728\u7d44\u4ef6\u52a0\u8f09\u4e4b\u5f8c\u57f7\u884c\uff0c\u56e0\u6b64\u5fc5\u9808\u6309\u65cf\u9010\u500b\u8986\u84cb\uff0c\u5426\u5247\u6703\u8b80\u5230\u82f1\u6587\u9ed8\u8a8d\u503c\u3002 */
+(function () {
+	/* panel \u5de5\u5177\u6309\u9215\uff1a\u6298\u758a/\u5c55\u958b/\u6700\u5c0f\u5316/\u6700\u5927\u5316/\u9084\u539f/\u95dc\u9589\uff08window\u3001dialog\u3001messager \u5171\u7528\uff09 */
+	var panelA11y = {
+		collapseText: '\u6298\u758a', expandText: '\u5c55\u958b',
+		minimizeText: '\u6700\u5c0f\u5316', maximizeText: '\u6700\u5927\u5316',
+		restoreText: '\u9084\u539f', closeText: '\u95dc\u9589'
+	};
+	['panel', 'window', 'dialog', 'datagrid', 'propertygrid', 'treegrid'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, panelA11y);
+	});
+	if ($.fn.layout && $.fn.layout.paneldefaults) $.extend($.fn.layout.paneldefaults, panelA11y);
+
+	/* combo \u4e0b\u62c9\u7bad\u982d / \u6e05\u7a7a\u6309\u9215 */
+	var comboA11y = { arrowText: '\u5c55\u958b/\u6536\u8d77\u4e0b\u62c9\u9762\u677f', clearText: '\u6e05\u7a7a' };
+	['combo', 'combobox', 'combotree', 'combogrid', 'combogridmult', 'datebox', 'datetimebox',
+	 'comboq', 'dateboxq', 'datetimeboxq', 'lookup', 'triggerbox'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, comboA11y);
+	});
+
+	/* spinner \u4e0a\u4e0b\u7bad\u982d */
+	var spinnerA11y = { spinUpText: '\u589e\u52a0', spinDownText: '\u6e1b\u5c11' };
+	['spinner', 'numberspinner', 'timespinner'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, spinnerA11y);
+	});
+
+	/* tabs \u6efe\u52d5\u7bad\u982d\u3001\u6ea2\u51fa\u83dc\u55ae\u6309\u9215\u3001\u9801\u7c3d\u95dc\u9589\u6309\u9215 */
+	if ($.fn.tabs) {
+		$.extend($.fn.tabs.defaults, {
+			closeText: '\u95dc\u9589', scrollLeftText: '\u5411\u5de6\u6efe\u52d5',
+			scrollRightText: '\u5411\u53f3\u6efe\u52d5', overflowBtnText: '\u66f4\u591a\u9801\u7c64'
+		});
+	}
+	/* layout \u5340\u57df\u6536\u8d77/\u5c55\u958b\u6309\u9215 */
+	if ($.fn.layout) {
+		$.extend($.fn.layout.defaults, {
+			collapseNorthText: '\u6536\u8d77\u4e0a\u65b9\u5340\u57df', collapseSouthText: '\u6536\u8d77\u4e0b\u65b9\u5340\u57df',
+			collapseEastText: '\u6536\u8d77\u53f3\u5074\u5340\u57df', collapseWestText: '\u6536\u8d77\u5de6\u5074\u5340\u57df',
+			expandNorthText: '\u5c55\u958b\u4e0a\u65b9\u5340\u57df', expandSouthText: '\u5c55\u958b\u4e0b\u65b9\u5340\u57df',
+			expandEastText: '\u5c55\u958b\u53f3\u5074\u5340\u57df', expandWestText: '\u5c55\u958b\u5de6\u5074\u5340\u57df'
+		});
+	}
+	if ($.fn.searchbox) $.fn.searchbox.defaults.searchText = '\u641c\u7d22';
+	if ($.fn.inputclearbtn) $.fn.inputclearbtn.defaults.clearText = '\u6e05\u9664';
+})();

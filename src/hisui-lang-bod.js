@@ -245,3 +245,49 @@ if ($.fn.combogridmult){
 		{field:'code',title:'ཨང་རྟགས།',width:150}
 	]];
 }
+
+/* ==================== 無障礙按鈕標籤（aria-label） ==================== */
+(function () {
+	/* panel 工具按鈕：折疊/展開/最小化/最大化/還原/關閉（window、dialog、messager 共用） */
+	var panelA11y = {
+		collapseText: 'བསྡུ་བ།', expandText: 'རྒྱ་སྐྱེད།',
+		minimizeText: 'ཆུང་ཤོས་སུ་བཟོ་བ།', maximizeText: 'ཆེ་ཤོས་སུ་བཟོ་བ།',
+		restoreText: 'སླར་གསོ།', closeText: 'ཁ་རྒྱག'
+	};
+	['panel', 'window', 'dialog', 'datagrid', 'propertygrid', 'treegrid'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, panelA11y);
+	});
+	if ($.fn.layout && $.fn.layout.paneldefaults) $.extend($.fn.layout.paneldefaults, panelA11y);
+
+	/* combo 下拉箭頭 / 清空按鈕 */
+	var comboA11y = { arrowText: 'ཐོན་རིས་ཕྱེ་བའམ་བསྡུ་བ།', clearText: 'བསུབ་པ།' };
+	['combo', 'combobox', 'combotree', 'combogrid', 'combogridmult', 'datebox', 'datetimebox',
+	 'comboq', 'dateboxq', 'datetimeboxq', 'lookup', 'triggerbox'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, comboA11y);
+	});
+
+	/* spinner 上下箭頭 */
+	var spinnerA11y = { spinUpText: 'འཕེལ་བ།', spinDownText: 'འབྲི་བ།' };
+	['spinner', 'numberspinner', 'timespinner'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, spinnerA11y);
+	});
+
+	/* tabs 滾動箭頭、溢出菜單按鈕、頁簽關閉按鈕 */
+	if ($.fn.tabs) {
+		$.extend($.fn.tabs.defaults, {
+			closeText: 'ཁ་རྒྱག', scrollLeftText: 'གཡོན་ཕྱོགས་སུ་བསྐོར་བ།',
+			scrollRightText: 'གཡས་ཕྱོགས་སུ་བསྐོར་བ།', overflowBtnText: 'ཤོག་ཁ་མང་བ།'
+		});
+	}
+	/* layout 區域收起/展開按鈕 */
+	if ($.fn.layout) {
+		$.extend($.fn.layout.defaults, {
+			collapseNorthText: 'གོང་ཕྱོགས་བསྡུ་བ།', collapseSouthText: 'འོག་ཕྱོགས་བསྡུ་བ།',
+			collapseEastText: 'གཡས་ཕྱོགས་བསྡུ་བ།', collapseWestText: 'གཡོན་ཕྱོགས་བསྡུ་བ།',
+			expandNorthText: 'གོང་ཕྱོགས་རྒྱ་སྐྱེད།', expandSouthText: 'འོག་ཕྱོགས་རྒྱ་སྐྱེད།',
+			expandEastText: 'གཡས་ཕྱོགས་རྒྱ་སྐྱེད།', expandWestText: 'གཡོན་ཕྱོགས་རྒྱ་སྐྱེད།'
+		});
+	}
+	if ($.fn.searchbox) $.fn.searchbox.defaults.searchText = 'འཚོལ་ཞིབ།';
+	if ($.fn.inputclearbtn) $.fn.inputclearbtn.defaults.clearText = 'བསུབ་པ།';
+})();

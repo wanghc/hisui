@@ -161,9 +161,38 @@
         });
         return _1ef;
     };
+    /**
+     * 无障碍：刷新关闭按钮的 aria-label，拼成【面板标题 + 关闭】 [a11y]
+     * 单说"关闭"无法区分归属（一屏可能有多个面板/页签），故带上前缀便于读屏器分辨。
+     * _title 为 null/undefined 时用 opts.title；closeText 为空则自动读取语言包当前值。
+     * @param $header panel-header 或 panel 容器（内部会自行定位 .panel-title / a.panel-tool-close）
+     * @param opts     panel options
+     */
+    function _refreshCloseA11yLabel(_header, opts) {
+        var $h = $(_header);
+        if (!$h.hasClass("panel-header")) {
+            $h = $h.children("div.panel-header");
+        }
+        var $btn = $h.children("div.panel-tool").children("a.panel-tool-close");
+        if (!$btn.length) {
+            return;
+        }
+        var title = (opts && opts._titleForA11y != null) ? opts._titleForA11y : ((opts && opts.title) || "");
+        // closeText 优先取该实例 options 当前值，兼容打开过程中语言包被替换的场景
+        var closeText = opts && opts.closeText;
+        if (closeText == null && $.fn.panel.defaults) {
+            closeText = $.fn.panel.defaults.closeText;
+        }
+        if (closeText == null) {
+            closeText = "Close";
+        }
+        $btn.attr("aria-label", title + closeText);
+    }
     function _1f0(_1f1) {
         var opts = $.data(_1f1, "panel").options;
         var _1f2 = $.data(_1f1, "panel").panel;
+        // 无障碍：缓存标题显示值（未翻译），供关闭按钮标签【标题 + 关闭】使用 [a11y]
+        opts._titleForA11y = opts.title || "";
         if (opts.tools && typeof opts.tools == "string") {
             _1f2.find(">div.panel-header>div.panel-tool .panel-tool-a").appendTo(opts.tools);
         }
@@ -186,18 +215,27 @@
                 if ($.isArray(opts.tools)) {
                     for (var i = 0; i < opts.tools.length; i++) {
                         var t = $("<a href=\"javascript:void(0)\"></a>").addClass(opts.tools[i].iconCls).appendTo(tool);
+                        // 无障碍：自定义工具按钮可用 text 指定 aria-label（图标按钮无文字，读屏器需标签） [a11y]
+                        if (opts.tools[i].text) {
+                            t.attr({ "role": "button", "aria-label": opts.tools[i].text });
+                        }
                         if (opts.tools[i].handler) {
                             t.bind("click", eval(opts.tools[i].handler));
                         }
                     }
                 } else {
                     $(opts.tools).children().each(function () {
+                        // 无障碍：自定义工具按钮可用 text 指定 aria-label [a11y]
+                        if ($(this).attr("text")) {
+                            $(this).attr({ "role": "button", "aria-label": $(this).attr("text") });
+                        }
                         $(this).addClass($(this).attr("iconCls")).addClass("panel-tool-a").appendTo(tool);
                     });
                 }
             }
             if (opts.collapsible) {
-                $("<a class=\"panel-tool-collapse\" href=\"javascript:void(0)\"></a>").appendTo(tool).bind("click", function () {
+                // 无障碍标签：折叠按钮 [a11y]
+                $("<a class=\"panel-tool-collapse\" href=\"javascript:void(0)\" aria-label=\"" + opts.collapseText + "\"></a>").appendTo(tool).bind("click", function () {
                     if (opts.collapsed == true) {
                         _210(_1f1, true);
                     } else {
@@ -207,13 +245,15 @@
                 });
             }
             if (opts.minimizable) {
-                $("<a class=\"panel-tool-min\" href=\"javascript:void(0)\"></a>").appendTo(tool).bind("click", function () {
+                // 无障碍标签：最小化按钮 [a11y]
+                $("<a class=\"panel-tool-min\" href=\"javascript:void(0)\" aria-label=\"" + opts.minimizeText + "\"></a>").appendTo(tool).bind("click", function () {
                     _216(_1f1);
                     return false;
                 });
             }
             if (opts.maximizable) {
-                $("<a class=\"panel-tool-max\" href=\"javascript:void(0)\"></a>").appendTo(tool).bind("click", function () {
+                // 无障碍标签：最大化按钮 [a11y]
+                $("<a class=\"panel-tool-max\" href=\"javascript:void(0)\" aria-label=\"" + opts.maximizeText + "\"></a>").appendTo(tool).bind("click", function () {
                     if (opts.maximized == true) {
                         _219(_1f1);
                     } else {
@@ -223,10 +263,12 @@
                 });
             }
             if (opts.closable) {
-                $("<a class=\"panel-tool-close\" href=\"javascript:void(0)\"></a>").appendTo(tool).bind("click", function () {
+                // 无障碍标签：关闭按钮 [a11y]（拼成【面板title + 关闭】）
+                $("<a class=\"panel-tool-close\" href=\"javascript:void(0)\" data-tool-close=\"1\"></a>").appendTo(tool).bind("click", function () {
                     _1f4(_1f1);
                     return false;
                 });
+                _refreshCloseA11yLabel(_1f3, opts);
             }
             _1f2.children("div.panel-body").removeClass("panel-body-noheader");
         } else {
@@ -381,6 +423,7 @@
             return;
         }
         tool.addClass("panel-tool-expand");
+        tool.attr("aria-label", opts.expandText); // 无障碍：折叠后按钮语义变为"展开" [a11y]
         // `panel`收起时设置`panel-status-collapse`样式顺序调整 [5560640]
         // tool.closest('.panel').addClass("panel-status-collapse");
         if (_20e == true) {
@@ -409,6 +452,7 @@
             return;
         }
         tool.removeClass("panel-tool-expand");
+        tool.attr("aria-label", opts.collapseText); // 无障碍：展开后按钮语义恢复为"折叠" [a11y]
         tool.closest('.panel').removeClass("panel-status-collapse");
         if (_212 == true) {
             body.slideDown("normal", function () {
@@ -433,6 +477,7 @@
             return;
         }
         tool.addClass("panel-tool-restore");
+        tool.attr("aria-label", opts.restoreText); // 无障碍：最大化后按钮语义变为"还原" [a11y]
         if (!$.data(_214, "panel").original) {
             $.data(_214, "panel").original = { width: opts.width, height: opts.height, left: opts.left, top: opts.top, fit: opts.fit };
         }
@@ -462,6 +507,7 @@
         }
         _21b.show();
         tool.removeClass("panel-tool-restore");
+        tool.attr("aria-label", opts.maximizeText); // 无障碍：还原后按钮语义恢复为"最大化" [a11y]
         $.extend(opts, $.data(_21a, "panel").original);
         _1e3(_21a);
         opts.minimized = false;
@@ -493,9 +539,14 @@
         }
     };
     function _220(_221, _222) {
-        $.data(_221, "panel").options.title = _222;
-        $(_221).panel("header").find("div.panel-title").html(  $.data(_221, "panel").options.notTrans?_222:$.hisui.getTrans(_222)  ); //add trans //up20230906 judge notTrans
-        _ellipsizeTitle($(_221).panel("header"),$.data(_221, "panel").options);
+        var _pOpts = $.data(_221, "panel").options;
+        _pOpts.title = _222;
+        var _pHeader = $(_221).panel("header");
+        _pHeader.find("div.panel-title").html( _pOpts.notTrans?_222:$.hisui.getTrans(_222)  ); //add trans //up20230906 judge notTrans
+        _ellipsizeTitle(_pHeader,_pOpts);
+        // 无障碍：标题变更后同步刷新关闭按钮标签【标题 + 关闭】 [a11y]
+        _pOpts._titleForA11y = _222 || "";
+        _refreshCloseA11yLabel(_pHeader, _pOpts);
     };
     var TO = false;
     var _223 = true;
@@ -628,6 +679,13 @@
         maxHeight:null,
         isTopZindex:false, //by wanghc 2018-6-21
         titleShowWidth:0, // title能显示的宽度
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        collapseText: "Collapse",   // 折叠
+        expandText: "Expand",       // 展开
+        minimizeText: "Minimize",   // 最小化
+        maximizeText: "Maximize",   // 最大化
+        restoreText: "Restore",     // 还原
+        closeText: "Close",         // 关闭
         id: null, title: null, iconCls: null, width: "auto", height: "auto", left: null, top: null, cls: null, headerCls: null, bodyCls: null, style: {}, href: null, cache: true, fit: false, border: true, doSize: true, noheader: false, content: null, collapsible: false, minimizable: false, maximizable: false, closable: false, collapsed: false, minimized: false, maximized: false, closed: false, tools: null, queryParams: {}, method: "get", href: null, loadingMessage: "Loading...", loader: function (_232, _233, _234) {
             var opts = $(this).panel("options");
             if (!opts.href) {

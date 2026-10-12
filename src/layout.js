@@ -186,7 +186,10 @@
                 var _377 = "layout-button-" + _376[dir];
                 var t = tool.children("a." + _377);
                 if (!t.length) {
-                    t = $("<a href=\"javascript:void(0)\"></a>").addClass(_377).appendTo(tool);
+                    // 无障碍：区域收起按钮加 aria-label（按方向区分语义） [a11y]
+                    var _lyOpts = ($.data(_372, "layout") || {}).options || $.fn.layout.defaults;
+                    var _collapseText = { north: "collapseNorthText", south: "collapseSouthText", east: "collapseEastText", west: "collapseWestText" }[dir];
+                    t = $("<a href=\"javascript:void(0)\" aria-label=\"" + _lyOpts[_collapseText] + "\"></a>").addClass(_377).appendTo(tool);
                     t.bind("click", { dir: dir }, function (e) {
                         _383(_372, e.data.dir);
                         return false;
@@ -373,7 +376,10 @@
             p.panel($.extend({}, $.fn.layout.paneldefaults, {
                 iconCls:iconCls,
                 cls: ("layout-expand layout-expand-" + dir), title: p_title,content:p_content,headerCls:_388.headerCls,bodyCls:_388.bodyCls, closed: true, minWidth: 0, minHeight: 0, doSize: false, tools: [{
-                    iconCls: icon, handler: function () {
+                    iconCls: icon,
+                    // 无障碍：收起后的展开按钮加 aria-label（按方向区分语义） [a11y]
+                    text: opt[{ north: "expandNorthText", south: "expandSouthText", east: "expandEastText", west: "expandWestText" }[dir]],
+                    handler: function () {
                         _390(_384, _385);
                         return false;
                     }
@@ -548,7 +554,17 @@
         return $.extend({}, $.parser.parseOptions(_3a4, [{ fit: "boolean" }]));
     };
     //add by wanghc 增加点击侧边收起块，展开侧边 2018-05-17
-    $.fn.layout.defaults = { fit: false,clickExpand:false };
+    $.fn.layout.defaults = { fit: false,clickExpand:false,
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        collapseNorthText: "Collapse north panel", // 收起上方区域
+        collapseSouthText: "Collapse south panel", // 收起下方区域
+        collapseEastText: "Collapse east panel",   // 收起右侧区域
+        collapseWestText: "Collapse west panel",   // 收起左侧区域
+        expandNorthText: "Expand north panel",     // 展开上方区域
+        expandSouthText: "Expand south panel",     // 展开下方区域
+        expandEastText: "Expand east panel",       // 展开右侧区域
+        expandWestText: "Expand west panel"        // 展开左侧区域
+    };
     $.fn.layout.parsePanelOptions = function (_3a5) {
         var t = $(_3a5);
         return $.extend({}, $.fn.panel.parseOptions(_3a5), $.parser.parseOptions(_3a5, ["region", { split: "boolean",showCollapsedTitle:'boolean', collpasedSize: "number",collapsedHeight:'number', minWidth: "number", minHeight: "number", maxWidth: "number", maxHeight: "number" }]));

@@ -243,3 +243,53 @@ if ($.fn.combogridmult){
 		{field:'code',title:'代碼',width:150}
 	]];
 }
+
+/* ==================== 無障礙按鈕標籤（aria-label） ====================
+   圖標按鈕沒有文字，讀屏器依賴 aria-label 朗讀。
+   注意：派生組件（window/dialog/datagrid 繼承 panel；combobox/datebox 繼承 combo；
+   numberspinner 繼承 spinner）的 defaults 是父組件【加載時的快照】，
+   語言包在組件加載之後執行，因此必須按族逐個覆蓋，否則會讀到英文默認值。 */
+(function () {
+	/* panel 工具按鈕：折疊/展開/最小化/最大化/還原/關閉（window、dialog、messager 共用） */
+	var panelA11y = {
+		collapseText: '折疊', expandText: '展開',
+		minimizeText: '最小化', maximizeText: '最大化',
+		restoreText: '還原', closeText: '關閉'
+	};
+	['panel', 'window', 'dialog', 'datagrid', 'propertygrid', 'treegrid'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, panelA11y);
+	});
+	if ($.fn.layout && $.fn.layout.paneldefaults) $.extend($.fn.layout.paneldefaults, panelA11y);
+
+	/* combo 下拉箭頭 / 清空按鈕 */
+	var comboA11y = { arrowText: '展開/收起下拉面板', clearText: '清空' };
+	['combo', 'combobox', 'combotree', 'combogrid', 'combogridmult', 'datebox', 'datetimebox',
+	 'comboq', 'dateboxq', 'datetimeboxq', 'lookup', 'triggerbox'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, comboA11y);
+	});
+
+	/* spinner 上下箭頭 */
+	var spinnerA11y = { spinUpText: '增加', spinDownText: '減少' };
+	['spinner', 'numberspinner', 'timespinner'].forEach(function (n) {
+		if ($.fn[n] && $.fn[n].defaults) $.extend($.fn[n].defaults, spinnerA11y);
+	});
+
+	/* tabs 滾動箭頭、溢出菜單按鈕、頁簽關閉按鈕 */
+	if ($.fn.tabs) {
+		$.extend($.fn.tabs.defaults, {
+			closeText: '關閉', scrollLeftText: '向左滾動',
+			scrollRightText: '向右滾動', overflowBtnText: '更多頁籤'
+		});
+	}
+	/* layout 區域收起/展開按鈕 */
+	if ($.fn.layout) {
+		$.extend($.fn.layout.defaults, {
+			collapseNorthText: '收起上方區域', collapseSouthText: '收起下方區域',
+			collapseEastText: '收起右側區域', collapseWestText: '收起左側區域',
+			expandNorthText: '展開上方區域', expandSouthText: '展開下方區域',
+			expandEastText: '展開右側區域', expandWestText: '展開左側區域'
+		});
+	}
+	if ($.fn.searchbox) $.fn.searchbox.defaults.searchText = '搜索';
+	if ($.fn.inputclearbtn) $.fn.inputclearbtn.defaults.clearText = '清除';
+})();

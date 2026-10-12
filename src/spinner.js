@@ -1,6 +1,7 @@
 (function ($) {
     function init(_4c0) {
-        var _4c1 = $("<span class=\"spinner\">" + "<span class=\"spinner-arrow\">" + "<span class=\"spinner-arrow-up\"></span>" + "<span class=\"spinner-arrow-down\"></span>" + "</span>" + "</span>").insertAfter(_4c0);
+        // 无障碍：上下箭头按钮加 role/aria-label [a11y]
+        var _4c1 = $("<span class=\"spinner\">" + "<span class=\"spinner-arrow\">" + "<span class=\"spinner-arrow-up\" role=\"button\" aria-label=\"" + $.fn.spinner.defaults.spinUpText + "\"></span>" + "<span class=\"spinner-arrow-down\" role=\"button\" aria-label=\"" + $.fn.spinner.defaults.spinDownText + "\"></span>" + "</span>" + "</span>").insertAfter(_4c0);
         $(_4c0).addClass("spinner-text spinner-f").prependTo(_4c1);
         return _4c1;
     };
@@ -29,6 +30,9 @@
         var _4ca = $.data(_4c9, "spinner").spinner;
         $(_4c9).unbind(".spinner");
         _4ca.find(".spinner-arrow-up,.spinner-arrow-down").unbind(".spinner");
+        // 无障碍：标签跟随实例配置刷新（支持按实例自定义） [a11y]
+        _4ca.find(".spinner-arrow-up").attr("aria-label", opts.spinUpText);
+        _4ca.find(".spinner-arrow-down").attr("aria-label", opts.spinDownText);
         if (!opts.disabled && !opts.readonly) {
             _4ca.find(".spinner-arrow-up").bind("mouseenter.spinner", function () {
                 $(this).addClass("spinner-arrow-hover");
@@ -177,7 +181,11 @@
     };
     $.fn.spinner.defaults = $.extend({}, $.fn.validatebox.defaults, {
         /** wanghc height 22--->30*/
-        width: "auto", height: 30, deltaX: 19, value: "", min: null, max: null, increment: 1, editable: true, disabled: false, readonly: false, spin: function (down) {
+        width: "auto", height: 30, deltaX: 19, value: "", min: null, max: null, increment: 1, editable: true, disabled: false, readonly: false,
+        // 无障碍按钮标签（语言包可覆盖为中文/繁体/藏文） [a11y]
+        spinUpText: "Increase",     // 增加（上箭头）
+        spinDownText: "Decrease",   // 减少（下箭头）
+        spin: function (down) {
         }, onSpinUp: function () {
         }, onSpinDown: function () {
         }, onChange: function (_4db, _4dc) {

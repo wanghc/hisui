@@ -14,3 +14,31 @@
 ## 工作约定
 
 - **临时分析文件统一放在 `.workbuddy/tmp/` 下**，不落地到项目根目录，避免污染 git 工作区。分析完成后主动清理。
+
+## 构建与国际化（重要）
+
+- **构建命令**：gulp 3.9.1 必须用 Node 11 跑（Node 22 会挂），且要清掉 NODE_OPTIONS：
+  `NODE_OPTIONS= "C:/Program Files/nodejs/node.exe" node_modules/gulp/bin/gulp.js min-js zh_CN zh_TC bod`
+- `src/jquery.hisui.src.js`、`dist/js/jquery.hisui.js`、`dist/js/jquery.hisui.min.js` 都是 gulp concat **生成物**，改组件只改 `src/<组件>.js`，不要手改生成物。
+- 语言包 `src/hisui-lang-{zh_CN,zh_TC,bod}.js` → `dist/js/locale/`（gulp 会把中文/藏文转成 \uXXXX）。
+
+## 无障碍标签（aria-label）改造约定 [a11y]
+
+- 图标按钮的无障碍文案统一走 **组件 defaults + 语言包覆盖**，命名：`collapseText/expandText/minimizeText/maximizeText/restoreText/closeText`（panel）、`scrollLeftText/scrollRightText/overflowBtnText`（tabs）、`arrowText/clearText`（combo）、`spinUpText/spinDownText`（spinner）、`searchText`、`clearText`（inputclearbtn）、`collapse*Text/expand*Text`（layout 按方向 8 个）。
+- **关闭按钮标签 =【标题 + 关闭】**（如"业务消息列表关闭"），否则一屏多个 x 按钮读起来无法分辨归属。panel 由 `_refreshCloseA11yLabel()` 生成，setTitle 时同步刷新，标题为空退化为"关闭"；tabs 用 `opts.title + closeText`。
+- **坑：派生组件的 defaults 是父组件加载时的快照**（window/dialog/datagrid ← panel；combobox/combogrid/datebox ← combo；numberspinner ← spinner）。语言包在组件加载之后执行，只改父组件 defaults 会导致派生组件仍是英文，**必须按族逐个覆盖**（现已在三个语言包末尾用 forEach 按族 $.extend）。
+- panel 折叠↔展开、最大化↔还原 是同一个按钮切 class，状态切换处要同步改 aria-label。
+- tabs 的 `a.tabs-inner` 是页签链接本身，**不能加 aria-label**（可访问名称应由-tabs-title 文本提供）；关闭按钮是 `a.tabs-close`。
+- 自定义 tools（panel.tools）支持传 `text` 作为 aria-label。
+
+## 组件加载与 lib/ 目录（排查经验）
+
+- 页面可能**不加载 hisui 构建产物，而是加载 `lib/` 下的原生 EasyUI**（含 1.3.2 / 1.3.6 / 1.4.5 三套，各有 `plugins/`、`src/`、`jquery.easyui.min.js`）。判断依据：hisui 的 tabs.js 会给所有 `li` 加 `hisui-` 前缀，截图里 `<li class="tabs-selected">` 无该前缀即说明走的是原生 EasyUI。
+- **`lib/` 在 `.gitignore` 中**，改动不进版本库、无法 git 还原（只能按 mtime 定位后手工回退）。**结论：不要再给 lib/ 打补丁**，需求回到 src/ 或部署端覆盖文件实现。
+- **改 lib 下 EasyUI 前务必确认变量名**：`plugins/*.js` 与 `jquery.easyui.min.js` 是混淆代码，同名逻辑的变量名不同（如 tabs 的 options 变量在 plugins 版是 `_47`/`_55`/`_3d`，在 min 包是 `opts`）。用错会导致 `xxx is not defined` 运行时错误。
+
+## 部署端覆盖件（his-mediway-iris）
+
+- 仓库 `D:\his-mediway-iris` 中 `frontend/base/scripts/framework/` 与 `base/imedical/web/scripts/framework/` 是**同名的两份副本**（如 `easyui-1.3.6/jquery.tabs.js`），改动前逐字节相同，被各自目录的 csp 引用 → **改一处必须同步另一处**。
+- 这类覆盖件在 `<HISUI>` 标签**之后**加载，会整体替换 `$.fn.<组件>` **及其 defaults**，导致 hisui 语言包注入的文案键丢失 → 覆盖件自己的 defaults 必须自带中文文案（不能依赖语言包）。
+- 页签标题在页面上是 `$.hisui.getTrans(title)` 的结果，拼 aria-label 时也应走一次 getTrans（`getTrans` 对非字符串/含 HTML 的 key 原样返回，可安全调用）。
