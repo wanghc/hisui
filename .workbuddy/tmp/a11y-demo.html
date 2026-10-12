@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>hisui 无障碍标签（aria-label）验证页</title>
+<link rel="stylesheet" href="../../dist/css/hisui.css">
+<script src="../../dist/js/jquery-1.11.3.min.js"></script>
+<script src="../../dist/js/jquery.hisui.js"></script>
+<script src="../../dist/js/locale/hisui-lang-zh_CN.js"></script>
+<style>
+body{font-family:"Microsoft YaHei",Arial,sans-serif;margin:16px;background:#fff;color:#222}
+h2{font-size:15px;margin:18px 0 8px;padding-left:8px;border-left:3px solid #2d7ff9}
+.box{border:1px solid #e3e6ec;border-radius:4px;padding:10px;margin-bottom:10px}
+#scan{margin:12px 0;padding:6px 14px;cursor:pointer}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border:1px solid #e3e6ec;padding:5px 8px;text-align:left}
+th{background:#f5f7fa}
+.ok{color:#1a7f37}.no{color:#c0392b}
+</style>
+</head>
+<body>
+<h1 style="font-size:18px">hisui 无障碍标签（aria-label）验证页</h1>
+<p style="color:#666;font-size:13px">组件渲染后，鼠标悬停或用读屏器/开发者工具查看各图标按钮的 aria-label。点击"扫描"可列出全部结果。</p>
+
+<h2>1. Panel（折叠 / 最小化 / 最大化 / 关闭）</h2>
+<div class="box"><div id="p" style="width:100%;height:120px"></div></div>
+
+<h2>2. Tabs（页签关闭 / 左右滚动）</h2>
+<div class="box"><div id="tt" style="width:100%;height:120px"></div></div>
+
+<h2>3. Window / Dialog（继承 panel）</h2>
+<div class="box">
+  <a href="javascript:void(0)" class="l-btn" onclick="$('#win').window('open')">打开 Window</a>
+  <a href="javascript:void(0)" class="l-btn" onclick="$('#dlg').dialog('open')">打开 Dialog</a>
+</div>
+
+<h2>4. Layout（区域收起按钮）</h2>
+<div class="box"><div id="ly" style="width:100%;height:220px">
+  <div region="west" style="width:120px" title="西区"></div>
+  <div region="center" title="中区"></div>
+</div></div>
+
+<h2>5. NumberSpinner / ComboBox / SearchBox</h2>
+<div class="box">
+  <input id="sp" />
+  <input id="cb" />
+  <input id="sb" />
+</div>
+
+<button id="scan">扫描 aria-label</button>
+<div id="result"></div>
+
+<div id="win" style="display:none"></div>
+<div id="dlg" style="display:none"></div>
+
+<script>
+$(function(){
+    $('#p').panel({title:'测试面板', collapsible:true, minimizable:true, maximizable:true, closable:true, content:'面板内容'});
+    $('#tt').tabs({});
+    for (var i=1;i<=6;i++) $('#tt').tabs('add',{title:'页签'+i, closable:true, content:'内容'+i});
+    $('#win').window({title:'测试窗口', width:360, height:180, collapsible:true, minimizable:true, maximizable:true, closable:true, closed:true});
+    $('#dlg').dialog({title:'测试对话框', width:320, height:140, closable:true, maximizable:true, closed:true, content:'对话框内容'});
+    $('#ly').layout();
+    $('#sp').numberspinner({value:1});
+    $('#cb').combobox({data:[{value:'1',text:'选项一'},{value:'2',text:'选项二'}], value:'1'});
+    $('#sb').searchbox({prompt:'请输入关键字', width:180, searcher:function(){}});
+
+    $('#scan').on('click', function(){
+        var rows = [];
+        function add(where, sel, label){
+            $(sel).each(function(){
+                var al = $(this).attr('aria-label');
+                rows.push('<tr><td>'+where+'</td><td>'+label+'</td><td class="'+(al?'ok':'no')+'">'+(al?al:'（缺失）')+'</td></tr>');
+            });
+        }
+        add('Panel','.panel-header a.panel-tool-collapse','折叠/展开按钮');
+        add('Panel','.panel-header a.panel-tool-min','最小化按钮');
+        add('Panel','.panel-header a.panel-tool-max','最大化/还原按钮');
+        add('Panel','.panel-header a.panel-tool-close','关闭按钮（应含标题前缀）');
+        add('Tabs','a.tabs-close','页签关闭按钮（应含页签名前缀）');
+        add('Tabs','div.tabs-scroller-left','左滚动箭头');
+        add('Tabs','div.tabs-scroller-right','右滚动箭头');
+        add('Layout','a[class^=layout-button-]','区域收起/展开按钮');
+        add('Spinner','.spinner-arrow-up','上箭头');
+        add('Spinner','.spinner-arrow-down','下箭头');
+        add('Combo','.combo-arrow','下拉箭头');
+        add('SearchBox','.searchbox-button','搜索按钮');
+        var missing = (rows.join('').indexOf('（缺失）')>-1);
+        $('#result').html('<table><tr><th>组件</th><th>按钮</th><th>aria-label</th></tr>'+rows.join('')+'</table>'
+            + '<p style="margin-top:8px">共 '+rows.length+' 个按钮，'+(missing?'<span class="no">存在缺失</span>':'<span class="ok">全部已标注</span>')+'</p>');
+    });
+});
+</script>
+</body>
+</html>
