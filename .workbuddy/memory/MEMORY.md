@@ -19,8 +19,24 @@
 
 - **构建命令**：gulp 3.9.1 必须用 Node 11 跑（Node 22 会挂），且要清掉 NODE_OPTIONS：
   `NODE_OPTIONS= "C:/Program Files/nodejs/node.exe" node_modules/gulp/bin/gulp.js min-js zh_CN zh_TC bod`
+  ⚠️ 2026-10 起系统 Node 已升到 v14（不再是 v11），gulp 会报 `primordials is not defined`。
+  此时 CSS 改用 node 脚本复刻 `min-css-<theme>`（项目自带 less 2.7.3 + clean-css 3.4.28）；
+  复刻要点：① gulp.src 对重复路径**去重**（lessArr 中 calendar/datebox 等重复，不去重会多出重复 CSS 段）
+  ② 主题目录缺失的 less 文件（combogrid/numberspinner/timespinner/input.hover）静默跳过
+  ③ clean-css 会把 `url(../css/images/x.png)` 重写为 `url(images/x.png)`。产物 LF、无 BOM、min 无结尾换行。
 - `src/jquery.hisui.src.js`、`dist/js/jquery.hisui.js`、`dist/js/jquery.hisui.min.js` 都是 gulp concat **生成物**，改组件只改 `src/<组件>.js`，不要手改生成物。
 - 语言包 `src/hisui-lang-{zh_CN,zh_TC,bod}.js` → `dist/js/locale/`（gulp 会把中文/藏文转成 \uXXXX）。
+
+## 图标维护约定（汉字图标 / 炫彩图标）
+
+- 汉字图标（16*16）是多风格兼容的：**同一 class 名**在 lite/lightblue/pure/vben 渲染为 CSS 汉字 `:before`，
+  在默认风格渲染为 `dist/css/icons/<name>.png` 背景。
+- 新增一个汉字图标需改（参照需求 5817354「增加优字图标」）：
+  `less/{lite,lightblue,pure,vben}/icon.less`（共享基础样式选择器列表 + `.icon-priority` 后追加定义）、
+  `less/icon.less` 的 `@dlist`（追加 `类名,png名` 对，炫彩风格生效）、
+  `dist/css/icons/*.png`、`lite/icon/icon.html` 与 `api/icon/icon.html` 的 `chinCharicons` 数组、
+  `dist/readme.md` 更新日志。lightblue/pure 的 demo 页历史不同步，可不动。
+- `dist/css/*.css` 全部 gitignore，提交只含 less 源码 + png + readme，dist CSS 由部署端重编。
 
 ## 无障碍标签（aria-label）改造约定 [a11y]
 

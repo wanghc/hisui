@@ -24,7 +24,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 		<script type="text/javascript" class="use-prettyprint">
 			$(function(){
 				//var ccObj=$HUI.popover('#pp',{title:'许可证关于',content:'统一常用前端组件库，统一开发界面风格'});
-				$("#pp").popover({title:'HUI关于',content:'统一常用前端组件库，统一开发界面风格'});
+				$("#pp").popover({title:'HUI关于',content:'统一常用前端组件库，统一开发界面风格',style:'inverse'});
 			});
 		</script>
 	</div>

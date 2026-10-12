@@ -260,7 +260,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             var fonticons=['lt-rt-19','lt-rt-28','lt-rt-37','lt-rt-46','lt-rt-55','lt-rt-64','lt-rt-73','lt-rt-82'
             ,'bold','font','strikethrough','underline','incline','subscript','superscript','indentation','unindent','align-justify'
             ,'align-left','align-center','align-right','cut-blue','paste','paste-board','copy','internationalize',
-            'stacked-diag','rose-diag','curve-diag','thermal-diag','bar-diag','bar-graph','cloud-chart','chart-pie','chart-bar','chart-doughnut','chart-radar'];
+            'stacked-diag','rose-diag','curve-diag','thermal-diag','bar-diag','bar-graph','cloud-chart','chart-pie','chart-bar','chart-doughnut','chart-radar','infection','high-risk-red','high-risk-orange','high-risk-yellow','high-risk-green'];
             for(var i=0;i<fonticons.length;i++){
                 $(
                     '<li>\

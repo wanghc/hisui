@@ -303,7 +303,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             ,'align-left','align-center','align-right','mttext','text','fx','sum','chart-sum','contain','no-conatin','omega'
             ,'help','tip','tip-blue','filter','cut','cut-blue','paste','paste-board','copy','internationalize',''
             ,'align-center-blue','align-left-blue','align-right-blue','same-height-blue','same-size-blue','same-width-blue'
-            ,'valign-bottom-blue','valign-middle-blue','valign-top-blue','gen-barcode','barcode-blue','qrcode-blue','line','move','table-blue'];
+            ,'valign-bottom-blue','valign-middle-blue','valign-top-blue','gen-barcode','barcode-blue','qrcode-blue','line','move','table-blue','infection','high-risk-red','high-risk-orange','high-risk-yellow','high-risk-green'];
             for(var i=0;i<fonticons.length;i++){
                 if (fonticons[i]==""){
                     $(`<li class="cntt-splitline" style="width:${cw}px;"></li>`).appendTo(".fontlist");
