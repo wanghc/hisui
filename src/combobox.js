@@ -463,7 +463,9 @@ jQuery.fn.comboboxRemoveClass = function(classes) {
         if (val == undefined || val == "" || val == null) {
             clearInvalidValue(target);
         } else {
-            
+            // 解决combox 多选时 blurValidValue 为true, 但是text 没有清除
+            var values = $(target).combobox("getValues");
+            setValues(target, values, false);
             var isContain = 0;
             var _d = $(target).combobox('getData');
             for (var i = 0; i < _d.length; i++) {
