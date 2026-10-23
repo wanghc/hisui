@@ -21,6 +21,12 @@
 	function createKeywords(target){
 		var t = $(target).empty();
 		var opts = $.data(target, 'keywords').options;
+		//无障碍: li 作为可点击标签, 追加 button 角色与选中/禁用状态属性
+		function ariaAttrs(selected, disabled){
+			return ' role="button" tabindex="0" aria-pressed="'+(selected ? 'true' : 'false')+'"'+(disabled ? ' aria-disabled="true"' : '');
+		}
+		//无障碍: a 补充 href/onclick, 使屏幕阅读器识别为可点击元素
+		var aTag = '<a href="javascript:void(0)" onclick="javascript:return false;">';
 		if(opts.labelCls!='blue') t.addClass("keywords-label"+opts.labelCls);
 		var html = '';
 		$.each(opts.items,function(indc,chp){
@@ -36,7 +42,7 @@
 						}
 						$.each(sec.items, function (indl, lbl) {
 							var s = 'class="'+(lbl.selected ? ' selected' : '') + (lbl.disabled ? ' disabled' : '')+'"';
-							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+'><a>'+(opts.notTrans?lbl.text:$.hisui.getTrans(lbl.text))+'</a></li>'; //add trans
+							html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+inds+'-'+indl+'" '+s+ariaAttrs(lbl.selected,lbl.disabled)+'>'+aTag+(opts.notTrans?lbl.text:$.hisui.getTrans(lbl.text))+'</a></li>'; //add trans
 						});
 						if (sec.items){
 							html +='</ul>'
@@ -45,7 +51,7 @@
 					}else{ //默认label
 						if (inds==0) {html += '<ul class="kw-section-list keywords">';}
 						var s = 'class="'+(sec.selected ? 'selected' : '')+( sec.disabled ? ' disabled' : '') + '"';
-						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+'><a>'+(opts.notTrans?sec.text:$.hisui.getTrans(sec.text))+'</a></li>'; //add trans
+						html += '<li id="'+(sec.id||sec.text)+'" rowid="'+indc+'-'+inds+'" '+s+ariaAttrs(sec.selected,sec.disabled)+'>'+aTag+(opts.notTrans?sec.text:$.hisui.getTrans(sec.text))+'</a></li>'; //add trans
 						if (inds==(chp.items.length-1)) html +='</ul>';
 					}
 				});
@@ -56,7 +62,7 @@
 				}
 				$.each(chp.items, function (indl, lbl) {					
 					var s = 'class="'+(lbl.selected ? ' selected' : '')+ (lbl.disabled ? ' disabled' : '')+'"';
-					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+'><a>'+(opts.notTrans?lbl.text:$.hisui.getTrans(lbl.text))+'</a></li>' //add trans
+					html += '<li id="'+(lbl.id||lbl.text)+'" rowid="'+indc+'-'+indl+'" '+s+ariaAttrs(lbl.selected,lbl.disabled)+'>'+aTag+(opts.notTrans?lbl.text:$.hisui.getTrans(lbl.text))+'</a></li>' //add trans
 				});
 				if (chp.items){
 					html +='</ul>'
@@ -65,7 +71,7 @@
 			}else{
 				if (indc==0) {html += '<ul class="kw-section-list keywords">';}
 				var s = 'class="'+(chp.selected ? ' selected' : '')+ (chp.disabled ? ' disabled' : '')+'"';
-				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+'><a>'+(opts.notTrans?chp.text:$.hisui.getTrans(chp.text))+'</a></li>'; //add trans
+				html += '<li id="'+(chp.id||chp.text)+'" rowid="'+indc+'" '+s+ariaAttrs(chp.selected,chp.disabled)+'>'+aTag+(opts.notTrans?chp.text:$.hisui.getTrans(chp.text))+'</a></li>'; //add trans
 				if (indc==(opts.items.length-1)) html +='</ul>';
 			}
 		});
@@ -99,10 +105,11 @@
 		var target = $(t);
 		var opts = $.data(t, 'keywords').options;
 		if(opts.singleSelect){
-			target.find('li.selected').removeClass('selected');
+			target.find('li.selected').removeClass('selected').attr('aria-pressed','false'); //无障碍: 同步选中状态
 		}
 		var _t = target.find('li#'+id);
 		_t.toggleClass('selected');
+		_t.attr('aria-pressed', _t.hasClass('selected') ? 'true' : 'false'); //无障碍: 同步选中状态
 		var item = getLabelItem(t, _t.attr("rowid"));
 		opts.onClick.call(this, item);
 		if(_t.hasClass('selected')){
@@ -116,7 +123,7 @@
 		}
 	}
 	function clearSelected(target){
-		$(target).find('li.selected').removeClass('selected');
+		$(target).find('li.selected').removeClass('selected').attr('aria-pressed','false'); //无障碍: 同步选中状态
 	}
 	function getAllSelected(target){
 		var rs=[];

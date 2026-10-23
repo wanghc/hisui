@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-10-23
 - :lipstick: 修改纯净版本验证不合格框边框色 [7049179]
 - 解决combox 多选时 blurValidValue 为true, 但是text 没有清除
+- :sparkles: `keywords` 可点击标签追加无障碍属性
 
 ## 2026-10-12
 - :sparkles: 各组件增加无障碍标签
