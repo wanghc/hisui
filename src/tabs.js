@@ -665,7 +665,8 @@
         var tab = opts.tab;
         var s_title = tab.find("span.tabs-title");
         var s_icon = tab.find("span.tabs-icon");
-        s_title.html($.hisui.getTrans(opts.title));  //add trans
+        var tabsOpts= $.data(container, "tabs").options; //获取配置项notTrans 控制其可以不自动翻译
+        if(!tabsOpts.notTrans) {s_title.html($.hisui.getTrans(opts.title)); } //add trans
         s_icon.attr("class", "tabs-icon");
         tab.find("a.tabs-close").remove();
         if (opts.closable) {
@@ -1027,5 +1028,6 @@
         }, onUpdate: function (title, index) {
         }, onContextMenu: function (e, title, index) {
         },simpleContextMenu:false  //是否显示简单右键菜单
+        ,notTrans:false //不自动翻译
     };
 })(jQuery);
