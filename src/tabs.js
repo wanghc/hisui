@@ -666,7 +666,11 @@
         var s_title = tab.find("span.tabs-title");
         var s_icon = tab.find("span.tabs-icon");
         var tabsOpts= $.data(container, "tabs").options; //获取配置项notTrans 控制其可以不自动翻译
-        if(!tabsOpts.notTrans) {s_title.html($.hisui.getTrans(opts.title)); } //add trans
+        if(tabsOpts.notTrans) { //不翻译
+            s_title.html(opts.title);
+        }else{
+            s_title.html($.hisui.getTrans(opts.title)); //add trans
+        } 
         s_icon.attr("class", "tabs-icon");
         tab.find("a.tabs-close").remove();
         if (opts.closable) {
