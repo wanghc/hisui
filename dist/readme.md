@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-10-30
+- :sparkles: `tabs`组件增加`notTrans`配置项，支持关闭标题自动翻译
+
 ## 2026-10-23
 - :lipstick: 修改纯净版本验证不合格框边框色 [7049179]
 - 解决combox 多选时 blurValidValue 为true, 但是text 没有清除
