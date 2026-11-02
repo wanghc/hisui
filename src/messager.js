@@ -251,7 +251,7 @@
             var cls = opts.icon ? "messager-icon messager-" + opts.icon : "";
             opts = $.extend({}, $.messager.defaults, {                
                 /* 对象文字 add margin-left:42px;*/
-                content: "<div class=\"" + cls + "\"></div>" + "<div style=\"margin-left:42px\">" + opts.msg + "</div>" + "<div style=\"clear:both;\"/>",
+                content: "<div class=\"" + cls + "\"></div>" + "<div style=\"margin-left:42px\">" + opts.msg + "</div>" + "<div style=\"clear:both;\"></div>",
                 bbuttons: {
                     'ok':function (e) {
                         if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -274,7 +274,7 @@
             opts.msg = $.hisui.getTrans(opts.msg);
             return $.messager.alertSrcMsg(opts);
         }, confirmSrcMsg: function (_288, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"></div>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
@@ -302,7 +302,7 @@
         }, confirm: function (title, msg, fn) {
             return $.messager.confirmSrcMsg(title, $.hisui.getTrans(msg), fn);
         }, confirm3SrcMsg: function (title, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"/>"; //add trans
+            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"></div>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -333,7 +333,7 @@
         }, confirm3: function (title, msg, fn) {
             return $.messager.confirm3SrcMsg(title, $.hisui.getTrans(msg), fn);
         }, promptSrcMsg: function (_28b, msg, fn) {
-            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"/>" + "<div class=\"messager-input-line\"><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
+            var _28c = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px\">" + msg + "</div>" + "<br/>" + "<div style=\"clear:both;\"></div>" + "<div class=\"messager-input-line\"><input class=\"messager-input\" type=\"text\"/></div>"; //add trans
             var _28d = {};
             _28d['ok'] = function (e) {
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
@@ -413,7 +413,7 @@
                msg:'',type:'error',timeout:3000,showSpeed:'fast',showType:'slide'};
             var o = $.extend({},defopt,opt);
             var html = '<div class="messager-popover '+o.type+'" style="display:none;">'
-            +'<span class="messager-popover-icon '+o.type+'"/><span class="content">'+ o.msg +'</span>' //add trans
+            +'<span class="messager-popover-icon '+o.type+'"></span><span class="content">'+ o.msg +'</span>' //add trans
             if (o.timeout>5000) +'<span class="close"></span>'
             +'</div>';  
             var lastPopover = $(".messager-popover:visible");

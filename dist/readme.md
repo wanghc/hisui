@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-02
+- :sparkles: 处理messager组件中闭合标签
+- - `<span/>`修改成`<span></span>`
+
 ## 2026-10-30
 - :sparkles: `tabs`组件增加`notTrans`配置项，支持关闭标题自动翻译
 
