@@ -47,6 +47,16 @@
 - tabs 的 `a.tabs-inner` 是页签链接本身，**不能加 aria-label**（可访问名称应由-tabs-title 文本提供）；关闭按钮是 `a.tabs-close`。
 - 自定义 tools（panel.tools）支持传 `text` 作为 aria-label。
 
+## jQuery 1.11.3 安全补丁（2026-11-02，漏扫整改）
+
+- **不升级、不改版本号**：业务有 `$.fn.jquery` 版本比较逻辑，版本仍是 `1.11.3`，因此漏扫按版本特征仍会报，用档案里的 MD5/diff 文档申诉。
+- 已修：CVE-2019-11358（`$.extend` 加 `__proto__` 守卫）、CVE-2020-11023（wrapMap 去掉 option 的 `<select multiple>` 包裹）、CVE-2015-9251（跨域请求关 `contents.script` 嗅探）。
+- **故意不修 CVE-2020-11022**：官方修法是让 htmlPrefilter 变恒等函数，会让 `<span class="x"/>` 这类自闭合拼接串从"兄弟"变"嵌套"，业务 js 无法穷举 → 保留 1.11.3 原行为。**不要再用旧脚本 `patch.js`（v1）**，它会把 11022 一起修掉。
+- 部署文件 `dist/js/jquery-1.11.3.min.js`（MD5 `b14577b6d4e96eabd6a68cafb2b199fd`，官方原版 `895323ed2f7258af4fae2c738c8aea49`）；根目录同名文件是 CRLF 副本。原件备份在 `backup-20261102-184125/`，v1 留档在 `backup-20261102-190430-with11022fix/`。
+- 档案与脚本：`.workbuddy/security/jquery-1.11.3/`（`README.md` 有状态、命令、回退和踩坑清单；脚本路径走 `jq-verify/_env.js`，无硬编码绝对路径）。
+- 验证一行：`cd .workbuddy/security/jquery-1.11.3/jq-verify && node verify.js "$(node -p "require('./_env').JQ_DIST")"`，期望 `安全 21/21, 回归 32/32, ALL-OK`；`node smoke.js` 期望两版零差异。
+- hisui 侧顺带改了 `src/messager.js` 5 处自闭合标签为显式闭合（popover icon 的 `<span .../>` + 4 处 `clear:both` div），v2 下非必需但无害；dist/min/src.js 三份生成物已同步。
+
 ## 组件加载与 lib/ 目录（排查经验）
 
 - 页面可能**不加载 hisui 构建产物，而是加载 `lib/` 下的原生 EasyUI**（含 1.3.2 / 1.3.6 / 1.4.5 三套，各有 `plugins/`、`src/`、`jquery.easyui.min.js`）。判断依据：hisui 的 tabs.js 会给所有 `li` 加 `hisui-` 前缀，截图里 `<li class="tabs-selected">` 无该前缀即说明走的是原生 EasyUI。
