@@ -480,6 +480,15 @@ h2 {
     vertical-align: bottom;
     line-height: 100%;
 }
+/* 通用样式：标签单元格用于多行控件（如备注textarea）所在行，顶部对齐并下移12px与首行文字对齐 */
+body {
+    td,div,span,label{
+        &.required-label{
+            vertical-align: top;
+            padding-top: 10px;
+        }
+    }
+}
 a{
     color:@link-color;
     text-decoration:none;

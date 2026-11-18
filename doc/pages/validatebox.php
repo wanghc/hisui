@@ -99,7 +99,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 					</td>
 				</tr>
 				<tr>
-					<td class="r-label required-label" style="vertical-align: top;padding-top: 12px;">备注</td>
+					<td class="r-label required-label">备注</td>
 					<td>
 						<textarea id="notett" class="textbox hisui-validatebox" placeholder="必填项" autocomplete="off"  data-options="required:true" size=12 rows="2" style="height:45px;"></textarea>
 					</td>
