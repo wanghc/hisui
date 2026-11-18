@@ -219,6 +219,27 @@
                 try{$('iframe').css('pointer-events', 'auto');}catch(e){}
             }
         });
+        // 修复：从窗口顶部边缘（上边/左上角/右上角）向上拖拽调整大小时，
+        // 标题栏会被拖出浏览器可视区(top为负，如-147px)，导致窗口既无法拖动也无法关闭 [bug/iframe-drag.html]
+        function clampTopForNorthResize(e){
+            var data = e.data;
+            if (data.dir && data.dir.indexOf('n') != -1){
+                var parent = state.options.inline ? state.window.parent() : $(window);
+                var minTop = parent.scrollTop();
+                if (data.top < minTop){
+                    data.top = minTop;
+                    var ro = $.data(state.window[0], 'resizable');
+                    var minHeight = (ro && ro.options && ro.options.minHeight) ? ro.options.minHeight : 10;
+                    // 保持窗口底边位置不变，相应收小高度；高度不足最小高度时，以最小高度为准
+                    var height = data.startTop + data.startHeight - minTop;
+                    if (height < minHeight){
+                        height = minHeight;
+                        data.top = data.startTop + data.startHeight - height;
+                    }
+                    data.height = height;
+                }
+            }
+        }
         function start1(e) { 
             if(state.pmask){ state.pmask.remove();}
             state.pmask = $("<div class=\"window-proxy-mask\"></div>").insertAfter(state.window);
@@ -247,6 +268,7 @@
         }
         function proc1(e){
             $.extend(e.data,constrain.call(target,e.data.left,e.data.top,e.data.width,e.data.height));
+            clampTopForNorthResize(e);
             state.pmask.show();
             state.proxy.css({ display:'block', left: e.data.left, top: e.data.top });
             state.proxy._outerWidth(e.data.width);
@@ -254,6 +276,7 @@
         }
         function stop1(e,method) { 
             $.extend(e.data,constrain.call(target,e.data.left,e.data.top,e.data.width+0.1,e.data.height+0.1));
+            clampTopForNorthResize(e);
             $(target).window(method,e.data);
             //$.extend(state.options, { left: e.data.left, top: e.data.top, width: e.data.width, height: e.data.height });
             //setSize(target);
