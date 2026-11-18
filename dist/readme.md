@@ -38,6 +38,7 @@ $("#btn").linkbutton("disable");
 ## 2026-11-18
 - 解决【拖大弹出窗口时拖出屏幕】问题，`top`为负值 [7624039]
 - 处理`required-label`样式 [7621535]
+- `slider`小球位置调整 [7106895]
 
 ## 2026-11-04
 - 已修jquery：CVE-2019-11358（`$.extend` 加 `__proto__` 守卫）、CVE-2020-11023（wrapMap 去掉 option 的 `<select multiple>` 包裹）、CVE-2015-9251（跨域请求关 `contents.script` 嗅探）, 故意不修 CVE-2020-11022. [7585691] [7582622] [7571498]
