@@ -40,6 +40,7 @@ $PAGE_INFO = array(
     array('name'=>'triggerbox','title'=>'触发框','parentName'=>'formCtt'),
     array('name'=>'datebox','title'=>'日期框','parentName'=>'formCtt'),
     array('name'=>'timespinner','title'=>'时间框','parentName'=>'formCtt'),
+    array('name'=>'slider','title'=>'滑块','parentName'=>'formCtt'),
     array('name'=>'combobox','title'=>'下拉框','parentName'=>'formCtt'),
     array('name'=>'switchbox','title'=>'开关','parentName'=>'formCtt'),
     array('name'=>'checkbox','title'=>'复选框','parentName'=>'formCtt'),

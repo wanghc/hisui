@@ -1,6 +1,12 @@
+/* 滑块（vben：海蓝/天蓝/夜间）
+ * 轨道 8px 圆角，已选区间由 .slider-fill 填充，滑块为白色描边圆点
+ * 颜色变量见 variables.less：--slider-track-bgcolor（轨道底色）
+ * 已选区间 = --primary-color，禁用态 = --primary-btn-disable-bgcolor
+ */
 .slider-disabled {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
+  /* 禁用态用颜色区分（轨道/圆点变浅），不再整体降低透明度 */
+  opacity: 1;
+  filter: none;
 }
 .slider-h {
   height: 22px;
@@ -10,20 +16,50 @@
 }
 .slider-inner {
   position: relative;
-  height: 6px;
+  height: 8px;
   top: 7px;
-  border-width: 1px;
+  border-width: 0;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: 4px;
+  background: var(--slider-track-bgcolor, #EBECEF);
+  cursor: pointer;
+}
+/* 已选区间：宽度/高度由 slider.js 根据当前值计算 */
+.slider-fill {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--primary-color, #3047A9);
+  pointer-events: none;
 }
 .slider-handle {
   position: absolute;
   display: block;
   outline: none;
+  box-sizing: border-box;
   width: 20px;
   height: 20px;
-  top: -4px;
-  margin-left: -8px;
+  top: -6px;
+  margin-left: -10px;
+  background: #FFFFFF;
+  border: 2px solid var(--primary-color, #3047A9);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+}
+.slider-disabled .slider-inner {
+  cursor: default;
+}
+.slider-disabled .slider-fill {
+  background: var(--primary-btn-disable-bgcolor, #C9D1F0);
+}
+.slider-disabled .slider-handle {
+  border-color: var(--primary-btn-disable-bgcolor, #C9D1F0);
+  cursor: default;
 }
 .slider-tip {
   position: absolute;
@@ -32,6 +68,7 @@
   font-size: 12px;
   white-space: nowrap;
   top: -22px;
+  color: var(--default-font-color, #000000);
 }
 .slider-rule {
   position: relative;
@@ -44,6 +81,7 @@
   height: 5px;
   border-width: 0 0 0 1px;
   border-style: solid;
+  border-color: var(--input-border-color, #CCCCCC);
 }
 .slider-rulelabel {
   position: relative;
@@ -53,15 +91,22 @@
   position: absolute;
   display: inline-block;
   font-size: 12px;
+  color: var(--default-font-color, #000000);
 }
 .slider-v .slider-inner {
-  width: 6px;
+  width: 8px;
   left: 7px;
   top: 0;
   float: left;
 }
+.slider-v .slider-fill {
+  width: 100%;
+  height: 0;
+  top: auto;
+  bottom: 0;
+}
 .slider-v .slider-handle {
-  left: 3px;
+  left: 50%;
   margin-top: -10px;
 }
 .slider-v .slider-tip {
@@ -84,17 +129,4 @@
   float: left;
   top: 0;
   left: 23px;
-}
-.slider-handle {
-  background: url('images/slider_handle.png') no-repeat;
-}
-.slider-inner {
-  border-color: #95B8E7;
-  background: #E0ECFF;
-}
-.slider-rule span {
-  border-color: #95B8E7;
-}
-.slider-rulelabel span {
-  color: #000000;
 }

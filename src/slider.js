@@ -1,6 +1,6 @@
 (function ($) {
     function init(target) {
-        var slider = $("<div class=\"slider\">" + "<div class=\"slider-inner\">" + "<a href=\"javascript:void(0)\" class=\"slider-handle\"></a>" + "<span class=\"slider-tip\"></span>" + "</div>" + "<div class=\"slider-rule\"></div>" + "<div class=\"slider-rulelabel\"></div>" + "<div style=\"clear:both\"></div>" + "<input type=\"hidden\" class=\"slider-value\">" + "</div>").insertAfter(target);
+        var slider = $("<div class=\"slider\">" + "<div class=\"slider-inner\">" + "<span class=\"slider-fill\"></span>" + "<a href=\"javascript:void(0)\" class=\"slider-handle\"></a>" + "<span class=\"slider-tip\"></span>" + "</div>" + "<div class=\"slider-rule\"></div>" + "<div class=\"slider-rulelabel\"></div>" + "<div style=\"clear:both\"></div>" + "<input type=\"hidden\" class=\"slider-value\">" + "</div>").insertAfter(target);
         var t = $(target);
         t.addClass("slider-f").hide();
         var name = t.attr("name");
@@ -153,6 +153,27 @@
             var style = "top:" + pos + "px;";
             slider.find(".slider-handle").attr("style", style);
             tip.attr("style", style + "margin-left:" + (-Math.round(tip.outerWidth())) + "px");
+        }
+        // 已选区间（slider-fill）跟随滑块位置：水平从左端起，垂直从下端（min 端）起
+        var inner = slider.find("div.slider-inner");
+        var fill = inner.find(".slider-fill");
+        if (opts.mode == "h") {
+            var fillWidth = parseFloat(pos);
+            if (opts.reversed) {
+                fillWidth = Math.max(0, inner.width() - fillWidth);
+                fill.css({ left: "auto", right: 0 });
+            } else {
+                fill.css({ left: 0, right: "auto" });
+            }
+            fill.css({ height: "", top: "", bottom: "", width: fillWidth + "px" });
+        } else {
+            var innerHeight = inner.height();
+            fill.css({ width: "" });
+            if (opts.reversed) {
+                fill.css({ top: 0, bottom: "auto", height: Math.max(0, parseFloat(pos)) + "px" });
+            } else {
+                fill.css({ top: "auto", bottom: 0, height: Math.max(0, innerHeight - pos) + "px" });
+            }
         }
         if (oldValue != value) {
             opts.onChange.call(target, value, oldValue);

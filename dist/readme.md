@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-19
+- :sparkles: 处理iHOS风格下`slider`样式问题 [7106895]
+
 ## 2026-11-18
 - 解决【拖大弹出窗口时拖出屏幕】问题，`top`为负值 [7624039]
 - :lipstick: `pure`与`iHOS`风格处理`required-label`样式 [7621535]
