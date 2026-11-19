@@ -158,9 +158,11 @@
      * @param {String} message 
      * @param {Object} bbuttons 
      * @param {Array} bbuttonsIndex 增加按钮显示顺序
+     * @param {Object} winOptions 可选,窗口参数,支持 width、icon(与alert一致,用于设置窗口图标与背景色)
      * @returns 
      */
-    function _createMessageWindow(title, message, bbuttons,bbuttonsSort) {
+    function _createMessageWindow(title, message, bbuttons,bbuttonsSort, winOptions) {
+        winOptions = winOptions || {};
         var win = $("<div class=\"messager-body\"></div>").appendTo("body");
         win.append(message);
         if (bbuttons) {
@@ -225,16 +227,20 @@
             //end 2018-10-09
         }
         // width:300修改成Max(300,474)取最大值，解决window-shadow阴影高度大于弹窗口问题 [5678473]
+        // height固定为auto，内容多时窗口随之变高(与alert一致)
         win.window({
             isTopZindex:true, //wanghc
             closable:false, //neer---不显示关闭按钮--事件监听问题
-            title: title, noheader: (title ? false : true), width: Math.max(300,$.hisui.getStyleCodeConfigValue("messagerMinWidth")), height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
+            title: title, noheader: (title ? false : true), width: winOptions.width || Math.max(300,$.hisui.getStyleCodeConfigValue("messagerMinWidth")), height: "auto", modal: true, collapsible: false, minimizable: false, maximizable: false, resizable: false, onClose: function () {
                 setTimeout(function () {
                     win.window("destroy");
                 }, 100);
             }
         });
         win.window("window").addClass("messager-window");
+        if (winOptions.icon) { // 与alert一致,按icon设置窗口背景色(messager-window-info/error/success/warning)
+            win.window("window").addClass("messager-window-" + winOptions.icon);
+        }
         win.window("center");
         var messagerFocusBtnIndex = $.hisui.getStyleCodeConfigValue("messagerFocusBtnIndex");
         win.children("div.messager-button").children("a").eq(messagerFocusBtnIndex).focus();
@@ -274,7 +280,10 @@
             opts.msg = $.hisui.getTrans(opts.msg);
             return $.messager.alertSrcMsg(opts);
         }, confirmSrcMsg: function (_288, msg, fn) {
-            var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" +msg+ "</div>" + "<div style=\"clear:both;\"></div>"; //add trans
+            // 支持对象传参(与alert一致): {title,msg,icon,width,fn}
+            var opts = typeof _288 == "object" ? _288 : { title: _288, msg: msg, fn: fn };
+            var icon = opts.icon || "question";
+            var _289 = "<div class=\"messager-icon messager-" + icon + "\"></div>" + "<div style=\"margin-left:42px;\">" + opts.msg + "</div>" + "<div style=\"clear:both;\"></div>"; //add trans
             var _28a = {};
             _28a['ok'] = function (e) {
                 // 2020-09-15 于传忠提供bug-demo及解决
@@ -284,23 +293,25 @@
                 if (e && ("undefined"!=typeof e.clientY && (e.clientY<0))) return false;
                 if (e && ("undefined"!=typeof e.clientX && (e.clientX<0))) return false;
                 win.window("close");
-                if (fn) {
-                    fn(true);
+                if (opts.fn) {
+                    opts.fn(true);
                     return false;
                 }
             };
             _28a['cancel'] = function () {
                 win.window("close");
-                if (fn) {
-                    fn(false);
+                if (opts.fn) {
+                    opts.fn(false);
                     return false;
                 }
             };
             var messagerConfirmBtnSort = $.hisui.getStyleCodeConfigValue('messagerConfirmBtnIndex');
-            var win = _createMessageWindow(_288, _289, _28a,messagerConfirmBtnSort);
+            var win = _createMessageWindow(opts.title, _289, _28a, messagerConfirmBtnSort, { width: opts.width, icon: opts.icon });
             return win;
         }, confirm: function (title, msg, fn) {
-            return $.messager.confirmSrcMsg(title, $.hisui.getTrans(msg), fn);
+            var opts = typeof title == "object" ? title : { title: title, msg: msg, fn: fn };
+            opts.msg = $.hisui.getTrans(opts.msg);
+            return $.messager.confirmSrcMsg(opts);
         }, confirm3SrcMsg: function (title, msg, fn) {
             var _289 = "<div class=\"messager-icon messager-question\"></div>" + "<div style=\"margin-left:42px;\">" + msg + "</div>" + "<div style=\"clear:both;\"></div>"; //add trans
             var _28a = {};

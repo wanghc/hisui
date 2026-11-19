@@ -92,11 +92,11 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 	<h3>三、确认窗口(<code>$.messager.confirm</code>)</h3>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint hide">
-		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm1">confirm(自动高度)</a>
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm2">confirm默认取消</a>
 		<!-- 2022-02-23 增加三选 -->
 		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm3">confirm三选</a>
-		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm4">confirm警告</a>
+		<a class="hisui-linkbutton" iconCls="icon-w-save" id="confirm4">confirm(样式色变化)</a>
 		<script type="text/javascript">
 			$(function () {
 				$('#confirm1').click(function () {
@@ -104,15 +104,21 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 					var oldCancel = $.messager.defaults.cancel;
 					$.messager.defaults.ok = "自费";
 					$.messager.defaults.cancel = "报销";
-					var btns = $.messager.confirm("确认", "[(甲类0%)维生素AD滴剂/(红伊可新胶丸)[CO*20]]?此药为医保限制用药，[限制类型]适应症，[限制内容]限制用药信息限制用药信息(必须有临床体征，实验室辅助检查证据和临床诊断依据)。请确定该项目是否医保报销!", function (r) {
-						if (r) {
-							$.messager.popover({ msg: "点击了自费", type: 'info' });
-						} else {
-							$.messager.popover({ msg: "点击了报销" });
+					var btns = $.messager.confirm({
+						width:470,
+						icon:'info', // success,info,warning,error
+						title:'确认',
+						msg:'[(甲类0%)维生素AD滴剂/(红伊可新胶丸)[CO*20]]?此药为医保限制用药，[限制类型]适应症，[限制内容]限制用药信息限制用药信息(必须有临床体征，实验室辅助检查证据和临床诊断依据)。请确定该项目是否医保报销!'
+						,fn:function(r){
+							if (r) {
+								$.messager.popover({ msg: "点击了自费", type: 'info' });
+							} else {
+								$.messager.popover({ msg: "点击了报销" });
+							}
+							/*要写在回调方法内,否则在旧版下可能不能回调方法*/
+							$.messager.defaults.ok = oldOk;
+							$.messager.defaults.cancel = oldCancel;
 						}
-						/*要写在回调方法内,否则在旧版下可能不能回调方法*/
-						$.messager.defaults.ok = oldOk;
-						$.messager.defaults.cancel = oldCancel;
 					}).children("div.messager-button");
 					btns.children("a:eq(1)").addClass('red');
 					btns.children("a:eq(0)").addClass('green'); //修改成green2943195
@@ -150,18 +156,21 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 					btns.children("a:eq(2)").addClass('green');
 				});
 				$('#confirm4').click(function () {
-					var c = $.messager.confirm("保存", "确定提交并保存?", function (r) {
-						if (r) {
-							$.messager.popover({ msg: "点击了确定", type: 'info' });
-						} else {
-							$.messager.popover({ msg: "点击了取消" });
+					var c = $.messager.confirm({
+						icon:'warning',
+						title:"保存",
+						msg:"确定提交并保存?",
+						fn:function (r) {
+							if (r) {
+								$.messager.popover({ msg: "点击了确定", type: 'info' });
+							} else {
+								$.messager.popover({ msg: "点击了取消" });
+							}
 						}
 					});
 					var btns = c.children("div.messager-button");
 					btns.children("a:eq(1)");
 					btns.children("a:eq(0)").addClass('white');
-					c.closest('.messager-window').addClass('messager-window-warning');
-					c.find('.messager-icon').addClass('messager-warning');
 				});
 			})
 		</script>

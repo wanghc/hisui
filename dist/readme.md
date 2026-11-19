@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-11-19
 - :sparkles: 处理iHOS风格下`slider`样式问题 [7106895]
+- :sparkles: `$.messager.confirm`方法支持对象传值,且自动适应高度 [7614690]
 
 ## 2026-11-18
 - 解决【拖大弹出窗口时拖出屏幕】问题，`top`为负值 [7624039]
