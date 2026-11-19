@@ -37,7 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-11-18
 - 解决【拖大弹出窗口时拖出屏幕】问题，`top`为负值 [7624039]
-- 处理`required-label`样式 [7621535]
+- :lipstick: `pure`与`iHOS`风格处理`required-label`样式 [7621535]
 - `slider`小球位置调整 [7106895]
 
 ## 2026-11-04
