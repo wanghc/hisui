@@ -122,6 +122,51 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             text-align: center;
             line-height: 18px;
         }
+        /* 风格菜单色块图标 */
+        #versionMenu .menu-icon{
+            width: 12px;
+            height: 12px;
+            margin-top: -6px;
+            box-sizing: border-box;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 2px;
+        }
+        .icon-my-blue{
+            background: linear-gradient(90deg,
+                #0000ff 0%, #0000ff 33.33%,
+                #00ff00 33.33%, #00ff00 66.66%,
+                #ff0000 66.66%, #ff0000 100%);
+        }
+        .icon-my-lite{
+            background: #FFFFFF;
+        }
+        .icon-my-lightblue{
+            background: #BADDFF;
+        }
+        .icon-my-pure{
+            background: #008FFF;
+        }
+        .icon-my-vben{
+            background: #3047A9;
+        }
+        /* 当前风格/色系：行尾小圆点 */
+        #versionMenu .menu-item,
+        #themeMenu .menu-item{
+            position: relative;
+        }
+        #versionMenu .menu-item-selected:after,
+        #themeMenu .menu-item-selected:after{
+            content: "";
+            position: absolute;
+            right: 28px;
+            top: 50%;
+            width: 6px;
+            height: 6px;
+            margin-top: -3px;
+            border-radius: 50%;
+            background: #40a2de;
+            background: var(--primary-color, #40a2de);
+        }
     </style>
     <!-- 不同主题，使用不同样式 -->
     <?php 
@@ -152,11 +197,11 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
          </div>   
     </div>-->
     <div id="versionMenu" class="hisui-menu" style="width:120px;">
-        <div data-version="pure">纯净</div>
-        <div data-version="blue">炫彩</div>
-        <div data-version="lite">极简</div>
-        <div data-version="lightblue">浅蓝</div>
-        <div data-version="vben">iHOS</div>
+        <div data-version="blue" data-options="iconCls:'icon-my-blue'">炫彩</div>
+        <div data-version="lite" data-options="iconCls:'icon-my-lite'">极简</div>
+        <div data-version="lightblue" data-options="iconCls:'icon-my-lightblue'">浅蓝</div>
+        <div data-version="pure" data-options="iconCls:'icon-my-pure'">纯净</div>
+        <div data-version="vben" data-options="iconCls:'icon-my-vben'">iHOS</div>
     </div>
     <div id="themeMenu" class="hisui-menu" style="width:120px;">
         <div data-theme="">海蓝</div>
@@ -171,7 +216,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             // 显示下拉菜单，位置在工具按钮下方
             var panel = $('body').layout('panel','west');
             var toolBtn = panel.panel('header'); // 获取工具区域
-            var btn = toolBtn.find('.icon-w-switch').closest('a'); // 找到当前按钮
+            var btn = toolBtn.find('.icon-system-style').closest('a'); // 找到当前按钮
             $('#versionMenu').menu('show', {
                 left: btn.offset().left,
                 top: btn.offset().top + btn.outerHeight()
@@ -183,6 +228,11 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
                 switchTheme(version);
             }
         });
+        // 标识当前风格（HISUIStyleCode 为空时即默认的炫彩）
+        (function(){
+            var currVersion = (typeof HISUIStyleCode == 'string' && HISUIStyleCode != '') ? HISUIStyleCode : 'blue';
+            $('#versionMenu').find('.menu-item[data-version="' + currVersion + '"]').addClass('menu-item-selected');
+        })();
         // 模拟主题切换函数
         function switchTheme(versionName) {
             location.href = `index.php?version=${versionName}`
@@ -201,8 +251,17 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             onClick: function(item) {
                 var theme = $(item.target).data('theme');
                 $.hisui.switchTheme(theme);
+                // 切换色系后同步小圆点位置
+                $('#themeMenu').find('.menu-item').removeClass('menu-item-selected');
+                $(item.target).addClass('menu-item-selected');
             }
         });
+        // 标识当前色系（HISUITheme 为空或 bgseablue 时即默认的海蓝）
+        (function(){
+            var currTheme = (typeof HISUITheme == 'string') ? HISUITheme : '';
+            if (currTheme == 'bgseablue') currTheme = '';
+            $('#themeMenu').find('.menu-item[data-theme="' + currTheme + '"]').addClass('menu-item-selected');
+        })();
         function showColorPicker(){
             var panel = $('body').layout('panel','west');
             var toolBtn = panel.panel('header');
@@ -224,8 +283,8 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             $.hisui.switchLightDrak();
         }
     </script>
-    <div region="west" border="true" split="false" collapsible="false" title="HISUI" 
-    data-options="tools:[{iconCls:'icon-w-switch',handler:showVersionMenu}<?php if ($PAGE_CONTEXT['version']=='vben') echo ',{iconCls:\'icon-w-list\',handler:showThemeMenu}' ?>]"  style="width:200px;padding:0px;">
+    <div region="west" border="true" split="true" collapsible="false" title="HISUI" 
+    data-options="tools:[{iconCls:'icon-system-style',handler:showVersionMenu}<?php if ($PAGE_CONTEXT['version']=='vben') echo ',{iconCls:\'icon-w-list\',handler:showThemeMenu}' ?>]"  style="width:200px;padding:0px;">
         <div id="accd" class="hisui-accordion" fit="true" data-options="border:false">
             <div title="基础" id="baseCtt"></div>
             <div title="布局" id="layoutCtt"></div>

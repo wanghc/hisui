@@ -10,3 +10,6 @@
 .hisui-accordion .menu-select{
     background-color: #E3E3E3;
 }
+.icon-system-style {
+    background: url(../../dist/css/icons/white/switch.png) center center no-repeat;
+}
