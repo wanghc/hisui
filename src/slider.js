@@ -105,7 +105,7 @@
             }
         });
         slider.find("div.slider-inner").unbind(".slider").bind("mousedown.slider", function (e) {
-            if (state.isDragging) {
+            if (opts.disabled || state.isDragging) {
                 return;
             }
             var pos = $(this).offset();

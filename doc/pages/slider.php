@@ -60,11 +60,13 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 		</div>
 	</div>
 	<h3>禁用与常用方法</h3>
+	<p>禁用状态下，拖动滑块和点击滑槽都不会改变值，也不会触发 onChange、onComplete 事件。</p>
 	<div class="demo-exp-code entry-content">
 		<div class="use-prettyprint">
 			<div class="hisui-panel" title="禁用与方法" style="width:580px;padding:30px 20px;" data-options="headerCls:'panel-header-gray',iconCls:'icon-paper',collapsible:false">
 				<input id="s4" class="hisui-slider" value="30" style="width:300px" data-options="disabled:true,showTip:true">
 				<p>当前值：<span id="s4value">30</span></p>
+				<p>onChange：<span id="s4onchange">-</span>　onComplete：<span id="s4oncomplete">-</span></p>
 				<p>
 					<a id="btn-getvalue" class="hisui-linkbutton">getValue</a>
 					<a id="btn-setvalue" class="hisui-linkbutton">setValue(80)</a>
@@ -76,6 +78,15 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
 			</div>
 			<script type="text/javascript" class="use-prettyprint">
 				$(function(){
+					$('#s4').slider({
+						onChange:function(value,oldValue){
+							$('#s4value').html(value);
+							$('#s4onchange').html(oldValue + ' -> ' + value);
+						},
+						onComplete:function(value){
+							$('#s4oncomplete').html(value);
+						}
+					});
 					var s4 = $HUI.slider('#s4');
 					$('#btn-getvalue').click(function(){
 						$('#s4value').html(s4.getValue());

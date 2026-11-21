@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-21
+- :bug: 修复`slider`禁用状态下点击滑槽仍可改变值的问题
+
 ## 2026-11-19
 - :sparkles: 处理iHOS风格下`slider`样式问题 [7106895]
 - :sparkles: `$.messager.confirm`方法支持对象传值,且自动适应高度 [7614690]
