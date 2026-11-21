@@ -110,14 +110,17 @@
     border-radius: 0 0 6px 6px;    
 }
   /*inverse时，一般无title，content内容居中，把title下边距设置成0,content上设置成15px*/
+.webui-popover-inverse .webui-popover-inner{
+    background-color:@popover-inverse-bgcolor;
+}
 .webui-popover-inverse .webui-popover-content{
-    background-color:#333;
+    background-color:transparent;
     color:#eee;
     padding:15px 14px;
 }
 .webui-popover-inverse .webui-popover-title{
-    background:#333;
-    border-bottom:1px solid #333;
+    background:transparent;
+    border-bottom:1px solid transparent;
     color:#eee;
     padding-bottom:0px;
 }
@@ -175,10 +178,10 @@
     background: @popover-body-bgcolor;
 }
 .webui-popover-inverse >.webui-arrow{
-    background:#333
+    background:@popover-inverse-bgcolor
 }
 .webui-popover.webui-popover-inverse{
-    background-color: #333;
+    background-color: transparent;
 }
 .webui-popover{
     &.bottom,&.bottom-right,&.bottom-left {
@@ -225,4 +228,29 @@
 }
 .webui-popover.left,.webui-popover.left-top,.webui-popover.left-bottom{
     margin-left:-10px
+}
+/*反色时箭头为半透明，裁掉与浮层重叠的一半，避免透明度叠加导致三角区颜色变深*/
+.webui-popover-inverse.bottom >.webui-arrow,
+.webui-popover-inverse.bottom-right >.webui-arrow,
+.webui-popover-inverse.bottom-left >.webui-arrow{
+    -webkit-clip-path:polygon(0 0,100% 0,100% 100%);
+    clip-path:polygon(0 0,100% 0,100% 100%);
+}
+.webui-popover-inverse.top >.webui-arrow,
+.webui-popover-inverse.top-right >.webui-arrow,
+.webui-popover-inverse.top-left >.webui-arrow{
+    -webkit-clip-path:polygon(0 0,0 100%,100% 100%);
+    clip-path:polygon(0 0,0 100%,100% 100%);
+}
+.webui-popover-inverse.left >.webui-arrow,
+.webui-popover-inverse.left-top >.webui-arrow,
+.webui-popover-inverse.left-bottom >.webui-arrow{
+    -webkit-clip-path:polygon(100% 0,100% 100%,0 100%);
+    clip-path:polygon(100% 0,100% 100%,0 100%);
+}
+.webui-popover-inverse.right >.webui-arrow,
+.webui-popover-inverse.right-top >.webui-arrow,
+.webui-popover-inverse.right-bottom >.webui-arrow{
+    -webkit-clip-path:polygon(0 0,100% 0,0 100%);
+    clip-path:polygon(0 0,100% 0,0 100%);
 }

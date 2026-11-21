@@ -37,6 +37,7 @@ $("#btn").linkbutton("disable");
 
 ## 2026-11-21
 - :bug: 修复`slider`禁用状态下点击滑槽仍可改变值的问题
+- :lipstick: `iHOS`风格下`popover`设置`style:'inverse'`时背景色未设置透明度问题修复 [7126112]
 
 ## 2026-11-19
 - :sparkles: 处理iHOS风格下`slider`样式问题 [7106895]

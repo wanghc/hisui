@@ -20,11 +20,22 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
     <div class="demo-exp-code entry-content">
 		<div class="use-prettyprint lang-html">
 			点击<a id="pp" style="cursor: pointer;">关于</a>显示HISUI说明
+			<a id="inversePP" class="hisui-linkbutton">反色</a>
 		</div>
 		<script type="text/javascript" class="use-prettyprint">
 			$(function(){
 				//var ccObj=$HUI.popover('#pp',{title:'许可证关于',content:'统一常用前端组件库，统一开发界面风格'});
-				$("#pp").popover({title:'HUI关于',content:'统一常用前端组件库，统一开发界面风格',style:'inverse'});
+				$("#pp").popover({title:'HUI关于',content:'统一常用前端组件库，统一开发界面风格'});
+				//切换提示框的反色（inverse）样式
+				$("#inversePP").click(function(){
+					var $pp = $("#pp");
+					var opts = $pp.popover('options');
+					opts.style = opts.style === 'inverse' ? '' : 'inverse';
+					$pp.popover('destroy');
+					$pp.popover(opts);
+					$pp.popover('show');
+					$(this).linkbutton({text: opts.style === 'inverse' ? '取消反色' : '反色'});
+				});
 			});
 		</script>
 	</div>
