@@ -30,20 +30,25 @@
 	 * @param {Number} step  向前1或向后-1
 	 */	  
 	function _setStep(target,ind,step) {
+		var status = $.data(target,'vstep');
+		var opts = status ? status.options : {};
 		var $steps = $(target).find(".vstep-container").find("li");
 		var $progress =$(target).find(".vstep-container").find(".vstep-progress-highlight");
 		var curInd = getStepInd(target);
 		step = step||0;
 		if(step!==0) ind = parseInt(curInd)+parseInt(step);
 		if(1<=ind && ind<=$steps.length){
+			//切换节点前触发，返回false阻止切换（节点未变化时不触发）
+			var isSameInd = curInd && parseInt(curInd,10)===parseInt(ind,10);
+			if(!isSameInd && curInd && opts.onBeforeSelect && opts.onBeforeSelect.call(target,ind,opts.items[ind-1]) === false) return;
 			var scale = "%";
 			scale = Math.round((ind-1)*100/($steps.length-1))+scale;
 			$progress.animate({ height: scale },{
 				speed: 1000,
 				done: function() {
-					$steps.each(function(j,m){
-						var _$m = $(m);
-						var _j = j+1;
+					$steps.each(function(){
+						var _$m = $(this);
+						var _j = parseInt(_$m.attr("ind"),10);
 						if(_j < ind){
 							_$m.attr("class","done");
 						}else if(_j === ind){
@@ -84,15 +89,29 @@
 	$target.addClass('vstep');
 	$baseHtml.addClass('vstep-lg').width($target.width());
     var items = opts.items;
+    var isBtt = opts.direction === "btt";
 	arrayLength = items.length;
 	for(var i=0;i<arrayLength;i++){
-		var _s = items[i];
-		$stepHtml.css("height",opts.stepHeight).attr('ind',1+parseInt(i)).append('<div class="cnode">'+(opts.showNumber?(i+1):"")+'</div>').append('<span class="title">'+_s.title+"</span>");
+		//反向展示时，节点按倒序渲染，节点序号保持不变
+		var _i = isBtt ? arrayLength-1-i : i;
+		var _s = items[_i];
+		$stepHtml.css("height",opts.stepHeight).attr('ind',1+parseInt(_i)).append('<div class="cnode">'+(opts.showNumber?(_i+1):"")+'</div>').append('<span class="title">'+_s.title+"</span>");
 		if (_s.context) $stepHtml.append(_s.context);
 		$hstepContainerSteps.append($stepHtml);
 		$stepHtml = $(stepHtml); //重置步骤，拿到源生step
 	}
 	reSize($baseHtml,opts.stepHeight);
+	if (isBtt){
+		//从下往上展示时，节点从底部开始排列，进度从底部节点开始增长
+		var stepHeight = parseFloat(opts.stepHeight) || 0;
+		$baseHtml.addClass('vstep-btt');
+		$baseHtml.find('.vstep-container-steps').css({top:'auto',bottom:'2px'});
+		//底部节点对齐进度条底端（相对底部节点的圆点中心）
+		$baseHtml.find('.vstep-progress').css({top:'auto',bottom:(stepHeight-18)+'px'});
+		$baseHtml.find('.vstep-progress-bar').css('position','relative');
+		//绝对定位的空白span需同时指定left/right，否则宽度会被压缩为0
+		$baseHtml.find('.vstep-progress-highlight').css({position:'absolute',left:'0px',right:'0px',bottom:'0px'});
+	}
     //插入到容器中
     $target.append($baseHtml);
     //默认执行第一个步骤
@@ -151,9 +170,9 @@
 	};	
 	$.fn.vstep.parseOptions = function (_441) {
 		var t = $(_441);
-		return $.extend({}, $.parser.parseOptions(_441, ["showNumber","stepHeight","titlePostion"]));
+		return $.extend({}, $.parser.parseOptions(_441, ["showNumber","stepHeight","titlePostion","direction"]));
 	};
 	$.fn.vstep.defaults = {
-		currentInd:1,showNumber:false,stepHeight:60, titlePostion:"top",items:[],onSelect:null
+		currentInd:1,showNumber:false,stepHeight:60, titlePostion:"top",direction:"ttb",items:[],onSelect:null,onBeforeSelect:null
 	};
 })(jQuery);

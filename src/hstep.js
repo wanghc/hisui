@@ -30,20 +30,25 @@
 	 * @param {Number} step  向前1或向后-1
 	 */	  
 	function _setStep(target,ind,step) {
+		var status = $.data(target,'hstep');
+		var opts = status ? status.options : {};
 		var $steps = $(target).find(".hstep-container").find("li");
 		var $progress =$(target).find(".hstep-container").find(".hstep-progress-highlight");
 		var curInd = getStepInd(target);
 		step = step||0;
 		if(step!==0) ind = parseInt(curInd)+parseInt(step);
 		if(1<=ind && ind<=$steps.length){
+			//切换节点前触发，返回false阻止切换（节点未变化时不触发）
+			var isSameInd = curInd && parseInt(curInd,10)===parseInt(ind,10);
+			if(!isSameInd && curInd && opts.onBeforeSelect && opts.onBeforeSelect.call(target,ind,opts.items[ind-1]) === false) return;
 			var scale = "%";
 			scale = Math.round((ind-1)*100/($steps.length-1))+scale;
 			$progress.animate({ width: scale },{
 				speed: 1000,
 				done: function() {
-				$steps.each(function(j,m){
-					var _$m = $(m);
-					var _j = j+1;
+				$steps.each(function(){
+					var _$m = $(this);
+					var _j = parseInt(_$m.attr("ind"),10);
 					if(_j < ind){
 						_$m.attr("class","done");
 					}else if(_j === ind){
@@ -81,15 +86,24 @@
 	$target.addClass('hstep');
 	$baseHtml.addClass('hstep-lg');
     var items = opts.items;
+    var isRtl = opts.direction === "rtl";
 	arrayLength = items.length;
 	for(var i=0;i<arrayLength;i++){
-		var _s = items[i];
-		$stepHtml.css("width",opts.stepWidth).attr('ind',1+parseInt(i)).append('<span class="title">'+_s.title+'</span>').append('<div class="cnode">'+(opts.showNumber?(i+1):"")+'</div>');
+		//反向展示时，节点按倒序渲染，节点序号保持不变
+		var _i = isRtl ? arrayLength-1-i : i;
+		var _s = items[_i];
+		$stepHtml.css("width",opts.stepWidth).attr('ind',1+parseInt(_i)).append('<span class="title">'+_s.title+'</span>').append('<div class="cnode">'+(opts.showNumber?(_i+1):"")+'</div>');
 		if (_s.context) $stepHtml.append(_s.context);
 		$hstepContainerSteps.append($stepHtml);
 		$stepHtml = $(stepHtml); //重置步骤，拿到源生step
 	}
 	reSize($baseHtml,opts.stepWidth);
+	if (isRtl){
+		//从右往左展示时，进度从右侧开始增长
+		$baseHtml.addClass('hstep-rtl');
+		$baseHtml.find('.hstep-progress-bar').css('position','relative');
+		$baseHtml.find('.hstep-progress-highlight').css({position:'absolute',top:'0px',right:'0px'});
+	}
     //插入到容器中
     $target.append($baseHtml);
     //默认执行第一个步骤
@@ -148,9 +162,9 @@
 	};	
 	$.fn.hstep.parseOptions = function (_441) {
 		var t = $(_441);
-		return $.extend({}, $.parser.parseOptions(_441, ["showNumber","stepWidth","titlePostion"]));
+		return $.extend({}, $.parser.parseOptions(_441, ["showNumber","stepWidth","titlePostion","direction"]));
 	};
 	$.fn.hstep.defaults = {
-		currentInd:1,showNumber:false,stepWidth:100, titlePostion:"top",items:[],onSelect:null
+		currentInd:1,showNumber:false,stepWidth:100, titlePostion:"top",direction:"ltr",items:[],onSelect:null,onBeforeSelect:null
 	};
 })(jQuery);

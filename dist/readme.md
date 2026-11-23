@@ -35,6 +35,10 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-22
+- :sparkles: `hstep`、`vstep`增加`direction`方向配置，支持从右往左、从下往上展示 [7414849]
+- :sparkles: `hstep`、`vstep`增加`onBeforeSelect`事件，返回`false`阻止切换 [7414849]
+
 ## 2026-11-21
 - :bug: 修复`slider`禁用状态下点击滑槽仍可改变值的问题
 - :lipstick: `iHOS`风格下`popover`设置`style:'inverse'`时背景色未设置透明度问题修复 [7126112]
