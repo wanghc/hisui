@@ -19,7 +19,10 @@
 
 - **构建命令**：gulp 3.9.1 必须用 Node 11 跑（Node 22 会挂），且要清掉 NODE_OPTIONS：
   `NODE_OPTIONS= "C:/Program Files/nodejs/node.exe" node_modules/gulp/bin/gulp.js min-js zh_CN zh_TC bod`
-  ⚠️ 2026-10 起系统 Node 已升到 v14（不再是 v11），gulp 会报 `primordials is not defined`。
+  ⚠️ 2026-11-24 起系统 Node 已升到 v22（22.22.2），gulp 会报 `primordials is not defined`。
+  ✅ JS 管道可用 nvm 里保留的 Node 11.15.0 二进制直接跑（**不切换全局 Node**）：
+  `NODE_OPTIONS= "/c/Users/wangh/AppData/Roaming/nvm/v11.15.0/node.exe" node_modules/gulp/bin/gulp.js min-js`
+  （nvm list 还装有 14.21.0 / 20.20.2。系统 nodejs 目录 `C:/Program Files/nodejs/node.exe` 现指向 v22，别再用旧命令里的路径。）
   此时 CSS 改用 node 脚本复刻 `min-css-<theme>`（项目自带 less 2.7.3 + clean-css 3.4.28）；
   复刻要点：① gulp.src 对重复路径**去重**（lessArr 中 calendar/datebox 等重复，不去重会多出重复 CSS 段）
   ② 主题目录缺失的 less 文件（combogrid/numberspinner/timespinner/input.hover）静默跳过

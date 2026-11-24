@@ -15,6 +15,75 @@
 	function getValue(target){
 		return $(target).val();
 	}
+	/** 需求7573451: 获取光标所在位置,兼容IE8 */
+	function getCaretPos(target){
+		var sstart = 0;
+		if (target.selectionStart != null) {
+			sstart = target.selectionStart;
+		} else {
+			if (target.createTextRange) {
+				var range = target.createTextRange();
+				var sel = document.selection.createRange();
+				sel.setEndPoint("StartToStart", range);
+				sstart = sel.text.length;
+			}
+		}
+		return sstart;
+	}
+	/** 需求7573451: 按冒号分割,返回第seg段(0时/1分/2秒)在文本中的实际起止位置,兼容"2:10:10"这类非两位占位的值 */
+	function getSegRange(target, seg){
+		var arr = $(target).val().split(':');
+		var max = arr.length - 1;
+		if (seg < 0) { seg = 0; }
+		if (seg > max) { seg = max; }
+		var start = 0;
+		for (var i = 0; i < seg; i++) {
+			start += arr[i].length + 1;
+		}
+		return [start, start + arr[seg].length];
+	}
+	/** 需求7573451: 根据光标位置算出所在段(0时/1分/2秒),同样按冒号动态计算 */
+	function getSegByPosi(target, posi){
+		var arr = $(target).val().split(':');
+		var start = 0;
+		for (var i = 0; i < arr.length; i++) {
+			var end = start + arr[i].length;
+			if (posi <= end) { return i; }
+			start = end + 1;
+		}
+		return arr.length - 1;
+	}
+	/** 需求7573451: 选中第seg段(0时/1分/2秒),兼容IE8 */
+	function selectSegment(target, seg){
+		var _4ee = getSegRange(target, seg);
+		var st = _4ee[0], end = _4ee[1];
+		if (target.setSelectionRange) {
+			target.setSelectionRange(st, end);
+		} else {
+			if (target.createTextRange) {
+				var range = target.createTextRange();
+				range.collapse();
+				range.moveStart("character", st);
+				range.moveEnd("character", end);
+				range.select();
+			}
+		}
+		$(target).focus();
+	}
+	/** 需求7573451: 左右方向键按 时/分/秒 段整段选中移动(以冒号为间隔) */
+	function moveSegment(target, e){
+		var opts = $.data(target, 'timeboxq').options;
+		var maxSeg = (opts.timeFormat == 'HM') ? 1 : 2;
+		var seg = getSegByPosi(target, getCaretPos(target));
+		if (e.keyCode == 37) { // left
+			seg--;
+			if (seg < 0) { seg = 0; }
+		} else { // right
+			seg++;
+			if (seg > maxSeg) { seg = maxSeg; }
+		}
+		selectSegment(target, seg);
+	}
 	/**
 	 * 
 	 * @param {HTMLDomcument} target 
@@ -83,6 +152,12 @@
 						break;
 					case 40:
 						opts.keyHandler.down.call(_t, e);
+						break;
+					case 37:
+					case 39:
+						// 需求7573451: 左右方向键按 时/分/秒 段整段选中移动(以冒号为间隔),而不是逐个字符移动
+						e.preventDefault();
+						moveSegment(_t, e);
 						break;
 					case 13:
 						e.preventDefault();

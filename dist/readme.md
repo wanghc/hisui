@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-24
+- :sparkles: `timespinner`支持左右方向键按时/分/秒段整体选中移动（以冒号为间隔），不再逐字符移动 [7573451]
+
 ## 2026-11-22
 - :sparkles: `hstep`、`vstep`增加`direction`方向配置，支持从右往左、从下往上展示 [7414849]
 - :sparkles: `hstep`、`vstep`增加`onBeforeSelect`事件，返回`false`阻止切换 [7414849]

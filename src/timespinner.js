@@ -5,19 +5,9 @@
         $(_4e8).spinner(opts);
         $(_4e8).unbind(".timespinner");
         $(_4e8).bind("click.timespinner", function () {
-            var sstart = 0;
-            if (this.selectionStart != null) {
-                sstart = this.selectionStart;
-            } else {
-                if (this.createTextRange) {
-                    var _4ea = _4e8.createTextRange();
-                    var s = document.selection.createRange();
-                    s.setEndPoint("StartToStart", _4ea);
-                    sstart = s.text.length;
-                }
-            }
+            var sstart = _getCaret(_4e8);
             delete this.selectionStartPersistent;
-            opts.highlight = calHighlightTypeByPosi(sstart);
+            opts.highlight = calHighlightTypeByPosi(_4e8, sstart);
             _highlight(_4e8);
         }).bind("blur.timespinner", function () {
             /*
@@ -27,8 +17,29 @@
             */
             this.selectionStartPersistent = this.selectionStart;
             _enter(_4e8);
-        }).bind('keydown.timespinner',function(){
+        }).bind('keydown.timespinner',function(e){
             delete this.selectionStartPersistent;
+            // 需求7573451: 左右方向键按 时/分/秒 段整段选中移动(以冒号为间隔),而不是逐个字符移动
+            if (e.keyCode == 37 || e.keyCode == 39) {
+                var _4eb = $.data(_4e8, "timespinner").options;
+                if (!_4eb.disabled && !_4eb.readonly) {
+                    var _4ec = calHighlightTypeByPosi(_4e8, _getCaret(_4e8));
+                    var _4ed = _4eb.showSeconds ? 2 : 1;
+                    if (e.keyCode == 37) { // left
+                        _4ec--;
+                        if (_4ec < 0) { _4ec = 0; }
+                    } else { // right
+                        _4ec++;
+                        if (_4ec > _4ed) { _4ec = _4ed; }
+                    }
+                    _4eb.highlight = _4ec;
+                    // 现代浏览器下 _highlight 会按光标位置重算 highlight,这里把光标位置预置为目标段起点保持一致
+                    _4e8.selectionStartPersistent = _getSegRange(_4e8, _4ec)[0];
+                    _highlight(_4e8);
+                    e.preventDefault();
+                    return false;
+                }
+            }
         }).bind("dblclick.timespinner", function () {
             // yzc提交
             var n=0,r=10;
@@ -46,43 +57,60 @@
             $(_4e8).focus();
         });	
     };
-    /** 通过光标位置计算出,应该高亮的类型0,1,2*/
-    function calHighlightTypeByPosi(posi){
-        if (posi >= 0 && posi <= 2) {
-            return 0;
+    /** 获取光标所在位置,兼容IE8 */
+    function _getCaret(_4ea) {
+        var sstart = 0;
+        if (_4ea.selectionStart != null) {
+            sstart = _4ea.selectionStart;
         } else {
-            if (posi >= 3 && posi <= 5) {
-                return 1;
-            } else {
-                if (posi >= 6 && posi <= 8) {
-                    return 2;
-                }
+            if (_4ea.createTextRange) {
+                var _4eb = _4ea.createTextRange();
+                var s = document.selection.createRange();
+                s.setEndPoint("StartToStart", _4eb);
+                sstart = s.text.length;
             }
         }
-        return 0;
+        return sstart;
+    }
+    /** 需求7573451: 按分隔符分割,返回第seg段(0时/1分/2秒)在文本中的实际起止位置,兼容"2:10:10"这类非两位占位的值 */
+    function _getSegRange(_4ed, seg) {
+        var opts = $.data(_4ed, "timespinner").options;
+        var arr = $(_4ed).val().split(opts.separator);
+        var max = opts.showSeconds ? 2 : 1;
+        if (seg < 0) { seg = 0; }
+        if (seg > arr.length - 1) { seg = arr.length - 1; }
+        if (seg > max) { seg = max; }
+        var start = 0;
+        for (var i = 0; i < seg; i++) {
+            start += arr[i].length + 1;
+        }
+        return [start, start + arr[seg].length];
+    }
+    /** 需求7573451: 通过光标位置计算出,应该高亮的段0,1,2,同样按分隔符动态计算 */
+    function calHighlightTypeByPosi(_4ed, posi){
+        var opts = $.data(_4ed, "timespinner").options;
+        var arr = $(_4ed).val().split(opts.separator);
+        var max = opts.showSeconds ? 2 : 1;
+        var start = 0;
+        for (var i = 0; i < arr.length; i++) {
+            var end = start + arr[i].length;
+            if (posi <= end) {
+                return (i > max) ? max : i;
+            }
+            start = end + 1;
+        }
+        var last = arr.length - 1;
+        return (last > max) ? max : last;
     }
     //highlight光标所在区
     function _highlight(_4ed) {
         var opts = $.data(_4ed, "timespinner").options;
-        var st = 0, end = 0;
         if (_4ed.selectionStart!=null){
             // 光标在哪,哪就高亮
-            opts.highlight = calHighlightTypeByPosi(_4ed.selectionStartPersistent!==undefined?_4ed.selectionStartPersistent:_4ed.selectionStart);
+            opts.highlight = calHighlightTypeByPosi(_4ed, _4ed.selectionStartPersistent!==undefined?_4ed.selectionStartPersistent:_4ed.selectionStart);
         }
-        if (opts.highlight == 0) {
-            st = 0;
-            end = 2;
-        } else {
-            if (opts.highlight == 1) {
-                st = 3;
-                end = 5;
-            } else {
-                if (opts.highlight == 2) {
-                    st = 6;
-                    end = 8;
-                }
-            }
-        }
+        var _4ee = _getSegRange(_4ed, opts.highlight);
+        var st = _4ee[0], end = _4ee[1];
         if (_4ed.selectionStart != null) {
             _4ed.setSelectionRange(st, end);
         } else {
@@ -262,7 +290,7 @@
             return jq.each(function () {
                 if (index > -1) {
                     var opts = $.data(this, "timespinner").options;
-                    opts.highlight = calHighlightTypeByPosi(index);
+                    opts.highlight = calHighlightTypeByPosi(this, index);
                     this.selectionStart = index;
                     this.selectionStartPersistent = index;
                 }
