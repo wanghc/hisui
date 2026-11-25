@@ -45,7 +45,7 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             background-size:75px;
         }
         .bgsize130{
-            background-size: 130px;
+            background-size: 110px;
         }
     </style>
     <h3>一、患者头像类插画</h3>
@@ -65,11 +65,25 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
     <div class="demo-exp-code entry-content">
         <div class="conter4 clearboth"></div>
     </div>
-    <h3>五、关于插画<a href="javascript:void(0);" id="langAboutBtn">切换语言</a></h3>
+    <h3>五、关于插画
+        <span class="lang-switch">
+            <a href="javascript:void(0);" class="lang-btn" data-lang="zh">中文</a>
+            <a href="javascript:void(0);" class="lang-btn" data-lang="en">英文</a>
+            <a href="javascript:void(0);" class="lang-btn" data-lang="fr">法文</a>
+            <a href="javascript:void(0);" class="lang-btn" data-lang="pt">葡萄牙语</a>
+        </span>
+    </h3>
     <div class="demo-exp-code entry-content">
         <div class="conter5 clearboth"></div>
     </div>
-    <h3>六、系统状态插画<a href="javascript:void(0);" id="langBtn">切换语言</a></h3>
+    <h3>六、系统状态插画
+        <span class="lang-switch">
+            <a href="javascript:void(0);" class="lang-btn" data-lang="zh">中文</a>
+            <a href="javascript:void(0);" class="lang-btn" data-lang="en">英文</a>
+            <a href="javascript:void(0);" class="lang-btn" data-lang="fr">法文</a>
+            <a href="javascript:void(0);" class="lang-btn" data-lang="pt">葡萄牙语</a>
+        </span>
+    </h3>
     <div class="demo-exp-code entry-content">
         <div class="conter6 clearboth"></div>
     </div>
@@ -122,36 +136,47 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             }
             html.push('<div class="conter"><div class="pic-sysst-nodata-region bgsize75"/><div class="clstext">pic-sysst-nodata-region bgsize75</div></div>');
             $('.conter6').html(html.join(""));
-            isChinese = true;
-            var linkObj = null;
-            $("#langBtn").click(function(){
-                if (isChinese){
+            // -- 多语言切换按钮（中/英/法/葡），关于插画与系统状态插画共用同一份语言状态 --
+            var langs = ['zh', 'en', 'fr', 'pt'];
+            var langIdx = 0;      // 当前语言下标，0=中文（默认，无附加样式表）
+            var linkObj = null;   // 当前挂载的语言样式表
+            function applyLang() {
+                // 先移除旧样式表
+                if (linkObj) {
+                    linkObj.remove();
+                    linkObj = null;
+                }
+                // 非中文时挂载对应语言样式表（含 icons_xx 图标目录映射）
+                var lang = langs[langIdx];
+                if (lang != 'zh') {
                     linkObj = $('<link>', {
                         rel: 'stylesheet',
                         type: 'text/css',
-                        href: '../../dist/css/locale/hisui.'+HISUIStyleCode+'.en.css'
+                        href: '../../dist/css/locale/hisui.' + HISUIStyleCode + '.' + lang + '.css'
                     }).appendTo('head');
-                }else{
-                    linkObj.remove();
                 }
-                isChinese = !isChinese;
-                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
-                $("#langAboutBtn").text('切换成'+(isChinese?'英文':'中文'));
+                // 同步两个区域全部按钮的选中态
+                $('.lang-btn').each(function() {
+                    var btn = $(this);
+                    if (btn.attr('data-lang') == lang) {
+                        btn.addClass('lang-active');
+                    } else {
+                        btn.removeClass('lang-active');
+                    }
+                });
+            }
+            $('.lang-btn').click(function() {
+                var lang = $(this).attr('data-lang');
+                for (var i = 0; i < langs.length; i++) {
+                    if (langs[i] == lang) {
+                        langIdx = i;
+                        break;
+                    }
+                }
+                applyLang();
             });
-            $("#langAboutBtn").click(function(){
-                if (isChinese){
-                    linkObj = $('<link>', {
-                        rel: 'stylesheet',
-                        type: 'text/css',
-                        href: '../../dist/css/locale/hisui.'+HISUIStyleCode+'.en.css'
-                    }).appendTo('head');
-                }else{
-                    linkObj.remove();
-                }
-                isChinese = !isChinese;
-                $("#langBtn").text('切换成'+(isChinese?'英文':'中文'));
-                $("#langAboutBtn").text('切换成'+(isChinese?'英文':'中文'));
-            });  
+            // 初始态：中文按钮高亮
+            applyLang();
         }
         $(function(){
             init();
