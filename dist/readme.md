@@ -38,6 +38,8 @@ $("#btn").linkbutton("disable");
 ## 2026-11-25
 - :sparkles: 插画页增加中文/英文/法文/葡萄牙语四语切换按钮(无数据图片支持多语言) [7059157]
 - :lipstick: 语言插画回落规则整改：法文/葡语暂无自有插画的条目统一回落引用英文图（`icons_en`），保留 pure/vben 各自的 `nodata_region_grid.svg`、`nodata_region.svg` 本地化图；删除 64 个与英文相同的冗余副本文件（`icons_{fr,pt}/{blue,lite,pure}`），locale CSS 引用校验 141 处 0 缺失
+- :sparkles: iHOS（vben）风格系统状态插画补充法文/葡语版（新增 e403/e404/e500/nodata_msg/timeout_relogon/welcome 各 6 张 png，更新 nodata_region/nodata_region_grid 各 2 张 svg；nodata.svg 暂无本地化版继续回落英文）[7107165]
+- :lipstick: iHOS 风格夜间皮肤（`body[data-theme="bgdark"]`）插画透明度分组调整：403/404/500/无数据提示/欢迎/超时为 80%，暂无数据（中图/小图）为 70% [7107165]
 
 ## 2026-11-24
 - :sparkles: `timespinner`支持左右方向键按时/分/秒段整体选中移动（以冒号为间隔），不再逐字符移动 [7573451]

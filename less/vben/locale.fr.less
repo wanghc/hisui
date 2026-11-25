@@ -1,22 +1,23 @@
-// 插画类实现英文
-// 只需把不特殊图片写入即可, 覆盖hisui.css文件中包含中文的图片
+// 插画类实现法文（需求 7107165）
+// 法文自有插画: e403/e404/e500/nodata_msg/timeout_relogon/welcome/nodata_region/nodata_region_grid;
+// nodata.svg 暂无法文版, 回落英文 icons_en
 @hisui-style-code:vben;
 @hisui-default-code:icons_en;
 @hisui-locale-code:icons_fr;
 .pic-sysst-e403 {
-  background: url('../@{hisui-default-code}/@{hisui-style-code}/sysst/e403.png') no-repeat center center;
+  background: url('../@{hisui-locale-code}/@{hisui-style-code}/sysst/e403.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   height: 100%;
 }
 .pic-sysst-e404 {
-  background: url('../@{hisui-default-code}/@{hisui-style-code}/sysst/e404.png') no-repeat center center;
+  background: url('../@{hisui-locale-code}/@{hisui-style-code}/sysst/e404.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   height: 100%;
 }
 .pic-sysst-e500 {
-  background: url('../@{hisui-default-code}/@{hisui-style-code}/sysst/e500.png') no-repeat center center;
+  background: url('../@{hisui-locale-code}/@{hisui-style-code}/sysst/e500.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   height: 100%;
@@ -34,19 +35,19 @@
   height: 100%;
 }
 .pic-sysst-nodata-msg {
-  background: url('../@{hisui-default-code}/@{hisui-style-code}/sysst/nodata_msg.png') no-repeat center center;
+  background: url('../@{hisui-locale-code}/@{hisui-style-code}/sysst/nodata_msg.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   height: 100%;
 }
 .pic-sysst-timeout-relogon {
-  background: url('../@{hisui-default-code}/@{hisui-style-code}/sysst/timeout_relogon.png') no-repeat center center;
+  background: url('../@{hisui-locale-code}/@{hisui-style-code}/sysst/timeout_relogon.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   height: 100%;
 }
 .pic-sysst-welcome {
-  background: url('../@{hisui-default-code}/@{hisui-style-code}/sysst/welcome.png') no-repeat center center;
+  background: url('../@{hisui-locale-code}/@{hisui-style-code}/sysst/welcome.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   height: 100%;
