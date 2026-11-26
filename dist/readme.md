@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-26
+- :bug: 修复 webui-popover 弹层每次显示时 `detach()+appendTo(body)` 造成的整文档样式重算（大页面单次 6~10ms，页面含"兄弟+后代"选择器时失效范围扩大到整个 body 子树，表现为大页面上鼠标悬停弹出弹层时卡顿/飘忽）。改为：弹层元素已是容器直接子节点时跳过搬移，仅在首次显示（元素未插入 DOM）或被挪出容器时才 `appendTo`。弹层定位为 absolute + 显式 zIndex（每次 show 刷新），与 DOM 顺序无关，显隐、互斥（hideOthers）、cache:false 动态内容等行为不变。[icon 文档页悬停卡顿优化]
+
 ## 2026-11-25
 - :sparkles: 插画页增加中文/英文/法文/葡萄牙语四语切换按钮(无数据图片支持多语言) [7059157]
 - :lipstick: 语言插画回落规则整改：法文/葡语暂无自有插画的条目统一回落引用英文图（`icons_en`），保留 pure/vben 各自的 `nodata_region_grid.svg`、`nodata_region.svg` 本地化图；删除 64 个与英文相同的冗余副本文件（`icons_{fr,pt}/{blue,lite,pure}`），locale CSS 引用校验 141 处 0 缺失

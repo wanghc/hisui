@@ -63,7 +63,7 @@
 ## 组件加载与 lib/ 目录（排查经验）
 
 - 页面可能**不加载 hisui 构建产物，而是加载 `lib/` 下的原生 EasyUI**（含 1.3.2 / 1.3.6 / 1.4.5 三套，各有 `plugins/`、`src/`、`jquery.easyui.min.js`）。判断依据：hisui 的 tabs.js 会给所有 `li` 加 `hisui-` 前缀，截图里 `<li class="tabs-selected">` 无该前缀即说明走的是原生 EasyUI。
-- **`lib/` 在 `.gitignore` 中**，改动不进版本库、无法 git 还原（只能按 mtime 定位后手工回退）。**结论：不要再给 lib/ 打补丁**，需求回到 src/ 或部署端覆盖文件实现。
+- **lib/ 入库情况是"部分"**：EasyUI 各套（1.3.2/1.3.6/1.4.5）不在版本库，改动无法 git 还原；但 `lib/popover1.2.17/`、`lib/bootstrap-switch`、`lib/json2.js` 等**是入库的**（git check-ignore / git ls-files 可验证）。给 lib 文件打补丁前先用 git check-ignore 确认能否回退，勿凭印象拒绝。
 - **改 lib 下 EasyUI 前务必确认变量名**：`plugins/*.js` 与 `jquery.easyui.min.js` 是混淆代码，同名逻辑的变量名不同（如 tabs 的 options 变量在 plugins 版是 `_47`/`_55`/`_3d`，在 min 包是 `opts`）。用错会导致 `xxx is not defined` 运行时错误。
 
 ## 部署端覆盖件（his-mediway-iris）
@@ -75,6 +75,7 @@
 ## webui-popover 性能坑 [popover]
 
 - 底层插件 `lib/popover1.2.17/jquery.webui-popover.min.js` 的 `displayContent()` **每次 show 都 `detach()` 再 `appendTo(body)`**。只要该 popover 不是 body 的最后一个子节点，"从中间移除子节点"会触发**整文档样式重算**（7000 元素的页面单次 6~10ms）——页面有"兄弟选择器+后代"规则（bootstrap `.table caption + thead ...`、`.messager-icon+div *`）时浏览器收窄不了失效范围。
+- **已根治（2026-11-26，用户拍板直接改库文件）**：displayContent 改为「弹层元素已是容器直接子节点则跳过 detach+appendTo，仅首次显示（孤儿元素）或被挪出容器时才 appendTo」。absolute + 显式 zIndex（每次 show 由 getZIndex() 刷新）使 DOM 顺序无关紧要，显隐/hideOthers 互斥/cache:false 均不受影响。实测老式两实例交替 show 整文档重算 18→0。已重编 dist（Node 11 gulp min-js）；dist 三份 JS 生成物与 src/jquery.hisui.src.js 均不入库（.gitignore:28/38），部署端需重编或取本地产物。changelog 见 dist/readme.md 2026-11-26。
 - 追加到末尾 / 移除末尾节点不触发；所以"同一批 popover 只有最后一个显示时不卡"。
 - 高频悬停场景的解法（已在 `doc/pages/icon-fa.php` 落地）：全页共用 1 个 popover + 隐形锚点定位 + `trigger:'manual'` 自管定时器 + `cache:false`，弹层节点始终在 body 末尾；并加 `pointer-events:none` 防止弹层截获鼠标。
 - 延时：`delay.show` 为 null 时实际 100ms（`0===show?0:show||100`），`delay.hide` 300ms；手动 `.popover('show')` 会绕过 show 延时。
