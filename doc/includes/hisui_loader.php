@@ -24,8 +24,8 @@ if (!function_exists('renderHisuiResources')) {
         $theme = htmlspecialchars($GLOBALS['CURRENT_HISUI_THEME'], ENT_QUOTES, 'UTF-8');
         $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
         $html = '';
-        $html .= '<link rel="shortcut icon" href="../favicon.ico"/>' . "\n";
-	    $html .= '<link rel="bookmark" href="../favicon.ico"/>' . "\n";
+        $html .= '<link rel="shortcut icon" href="../favicon.png"/>' . "\n";
+	    $html .= '<link rel="bookmark" href="../favicon.png"/>' . "\n";
         $html .= '<meta charset="UTF-8">' . "\n" ;
         $html .= '<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />' . "\n" ;
         $html .= '<title>' . $title . '</title>' . "\n";
