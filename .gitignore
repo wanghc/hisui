@@ -11,7 +11,9 @@
 #忽略 .vscode 目录
 .vscode/
 less-old/
-lib/
+# lib 整体忽略，但已入库的 popover1.2.17 例外（避免 git add 每次弹 ignored 警告）
+lib/*
+!lib/popover1.2.17/
 bug
 src-old/
 api/scrollbar
@@ -56,5 +58,9 @@ dist/css/hisui.vben.css
 dist/css/hisui.vben.min.css
 less/vben/hisui.min.less
 test-cryze/
-.workbuddy
+# .workbuddy 整体忽略，但已入库的 memory/MEMORY.md 例外
+.workbuddy/*
+!.workbuddy/memory/
+.workbuddy/memory/*
+!.workbuddy/memory/MEMORY.md
 backup*
