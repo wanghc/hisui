@@ -85,6 +85,9 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             display: block;
             padding-left: 10px;
         }
+        .webui-popover.icon-usage-tip{
+            pointer-events: none;
+        }
         .l-btn{
             text-align: left;
         }
@@ -366,26 +369,52 @@ $PAGE_CONTEXT = $PAGE_CONTEXT ?? [];
             }
 
         });
-        $("body").on('mouseenter','ul li',function(){
-            var _t =$(this);
-            var cls = _t.text().trim();
-            var txt = '无';
-            $.each(iconDictionary,function(k){
-                if(cls==k) txt = iconDictionary[cls];
-                if (txt!='无') {
-                    txt = txt.split('，').join('</span><span class="iconpopover">');
-                    txt = '<span class="iconpopover">'+txt+'</span>';
-                    return false;
-                }
-            });
-            _t.popover({
+        /* 图标用途说明: 全页共用一个 popover 实例
+         * webui-popover 每次 show 都会先 detach() 再 appendTo(body); 只要该 popover 不是 body 的最后一个子节点,
+         * 这次"从中间移除"就会让浏览器把整个 body 子树的样式重算一遍(本页约 6700 个元素, 单次 6~10ms), 悬停卡顿即来源于此.
+         * 共用一个实例并让它始终位于 body 末尾即可避开(移除末尾节点不会触发整文档重算); 定位靠一个与当前 li 重合的隐形锚点.
+         */
+        var iconHoverSel = '.whitelist li,.iconlist li,.fontlist li,.blacklist li,.chinCharlist li,.arrowlist li,.paneliconlist li,.bigiconlist li';
+        var iconTipShowDelay = 100; // 悬停多久后弹出, 快速掠过的图标不会弹层
+        var iconTipHideDelay = 300; // 移开多久后隐藏
+        var iconTipReady = false;   // popover 是否已初始化
+        var iconTipShowTimer = null, iconTipHideTimer = null;
+        var $iconTipAnchor = $('<div id="iconTipAnchor"></div>').css({position:'absolute',left:0,top:0,width:0,height:0,overflow:'hidden','pointer-events':'none'}).appendTo('body');
+        // 弹层不截获鼠标: 鼠标向下移动时可直达被弹层覆盖的下一行图标, 不会在弹层上停顿
+        $iconTipAnchor.on('show.webui.popover', function(e, target){
+            target.addClass('icon-usage-tip');
+        });
+        function showIconTip(el){
+            var desc = iconDictionary[$(el).text().trim()]; // 按类名直接查字典
+            if (!desc) return; // 无说明的图标不弹层
+            var r = el.getBoundingClientRect();
+            // 锚点与当前 li 重合, popover 以锚点定位在其正下方
+            $iconTipAnchor.css({left: r.left + document.documentElement.scrollLeft, top: r.top + document.documentElement.scrollTop, width: r.width, height: r.height});
+            var txt = '<span class="iconpopover">'+desc.split('，').join('</span><span class="iconpopover">')+'</span>';
+            $iconTipAnchor.popover({
                 style:'inverse',
-                trigger:'hover',
+                trigger:'manual', // 显隐时机完全由下方的定时器控制
                 placement:'bottom',
                 title:'该图标一般用途',
                 content:txt,
-                cache:true
+                width:260, // 固定宽度, 避免 width:auto 时插入临时节点测宽造成强制回流
+                cache:false // 每次按当前图标重建内容; 旧节点处于 body 末尾, 移除开销很小
             }).popover('show');
+            iconTipReady = true;
+        }
+        $("body").on('mouseenter',iconHoverSel,function(){
+            var el = this;
+            clearTimeout(iconTipHideTimer);
+            clearTimeout(iconTipShowTimer);
+            iconTipShowTimer = setTimeout(function(){
+                showIconTip(el);
+            }, iconTipShowDelay);
+        }).on('mouseleave',iconHoverSel,function(){
+            clearTimeout(iconTipShowTimer);
+            clearTimeout(iconTipHideTimer);
+            iconTipHideTimer = setTimeout(function(){
+                if (iconTipReady) $iconTipAnchor.popover('hide');
+            }, iconTipHideDelay);
         })
         function genallicondesclist(){
                 var myallicondesclist={};

@@ -71,3 +71,11 @@
 - 仓库 `D:\his-mediway-iris` 中 `frontend/base/scripts/framework/` 与 `base/imedical/web/scripts/framework/` 是**同名的两份副本**（如 `easyui-1.3.6/jquery.tabs.js`），改动前逐字节相同，被各自目录的 csp 引用 → **改一处必须同步另一处**。
 - 这类覆盖件在 `<HISUI>` 标签**之后**加载，会整体替换 `$.fn.<组件>` **及其 defaults**，导致 hisui 语言包注入的文案键丢失 → 覆盖件自己的 defaults 必须自带中文文案（不能依赖语言包）。
 - 页签标题在页面上是 `$.hisui.getTrans(title)` 的结果，拼 aria-label 时也应走一次 getTrans（`getTrans` 对非字符串/含 HTML 的 key 原样返回，可安全调用）。
+
+## webui-popover 性能坑 [popover]
+
+- 底层插件 `lib/popover1.2.17/jquery.webui-popover.min.js` 的 `displayContent()` **每次 show 都 `detach()` 再 `appendTo(body)`**。只要该 popover 不是 body 的最后一个子节点，"从中间移除子节点"会触发**整文档样式重算**（7000 元素的页面单次 6~10ms）——页面有"兄弟选择器+后代"规则（bootstrap `.table caption + thead ...`、`.messager-icon+div *`）时浏览器收窄不了失效范围。
+- 追加到末尾 / 移除末尾节点不触发；所以"同一批 popover 只有最后一个显示时不卡"。
+- 高频悬停场景的解法（已在 `doc/pages/icon-fa.php` 落地）：全页共用 1 个 popover + 隐形锚点定位 + `trigger:'manual'` 自管定时器 + `cache:false`，弹层节点始终在 body 末尾；并加 `pointer-events:none` 防止弹层截获鼠标。
+- 延时：`delay.show` 为 null 时实际 100ms（`0===show?0:show||100`），`delay.hide` 300ms；手动 `.popover('show')` 会绕过 show 延时。
+- `width:'auto'` 时 hisui 包装层 `fixPopoverWidth` 每次初始化都插临时节点测宽（强制回流），固定 width 可跳过。
