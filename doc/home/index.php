@@ -17,7 +17,7 @@ if (!preg_match('/^[a-zA-Z0-9\/._-]+$/', $page) || strpos($page, '..') !== false
 $theme = $_GET['theme'] ?? '';
 $PAGE_CONTEXT = array('version' => $version,'title' => 'HISUI');
 $PAGE_INFO = array(
-    array('name'=>'home','title'=>'HISUI首页'),
+    array('name'=>'home','title'=>'HISUI-API首页'),
     array('name'=>'icon','title'=>'图标','parentName'=>'baseCtt'),
     array('name'=>'pic','title'=>'插画','parentName'=>'baseCtt'),
     array('name'=>'tooltip','title'=>'提示','parentName'=>'baseCtt'),
