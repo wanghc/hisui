@@ -35,6 +35,9 @@ $("#btn").linkbutton("disable");
 
 # 更新日志 #
 
+## 2026-11-28
+- :lipstick: 纯净风格南北面板标题折叠状态下直角改为圆角 [7613859]
+
 ## 2026-11-26
 - :bug: 修复 webui-popover 弹层每次显示时 `detach()+appendTo(body)` 造成的整文档样式重算（大页面单次 6~10ms，页面含"兄弟+后代"选择器时失效范围扩大到整个 body 子树，表现为大页面上鼠标悬停弹出弹层时卡顿/飘忽）。改为：弹层元素已是容器直接子节点时跳过搬移，仅在首次显示（元素未插入 DOM）或被挪出容器时才 `appendTo`。弹层定位为 absolute + 显式 zIndex（每次 show 刷新），与 DOM 顺序无关，显隐、互斥（hideOthers）、cache:false 动态内容等行为不变。[icon 文档页悬停卡顿优化]
 
