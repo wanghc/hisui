@@ -1,6 +1,9 @@
 ## node 安装说明
+> node 20.20.2
+> gulp 3.9.1
+> npm install
 
-### 1. 下载node11.15.0版本mis
+### 1. 下载node20.20.2版本mis
 ```sh
     node -v
     npm -v
@@ -34,6 +37,7 @@ npm install gulp -g
 npm config set registry https://registry.npm.taobao.org
 'npm config get registry
 npm install
-gulp min-js
+npx gulp 或 npm run all
+npm run min-js
 ```
 

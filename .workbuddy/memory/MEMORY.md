@@ -17,16 +17,19 @@
 
 ## 构建与国际化（重要）
 
-- **构建命令**：gulp 3.9.1 必须用 Node 11 跑（Node 22 会挂），且要清掉 NODE_OPTIONS：
-  `NODE_OPTIONS= "C:/Program Files/nodejs/node.exe" node_modules/gulp/bin/gulp.js min-js zh_CN zh_TC bod`
-  ⚠️ 2026-11-24 起系统 Node 已升到 v22（22.22.2），gulp 会报 `primordials is not defined`。
-  ✅ JS 管道可用 nvm 里保留的 Node 11.15.0 二进制直接跑（**不切换全局 Node**）：
-  `NODE_OPTIONS= "/c/Users/wangh/AppData/Roaming/nvm/v11.15.0/node.exe" node_modules/gulp/bin/gulp.js min-js`
-  （nvm list 还装有 14.21.0 / 20.20.2。系统 nodejs 目录 `C:/Program Files/nodejs/node.exe` 现指向 v22，别再用旧命令里的路径。）
-  此时 CSS 改用 node 脚本复刻 `min-css-<theme>`（项目自带 less 2.7.3 + clean-css 3.4.28）；
-  复刻要点：① gulp.src 对重复路径**去重**（lessArr 中 calendar/datebox 等重复，不去重会多出重复 CSS 段）
+- **构建命令（2026-11-29 起已修复，Node 20/22 直接跑）**：package.json 加了
+  `"overrides": { "graceful-fs": "^4.2.12" }`，根治 `primordials is not defined`
+  （根因：gulp 3.9.1 → vinyl-fs 0.x → graceful-fs@3 → `natives` 包把老版 Node 内置 fs.js 源码
+  当普通模块注入执行，Node≥12 无此内部绑定即崩）。npm 安装须带 `--legacy-peer-deps`
+  （老树 stylelint 13 vs config-standard 36 有历史 peer 冲突）。
+  已逐字节回归：`min-css-pure` / `min-css`（全主题）/ `min-js` / `zh_CN` / `zh_TC` / `bod`
+  在 Node 22 与 Node 20.20.2 下产物均与原 Node 11 产物一致。**不再需要 Node 11 / NODE_OPTIONS 那套**。
+  `.nvmrc` 用户已改为 20.20.2。运行时仅剩 DeprecationWarning（fs.Stats / util.isRegExp），无害。
+- 兼容性复刻脚本 `.workbuddy/tmp/7613859/build-pure-css.js` 已完成历史使命（验证时可复用其比对思路）；
+  其复刻要点仍是排查 CSS 产物差异的知识：① gulp.src 对重复路径**去重**（lessArr 中 calendar/datebox 等重复）
   ② 主题目录缺失的 less 文件（combogrid/numberspinner/timespinner/input.hover）静默跳过
-  ③ clean-css 会把 `url(../css/images/x.png)` 重写为 `url(images/x.png)`。产物 LF、无 BOM、min 无结尾换行。
+  ③ clean-css（gulp-minify-css）以 target/relativeTo=dist/css 重写 `url(../css/...)` → `url(...)`，且会按声明
+  相同做规则重组（改 less 后其它主题规则可能重新分组，语义等价属正常）。产物 LF、无 BOM、min 无结尾换行。
 - `src/jquery.hisui.src.js`、`dist/js/jquery.hisui.js`、`dist/js/jquery.hisui.min.js` 都是 gulp concat **生成物**，改组件只改 `src/<组件>.js`，不要手改生成物。
 - 语言包 `src/hisui-lang-{zh_CN,zh_TC,bod}.js` → `dist/js/locale/`（gulp 会把中文/藏文转成 \uXXXX）。
 

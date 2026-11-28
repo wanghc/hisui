@@ -1,6 +1,9 @@
 {
   "name": "gulphisui",
   "version": "1.0.0",
+  "overrides": {
+    "graceful-fs": "^4.2.12"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
